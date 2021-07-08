@@ -1,0 +1,137 @@
+2.1.9 Joystick
+==============
+
+Introduction
+------------
+
+In this project, We're going to learn how joystick works. We manipulate
+the Joystick and display the results on the screen.
+
+Components
+----------
+
+.. image:: media/image317.png
+
+
+Principle
+---------
+
+**Joystick**
+
+The basic idea of a joystick is to translate the movement of a stick
+into electronic information that a computer can process.
+
+In order to communicate a full range of motion to the computer, a
+joystick needs to measure the stick's position on two axes -- the X-axis
+(left to right) and the Y-axis (up and down). Just as in basic geometry,
+the X-Y coordinates pinpoint the stick's position exactly.
+
+To determine the location of the stick, the joystick control system
+simply monitors the position of each shaft. The conventional analog
+joystick design does this with two potentiometers, or variable
+resistors.
+
+The joystick also has a digital input that is actuated when the joystick
+is pressed down.
+
+.. image:: media/image318.png
+
+
+Schematic Diagram
+-----------------
+
+When the data of joystick is read, there are some differents between
+axis: data of X and Y axis is analog, which need to use ADC0834 to
+convert the analog value to digital value. Data of Z axis is digital, so
+you can directly use the GPIO to read, or you can also use ADC to read.
+
+.. image:: media/image319.png
+
+
+.. image:: media/image320.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: media/image193.png
+
+**Step 2:** Go to the folder of the code.
+
+.. code-block:: python
+
+    cd /home/pi/raphael-kit/python/
+
+**Step 3:** Run.
+
+.. code-block:: python
+
+    sudo python3 2.1.9_Joystick.py
+
+After the code runs, turn the Joystick, then the corresponding values of
+x, y, Btn are displayed on screen.
+
+**Code**
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import ADC0834
+    import time
+
+    BtnPin = 22
+
+    def setup():
+        # Set the GPIO modes to BCM Numbering
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        ADC0834.setup()
+
+    def destroy():
+        # Release resource
+        GPIO.cleanup()
+
+    def loop():
+        while True:
+            x_val = ADC0834.getResult(0)
+            y_val = ADC0834.getResult(1)
+            Btn_val = GPIO.input(BtnPin)
+            print ('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+            time.sleep(0.2)
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+            destroy()
+
+**Code Explanation**
+
+.. code-block:: python
+
+    def loop():
+        while True:
+            x_val = ADC0834.getResult(0)
+            y_val = ADC0834.getResult(1)
+            Btn_val = GPIO.input(BtnPin)
+            print ('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+            time.sleep(0.2)
+
+VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
+respectively. So the function getResult() is called to read the values
+of CH0 and CH1. Then the read values should be stored in the variables
+x_val and y_val. In addition, read the value of SW of joystick and store
+it into the variable Btn_val. Finally, the values of x_val, y_val and
+Btn_val shall be printed with print() function.
+
+Phenomenon Picture
+------------------
+
+.. image:: media/image194.jpeg
+
+

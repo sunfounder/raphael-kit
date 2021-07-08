@@ -1,0 +1,150 @@
+2.2.6 Photo Interrupter
+=========================
+
+**Introduction**
+------------------
+
+photo-interrupter又叫Speed sensor(如下所示)是一种封装有发光组件和光接收组件的传感
+器。它应用的原理是，当物体通过传感器时，光线被打断。因此，photo-interrupter在速度
+测量中得到了广泛的应用。
+
+.. image:: media/2.2.6photo-interrupter.png
+    :width: 300
+    :align: center
+
+**Components**
+----------------
+
+.. image:: media/2.2.6component.png
+    :width: 700
+    :align: center
+
+**Principle**
+----------------
+
+基本上，一个光中断包括两个部分:发射器和接收器. 发射器(例如，anLEDoralaser)发射光，
+然后光进入接收器。如果发射器和接收器之间的光束被障碍物打断，接收器将检测不到入射光，
+即使是一瞬间，输出电平也会改变。在这个实验中，我们将利用这个变化来打开或关闭LED。
+
+.. image:: media/speed_sensor.png
+
+**Schematic Diagram**
+-----------------------
+
+.. image:: media/2.2.6circuit.png
+    :width: 400
+    :align: center
+
+**Experimental Procedures**
+------------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: media/2.2.6fritzing.png
+    :width: 700
+    :align: center
+
+.. note::
+    在本课程中没有用到信号口A0。
+
+**Step 2:** Change directory.
+
+.. code-block::
+    
+    cd /home/pi/raphael-kit/python
+
+**Step 3:** Run.
+
+.. code-block::
+
+    sudo python3 2.2.6_photo_interrupter.py
+
+**Code**
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+    import RPi.GPIO as GPIO
+
+    PIPin  = 17
+    Gpin   = 27
+    Rpin   = 18
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
+        GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
+        GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
+        GPIO.setup(PIPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set BtnPin's mode is input, and pull up to high level(3.3V)
+        GPIO.add_event_detect(PIPin, GPIO.BOTH, callback=detect, bouncetime=200)
+
+    def Led(x):
+        if x == 0:
+            GPIO.output(Rpin, 1)
+            GPIO.output(Gpin, 0)
+            print ('Light was blocked')
+        if x == 1:
+            GPIO.output(Rpin, 0)
+            GPIO.output(Gpin, 1)
+            
+    def detect(chn):
+        Led(GPIO.input(PIPin))
+
+    def loop():
+        while True:
+            pass
+
+    def destroy():
+        GPIO.output(Gpin, GPIO.HIGH)       # Green led off
+        GPIO.output(Rpin, GPIO.HIGH)       # Red led off
+        GPIO.cleanup()                     # Release resource
+
+    if __name__ == '__main__':     # Program start from here
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+            destroy()
+
+**Code Explanation**
+
+.. code-block::
+
+    GPIO.add_event_detect(PIPin, GPIO.BOTH, callback=detect, bouncetime=200)
+
+Set up a detect on PIPin, and callback function to detect.
+
+.. code-block::
+
+    def Led(x):
+        if x == 0:
+            GPIO.output(Rpin, 1)
+            GPIO.output(Gpin, 0)
+            print ('Light was blocked')
+        if x == 1:
+            GPIO.output(Rpin, 0)
+            GPIO.output(Gpin, 1)           
+
+Define a function ``Led()``, when the parameter is 0, the red light is on 
+and the print "Light was blocked". When parameter is 1, green light on.
+
+.. code-block::
+
+    def detect(chn):
+        Led(GPIO.input(PIPin))
+
+Define a callback function for photo interrupter callback. Get the read 
+value of the photo interrupter then the function Led() controls the turning 
+on or off of the two LEDs that is depended on the read value of the photo 
+interrupter.
+
+Now the LED will light up green. Stick a piece of paper in the gap of photo 
+interrupter. Then "Light was blocked" will be printed on the screen and the 
+LED will flash red. Remove the paper, and the LED will turn green again.
+
+**Phenomenon Picture**
+-----------------------
+
+.. image:: media/2.2.6photo_interrrupter.jpg
+   :width: 500
+   :align: center
+

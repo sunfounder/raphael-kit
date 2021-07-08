@@ -14,13 +14,16 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+
+
 import sphinx_rtd_theme
+
 
 # -- Project information -----------------------------------------------------
 
-project = 'raphael-kit'
-copyright = '2021, sunfounder'
-author = 'sunfounder'
+project = 'SunFounder Raphael Kit'
+copyright = '2021, SunFounder'
+author = 'SunFounder'
 
 
 # -- General configuration ---------------------------------------------------
@@ -28,7 +31,7 @@ author = 'sunfounder'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+extensions = ['sphinx.ext.autosectionlabel'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -53,10 +56,8 @@ html_static_path = ['_static']
 html_theme = 'sphinx_rtd_theme'
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-#公司自定义js和css
-html_js_files = [
-    'https://ezblock.cc/readDocFile/topHead.js',
-]
-html_css_files = [
-    'https://ezblock.cc/readDocFile/topHead.css',
-]
+latex_engine = 'pdflatex'
+latex_use_xindy = False
+latex_elements = {
+    'preamble': '\\usepackage[UTF8]{ctex}\n',
+}

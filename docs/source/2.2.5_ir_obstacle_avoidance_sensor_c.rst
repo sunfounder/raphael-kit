@@ -1,0 +1,134 @@
+2.2.5 IR Obstacle Avoidance Sensor
+===================================
+
+**Introduction**
+-----------------
+
+这节课，我们将学习IR obstacle avoidance module(as shown below)。
+
+.. image:: media/2.2.5IR_Obstacle.png
+   :width: 300
+   :align: center
+
+**Components**
+-----------------
+
+.. image:: media/2.2.5component.png
+   :width: 700
+   :align: center
+
+**Principle**
+----------------
+
+An obstacle avoidance sensor mainly consists of an infrared-transmitter, 
+an infrared-receiver and a potentiometer. According to the reflecting feature of 
+an object, if there is no obstacle, emitted infrared ray will weaken with the 
+propagation distance and finally disappear. If there is an obstacle, when 
+infrared ray encounters an obstacle, it will be reflected back to the 
+infrared-receiver. Then the infrared-receiver detects this signal and 
+confirms an obstacle exists ahead.
+
+.. image:: media/IR_module.png
+
+.. Note:: 
+   The detection distance of the infrared sensor is adjustable-you may 
+   adjust it by the potentiometer.
+
+**Schematic Diagram**
+-----------------------
+
+.. image:: media/IR_schematic.png
+   :width: 500
+   :align: center
+
+**Experimental Procedures**
+-----------------------------
+
+**Step 1:** Build the circuit
+
+.. image:: media/2.2.5fritzing.png
+   :width: 700
+   :align: center
+
+**Step 2:** Change directory.
+
+.. code-block::
+   
+   cd /home/pi/raphael-kit/c/2.2.5/
+
+**Step 3:** Compile.
+
+.. code-block::
+
+   gcc 2.2.5_IrObstacle.c -lwiringPi
+
+**Step 4:** Run.
+
+.. code-block::
+
+   sudo ./a.out
+
+**Code**
+
+.. code-block:: c
+
+   #include <wiringPi.h>
+   #include <stdio.h>
+
+   #define ObstaclePin      0
+
+   void myISR(void)
+   {
+      printf("Detected Barrier !\n");
+   }
+
+   int main(void)
+   {
+      if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+         printf("setup wiringPi failed !\n");
+         return 1; 
+      }
+      
+      if(wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR) < 0){
+         printf("Unable to setup ISR !!!\n");
+         return 1;
+      }
+      
+      while(1){
+         ;
+      }
+
+      return 0;
+   }
+
+**Code Explanation**
+
+.. code-block::
+
+   void myISR(void)
+   {
+      printf("Detected Barrier !\n");
+   }
+
+Define a function ``myISR()``, print "Detected Barrier" indicates that an 
+obstacle was detected.
+
+.. code-block::
+
+   if(wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR) < 0){
+      printf("Unable to setup ISR !!!\n");
+      return 1;
+   }
+
+``wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR)``
+Set up a detect on ObstaclePin, and callback function to ``myISR()``.
+
+Now, if there is an obstacle ahead, a string “Detected Barrier!” will be 
+printed on the screen.
+ 
+**Phenomenon Picture**
+-----------------------
+
+.. image:: media/2.2.5IR.jpg
+   :width: 500
+   :align: center

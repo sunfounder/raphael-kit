@@ -1,0 +1,101 @@
+4.1.5 Door bell
+~~~~~~~~~~~~~~~~~~~
+
+Introduction
+-----------------
+
+Let's try to assemble a simple Door bell with raspberry pi.
+
+Components
+----------------
+
+.. image:: media/3.1.19components.png
+  :width: 800
+  :align: center
+
+
+**Schematic Diagram**
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO27       Pin 13   2        27
+============ ======== ======== ===
+
+.. image:: media/3.1.19_schematic.png
+   :width: 500
+   :align: center
+
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: media/3.1.19fritzing.png
+  :width: 800
+  :align: center
+
+
+**Step 2:** Get into the folder of the code.
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python/
+
+**Step 3:** Run.
+
+.. code-block::
+
+    sudo python3 4.1.5_doorbell.py
+
+代码运行之后，当按下button时，会响起铃声，并且摄像头会录制下5S钟的视频，视频
+存储在/home/pi目录下的visitor.h264文件。如果你有一块屏幕，还可以通过实时预览
+视频来查看访客。
+
+**Code Explanation**
+
+.. code-block:: python
+
+    cameraStatus = False
+    musicStatus = False
+
+cameraStatus和musicStatus都是中断标志位，当它们为True时，将会执行不同的任务。
+
+.. code-block:: python
+
+    GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
+
+设置BtnPin的按键检测事件，当按键被按下时，执行中断函数takePhotos()。
+
+.. code-block:: python
+
+    if musicStatus:
+        mixer.music.load('/home/pi/raphael-kit/music/doorbell.wav')
+        mixer.music.set_volume(0.7)
+        mixer.music.play()
+        musicStatus = False
+    if cameraStatus:
+        camera.start_preview(alpha=200)
+        camera.start_recording('/home/pi/visitor.h264')
+        print ('Have a visitor')
+        time.sleep(5)
+        mixer.music.stop()
+        camera.stop_preview()
+        camera.stop_recording()
+        cameraStatus = False 
+
+当musicStatus为True时，raspberry pi开始播放doorbell.wav音频文件，并设置音量
+为0.7。当cameraStatus为True时，首先raspberry pi开启预览画面，你可以通过屏幕来
+查看门外的访客是谁。如果没有屏幕也别担心，raspberry pi同时还会开启录制，预览和录
+制的时间都是5S。你可以通过查看/home/pi目录下的visitor.h264文件来确认访客的身份。
+当5S结束后，raspberry pi关闭预览和录制，以及音乐播放的功能。
+
+
+**Phenomenon Picture**
+------------------------
+
+.. image:: media/4.1.5door_bell.jpg
+   :align: center
+
+

@@ -1,0 +1,64 @@
+1.10 Drumming in the Air
+==========================
+
+Today we will learn to use the Raspberry Pi camera, Scratch has an expansion module for Video Sensing which turns on the camera in Scratch and detects the movement of objects on the stage. 
+
+
+.. image:: media/1.10_header.png
+
+Required Components
+-----------------------
+
+.. image:: media/1.10_list.png
+
+Build the Circuit
+-------------------------
+
+.. image:: media/1.10_fritzing_speaker.png
+
+.. image:: media/1.10_camera.png
+
+.. note::
+  
+  You need to refer to :ref:`Camera Module Installation` to connect the camera module and enable the Raspberry Pi camera interface.
+
+
+Load the Code and See What Happens
+----------------------------------------
+
+Load the code file (``1.10_drumming_in_the_air.sb3``) to Scratch 3.
+
+Click on the green flag to start the game, place your hand in front of the camera module and Scratch 3 will make instrument sounds when your hand is shown touching an instrument on the stage area.
+
+.. note::
+
+  For a better gaming experience, please try to play on a white background to avoid interference with the camera from other objects.
+
+Tips on Sprite
+----------------
+
+First delete the default sprites, then find the **Drum-cymbal** sprite and **Drum-snare** sprite and add them.
+
+.. image:: media/1.10_camera1.png
+
+Click the **Add Extension** icon at the bottom left of Scratch and add the **Music** and **Video Sensing** extensions to it.
+
+.. image:: media/1.10_scratch.png
+
+.. image:: media/1.10_scratch2.png
+
+Tips on Codes
+--------------
+
+.. image:: media/1.10_camera3.png
+
+When the green flag is clicked, it keeps cycling to detect if our hand is moving over the **Drum-cymbal** sprite by more than 60. if so, it is assumed that our hand touched the sprite, at which point the Open Hi-Hat instrument sound is played.
+
+.. note::
+
+  The movement magnitude refers to the change in coordinates on the stage area, which is calculated with respect to the amount of change in the coordinates of the detection target on the stage area.
+
+.. image:: media/1.10_camera4.png
+
+Similarly, if the movement of our hand on the **Drum-snare** sprite is detected to be greater than 60, our hand is considered to have touched the sprite and the sound of the snare drum instrument is played.
+

@@ -1,0 +1,78 @@
+3.1.2 Video Module
+=====================
+
+Introduction
+-----------------
+
+除了在raspberry pi上拍摄照片之外，我们还能在raspberry pi上录一段视频。
+
+Components
+----------------
+
+.. image:: media/photo1.png
+  :width: 800
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** 配置摄像头
+
+在进行此项目之前，你应当已经配置好摄像头。具体教程参考 :ref:`Install the camera` 。
+
+**Step 2:** Get into the folder of the code.
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python/
+
+**Step 3:** Run.
+
+.. code-block::
+
+    sudo python3 3.1.2_VideoModule.py
+
+After the code runs, 摄像头开始进行录像，当你按 ``Ctrl+C`` 退出代码运行时，
+录像结束，并将这段录像文件存储为/home/pi目录下的my_video.h264文件。
+如果你想要提取这个文件，可以参考 :ref:`Use Filezilla Software` 。
+
+
+**Code**
+
+.. code-block:: python
+
+    from picamera import PiCamera
+
+    camera = PiCamera()
+    
+    def setup():
+        camera.start_preview(alpha=200)
+    
+    def main():
+        camera.start_recording('/home/pi/my_video.h264')
+        while True:
+            pass    
+    
+    def destroy():
+        camera.stop_recording()
+        camera.stop_preview()
+    
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Code Explanation**
+
+.. code-block:: python
+
+    camera.start_recording('/home/pi/my_video.h264')
+
+开始视频录制，并将视频文件存储为/home/pi目录下的my_video.h264文件。
+
+.. code-block:: python
+
+    camera.stop_recording()
+
+结束视频录制。

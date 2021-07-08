@@ -1,0 +1,94 @@
+3.1.4 Text-to-speech
+=======================
+
+Introduction
+-----------------
+
+Let's try to make raspberry pi convert the text in our code into 
+speech and speak it through the speaker.
+
+Components
+----------------
+
+.. image:: media/audio2.png
+  :width: 700
+  :align: center
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Configure speakers.
+
+.. image:: media/4.1.4fritzing.png
+  :width: 800
+  :align: center   
+
+First, you have to assemble the speaker and connect it to the Raspberry 
+Pi. Refer to :ref:`Audio power amplifier` for the specific tutorial.
+
+**Step 2:** Get into the folder of the code.
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python/3.1.4/
+
+Step 3: Run.
+
+.. code-block::
+
+    sudo python3 3.1.4_Text-to-speech.py
+
+Raspberry pi will greet you kindly after the code runs, and it will say goodbye to you when you press ``Ctrl`` + ``C`` to exit.
+
+**Code**
+
+.. code-block:: python
+
+    from tts import TTS
+
+    tts = TTS(engine="espeak")
+    tts.lang('en-US')
+
+    def main():
+        tts.say('Hello, nice to meet you!')
+
+    def destroy():
+        tts.say('See you later')
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Code Explanation**
+
+.. code-block:: python
+
+    from tts import TTS
+
+    tts = TTS(engine="espeak")
+
+Import the TTS class of the tts library and instantiate it, so that we can call related functions to implement text-to-speech.
+
+.. code-block:: python
+
+    tts.lang('en-US')
+
+Set the language to be converted.
+
+.. note::
+    Currently the switchable language only supports English.
+
+.. code-block:: python
+
+    tts.say("Hello, nice to meet you!")
+
+Fill in the text to be said as a parameter, after executing ``tts.say()``, raspberry pi will say the text you wrote.
+
+**Phenomenon Picture**
+------------------------
+
+.. image:: media/3.1.3audio.jpg
+   :align: center

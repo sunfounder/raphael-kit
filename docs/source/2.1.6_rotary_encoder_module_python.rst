@@ -1,0 +1,184 @@
+2.1.6 Rotary Encoder Module
+===========================
+
+**Introduction**
+------------------
+
+In this lesson, you will learn about Rotary Encoder. A rotary encoder is
+an electronic switch with a set of regular pulses in strictly timing
+sequence. When used with IC, it can achieve increment, decrement, page
+turning and other operations such as mouse scrolling, menu selection,
+and so on.
+
+**Components**
+------------------
+
+.. image:: media/Part_two_25.png
+
+**Principle**
+-----------------
+
+There are mainly two types of rotary encoders: absolute and incremental
+(relative) encoders. An incremental one is used in this experiment.
+
+Most rotary encoders have 5 pins with three functions of
+turning left & right and pressing down. Pin 1 and pin 2 are switch
+wiring terminals used to press. Pin 4 is generally connected to ground.
+Pin 3 and pin 5 are first connected to a pull-up resistor and then to
+VCC and they can generate two-phase square waves whose phase difference
+is 90°. Usually these waves are called channel A and channel B as shown
+below:
+
+.. image:: media/image205.jpeg
+    :width: 300
+    :align: center
+
+As shown on the right, when channel A changes from high level to low
+level, if channel B is high level, it indicates the rotary encoder spins
+clockwise (CW); if at that moment channel B is low level, it means spins
+counterclockwise (CCW). So if we read the value of channel B when
+channel A is low level, we can know in which direction the rotary
+encoder rotates.
+
+.. image:: media/image206.png
+    :width: 300
+    :align: center
+
+
+**Schematic Diagram**
+------------------------
+
+.. image:: media/image349.png
+   :width: 3.42083in
+   :height: 1.81181in
+   :align: center
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: media/image348.png
+   :width: 700
+   :align: center
+
+In this example, we can connect the Rotary Encoder pin directly to the
+Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
+Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
+17.
+
+**Step 2:** Open the code file.
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python/
+
+**Step 3:** Run.
+
+.. code-block::
+
+    sudo python3 2.1.6_RotaryEncoder.py
+
+After the code runs, rotate the knob on the potentiometer, the intensity
+of LED will change accordingly.
+
+**Code**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   import RPi.GPIO as GPIO
+   import time
+
+   RoAPin = 17    # CLK Pin
+   RoBPin = 18    # DT Pin
+   BtnPin = 27    # Button Pin
+
+   globalCounter = 0
+
+   flag = 0
+   Last_RoB_Status = 0
+   Current_RoB_Status = 0
+
+   def setup():
+      GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
+      GPIO.setup(RoAPin, GPIO.IN)    # input mode
+      GPIO.setup(RoBPin, GPIO.IN)
+      GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+   def rotaryDeal():
+      global flag
+      global Last_RoB_Status
+      global Current_RoB_Status
+      global globalCounter
+      Last_RoB_Status = GPIO.input(RoBPin)
+      while(not GPIO.input(RoAPin)):
+         Current_RoB_Status = GPIO.input(RoBPin)
+         flag = 1
+      if flag == 1:
+         flag = 0
+         if (Last_RoB_Status == 0) and (Current_RoB_Status == 1):
+            globalCounter = globalCounter + 1
+         if (Last_RoB_Status == 1) and (Current_RoB_Status == 0):
+            globalCounter = globalCounter - 1
+
+   def btnISR(channel):
+      global globalCounter
+      globalCounter = 0
+
+   def loop():
+      global globalCounter
+      tmp = 0	# Rotary Temperary
+
+      GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=btnISR)
+      while True:
+         rotaryDeal()
+         if tmp != globalCounter:
+            print ('globalCounter = %d' % globalCounter)
+            tmp = globalCounter
+
+   def destroy():
+      GPIO.cleanup()             # Release resource
+
+   if __name__ == '__main__':     # Program start from here
+      setup()
+      try:
+         loop()
+      except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+         destroy()
+
+
+You will see the angular displacement of the rotary encoder
+printed on Serial Monitor. When you turn the rotary encoder clockwise,
+the angular displacement is increased; when turn it counterclockwise,
+the displacement is decreased. If you press the switch on the rotary
+encoder, the readings will return to zero.
+
+**Code Analysis**
+
+When Rotary Encoder is used, the following situations of pin level will
+occur.
+
+① When rotating the shaft, dtPin will go from high level to low level.
+
+② clkPin will remain high level when the shaft rotates clockwise,
+otherwise it goes low level.
+
+③ When the shaft is pressed, swPin will have low level.
+
+From this, the program flow is shown on the right.
+
+For detailed analysis of potential state change judgment, please refer
+to :ref:`1.10 State Change Detection`.
+
+.. image:: media/image209.png
+   :align: center
+
+**Phenomenon Picture**
+-------------------------
+
+.. image:: media/2.1.6rotary_ecoder.jpg
+   :alt: 2.25
+   :width: 7.71736in
+   :height: 5.07569in
+   :align: center

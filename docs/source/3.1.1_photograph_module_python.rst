@@ -1,0 +1,112 @@
+3.1.1 Photograph Module
+==========================
+
+Introduction
+-----------------
+
+让我们尝试在raspberry pi上拍一张照。
+
+Components
+----------------
+
+.. image:: media/photo1.png
+  :width: 800
+
+Principle
+-------------
+
+我们的摄像头 carries an 5 megapixel image sensor with high resolution and great preformance, and is compatible with most of SBCs or Dev boards which have a standard CSI(Camera Serial Interface).
+
+Install the camera
+----------------------
+
+在摄像头模块或者树莓派上，你会发现一个扁平的塑料连接器。小心地拉出黑色的固定开关，直到固定开关被拉出一部分。将FFC线(按照图示方向，蓝色塑料面贴合固定开关)插入到塑料连接器里，然后轻轻按一下将固定开关推回原位。
+
+.. image:: media/4.1.1install2.png
+  :width: 500
+  
+.. warning::
+    请勿在通电的情况下安装摄像头，这有可能会损坏你的摄像头。
+
+.. note::
+    如果FFC线安装正确，它将是直的，并且当你轻轻拉它的时候，它不会被拉出来。如果不是，就再重新安装一次。
+
+安装完成后，我们需要开启raspberry pi的摄像头功能，具体方法参考 :ref:`Camera Configuration` 。
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Get into the folder of the code.
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python/
+
+**Step 2:** Run.
+
+.. code-block::
+
+    sudo python3 3.1.1_PhotographModule.py
+
+After the code runs, 摄像头会拍一张照片，照片内容是摄像头捕捉到的画面。
+
+你可以在/home/pi目录下看到my_photo.jpg的照片。如果你想要提取这张照片，可以参考 :ref:`Use Filezilla Software` 。
+
+**Code**
+
+.. code-block:: python
+
+    from picamera import PiCamera
+
+    camera = PiCamera()
+    
+    def setup():
+        camera.start_preview(alpha=200)
+    
+    def main():
+        camera.capture('/home/pi/my_photo.jpg')
+        while True:
+            pass    
+    
+    def destroy():
+        camera.stop_preview()
+    
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Code Explanation**
+
+.. code-block:: python
+
+    from picamera import PiCamera
+
+    camera = PiCamera()
+
+导入piCamera库，并实例化PiCamera类，这样我们就可以调用使用树莓派摄像头的方法。
+
+.. code-block:: python
+
+    camera.start_preview(alpha=200)
+
+如果你有一个屏幕，执行这句代码后，摄像头画面将显示在屏幕上，并且将摄像头画面的透明度调整到200。
+
+.. note::
+    you can alter the transparency level of the preview by entering an alpha value – from 0 to 255 – within the latter command’s brackets; e.g. camera.start_preview(alpha=200).
+
+.. code-block:: python
+
+    camera.capture('/home/pi/my_photo.jpg')
+
+拍一张照，并将其存储为/home/pi目录下的my_photo.jpg文件。
+
+.. note::
+    我们还可以将camera.capture()函数和for循环一起使用，实现连拍的效果。你可以使用延时函数来控制每个镜头的时间间隔。
+
+    .. code-block:: python
+
+        for i in 5:
+            camera.capture('/home/pi/my_photo%s.jpg' % i)

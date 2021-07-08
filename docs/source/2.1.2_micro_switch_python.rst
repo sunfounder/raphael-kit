@@ -1,0 +1,207 @@
+2.1.2 Micro Switch
+======================
+
+**Introduction**
+--------------------
+
+在这一课，我们将学习怎样使用micro switch。是具有微小接点间隔和快动机构，用规定的行
+程和规定的力进行开关动作的接点机构，用外壳覆盖，其外部有驱动杆的一种开关，因为其开关
+的触点间距比较小，所以叫micro switch。
+
+Components
+----------
+
+.. image:: media/2.1.2component.png
+
+
+Principle
+---------
+
+**Micro Switch**
+
+
+The construction of a micro switch is really simple. The main parts of the switch are:
+
+1.Plunger (Actuator)
+
+2.Cover
+
+3.Moving piece
+
+4.Support
+
+5.Case
+
+6.NO terminal
+
+7.NC terminal
+
+8.Contact
+
+9.Moving arm
+
+.. image:: media/micro_switch2.png
+
+The micro switch makes physical contact with an object. After that, its contacts change position. The basic working principle is as follows:
+
+When the plunger is in the released or rest position
+
+· The normally closed circuit can carry current.
+
+· The normally open circuit is electrically insulated.
+
+When the plunger is depressed or switched
+
+· The normally closed circuit is open.
+
+· The normally open circuit is closed.
+
+.. image:: media/micro_switch1.png
+
+
+**Capacitor**
+
+The capacitor is a component that has the capacity to store energy in
+the form of electrical charge or to produce a potential difference
+(Static Voltage) between its plates, much like a small rechargeable
+battery.
+
+Standard Units of Capacitance
+
+Microfarad (μF) 1μF = 1/1,000,000 = 0.000001 = :math:`10^{- 6}` F
+
+Nanofarad (nF) 1nF = 1/1,000,000,000 = 0.000000001 = :math:`10^{- 9}`\ F
+
+Picofarad (pF) 1pF = 1/1,000,000,000,000 = 0.000000000001 =
+:math:`10^{- 12}`\ F
+
+.. note::
+    Here we use **104 capacitor(10 x 10\ 4\ PF)**. Just like the
+    ring of resistors, the numbers on the capacitors help to read the values
+    once assembled onto the board. The first two digits represent the value
+    and the last digit of the number means the multiplier. Thus 104
+    represents a power of 10 x 10 to 4 (in pF) equal to 100 nF.
+
+Visit: https://en.wikipedia.org/wiki/Capacitance, for more information about Capacitor.
+
+Schematic Diagram
+-----------------
+
+Connect the middle pin of the Micro Switch to GPIO17, and two LEDs to
+pin GPIO22 and GPIO27 respectively. Then when you press and release the 
+drive lever, you can see the two LEDs light up alternately.
+
+.. image:: media/image305.png
+
+
+.. image:: media/micro_Schematic.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: media/2.1.4fritzing.png
+
+**Step 2**: Get into the folder of the code.
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python
+
+**Step 3**: Run.
+
+.. code-block::
+
+    sudo python3 2.1.2_MicroSwitch.py
+
+While the code is running, press the drive lever, then
+the red LED lights up; release the drive lever, the yellow light turns on.
+
+**Code**
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import time
+
+    # Set #17 as micro switch pin, #22 as led1 pin, #27 as led2 pin
+    microPin = 17
+    led1Pin = 22
+    led2Pin = 27
+
+    # Define a setup function for some setup
+    def setup():
+        # Set the GPIO modes to BCM Numbering
+        GPIO.setmode(GPIO.BCM)
+        # Set microPin input
+        # Set ledPin output, 
+        # and initial level to High(3.3v)
+        GPIO.setup(microPin, GPIO.IN)
+        GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.HIGH)
+        GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.HIGH)
+
+    # Define a main function for main process
+    def main():
+        while True:
+            # micro switch high, led1 on
+            if GPIO.input(microPin) == 1:
+                print ('LED1 ON')
+                GPIO.output(led1Pin, GPIO.LOW)
+                GPIO.output(led2Pin, GPIO.HIGH)
+
+            # micro switch low, led2 on
+            if GPIO.input(microPin) == 0:
+                print ('    LED2 ON')
+                GPIO.output(led2Pin, GPIO.LOW)
+                GPIO.output(led1Pin, GPIO.HIGH)
+
+            time.sleep(0.5)
+    # Define a destroy function for clean up everything after
+    # the script finished 
+    def destroy():
+        # Turn off LED
+        GPIO.output(led1Pin, GPIO.HIGH)
+        GPIO.output(led2Pin, GPIO.HIGH)
+        # Release resource
+        GPIO.cleanup()                     
+
+    # If run this script directly, do:
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        # When 'Ctrl+C' is pressed, the program 
+        # destroy() will be  executed.
+        except KeyboardInterrupt:
+            destroy()	
+
+**Code Explanation**
+
+.. code-block:: python
+
+    if GPIO.input(slidePin) == 1:
+                GPIO.output(led1Pin, GPIO.LOW)
+                GPIO.output(led2Pin, GPIO.HIGH)
+
+When press the drive lever, the left pin and right one are
+connected; the Raspberry Pi reads a high level at the GPIO17, so the
+LED1 is on and LED2 off.
+
+.. code-block:: python
+
+    if GPIO.input(slidePin) == 0:
+                GPIO.output(led2Pin, GPIO.LOW)
+                GPIO.output(led1Pin, GPIO.HIGH)
+
+When release the drive lever, the left pin and middle one are
+connected; the Raspberry Pi reads a low level at the GPIO17, so the 
+LED2 is on and LED1 off.
+
+Phenomenon Picture
+------------------
+
+.. image:: media/2.1.2micro_switch.jpg

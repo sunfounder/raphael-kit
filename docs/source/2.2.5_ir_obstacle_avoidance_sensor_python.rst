@@ -1,0 +1,124 @@
+2.2.5 IR Obstacle Avoidance Sensor
+===================================
+
+**Introduction**
+-----------------
+
+这节课，我们将学习IR obstacle avoidance module(as shown below)。
+
+.. image:: media/2.2.5IR_Obstacle.png
+   :width: 300
+   :align: center
+
+**Components Required**
+------------------------
+
+.. image:: media/2.2.5component.png
+   :width: 700
+   :align: center
+
+**Experimental Principle**
+-----------------------------
+
+An obstacle avoidance sensor mainly consists of an infrared-transmitter, 
+an infrared-receiver and a potentiometer. According to the reflecting feature of 
+an object, if there is no obstacle, emitted infrared ray will weaken with the 
+propagation distance and finally disappear. If there is an obstacle, when 
+infrared ray encounters an obstacle, it will be reflected back to the 
+infrared-receiver. Then the infrared-receiver detects this signal and 
+confirms an obstacle exists ahead.
+
+.. image:: media/IR_module.png
+
+.. Note:: 
+   The detection distance of the infrared sensor is adjustable-you may 
+   adjust it by the potentiometer.
+
+
+**Schematic Diagram**
+-----------------------
+
+.. image:: media/IR_schematic.png
+   :width: 500
+   :align: center
+
+**Experimental Procedures**
+-------------------------
+
+**Step 1:** Build the circuit
+
+.. image:: media/2.2.5fritzing.png
+   :width: 700
+   :align: center
+
+**Step 2:** Change directory.
+
+.. code-block::
+   
+   cd /home/pi/raphael-kit/python
+
+**Step 3:** Run.
+
+.. code-block::
+
+   sudo python3 2.2.5_IrObstacle.py
+
+**Code**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   import RPi.GPIO as GPIO
+
+   ObstaclePin = 17
+
+   def setup():
+      GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
+      GPIO.setup(ObstaclePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+   def loop():
+      while True:
+         if (0 == GPIO.input(ObstaclePin)):
+            print ("Detected Barrier!")
+            
+
+   def destroy():
+      GPIO.cleanup()                     # Release resource
+
+   if __name__ == '__main__':     # Program start from here
+      setup()
+      try:
+         loop()
+      except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+         destroy()
+
+**Code Explanation**
+
+.. code-block::
+
+   def setup():
+   GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
+   GPIO.setup(ObstaclePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+Set the GPIO modes to BCM Numbering. Set ObstaclePin to input mode 
+and initial it to High level (3.3v).
+
+.. code-block::
+
+   def loop():
+      while True:
+         if (0 == GPIO.input(ObstaclePin)):
+            print ("Detected Barrier!")
+
+When ObstaclePin is low level, print "Detected Barrier!".
+It means that an obstacle is detected.
+
+Now, if there is an obstacle ahead, a string “Detected Barrier!” will be 
+printed on the screen.
+ 
+**Phenomenon Picture**
+-----------------------
+
+.. image:: media/2.2.5IR.jpg
+   :width: 500
+   :align: center
