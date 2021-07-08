@@ -64,13 +64,16 @@ Schematic Diagram
 
 .. code-block::
 
-    gcc 2.1.3_TouchSwitch.py
+    gcc 2.1.3_TouchSwitch.c -lwiringPi
 
 **Step 4:** Run.
 
 .. code-block::
 
     sudo ./a.out
+
+While the code is running, the red LED lights up; when you touch the  
+metal disk, the yellow light turns on. 
 
 **Code**
 
@@ -100,7 +103,7 @@ Schematic Diagram
             if(digitalRead(touchPin) == 1){
                 digitalWrite(led1, LOW);
                 digitalWrite(led2, HIGH);
-                printf("You touch it!");
+                printf("You touch it! \r\n");
             }
             // touch switch low, led2 on
             if(digitalRead(touchPin) == 0){
@@ -141,7 +144,7 @@ read value from it.
             if(digitalRead(touchPin) == 1){
             digitalWrite(led1, LOW);
             digitalWrite(led2, HIGH);
-            printf("You touch it!");
+            printf("You touch it! \r\n");
         }
         // touch switch low, led2 on
         if(digitalRead(touchPin) == 0){
@@ -158,8 +161,7 @@ when pin is LOW.
 ``digitalWrite()`` function is to write HIGH (high level) or LOW (low level) to 
 the input parameter word pin.
 
-Now, touch the metal disk, you can see the LED change its colors and "ON" 
-and "OFF" printed on the screen.
+Now, touch the metal disk, you can see the LED change its colors.
 
 **Phenomenon Picture**
 ------------------------

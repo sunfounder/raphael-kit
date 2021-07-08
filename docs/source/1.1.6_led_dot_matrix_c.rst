@@ -14,251 +14,265 @@ Components
 .. image:: media/list_dot.png
 
 Principle
-----------------
+-----------
 
-**LED Dot Matrix**
+**LED Matrix**
 
-Generally, LED dot matrix can be categorized into two types: common
-cathode (CC) and common anode (CA). They look much alike, but internally
-the difference lies. You can tell by test. A CA one is used in this kit.
-You can see 788BS labeled at the side.
+The 64 LEDs are driven by 16 output pins of the IC. The maximum number 
+of LEDs light up at the same time is actually eight. The LEDs are 
+arranged as 8×8 set of rows and columns. So the MAX7219 activates each 
+column for a very short period of time and at the same time it also 
+drives each row. So by rapidly switching through the columns and rows 
+the human eye will only notice a continuous light.
 
-See the figure below. The pins are arranged at the two ends at the back.
-Take the label side for reference: pins on this end are pin 1-8, and oh
-the other are pin 9-16.
+.. image:: media/1.1.6max72191.png
+  :width: 700
 
-The external view:
+**MAX7219**
 
-.. image:: media/image84.png
+These integrated circuits from Maxim are for driving either 64 individual 
+LED’s, or up to 8 digits of 7-segment displays. The drivers implement a 
+SPI compatible slave interface that can be controlled from the Arduino 
+using only 3 of the digital output pins.
 
+安装BCM2835库
+---------------
 
-Below the figures show their internal structure. You can see in a CA LED
-dot matrix, ROW represents the anode of the LED, and COL is cathode;
-it's contrary for a CC one. One thing in common: for both types, pin 13,
-3, 4, 10, 6, 11, 15, and 16 are all COL, when pin 9, 14, 8, 12, 1, 7, 2,
-and 5 are all ROW. If you want to turn on the first LED at the top left
-corner, for a CA LED dot matrix, just set pin 9 as High and pin 13 as
-Low, and for a CC one, set pin 13 as High and pin 9 as Low. If you want
-to light up the whole first column, for CA, set pin 13 as Low and ROW 9,
-14, 8, 12, 1, 7, 2, and 5 as High, when for CC, set pin 13 as High and
-ROW 9, 14, 8, 12, 1, 7, 2, and 5 as Low. Consider the following figures
-for better understanding.
+Open a terminal, 我们在/home/pi目录下载安装文件。
 
-The internal view:
+.. code-block:: c
 
-.. image:: media/image85.png
+    cd /home/pi
+    wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.69.tar.gz
 
-Pin numbering corresponding to the above rows and columns:
+解压安装包。
 
-=========== ====== ====== ===== ====== ===== ====== ====== ======
-**COL**     **1**  **2**  **3** **4**  **5** **6**  **7**  **8**
-**Pin No.** **13** **3**  **4** **10** **6** **11** **15** **16**
-**ROW**     **1**  **2**  **3** **4**  **5** **6**  **7**  **8**
-**Pin No.** **9**  **14** **8** **12** **1** **7**  **2**  **5**
-=========== ====== ====== ===== ====== ===== ====== ====== ======
+.. code-block:: c
 
-In addition, two 74HC595 chips are used here. One is to control the rows
-of the LED dot matrix while the other, the columns.
+    tar zxvf bcm2835-1.xx.tar.gz
 
+通过以下命令安装BCM2835库。
+
+.. code-block:: c
+
+    cd bcm2835-1.69
+    ./configure
+    make
+    sudo make check
+    sudo make install
 Schematic Diagram
 -----------------------
 
-============ ======== ======== ===
+============ ======== ======== ====
 T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-GPIO27       Pin 13   2        27
-============ ======== ======== ===
+SPIMOSI      Pin 19   12       MOSI
+SPICE0       pin 24   10       CE0
+SPISCLK      Pin 23   14       SCLK
+============ ======== ======== ====
 
 .. image:: media/schematic_dot.png
 
 Experimental Procedures
 ----------------------------
 
-**Step 1:** Build the circuit. Since the wiring is complicated, let's
-make it step by step. First, insert the T-Cobbler, the LED dot matrix
-and two 74HC595 chips into breadboard. Connect the 3.3V and GND of the
-T-Cobbler to holes on the two sides of the board, then hook up pin16 and
-10 of the two 74HC595 chips to VCC, pin 13 and pin 8 to GND.
+**Step 1:** Build the circuit. 
 
-.. note::
-   In the Fritzing image above, the side with label is at the bottom.
+.. image:: media/1.1.6fritzing.png
 
-.. image:: media/image87.png
+实验开始前首先要开启SPI，具体参考`SPI Configuration`。
 
-**Step 2:** Connect pin 11 of the two 74HC595 together, and then to
-GPIO27; then pin 12 of the two chips, and to GPIO18; next, pin 14 of the
-74HC595 on the left side to GPIO17 and pin 9 to pin 14 of the second
-74HC595.
-
-.. image:: media/image88.png
-
-
-**Step 3:** The 74HC595 on the right side is to control columns of the
-LED dot matrix. See the table below for the mapping. Therefore, Q0-Q7
-pins of the 74HC595 are mapped with pin 13, 3, 4, 10, 6, 11, 15, and 16
-respectively.
-
-+--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
-| **74HC595**        | **Q0** | **Q1** | **Q2** | **Q3** | **Q4** | **Q5** | **Q6** | **Q7** |
-+--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
-| **LED Dot Matrix** | **13** | **3**  | **4**  | **10** | **6**  | **11** | **15** | **16** |
-+--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
-
-.. image:: media/image89.png
-
-
-**Step 4:** Now connect the ROWs of the LED dot matrix. The 74HC595 on
-the left controls ROW of the LED dot matrix. See the table below for the
-mapping. We can see, Q0-Q7 of the 74HC595 on the left are mapped with
-pin 9, 14, 8, 12, 1, 7, 2, and 5 respectively.
-
-+--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
-| **74HC595**        | **Q0** | **Q1** | **Q2** | **Q3** | **Q4** | **Q5** | **Q6** | **Q7** |
-+--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
-| **LED Dot Matrix** | **9**  | **14** | **8**  | **12** | **1**  | **7**  | **2**  | **5**  |
-+--------------------+--------+--------+--------+--------+--------+--------+--------+--------+
-
-.. image:: media/image90.png
-
-**Step 5:** Go to the folder of code.
+**Step 2:** Go to the folder of the code.
 
 .. code-block::
 
-   cd /home/pi/raphael-kit/c/1.1.6/
+    cd /home/pi/raphael-kit/python/
 
-**Step 6:** Compile.
-
-.. code-block::
-
-   gcc 1.1.6_LedMatrix.c -lwiringPi
-
-**Step 7:** Run.
+**Step 3:** Compile the code.
 
 .. code-block::
 
-   sudo ./a.out
+    make
 
-After the code runs, the LED dot matrix lights up and out row by row and column by column.
+**Step 4:**: Run the executable file.
 
+.. code-block:: python
+
+    sudo ./1.1.6_LedMatrix
+
+运行代码后，LED Dot Matrix先从0依次显示到9，然后从A依次显示到Z。
 
 **Code**
 
 .. code-block:: c
 
-   #include <wiringPi.h>
+   #include <bcm2835.h>
    #include <stdio.h>
+   #include <string.h>
+   #include <ctype.h>
 
-   #define   SDI   0   //serial data input
-   #define   RCLK  1   //memory clock input(STCP)
-   #define   SRCLK 2   //shift register clock input(SHCP)
+   #define uchar unsigned char
+   #define uint unsigned int
 
-   unsigned char code_H[20] = {0x01,0xff,0x80,0xff,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
-   unsigned char code_L[20] = {0x00,0x7f,0x00,0xfe,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f};
+   #define Max7219_pinCS  RPI_GPIO_P1_24
 
-   void init(void){
-      pinMode(SDI, OUTPUT); 
-      pinMode(RCLK, OUTPUT);
-      pinMode(SRCLK, OUTPUT);
+   uchar disp1[36][8]={
+   {0x3C,0x42,0x42,0x42,0x42,0x42,0x42,0x3C},//0
+   {0x10,0x18,0x14,0x10,0x10,0x10,0x10,0x10},//1
+   {0x7E,0x2,0x2,0x7E,0x40,0x40,0x40,0x7E},//2
+   {0x3E,0x2,0x2,0x3E,0x2,0x2,0x3E,0x0},//3
+   {0x8,0x18,0x28,0x48,0xFE,0x8,0x8,0x8},//4
+   {0x3C,0x20,0x20,0x3C,0x4,0x4,0x3C,0x0},//5
+   {0x3C,0x20,0x20,0x3C,0x24,0x24,0x3C,0x0},//6
+   {0x3E,0x22,0x4,0x8,0x8,0x8,0x8,0x8},//7
+   {0x0,0x3E,0x22,0x22,0x3E,0x22,0x22,0x3E},//8
+   {0x3E,0x22,0x22,0x3E,0x2,0x2,0x2,0x3E},//9
+   {0x8,0x14,0x22,0x3E,0x22,0x22,0x22,0x22},//A
+   {0x3C,0x22,0x22,0x3E,0x22,0x22,0x3C,0x0},//B
+   {0x3C,0x40,0x40,0x40,0x40,0x40,0x3C,0x0},//C
+   {0x7C,0x42,0x42,0x42,0x42,0x42,0x7C,0x0},//D
+   {0x7C,0x40,0x40,0x7C,0x40,0x40,0x40,0x7C},//E
+   {0x7C,0x40,0x40,0x7C,0x40,0x40,0x40,0x40},//F
+   {0x3C,0x40,0x40,0x40,0x40,0x44,0x44,0x3C},//G
+   {0x44,0x44,0x44,0x7C,0x44,0x44,0x44,0x44},//H
+   {0x7C,0x10,0x10,0x10,0x10,0x10,0x10,0x7C},//I
+   {0x3C,0x8,0x8,0x8,0x8,0x8,0x48,0x30},//J
+   {0x0,0x24,0x28,0x30,0x20,0x30,0x28,0x24},//K
+   {0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x7C},//L
+   {0x81,0xC3,0xA5,0x99,0x81,0x81,0x81,0x81},//M
+   {0x0,0x42,0x62,0x52,0x4A,0x46,0x42,0x0},//N
+   {0x3C,0x42,0x42,0x42,0x42,0x42,0x42,0x3C},//O
+   {0x3C,0x22,0x22,0x22,0x3C,0x20,0x20,0x20},//P
+   {0x1C,0x22,0x22,0x22,0x22,0x26,0x22,0x1D},//Q
+   {0x3C,0x22,0x22,0x22,0x3C,0x24,0x22,0x21},//R
+   {0x0,0x1E,0x20,0x20,0x3E,0x2,0x2,0x3C},//S
+   {0x0,0x3E,0x8,0x8,0x8,0x8,0x8,0x8},//T
+   {0x42,0x42,0x42,0x42,0x42,0x42,0x22,0x1C},//U
+   {0x42,0x42,0x42,0x42,0x42,0x42,0x24,0x18},//V
+   {0x0,0x49,0x49,0x49,0x49,0x2A,0x1C,0x0},//W
+   {0x0,0x41,0x22,0x14,0x8,0x14,0x22,0x41},//X
+   {0x41,0x22,0x14,0x8,0x8,0x8,0x8,0x8},//Y
+   {0x0,0x7F,0x2,0x4,0x8,0x10,0x20,0x7F},//Z
+   };
 
-      digitalWrite(SDI, 0);
-      digitalWrite(RCLK, 0);
-      digitalWrite(SRCLK, 0);
+   void Delay_xms(uint x)
+   {
+   bcm2835_delay(x);
+   }
+   //------------------------
+
+   void Write_Max7219_byte(uchar DATA)
+   {
+   bcm2835_gpio_write(Max7219_pinCS,LOW);
+   bcm2835_spi_transfer(DATA);
    }
 
-   void hc595_in(unsigned char dat){
-      int i;
-      for(i=0;i<8;i++){
-         digitalWrite(SDI, 0x80 & (dat << i));
-         digitalWrite(SRCLK, 1);
-         delay(1);
-         digitalWrite(SRCLK, 0);
-      }
+   void Write_Max7219(uchar address1,uchar dat1)
+   {
+   bcm2835_gpio_write(Max7219_pinCS,LOW);
+   Write_Max7219_byte(address1);
+   Write_Max7219_byte(dat1); 
+   bcm2835_gpio_write(Max7219_pinCS,HIGH);
    }
 
-   void hc595_out(){
-      digitalWrite(RCLK, 1);
-      delay(1);
-      digitalWrite(RCLK, 0);
+   void Init_MAX7219()
+   {
+   Write_Max7219(0x09,0x00);
+   Write_Max7219(0x0a,0x03);
+   Write_Max7219(0x0b,0x07);
+   Write_Max7219(0x0c,0x01);
+   Write_Max7219(0x0f,0x00);
    }
 
-   int main(void){
-      int i;
-      if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
-         printf("setup wiringPi failed !");
-         return 1;
-      }
-      init();
-      while(1){
-         for(i=0;i<sizeof(code_H);i++){
-               hc595_in(code_L[i]);
-               hc595_in(code_H[i]);
-               hc595_out();
-               delay(100);
-         }
+   void Init_BCM2835()
+   {
+   bcm2835_spi_begin();
+   bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
+   bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);
+   bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);
+   bcm2835_gpio_fsel(Max7219_pinCS, BCM2835_GPIO_FSEL_OUTP);
+   bcm2835_gpio_write(disp1[0][0],HIGH);
+   }
 
-         for(i=sizeof(code_H);i>=0;i--){
-               hc595_in(code_L[i]);
-               hc595_in(code_H[i]);
-               hc595_out();
-               delay(100);
-         }
-      }
+   int main(void)
+   {
+   uchar i,j;
 
-      return 0;
+   if (!bcm2835_init())
+   {
+   printf("Unable to init bcm2835.\n");
+   return 1;
+   }
+   Init_BCM2835();
+   Delay_xms(50);
+   Init_MAX7219();
+   while(1)
+   {
+   for(j=0;j<38;j++)
+   {
+   for(i=1;i<9;i++)
+   {
+   Write_Max7219(i,disp1[j][i-1]);
+   }
+   Delay_xms(1000);
+   }
+   }
+   // bcm2835_spi_end();
+   // bcm2835_close();
+   return 0;
    }
 
 **Code Explanation**
 
 .. code-block:: c
 
-   unsigned char code_H[20] = {0x01,0xff,0x80,0xff,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
-   unsigned char code_L[20] = {0x00,0x7f,0x00,0xfe,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f};
+    #define Max7219_pinCS  24
 
-The array code_H represents the elements of the LED dot matrix row, and the array code_L refers to the elements of the column. When characters are displayed, an element in row and one in column are acquired and assigned to the two HC595 chips respectively. Thus a pattern is shown on the LED dot matrix.
-Take the first number of code_H, 0x01 and the first number of code_L, 0x00 as examples.
+定义了LED Dot Matrix信号脚（cs引脚）的pin口，命名方式为BOARD。
 
-0x01 converted to binary becomes 00000001; 0x00 converted to binary becomes 0000 0000.
-
-In this kit, common anode LED dot matrix display is applied, so only the eight LEDs in the eighth row light up. 
-When the conditions that code H is 0xff and code_L is 0x7f are met simultaneously, these 8 LEDs in the first column are lit.
-
-.. image:: media/anode_table.png
+.. note::
+    当你有多个设备需要进行spi通信时，我们只需要改cs引脚的pin口即可。
 
 .. code-block:: c
 
-   void hc595_in(unsigned char dat){
-      int i;
-      for(i=0;i<8;i++){
-         digitalWrite(SDI, 0x80 & (dat << i));
-         digitalWrite(SRCLK, 1);
-         delay(1);
-         digitalWrite(SRCLK, 0);
+    if (!bcm2835_init())
+	{
+		printf("Unable to init bcm2835.\n");
+		return 1;
+	}
 
-Write the value of dat to pin SDI of the HC595 bit by bit. SRCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge pulse, then shift the pinSDI(DS) date to shift register.
-.. code-block:: c
-
-   void hc595_out(){
-      digitalWrite(RCLK, 1);
-      delay(1);
-      digitalWrite(RCLK, 0);
-
-RCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge, then shift data from shift register to storage register.       
+检测bcm2835库是否安装成功，如果未安装成功则打印"Unable to init bcm2835"字符串信息。
 
 .. code-block:: c
 
-   while(1){
-      for(i=0;i<sizeof(code_H);i++){
-         hc595_in(code_L[i]);
-         hc595_in(code_H[i]);
-         hc595_out();
-         delay(100);
-      }
-   }
+    Init_BCM2835();
+	Delay_xms(50);
+	Init_MAX7219();
 
-In this loop, these 20  elements in the two arrays, code_L and code_H will be uploaded to the two 74HC595 chip one by one. Then call the function, hc595_out() to shift data from shift register to storage register. 
+初始化设备信息。
+
+.. code-block:: c
+
+    while(1)
+    {
+		for(j=0;j<38;j++)
+        {
+            for(i=1;i<9;i++)
+            {
+                Write_Max7219(i,disp1[j][i-1]);
+            }
+			Delay_xms(1000);
+        }
+    }
+
+通过Write_Max7219()函数，可以在LED Dot Matrix上显示指定的字符，其中第一个参数输入显示在第几行，第二个参数输入一个8位二进制数或者一个16进制数，它可以表示这一行灯的亮灭情况（0表示熄灭，1表示点亮）。
+
+.. note::
+    例如将2和01101110作为第一个和第二个参数输入，即Write_Max7219(2,01101110)，LED Dot Matrix将做如下显示。
+
+    .. image:: media/led_not.png
+        :width: 400
 
 Phenomenon Picture
 -----------------------
 
-.. image:: media/image91.jpeg
+.. image:: media/1.1.6led_dot_matrix.jpg

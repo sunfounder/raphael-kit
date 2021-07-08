@@ -74,7 +74,7 @@ GPIO22       Pin 15   3        22
 
 .. code-block::
 
-    gcc 2.2.4_ReedSwitch.c
+    gcc 2.2.4_ReedSwitch.c -lwiringPi
 
 **Step 4:** Run.
 
@@ -94,7 +94,7 @@ the LED will change to red. Move away the magnet, the LED will turn green again.
 
     #define ReedPin		0
     #define Gpin		2
-    #define Rpin		1
+    #define Rpin		3
 
     void LED(char* color)
     {
@@ -149,12 +149,12 @@ the LED will change to red. Move away the magnet, the LED will turn green again.
 
     #define ReedPin		0
     #define Gpin		2
-    #define Rpin		1
+    #define Rpin		3
 
-Pin GPIO17, GPIO27 and GPIO18 of the T_Extension Board is corresponding to 
-the GPIO0, GPIO2 and GPIO1 in wiringPi. Assign GPIO0, GPIO2 and GPIO1 to 
+Pin GPIO17, GPIO27 and GPIO22 of the T_Extension Board is corresponding to 
+the GPIO0, GPIO2 and GPIO3 in wiringPi. Assign GPIO0, GPIO2 and GPIO3 to 
 ReedPin, Gpin and Rpin. ReedPin, Gpin and Rpin represents GPIO0, GPIO2 
-and GPIO1 in the code later. 
+and GPIO3 in the code later. 
 
 .. code:: block
 

@@ -63,7 +63,7 @@ GPIO26       Pin 37   25       26
 
 .. code-block:: 
 
-    gcc 3.1.1_CountingDevice.c -lwiringPi
+    sudo ./a.out
 
 After the code runs, when the PIR detects that someone is passing by,
 the number on the 4-digit segment display will add 1.

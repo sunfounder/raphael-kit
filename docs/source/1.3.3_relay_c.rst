@@ -111,13 +111,13 @@ Experimental Procedures
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/c/1.3.4
+    cd /home/pi/raphael-kit/c/1.3.3
 
 **Step 3:** Compile the code.
 
 .. code-block::
 
-    gcc 1.3.4_Relay.c -lwiringPi
+    gcc 1.3.3_Relay.c -lwiringPi
 
 
 **Step 4:** Run the executable file.

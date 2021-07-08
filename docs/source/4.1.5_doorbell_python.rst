@@ -47,7 +47,7 @@ Experimental Procedures
 
 .. code-block::
 
-    sudo python3 4.1.5_doorbell.py
+    sudo python3 4.1.5_DoorBell.py
 
 代码运行之后，当按下button时，会响起铃声，并且摄像头会录制下5S钟的视频，视频
 存储在/home/pi目录下的visitor.h264文件。如果你有一块屏幕，还可以通过实时预览

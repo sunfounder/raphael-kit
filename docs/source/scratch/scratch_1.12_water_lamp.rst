@@ -68,7 +68,7 @@ Tips on Codes
 .. image:: media/1.12_graph10.png
   :width: 300
 
-This is an event block that is triggered when the current sprite is clicked.。
+This is an event block that is triggered when the current sprite is clicked.
 
 .. image:: media/1.12_graph8.png
   :width: 300
@@ -76,7 +76,7 @@ This is an event block that is triggered when the current sprite is clicked.。
 The initial value of the **num** variable determines which LED is lit first.
 
 .. image:: media/1.12_graph9.png
-  :width: 500
+
 
 Set the pin corresponding to **num** in the led list to low to light the LED, and then set the pin corresponding to **num-1** to high to turn off the previous LED.
 

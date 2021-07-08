@@ -20,7 +20,7 @@ Build the Circuit
 Load the Code and See What Happens
 -----------------------------------------
 
-Load the code file (``1.7_inflating_the_balloon.sb3``) to Scratch 3.
+Load the code file (``1.15_inflating_the_balloon.sb3``) to Scratch 3.
 
 By toggling Slider to the left to start to inflate the balloon, at this time the balloon will get bigger and bigger. If the balloon is too large will blow up; if the balloon is too small, it will not float into the air. You need to judge when to toggle the switch to the right to stop pumping.
 
@@ -34,7 +34,7 @@ Delete the previous Sprite1 sprite, then add the **Balloon1** sprite.
 
 A balloon explosion sound effect is used in this project, so let's see how it was added.
 
-Click the **Sound** option at the top, then click **Upload Sound** to upload ``boom.mp4`` from the ``home/pi/raphael-kit/scratch/sound`` path to Scratch 3.
+Click the **Sound** option at the top, then click **Upload Sound** to upload ``boom.wav`` from the ``home/pi/raphael-kit/scratch/sound`` path to Scratch 3.
 
 .. image:: media/1.15_slide2.png
 
@@ -64,7 +64,7 @@ Set the size of the Balloon1 sprite to 50 and show it in the stage area.
 .. image:: media/1.15_slide5.png
 
 
-Set up a loop to inflate the balloon, this loop stops when the slider switch is dialed to the right.
+Set up a loop to inflate the balloon, this loop stops when the slider switch is toggled to the right.
 
 Within this loop, the balloon size is increased by 1 every 0.1s, and if it is larger than ``maxSize``, the balloon will burst, at which point the boom sound is made and the code is exited.
 

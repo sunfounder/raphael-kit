@@ -25,7 +25,7 @@ def main():
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
     while True:
         if musicStatus:
-            mixer.music.load('/home/pi/mozart-kit-for-raspberry-pi/music/doorbell.wav')
+            mixer.music.load('/home/pi/raphael-kit/music/doorbell.wav')
             mixer.music.set_volume(0.7)
             mixer.music.play()
             musicStatus = False

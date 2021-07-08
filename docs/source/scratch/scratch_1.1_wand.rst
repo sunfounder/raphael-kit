@@ -1,7 +1,7 @@
 1.1 Wand
 =================
 
-Today we will use LED, Raspberry Pi and Scratch to make a fun game. When we wave the magic wand, the LED light will blink.
+Today we will use LED, Raspberry Pi and Scratch to make a fun game. When we wave the magic wand, the LED will blink.
 
 .. image:: media/1.1_header.png
 
@@ -29,8 +29,6 @@ Click on the **Add Extension** button in the bottom left corner，then add the *
 .. image:: media/1.1_scratchled3.png
     :align: center
 
-GPIO expansion boards give you the flexibility to connect and control a large number of electronic devices. In the Scratch project, the Raspberry Pi 40-pin GPIO expansion board uses the BCM nomenclature. For more information, please see: :ref:`GPIO Extension Board`.
-
 Load the Code and See What Happens
 -----------------------------------------
 
@@ -40,7 +38,7 @@ Load the code file from your computer(``home/pi/raphael-kit/scratch/code``) to S
 
 .. image:: media/1.1_scratch_step2.png
 
-After clicking the magic wand in the stage area, you will see the LED light will blink for two seconds.
+After clicking the magic wand in the stage area, you will see the LED will blink for two seconds.
 
 .. image:: media/1.1_step3.png
 
@@ -66,12 +64,12 @@ Tips on Codes
 .. image:: media/1.1_LED1.png
   :width: 300
 
-This is an event block whose trigger condition is to click on the green flag on the stage. A trigger event is required at the beginning of all code, and you can select other trigger events in the **Events** function of the **block palette**.
+This is an event block whose trigger condition is to click on the green flag on the stage. A trigger event is required at the beginning of all codes, and you can select other trigger events in the **Events** category of the **block palette**.
 
 .. image:: media/1.1_events.png
   :width: 300
 
-For example, we can now change the trigger event to a click on the magic Wand in the stage area.
+For example, we can now change the trigger event to a click on the sprite.
 
 .. image:: media/1.1_LED2.png
   :width: 300

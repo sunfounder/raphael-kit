@@ -3,7 +3,7 @@
 
 Today, we are going to play a game of 123 wooden man.
 
-Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right, if the green light is on, the sprite can move, but when the red light is on, you have to stop the sprite from moving, otherwise the buzzer will keep ringing.
+Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right. If the green light is on, the sprite can move; but when the red LED is on, you have to stop the sprite from moving; otherwise the buzzer will keep ringing.
 
 .. image:: media/1.14_header.png
 
@@ -23,7 +23,7 @@ Load the Code and See What Happens
 
 Load the code file (``1.14_123_wooden_man.sb3``) to Scratch 3.
 
-When the green LED is on, you can use the right arrow key to control Avery to walk to the right; when the red LED is on, if you continue to let Avery move to the right, then an alarm will sound.
+When the green LED is on, you can use the right arrow key to control **Avery** to walk to the right; when the red LED is on, if you continue to let **Avery** move to the right, then an alarm will sound.
 
 Tips on Sprite
 ----------------
@@ -58,4 +58,4 @@ Assign the status variable to 0, which means the Avery Walking sprite is not mov
 .. image:: media/1.14_wooden6.png
   :width: 400
 
-When we press the right arrow key on the keyboard, we need to switch the Avery Walking sprite to the next costume so that we can see Avery Walking walking on the stage to the right. Then we need to determine the value of the status variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.
+When we press the right arrow key on the keyboard, we need to switch the **Avery Walking** sprite to the next costume so that we can see Avery walking to the right. Then we need to determine the value of the **status** variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.

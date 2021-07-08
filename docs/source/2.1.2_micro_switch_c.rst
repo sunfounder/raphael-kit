@@ -122,7 +122,7 @@ Experimental Procedures
     sudo ./a.out
 
 While the code is running, press the drive lever, then
-the red LED lights up; release the drive lever, the yellow light turns on.
+the yellow LED lights up; release the drive lever, the red light turns on.
 
 **Code**
 
@@ -175,9 +175,9 @@ the red LED lights up; release the drive lever, the yellow light turns on.
                 printf("LED1 on\n");
         }
 
-When press the drive lever, the middle pin and left one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+When release the drive lever, the left pin and right one are
+connected; the Raspberry Pi reads a high level at the GPIO17, so the 
+LED1 is on and LED2 off.
 
 .. code-block:: c
 
@@ -187,8 +187,9 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When release the drive lever, the middle pin and right one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
+When press the drive lever, the left pin and middle one are
+connected; the Raspberry Pi reads a low level at the GPIO17, so the
+LED2 is on and LED1 off.
 
 Phenomenon Picture
 ------------------

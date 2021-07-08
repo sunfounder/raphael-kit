@@ -3,7 +3,7 @@ Scratch project
 
 In this chapter, you will play with Scratch 3 through 18 projects.
 
-If you are a user who has just used Scratch, we recommend that you try the projects in order so that you can quickly get started with Scratch.
+If you are a user who has just used Scratch 3, we recommend that you try the projects in order so that you can quickly get started with Scratch 3.
 
 .. note::
     Before trying the projects, you should have downloaded the relevant materials and code files.

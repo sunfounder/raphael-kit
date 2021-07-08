@@ -30,7 +30,7 @@ int main(void)
 		if(digitalRead(touchPin) == 1){
 			digitalWrite(led1, LOW);
 			digitalWrite(led2, HIGH);
-			printf("You touch it!");
+			printf("You touch it! \r\n");
 		}
 		// touch switch low, led2 on
 		if(digitalRead(touchPin) == 0){

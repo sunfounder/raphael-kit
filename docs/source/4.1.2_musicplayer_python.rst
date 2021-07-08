@@ -53,9 +53,11 @@ Pi. Refer to :ref:`Audio power amplifier` for the specific tutorial.
     sudo python3 4.1.2_MusicPlayer.py
 
 After the code runs, raspberry pi will play the my_music.mp3 file in 
-the /home/pi/raphael-kit/music directory.If you want 
-to upload other music files to raspberry pi, you can refer to
-:ref:`How to use Ftp`
+the /home/pi/raphael-kit/music directory.
+Button 1 pauses the music, button 2 decreases the volume, and button 3 
+increases the volume.
+If you want to upload other music files to raspberry pi, you can refer to 
+:ref:`Use Filezilla Software`
 
 
 **Code Explanation**

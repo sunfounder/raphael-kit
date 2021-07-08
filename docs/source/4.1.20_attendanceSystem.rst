@@ -1,0 +1,124 @@
+4.1.20 AttendanceSystem
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Introduction
+---------------
+
+在这节课中，我们来模拟一个简单的考勤系统。当我们刷卡时，树莓派会记录我们的考勤记录，并将考勤记录储存在本地的csv文件中。
+
+Components
+-----------
+
+.. image:: media/4.1.20components2.png
+
+Schematic Diagram
+----------------------
+
+============ ======== ======== ====
+T-Board Name physical wiringPi BCM
+GPIO25       Pin 22   6        25
+SPIMOSI      Pin 19   12       MOSI
+SPIMISO      Pin 19   12       MISO
+SPICE0       pin 24   10       CE0
+SPICE1       pin 26   11       CE1
+SPISCLK      Pin 23   14       SCLK
+============ ======== ======== ====
+
+.. image:: media/4.1.20_schematic.png
+   :align: center
+
+Experimental Procedures
+-------------------------
+
+Step 1: Build the circuit.
+
+.. image:: media/atten1.png
+
+Step 2: 运行write.py文件来修改rfid卡的内容。
+
+.. code-block:: python
+
+    cd /home/pi/
+    sudo python3 write.py
+
+Step 3: 输入你的名字（这里我们以 **John** 作为示例），然后按 ``Enter`` 键确认，最后按 ``Ctrl`` + ``C`` 停止代码的运行。
+
+.. image:: media/atten2.png
+  :width: 400
+
+Step 4:  Get into the folder of code and run.
+
+.. code-block:: python
+
+    cd /home/pi/davinci-kit-for-raspberry-pi/python
+    sudo python3 3.1.14_GAME_NotNot.py
+
+启动程序后，我们将rfid卡贴近MFRC522 RFID Module，树莓派的扬声器会为你说一句问候语，并且在LED矩阵上显示这段问候语。我们也可以在同级目录下找到一个记录着考勤日期的csv文件，通过nano命令打开它，将看到刚才的考勤记录。
+
+.. note::
+    文件命名中的具体日期请以本地文件为准
+
+.. code-block:: python
+
+    sudo nano attendance_sheet.2021.06.29.csv
+
+.. image:: media/atten3.png
+  :width: 400
+
+Code Explanation
+-------------------
+
+Based on 1.1.6 LED Dot Matrix , rfid, 如果你没有了解以上课程的内容，请先跳转到相应的课程进行阅读。
+
+.. code-block:: python
+
+    def get_time():
+	    time.time()
+	    year = str(time.strftime('%Y',time.localtime(time.time())))
+	    month = str(time.strftime('%m',time.localtime(time.time())))
+	    day = str(time.strftime('%d',time.localtime(time.time())))
+	    hour = str(time.strftime('%H',time.localtime(time.time())))
+	    minute = str(time.strftime('%M',time.localtime(time.time())))
+	    second = str(time.strftime('%S',time.localtime(time.time())))
+	    present_time = year + '.' + month + '.' + day + '.' + hour + '.' + minute + '.' + second
+	    present_date = year + '.' + month + '.' + day
+	    return present_date, present_time
+
+使用get_time()函数来获取当前时间戳，并返回两个值。其中present_date精确到当前时间戳的天数，present_time精确到当前时间戳的秒数。
+
+.. code-block:: python
+
+    id, name = reader.read()
+    greeting = name.rstrip() + ", Welcome!"
+    present_date, present_time = get_time()
+    attendance_statistics[name.rstrip()] = present_time
+
+首先通过reader.read()函数读取到name信息，然后通过.rstrip()方法将信息里的空格去除，最后我们创建一条问候语，并将name.rstrip()和present_time分别作为attendance_statistics字典的键和值存入。
+
+.. code-block:: python
+
+    tts.say(greeting)
+
+通过扬声器说这句问候语。
+
+.. code-block:: python
+
+    with open('attendance_sheet.' + present_date + '.csv', 'w') as f:
+        [f.write('{0}  {1}\n'.format(key, value)) for key, value in attendance_statistics.items()]
+
+将attendance_statistics的内容写入到本地记录着日期的csv文件。
+
+.. code-block:: python
+
+    with canvas(virtual) as draw:
+        text(draw, (0, 0), greeting, fill="white", font=proportional(CP437_FONT))
+    for offset in range(95):
+        virtual.set_position((offset,0))
+        time.sleep(0.1)
+
+滚屏显示这段问候语。
+
+
+
+
+

@@ -44,7 +44,7 @@ Set the initial costume of the **fish** sprite to **fish1** and assign the value
 .. image:: media/1.16_fish3.png
   :width: 400
 
-When **fish_status=0**, i.e. the fish is not hooked yet, start the fishing game. Wait for a random time from 0 to 10 seconds, then assign **fish_status** to 1, which means the fish is hooked, and broadcast a message "A fish is hooked".
+When **fish_status=0**, i.e. the fish is not hooked yet, start the fishing game. Wait for a random time from 0 to 10 seconds, then assign **fish_status** to 1, which means the fish is hooked, and broadcast a message "The fish is biting".
 
 .. note::
 
@@ -53,7 +53,7 @@ When **fish_status=0**, i.e. the fish is not hooked yet, start the fishing game.
 .. image:: media/1.16_fish4.png
   :width: 400
 
-When the message "A fish is hooked" is received, let the fish sprite switch between the **fish2** and **fish3** costumes so that we can see the fish biting.
+When the message "The fish is biting" is received, let the fish sprite switch between the **fish2** and **fish3** costumes so that we can see the fish biting.
 
 .. image:: media/1.16_fish5.png
   :width: 400

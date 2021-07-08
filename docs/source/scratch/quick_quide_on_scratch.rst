@@ -1,7 +1,9 @@
 Quick Guide on Scratch
 ==========================
 
-When programming with Scratch3, you may need a screen for a better experience. Of course, if you don't have a screen, you can also use **VNC** to access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`VNC`.
+.. note::
+
+    When programming with Scratch 3, you may need a screen for a better experience. Of course, if you don't have a screen, you can also use **VNC** to access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`VNC`.
 
 In addition, Scratch 3 needs at least 1GB of RAM to run, and we recommend a Raspberry Pi 4 with at least 2GB RAM. While you can run Scratch 3 on a Raspberry Pi 2, 3, 3B+, or a Raspberry 4 with 1GB RAM, performance on these models is reduced, and depending on what other software you run at the same time, Scratch 3 may fail to start due to lack of memory.
 
@@ -11,7 +13,7 @@ When installing Raspberry Pi OS (:ref:`Installing the OS`), you have to choose t
 
 If you install the version with the recommended software, you can see Scratch 3 in the system menu at **Programming**.
 
-If you installed the desktop-only version, you will need to install Scratch manually, as described below.
+If you installed the desktop-only version, you will need to install Scratch 3 manually, as described below.
 
 Open up the menu, click on **Preferences** -> **Recommended Software**.
 
@@ -31,7 +33,7 @@ Once the installation is complete, you should see it on the **Programming** in t
 About Scratch 3's Interface
 ------------------------------
 
-Scratch is designed to be fun, educational, and easy to learn. It has tools for creating interactive stories, games, art, simulations, and more, using block-based programming. Scratch also has its own paint editor and sound editor built-in.
+Scratch 3 is designed to be fun, educational, and easy to learn. It has tools for creating interactive stories, games, art, simulations, and more, using block-based programming. Scratch also has its own paint editor and sound editor built-in.
 
 The top of scratch 3 has some basic options, the first one from left to right is the language option, you can choose different languages for programming. The second one is the **File** option, you can create new files, read local files and save current files with this option. The third is the **Edit** option, which allows you to resume some deletion operations and enable the acceleration mode (in which the sprite movement becomes particularly fast). The fourth is the **Tutorials** option, which allows you to view tutorials for some projects. The fifth is the file naming option, where you can rename the project.
 

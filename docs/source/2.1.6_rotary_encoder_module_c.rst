@@ -77,7 +77,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPOI18, and CL
 
 .. code-block::
 
-    gcc 2.1.6_RotaryEncoder -lwiringPi
+    gcc 2.1.6_RotaryEncoder.c -lwiringPi
 
 **Step 4:** Run.
 
@@ -85,8 +85,8 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPOI18, and CL
 
     sudo ./a.out
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+After the code runs, rotate the knob on the potentiometer, The number of 
+rotations will be printed out on the screen.
 
 **Code**
 

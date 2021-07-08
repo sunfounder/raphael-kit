@@ -20,7 +20,7 @@ Load the Code and See What Happens
 
 Load the code file (``1.13_doorbell.sb3``) to Scratch 3.
 
-Click on the green flag on the stage. When we click on the Button 3 sprite, it will turn blue and then the buzzer will sound; when we click again, the Button 3 sprite reverts to gray and the buzzer stops sounding.
+Click on the green flag on the stage. When we click on the Button 3 sprite, it will turn blue and then the buzzer will sound; when we click again, the **Button3** sprite reverts to gray and the buzzer stops sounding.
 
 
 Tips on Sprite
@@ -48,10 +48,10 @@ This block allows you to switch the sprite's costume.
 Set gpio17 to low to make the buzzer sound; set it to high and the buzzer will not sound.
 
 
-The status switch is used here, and we will use a flowchart to help you understand the whole code.
+The **status** switch is used here, and we will use a flowchart to help you understand the whole code.
 
-When the green flag is clicked, the status will be set to 0 first, and wait for the sprite to be clicked at this time; if button 3 sprite is clicked, it will switch to costume as button-b (blue) and the status will be set to 1. When the main program receives the status as 1, it will let the buzzer sound at 0.1s interval.
-If button-3 is clicked again, it will switch to button-a (gray) and status will be set to 0 again.
+When the green flag is clicked, the **status** will be set to 0 first, and wait for the sprite to be clicked at this time; if **button3** sprite is clicked, it will switch to costume as **button-b** costume (blue) and the **status** will be set to 1. When the main program receives the **status** as 1, it will let the buzzer sound at 0.1s interval.
+If **button3** is clicked again, it will switch to **button-a** costume (gray) and **status** will be set to 0 again.
 
 .. image:: media/1.13_scratch_code.png
 

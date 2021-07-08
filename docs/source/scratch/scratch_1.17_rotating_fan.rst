@@ -21,7 +21,7 @@ Load the Code and See What Happens
 
 Load the code file (``1.17_rotating_fan.sb3``) to Scratch 3.
 
-After clicking the green flag on the stage, click on the star sprite and it and the motor will rotate clockwise; you can change the direction of rotation by clicking on the two **arrow** sprites. When you click on the **star** sprite again, it and the motor will stop rotating.
+After clicking the green flag on the stage, click on the star sprite，then it and the motor will rotate clockwise; you can change the direction of rotation by clicking on the two **arrow** sprites. When you click on the **star** sprite again, it and the motor will stop rotating.
 
 Tips on Sprite
 ----------------
@@ -45,7 +45,7 @@ Tips on Codes
 
 .. image:: media/1.17_scratch.png
 
-In this code, you will see 2 pink blocks, turn left and turn right, which are our custom blocks.
+In this code, you will see 2 pink blocks, turn left and turn right, which are our custom blocks (functions).
 
 .. image:: media/1.17_new_block.png
 
@@ -67,16 +67,18 @@ After writing the function of the new block in the coding area, save it and then
 
 **turn left**
 
-This is the code content of the turn left block to make the motor rotate counterclockwise.
+This is the code inside the turn left block to make the motor rotate counterclockwise.
 
-.. image:: media/1.17_motor11.png
+.. image:: media/1.17_motor12.png
   :width: 400
 
 **turn right**
 
-This is the code content of the turn right block to make the motor rotate clockwise.
+This is the code inside the turn right block to make the motor rotate clockwise.
 
-.. image:: media/1.17_motor12.png
+
+
+.. image:: media/1.17_motor11.png
   :width: 400
 
 

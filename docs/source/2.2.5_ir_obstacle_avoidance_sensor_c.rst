@@ -123,8 +123,8 @@ obstacle was detected.
 ``wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR)``
 Set up a detect on ObstaclePin, and callback function to ``myISR()``.
 
-Now, if there is an obstacle ahead, a string “Detected Barrier!” will be 
-printed on the screen.
+Now, if there is an obstacle ahead, The "Detected Barrier!" will be 
+repeatedly printed on the screen until the barrier is removed.
  
 **Phenomenon Picture**
 -----------------------

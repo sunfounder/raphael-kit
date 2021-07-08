@@ -21,11 +21,10 @@ Clone the repository from GitHub.
 
 .. code-block:: python
 
-   git clone
-   https://github.com/sunfounder/raphael-kit.git
+   git clone https://github.com/sunfounder/raphael-kit.git
 
 **Method 2: Download the code.**
 
-Download the source code from github: https://github.com/sunfounder/raphael-kit-for-raspberry-pi
+Download the source code from github: https://github.com/sunfounder/raphael-kit
 
 .. image:: media/image33.png

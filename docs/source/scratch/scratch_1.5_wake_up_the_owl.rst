@@ -43,7 +43,7 @@ When the green flag is clicked, the initial state of gpio17 is set to low.
 .. image:: media/1.5_owl1.png
   :width: 400
 
-When pin17 is low (no one is approaching), switch the costume of the owl wizard to owl1 (sleeping state).
+When pin17 is low (no one is approaching), switch the costume of the owl sprite to owl1 (sleeping state).
 
 .. image:: media/1.5_owl2.png
   :width: 400

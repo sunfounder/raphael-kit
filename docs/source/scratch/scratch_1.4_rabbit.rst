@@ -53,7 +53,7 @@ This is a block to change the color of **Hare**, the range of the value is 0 ~ 1
 .. image:: media/1.4_button5.png
   :width: 250
 
-This is a change size block that changes the size of the **Hare** sprite; the higher the value, the larger the sprite.
+This is a block used to change the size for sprite, the higher the value, the larger the sprite.
 
 .. note::
   The sprite is also not infinitely large, and its maximum size is related to the original image size.

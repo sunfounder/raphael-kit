@@ -66,6 +66,9 @@ Schematic Diagram
 
     sudo python3 2.1.3_TouchSwitch.py
 
+While the code is running, the red LED lights up; when you touch the  
+metal disk, the yellow light turns on. 
+
 **Code**
 
 .. code-block:: python
@@ -163,8 +166,7 @@ When touchPin is high, led1Pin writes low level, led1 lights up and prints
 "You touch it!". When touchPin is low, led2Pin writes low level and 
 led1Pin writes high level. led2 is on, led1 is off.
 
-Now, touch the metal disk, you can see the LED change its colors and "ON" 
-and "OFF" printed on the screen.
+Now, touch the metal disk, you can see the LED change its colors.
 
 **Phenomenon Picture**
 ------------------------

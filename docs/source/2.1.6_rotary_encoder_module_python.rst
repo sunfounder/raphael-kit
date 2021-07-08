@@ -79,8 +79,8 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo python3 2.1.6_RotaryEncoder.py
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+After the code runs, rotate the knob on the potentiometer, The number of 
+rotations will be printed out on the screen.
 
 **Code**
 

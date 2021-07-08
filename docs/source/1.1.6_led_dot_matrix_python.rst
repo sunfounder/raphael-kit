@@ -16,19 +16,24 @@ Components
 Principle
 -----------
 
-**MAX7219 LED Matrix**
+**LED Matrix**
 
-There are several MAX7219 breakout boards available, two of which are more 
-popular – one is the generic module and the other is the FC-16 module.
+The 64 LEDs are driven by 16 output pins of the IC. The maximum number 
+of LEDs light up at the same time is actually eight. The LEDs are 
+arranged as 8×8 set of rows and columns. So the MAX7219 activates each 
+column for a very short period of time and at the same time it also 
+drives each row. So by rapidly switching through the columns and rows 
+the human eye will only notice a continuous light.
 
 .. image:: media/1.1.6max72191.png
   :width: 700
 
-A typical MAX7219 module contains a 8×8 dot matrix display and a MAX7219 
-LED display driver.
+**MAX7219**
 
-Visit: https://lastminuteengineers.com/max7219-dot-matrix-arduino-tutorial/, 
-for more information.
+These integrated circuits from Maxim are for driving either 64 individual 
+LED’s, or up to 8 digits of 7-segment displays. The drivers implement a 
+SPI compatible slave interface that can be controlled from the Arduino 
+using only 3 of the digital output pins.
 
 从 PyPi 安装
 --------------
@@ -66,13 +71,12 @@ git clone https://github.com/rm-hull/luma.led_matrix.git
 Schematic Diagram
 -----------------------
 
-============ ======== ======== ===
+============ ======== ======== ====
 T-Board Name physical wiringPi BCM
-5.0V         pin 2    5.0V     5.0V
 SPIMOSI      Pin 19   12       MOSI
 SPICE0       pin 24   10       CE0
 SPISCLK      Pin 23   14       SCLK
-============ ======== ======== ===
+============ ======== ======== ====
 
 .. image:: media/schematic_dot.png
 

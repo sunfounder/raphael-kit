@@ -3,7 +3,7 @@
 
 #define LBPin		0  // light break pin set to GPIO0
 #define Gpin		2
-#define Rpin		1
+#define Rpin		3
 
 void LED(int color)
 {
