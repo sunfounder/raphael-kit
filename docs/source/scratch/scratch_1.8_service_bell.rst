@@ -28,7 +28,7 @@ Press the micro switch and the service bell will ring once.
 
 .. note::
   
-  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`Audio Source Switch` for the solution.
+  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`Change Audio Output` for the solution.
 
   Also, if you want to adjust the volume level, please refer to :ref:`Volume Adjust`.
 

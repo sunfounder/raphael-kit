@@ -1,7 +1,7 @@
 3.1.1 Counting Device
-~~~~~~~~~~~~~~~~~~~~~
+============================
 
-**Introduction**
+Introduction
 -----------------
 
 Here we will make a number-displaying counter system, consisting of a
@@ -10,7 +10,7 @@ someone is passing by, the number on the 4-digit segment display will
 add 1. You can use this counter to count the number of people walking 
 through the passageway.
 
-**Components**
+Components
 ---------------
 
 .. image:: media/list_Counting_Device1.png
@@ -19,7 +19,7 @@ through the passageway.
 .. image:: media/list_Counting_Device2.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 ----------------------
 
 ============ ======== ======== ===
@@ -37,7 +37,7 @@ GPIO26       Pin 37   25       26
 .. image:: media/Schematic_three_one1.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -----------------------------
 
 **Step 1**: Build the circuit.
@@ -116,7 +116,7 @@ This is the main function: display the number on the 4-digit segment
 display and read the PIR value. When the PIR detects that someone is
 passing by, the number on the 4-digit segment display will add 1.
 
-**Phenomenon Picture**
+Phenomenon Picture
 -------------------------
 
 .. image:: media/image236.jpeg

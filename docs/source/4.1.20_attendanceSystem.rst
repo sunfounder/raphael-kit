@@ -4,7 +4,7 @@
 Introduction
 ---------------
 
-在这节课中，我们来模拟一个简单的考勤系统。当我们刷卡时，树莓派会记录我们的考勤记录，并将考勤记录储存在本地的csv文件中。
+Let's make a simple attendance system. When we scan the card, the Raspberry Pi will record our information and generate a csv file.
 
 Components
 -----------
@@ -30,33 +30,39 @@ SPISCLK      Pin 23   14       SCLK
 Experimental Procedures
 -------------------------
 
+.. note::
+
+    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
+    
+    The :ref:`Luma.LED_Matrix` module And the :ref:`Spidev and MFRC522` libraries are also needed.
+
 Step 1: Build the circuit.
 
 .. image:: media/atten1.png
 
-Step 2: 运行write.py文件来修改rfid卡的内容。
+Step 2: Run the ``2.2.10_write.py`` file to modify the content of the rfid card.
 
-.. code-block:: python
+.. code-block:: 
 
-    cd /home/pi/
-    sudo python3 write.py
+    cd /home/pi/davinci-kit-for-raspberry-pi/python/2.2.10
+    sudo python3 2.2.10_write.py
 
-Step 3: 输入你的名字（这里我们以 **John** 作为示例），然后按 ``Enter`` 键确认，最后按 ``Ctrl`` + ``C`` 停止代码的运行。
+Step 3: Enter your name (here we use **John** as an example), then press **Enter** to confirm, and finally press **Ctrl + C** to stop the code.
 
 .. image:: media/atten2.png
   :width: 400
 
 Step 4:  Get into the folder of code and run.
 
-.. code-block:: python
+.. code-block::
 
     cd /home/pi/davinci-kit-for-raspberry-pi/python
-    sudo python3 3.1.14_GAME_NotNot.py
+    sudo python3 4.1.20_Attendance_System.py
 
-启动程序后，我们将rfid卡贴近MFRC522 RFID Module，树莓派的扬声器会为你说一句问候语，并且在LED矩阵上显示这段问候语。我们也可以在同级目录下找到一个记录着考勤日期的csv文件，通过nano命令打开它，将看到刚才的考勤记录。
+    After starting the program, we put the RFID card close to the MFRC522 RFID Module, the Raspberry Pi will send out a voice to greet you and display it on the LED matrix.
 
-.. note::
-    文件命名中的具体日期请以本地文件为准
+    We can also find a csv file that records the time and list in the same directory. Open it with the nano command and you will see the record just now.
+
 
 .. code-block:: python
 
@@ -68,7 +74,7 @@ Step 4:  Get into the folder of code and run.
 Code Explanation
 -------------------
 
-Based on 1.1.6 LED Dot Matrix , rfid, 如果你没有了解以上课程的内容，请先跳转到相应的课程进行阅读。
+In order to better understand the program, you may need to complete :ref:`1.1.6 LED Dot Matrix` , :ref:`2.2.10 MFRC522 RFID Module` and :ref:`3.1.4 Text-to-speech` first.
 
 .. code-block:: python
 
@@ -84,7 +90,8 @@ Based on 1.1.6 LED Dot Matrix , rfid, 如果你没有了解以上课程的内容
 	    present_date = year + '.' + month + '.' + day
 	    return present_date, present_time
 
-使用get_time()函数来获取当前时间戳，并返回两个值。其中present_date精确到当前时间戳的天数，present_time精确到当前时间戳的秒数。
+Use the ``get_time()`` function to get the current timestamp and return two values.
+Among them, ``present_date`` is accurate to the number of days of the current timestamp, and ``present_time`` is accurate to the number of seconds of the current timestamp.
 
 .. code-block:: python
 
@@ -93,20 +100,21 @@ Based on 1.1.6 LED Dot Matrix , rfid, 如果你没有了解以上课程的内容
     present_date, present_time = get_time()
     attendance_statistics[name.rstrip()] = present_time
 
-首先通过reader.read()函数读取到name信息，然后通过.rstrip()方法将信息里的空格去除，最后我们创建一条问候语，并将name.rstrip()和present_time分别作为attendance_statistics字典的键和值存入。
+The ``reader.read()`` function reads the name information, and then creates a greeting.
+Then an ``attendance_statistics`` dictionary is generated, and ``name.rstrip()`` and ``present_time`` are stored as keys and values.
 
 .. code-block:: python
 
     tts.say(greeting)
 
-通过扬声器说这句问候语。
+Say a greeting through the speaker.
 
 .. code-block:: python
 
     with open('attendance_sheet.' + present_date + '.csv', 'w') as f:
         [f.write('{0}  {1}\n'.format(key, value)) for key, value in attendance_statistics.items()]
 
-将attendance_statistics的内容写入到本地记录着日期的csv文件。
+Write the ``attendance_statistics`` to the csv file.
 
 .. code-block:: python
 
@@ -116,7 +124,7 @@ Based on 1.1.6 LED Dot Matrix , rfid, 如果你没有了解以上课程的内容
         virtual.set_position((offset,0))
         time.sleep(0.1)
 
-滚屏显示这段问候语。
+Scroll to display this greeting.
 
 
 

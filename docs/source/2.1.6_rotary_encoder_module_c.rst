@@ -62,11 +62,6 @@ Experimental Procedures
    :width: 700
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPOI18, and CLK to digital GPIO
-17.
-
 **Step 2:** Open the code file.
 
 .. code-block::
@@ -85,7 +80,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPOI18, and CL
 
     sudo ./a.out
 
-After the code runs, rotate the knob on the potentiometer, The number of 
+After the code runs, rotate the knob on the Rotary Encoder module, The number of 
 rotations will be printed out on the screen.
 
 **Code**
@@ -98,15 +93,15 @@ rotations will be printed out on the screen.
    #include <stdlib.h>
    #include <wiringPi.h>
 
-   #define  RoAPin    0
-   #define  RoBPin    1
-   #define  SWPin     2
+   #define  clkPin    0
+   #define  dtPin    1
+   #define  swPin     2
 
    static volatile int globalCounter = 0 ;
 
    unsigned char flag;
-   unsigned char Last_RoB_Status;
-   unsigned char Current_RoB_Status;
+   unsigned char Last_dtPin_Status;
+   unsigned char Current_dtPin_Status;
 
    void btnISR(void)
    {
@@ -115,19 +110,19 @@ rotations will be printed out on the screen.
 
    void rotaryDeal(void)
    {
-      Last_RoB_Status = digitalRead(RoBPin);
+      Last_dtPin_Status = digitalRead(dtPin);
 
-      while(!digitalRead(RoAPin)){
-         Current_RoB_Status = digitalRead(RoBPin);
+      while(!digitalRead(clkPin)){
+         Current_dtPin_Status = digitalRead(dtPin);
          flag = 1;
       }
 
       if(flag == 1){
          flag = 0;
-         if((Last_RoB_Status == 0)&&(Current_RoB_Status == 1)){
+         if((Last_dtPin_Status == 0)&&(Current_dtPin_Status == 1)){
             globalCounter ++;	
          }
-         if((Last_RoB_Status == 1)&&(Current_RoB_Status == 0)){
+         if((Last_dtPin_Status == 1)&&(Current_dtPin_Status == 0)){
             globalCounter --;
          }
       }
@@ -140,13 +135,13 @@ rotations will be printed out on the screen.
          return 1;
       }
 
-      pinMode(SWPin, INPUT);
-      pinMode(RoAPin, INPUT);
-      pinMode(RoBPin, INPUT);
+      pinMode(swPin, INPUT);
+      pinMode(clkPin, INPUT);
+      pinMode(dtPin, INPUT);
 
-      pullUpDnControl(SWPin, PUD_UP);
+      pullUpDnControl(swPin, PUD_UP);
 
-      if(wiringPiISR(SWPin, INT_EDGE_FALLING, &btnISR) < 0){
+      if(wiringPiISR(swPin, INT_EDGE_FALLING, &btnISR) < 0){
          fprintf(stderr, "Unable to init ISR\n",strerror(errno));	
          return 1;
       }
@@ -178,8 +173,6 @@ otherwise it goes low level.
 
 From this, the program flow is shown on the right.
 
-For detailed analysis of potential state change judgment, please refer
-to :ref:`1.10 State Change Detection`.
 
 .. image:: media/image209.png
    :align: center

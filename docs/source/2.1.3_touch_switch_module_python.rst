@@ -1,5 +1,5 @@
 2.1.3 Touch Switch Module
-========================
+=================================
 
 **Introduction**
 -------------------
@@ -36,7 +36,7 @@ The touch detector circuit has an oscillator whose frequency is dependent on cap
 
 .. image:: media/2.1.3touch_switch2.png
 
-Visit: https://en.wikipedia.org/wiki/Touch_switch, for more information.
+
 
 Schematic Diagram
 -----------------
@@ -66,8 +66,7 @@ Schematic Diagram
 
     sudo python3 2.1.3_TouchSwitch.py
 
-While the code is running, the red LED lights up; when you touch the  
-metal disk, the yellow light turns on. 
+While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
 
 **Code**
 
@@ -136,7 +135,7 @@ metal disk, the yellow light turns on.
     led1Pin = 22
     led2Pin = 27
 
-touchPin, led1Pin and led2Pin connects to the GPIO17, GPIO22 and GPIO27,
+``touchPin``, ``led1Pin`` and ``led2Pin`` connects to the GPIO17, GPIO22 and GPIO27,
 namely BCM17, BCM22 and BCM27.
 
 .. code-block:: python
@@ -146,7 +145,7 @@ namely BCM17, BCM22 and BCM27.
 	GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.HIGH)
 	GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.HIGH)
 
-Set the GPIO modes to BCM Numbering. Set led1Pin, led2Pin to output mode 
+Set the GPIO modes to BCM Numbering. Set ``led1Pin``, ``led2Pin`` to output mode 
 and initial their level to High (3.3v).
 
 .. code-block:: python
@@ -162,11 +161,8 @@ and initial their level to High (3.3v).
         GPIO.output(led2Pin, GPIO.LOW)
         GPIO.output(led1Pin, GPIO.HIGH)
 
-When touchPin is high, led1Pin writes low level, led1 lights up and prints 
-"You touch it!". When touchPin is low, led2Pin writes low level and 
-led1Pin writes high level. led2 is on, led1 is off.
+When you tap on the touch switch module, ``touchPin`` is high, led1 will light up and print \"You touch it!\". When touchPin is low, led2 will light up.
 
-Now, touch the metal disk, you can see the LED change its colors.
 
 **Phenomenon Picture**
 ------------------------

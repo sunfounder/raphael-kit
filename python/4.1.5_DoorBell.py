@@ -7,8 +7,7 @@ import time
 camera = PiCamera()
 
 BtnPin = 18
-cameraStatus = False
-musicStatus = False
+status = False
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -16,20 +15,17 @@ def setup():
     mixer.init()
 
 def takePhotos(pin):
-    global cameraStatus, musicStatus
-    cameraStatus = True
-    musicStatus = True
+    global status
+    status = True
 
 def main():
-    global cameraStatus, musicStatus
+    global status
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
     while True:
-        if musicStatus:
+        if status:
             mixer.music.load('/home/pi/raphael-kit/music/doorbell.wav')
             mixer.music.set_volume(0.7)
             mixer.music.play()
-            musicStatus = False
-        if cameraStatus:
             camera.start_preview(alpha=200)
             camera.start_recording('/home/pi/visitor.h264')
             print ('Have a visitor')
@@ -37,7 +33,7 @@ def main():
             mixer.music.stop()
             camera.stop_preview()
             camera.stop_recording()
-            cameraStatus = False 
+            status = False 
 
 def destroy():
     GPIO.cleanup()

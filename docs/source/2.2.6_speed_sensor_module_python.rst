@@ -1,0 +1,147 @@
+2.2.6 Speed Sensor Module
+=========================
+
+Introduction
+------------------
+
+In this lesson, we will learn the use of the speed sensor module. A Speed Sensor Module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+
+
+Components
+----------------
+
+.. image:: media/2.2.6component.png
+    :width: 700
+    :align: center
+
+Principle
+----------------
+
+.. image:: media/2.2.6photo-interrupter.png
+    :width: 300
+    :align: center
+
+The speed sensor consists of two parts: a transmitter and a receiver. The transmitter emits light, which then enters the receiver.
+
+If the light beam between the emitter and receiver is interrupted by an obstacle, the receiver will not detect the incident light, then the D0 pin will output low level.
+
+.. note::
+    The A0 pin on this module is empty and there is no circuit.
+
+.. image:: media/speed_sensor.png
+
+Schematic Diagram
+-----------------------
+
+.. image:: media/2.2.6circuit.png
+    :width: 400
+    :align: center
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: media/2.2.6fritzing.png
+    :width: 700
+    :align: center
+
+
+**Step 2:** Change directory.
+
+.. code-block::
+    
+    cd /home/pi/raphael-kit/python
+
+**Step 3:** Run.
+
+.. code-block::
+
+    sudo python3 2.2.6_speed_sensor_module.py
+
+After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
+Remove the obstacle and the green LED will light up again.
+
+**Code**
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+    import RPi.GPIO as GPIO
+
+    speedPin  = 17
+    Gpin   = 27
+    Rpin   = 22
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)       # 
+        GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
+        GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
+        GPIO.setup(speedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set speedPin's mode is input, and pull up to high level(3.3V)
+        GPIO.add_event_detect(speedPin, GPIO.BOTH, callback=detect, bouncetime=200)
+
+    def Led(x):
+        if x == 0:
+            GPIO.output(Rpin, 1)
+            GPIO.output(Gpin, 0)
+            print ('Light was blocked')
+        if x == 1:
+            GPIO.output(Rpin, 0)
+            GPIO.output(Gpin, 1)
+            
+    def detect(chn):
+        Led(GPIO.input(speedPin))
+
+    def loop():
+        while True:
+            pass
+
+    def destroy():
+        GPIO.output(Gpin, GPIO.HIGH)       # Green led off
+        GPIO.output(Rpin, GPIO.HIGH)       # Red led off
+        GPIO.cleanup()                     # Release resource
+
+    if __name__ == '__main__':     # Program start from here
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+            destroy()
+
+**Code Explanation**
+
+.. code-block::
+
+    GPIO.add_event_detect(speedPin, GPIO.BOTH, callback=detect, bouncetime=200)
+
+Add an event here, triggered by a change in the level of ``speedPin`` and call ``detect()`` to control the 2 LEDs on and off.
+
+.. code-block::
+
+    def Led(x):
+        if x == 0:
+            GPIO.output(Rpin, 1)
+            GPIO.output(Gpin, 0)
+            print ('Light was blocked')
+        if x == 1:
+            GPIO.output(Rpin, 0)
+            GPIO.output(Gpin, 1)           
+
+Define a function ``Led()`` that turns the red LED on when the parameter is 0 and prints ``Light is blocked``. When the parameter is 1, turn the green LED on.
+
+.. code-block::
+
+    def detect(chn):
+        Led(GPIO.input(speedPin))
+
+Define a callback function where the value of ``speedPin`` will control the turning on or off of the 2 LEDs.
+
+
+
+**Phenomenon Picture**
+-----------------------
+
+.. image:: media/2.2.6photo_interrrupter.jpg
+   :width: 500
+   :align: center
+

@@ -1,5 +1,5 @@
 4.1.12 Motion Control
-~~~~~~~~~~~~~~~~~~~~
+===============================
 
 **Introduction**
 -----------------
@@ -54,7 +54,7 @@ SCL1         Pin 5
     sudo python3 4.1.12_MotionControl.py
 
 As the code runs, if the tilt angle of **mpu6050** on the
-`Y <https://cn.bing.com/dict/search?q=Y&FORM=BDVSP6&mkt=zh-cn>`__\ **-**\ `axis <https://cn.bing.com/dict/search?q=axis&FORM=BDVSP6&mkt=zh-cn>`__
+Y-axis 
 is larger than **45** ℃, the stepper motor rotates anticlockwise; if
 less than **-45** ℃, the stepper motor rotates clockwise.
 
@@ -72,7 +72,7 @@ less than **-45** ℃, the stepper motor rotates clockwise.
         angle=get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
         return angle
 
-mpu6050 gets the tilt angle in the direction of the Y-axis.
+``mpu6050()`` gets the tilt angle in the direction of the Y-axis.
 
 .. code-block:: python
 

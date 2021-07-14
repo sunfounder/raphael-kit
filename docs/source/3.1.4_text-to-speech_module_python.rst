@@ -4,8 +4,10 @@
 Introduction
 -----------------
 
-Let's try to make raspberry pi convert the text in our code into 
-speech and speak it through the speaker.
+In many places, we can come into contact with TTS (Text-to-speech) technology, which converts text into natural-sounding speech and brings people a good interactive experience.
+
+
+Let's try to make your project speak.
 
 Components
 ----------------
@@ -23,22 +25,27 @@ Experimental Procedures
   :width: 800
   :align: center   
 
-First, you have to assemble the speaker and connect it to the Raspberry 
-Pi. Refer to :ref:`Audio power amplifier` for the specific tutorial.
+Plug the 3.5mm audio jack into the Raspberry Pi.
 
-**Step 2:** Get into the folder of the code.
+**Step 2:** Install TTS.
+
+.. code-block::
+
+    sudo apt-get install espeak -y
+
+**Step 3:** Get into the folder of the code.
 
 .. code-block::
 
     cd /home/pi/raphael-kit/python/3.1.4/
 
-Step 3: Run.
+**Step 4:** Run.
 
 .. code-block::
 
     sudo python3 3.1.4_Text-to-speech.py
 
-Raspberry pi will greet you kindly after the code runs, and it will say goodbye to you when you press ``Ctrl`` + ``C`` to exit.
+Raspberry pi will greet you kindly after the code runs, and it will say goodbye to you when the code stops.
 
 **Code**
 
@@ -70,13 +77,13 @@ Raspberry pi will greet you kindly after the code runs, and it will say goodbye 
 
     tts = TTS(engine="espeak")
 
-Import the TTS class of the tts library and instantiate it, so that we can call related functions to implement text-to-speech.
+Import the TTS class and instantiate an object.
 
 .. code-block:: python
 
     tts.lang('en-US')
 
-Set the language to be converted.
+Set the language.
 
 .. note::
     Currently the switchable language only supports English.

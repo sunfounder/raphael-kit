@@ -1,12 +1,12 @@
 2.1.2 Micro Switch
 ======================
 
-**Introduction**
+Introduction
 --------------------
 
-在这一课，我们将学习怎样使用micro switch。是具有微小接点间隔和快动机构，用规定的行
-程和规定的力进行开关动作的接点机构，用外壳覆盖，其外部有驱动杆的一种开关，因为其开关
-的触点间距比较小，所以叫micro switch。
+In this lesson, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+
+They are used to prevent doors from closing if something or someone is in the way and other applications similar.
 
 Components
 ----------
@@ -21,39 +21,30 @@ Principle
 
 The construction of a micro switch is really simple. The main parts of the switch are:
 
-1.Plunger (Actuator)
-
-2.Cover
-
-3.Moving piece
-
-4.Support
-
-5.Case
-
-6.NO terminal
-
-7.NC terminal
-
-8.Contact
-
-9.Moving arm
-
 .. image:: media/micro_switch2.png
 
-The micro switch makes physical contact with an object. After that, its contacts change position. The basic working principle is as follows:
+* 1.Plunger (Actuator)
+* 2.Cover
+* 3.Moving piece
+* 4.Support
+* 5.Case
+* 6.NO terminal: normally open
+* 7.NC terminal: normally closed
+* 8.Contact
+* 9.Moving arm
 
-When the plunger is in the released or rest position
 
-· The normally closed circuit can carry current.
+After a micro switch makes physical contact with an object, its contacts change position. The basic working principle is as follows.
 
-· The normally open circuit is electrically insulated.
+When the plunger is in the released or rest position.
 
-When the plunger is depressed or switched
+* The normally closed circuit can carry current.
+* The normally open circuit is electrically insulated.
 
-· The normally closed circuit is open.
+When the plunger is depressed or switched.
 
-· The normally open circuit is closed.
+* The normally closed circuit is open.
+* The normally open circuit is closed.
 
 .. image:: media/micro_switch1.png
 
@@ -86,9 +77,9 @@ Visit: https://en.wikipedia.org/wiki/Capacitance, for more information about Cap
 Schematic Diagram
 -----------------
 
-Connect the middle pin of the Micro Switch to GPIO17, and two LEDs to
+Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
 pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-drive lever, you can see the two LEDs light up alternately.
+move arm of the Micro Switch, you can see the two LEDs light up alternately.
 
 .. image:: media/image305.png
 
@@ -121,8 +112,7 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, press the drive lever, then
-the yellow LED lights up; release the drive lever, the red light turns on.
+While the code is running, press the moving arm, then the yellow LED lights up; release the moving arm, the red LED turns on.
 
 **Code**
 
@@ -175,9 +165,8 @@ the yellow LED lights up; release the drive lever, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When release the drive lever, the left pin and right one are
-connected; the Raspberry Pi reads a high level at the GPIO17, so the 
-LED1 is on and LED2 off.
+When the moving arm of the micro switch is released, the left pin is connected to the right pin; at this time, a high level will be read on GPIO17, and then LED1 will be on and LED2 will be off.
+
 
 .. code-block:: c
 
@@ -187,9 +176,8 @@ LED1 is on and LED2 off.
                 printf(".....LED2 on\n");
             }
 
-When press the drive lever, the left pin and middle one are
-connected; the Raspberry Pi reads a low level at the GPIO17, so the
-LED2 is on and LED1 off.
+When the move arm is pressed, the left pin and the middle pin are connected. At this point a low level will be read on GPIO17, then turns LED2 on and LED1 off.
+
 
 Phenomenon Picture
 ------------------

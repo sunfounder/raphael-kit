@@ -2,39 +2,39 @@
 import RPi.GPIO as GPIO
 import time
 
-RoAPin = 17    # CLK Pin
-RoBPin = 18    # DT Pin
-BtnPin = 27    # Button Pin
+clkPin = 17    # CLK Pin
+dtPin = 18    # DT Pin
+swPin = 27    # Button Pin
 
 globalCounter = 0
 
 flag = 0
-Last_RoB_Status = 0
-Current_RoB_Status = 0
+Last_dt_Status = 0
+Current_dt_Status = 0
 
 def setup():
 	GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
-	GPIO.setup(RoAPin, GPIO.IN)    # input mode
-	GPIO.setup(RoBPin, GPIO.IN)
-	GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+	GPIO.setup(clkPin, GPIO.IN)    # input mode
+	GPIO.setup(dtPin, GPIO.IN)
+	GPIO.setup(swPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def rotaryDeal():
 	global flag
-	global Last_RoB_Status
-	global Current_RoB_Status
+	global Last_dt_Status
+	global Current_dt_Status
 	global globalCounter
-	Last_RoB_Status = GPIO.input(RoBPin)
-	while(not GPIO.input(RoAPin)):
-		Current_RoB_Status = GPIO.input(RoBPin)
+	Last_dt_Status = GPIO.input(dtPin)
+	while(not GPIO.input(clkPin)):
+		Current_dt_Status = GPIO.input(dtPin)
 		flag = 1
 	if flag == 1:
 		flag = 0
-		if (Last_RoB_Status == 0) and (Current_RoB_Status == 1):
+		if (Last_dt_Status == 0) and (Current_dt_Status == 1):
 			globalCounter = globalCounter + 1
-		if (Last_RoB_Status == 1) and (Current_RoB_Status == 0):
+		if (Last_dt_Status == 1) and (Current_dt_Status == 0):
 			globalCounter = globalCounter - 1
 
-def btnISR(channel):
+def swISR(channel):
 	global globalCounter
 	globalCounter = 0
 
@@ -42,7 +42,7 @@ def loop():
 	global globalCounter
 	tmp = 0	# Rotary Temperary
 
-	GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=btnISR)
+	GPIO.add_event_detect(swPin, GPIO.FALLING, callback=swISR)
 	while True:
 		rotaryDeal()
 		if tmp != globalCounter:

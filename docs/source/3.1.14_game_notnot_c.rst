@@ -1,7 +1,7 @@
 3.1.14 GAME– NotNot
-~~~~~~~~~~~~~~~~~~~~~~
+===========================
 
-**Introduction**
+Introduction
 -------------------
 
 In this lesson, we will make an interesting game device, and we call it “Not Not”.
@@ -10,13 +10,13 @@ During the game, the dot matrix will refresh an arrow randomly. What you need to
 
 This game can really practice your reverse thinking, and now shall we have a try?
 
-**Components**
+Components
 ----------------
 
 .. image:: media/list_GAME_14_NotNot.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 ------------------------
 
 ============ ======== ======== ====
@@ -28,15 +28,20 @@ SPICE0       pin 24   10       CE0
 SPISCLK      Pin 23   14       SCLK
 ============ ======== ======== ====
 
-.. image:: media/Schematic_three_one13.png
+.. image:: media/Schematic_notnot.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 ---------------------------------
 
 **Step 1**: Build the circuit.
 
 .. image:: media/3.1.14game_notnot.png
+
+.. note::
+
+    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
+    And the :ref:`BCM2835` library is also needed.
 
 **Step 2**: Go to the folder of the code.
 
@@ -58,8 +63,7 @@ SPISCLK      Pin 23   14       SCLK
 
 After the program starts, a left or right arrow will be refreshed at 
 random on the dot matrix. What you need to do is to press the button 
-in the opposite direction of the arrow within a limited time. Then “√” 
-appears on the dot matrix. If the time is up, or if the button in the 
+in the opposite direction of the arrow, then “√” appears on the dot matrix. If the button in the 
 same direction as the arrow is pressed, you are out and the dot matrix 
 displays “x”. You can also add 2 new buttons or replace them with 
 Joystick keys for up, down, left and right— 4 directions to increase 
@@ -67,19 +71,16 @@ the difficulty of the game.
 
 **Code Explanation**
 
-Based on 1.1.6 LED Dot Matrix, this lesson adds 2 buttons to make an amusing game device. So, if you are not very familiar with the dot matrix, please refer to 1.1.6 LED Dot Matrix.
+Based on :ref:`1.1.16_led_matrix_module`, this lesson adds 2 buttons to make an amusing game device.
 
 The whole program process is as below:
 
-1. Randomly select an arrow direction and generate timer 1.
+#. Use system time to generate a random 0 or 1.
+#. Display a random left or right arrow pattern.
+#. Press the key and determine the result.
+#. Display the right or wrong pattern.
 
-2. Display the arrow image on the dot matrix.
-
-3. Judge the button input. If the button is pressed or timer 1 reminds time’s up, judgement starts.
-
-4. Display the image on the basis of a judging result; meanwhile, generate timer 2.
-
-5. Rerun step 1 when timer 2 reminds time’s up.
+.. image:: media/3.1.14_notnot1.png
 
 .. code-block:: c
 
@@ -89,7 +90,8 @@ The whole program process is as below:
         return rand()%2;
     }
 
-通过系统时间来改变系统的种子值，即srand((unsigned)time(NULL))，这样每次调用rand函数时获取的值是完全随机的，最后将获取的结果对2整除，这样获取的值就是0和1了。
+The seed of the system is changed by the system time, i.e. ``srand((unsigned)time(NULL))``, so that each time the rand function is called the value obtained is completely random, and finally the result obtained is divided by 2, so that the values obtained are 0 and 1.
+
 
 .. code-block:: c
 
@@ -112,7 +114,9 @@ The whole program process is as below:
         }
     }
 
-判断按键是否被按下，如果按下的位置与随机数的值是否符合游戏胜利的规则，如果是，返回1，否则返回0.
+Determines which button was pressed and compares it to the direction of the arrow on the dot matrix and gives the final result of 0 or 1.
+
+.. image:: media/3.1.14_getkey.png
 
 .. code-block:: c
 
@@ -132,8 +136,6 @@ The whole program process is as below:
         }
     }
 
-将图案显示在led矩阵屏上，如果stage=0，就根据输入参数显示箭头方向。如果stage=0，就根据输入参数显示对错符号。
+Depending on the value of the ``stage`` and ``index`` to display the ``left or right`` arrow or the ``right or wrong`` pattern.
 
-
-
-
+.. image:: media/3.1.14_display.png

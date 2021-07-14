@@ -1,4 +1,4 @@
-Scratch project
+Projects
 ==================
 
 In this chapter, you will play with Scratch 3 through 18 projects.
@@ -19,7 +19,7 @@ If you are a user who has just used Scratch 3, we recommend that you try the pro
     scratch_1.1_wand
     scratch_1.2_colorful_balls
     scratch_1.3_tumbler
-    scratch_1.4_rabbit
+    scratch_1.4_hare
     scratch_1.5_wake_up_the_owl
     scratch_1.6_vanishing_vase
     scratch_1.7_piggy_bank

@@ -81,11 +81,11 @@ next round of the game.
 
 The game is divided into two modes:
 
-gameState=0 is the "start" mode, in which the time is timed and
+``gameState==0`` is the "start" mode, in which the time is timed and
 displayed on the segment display, and the tilting switch is shaken to
 enter the "show" mode.
 
-GameState =1 is the "show" mode, which stops the timing and displays the
+``gameState==1`` is the "show" mode, which stops the timing and displays the
 time on the segment display. Shaking the tilt switch again will reset
 the timer and restart the game.
 
@@ -102,9 +102,9 @@ the timer and restart the game.
                 stateChange()
             lastState=currentState
 
-Loop() is the main function. First, the time is displayed on the 4-bit
+``loop()`` is the main function. First, the time is displayed on the 4-bit
 segment display and the value of the tilt switch is read. If the state
-of the tilt switch has changed, stateChange() is called.
+of the tilt switch has changed, ``stateChange()`` is called.
 
 .. code-block:: python
 

@@ -24,8 +24,8 @@ The following table shows us the naming methods of WiringPi, Board and the intri
 
     1）In C Language, what is used is the naming method WiringPi.
     
-    2）In Python Language, the applied naming methods are Board and BCM, and the function GPIO.setmode() is used to set them.
+    2）In Python Language, the applied naming methods are **Board** and **BCM**, and the function ``GPIO.setmode()`` is used to set them.
 
-    3）In Scratch Language, the applied naming methods are Board and BCM, and the function GPIO.setmode() is used to set them.
+    3）In Scratch 3  and Processing, the applied naming method is **BCM**.
 
 .. image:: media/gpio_board.png

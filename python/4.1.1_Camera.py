@@ -9,8 +9,7 @@ camera = PiCamera()
 LedPin = 17 # Set GPIO17 as LED pin
 BtnPin = 18 # Set GPIO18 as button pin
 
-LedStatus = False
-cameraStatus = False
+status = False
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -19,28 +18,24 @@ def setup():
     camera.start_preview(alpha=200)
 
 def takePhotos(pin):
-    global LedStatus, cameraStatus
-    LedStatus = True
-    cameraStatus = True
+    global status
+    status = True
 
 def main():
-    global LedStatus, cameraStatus
+    global status
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
     while True:
-        if LedStatus:
+        if status:
             for i in range(5):
                 GPIO.output(LedPin, GPIO.LOW)
                 time.sleep(0.1)
                 GPIO.output(LedPin, GPIO.HIGH)
                 time.sleep(0.1)
-                i += 1            
-            LedStatus = False
+            camera.capture('/home/pi/my_photo.jpg')
+            print ('Take a photo!')          
+            status = False
         else:
             GPIO.output(LedPin, GPIO.HIGH)
-        if cameraStatus:
-            camera.capture('/home/pi/my_photo.jpg')
-            print ('Take a photo!')
-            cameraStatus = False      
         time.sleep(1)
 
 def destroy():

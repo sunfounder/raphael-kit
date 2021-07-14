@@ -1,5 +1,5 @@
 4.1.10 Smart Fan
-~~~~~~~~~~~~~~~
+=========================
 
 **Introduction**
 -----------------
@@ -171,7 +171,7 @@ Code Explanation
         Fah = Cel * 1.8 + 32
         return Cel
 
-temperture() works by converting thermistor values read by **ADC0834**
+``temperture()`` works by converting thermistor values read by **ADC0834**
 into temperature values. Refer to **2.2.2 Thermistor** for more details.
 
 .. code-block:: python

@@ -37,8 +37,7 @@ Experimental Procedures
   :width: 800
   :align: center
 
-First, you have to assemble the speaker and connect it to the Raspberry 
-Pi. Refer to :ref:`Audio power amplifier` for the specific tutorial.
+Plug the 3.5mm audio jack into the Raspberry Pi.
 
 **Step 2:** Get into the folder of the code.
 
@@ -52,12 +51,13 @@ Pi. Refer to :ref:`Audio power amplifier` for the specific tutorial.
 
     sudo python3 4.1.2_MusicPlayer.py
 
-After the code runs, raspberry pi will play the my_music.mp3 file in 
+After the code runs, raspberry pi will play the ``my_music.mp3`` file in 
 the /home/pi/raphael-kit/music directory.
-Button 1 pauses the music, button 2 decreases the volume, and button 3 
+Button 1 pauses/play the music, button 2 decreases the volume, and button 3 
 increases the volume.
+
 If you want to upload other music files to raspberry pi, you can refer to 
-:ref:`Use Filezilla Software`
+:ref:`Use Filezilla Software` .
 
 
 **Code Explanation**

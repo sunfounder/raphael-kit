@@ -1,5 +1,5 @@
 4.1.8 Welcome
-~~~~~~~~~~~~~
+=====================================
 
 Introduction
 -------------
@@ -118,10 +118,10 @@ Close the door and turn off the indicator light.
         doorbell()
         closedoor()
 
-The function, opendoor() consists of several parts: turn on the
+The function, ``opendoor()`` consists of several parts: turn on the
 indicator light, turn the servo (to simulate the action of opening the
 door), play the doorbell music of the convenience store, and call the
-function , closedoor() after playing music.
+function , ``closedoor()`` after playing music.
 
 .. code-block:: python
 
@@ -131,7 +131,7 @@ function , closedoor() after playing music.
             opendoor()
 
 When RIP senses that someone is passing by, it calls the function,
-opendoor().
+``opendoor()`` .
 
 Phenomenon Picture
 --------------------

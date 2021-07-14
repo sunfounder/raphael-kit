@@ -1,48 +1,49 @@
 2.2.5 IR Obstacle Avoidance Sensor
 ===================================
 
-**Introduction**
+Introduction
 -----------------
 
-这节课，我们将学习IR obstacle avoidance module(as shown below)。
+In this lesson, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+
+
 
 .. image:: media/2.2.5IR_Obstacle.png
    :width: 300
    :align: center
 
-**Components Required**
+Components Required
 ------------------------
 
 .. image:: media/2.2.5component.png
    :width: 700
    :align: center
 
-**Experimental Principle**
+Experimental Principle
 -----------------------------
 
-An obstacle avoidance sensor mainly consists of an infrared-transmitter, 
-an infrared-receiver and a potentiometer. According to the reflecting feature of 
-an object, if there is no obstacle, emitted infrared ray will weaken with the 
-propagation distance and finally disappear. If there is an obstacle, when 
-infrared ray encounters an obstacle, it will be reflected back to the 
-infrared-receiver. Then the infrared-receiver detects this signal and 
-confirms an obstacle exists ahead.
+.. image:: media/2.2.5IR_Obstacle.png
+   :width: 300
+   :align: center
+
+The IR obstacle avoidance module module has strong adaptability to environmental light, it has a pair of infrared transmitting and receiving tubes.
+
+The transmitting tube emits infrared frequency, when the detection direction encounters an obstacle, the infrared radiation is received by the receiving tube, 
+after the comparator circuit processing, the green indicator will light up and output low level signal.
+
+The detection distance can be adjusted by potentiometer, the effective distance range 2-30cm.
 
 .. image:: media/IR_module.png
 
-.. Note:: 
-   The detection distance of the infrared sensor is adjustable-you may 
-   adjust it by the potentiometer.
 
-
-**Schematic Diagram**
+Schematic Diagram
 -----------------------
 
 .. image:: media/IR_schematic.png
    :width: 500
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -------------------------
 
 **Step 1:** Build the circuit
@@ -62,6 +63,9 @@ confirms an obstacle exists ahead.
 .. code-block::
 
    sudo python3 2.2.5_IrObstacle.py
+
+After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
+repeatedly printed on the screen until the your hand is removed.
 
 **Code**
 
@@ -100,8 +104,7 @@ confirms an obstacle exists ahead.
    GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
    GPIO.setup(ObstaclePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-Set the GPIO modes to BCM Numbering. Set ObstaclePin to input mode 
-and initial it to High level (3.3v).
+Set the GPIO modes to BCM Numbering. Set ``ObstaclePin`` to input mode and initial it to High level (3.3v).
 
 .. code-block::
 
@@ -110,13 +113,9 @@ and initial it to High level (3.3v).
          if (0 == GPIO.input(ObstaclePin)):
             print ("Detected Barrier!")
 
-When ObstaclePin is low level, print "Detected Barrier!".
-It means that an obstacle is detected.
+When ``ObstaclePin`` is low level, print "Detected Barrier!". It means that an obstacle is detected.
 
-Now, if there is an obstacle ahead, a string “Detected Barrier!” will be 
-printed on the screen.
- 
-**Phenomenon Picture**
+Phenomenon Picture
 -----------------------
 
 .. image:: media/2.2.5IR.jpg

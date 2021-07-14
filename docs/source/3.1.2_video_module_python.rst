@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-除了在raspberry pi上拍摄照片之外，我们还能在raspberry pi上录一段视频。
+In addition to taking photos, the Camera Module can also be used to record videos.
 
 Components
 ----------------
@@ -15,9 +15,9 @@ Components
 Experimental Procedures
 ------------------------------
 
-**Step 1:** 配置摄像头
+**Step 1:** Complete camera installation.
 
-在进行此项目之前，你应当已经配置好摄像头。具体教程参考 :ref:`Install the camera` 。
+Prior to the project, make sure you have completed :ref:`Install the camera` .
 
 **Step 2:** Get into the folder of the code.
 
@@ -31,9 +31,9 @@ Experimental Procedures
 
     sudo python3 3.1.2_VideoModule.py
 
-After the code runs, 摄像头开始进行录像，当你按 ``Ctrl+C`` 退出代码运行时，
-录像结束，并将这段录像文件存储为/home/pi目录下的my_video.h264文件。
-如果你想要提取这个文件，可以参考 :ref:`Use Filezilla Software` 。
+Run the code to start recording. Press ``Ctrl+C`` to end the recording.
+Name the video ``my_video.h264`` and store it in the ``/home/pi`` directory.
+If you want to send photos to your PC, please refer to :ref:`Use Filezilla Software`.
 
 
 **Code**
@@ -67,12 +67,12 @@ After the code runs, 摄像头开始进行录像，当你按 ``Ctrl+C`` 退出�
 
 .. code-block:: python
 
-    camera.start_recording('/home/pi/my_video.h264')
+    start_recording(output, format=None, resize=None, splitter_port=1, **options)
 
-开始视频录制，并将视频文件存储为/home/pi目录下的my_video.h264文件。
+Start recording video from the camera, storing it in output.
 
 .. code-block:: python
 
     camera.stop_recording()
 
-结束视频录制。
+End the recording.

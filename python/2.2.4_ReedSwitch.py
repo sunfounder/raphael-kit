@@ -9,7 +9,7 @@ def setup():
 	GPIO.setmode(GPIO.BCM)       # 
 	GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
 	GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
-	GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set BtnPin's mode is input, and pull up to high level(3.3V)
+	GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set ReedPin's mode is input, and pull up to high level(3.3V)
 	GPIO.add_event_detect(ReedPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
 def Led(x):

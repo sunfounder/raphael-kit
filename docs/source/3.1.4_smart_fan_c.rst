@@ -1,19 +1,19 @@
 3.1.4 Smart Fan
-~~~~~~~~~~~~~~~
+======================
 
-**Introduction**
+Introduction
 -----------------
 
 In this course, we will use motors, buttons and thermistors to make a
 manual + automatic smart fan whose wind speed is adjustable.
 
-**Components**
+Components
 ------------------
 
 .. image:: media/list_Smart_Fan.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 ------------------------
 
 ============ ======== ======== ===
@@ -30,7 +30,7 @@ GPIO13       Pin 33   23       13
 .. image:: media/Schematic_three_one4.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -----------------------------
 
 **Step 1:** Build the circuit.
@@ -218,7 +218,7 @@ Code
         return 0;
     }
 
-Code Explanation**
+Code Explanation
 ----------------------
 
 .. code-block:: c

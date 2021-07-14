@@ -34,7 +34,7 @@ Experimental Procedures
   :width: 800
   :align: center
 
-在进行此项目之前，你应当已经配置好摄像头。具体教程参考 :ref:`Install the camera` 。
+Before this project, you need to make sure you complete:ref:`3.1.1 Photograph Module` .
 
 **Step 2:** Get into the folder of the code.
 
@@ -48,8 +48,8 @@ Experimental Procedures
 
     sudo python3 4.1.4_SpyCamera.py
 
-代码运行后，PIR 会检测周围环境，如果感觉到有人经过，则摄像头会拍下照片，
-拍照间隔为3S，并且会通过打印窗口显示出总共已拍的照片数量。
+After the code runs, PIR will detect the surrounding environment, and if it senses someone passing by, the camera will take a picture.
+The photo interval is 3S, and the total number of photos taken will be displayed through the print window.
 
 
 **Code Explanation**
@@ -62,7 +62,7 @@ Experimental Procedures
         time.sleep(3)
         i = i + 1
 
-PIR模块每检测到一个人，raspberry pi都会拍一张照，并通过打印窗口告诉你一共拍了几张照片。每次拍照的间隔为3S。
+Every time a person is detected by the PIR module, the raspberry pi will take a picture and tell you through the print window how many pictures have been taken. The interval between each photo is 3S.
 
 **Phenomenon Picture**
 ------------------------

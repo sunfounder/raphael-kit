@@ -172,7 +172,7 @@ procedures based on these two methods are the same. Let's move on.
 
 .. note::
     gcc is GNU Compiler Collection. Here, it functions like
-    compiling the C language file *1_BlinkingLed.c* and outputting an
+    compiling the C language file ``1.1.1_BlinkingLed.c`` and outputting an
     executable file.
 
 In the command, ``-o`` means outputting (the character immediately
@@ -187,7 +187,7 @@ the library wiringPi (``l`` is the abbreviation of library).
    sudo ./BlinkingLed
 
 To control the GPIO, you need to run the program, by the
-command, sudo(superuser do). The command ``./`` indicates the current
+command, ``sudo``(superuser do). The command ``./`` indicates the current
 directory. The whole command is to run the ``BlinkingLed`` in the
 current directory.
 

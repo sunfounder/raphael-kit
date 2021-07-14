@@ -80,7 +80,7 @@ Experimental Procedures
 .. image:: media/image232.png
 
 
-**Step 2:** Set up SPI (refer to Appendix for more details. If you have
+**Step 2:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
 set SPI, skip this step.)
 
 **Step 3:** Go to the folder of the code.
@@ -127,7 +127,7 @@ the read is successful, it will return "1".
     uint8_t write_card_data(uint8_t *data);
 
 This function is used to write the data of card and returns "1" if 
-the write is successful. *data is the information that will be written 
+the write is successful. ``*data`` is the information that will be written 
 to the card.
 
 Phenomenon Picture

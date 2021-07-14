@@ -13,7 +13,7 @@ threshold is adjustable.
 
 **Components**
 -----------------
-
+`
 .. image:: media/list_Overheat_Monitor.png
     :align: center
 
@@ -160,7 +160,7 @@ to alarm you.
             else:
                 monitoring_temp()
 
-The function main() contains the whole program process as shown:
+The function ``main()`` contains the whole program process as shown:
 
 1) When the program starts, the initial value of **stage** is **0**, and
    the current temperature and the high-temperature threshold **40** are

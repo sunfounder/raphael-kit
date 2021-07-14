@@ -50,8 +50,7 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
    :width: 6.71458in
    :height: 6.64097in
 
-**Step 2**: Setup I2C (see Appendix. If you have set I2C, skip this
-step.)
+**Step 2**: Setup I2C (see :ref:`I2C Configuration`.)
 
 **Step 3**: Change directory.
 
@@ -96,7 +95,7 @@ appear “You've got it!”
 
 At the beginning part of the code are the functional functions of
 **keypad** and **I2C LCD1602**. You can learning more details about them
-in **1.1.7 I2C LCD1602** and **2.1.5 Keypad.**
+in **1.1.7 I2C LCD1602** and **2.1.5 Keypad**.
 
 Here, what we need to know is as follows:
 
@@ -129,7 +128,7 @@ range hint of the point.
         count = 0
         return 0
 
-detect_point() compares the input number (**count**) with the produced
+``detect_point()`` compares the input number (**count**) with the produced
 “\ **point**\ ”. If the comparing outcome is that they are not same,
 **count** will assign values to **upper** and **lower** and return
 ‘\ **0**\ ’; otherwise, if the outcome indicates they are same, there
@@ -153,8 +152,8 @@ returns ‘\ **1**\ ’.
 
 This function works for displaying the game page.
 
-str(count): Because **write()** can only support the data type —
-**character string**, **str()** is needed to convert the **number** into
+``str(count)``: Because ``write()`` can only support the data type —
+**string**, ``str()`` is needed to convert the **number** into
 **string**.
 
 .. code-block:: python
@@ -184,7 +183,7 @@ str(count): Because **write()** can only support the data type —
             time.sleep(0.1)
    
 
-Main() contains the whole process of the program, as show below:
+``main()`` contains the whole process of the program, as show below:
 
 1) Initialize **I2C LCD1602** and **Keypad**.
 

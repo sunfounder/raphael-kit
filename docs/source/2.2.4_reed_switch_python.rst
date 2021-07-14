@@ -1,42 +1,36 @@
 2.2.4 Reed Switch Module
 ========================
 
-**Introduction**
+Introduction
 -------------------
 
-这节课，我们将学习reed switch(as shown below)，它是一个通过所施加的磁场操作的电开关。
+In this lesson, we will learn about the reed switch, which is an electrical switch that operates by means of an applied magnetic field.
 
 .. image:: media/2.2.4reed_switch.png
     :width: 300
     :align: center
 
-**Components**
----------------
+Components
+--------------
 
 .. image:: media/2.2.4component.png
     :width: 700
     :align: center
 
-**Principle**
+Principle
 ---------------
-reed switch是一种通过磁信号实现控制的线路开关元件。这里的“开关”指的是干簧管，
-是一种结构简单、体积小、控制方便的接触式无源电子开关元件。reed switch的外壳
-一般为密封玻璃管，其中装有两块铁弹性簧片电镀，并充入惰性气体。
+Reed switch, also known as a magnetic switch or reed switch.
+It has two internal metal reeds, sealed in a glass tube, which is filled with inert gas. Normally the two reeds overlap each other, but are separated by a gap, and the circuit is broken. When there is a magnetic object close to the two reeds will produce a mutual attraction of the magnetic force, which will be sucked together, the circuit is connected. Therefore, the reed switch can be used to make a magnetic sensor.
 
-.. image:: media/reedswitch1.png
+.. image:: media/HowItWorksReed.jpg
 
-通常情况下，玻璃管中由特殊材料制成的两个簧片是分开的。然而，当磁性物质接近玻璃管时。
-玻璃管中的两个簧片在磁力线的作用下相互吸引并接触。结果，两个簧片将拉在一起，连接与
-节点相连的电路。
+The reed switch module consists of a reed switch, potentiometer, LM393 comparator, LED, etc. The internal circuit is shown below, when the magnet is close to the module, it will be on, and the module will output low level; when there is no magnetism, it will be off, and output high level. Reed switch and magnet induction distance should be within 1.5cm, beyond will not be sensitive or no trigger phenomenon, you can also adjust the sensitivity through the potentiometer on the module.
 
-.. image:: media/reedswitch2.png
-
-外部磁力消失后，由于具有相同的磁性，两个簧片会相互分离，电路也就断开了,由此达到
-控制电路的目的。
+.. image:: media/reedswitch_sche.jpg
 
 Visit: https://en.wikipedia.org/wiki/Reed_switch, for more information.
 
-**Schematic Diagram**
+Schematic Diagram
 -----------------------
 
 ============ ======== ======== ===
@@ -54,7 +48,7 @@ GPIO22       Pin 15   3        22
     :width: 400
     :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -------------------------------
 
 **Step 1:** Build the circuit.
@@ -75,8 +69,7 @@ GPIO22       Pin 15   3        22
 
     sudo python3 2.2.4_ReedSwitch.py
 
-After code run,the LED will flash green. Place a magnet near the reed switch, 
-the LED will change to red. Move away the magnet, the LED will turn green again.
+The green LED will light up when the code is run. If a magnet is placed close to the reed switch module, the red LED lights up; take away the magnet and the green LED lights up again.
 
 **Code**
 
@@ -94,7 +87,7 @@ the LED will change to red. Move away the magnet, the LED will turn green again.
         GPIO.setmode(GPIO.BCM)       # 
         GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
         GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
-        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set BtnPin's mode is input, and pull up to high level(3.3V)
+        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set ReedPin's mode is input, and pull up to high level(3.3V)
         GPIO.add_event_detect(ReedPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
     def Led(x):
@@ -137,13 +130,12 @@ the LED will change to red. Move away the magnet, the LED will turn green again.
         GPIO.setmode(GPIO.BCM)       # 
         GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
         GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
-        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set BtnPin's mode is input, and pull up to high level(3.3V)
+        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set ReedPin's mode is input, and pull up to high level(3.3V)
         GPIO.add_event_detect(ReedPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
-Set the GPIO modes to BCM Board Numbering.ReedPin, Gpin and Rpin connects to 
-the GPIO17, GPIO27 and GPIO22.
-``GPIO.add_event_detect(ReedPin, GPIO.BOTH, callback=detect, bouncetime=200)``
-Set up a detect on ReedPin, and callback function to detect.
+Set the GPIO modes to BCM Numbering. ``ReedPin``, ``Gpin`` and ``Rpin`` connects to the GPIO17, GPIO27 and GPIO22.
+
+``GPIO.add_event_detect()`` is used to add an event that is triggered by a change in the value (level) of ``ReedPin``, at which point the callback function ``detect()`` is called.
 
 .. code-block::
 
@@ -155,20 +147,17 @@ Set up a detect on ReedPin, and callback function to detect.
             GPIO.output(Rpin, 0)
             GPIO.output(Gpin, 1)
 
-Define a function Led() to turn the two LEDs on or off. If x=0, the red
-LED lights up; otherwise, the green LED will be lit.
+Define a function ``Led()`` to turn the two LEDs on or off. If ``x=0``, the red LED lights up; otherwise, the green LED will be lit.
 
 .. code-block::
 
     def detect(chn):
     Led(GPIO.input(ReedPin))
 
-Define a callback function for reed switch callback. Get the read value of 
-the reed switch then the function Led() controls the turning on or off of
-the two LEDs that is depended on the read value of the reed switch.
+In this callback function, the value of the reed switch is used to control the 2 LEDs.
 
  
-**Phenomenon Picture**
+Phenomenon Picture
 ------------------------
 
 .. image:: media/2.2.4reed_switch.jpg

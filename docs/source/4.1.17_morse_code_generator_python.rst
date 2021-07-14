@@ -77,7 +77,7 @@ characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” �
         GPIO.output(BeepPin, 1)
         GPIO.output(ALedPin, 1)
 
-The function on() starts the buzzer and the LED.
+The function ``on()`` starts the buzzer and the LED.
 
 .. code-block:: python
 
@@ -85,7 +85,7 @@ The function on() starts the buzzer and the LED.
         GPIO.output(BeepPin, 0)
         GPIO.output(ALedPin, 0)
 
-The function off() is used to turn off the buzzer and the LED.
+The function ``off()`` is used to turn off the buzzer and the LED.
 
 .. code-block:: python
 
@@ -95,8 +95,8 @@ The function off() is used to turn off the buzzer and the LED.
         off()
         time.sleep(dt)
 
-Define a function beep() to make the buzzer and the LED emit sounds and
-blink in a certain interval of **dt**.
+Define a function ``beep()`` to make the buzzer and the LED emit sounds and
+blink in a certain interval of ``dt``.
 
 .. code-block:: python
 
@@ -110,7 +110,7 @@ blink in a certain interval of **dt**.
                     beep(pause)
             time.sleep(pause)
 
-The function morsecode() is used to process the Morse code of input
+The function ``morsecode()`` is used to process the Morse code of input
 characters by making the “1” of the code keep emitting sounds or lights
 and the “0”shortly emit sounds or lights, ex., input “SOS”, and there
 will be a signal containing three short three long and then three short
@@ -125,11 +125,11 @@ segments “ · · · - - - · · · ”.
             print(code)
             morsecode(code)
 
-When you type the relevant characters with the keyboard, upper() will
+When you type the relevant characters with the keyboard, ``upper()`` will
 convert the input letters to their capital form.
 
-Printf () then prints the clear text on the computer screen, and the
-morsecod() function causes the buzzer and the LED to emit Morse code.
+``printf()`` then prints the clear text on the computer screen, and the
+``morsecod()`` function causes the buzzer and the LED to emit Morse code.
 
 
 **Phenomenon Picture**

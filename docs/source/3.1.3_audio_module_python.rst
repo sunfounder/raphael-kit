@@ -13,38 +13,6 @@ Components
   :width: 700
   :align: center
 
-Audio power amplifier 
------------------------
-The audio connector we are equipped with is a 3-pole interface. There are 3 
-contacts on its plug. From the tip to the root, they are audio left, audio 
-right and power ground. Among them, audio left is connected to the red 
-Dupont line, audio right is connected to the white Dupont line, and the 
-power ground is connected to the black Dupont line.
-
-.. image:: media/audio1.png
-  :width: 300
-  :align: center
-
-When assembling the speakers, plug one end of the audio connector into the 
-audio interface of the Raspberry Pi, and connect the other end to the audio 
-power amplifier module.
-
-.. image:: media/audio4.png
-  :width: 400
-  :align: center
-
-+------------------+--------------------------------------+
-| audio connector  | audio power amplifier module         |
-+------------------+--------------------------------------+
-| Red Dupont Line  | L                                    |
-+------------------+--------------------------------------+
-| Black Dupont wire| GND                                  |
-+------------------+--------------------------------------+
-| White dupont wire| R                                    |
-+------------------+--------------------------------------+
-
-如果你的树莓派连接了一个没有喇叭的屏幕，可能会导致扬声器没有声音，详细请参考: FAQ
-另外，如果你想调节音量大小，可以通过命令行调节，请参考: FAQ
 
 Experimental Procedures
 ------------------------------
@@ -52,11 +20,28 @@ Experimental Procedures
 **Step 1:** Build the circuit.
 
 .. image:: media/4.1.4fritzing.png
-  :width: 800
-  :align: center   
+    :width: 800
+    :align: center   
 
-First, you have to assemble the speaker and connect it to the Raspberry 
-Pi. Refer to :ref:`Audio power amplifier` for the specific tutorial.
+The audio connector we have equipped has 3 contacts. 
+From the tip to the root, the left channel, the right channel, and the power ground are in sequence. 
+Among them, the left channel is connected to the red DuPont wire, the right channel is connected to the white DuPont wire, and the power ground is connected to the black DuPont wire.
+  
+.. image:: media/audio1.png
+    :width: 300
+    :align: center
+  
+Plug the 3.5mm audio jack into the Raspberry Pi.
+  
+.. image:: media/audio4.png
+    :width: 400
+    :align: center
+
+
+.. note::
+
+    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output, the correct one should be **Headphones**, please refer to :ref:`Change Audio Output` for more details.
+
 
 **Step 2:** Get into the folder of the code.
 
@@ -70,10 +55,7 @@ Pi. Refer to :ref:`Audio power amplifier` for the specific tutorial.
 
     sudo python3 3.1.3_AudioModule.py
 
-After the code runs, raspberry pi will play the my_music.mp3 file in 
-the /home/pi/raphael-kit/music directory.If you want 
-to upload other music files to raspberry pi, you can refer to
-:ref:`Use Filezilla Software`
+After the code runs, raspberry pi will play the music.
 
 **Code**
 
@@ -116,9 +98,10 @@ Import the Mixer method in the pygame library and initialize the method.
     mixer.music.play()
 
 
-Raspberry pi reads the my_music.mp3 file in the /home/pi/raphael-kit/music 
-directory and sets the volume to 0.7. The raspberry pi will start playing 
-audio When ``mixer.music.play()`` is executed.
+This code reads the ``my_music.mp3`` file in the ``/home/pi/raphael-kit/music`` directory and sets the volume to 0.7. 
+The raspberry pi will start playing audio When ``mixer.music.play()`` is called.
+
+If you want to upload other music files to raspberry pi, you can refer to :ref:`Use Filezilla Software`.
 
 .. note::
     Setting range of the volume is 0~1.
@@ -127,9 +110,8 @@ audio When ``mixer.music.play()`` is executed.
 
     mixer.music.stop()
 
-The raspberry pi stops playing audio when ``mixer.music.stop()`` is executed. 
-In addition, you can also pause the music with ``mixer.music.pause()``, and 
-replay the music with ``mixer.music.unpause()``.
+Calling ``mixer.music.stop()`` will stop playing audio.
+In addition, you can also pause with ``mixer.music.pause()`` and continue with ``mixer.music.unpause()``.
 
 **Phenomenon Picture**
 ------------------------

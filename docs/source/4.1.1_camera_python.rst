@@ -29,28 +29,30 @@ GPIO18       Pin 12   1        18
 Experimental Procedures
 ------------------------------
 
+
 **Step 1:** Build the circuit.
 
 .. image:: media/3.1.15camera_fritzing.png
   :width: 800
   :align: center
 
-在进行此项目之前，你应当已经配置好摄像头。具体教程参考 :ref:`Install the camera` .
+**Step 2:** Complete camera installation.
 
-**Step 2:** Get into the folder of the code.
+Prior to the project, make sure you have completed :ref:`Install the camera` .
+
+**Step 3:** Get into the folder of the code.
 
 .. code-block::
 
     cd /home/pi/raphael-kit/python/
 
-**Step 3:** Run.
+**Step 4:** Run.
 
 .. code-block::
 
     sudo python3 4.1.1_Camera.py
 
-代码运行之后，按下按键时，LED灯会闪烁。LED灯闪烁之后，摄像头将拍下照片，照片会存储在
-/home/pi目录下，并命名为my_photo.jpg.
+After the code runs, press the button, the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the /home/pi directory.
 
 **Code Explanation**
 
@@ -58,36 +60,32 @@ Experimental Procedures
 
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
 
-设置BtnPin的按键检测事件，当按键被按下时，执行中断函数takePhotos()。
+Set the event of ``BtnPin``, when the button is pressed (the level signal changes from high to low) , call the function ``takePhotos()``.
 
 .. code-block:: python
 
     def takePhotos(pin):
-        global LedStatus, cameraStatus
-        LedStatus = True
-        cameraStatus = True
+        global status
+        status = True
 
-当中断函数takePhotos()被执行时，修改中断标志位。
+When ``takePhotos()`` is called, modify the ``status`` .
 
 .. code-block:: python
 
-    if LedStatus:
+    if status:
         for i in range(5):
             GPIO.output(LedPin, GPIO.LOW)
             time.sleep(0.1)
             GPIO.output(LedPin, GPIO.HIGH)
             time.sleep(0.1)
-            i += 1            
-        LedStatus = False
+        camera.capture('/home/pi/my_photo.jpg')
+        print ('Take a photo!')          
+        status = False
     else:
         GPIO.output(LedPin, GPIO.HIGH)
-    if cameraStatus:
-        camera.capture('/home/pi/my_photo.jpg')
-        print ('Take a photo!')
-        cameraStatus = False      
     time.sleep(1)
 
-当LedStatus为True时，让led灯在1秒内闪烁5次。当cameraStatus为True时，raspberry pi将拍一张照片，并存储为/home/pi目录下的my_photo.jpg文件。
+When ``status`` is ``True`` , the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the /home/pi directory.
 
 
 **Phenomenon Picture**

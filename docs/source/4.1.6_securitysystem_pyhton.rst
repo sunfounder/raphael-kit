@@ -47,8 +47,8 @@ Experimental Procedures
 
     sudo python3 4.1.6_Securitysystem.py
 
-当代码运行之后，干簧管会因为磁铁的影响处于开关闭合的状态，此时蜂鸣器不会发声。
-拿走磁铁之后，干簧管失去磁场影响，开关断开，蜂鸣器便发出声音警报。
+If the reed switch is affected by the magnet (for example, the reed switch is placed on the base and the magnet is placed in the vase), the object is safe. At this time, the reed switch is in the closed state, and the buzzer is silent.
+After removing the magnet (such as the vase being stolen), the reed switch is not affected by the magnetic field, the switch opens, and the buzzer sounds an alarm.
 
 
 **Code Explanation**
@@ -65,9 +65,7 @@ Experimental Procedures
                 GPIO.output(BeepPin, GPIO.HIGH)
                 time.sleep(0.1)
 
-设置一个循环函数，当磁铁靠近时ReedPin为0，passive buzzer没有被square waves驱动，
-蜂鸣器不工作；当磁铁被拿开时ReedPin为1，BeepPin循环给予高低电平形成square waves来驱动
-passive buzzer，蜂鸣器发出声音。
+We judge the state of the reed switch in the main loop. If the reed switch is closed, the buzzer does not work; otherwise, the buzzer beeps.
 
 
 **Phenomenon Picture**

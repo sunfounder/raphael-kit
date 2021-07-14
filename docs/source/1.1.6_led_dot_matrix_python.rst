@@ -35,38 +35,6 @@ LED’s, or up to 8 digits of 7-segment displays. The drivers implement a
 SPI compatible slave interface that can be controlled from the Arduino 
 using only 3 of the digital output pins.
 
-从 PyPi 安装
---------------
-
-Open a terminal, and then install the dependencies for library first with:
-
-.. code-block:: 
-
-    sudo usermod -a -G spi,gpio pi
-    sudo apt install build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff5 
-
-.. note::
-    如果出现组件无法正常安装的情况，你需要先升级它们，再进行安装。
-
-    .. code-block:: 
-
-        sudo -H pip install --upgrade --ignore-installed pip setuptools
-
-Proceed to install latest version of the luma.led_matrix library directly from PyPI:
-
-.. code-block:: 
-
-    sudo python3 -m pip install --upgrade luma.led_matrix
-
-回到pi目录。
-
-.. code-block:: 
-
-    cd /home/pi
-
-下载MAX7219 LED Matrix相关的库。
-
-git clone https://github.com/rm-hull/luma.led_matrix.git
 
 Schematic Diagram
 -----------------------
@@ -87,7 +55,12 @@ Experimental Procedures
 
 .. image:: media/1.1.6fritzing.png
 
-实验开始前首先要开启SPI，具体参考`SPI Configuration`。
+.. note::
+
+    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
+    
+    And the :ref:`Luma.LED_Matrix` module is also needed.
+
 
 **Step 2:** Change directory.
 
@@ -101,7 +74,7 @@ Experimental Procedures
 
     sudo python3 1.1.6_LedMatrix.py
 
-运行代码后，LED Matrix将显示一个矩形两秒，然后显示文字'A'两秒，最后滚动显示文字"Hello, Nice to meet you!"。
+After running the code, the LED Matrix will display a rectangle for two seconds, then the text 'A' for two seconds, and finally scroll to display the text "Hello, Nice to meet you!
 
 **Code**
 
@@ -164,18 +137,20 @@ Experimental Procedures
     from luma.core.legacy.font import proportional, CP437_FONT, LCD_FONT
     import time
 
-导入相关的库，其中luma.core is a component library providing a Pillow-compatible drawing canvas for Python 3, and other functionality to support drawing primitives and text-rendering capabilities for small displays on the Raspberry Pi and other single board computers.
-关于它的具体使用方法，你可以访问 `https://luma-core.readthedocs.io/en/latest/intro.html <https://luma-core.readthedocs.io/en/latest/intro.html>`_ 了解更多。
+Import the relevant libraries, of which ``luma.core`` is a component library that provides a Pillow-compatible canvas for Python 3, as well as other drawing primitives and text rendering features that support small displays on Raspberry Pi and other single-board computers.
+You can visit `https://luma-core.readthedocs.io/en/latest/intro.html <https://luma-core.readthedocs.io/en/latest/intro.html>`_ to learn more.
+
 
 .. code-block:: python
 
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, rotate=1)
 
-初始化 ``luma.led_matrix.device.max7219`` 类。
+Initialize the ``luma.led_matrix.device.max7219`` class.
 
 .. note::
-    如果你想要修改LED Matrix的显示方向，你可以通过修改rotate的值来实现，其中0表示不旋转，1表示顺时针旋转90°，2表示旋转180°，3表示顺时针旋转270°。
+
+    If you want to modify the display direction of the LED Matrix, you can do so by modifying the value of rotate, where 0 means no rotation, 1 means 90° clockwise rotation, 2 means 180° rotation, and 3 means 270° clockwise rotation.
 
 .. code-block:: python
 
@@ -183,7 +158,7 @@ Experimental Procedures
         with canvas(device) as draw:
             draw.rectangle(device.bounding_box, outline="white", fill="black")
 
-在LED Matrix的边缘区域显示一个空心矩形，修改fill的值为white，就可以显示一个实心矩形。
+Display a hollow rectangle in the edge area of the LED Matrix and modify the value of ``fill`` to ``white`` to display a solid rectangle.
 
 
 .. code-block:: python
@@ -192,13 +167,13 @@ Experimental Procedures
         with canvas(device) as draw:
             text(draw, (0, 0), "A", fill="white", font=proportional(CP437_FONT))
 
-在LED Matrix的（0，0）的坐标上显示一个"A",其中CP437_FONT是一种适用于8*8点阵屏的字体。
+An "A" is displayed on the (0, 0) coordinate of the LED Matrix, where ``CP437_FONT`` is a font suitable for 8*8 dot matrix screens.
 
 .. code-block:: python
 
     virtual = viewport(device, width=200, height=400)
 
-单个8x8 LED 矩阵是没办法显示一行文字的，我们需要使用luma.core.virtual.viewport方法，这样就能通过虚拟视窗来实现文字滚动。
+There is no way to display a line of text in a single 8x8 LED matrix. We need to use the ``luma.core.virtual.viewport`` method so that the text can be scrolled through the virtual viewport.
 
 .. code-block:: python
 
@@ -210,8 +185,12 @@ Experimental Procedures
             virtual.set_position((offset,0))
             time.sleep(0.1)
 
-scrollToDisplayText()实现了在LED Matrix上以滚动文本的方式显示"Hello, Nice to meet you!"。首先将virtual作为参数传入canvas()函数，这样我们就把虚拟视窗作为当前的显示窗口。然后通过text()函数在LED Matrix上显示"Hello, Nice to meet you!"。
-使用for循环函数，把虚拟窗口向X方向移动，这样我们就能看到"Hello, Nice to meet you!"文本在滚动了。
+``scrollToDisplayText()`` implements "Hello, Nice to meet you!" as a scrolling text on the LED Matrix.
+
+First, we pass virtual as an argument to the ``canvas()`` function, so that we can use the virtual window as the current display window. Then the ``text()`` function displays "Hello, Nice to meet you!" on the LED Matrix.
+
+Using the for loop function, we move the virtual window in the X direction so that we can see the "Hello, Nice to meet you!" text scrolling.
+
 
 Phenomenon Picture
 -----------------------

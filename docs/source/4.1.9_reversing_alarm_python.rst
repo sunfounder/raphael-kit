@@ -1,5 +1,5 @@
 4.1.9 Reversing Alarm
-~~~~~~~~~~~~~~~~~~~~~
+======================================
 
 Introduction
 -------------
@@ -8,7 +8,7 @@ In this project, we will use LCD, buzzer and ultrasonic sensors to make
 a reverse assist system. We can put it on the remote control vehicle to
 simulate the actual process of reversing the car into the garage.
 
-**Components**
+Components
 ----------------
 
 .. image:: media/list_Reversing_Alarm.png
@@ -192,7 +192,9 @@ of value to be detected, an error message is printed on the LCD. And if
 the distance is within the working range, the corresponding results will
 be output.
 
-LCD1602.write(5, 1, str(round(dis,2)) +' cm')
+.. code-block:: python
+
+    LCD1602.write(5, 1, str(round(dis,2)) +' cm')
 
 Since the LCD output only supports character types, we need to use **str
 ()** to convert numeric values to characters. We are going to round it
@@ -200,24 +202,20 @@ to two decimal places.
 
 .. code-block:: python
 
-    if(dis>=50)
-    {delay(500);}
-    else if(dis<50 & dis>20) {
-        for(int i=0;i<2;i++){
-            digitalWrite(Buzzer,HIGH);
-            delay(50);
-            digitalWrite(Buzzer,LOW);
-            delay(200);
-            }
-        }
-        else if(dis<=20){
-            for(int i=0;i<5;i++){
-            digitalWrite(Buzzer,HIGH);
-            delay(50);
-            digitalWrite(Buzzer,LOW);
-            delay(50);
-            }
-        }
+    if(dis>=50):
+        time.sleep(0.5)
+    elif(dis<50 and dis>20):
+        for i in range(0,2,1):
+            GPIO.output(BUZZER, GPIO.HIGH)
+            time.sleep(0.05)
+            GPIO.output(BUZZER, GPIO.LOW)
+            time.sleep(0.2)
+    elif(dis<=20):
+        for i in range(0,5,1):
+            GPIO.output(BUZZER, GPIO.HIGH)
+            time.sleep(0.05)
+            GPIO.output(BUZZER, GPIO.LOW)
+            time.sleep(0.05)
 
 This judgment condition is used to control the sound of the buzzer.
 According to the difference in distance, it can be divided into three

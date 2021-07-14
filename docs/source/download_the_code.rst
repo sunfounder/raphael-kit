@@ -6,24 +6,25 @@ Before you download the code, please note that the example code is
 
 **Method 1: Use git clone (Recommended)**
 
-Log into Raspberry Pi and then change directory to */home/pi.*
+Log into Raspberry Pi and then change directory to ``/home/pi``.
 
 
-.. code-block:: python
+.. code-block:: shell
 
    cd /home/pi/
 
 
 .. note::
-    cd to change to the intended directory from the current path. Informally, here is to go to the path /home/pi/.
+
+   cd to change to the intended directory from the current path. Informally, here is to go to the path ``/home/pi/``.
 
 Clone the repository from GitHub.
 
-.. code-block:: python
+.. code-block:: shell
 
    git clone https://github.com/sunfounder/raphael-kit.git
 
-**Method 2: Download the code.**
+**Method 2: Download the code**
 
 Download the source code from github: https://github.com/sunfounder/raphael-kit
 

@@ -1,17 +1,11 @@
 
-SunFounder Da Vinci Kit for Raspberry Pi
+SunFounder Raphael Kit for Raspberry Pi
 ===========================================
 
-About the Da Vinci Kit
+About the Raphael Kit
 -------------------------
 
-This Da Vinci kit applies to the Raspberry Pi 4 Model B, 3 Model A+, 3
-Model B+, 3 Model B, 2 Model B, 1 Model B+, 1 Model A+, zero W and zero.
-It includes various components and chips that can help to create various
-interesting phenomena which you can get via some operation with the
-guidance of experiment instructions. In this process, you can learn some
-basic knowledge about programming. Also you can explore more application
-by yourself. Now go for it!
+
 
 If you want to learn another projects which we don’t have, please feel free to send Email and we will update to our online tutorials as soon as possible, any suggestions are welcomed.
 
@@ -23,7 +17,6 @@ Here is the Email: cs@sunfounder.com.
 
     component_list
     introduction
-    what_do_we_need
     preparation
     gpio_extension_board
     download_the_code
@@ -31,7 +24,6 @@ Here is the Email: cs@sunfounder.com.
     for_python_user
     scratch/for_scratch_user
     appendix
-    faq
 
 
 

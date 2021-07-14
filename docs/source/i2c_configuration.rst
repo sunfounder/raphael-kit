@@ -18,8 +18,7 @@ not, please continue).
 **P5 I2C**
 
 .. image:: media/image283.png
-   :width: 6.86458in
-   :height: 2.78125in
+
 
 **<Yes>, then <Ok> -> <Finish>**
 

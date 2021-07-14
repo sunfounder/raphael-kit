@@ -79,29 +79,17 @@ Experimental Procedures
 
 .. image:: media/image232.png
 
-**Step 2:** Install the libraries.
+**Step 2:** Install the :ref:`Spidev and MFRC522` libraries.
 
-The ``spidev`` library helps handle interactions with the SPI and is a key component to this tutorial as we need it for the Raspberry Pi to interact with the RFID RC522.
-
-Run the following command to install ``spidev`` to your Raspberry Pi via ``pip``.
-
-.. code-block:: shell
-
-    sudo pip3 install spidev
-
-
-Continue to install the MFRC522 library. The MFRC522 library contains two files: ``MFRC522.py`` and ``SimpleMFRC522.py``. 
-
-Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this library handles all the heavy work of communicating with RFID through Pi's SPI interface.
-
-``SimpleMFRC522.py`` takes the ``MFRC522.py`` file and greatly simplifies it by allowing you to deal with only a few functions instead of a few functions.
-
-.. code-block:: shell
-
-    sudo pip3 install mfrc522
-
-**Step 3:** Set up SPI (refer to Appendix for more details. If you have
+**Step 3:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
 set SPI, skip this step.)
+
+
+.. note::
+
+    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
+    
+    And the :ref:`Spidev and MFRC522` libraries are also needed.
 
 **Step 4:** Go to the folder of the code.
 
