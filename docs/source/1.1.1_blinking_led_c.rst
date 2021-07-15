@@ -11,7 +11,7 @@ phenomena. Now, go for it.
 Components
 ------------------
 
-.. image:: media/blinking_LED_list.png
+.. image:: media/blinking_led_list.png
     :width: 800
     :align: center
 
@@ -131,8 +131,7 @@ Experimental Procedures
 
 1) If you use a screen, you're recommended to take the following steps.
 
-Go to **/home/pi/** and find the folder
-**raphael-kit**.
+Go to **/home/pi/** and find the folder **raphael-kit**.
 
 Find **C** in the folder, right-click on it and select **Open in
 Terminal**.
@@ -178,7 +177,7 @@ procedures based on these two methods are the same. Let's move on.
 In the command, ``-o`` means outputting (the character immediately
 following -o is the filename output after compilation, and an executable
 named ``BlinkingLed`` will generate here) and ``-lwiringPi`` is to load
-the library wiringPi (``l`` is the abbreviation of library).
+the library wiringPi ( ``l`` is the abbreviation of library).
 
 **Step 4:** Run the executable file output in the previous step.
 
@@ -187,7 +186,7 @@ the library wiringPi (``l`` is the abbreviation of library).
    sudo ./BlinkingLed
 
 To control the GPIO, you need to run the program, by the
-command, ``sudo``(superuser do). The command ``./`` indicates the current
+command, ``sudo`` (superuser do). The command ``./`` indicates the current
 directory. The whole command is to run the ``BlinkingLed`` in the
 current directory.
 

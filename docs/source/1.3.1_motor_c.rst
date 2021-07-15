@@ -193,7 +193,7 @@ the motor will rotate.
 .. code-block:: c
 
     for(i=0;i<3;i++){
-    delay(1000);
+        delay(1000);
     }
 
 this loop is to delay for 3*1000ms.

@@ -1,20 +1,20 @@
 3.1.10 Alarm Bell
 ~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 -----------------
 
 In this course, we will make a manual alarm device. You can replace the
 toggle switch with a thermistor or a photosensitive sensor to make a
 temperature alarm or a light alarm.
 
-**Components**
+Components
 ---------------
 
 .. image:: media/list_Alarm_Bell.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 -------------------------
 
 ============ ======== ======== ===
@@ -28,7 +28,7 @@ GPIO22       Pin 15   3        22
 .. image:: media/Schematic_three_one10.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -----------------------------
 
 **Step 1**: Build the circuit.
@@ -36,23 +36,22 @@ GPIO22       Pin 15   3        22
 .. image:: media/image266.png
    :alt: Alarm Bell_bb
    :width: 6.64861in
-   :height: 3.61458in
 
 **Step 2**: Change directory.
 
-.. code-block:: c
+.. code-block:: 
 
     cd /home/pi/raphael-kit/c/3.1.10/
 
 **Step 3**: Compile.
 
-.. code-block:: c
+.. code-block:: 
 
     gcc 3.1.10_AlarmBell.c -lwiringPi -lpthread
 
 **Step 4**: Run.
 
-.. code-block:: c
+.. code-block:: 
 
     sudo ./a.out
 
@@ -194,7 +193,7 @@ reading is 1), the function on() is called, the buzzer is driven to emit
 sounds and the the red and the green LEDs blink. Otherwise, the buzzer
 and the LED don’t work.
 
-**Phenomenon Picture**
+Phenomenon Picture
 ------------------------
 
 .. image:: media/image267.jpeg

@@ -141,15 +141,13 @@ the distance.
 
 
     if __name__ == "__main__":
-    setup()
-    try:       
-        loop()
-    except KeyboardInterrupt:
-        destroy()
+        setup()
+        try:       
+            loop()
+        except KeyboardInterrupt:
+            destroy()
 
-    **Code Explanation**
 
-    def lcdsetup():
 
 **Code Explanation**
 

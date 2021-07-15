@@ -37,7 +37,7 @@ Plug the 3.5mm audio jack into the Raspberry Pi.
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python/3.1.4/
+    cd /home/pi/raphael-kit/python/
 
 **Step 4:** Run.
 
@@ -94,7 +94,7 @@ Set the language.
 
 Fill in the text to be said as a parameter, after executing ``tts.say()``, raspberry pi will say the text you wrote.
 
-**Phenomenon Picture**
+Phenomenon Picture
 ------------------------
 
 .. image:: media/3.1.3audio.jpg

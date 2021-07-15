@@ -157,7 +157,7 @@ CM middle note, CH high note, 1-7 correspond to the notes C, D, E, F, G, A, B.
     int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
                     1,1,1,1,1,1,3};
 
-The array, song_1[] stores a musical score of a song in which beat_1[] 
+The array, ``song_1[]`` stores a musical score of a song in which ``beat_1[]`` 
 refers to the beat of each note in the song (0.5s for each beat).
 
 .. code-block:: c
@@ -165,9 +165,11 @@ refers to the beat of each note in the song (0.5s for each beat).
     if(softToneCreate(BuzPin) == -1){
             printf("setup softTone failed !");
             return 1;
-        
+    }
+
+
 This creates a software controlled tone pin. You can use any GPIO pin 
-and the pin numbering will be that of the wiringPiSetup() function 
+and the pin numbering will be that of the ``wiringPiSetup()`` function 
 you used. The return value is 0 for success. Anything else and you 
 should check the global errnovariable to see what went wrong.
 
@@ -181,16 +183,16 @@ should check the global errnovariable to see what went wrong.
 Employ a for statement to play song_1.
 
 In the judgment condition, **i<sizeof(song_1)/4**\ ，“devide by 4” is
-used because the array song_1[] is an array of the data type of integer,
+used because the array ``song_1[]`` is an array of the data type of integer,
 and each element takes up four bytes.
 
-The number of elements in song_1 (the number of musical notes) is gotten
-by deviding sizeof(song_4) by 4.
+The number of elements in ``song_1`` (the number of musical notes) is gotten
+by deviding ``sizeof(song_1)`` by 4.
 
 To enable each note to play for beat \* 500ms, the function
-delay(beat_1[i] \* 500) is called.
+``delay(beat_1[i] \* 500)`` is called.
 
-The prototype of softToneWrite(BuzPin, song_1[i])：
+The prototype of ``softToneWrite(BuzPin, song_1[i])`` is：
 
 .. code-block:: c
 

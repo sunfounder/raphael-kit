@@ -137,7 +137,7 @@ After the program is executed, the servo will rotate from
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
 
-Create a Map() function to map value in the following code.
+Create a ``Map()`` function to map value in the following code.
 
 .. code-block:: c
 
@@ -149,7 +149,7 @@ Create a Map() function to map value in the following code.
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a funtion, setAngle() to write angle to the servo.
+Create a funtion, ``setAngle()`` to write angle to the servo.
 
 .. code-block:: c
 
@@ -159,7 +159,7 @@ This function can change the duty cycle of the PWM.
 
 To make the servo rotate to 0 ~ 180 °, the pulse width should change
 within the range of 0.5ms ~ 2.5ms when the period is 20ms; in the
-function, softPwmCreate(), we have set that the period is
+function, ``softPwmCreate()`` , we have set that the period is
 200x100us=20ms, thus we need to map 0 ~ 180 to 5x100us ~ 25x100us.
 
 The prototype of this function is shown below.

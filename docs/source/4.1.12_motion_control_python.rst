@@ -1,7 +1,7 @@
 4.1.12 Motion Control
 ===============================
 
-**Introduction**
+Introduction
 -----------------
 
 In this lesson, we will make a simple motion sensing and controlling
@@ -9,13 +9,13 @@ device. The MPU6050 is used as a sensor and the stepper motor as a
 controlled device. With the MPU6050 mounted on the glove, you can
 control the stepper motor by rotating your wrist.
 
-**Components**
+Components
 ---------------
 
 .. image:: media/list_Motion_Control.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 --------------------------
 
 ============ ======== ======== ===
@@ -31,7 +31,7 @@ SCL1         Pin 5
 .. image:: media/Schematic_three_one6.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 ------------------------------
 
 **Step 1:** Build the circuit.
@@ -109,7 +109,7 @@ The tilt angle in the direction of the **Y-axis** is read from
 let the stepper motor rotate anticlockwise; if less than **-45** ℃, the
 stepper motor rotates clockwise.
 
-**Phenomenon Picture**
+Phenomenon Picture
 -----------------------
 
 .. image:: media/image252.jpeg

@@ -96,7 +96,7 @@ After the code runs, you can see \"Greetings\", \"From SunFounder\" displaying o
     void write(int x, int y, char data[]){……}
 
 These functions are used to control I2C LCD1602 open source code. They allow us to easily use I2C LCD1602.
-Among these functions, init() is used for initialization, clear() is used to clear the screen, write() is used to write what is displayed, and other functions support the above functions.
+Among these functions, ``init()`` is used for initialization, ``clear()`` is used to clear the screen, ``write()`` is used to write what is displayed, and other functions support the above functions.
 
 .. code-block:: c
 
@@ -114,7 +114,7 @@ Parameters devId is the address of the I2C device, it can be found through the i
 
     void write(int x, int y, char data[]){}
 
-In this function, data[] is the character to be printed on the LCD, and the parameters x and y determine the printing position (line y+1, column x+1 is the starting position of the character to be printed).
+In this function, ``data[]`` is the character to be printed on the LCD, and the parameters x and y determine the printing position (line y+1, column x+1 is the starting position of the character to be printed).
 
 Phenomenon Picture
 --------------------------

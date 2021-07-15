@@ -15,15 +15,15 @@ Enter the following command.
 
 Select **1 System Options**.
 
-.. image:: media/audio1.png
+.. image:: media/audio1.jpg
 
 Then **S2 Audio**.
 
-.. image:: media/audio2.png
+.. image:: media/audio2.jpg
 
 After selecting **1 Headphones**, press ``Enter`` to confirm and select ``Finish`` to exit.
 
-.. image:: media/audio3.png
+.. image:: media/audio3.jpg
 
 Volume Adjust
 ---------------

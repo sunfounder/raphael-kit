@@ -1,7 +1,7 @@
 4.1.14 Overheat Monitor
 ~~~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 -------------------
 
 You may want to make an overheat monitoring device that applies to
@@ -11,16 +11,16 @@ overheating. In this lesson, we will use thermistor, joystick, buzzer,
 LED and LCD to make an smart temperature monitoring device whose
 threshold is adjustable.
 
-**Components**
+Components
 -----------------
-`
+
 .. image:: media/list_Overheat_Monitor.png
     :align: center
 
 .. image:: media/list_Overheat_Monitor2.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 --------------------------
 
 ============ ======== ======== ===
@@ -38,7 +38,7 @@ SCL1         Pin 5
 .. image:: media/Schematic_three_one8.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -----------------------------
 
 **Step 1:** Build the circuit.
@@ -173,7 +173,7 @@ The function ``main()`` contains the whole program process as shown:
    current high-temperature threshold. Press the Joystick once again to
    reset the threshold to initial value.
 
-**Phenomenon Picture**
+Phenomenon Picture
 -------------------------
 
 .. image:: media/image259.jpeg

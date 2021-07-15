@@ -272,7 +272,7 @@ This is a system-provided function, the prototype of code is:
 
     sig_t signal(int signum,sig_t handler);
 
-After executing the signal(), once the process receives the corresponding signum (in this case SIGALRM), it immediately pauses the existing task and processes the set function (in this case timer(sig)).
+After executing the ``signal()`` , once the process receives the corresponding signum (in this case SIGALRM), it immediately pauses the existing task and processes the set function (in this case ``timer(sig)`` ).
 
 .. code-block:: c
 

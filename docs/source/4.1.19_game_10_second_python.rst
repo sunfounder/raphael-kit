@@ -1,7 +1,7 @@
 4.1.19 GAME– 10 Second
 ~~~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 -------------------
 
 Next, follow me to make a game device to challenge your concentration.
@@ -11,13 +11,13 @@ stop counting. If you succeed in keeping the displayed count at
 **10.00**, then you win. You can play the game with your friends to see
 who is the time wizard.
 
-**Components**
+Components
 ----------------
 
 .. image:: media/list_GAME_10_Second.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 ------------------------
 
 ============ ======== ======== ===
@@ -35,7 +35,7 @@ GPIO26       Pin 37   25       26
 .. image:: media/Schematic_three_one13.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 ---------------------------------
 
 **Step 1**: Build the circuit.
@@ -119,7 +119,7 @@ After the interval reaches 0.01s, the timer function is called; add 1 to
 counter, and the timer is used again to execute itself repeatedly every
 0.01s.
 
-**Phenomenon Picture**
+Phenomenon Picture
 -----------------------
 
 .. image:: media/image278.jpeg

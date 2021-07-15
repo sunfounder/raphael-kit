@@ -172,8 +172,8 @@ Set ButtonPin as input to read the value of ButtonPin.
         }
 
 
-if (digitalRead (ButtonPin) == 0: check whether the button has been
-pressed. Execute digitalWrite(LedPin, LOW) when button is pressed to
+``if (digitalRead (ButtonPin) == 0)`` : check whether the button has been
+pressed. Execute ``digitalWrite(LedPin, LOW)`` when button is pressed to
 light up LED.
 
 ``digitalRead()`` function is to read HIGH (high level) or LOW (low level) of 

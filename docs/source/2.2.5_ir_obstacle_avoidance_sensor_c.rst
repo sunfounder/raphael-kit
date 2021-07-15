@@ -111,7 +111,7 @@ repeatedly printed on the screen until the your hand is removed.
       printf("Detected Barrier !\n");
    }
 
-Define a function ``myISR()`` to print ``obstacle detected'', indicating that an obstacle is detected.
+Define a function ``myISR()`` to print ``obstacle detected`` , indicating that an obstacle is detected.
 
 .. code-block:: c
 
@@ -123,7 +123,7 @@ Define a function ``myISR()`` to print ``obstacle detected'', indicating that an
 
 This ``wiringPiISR()`` function registers a ``myISR()`` function to received interrupts on the specified ``ObstaclePin``.
 
-When ObstaclePin changes from high to low, it means that an obstacle is detected. At this time, call the ``myISR()'' function to print "Detected Barrier !"
+When ObstaclePin changes from high to low, it means that an obstacle is detected. At this time, call the ``myISR()`` function to print "Detected Barrier !"
 
 The prototype of this ``wiringPiISR()`` function is shown below.
 
@@ -131,7 +131,7 @@ The prototype of this ``wiringPiISR()`` function is shown below.
 
    int wiringPiISR (int pin, int edgeType,  void (*function)(void)) ;
 
-The edgeType parameter is either INT_EDGE_FALLING, INT_EDGE_RISING, INT_EDGE_BOTH or INT_EDGE_SETUP. If it is INT_EDGE_SETUP then no initialisation of the pin will happen – it’s assumed that you have already setup the pin elsewhere (e.g. with the gpio program), but if you specify one of the other types, then the pin will be exported and initialised as specified. 
+The edgeType parameter is either ``INT_EDGE_FALLING`` , ``INT_EDGE_RISING`` , ``INT_EDGE_BOTH`` or ``INT_EDGE_SETUP`` . If it is ``INT_EDGE_SETUP`` then no initialisation of the pin will happen – it’s assumed that you have already setup the pin elsewhere (e.g. with the gpio program), but if you specify one of the other types, then the pin will be exported and initialised as specified. 
 
 For more information, please refer to: `wiringPi-Functions (API) <https://projects.drogon.net/raspberry-pi/wiringpi/functions/>`_.
 
@@ -139,6 +139,6 @@ For more information, please refer to: `wiringPi-Functions (API) <https://projec
 Phenomenon Picture
 -----------------------
 
-.. image:: media/2.2.5IR.jpg
+.. image:: media/2.2.5IR.JPG
    :width: 500
    :align: center

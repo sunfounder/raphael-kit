@@ -200,7 +200,11 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
 
 **Code Explanation**
 
-unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+
+.. code-block:: c
+
+    unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+
 A segment code array from 0 to F in Hexadecimal (Common cathode).
 
 .. code-block:: c
@@ -215,7 +219,11 @@ A segment code array from 0 to F in Hexadecimal (Common cathode).
     }
 
 Set ds, st_cp, sh_cp three pins to OUTPUT, and the initial state as 0.
-void hc595_shift(unsigned char dat){}
+
+.. code-block:: c
+
+    void hc595_shift(unsigned char dat){}
+
 To assign 8 bit value to 74HC595’s shift register.
 
 .. code-block:: c
@@ -245,7 +253,8 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
                 delay(500);
             }
         }
-In this for loop, we use "%1X" to output i as a hexadecimal number. Apply i to find the corresponding segment code in the SegCode[] array, and employ hc595_shift() to pass the SegCode into 74HC595's shift register.
+
+In this for loop, we use "%1X" to output i as a hexadecimal number. Apply i to find the corresponding segment code in the ``SegCode[]`` array, and employ ``hc595_shift()`` to pass the SegCode into 74HC595's shift register.
 
 .. note::
     The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)

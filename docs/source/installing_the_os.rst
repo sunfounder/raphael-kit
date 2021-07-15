@@ -16,7 +16,7 @@ users as it will download the image and install it automatically to the
 SD card.
 
 Visit the download page: https://www.raspberrypi.org/software/. Click on
-the link for the Raspberry Pi Imager that matches your operating system,
+the link for the **Raspberry Pi Imager** that matches your operating system,
 when the download finishes, click it to launch the installer.
 
 .. image:: media/image11.png

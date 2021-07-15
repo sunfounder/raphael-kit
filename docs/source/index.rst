@@ -22,6 +22,7 @@ Here is the Email: cs@sunfounder.com.
     download_the_code
     for_c_user
     for_python_user
+    processing/play_with_processing
     scratch/for_scratch_user
     appendix
 

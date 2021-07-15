@@ -149,13 +149,14 @@ read value from it.
             digitalWrite(led2, LOW);
             digitalWrite(led1, HIGH);
         }
+    }
 
-Set an infinite loop, when you tap on the touch switch module, ``touchPin`` is high, led1 will light up and print \"You touch it!\". When touchPin is low, led2 will light up.
+Set an infinite loop, when you tap on the touch switch module, ``touchPin`` is high, led1 will light up and print "You touch it!" . When touchPin is low, led2 will light up.
 
 
-**Phenomenon Picture**
+Phenomenon Picture
 ------------------------
 
-.. image:: media/2.1.3touch_switch_module.jpg
+.. image:: media/2.1.3touch_switch_module.JPG
     :width: 500
     :align: center

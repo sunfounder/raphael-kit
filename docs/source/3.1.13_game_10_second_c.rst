@@ -1,7 +1,7 @@
 3.1.13 GAME– 10 Second
 ~~~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 -------------------
 
 Next, follow me to make a game device to challenge your concentration.
@@ -11,13 +11,13 @@ stop counting. If you succeed in keeping the displayed count at
 **10.00**, then you win. You can play the game with your friends to see
 who is the time wizard.
 
-**Components**
+Components
 ----------------
 
 .. image:: media/list_GAME_10_Second.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 ------------------------
 
 ============ ======== ======== ===
@@ -35,7 +35,7 @@ GPIO26       Pin 37   25       26
 .. image:: media/Schematic_three_one13.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 ---------------------------------
 
 **Step 1**: Build the circuit.
@@ -113,7 +113,7 @@ Loop() is the main function. First, the time is displayed on the 4-bit
 segment display and the value of the tilt switch is read. If the state
 of the tilt switch has changed, stateChange() is called.
 
-**Phenomenon Picture**
+Phenomenon Picture
 -----------------------
 
 .. image:: media/image278.jpeg

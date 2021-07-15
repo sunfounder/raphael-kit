@@ -1,20 +1,20 @@
 4.1.17 Morse Code Generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 -----------------
 
 In this lesson, we'll make a Morse code generator, where you type in a
 series of English letters in the Raspberry Pi to make it appear as Morse
 code.
 
-**Components**
+Components
 ---------------
 
 .. image:: media/list_Morse_Code_Generator.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 -----------------------
 
 ============ ======== ======== ===
@@ -26,7 +26,7 @@ GPIO22       Pin 15   3        22
 .. image:: media/Schematic_three_one11.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 ----------------------------
 
 **Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
@@ -132,7 +132,7 @@ convert the input letters to their capital form.
 ``morsecod()`` function causes the buzzer and the LED to emit Morse code.
 
 
-**Phenomenon Picture**
+Phenomenon Picture
 -----------------------
 
 .. image:: media/image270.jpeg

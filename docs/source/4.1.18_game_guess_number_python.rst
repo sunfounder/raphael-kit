@@ -1,7 +1,7 @@
 4.1.18 GAME– Guess Number
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+Introduction
 ------------------
 
 Guessing Numbers is a fun party game where you and your friends take
@@ -14,13 +14,13 @@ of number can be 50~70; if the player ③ inputs 51, this player is the
 unlucky one. Here, we use keypad to input numbers and use LCD to output
 outcomes.
 
-**Components**
+Components
 -----------------
 
 .. image:: media/list_GAME_Guess_Number.png
     :align: center
 
-**Schematic Diagram**
+Schematic Diagram
 -----------------------
 
 ============ ======== ======== =======
@@ -40,7 +40,7 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: media/Schematic_three_one12.png
    :align: center
 
-**Experimental Procedures**
+Experimental Procedures
 -----------------------------
 
 **Step 1:** Build the circuit.
@@ -201,7 +201,7 @@ This function works for displaying the game page.
 
 6) The changes of the game and its values are displayed on **LCD1602**.
 
-**Phenomenon Picture**
+Phenomenon Picture
 ------------------------
 
 .. image:: media/image274.jpeg

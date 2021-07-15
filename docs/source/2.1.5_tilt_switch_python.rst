@@ -147,7 +147,7 @@ Create a function, Print() to print the characters above on the screen.
         Print(GPIO.input(TiltPin))
 
 Define a callback function for tilt callback. Get the read value of the
-tilt switch then the function Led（） controls the turning on or off of
+tilt switch then the function Led() controls the turning on or off of
 the two LEDs that is depended on the read value of the tilt switch.
 
 Phenomenon Picture

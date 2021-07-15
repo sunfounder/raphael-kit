@@ -3,21 +3,21 @@ Use Filezilla Software
 
 The File Transfer Protocol (FTP) is a standard communication protocol used for the transfer of computer files from a server to a client on a computer network.
 
-Filezilla是一款不仅支持FTP，同时支持FTP over TLS (FTPS) and SFTP的开源软件，我们可以使用Filezilla来将本地的图片和音频等文件上传到树莓派，或者将树莓派的图片和音频等文件下载到本地。
+Filezilla is an open source software that not only supports FTP, but also FTP over TLS (FTPS) and SFTP. We can use Filezilla to upload local files (such as pictures and audio, etc.) to the Raspberry Pi, or download files from the Raspberry Pi to the local.
 
-**step1:** 从Filezilla的官网下载 `https://filezilla-project.org/ <https://filezilla-project.org/>`_ 客户端。
+**step1:** Download the client from  `Filezilla's official website <https://filezilla-project.org/>`_ .
 
-**step2:** Start FileZilla then enter Host: 192.168.18.152, Usename: pi, Password: raspberry, Port: 22 and click Quickconnect.这时计算机和树莓派就通过Filezilla建立了通讯。
+**step2:** Start FileZilla then enter Host: 192.168.18.152 (your Raspberry Pi's IP), Usename: pi, Password: raspberry, Port: 22 and click Quickconnect.
 
 .. image:: media/ftp1.png
-  :width: 400
 
-**step3:** 选择需要传输的文件的目录，左边是本地目录，右边是树莓派的目录。
+
+**step3:** Select the directory of the file to be transferred, the left is the local directory, and the right is the Raspberry Pi directory.
 
 .. image:: media/ftp2.png
-  :width: 400
 
-**step4:** 右键点击要传输的文件，然后选择Upload/Download，文件开始上传和下载。
+
+**step4:** Right-click the file, and then click Upload/Download to start uploading or downloading.
 
 .. image:: media/ftp3.png
-  :width: 400
+
