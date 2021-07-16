@@ -30,9 +30,9 @@ void pickDigit(int digit)
 {
     for (int i = 0; i < 4; i++)
     {
-        digitalWrite(placePin[i], 1);
+        digitalWrite(placePin[i], 0);
     }
-    digitalWrite(placePin[digit], 0);
+    digitalWrite(placePin[digit], 1);
 }
 
 void hc595_shift(int8_t data)
