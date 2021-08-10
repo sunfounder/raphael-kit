@@ -59,7 +59,6 @@ def init_new_value():
     count = 0
     print('point is %d' %(pointValue))
     
-
 def detect_point():
     global count,upper,lower
     if count > pointValue:

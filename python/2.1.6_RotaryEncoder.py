@@ -30,9 +30,9 @@ def rotaryDeal():
 	if flag == 1:
 		flag = 0
 		if (Last_dt_Status == 0) and (Current_dt_Status == 1):
-			globalCounter = globalCounter + 1
-		if (Last_dt_Status == 1) and (Current_dt_Status == 0):
 			globalCounter = globalCounter - 1
+		if (Last_dt_Status == 1) and (Current_dt_Status == 0):
+			globalCounter = globalCounter + 1
 
 def swISR(channel):
 	global globalCounter

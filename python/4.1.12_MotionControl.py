@@ -5,8 +5,6 @@ import smbus
 import math
 import time
 
-
-
 # Power management registers
 power_mgmt_1 = 0x6b
 power_mgmt_2 = 0x6c
@@ -73,13 +71,11 @@ def rotary(direction):
                 GPIO.output(motorPin[i],0x99<<j & (0x80>>i))
             time.sleep(stepSpeed)
 
-
 def setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
     for i in motorPin:
         GPIO.setup(i, GPIO.OUT)
-
 
 def loop():
     while True:

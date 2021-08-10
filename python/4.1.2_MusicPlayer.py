@@ -41,7 +41,7 @@ def volUp(pin):
 def main():
     global volume, status
     global downPressed, upPressed, playPressed
-    mixer.music.load('/home/pi/mozart-kit-for-raspberry-pi/music/my_music.mp3')
+    mixer.music.load('/home/pi/raphael-kit/music/my_music.mp3')
     mixer.music.set_volume(volume)
     mixer.music.play()
     GPIO.add_event_detect(BtnPin1, GPIO.FALLING, callback=play)

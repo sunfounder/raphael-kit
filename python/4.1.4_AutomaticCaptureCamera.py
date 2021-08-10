@@ -18,8 +18,8 @@ def main():
     while True:
         pirVal = GPIO.input(pirPin)
         if pirVal==GPIO.HIGH:
-            camera.capture('/home/pi/people%s.jpg' % i)
-            print('The camera captures %s number of people' % i)
+            camera.capture('/home/pi/capture%s.jpg' % i)
+            print('The number is %s' % i)
             time.sleep(3)
             i = i + 1
 

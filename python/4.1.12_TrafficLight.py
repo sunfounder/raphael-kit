@@ -22,7 +22,6 @@ colorState=0
 counter = 60
 timer1 = 0
 
-
 def setup():
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(SDI, GPIO.OUT)

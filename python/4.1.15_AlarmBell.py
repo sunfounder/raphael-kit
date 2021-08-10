@@ -42,7 +42,6 @@ def buzzerWork():
         Buzz.ChangeFrequency(note)
         time.sleep(0.01)
 
-
 def on():
     global flag
     flag = 1
@@ -59,7 +58,6 @@ def off():
     GPIO.output(ALedPin,GPIO.LOW)
     GPIO.output(BLedPin,GPIO.LOW)      
 
-
 def main():
     lastState=0
     while True:
@@ -70,11 +68,9 @@ def main():
             off()
         lastState=currentState
 
- 
 def destroy():
     off()
     GPIO.cleanup()
-
 
 if __name__ == '__main__':
     setup()

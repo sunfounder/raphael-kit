@@ -31,10 +31,10 @@ void rotaryDeal(void)
    if(flag == 1){
       flag = 0;
       if((Last_dtPin_Status == 0)&&(Current_dtPin_Status == 1)){
-         globalCounter ++;
+         globalCounter --;
       }
       if((Last_dtPin_Status == 1)&&(Current_dtPin_Status == 0)){
-         globalCounter --;
+         globalCounter ++;
       }
    }
 }

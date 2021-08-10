@@ -62,7 +62,7 @@ def closedoor():
         time.sleep(0.001)
     time.sleep(1)
 def opendoor():
-    GPIO.output(ledPin, GPIO.LOW)
+    GPIO.output(ledPin, GPIO.HIGH)
     for i in range(0, 181, 1):   #make servo rotate from 0 to 180 deg
         setAngle(i)     # Write to servo
         time.sleep(0.001)
