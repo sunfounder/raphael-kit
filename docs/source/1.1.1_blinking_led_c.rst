@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-In this lesson, we will learn how to make a blinking LED by programming.
+In this project, we will learn how to make a blinking LED by programming.
 Through your settings, your LED can produce a series of interesting
 phenomena. Now, go for it.
 
@@ -15,81 +15,11 @@ Components
     :width: 800
     :align: center
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
 
-.. note::
-    In order to proceed smoothly, you need to bring your own
-    Raspberry Pi, TF card and Raspberry Pi power.
-
-
-Principle
------------
-
-**Breadboard**
-
-A breadboard is a construction base for prototyping of electronics. It
-is used to build and test circuits quickly before finishing any circuit
-design. And it has many holes into which components mentioned above can
-be inserted like ICs and resistors as well as jumper wires. The
-breadboard allows you to plug in and remove components easily.
-
-The picture shows the internal structure of a full+ breadboard. Although
-these holes on the breadboard appear to be independent of each other,
-they are actually connected to each other through metal strips
-internally.
-
-.. image:: media/image41.png
-
-**LED**
-
-LED is a kind of diode. LED will shine only if the long pin of LED is
-connected to the positive electrode and the short pin is connected to
-negative electrode.
-
-.. |image42| image:: media/image42.png
-
-.. |image43| image:: media/image43.png
-
-|image42|\ |image43|
-
-The LED can not be directly connected to power supply, which can damage
-component. A resistor with 160Ω or larger (work in 5V) must be connected
-in series in the circuit of LED.
-
-Visit:  https://en.wikipedia.org/wiki/Light-emitting_diode, for more information.
-
-**Resistor**
-
-Resistor is an electronic element that can limit the branch current. A
-fixed resistor is a kind of resistor whose resistance cannot be changed,
-while that of a potentiometer or a variable resistor can be adjusted.
-
-Fixed resistor is applied in this kit. In the circuit, it is essential
-to protect the connected components. The following pictures show a real
-object, 220Ω resistor and two generally used circuit symbols of
-resistor. Ω is the unit of resistance and the larger units include KΩ,
-MΩ, etc. Their relationship can be shown as follows: 1 MΩ=1000 KΩ, 1 KΩ
-= 1000 Ω. Normally, the value of resistance is marked on it. So if you
-see these symbols in a circuit, it means that there is a resistor.
-
-.. image:: media/image44.png
-
-.. |image45| image:: media/image45.png
-
-.. |image46| image:: media/image46.png
-
-|image45|\ |image46|
-
-When using a resistor, we need to know its resistance first. Here are
-two methods: you can observe the bands on the resistor, or use a
-multimeter to measure the resistance. You are recommended to use the
-first method as it is more convenient and faster. To measure the value,
-use multimeter.
-
-As shown in the card, each color stands for a number.
-
-.. image:: media/image47.jpeg
-
-Visit: https://simple.wikipedia.org/wiki/Resistor, for mor information.
 
 Schematic Diagram
 ---------------------
@@ -147,11 +77,15 @@ of the code **1.1.1_BlinkingLed.c** .
     :width: 800
     :align: center
 
-In the following lessons, we will use command to enter the code file
+In the following projects, we will use command to enter the code file
 instead of right-clicking. But you can choose the method you prefer.
 
 
 2) If you log into the Raspberry Pi remotely, use ``cd`` to change directory:
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -160,10 +94,14 @@ instead of right-clicking. But you can choose the method you prefer.
 .. note::
     Change directory to the path of the code in this experiment via cd.
 
-In either way, now you now are in the folder C. The subsequent
+In either way, now you are in the folder C. The subsequent
 procedures based on these two methods are the same. Let's move on.
 
 **Step 3:** Compile the code
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -181,32 +119,36 @@ the library wiringPi ( ``l`` is the abbreviation of library).
 
 **Step 4:** Run the executable file output in the previous step.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
    sudo ./BlinkingLed
+
+.. note::
+
+   If it does not work after running, please refer to :ref:`C code is not working?`
 
 To control the GPIO, you need to run the program, by the
 command, ``sudo`` (superuser do). The command ``./`` indicates the current
 directory. The whole command is to run the ``BlinkingLed`` in the
 current directory.
 
-.. image:: media/image52.png
-    :width: 800
-    :align: center
 
 After the code runs, you will see the LED flashing.
 
-If you want to edit the code file ``1.1.1_BlinkingLed.c``, press ``Ctrl +
-C`` to stop running the code. Then type the following command to open
-it:
+If you want to edit the code file ``1.1.1_BlinkingLed.c``, stop the code and then type the following command to open it:
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
    nano 1.1.1_BlinkingLed.c
 
-.. note::
-    nano is a text editor tool. The command is used to open the
-    code file ``1.1.1_BlinkingLed.c`` by this tool.
 
 Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
 prompt asking whether to save the changes or not. Type in ``Y`` (save)
@@ -251,7 +193,7 @@ The program code is shown as follows:
 
 .. code-block:: c
 
-   include <wiringPi.h>
+   #include <wiringPi.h>
 
 The hardware drive library is designed for the C language of Raspberry
 Pi. Adding this library is conducive to the initialization of hardware,
@@ -275,23 +217,23 @@ later.
 
 .. code-block:: c
 
-    if(wiringPiSetup() == -1){
-        printf("setup wiringPi failed !");
-        return 1;
+   if(wiringPiSetup() == -1){
+      printf("setup wiringPi failed !");
+      return 1;
 
 This initialises wiringPi and assumes that the calling program is going
 to be using the wiringPi pin numbering scheme.
 
 This function needs to be called with root privileges.
 When initialize wiring failed, print message to screen. The function
-“return” is used to jump out of the current function. Using return in
-main() function will end the program.
+``return`` is used to jump out of the current function. Using return in
+``main()`` function will end the program.
 
 .. code-block:: c
 
    pinMode(LedPin, OUTPUT);
 
-Set LedPin as output to write value to it.
+Set ``LedPin`` as output to write value to it.
 
 .. code-block:: c
 
@@ -299,27 +241,28 @@ Set LedPin as output to write value to it.
 
 Set GPIO0 as 0V (low level). Since the cathode of LED is connected to
 GPIO0, thus the LED will light up if GPIO0 is set low. On the contrary,
-set GPIO0 as high level, digitalWrite (LedPin, HIGH): LED will go out.
+set GPIO0 as high level, LED will go out.
 
 .. code-block:: c
 
    printf("...LED off\n");
 
 The printf function is a standard library function and its function
-prototype is in the header file "stdio.h". The general form of the call
-is: printf(" format control string ", output table columns). The format
+prototype is in the header file ``stdio.h``. 
+
+The general form of the call is: ``printf(" format control string ", output table columns)``. The format
 control string is used to specify the output format, which is divided
 into format string and non-format string. The format string starts with
-'%' followed by format characters, such as' %d 'for decimal integer
+``%`` followed by format characters, such as ``%d`` for decimal integer
 output. Unformatted strings are printed as prototypes. What is used here
-is a non-format string, followed by "\n" that is a newline character,
+is a non-format string, followed by ``\n`` that is a newline character,
 representing automatic line wrapping after printing a string.
 
 .. code-block:: c
 
    delay(500);
 
-Delay (500) keeps the current HIGH or LOW state for 500ms.
+Keeps the current HIGH or LOW state for 500ms.
 
 This is a function that suspends the program for a period of time. And
 the speed of the program is determined by our hardware. Here we turn on
@@ -338,5 +281,5 @@ Phenomenon Picture
 --------------------
 
 .. image:: media/image54.jpeg
-    :width: 800
-    :align: center
+   :width: 800
+   :align: center

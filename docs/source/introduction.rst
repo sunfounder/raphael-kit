@@ -10,7 +10,7 @@ Contains 4 programming languages: Python, C, Scratch and Java (processing). Ther
 
 C and Python projects are arranged according to component types. C language projects have three categories: **Input**, **Output** and **Extension**, while Python projects have 2 more categories, **Audiovisual** and **IoT**, and 6 more expansion projects.
 
-Scratch and Java have only arranged some sample projects according to the degree of difficulty of the course because of the compatibility of the IDE.
+Scratch and Java have only arranged some sample projects according to the degree of difficulty of the project because of the compatibility of the IDE.
 
 Each project introduces the required components, implementation steps, and code explanations, so that even if you have no programming or circuit knowledge, you can complete each project and expand on it.
 

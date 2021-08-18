@@ -12,6 +12,10 @@ Required Components
 
 .. image:: media/1.5_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`PIR Motion Sensor Module`
+
 Build the Circuit
 ---------------------
 

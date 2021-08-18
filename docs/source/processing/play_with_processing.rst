@@ -17,15 +17,25 @@ This text is from the tutorial, `Processing Overview <https://processing.org/tut
 Install the Processing
 ------------------------------
 
-.. note:: 
+.. note::
 
-    Before you can use Processing, you need to access the Raspberry Pi desktop remotely (:ref:`Remote Desktop`) or connect a display for the Raspberry Pi.
+    When programming with Processing, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+
 
 Run the following command in Terminal to install Processing.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
     curl https://processing.org/download/install-arm.sh | sudo sh
+
+
+If you think the above method is too slow, you can also download the image directly from the `Processing for Pi <https://pi.processing.org/download/>`_ page.
+
+.. image:: img/processing.png
 
 Once the installation is complete, type ``processing`` to open it.
 

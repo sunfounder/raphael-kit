@@ -8,17 +8,35 @@ When the photoresistor detects that the room brightness is too bright, Raspberry
 Also you can view the indoor brightness change through text widget on Cloud4RPi, or control the lamp with Switch widget (for electricity safety, this experiment uses LED instead).
 
 
+
 Experimental Procedures
 -------------------------
 
 Build the circuit.
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Relay`
+* :ref:`Transistor`
+* :ref:`Diode`
+* :ref:`Power Supply Module`
+* :ref:`L293D`
+* :ref:`ADC0834`
+* :ref:`DC Motor`
+* :ref:`Photoresistor`
 
 .. image:: img/window1.png
     :align: center
 
 Open the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano smart_curtain.py
@@ -31,7 +49,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo python3 smart_curtain.py
 

@@ -1,3 +1,5 @@
+.. _2.2.2_thermistor_python:
+
 2.2.2 Thermistor
 ================
 
@@ -13,69 +15,11 @@ Components
 
 .. image:: media/list_2.2.2_thermistor.png
 
-
-Principle
----------
-
-A thermistor is a thermally sensitive resistor that exhibits a precise
-and predictable change in resistance proportional to small changes in
-temperature. How much its resistance will change is dependent upon its
-unique composition. Thermistors are the parts of a larger group of
-passive components. And unlike their active component counterparts,
-passive devices are incapable of providing power gain, or amplification
-to a circuit.
-
-Thermistor is a sensitive element, and it has two types: Negative
-Temperature Coefficient (NTC) and Positive Temperature Coefficient
-(PTC), also known as NTC and PTC. Its resistance varies significantly
-with temperature. The resistance of PTC thermistor increases with
-temperature ,while the condition of NTC is opposite to the former In
-this experiment we use NTC.
-
-.. image:: media/image325.png
-
-
-The principle is that the resistance of the NTC thermistor changes with
-the temperature of the outer environment. It detects the real-time
-temperature of the environment. When the temperature gets higher, the
-resistance of the thermistor decreases. Then the voltage data is
-converted to digital quantities by the A/D adapter. The temperature in
-Celsius or Fahrenheit is output via programming.
-
-In this experiment, a thermistor and a 10k pull-up resistor are used.
-Each thermistor has a normal resistance. Here it is 10k ohm, which is
-measured under 25 degree Celsius.
-
-Here is the relation between the resistance and temperature:
-
-R\ :sub:`T` =R\ :sub:`N` exp\ :sup:`B(1/TK – 1/TN)`
-
-**R\ T** is the resistance of the NTC thermistor when the temperature is
-**T\ K**.
-
-**R\ N** is the resistance of the NTC thermistor under the rated
-temperature **T\ N**. Here, the numerical value of **R\ N** is 10k.
-
-**T\ K** is a Kelvin temperature and the unit is K. Here, the numerical
-value of **T\ K**\ is 273.15 + degree Celsius.
-
-**T\ N** is a rated Kelvin temperature; the unit is K too. Here, the
-numerical value of **T\ N** is 273.15+25.
-
-And **B**\ (beta), the material constant of NTC thermistor, is also
-called heat sensitivity index with a numerical value 3950.
-
-**exp** is the abbreviation of exponential, and the base number e is a
-natural number and equals 2.7 approximately.
-
-Convert this formula
-T\ :sub:`K`\ =1/(ln(R\ :sub:`T`/R\ :sub:`N`)/B+1/T\ :sub:`N`) to get
-Kelvin temperature that minus 273.15 equals degree Celsius.
-
-This relation is an empirical formula. It is accurate only when the
-temperature and resistance are within the effective range.
-
-Visit: https://en.wikipedia.org/wiki/Thermistor, for more information.
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Thermistor`
+* :ref:`ADC0834`
 
 Schematic Diagram
 -----------------
@@ -95,13 +39,21 @@ Experimental Procedures
 
 **Step 2:** Go to the folder of the code.
 
-.. code-block:: c
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/raphael-kit/python/
 
 **Step 3:** Run the executable file
 
-.. code-block:: c
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo python3 2.2.2_Thermistor.py
 
@@ -109,6 +61,15 @@ With the code run, the thermistor detects ambient temperature which will
 be printed on the screen once it finishes the program calculation.
 
 **Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit\python``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block:: python
 

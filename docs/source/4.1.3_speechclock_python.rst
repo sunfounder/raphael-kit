@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-Let's try to make a simple Speech Clock with raspberry pi.
+In this project, let's make a voice clock with a speaker and a 4-digit 7-segment display. The 4-digit 7-segment display will display the time, and the speaker will broadcast the time every hour.
 
 Components
 ----------------
@@ -13,25 +13,12 @@ Components
   :width: 800
   :align: center
 
-
-Set time zone
---------------------
-
-Use the command ``date`` to view the local time.
-
-.. code-block:: python
-
-    date
-
-If the local time is different from the real time, you need to use the following command to open the graphical interface and set the time zone.
-
-.. code-block:: python
-
-    sudo dpkg-reconfigure tzdata
-
-Choose your time zone.
-
-.. image:: media/tzdata.png
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Audio Module and Speaker`
+* :ref:`4-Digit 7-Segment Display`
+* :ref:`74HC595`
 
 Schematic Diagram
 --------------------------
@@ -62,9 +49,37 @@ Experimental Procedures
   :width: 900
   :align: center
 
-Before this project, you need to make sure you complete:ref:`3.1.4 Text-to-speech` .
+Before this project, you need to make sure you complete :ref:`3.1.4 Text-to-speech`.
 
-**Step 2:** Get into the folder of the code.
+**Step 2:** Use the command ``date`` to view the local time.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    date
+
+If the local time is different from the real time, you need to use the following command to set the time zone.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo dpkg-reconfigure tzdata
+
+Choose your time zone.
+
+.. image:: media/tzdata.png
+
+**Step 3:** Get into the folder of the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -72,11 +87,108 @@ Before this project, you need to make sure you complete:ref:`3.1.4 Text-to-speec
 
 **Step 3:** Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
-    sudo python3 4.1.3_SpeechClock.py
+    python3 4.1.3_SpeechClock.py
 
-After the code runs, the digital tube will display the time, and there will be a voice announcement every hour on the hour.
+When the code is run, the 4-digit 7-segment will display the time and chime on every hour.
+
+**Code**
+
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit\python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    from tts import TTS
+    import time
+
+    tts = TTS(engine="espeak")
+    tts.lang('en-US')
+
+    SDI = 24
+    RCLK = 23
+    SRCLK = 18
+
+    placePin = (10, 22, 27, 17)
+    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(SDI, GPIO.OUT)
+        GPIO.setup(RCLK, GPIO.OUT)
+        GPIO.setup(SRCLK, GPIO.OUT)
+        for i in placePin:
+            GPIO.setup(i, GPIO.OUT)
+
+    def clearDisplay():
+        for i in range(8):
+            GPIO.output(SDI, 1)
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)    
+
+    def hc595_shift(data): 
+        for i in range(8):
+            GPIO.output(SDI, 0x80 & (data << i))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def pickDigit(digit):
+        for i in placePin:
+            GPIO.output(i,GPIO.LOW)
+        GPIO.output(placePin[digit], GPIO.HIGH)
+
+    def loop():
+        status = 0                   
+        while True:
+            time.localtime(time.time())
+            hour = int(time.strftime('%H',time.localtime(time.time())))
+            minute = int(time.strftime('%M',time.localtime(time.time())))
+
+            clearDisplay() 
+            pickDigit(0)  
+            hc595_shift(number[minute % 10])
+            
+            clearDisplay()
+            pickDigit(1)
+            hc595_shift(number[minute % 100//10])
+
+            clearDisplay()
+            pickDigit(2)
+            hc595_shift(number[hour % 10])
+
+            clearDisplay()
+            pickDigit(3)
+            hc595_shift(number[hour % 100//10])
+
+            if minute == 0 and status == 0:
+                tts.say('The time is now ' + str(hour) + ' hours and ' + str(minute) + ' minutes')
+                status = 1
+            elif minute != 0:
+                status = 0
+
+    def destroy():   # When "Ctrl+C" is pressed, the function is executed.
+        GPIO.cleanup()
+
+    if __name__ == '__main__':  # Program starting from here
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:
+            destroy()
 
 **Code Explanation**
 
@@ -86,11 +198,15 @@ After the code runs, the digital tube will display the time, and there will be a
     hour = int(time.strftime('%H',time.localtime(time.time())))
     minute = int(time.strftime('%M',time.localtime(time.time())))
 
-Through the function ``time.time()`` , we can get the timestamp of the current time (the number of floating-point seconds that have passed since the 1970 epoch), and then use the time formatting method of the time module ``(time.localtime(time.time()))`` To process the current timestamp, so that we can format the timestamp as a local time. The input result is:
+Through the function ``time.time()``, we can get the timestamp of the current time (the number of floating-point seconds that have passed since the 1970 epoch), and then use the time formatting method of the time module ``(time.localtime(time.time()))`` to process the current timestamp, so that we can format the timestamp as a local time. 
+
+The input result is:
 
 ``time.struct_time(tm_year=2021, tm_mon=5, tm_mday=28, tm_hour=13, tm_min=54, tm_sec=26, tm_wday=4, tm_yday=148, tm_isdst=0)``
 
-Finally, we use the ``time.strftime()`` method to format the large string of information just now into what we want. If you want to get the current hour, you can get it through the function ``time.strftime('%H',time.localtime(time.time()))`` . The following will list the specified formatted string output obtained by modifying the first parameter.
+Finally, we use the ``time.strftime()`` method to format the large string of information into what we want. If you want to get the current hour, you can get it through the function ``time.strftime('%H',time.localtime(time.time()))`` . 
+
+The output of the specified formatted string obtained by modifying the first parameter are listed below.
 
 +----+----------------------------------------------------+
 | %y | Two-digit year representation(00-99)               |

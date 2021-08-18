@@ -67,4 +67,4 @@ while True:
     print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
     print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
 
-    time.sleep(0.5)
+    time.sleep(1)

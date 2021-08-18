@@ -12,6 +12,11 @@ Required Components
 
 .. image:: media/1.4_list.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Button`
+
 Build the Circuit
 ---------------------
 

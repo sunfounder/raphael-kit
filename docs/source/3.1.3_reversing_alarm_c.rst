@@ -14,6 +14,14 @@ simulate the actual process of reversing the car into the garage.
 .. image:: media/list_Reversing_Alarm.png
     :align: center
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Buzzer`
+* :ref:`Transistor`
+* :ref:`Ultrasonic Module`
+* :ref:`I2C LCD1602`
+
 Schematic Diagram
 --------------------
 
@@ -41,8 +49,11 @@ Experimental Procedures
 
 .. image:: media/image242.png
 
-
 **Step 2:** Change directory.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -50,11 +61,19 @@ Experimental Procedures
 
 **Step 3:** Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     gcc 3.1.3_ReversingAlarm.c -lwiringPi
 
 **Step 4:** Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -64,6 +83,11 @@ As the code runs, ultrasonic sensor module detects the distance to the
 obstacle and then displays the information about the distance on
 LCD1602; besides, buzzer emits warning tone whose frequency changes with
 the distance.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
+
 
 **Code**
 
@@ -202,7 +226,7 @@ If the value of distance is greater than the range value to be detected,
 an error message is printed on the LCD. And if the distance value is
 within the range, the corresponding results will be output.
 
-.. code-block:: 
+.. code-block:: c
 
     sprintf(result,"%.2f cm",dis);
 

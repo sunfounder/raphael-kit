@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-In this lesson, we will learn to how to use L293D to drive a DC motor
+In this project, we will learn to how to use L293D to drive a DC motor
 and make it rotate clockwise and counterclockwise. Since the DC Motor
 needs a larger current, for safety purpose, here we use the Power Supply
 Module to supply motors.
@@ -14,61 +14,11 @@ Components
 
 .. image:: media/list_1.3.1.png
 
-
-Principle
----------
-
-**L293D**
-
-L293D is a 4-channel motor driver integrated by chip with high voltage
-and high current. It's designed to connect to standard DTL, TTL logic
-level, and drive inductive loads (such as relay coils, DC, Stepper
-Motors) and power switching transistors etc. DC Motors are devices that
-turn DC electrical energy into mechanical energy. They are widely used
-in electrical drive for their superior speed regulation performance.
-
-See the figure of pins below. L293D has two pins (Vcc1 and Vcc2) for
-power supply. Vcc2 is used to supply power for the motor, while Vcc1 to
-supply for the chip. Since a small-sized DC motor is used here, connect
-both pins to +5V.
-
-.. image:: media/image111.png
-
-
-The following is the internal structure of L293D. Pin EN is an enable
-pin and only works with high level; A stands for input and Y for output.
-You can see the relationship among them at the right bottom. When pin EN
-is High level, if A is High, Y outputs high level; if A is Low, Y
-outputs Low level. When pin EN is Low level, the L293D does not work.
-
-.. image:: media/image334.png
-
-
-**DC Motor**
-
-.. image:: media/image114.jpeg
-
-
-This is a 5V DC motor. It will rotate when you give the two terminals of
-the copper sheet one high and one low level. For convenience, you can
-weld the pins to it.
-
-.. image:: media/image335.png
-
-
-**Power Supply Module**
-
-In this experiment, it needs large currents to drive the motor
-especially when it starts and stops, which will severely interfere with
-the normal work of Raspberry Pi. Therefore, we separately supply power
-for the motor by this module to make it run safely and steadily.
-
-You can just plug it in the breadboard to supply power. It provides a
-voltage of 3.3V and 5V, and you can connect either via a jumper cap
-included.
-
-.. image:: media/image115.png
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Power Supply Module`
+* :ref:`L293D`
+* :ref:`DC Motor`
 
 Schematic Diagram
 ------------------
@@ -98,17 +48,29 @@ the motor’s rotation direction.
 
 **Step 2**: Get into the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/1.3.1/
 
 **Step 3**: Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 1.3.1_Motor.c -lwiringPi
 
 **Step 4**: Run the executable file above.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -117,6 +79,10 @@ the motor’s rotation direction.
 As the code runs, the motor first rotates clockwise for 5s then stops for 5s, 
 after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
 for 5s. This series of actions will be executed repeatedly.  
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 

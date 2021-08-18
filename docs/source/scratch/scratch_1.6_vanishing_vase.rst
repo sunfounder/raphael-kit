@@ -10,6 +10,10 @@ Required Components
 
 .. image:: media/1.6_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Reed Switch Module`
+
 Build the Circuit
 ---------------------
 

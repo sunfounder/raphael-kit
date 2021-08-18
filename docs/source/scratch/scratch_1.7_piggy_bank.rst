@@ -13,6 +13,10 @@ Required Components
 
 .. image:: media/1.7_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Speed Sensor Module`
+
 Build the Circuit
 ---------------------
 

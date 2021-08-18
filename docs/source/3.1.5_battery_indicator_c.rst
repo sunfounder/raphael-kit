@@ -1,10 +1,10 @@
 3.1.5 Battery Indicator
-~~~~~~~~~~~~~~~~~~~~~~~
+==================================
 
 Introduction
 --------------
 
-In this course, we will make a battery indicator device that can
+In this project, we will make a battery indicator device that can
 visually display the battery level on the LED Bargraph.
 
 Components
@@ -12,6 +12,12 @@ Components
 
 .. image:: media/list_Battery_Indicator.png
     :align: center
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED Bar Graph`
+* :ref:`ADC0834`
 
 Schematic Diagram
 -------------------
@@ -48,17 +54,29 @@ Experimental Procedures
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     cd /home/pi/raphael-kit/c/3.1.5/
 
 **Step 3:** Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     gcc 3.1.5_BatteryIndicator.c -lwiringPi
 
 **Step 4:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -68,6 +86,10 @@ After the program runs, give the 3rd pin of ADC0834 and the GND a
 lead-out wire separately and then lead them to the two poles of a
 battery separately. You can see the corresponding LED on the LED
 Bargraph is lit up to display the power level (measuring range: 0-5V).
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code Explanation**
 

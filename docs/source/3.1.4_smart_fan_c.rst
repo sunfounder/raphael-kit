@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-In this course, we will use motors, buttons and thermistors to make a
+In this project, we will use motors, buttons and thermistors to make a
 manual + automatic smart fan whose wind speed is adjustable.
 
 Components
@@ -12,6 +12,16 @@ Components
 
 .. image:: media/list_Smart_Fan.png
     :align: center
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Power Supply Module`
+* :ref:`Thermistor`
+* :ref:`L293D`
+* :ref:`ADC0834`
+* :ref:`Button`
+* :ref:`DC Motor`
 
 Schematic Diagram
 ------------------------
@@ -36,9 +46,7 @@ Experimental Procedures
 **Step 1:** Build the circuit.
 
 .. image:: media/image245.png
-   :alt: Smart Fan_bb
-   :width: 7.10278in
-   :height: 3.19375in
+    :align: center
 
 .. note::
     The power module can apply a 9V battery with the 9V Battery
@@ -46,12 +54,13 @@ Experimental Procedures
     bus strips of the breadboard.
 
 .. image:: media/image118.jpeg
-   :alt: \_MG_2084
-   :width: 2.80694in
-   :height: 0.94375in
-   :align: center
+    :align: center
 
 **Step 2**: Get into the folder of the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -59,11 +68,19 @@ Experimental Procedures
 
 **Step 3**: Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     gcc 3.1.4_SmartFan.c -lwiringPi -lm
 
 **Step 4**: Run the executable file above.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -76,6 +93,10 @@ press the button, the fan stops working with a **0** wind speed.
 
 Once the temperature goes up or down for more than 2℃, the speed
 automatically gets 1-grade faster or slower.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 Code
 --------
@@ -237,7 +258,7 @@ Code Explanation
     }
 
 Temperture() works by converting thermistor values read by ADC0834 into
-temperature values. Refer to **2.2.2 Thermistor** for more details.
+temperature values. Refer to :ref:`2.2.2_thermistor_c` for more details.
 
 .. code-block:: c
 

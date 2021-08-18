@@ -4,55 +4,16 @@
 Introduction
 --------------
 
-In this lesson, we will learn how to make the servo rotate.
+In this project, we will learn how to make the servo rotate.
 
 Components
 ----------
 
 .. image:: media/list_1.3.2.png
 
-
-Principle
----------
-
-**Servo**
-
-A servo is generally composed of the following parts: case, shaft, gear
-system, potentiometer, DC motor, and embedded board.
-
-.. image:: media/image121.png
-
-
-It works like this: The microcontroller sends out PWM signals to the
-servo, and then the embedded board in the servo receives the signals
-through the signal pin and controls the motor inside to turn. As a
-result, the motor drives the gear system and then motivates the shaft
-after deceleration. The shaft and potentiometer of the servo are
-connected together. When the shaft rotates, it drives the potentiometer,
-so the potentiometer outputs a voltage signal to the embedded board.
-Then the board determines the direction and speed of rotation based on
-the current position, so it can stop exactly at the right position as
-defined and hold there.
-
-.. image:: media/image122.png
-
-
-The angle is determined by the duration of a pulse that is applied to
-the control wire. This is called Pulse width Modulation. The servo
-expects to see a pulse every 20 ms. The length of the pulse will
-determine how far the motor turns. For example, a 1.5ms pulse will make
-the motor turn to the 90 degree position (neutral position).
-
-When a pulse is sent to a servo that is less than 1.5 ms, the servo
-rotates to a position and holds its output shaft some number of degrees
-counterclockwise from the neutral point. When the pulse is wider than
-1.5 ms the opposite occurs. The minimal width and the maximum width of
-pulse that will command the servo to turn to a valid position are
-functions of each servo. Generally the minimum pulse will be about 0.5
-ms wide and the maximum pulse will be 2.5 ms wide.
-
-.. image:: media/image123.jpeg
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Servo`
 
 Schematic Diagram
 -----------------
@@ -69,11 +30,19 @@ Experimental Procedures
 
 **Step 2**: Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/1.3.2
 
 **Step 3**: Compile the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -81,12 +50,20 @@ Experimental Procedures
 
 **Step 4**: Run the executable file.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 After the program is executed, the servo will rotate from 
 0 degrees to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -168,13 +145,9 @@ The prototype of this function is shown below.
 
     int softPwmCreate（int pin，int initialValue，int pwmRange）;
 
-
-**Parameter pin:** Any GPIO pin of Raspberry Pi can be set as PWM pin.
-
-**Parameter initialValue:** The initial pulse width is that initialValue
-times 100us.
-
-**Parameter pwmRange:** the period of PWM is that pwmRange times 100us.
+* ``pin``: Any GPIO pin of Raspberry Pi can be set as PWM pin.
+* ``initialValue``: The initial pulse width is that initialValue times 100us.
+* ``pwmRange``: the period of PWM is that pwmRange times 100us.
 
 Phenomenon Picture
 ------------------

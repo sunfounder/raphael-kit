@@ -4,9 +4,15 @@ Drag Number
 Let\'s draw a slider bar to control the 7-segment Display.
 
 .. image:: img/drag_servo.png
-	
+
 
 **Wiring**
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`7-segment Display`
+* :ref:`74HC595`
 
 .. image:: img/image125.png
 
@@ -121,5 +127,5 @@ Let\'s draw a slider bar to control the 7-segment Display.
 
 **How it works?**
 
-This project integrates the Slider and 7-segment Display of the previous course. For specific knowledge points, please refer to :ref:`Show Number` and :ref:`Metronome`.  
+This project integrates the Slider and 7-segment Display of the previous project. For specific knowledge points, please refer to :ref:`Show Number` and :ref:`Metronome`.  
 

@@ -10,6 +10,10 @@ documents, visit: http://sourceforge.net/p/raspberry-gpio-python/wiki/Home/.
 
 Test whether RPi.GPIO is installed or not, type in python:
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     python
@@ -20,6 +24,10 @@ Test whether RPi.GPIO is installed or not, type in python:
 In Python CLI, input ``import RPi.GPIO``, If no error prompts, it means
 RPi.GPIO is installed.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     import RPi.GPIO
@@ -28,6 +36,10 @@ RPi.GPIO is installed.
 
 
 If you want to quit python CLI, type in:
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 

@@ -5,7 +5,14 @@ We've already tried drawing a clickable dot to control the LED, so let's take it
 
 .. image:: img/colorful_square.png
 
+
+
 **Wiring**
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`RGB LED`
 
 .. image:: img/image61.png
 

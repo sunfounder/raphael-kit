@@ -4,7 +4,7 @@
 Introduction
 ------------
 
-In this lesson, we will learn to use a relay. It is one of the commonly
+In this project, we will learn to use a relay. It is one of the commonly
 used components in automatic control system. When the voltage, current,
 temperature, pressure, etc., reaches, exceeds or is lower than the
 predetermined value, the relay will connect or interrupt the circuit, to
@@ -15,84 +15,13 @@ Components
 
 .. image:: media/list_1.3.4.png
 
-
-Principle
----------
-
-**Diode**
-
-A diode is a two-terminal component in electronics with a unidirectional
-flow of current. It offers low resistance in the direction of current
-flow and offers high resistance in the opposite direction. Diodes are
-mostly used to prevent damage to components, especially due to
-electromotive force in circuits which are usually polarized.
-
-.. image:: media/image344.png
-
-
-The two terminals of a diode are polarized, with the positive end called
-anode and the negative end called cathode. The cathode is usually made
-of silver or has a color band. Controlling the direction of current flow
-is one of the key features of diodes — the current in a diode flows from
-anode to cathode. The behavior of a diode is similar to the behavior of
-a check valve. One of the most important characteristics of a diode is
-the non-linear current voltage. If higher voltage is connected to the
-anode, then current flows from anode to cathode, and the process is
-known as forward bias. However, if the higher voltage is connected to
-the cathode, then the diode does not conduct electricity, and the
-process is called reverse bias.
-
-**Relay**
-
-As we may know, relay is a device which is used to provide connection
-between two or more points or devices in response to the input signal
-applied. In other words, relays provide isolation between the controller
-and the device as devices may work on AC as well as on DC. However, they
-receive signals from a microcontroller which works on DC hence requiring
-a relay to bridge the gap. Relay is extremely useful when you need to
-control a large amount of current or voltage with small electrical
-signal.
-
-There are 5 parts in every relay:
-
-1. **Electromagnet** - It consists of an iron core wounded by coil of
-wires. When electricity is passed through, it becomes magnetic.
-Therefore, it is called electromagnet.
-
-2. **Armature** - The movable magnetic strip is known as armature. When
-current flows through them, the coil is it energized thus producing a
-magnetic field which is used to make or break the normally open (N/O) or
-normally close (N/C) points. And the armature can be moved with direct
-current (DC) as well as alternating current (AC).
-
-3. **Spring** - When no currents flow through the coil on the
-electromagnet, the spring pulls the armature away so the circuit cannot
-be completed.
-
-4. Set of electrical **contacts** - There are two contact points:
-
--  Normally open - connected when the relay is activated, and
-      disconnected when it is inactive.
-
--  Normally close - not connected when the relay is activated, and
-      connected when it is inactive.
-
-5. **Molded frame** - Relays are covered with plastic for protection.
-
-**Working of Relay**
-
-The working principle of relay is simple. When power is supplied to the
-relay, currents start flowing through the control coil; as a result, the
-electromagnet starts energizing. Then the armature is attracted to the
-coil, pulling down the moving contact together thus connecting with the
-normally open contacts. So the circuit with the load is energized. Then
-breaking the circuit would a similar case, as the moving contact will be
-pulled up to the normally closed contacts under the force of the spring.
-In this way, the switching on and off of the relay can control the state
-of a load circuit.
-
-.. image:: media/image142.jpeg
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Transistor`
+* :ref:`Relay`
+* :ref:`Diode`
 
 Schematic Diagram
 -----------------
@@ -109,6 +38,10 @@ Experimental Procedures
 
 **Step 2:** Open the code file.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/python
@@ -116,15 +49,28 @@ Experimental Procedures
 
 **Step 3:** Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
-    sudo python3 1.3.4_Relay.py
+    sudo python3 1.3.3_Relay.py
 
 While the code is running, the LED lights up. In addition, you can hear
 a ticktock caused by breaking normally close contact and closing
 normally open contact.
 
 **Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit\python``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block:: python
 

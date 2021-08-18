@@ -4,7 +4,8 @@
 Introduction
 -----------------
 
-Let's try to play local audio files on raspberry pi.
+In this project, let's make a DIY stereo with an audio power amplifier module, 8ohm/2w speakers and a 3.5mm Audio cable.
+
 
 Components
 ----------------
@@ -13,6 +14,9 @@ Components
   :width: 700
   :align: center
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Audio Module and Speaker`
 
 Experimental Procedures
 ------------------------------
@@ -21,29 +25,19 @@ Experimental Procedures
 
 .. image:: media/4.1.4fritzing.png
     :width: 800
-    :align: center   
-
-The audio connector we have equipped has 3 contacts. 
-From the tip to the root, the left channel, the right channel, and the power ground are in sequence. 
-Among them, the left channel is connected to the red DuPont wire, the right channel is connected to the white DuPont wire, and the power ground is connected to the black DuPont wire.
-  
-.. image:: media/audio1.png
-    :width: 300
     :align: center
-  
-Plug the 3.5mm audio jack into the Raspberry Pi.
-  
-.. image:: media/audio4.png
+
+After building the circuit according to the above diagram, then plug the audio cable into the Raspberry Pi’s 3.5mm audio jack.
+
+.. image:: components/img/audio4.png
     :width: 400
     :align: center
 
-
-.. note::
-
-    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output, the correct one should be **Headphones**, please refer to :ref:`Change Audio Output` for more details.
-
-
 **Step 2:** Get into the folder of the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -51,13 +45,30 @@ Plug the 3.5mm audio jack into the Raspberry Pi.
 
 **Step 3:** Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
-    sudo python3 3.1.3_AudioModule.py
+    python3 3.1.3_AudioModule.py
 
-After the code runs, raspberry pi will play the music.
+After the code runs, you can enjoy the music.
+
+.. note::
+
+    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`Change Audio Output` to Headphones.
+
+    If you feel that the volume of the speakers is too low, you can :ref:`Adjust Volume`.
 
 **Code**
+
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit\python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block:: python
 
@@ -89,7 +100,7 @@ After the code runs, raspberry pi will play the music.
 
     mixer.init()
 
-Import the Mixer method in the pygame library and initialize the method.
+Import the ``mixer`` method in the ``pygame`` library and initialize the method.
 
 .. code-block:: python
 
@@ -98,13 +109,12 @@ Import the Mixer method in the pygame library and initialize the method.
     mixer.music.play()
 
 
-This code reads the ``my_music.mp3`` file in the ``/home/pi/raphael-kit/music`` directory and sets the volume to 0.7. 
-The raspberry pi will start playing audio When ``mixer.music.play()`` is called.
-
-If you want to upload other music files to raspberry pi, you can refer to :ref:`Use Filezilla Software`.
+This code reads the ``my_music.mp3`` file in the ``/home/pi/raphael-kit/music`` directory and sets the volume to 0.7(The range is 0~1). 
+The Raspberry Pi will start playing audio When ``mixer.music.play()`` is called.
 
 .. note::
-    Setting range of the volume is 0~1.
+    
+    You can also upload other music files to your Raspberry Pi. For a detailed tutorial, please refer to: :ref:`Filezilla Software`.
 
 .. code-block:: python
 

@@ -4,13 +4,18 @@
 Introduction
 ------------
 
-In this lesson, we will learn how to make a passive buzzer play music.
+In this project, we will learn how to make a passive buzzer play music.
 
 Components
 ----------
 
 .. image:: media/list_1.2.2.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Buzzer`
+* :ref:`Transistor`
 
 Schematic Diagram
 -----------------
@@ -28,11 +33,15 @@ different sounds; in this way, the buzzer plays music.
 Experimental Procedures
 -----------------------
 
-**Step 1**: Build the circuit.
+**Step 1**: Build the circuit. (The Passive buzzer with green circuit board on the back.)
 
 .. image:: media/image106.png
 
 **Step 2**: Change directory.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -40,17 +49,29 @@ Experimental Procedures
 
 **Step 3**: Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 1.2.2_PassiveBuzzer.c -lwiringPi
 
 **Step 4**: Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 The code run, the buzzer plays a piece of music.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 

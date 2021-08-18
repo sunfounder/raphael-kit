@@ -1,11 +1,12 @@
+.. _1.1.2_rgbled_c:
+
 1.1.2 RGB LED
 ====================
 
 Introduction
 --------------
 
-In this lesson, we will use it to control an RGB LED to flash various
-kinds of colors.
+In this project, we will control an RGB LED to flash various colors.
 
 Components
 --------------
@@ -13,58 +14,10 @@ Components
 .. image:: media/list_rgb_led.png
     :align: center
 
-Principle
---------------
-
-**PWM**
-
-Pulse Width Modulation, or PWM, is a technique for getting analog
-results with digital means. Digital control is used to create a square
-wave, a signal switched between on and off. This on-off pattern can
-simulate voltages in between full on (5 Volts) and off (0 Volts) by
-changing the portion of the time the signal spends on versus the time
-that the signal spends off. The duration of "on time" is called pulse
-width. To get varying analog values, you change, or modulate, that
-width. If you repeat this on-off pattern fast enough with some device,
-an LED for example, the result would be like this: the signal is a
-steady voltage between 0 and 5v controlling the brightness of the LED.
-
-**Duty Cycle**
-
-A duty cycle is the percentage of one period in which a signal is
-active. A period is the time it takes for a signal to complete an
-on-and-off cycle. As a formula, a duty cycle may be expressed as:
-
-.. image:: media/image56.png
-   :width: 1.16667in
-   :height: 0.36458in
-   :align: center
-
-Where **D** is the duty cycle, **T** is the time the signal is active,
-and **P** is the total period of the signal. Thus, a 60% duty cycle
-means the signal is on 60% of the time but off 40% of the time. The "on
-time" for a 60% duty cycle could be a fraction of a second, a day, or
-even a week, depending on the length of the period.
-
-.. image:: media/image57.jpeg
-   :width: 4.325in
-   :height: 5.49167in
-   :align: center
-
-**RGB LED**
-
-.. image:: media/rgb_led_sch.png
-   :align: center
-
-The three primary colors of the RGB LED can be mixed into various colors
-by brightness. The brightness of LED can be adjusted with PWM. Raspberry
-Pi has only one channel for hardware PWM output, but it needs three
-channels to control the RGB LED, which means it is difficult to control
-the RGB LED with the hardware PWM of Raspberry Pi. Fortunately, the
-softPwm library simulates PWM (softPwm) by programming. You only need to
-include the header file softPwm.h (for C language users), and then call
-the API it provides to easily control the RGB LED by multi-channel PWM
-output, so as to display all kinds of color.
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`RGB LED`
 
 Schematic Diagram
 -----------------------
@@ -95,11 +48,19 @@ Experimental Procedures
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/1.1.2/
 
 **Step 3:** Compile the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -111,13 +72,20 @@ Experimental Procedures
 
 **Step 4:** Run the executable file.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
+After the code runs, you will see that RGB displays red, green, blue, yellow, pink, and cyan.
 
-After the code runs, you will see that RGB displays red, green, blue,
-yellow, pink, and cyan.
+.. note::
+
+   If it does not work after running, please refer to :ref:`C code is not working?`
+
 
 
 **Code**
@@ -225,9 +193,7 @@ follows：
     void softPwmWrite (int pin, int value) ;
 
 * **Parameter pin:** Any GPIO pin of Raspberry Pi can be set as a PWM pin.
-* **Parameter Value:** The pulse width of PWM is value times 100us. Note
-that value can only be less than pwmRange defined previously, if it is
-larger than pwmRange, the value will be given a fixed value, pwmRange.
+* **Parameter Value:** The pulse width of PWM is value times 100us. Note that value can only be less than pwmRange defined previously, if it is larger than pwmRange, the value will be given a fixed value, pwmRange.
 
 .. code-block:: c
 

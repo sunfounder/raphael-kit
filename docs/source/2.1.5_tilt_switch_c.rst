@@ -12,19 +12,11 @@ Components
 
 .. image:: media/list_2.1.3_tilt_switch.png
 
-
-Principle
----------
-
-**Tilt**
-
-The principle is very simple. When the switch is tilted in a certain
-angle, the ball inside rolls down and touches the two contacts connected
-to the pins outside, thus triggering circuits. Otherwise the ball will
-stay away from the contacts, thus breaking the circuits.
-
-.. image:: media/image167.png
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Tilt Switch`
 
 Schematic Diagram
 -----------------
@@ -44,17 +36,29 @@ Experimental Procedures
 
 **Step 2:** Change directory.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/2.1.5/
 
 **Step 3:** Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 2.1.5_Tilt.c -lwiringPi
 
 **Step 4:** Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -64,6 +68,10 @@ Place the tilt vertically, and the green LED will turns on. If you
 tilt it, "Tilt!" will be printed on the screen and the red LED will
 lights on. Place it vertically again, and the green LED will turns on
 again.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 

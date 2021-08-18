@@ -1,4 +1,4 @@
-Check the ``WiringPi``
+Check the WiringPi
 =======================================
 
 wiringPi is a C language GPIO library applied to the Raspberry Pi
@@ -10,6 +10,10 @@ wiringPi includes lots of GPIO commands which enable you to control all
 kinds of interfaces on Raspberry Pi. You can test whether the wiringPi
 library is installed successfully or not by the following instructions.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gpio -v
@@ -18,6 +22,10 @@ library is installed successfully or not by the following instructions.
 
 
 If you are using Raspberry Pi 4B, but the GPIO version is **2.50**, it will cause no response after the C language code is running, that is, GPIO pins do not work. At this time, you need to manually update to version **2.52**, the update steps are as follows :
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -29,11 +37,19 @@ If you are using Raspberry Pi 4B, but the GPIO version is **2.50**, it will caus
 
 Check with:
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gpio -v
 
 and make sure it’s version 2.52.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 

@@ -15,19 +15,12 @@ Components
 
 .. image:: media/list_2.2.1_photoresistor.png
 
-
-Principle
----------
-
-A photoresistor or photocell is a light-controlled variable resistor.
-The resistance of a photoresistor decreases with increasing incident
-light intensity; in other words, it exhibits photo conductivity. A
-photoresistor can be applied in light-sensitive detector circuits, and
-light- and darkness-activated switching circuits.
-
-.. image:: media/image196.png
-
-Visit: https://en.wikipedia.org/wiki/Photoresistor, for more information.
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`ADC0834`
+* :ref:`Photoresistor`
 
 Schematic Diagram
 -----------------
@@ -47,24 +40,39 @@ Experimental Procedures
 
 **Step 2:** Go to the folder of the code.
 
-.. code-block:: c
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/raphael-kit/c/2.2.1/
 
 **Step 3:** Compile the code.
 
-.. code-block:: c
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     gcc 2.2.1_Photoresistor.c -lwiringPi
 
 **Step 4:** Run the executable file.
 
-.. code-block:: c
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo ./a.out
 
-The code run, the brightness of LED will vary depending on the intensity
-of light that the photoresistor senses.
+When the code is running, the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -156,8 +164,7 @@ of light that the photoresistor senses.
 **Code Explanation**
 
 The codes here are the same as that in 2.1.4 Potentiometer. If you have
-any other questions, please check the code explanation of **2.1.4
-Potentiometer.c** for details.
+any other questions, please check the code explanation of :ref:`2.1.7_potentiometer_c` for details.
 
 Phenomenon Picture
 ------------------

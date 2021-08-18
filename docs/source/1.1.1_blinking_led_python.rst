@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-In this lesson, we will learn how to make a blinking LED by programming.
+In this project, we will learn how to make a blinking LED by programming.
 Through your settings, your LED can produce a series of interesting
 phenomena. Now, go for it.
 
@@ -15,82 +15,10 @@ Components
     :width: 800
     :align: center
 
-
-.. note::
-    In order to proceed smoothly, you need to bring your own
-    Raspberry Pi, TF card and Raspberry Pi power.
-
-
-Principle
------------
-
-**Breadboard**
-
-A breadboard is a construction base for prototyping of electronics. It
-is used to build and test circuits quickly before finishing any circuit
-design. And it has many holes into which components mentioned above can
-be inserted like ICs and resistors as well as jumper wires. The
-breadboard allows you to plug in and remove components easily.
-
-The picture shows the internal structure of a full+ breadboard. Although
-these holes on the breadboard appear to be independent of each other,
-they are actually connected to each other through metal strips
-internally.
-
-.. image:: media/image41.png
-
-**LED**
-
-LED is a kind of diode. LED will shine only if the long pin of LED is
-connected to the positive electrode and the short pin is connected to
-negative electrode.
-
-.. |image42| image:: media/image42.png
-
-.. |image43| image:: media/image43.png
-
-|image42|\ |image43|
-
-The LED can not be directly connected to power supply, which can damage
-component. A resistor with 160Ω or larger (work in 5V) must be connected
-in series in the circuit of LED.
-
-Visit:  https://en.wikipedia.org/wiki/Light-emitting_diode, for more information.
-
-
-**Resistor**
-
-Resistor is an electronic element that can limit the branch current. A
-fixed resistor is a kind of resistor whose resistance cannot be changed,
-while that of a potentiometer or a variable resistor can be adjusted.
-
-Fixed resistor is applied in this kit. In the circuit, it is essential
-to protect the connected components. The following pictures show a real
-object, 220Ω resistor and two generally used circuit symbols of
-resistor. Ω is the unit of resistance and the larger units include KΩ,
-MΩ, etc. Their relationship can be shown as follows: 1 MΩ=1000 KΩ, 1 KΩ
-= 1000 Ω. Normally, the value of resistance is marked on it. So if you
-see these symbols in a circuit, it means that there is a resistor.
-
-.. image:: media/image44.png
-
-.. |image45| image:: media/image45.png
-
-.. |image46| image:: media/image46.png
-
-|image45|\ |image46|
-
-When using a resistor, we need to know its resistance first. Here are
-two methods: you can observe the bands on the resistor, or use a
-multimeter to measure the resistance. You are recommended to use the
-first method as it is more convenient and faster. To measure the value,
-use multimeter.
-
-As shown in the card, each color stands for a number.
-
-.. image:: media/image47.jpeg
-
-Visit: https://simple.wikipedia.org/wiki/Resistor, for mor information.
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
 
 Schematic Diagram
 ---------------------
@@ -145,7 +73,11 @@ can see the results.
 
 2. If you log into the Raspberry Pi remotely, type in the command:
 
-.. code-block:: python
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
 
    cd /home/pi/raphael-kit/python
 
@@ -154,7 +86,11 @@ can see the results.
 
 **Step 3:** Run the code
 
-.. code-block:: python
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
 
    sudo python3 1.1.1_BlinkingLed.py
 
@@ -167,7 +103,11 @@ After the code runs, you will see the LED flashing.
 press ``Ctrl + C`` to stop running the code. Then type the following
 command to open 1.1.1_BlinkingLed.py:
 
-.. code-block:: python
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
 
    nano 1.1.1_BlinkingLed.py
 
@@ -185,6 +125,14 @@ see the effect after the change.
 **Code**
 
 The following is the program code:
+
+.. note::
+
+   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit\python``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
 
 .. code-block:: python
 
@@ -232,7 +180,7 @@ The following is the program code:
 When the system detects this, it will search the installation path of
 python in the env setting, then call the corresponding interpreter to
 complete the operation. It’s to prevent the user not installing the
-python onto the /usr/bin default path.
+python onto the ``/usr/bin`` default path.
 
 .. code-block:: python
 
@@ -263,7 +211,7 @@ LED connects to the GPIO17 of the T-shape extension board, namely, BCM
 Set LedPin's mode to output, and initial level to High (3.3v).
 
 There are two ways of numbering the IO pins on a Raspberry Pi within
-RPi.GPIO: BOARD numbers and BCM numbers. In our lessons, what we use is
+RPi.GPIO: BOARD numbers and BCM numbers. In our projects, what we use is
 BCM numbers. You need to set up every channel you are using as an input
 or an output.
 
@@ -301,7 +249,7 @@ finished.
 This is the general running structure of the code. When the program
 starts to run, it initializes the pin by running the setup(), and then
 runs the code in the main() function to set the pin to high and low
-levels. When 'Ctrl+C' is pressed, the program,
+levels. When ``Ctrl+C`` is pressed, the program,
 destroy() will be  executed.  
 
 Phenomenon Picture

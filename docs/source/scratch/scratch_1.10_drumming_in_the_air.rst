@@ -11,6 +11,11 @@ Required Components
 
 .. image:: media/1.10_list.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Audio Module and Speaker`
+* :ref:`Camera Module`
+
 Build the Circuit
 -------------------------
 
@@ -20,7 +25,7 @@ Build the Circuit
 
 .. note::
   
-  You need to refer to :ref:`Camera Module Installation` to connect the camera module and enable the Raspberry Pi camera interface.
+  You need to refer to :ref:`Camera Module` to connect the camera module and enable the Raspberry Pi camera interface.
 
 
 Load the Code and See What Happens

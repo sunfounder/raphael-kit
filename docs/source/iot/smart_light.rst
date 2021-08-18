@@ -3,17 +3,28 @@ Smart Light
 
 In this project, we will learn to control the brightness of LED with Cloud4RPi's Silder widget.
 
+
+
 Experimental Procedures
 -------------------------
 
 Build the circuit.
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
 
 .. image:: img/led1.png
   :align: center
 
 Open the code.
 
-.. code-block:: python
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano smart_light.py
@@ -26,7 +37,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: python
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
 
     sudo python3 smart_light.py
 

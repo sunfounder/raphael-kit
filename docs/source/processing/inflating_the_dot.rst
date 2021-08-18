@@ -6,7 +6,14 @@ When we press the button, the dot will quickly get bigger; when we release the b
 
 .. image:: img/dot_size.png
 
+
+
 **Wiring**
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Button`
 
 .. image:: img/button_pressed.png
 

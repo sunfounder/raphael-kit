@@ -12,6 +12,12 @@ Required Components
 
 .. image:: media/1.8_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Micro Switch`
+* :ref:`Capacitor`
+* :ref:`Audio Module and Speaker`
 
 Build the Circuit
 ---------------------
@@ -30,7 +36,7 @@ Press the micro switch and the service bell will ring once.
   
   If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`Change Audio Output` for the solution.
 
-  Also, if you want to adjust the volume level, please refer to :ref:`Volume Adjust`.
+  Also, if you want to adjust the volume level, please refer to :ref:`Adjust Volume`.
 
 Tips on Sprite
 ----------------

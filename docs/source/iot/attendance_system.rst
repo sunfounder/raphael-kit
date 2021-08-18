@@ -5,17 +5,29 @@ In this project, we use MFRC522 RFID Module and Cloud4RPi to make a system, you 
 
 Due to the delay of network data transmission, the project only allows you to punch in when the green LED is on and upload data when the red LED is on.
 
+
+
 Experimental Procedures
 -------------------------
 
 Build the circuit.
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`MFRC522 Module`
 
 .. image:: img/rfid1.png
 	:align: center
 
 Open the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano attendance_system.py
@@ -28,7 +40,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo python3 attendance_system.py
 
@@ -46,7 +62,11 @@ Also you can find the ``.csv`` file with the date under the path ``/home/pi/clou
 
 Open it with the following command.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo nano attendance_sheet.2021.06.28.csv
 

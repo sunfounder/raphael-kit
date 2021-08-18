@@ -12,6 +12,12 @@ Required Components
 
 .. image:: media/1.15_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Slide Switch`
+* :ref:`Capacitor`
+
 Build the Circuit
 ---------------------
 

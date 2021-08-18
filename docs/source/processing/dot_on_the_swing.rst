@@ -6,7 +6,14 @@ In this project, 3 buttons are connected, one to change the size of the dot, one
 
 .. image:: img/dancing_dot.png
 
+
+
 **Wiring**
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Button`
 
 .. image:: img/circuit_dancing_dot.png
 

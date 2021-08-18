@@ -20,7 +20,7 @@ def Led(x):
 		GPIO.output(Rpin, 0)
 		GPIO.output(Gpin, 1)
 
-def detect(chn):
+def detect():
 	Led(GPIO.input(ReedPin))
 
 def loop():
@@ -28,8 +28,8 @@ def loop():
 		pass
 
 def destroy():
-	GPIO.output(Gpin, GPIO.HIGH)       # Green led off
-	GPIO.output(Rpin, GPIO.HIGH)       # Red led off
+	GPIO.output(Gpin, GPIO.HIGH)       # Green led on
+	GPIO.output(Rpin, GPIO.LOW)       # Red led off
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here

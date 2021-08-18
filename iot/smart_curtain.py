@@ -10,7 +10,7 @@ import RPi.GPIO as GPIO  # pylint: disable=F0401
 
 # Put your device token here. To get the token,
 # sign up at https://cloud4rpi.io and create a device.
-DEVICE_TOKEN = 'M1vyY81aq3TQLbnFuepUFhA5'
+DEVICE_TOKEN = '__YOUR_DEVICE_TOKEN__'
 
 # Constants
 RELAY_PIN = 20

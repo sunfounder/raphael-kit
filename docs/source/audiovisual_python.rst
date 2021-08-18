@@ -1,6 +1,10 @@
 Audiovisual
 =============
 
+.. note::
+
+    When use the camera module, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+
 .. toctree::
     :maxdepth: 1
 

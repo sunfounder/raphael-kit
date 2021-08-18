@@ -4,7 +4,7 @@
 Introduction
 --------------------
 
-In this lesson, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
 
 They are used to prevent doors from closing if something or someone is in the way and other applications similar.
 
@@ -13,66 +13,12 @@ Components
 
 .. image:: media/2.1.2component.png
 
-
-Principle
----------
-
-**Micro Switch**
-
-The construction of a micro switch is really simple. The main parts of the switch are:
-
-.. image:: media/micro_switch2.png
-
-* 1.Plunger (Actuator)
-* 2.Cover
-* 3.Moving piece
-* 4.Support
-* 5.Case
-* 6.NO terminal: normally open
-* 7.NC terminal: normally closed
-* 8.Contact
-* 9.Moving arm
-
-
-After a micro switch makes physical contact with an object, its contacts change position. The basic working principle is as follows.
-
-When the plunger is in the released or rest position.
-
-* The normally closed circuit can carry current.
-* The normally open circuit is electrically insulated.
-
-When the plunger is depressed or switched.
-
-* The normally closed circuit is open.
-* The normally open circuit is closed.
-
-.. image:: media/micro_switch1.png
-
-
-**Capacitor**
-
-The capacitor is a component that has the capacity to store energy in
-the form of electrical charge or to produce a potential difference
-(Static Voltage) between its plates, much like a small rechargeable
-battery.
-
-Standard Units of Capacitance
-
-Microfarad (μF) 1μF = 1/1,000,000 = 0.000001 = :math:`10^{- 6}` F
-
-Nanofarad (nF) 1nF = 1/1,000,000,000 = 0.000000001 = :math:`10^{- 9}`\ F
-
-Picofarad (pF) 1pF = 1/1,000,000,000,000 = 0.000000000001 =
-:math:`10^{- 12}`\ F
-
-.. note::
-    Here we use **104 capacitor(10 x 10\ 4\ PF)**. Just like the
-    ring of resistors, the numbers on the capacitors help to read the values
-    once assembled onto the board. The first two digits represent the value
-    and the last digit of the number means the multiplier. Thus 104
-    represents a power of 10 x 10 to 4 (in pF) equal to 100 nF.
-
-Visit: https://en.wikipedia.org/wiki/Capacitance, for more information about Capacitor.
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Micro Switch`
+* :ref:`Capacitor`
 
 Schematic Diagram
 -----------------
@@ -96,11 +42,19 @@ Experimental Procedures
 
 **Step 2**: Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/2.1.2
 
 **Step 3**: Compile.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -108,11 +62,19 @@ Experimental Procedures
 
 **Step 4**: Run the executable file above.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
-While the code is running, press the moving arm, then the yellow LED lights up; release the moving arm, the red LED turns on.
+While the code is running, press the Micro Switch, then the yellow LED lights up; release the moving arm, the red LED turns on.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -150,6 +112,7 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
                 digitalWrite(led1, HIGH);
                 printf(".....LED2 on\n");
             }
+            delay(500);
         }
 
         return 0;

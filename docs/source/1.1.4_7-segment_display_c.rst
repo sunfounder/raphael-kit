@@ -12,92 +12,11 @@ Components
 
 .. image:: media/list_7_segment.png
 
-Principle
--------------
-
-**7-Segment Display**
-
-A 7-segment display is an 8-shaped component which packages 7 LEDs. Each
-LED is called a segment - when energized, one segment forms part of a
-numeral to be displayed.
-
-There are two types of pin connection: Common Cathode (CC) and Common
-Anode (CA). As the name suggests, a CC display has all the cathodes of
-the 7 LEDs connected when a CA display has all the anodes of the 7
-segments connected. In this kit, we use the former.
-
-.. image:: media/image70.jpeg
-   :width: 3.89514in
-   :height: 3.32222in
-
-Each of the LEDs in the display is given a positional segment with one
-of its connection pins led out from the rectangular plastic package.
-These LED pins are labeled from "a" through to "g" representing each
-individual LED. The other LED pins are connected together forming a
-common pin. So by forward biasing the appropriate pins of the LED
-segments in a particular order, some segments will brighten and others
-stay dim, thus showing the corresponding character on the display.
-
-Visit: https://en.wikipedia.org/wiki/Seven-segment_display, for more information.
-
-**Display Codes**
-
-To help you get to know how 7-segment displays(Common Cathode) display
-Numbers, we have drawn the following table. Numbers are the number 0-F
-displayed on the 7-segment display; (DP) GFEDCBA refers to the
-corresponding LED set to 0 or 1, For example, 00111111 means that DP and
-G are set to 0, while others are set to 1. Therefore, the number 0 is
-displayed on the 7-segment display, while HEX Code corresponds to
-hexadecimal number.
-
-.. image:: media/common_cathode.png
-
-
-**74HC595**
-
-The 74HC595 consists of an 8−bit shift register and a storage register
-with three−state parallel outputs. It converts serial input into
-parallel output so you can save IO ports of an MCU.
-
-When MR (pin10) is high level and OE (pin13) is low level, data is input
-in the rising edge of SHcp and goes to the memory register through the
-rising edge of SHcp. If the two clocks are connected together, the shift
-register is always one pulse earlier than the memory register. There is
-a serial shift input pin (Ds), a serial output pin (Q) and an
-asynchronous reset button (low level) in the memory register. The memory
-register outputs a Bus with a parallel 8-bit and in three states. When
-OE is enabled (low level), the data in memory register is output to the
-bus.
-
-.. image:: media/74hc595_sche.png
-
-
-
-**Pins of 74HC595 and their functions**:
-
-* **Q0-Q7**: 8-bit parallel data output pins, able to control 8 LEDs or 8
-pins of 7-segment display directly.
-
-* **Q7’**: Series output pin, connected to DS of another 74HC595 to
-connect multiple 74HC595s in series.
-
-* **MR**: Reset pin, active at low level;
-
-* **SHcp**: Time sequence input of shift register. On the rising edge, the
-data in shift register moves successively one bit, i.e. data in Q1 moves
-to Q2, and so forth. While on the falling edge, the data in shift
-register remain unchanged.
-
-* **STcp**: Time sequence input of storage register. On the rising edge,
-data in the shift register moves into memory register.
-
-* **CE**: Output enable pin, active at low level.
-
-* **DS**: Serial data input pin
-
-* **VCC**: Positive supply voltage
-
-* **GND**: Ground
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`7-segment Display`
+* :ref:`74HC595`
 
 Schematic Diagram
 ---------------------
@@ -130,11 +49,19 @@ Experimental Procedures
 
 **Step 2:** Get into the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/1.1.4/
 
 **Step 3:** Compile.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -142,11 +69,19 @@ Experimental Procedures
 
 **Step 4:** Run the executable file above.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 After the code runs, you'll see the 7-segment display display 0-9, A-F.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -254,7 +189,7 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
             }
         }
 
-In this for loop, we use "%1X" to output i as a hexadecimal number. Apply i to find the corresponding segment code in the ``SegCode[]`` array, and employ ``hc595_shift()`` to pass the SegCode into 74HC595's shift register.
+In this for loop, we use ``%1X`` to output i as a hexadecimal number. Apply i to find the corresponding segment code in the ``SegCode[]`` array, and employ ``hc595_shift()`` to pass the SegCode into 74HC595's shift register.
 
 .. note::
     The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)

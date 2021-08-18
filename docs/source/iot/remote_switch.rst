@@ -3,17 +3,31 @@ Remote Switch
 
 In this project, we will learn to use Cloud4RPi's Switch to control the relay, thereby controlling the relay's load-LED. You can also change the load of the relay to household appliances, but with safety in mind.
 
+
+
 Experimental Procedures
 -------------------------
 
 Build the circuit.
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Relay`
+* :ref:`Transistor`
+* :ref:`Diode`
 
 .. image:: img/relay1.png
     :align: center
 
 Open the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano remote_switch.py
@@ -26,7 +40,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo python3 remote_switch.py
 

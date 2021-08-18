@@ -9,7 +9,11 @@ If you are a user who has just used Scratch 3, we recommend that you try the pro
     Before trying the projects, you should have downloaded the relevant materials and code files.
     Open a Terminal and enter the following command to download them from github.
 
-    .. code-block::
+    .. raw:: html
+
+       <run></run>
+
+    .. code-block:: 
 
         git clone https://github.com/sunfounder/raphael-kit.git
 

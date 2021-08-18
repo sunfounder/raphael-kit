@@ -8,6 +8,12 @@ Here we will make a metronome, the metronome is divided into 5 levels, the highe
 
 **Wiring**
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Buzzer`
+* :ref:`Transistor`
+
 .. image:: img/image106.png
 
 .. note::

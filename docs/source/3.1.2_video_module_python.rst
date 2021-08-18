@@ -12,14 +12,16 @@ Components
 .. image:: media/photo1.png
   :width: 800
 
+For more information on how to connect the camera module and its configuration, please refer to :ref:`Camera Module`.
+
 Experimental Procedures
 ------------------------------
 
-**Step 1:** Complete camera installation.
+**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
 
-Prior to the project, make sure you have completed :ref:`Install the camera` .
 
-**Step 2:** Get into the folder of the code.
+**Step 2:** Open a Terminal and get into the folder of the code.
+
 
 .. code-block::
 
@@ -27,13 +29,18 @@ Prior to the project, make sure you have completed :ref:`Install the camera` .
 
 **Step 3:** Run.
 
+
 .. code-block::
 
     sudo python3 3.1.2_VideoModule.py
 
-Run the code to start recording. Press ``Ctrl+C`` to end the recording.
-Name the video ``my_video.h264`` and store it in the ``/home/pi`` directory.
-If you want to send photos to your PC, please refer to :ref:`Use Filezilla Software`.
+Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``/home/pi`` directory.
+
+.. note::
+
+    You can also open ``3.1.2_PhotographModule.py`` in the ``/home/pi/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+
+If you want to send photos to your PC, please refer to :ref:`Filezilla Software`.
 
 
 **Code**
@@ -69,7 +76,7 @@ If you want to send photos to your PC, please refer to :ref:`Use Filezilla Softw
 
     start_recording(output, format=None, resize=None, splitter_port=1, **options)
 
-Start recording video from the camera, storing it in output.
+Start recording video from the camera, storing it in ``output``.
 
 .. code-block:: python
 

@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-Let's try to take a picture with raspberry pi.
+In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
 
 Components
 ----------------
@@ -12,47 +12,38 @@ Components
 .. image:: media/photo1.png
   :width: 800
 
-Principle
--------------
-
-The camera in your hand is a 5 megapixel image sensor with high resolution and excellent performance, compatible with most SBCs or development boards with standard CSI (Camera Serial Interface).
-
-Install the camera
-----------------------
-
-On the back of the camera module, there is a flat plastic connector (the same as on the Raspberry Pi). Gently pull out its black fixing piece, insert the FFC cable into the plastic connector (where the blue plastic surface fits the fixing piece), and finally gently push the fixing piece back to its original position.
-
-.. image:: media/4.1.1install2.png
-  :width: 500
-  
-.. warning::
-    Do not install the camera while the power is on, it may damage your camera.
-
-.. note::
-    If the FFC is installed correctly, it will be straight to the plastic connector. Try to pull it gently, it will not be pulled out easily.
-
-After the installation is complete, some configurations are required, please refer to: :ref:`Camera Module Installation`.
+For more information on how to connect the camera module and its configuration, please refer to :ref:`Camera Module`.
 
 Experimental Procedures
 ------------------------------
 
-**Step 1:** Get into the folder of the code.
+**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+
+
+**Step 2:** Open a Terminal and get into the folder of the code.
 
 .. code-block::
 
     cd /home/pi/raphael-kit/python/
 
-**Step 2:** Run.
+**Step 3:** Run.
 
 .. code-block::
 
     sudo python3 3.1.1_PhotographModule.py
 
-After the code runs, The camera will take a picture.
+After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``/home/pi`` directory. 
 
-Now you can see the photo named ``my_photo.jpg`` in the /home/pi directory. If you want to send photos to your PC, please refer to :ref:`Use Filezilla Software`.
+.. note::
+
+    You can also open ``3.1.1_PhotographModule.py`` in the ``/home/pi/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+
+
+If you want to download the photo to your PC, please refer to :ref:`Filezilla Software`.
+
 
 **Code**
+
 
 .. code-block:: python
 
@@ -93,25 +84,19 @@ Import the ``picamera`` library and instantiate the ``PiCamera`` class to use th
     start_preview(**options)
 
 
-Displays the preview overlay. This method starts a camera preview as an overlay on the Pi’s primary display (HDMI or composite). By default, the renderer will be opaque and fullscreen.
+Show the preview overlay and change the transparency level of the preview with ``alpha`` - from 0 to 255. This method starts a camera preview as an overlay on the Pi’s primary display (HDMI or composite). By default, the renderer will be opaque and fullscreen.
+
 
 This means the default preview overrides whatever is currently visible on the display. More specifically, the preview does not rely on a graphical environment like X-Windows (it can run quite happily from a TTY console); it is simply an overlay on the Pi’s video output. To stop the preview and reveal the display again, call ``stop_preview()`` . The preview can be started and stopped multiple times during the lifetime of the ``PiCamera`` object.
 
-.. note::
-
-    Because the default preview typically obscures the screen, ensure you have a means of stopping a preview before starting one. If the preview obscures your interactive console you won’t be able to Alt+Tab back to it as the preview isn’t in a window. If you are in an interactive Python session, simply pressing Ctrl+D usually suffices to terminate the environment, including the camera and its associated preview.
-
-.. note::
-    you can alter the transparency level of the preview by entering an ``alpha`` value – from 0 to 255 – within the latter command’s brackets; e.g. camera.start_preview(alpha=200).
-
 .. code-block:: python
 
-    capture(output, format=None, use_video_port=False, resize=None, splitter_port=0, **options)
+    camera.capture('/home/pi/my_photo.jpg')
 
-Capture an image from the camera, storing it in output.
+Capture an image from the camera, storing it in ``/home/pi/``.
 
 .. note::
-    Use camera.capture() function and for loop together to achieve continuous shooting. (Use the delay function to adjust the time interval for taking pictures.)
+    You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
 
     .. code-block:: python
 

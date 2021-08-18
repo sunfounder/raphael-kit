@@ -19,6 +19,13 @@ Components
 .. image:: media/list_Counting_Device2.png
     :align: center
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`4-Digit 7-Segment Display`
+* :ref:`74HC595`
+* :ref:`PIR Motion Sensor Module`
+
 Schematic Diagram
 ----------------------
 
@@ -43,11 +50,12 @@ Experimental Procedures
 **Step 1**: Build the circuit.
 
 .. image:: media/image235.png
-   :alt: 计数器_bb
-   :width: 6.69444in
-   :height: 4.12708in
 
 **Step 2**: Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -55,11 +63,19 @@ Experimental Procedures
 
 **Step 3**: Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     gcc 3.1.1_CountingDevice.c -lwiringPi
 
 **Step 4**: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -67,6 +83,10 @@ Experimental Procedures
 
 After the code runs, when the PIR detects that someone is passing by,
 the number on the 4-digit segment display will add 1.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code Explanation**
 

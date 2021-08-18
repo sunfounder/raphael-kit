@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-In this lesson, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
 
 
 
@@ -19,22 +19,9 @@ Components Required
    :width: 700
    :align: center
 
-Experimental Principle
------------------------------
-
-.. image:: media/2.2.5IR_Obstacle.png
-   :width: 300
-   :align: center
-
-The IR obstacle avoidance module module has strong adaptability to environmental light, it has a pair of infrared transmitting and receiving tubes.
-
-The transmitting tube emits infrared frequency, when the detection direction encounters an obstacle, the infrared radiation is received by the receiving tube, 
-after the comparator circuit processing, the green indicator will light up and output low level signal.
-
-The detection distance can be adjusted by potentiometer, the effective distance range 2-30cm.
-
-.. image:: media/IR_module.png
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Obstacle Avoidance Module`
 
 Schematic Diagram
 -----------------------
@@ -54,11 +41,19 @@ Experimental Procedures
 
 **Step 2:** Change directory.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
    
    cd /home/pi/raphael-kit/python
 
 **Step 3:** Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -69,10 +64,20 @@ repeatedly printed on the screen until the your hand is removed.
 
 **Code**
 
+.. note::
+
+   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit\python``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
+
 .. code-block:: python
 
    #!/usr/bin/env python3
    import RPi.GPIO as GPIO
+   import time
 
    ObstaclePin = 17
 
@@ -84,6 +89,7 @@ repeatedly printed on the screen until the your hand is removed.
       while True:
          if (0 == GPIO.input(ObstaclePin)):
             print ("Detected Barrier!")
+			time.sleep(1)
             
 
    def destroy():
@@ -98,15 +104,15 @@ repeatedly printed on the screen until the your hand is removed.
 
 **Code Explanation**
 
-.. code-block::
+.. code-block:: python
 
    def setup():
    GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
    GPIO.setup(ObstaclePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-Set the GPIO modes to BCM Numbering. Set ``ObstaclePin`` to input mode and initial it to High level (3.3v).
+Set the GPIO mode to BCM Numbering. Set ``ObstaclePin`` to input mode and initial it to High level (3.3v).
 
-.. code-block::
+.. code-block:: python
 
    def loop():
       while True:

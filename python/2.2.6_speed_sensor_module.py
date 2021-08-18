@@ -14,12 +14,12 @@ def setup():
 
 def Led(x):
     if x == 0:
+        GPIO.output(Rpin, 0)
+        GPIO.output(Gpin, 1)
+    if x == 1:
         GPIO.output(Rpin, 1)
         GPIO.output(Gpin, 0)
         print ('Light was blocked')
-    if x == 1:
-        GPIO.output(Rpin, 0)
-        GPIO.output(Gpin, 1)
         
 def detect(chn):
     Led(GPIO.input(speedPin))
@@ -29,8 +29,8 @@ def loop():
         pass
 
 def destroy():
-    GPIO.output(Gpin, GPIO.HIGH)       # Green led off
-    GPIO.output(Rpin, GPIO.HIGH)       # Red led off
+    GPIO.output(Gpin, GPIO.LOW)       # Green led off
+    GPIO.output(Rpin, GPIO.LOW)       # Red led off
     GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here

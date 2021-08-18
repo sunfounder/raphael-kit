@@ -10,6 +10,11 @@ Required Components
 
 .. image:: media/1.3_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Tilt Switch`
+
 Build the Circuit
 ---------------------
 

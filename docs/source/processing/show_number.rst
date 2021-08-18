@@ -1,10 +1,17 @@
 Show Number
 =============================================
 
-In this lesson, we use processing to drive a 7-segment display to show a figure from 0 to 9 and A to F.
+In this project, we use processing to drive a 7-segment display to show a figure from 0 to 9 and A to F.
+
 
 
 **Wiring**
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`7-segment Display`
+* :ref:`74HC595`
 
 .. image:: img/image125.png
 

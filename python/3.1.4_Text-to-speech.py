@@ -9,7 +9,7 @@ def main():
 		pass
 
 def destroy():
-	tts.say("good-bye")
+	tts.say("See you later")
 
 if __name__ == '__main__':
 	try:

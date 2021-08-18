@@ -19,26 +19,10 @@ Components
 
 .. image:: media/list_2.2.3_dht-11.png
 
-
-Principle
----------
-
-The DHT11 is a basic, ultra low-cost digital temperature and humidity
-sensor. It uses a capacitive humidity sensor and a thermistor to measure
-the surrounding air, and spits out a digital signal on the data pin (no
-analog input pins are needed).
-
-.. image:: media/image205.png
-
-
-Only three pins are available: VCC, GND, and DATA. The communication
-process begins with the DATA line sending start signals to DHT11, and
-DHT11 receives the signals and returns an answer signal. Then the host
-receives the answer signal and begins to receive 40-bit humiture data
-(8-bit humidity integer + 8-bit humidity decimal + 8-bit temperature
-integer + 8-bit temperature decimal + 8-bit checksum). For more
-information, please refer to DHT11 datasheet.
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Humiture Sensor Module`
 
 Schematic Diagram
 -----------------
@@ -55,11 +39,19 @@ Experimental Procedures
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/2.2.3/
 
 **Step 3:** Compile the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -67,12 +59,20 @@ Experimental Procedures
 
 **Step 4:** Run the executable file.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 After the code runs, the program will print the temperature and humidity
 detected by DHT11 on the computer screen.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 

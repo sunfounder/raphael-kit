@@ -4,7 +4,7 @@
 Introduction
 ------------------
 
-In this lesson, we will learn the use of the speed sensor module. A Speed Sensor Module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+In this project, we will learn the use of the speed sensor module. A Speed Sensor Module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
 
 
 Components
@@ -14,23 +14,11 @@ Components
     :width: 700
     :align: center
 
-Principle
-----------------
-
-.. image:: media/2.2.6photo-interrupter.png
-    :width: 300
-    :align: center
-
-The speed sensor consists of two parts: a transmitter and a receiver. The transmitter emits light, which then enters the receiver.
-
-If the light beam between the emitter and receiver is interrupted by an obstacle, the receiver will not detect the incident light, then the D0 pin will output low level.
-
-.. note::
-    The A0 pin on this module is empty and there is no circuit.
-
-.. image:: media/speed_sensor.png
-
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Speed Sensor Module`
 
 Schematic Diagram
 -----------------------
@@ -52,11 +40,19 @@ Experimental Procedures
 
 **Step 2:** Change directory.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
     
     cd /home/pi/raphael-kit/c/2.2.6/
 
 **Step 3:** Compile.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -64,12 +60,20 @@ Experimental Procedures
 
 **Step 4:** Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
 Remove the obstacle and the green LED will light up again.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -128,7 +132,7 @@ Remove the obstacle and the green LED will light up again.
 
 **Code Explanation**
 
-.. code-block::
+.. code-block:: c
 
     void LED(int color)
     {
@@ -149,7 +153,7 @@ Set a ``LED()`` function to control the 2 LEDs, the parameter of this function i
 When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`` to ``LOW`` (turn off the green LED); when ``color`` is 1, then light up the green LED and turn off the red LED. 
 
 
-.. code-block::
+.. code-block:: c
 
     while(1){
         //Reverse the input of speedPin

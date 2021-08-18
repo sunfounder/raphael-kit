@@ -4,7 +4,7 @@
 **Introduction**
 -------------------
 
-In this lesson, you will learn about touch switch module. It can replace 
+In this project, you will learn about touch switch module. It can replace 
 the traditional kinds of switch with these advantages: convenient operation, 
 fine touch sense, precise control and least mechanical wear.
 
@@ -16,27 +16,11 @@ fine touch sense, precise control and least mechanical wear.
     :width: 700
     :align: center
 
-**Principle**
----------------------------
-
-Touch switch module works by detecting a change in capacitance due to influence 
-of an external object. The touch plate is covered with insulating material, 
-and the user does not come in contact with the electrical circuit.
-
-A capacitive touch switch has different layers—top insulating face plate 
-followed by touch plate, another insulating layer and then ground plate.
-
-.. image:: media/2.1.3touch_switch.png
-    :width: 200
-    :align: center
-
-In practice, a capacitive sensor can be made on a double-sided PCB by regarding one side as the touch sensor and the opposite side as ground plate of the capacitor. When power is applied across these plates, the two plates get charged. In equilibrium state, the plates have the same voltage as the power source.
-
-The touch detector circuit has an oscillator whose frequency is dependent on capacitance of the touchpad. When a finger is moved close to the touchpad, additional capacitance causes frequency of this internal oscillator to change. The detector circuit tracks oscillator frequency at timed intervals, and when the shift crosses the threshold change, the circuit triggers a key-press event.
-
-.. image:: media/2.1.3touch_switch2.png
-
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Touch Switch Module`
 
 Schematic Diagram
 -----------------
@@ -56,11 +40,19 @@ Schematic Diagram
 
 **Step 2:** Change directory.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/2.1.3/
 
 **Step 3:** Compile.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -68,11 +60,19 @@ Schematic Diagram
 
 **Step 4:** Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 

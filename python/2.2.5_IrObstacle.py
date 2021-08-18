@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO
+import time
 
 ObstaclePin = 17
 
@@ -11,6 +12,7 @@ def loop():
 	while True:
 		if (0 == GPIO.input(ObstaclePin)):
 			print ("Detected Barrier!")
+            time.sleep(1)
 			
 
 def destroy():

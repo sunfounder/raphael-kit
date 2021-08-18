@@ -4,7 +4,7 @@
 **Introduction**
 -------------------
 
-In this lesson, you will learn about Rotary Encoder. A rotary encoder is
+In this project, you will learn about Rotary Encoder. A rotary encoder is
 an electronic switch with a set of regular pulses in strictly timing
 sequence. When used with IC, it can achieve increment, decrement, page
 turning and other operations such as mouse scrolling, menu selection,
@@ -15,35 +15,9 @@ and so on.
 
 .. image:: media/Part_two_25.png
 
-**Principle**
------------------
-
-There are mainly two types of rotary encoders: absolute and incremental
-(relative) encoders. An incremental one is used in this experiment.
-
-Most rotary encoders have 5 pins with three functions of
-turning left & right and pressing down. Pin 1 and pin 2 are switch
-wiring terminals used to press. Pin 4 is generally connected to ground.
-Pin 3 and pin 5 are first connected to a pull-up resistor and then to
-VCC and they can generate two-phase square waves whose phase difference
-is 90°. Usually these waves are called channel A and channel B as shown
-below:
-
-.. image:: media/image205.jpeg
-    :width: 300
-    :align: center
-
-As shown on the right, when channel A changes from high level to low
-level, if channel B is high level, it indicates the rotary encoder spins
-clockwise (CW); if at that moment channel B is low level, it means spins
-counterclockwise (CCW). So if we read the value of channel B when
-channel A is low level, we can know in which direction the rotary
-encoder rotates.
-
-.. image:: media/image206.png
-    :width: 300
-    :align: center
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Rotary Encoder Module`
 
 **Schematic Diagram**
 ------------------------
@@ -58,11 +32,14 @@ Experimental Procedures
 
 **Step 1:** Build the circuit.
 
-.. image:: media/image348.png
-   :width: 700
+.. image:: media/2.1.6_fritzing.png
    :align: center
 
 **Step 2:** Open the code file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -70,18 +47,29 @@ Experimental Procedures
 
 **Step 3:** Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 2.1.6_RotaryEncoder.c -lwiringPi
 
 **Step 4:** Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
-After the code runs, rotate the knob on the Rotary Encoder module, The number of 
-rotations will be printed out on the screen.
+You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+
+.. note::
+
+   If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -120,10 +108,10 @@ rotations will be printed out on the screen.
       if(flag == 1){
          flag = 0;
          if((Last_dtPin_Status == 0)&&(Current_dtPin_Status == 1)){
-            globalCounter ++;	
+            globalCounter --;	
          }
          if((Last_dtPin_Status == 1)&&(Current_dtPin_Status == 0)){
-            globalCounter --;
+            globalCounter ++;
          }
       }
    }
@@ -161,20 +149,14 @@ rotations will be printed out on the screen.
 
 **Code Analysis**
 
-When Rotary Encoder is used, the following situations of pin level will
-occur.
+* Read dtPin value when clkPin is low.
+* When clkPin is high, if dtPin goes from low to high, the count decreases, otherwise the count increases.
+* swPin will output low when the shaft is pressed.
 
-① When rotating the shaft, dtPin will go from high level to low level.
-
-② clkPin will remain high level when the shaft rotates clockwise,
-otherwise it goes low level.
-
-③ When the shaft is pressed, swPin will have low level.
-
-From this, the program flow is shown on the right.
+From this, the program flow is shown below:
 
 
-.. image:: media/image209.png
+.. image:: media/2.1.6_flow.png
    :align: center
 
 **Phenomenon Picture**

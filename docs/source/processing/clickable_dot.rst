@@ -5,7 +5,17 @@ We've tried drawing motion graphic, responding to mouse event, and controlling L
 
 .. image:: img/clickable_dot_on.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+
 **Wiring**
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`RGB LED`
 
 .. image:: img/image49.png
 

@@ -3,17 +3,28 @@ Temperature and Humidity Acquisition
 
 In this project, we use DHT11 to read the surrounding temperature and humidity, and then display them on Cloud4RPi.
 
+
+
 Experimental Procedures
 -------------------------
 
 Build the circuit.
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Humiture Sensor Module`
 
 .. image:: img/tem4.png
   :align: center
 
 Open the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     cd /home/pi/cloud4rpi-raspberrypi-python
     sudo nano temperature_and_humidity_acquisition.py
@@ -26,7 +37,11 @@ Find the line below and fill in the correct device token.
 
 Run the code.
 
-.. code-block:: shell
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
 
     sudo python3 temperature_and_humidity_acquisition.py
 

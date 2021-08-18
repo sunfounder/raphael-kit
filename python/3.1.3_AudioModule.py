@@ -3,7 +3,7 @@ from pygame import mixer
 mixer.init()
 
 def main():
-    mixer.music.load('/home/pi/mozart-kit-for-raspberry-pi/music/my_music.mp3')
+    mixer.music.load('/home/pi/raphael-kit/music/my_music.mp3')
     mixer.music.set_volume(0.7)
     mixer.music.play()
     while True:

@@ -1,3 +1,5 @@
+.. _2.1.8_keypad_c:
+
 2.1.8 Keypad
 ============
 
@@ -12,31 +14,10 @@ Components
 
 .. image:: media/list_2.1.5_keypad.png
 
-
-Principle
----------
-
-**Keypad**
-
-A keypad is a rectangular array of 12 or 16 OFF-(ON) buttons. Their
-contacts are accessed via a header suitable for connection with a ribbon
-cable or insertion into a printed circuit board. In some keypads, each
-button connects with a separate contact in the header, while all the
-buttons share a common ground.
-
-.. image:: media/image314.png
-
-
-More often, the buttons are matrix encoded, meaning that each of them
-bridges a unique pair of conductors in a matrix. This configuration is
-suitable for polling by a microcontroller, which can be programmed to
-send an output pulse to each of the four horizontal wires in turn.
-During each pulse, it checks the remaining four vertical wires in
-sequence, to determine which one, if any, is carrying a signal. Pullup
-or pulldown resistors should be added to the input wires to prevent the
-inputs of the microcontroller from behaving unpredictably when no signal
-is present.
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Keypad`
 
 Schematic Diagram
 -----------------
@@ -56,11 +37,19 @@ Experimental Procedures
 
 **Step 2:** Open the code file.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/2.1.8/
 
 **Step 3:** Compile the code.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -68,12 +57,20 @@ Experimental Procedures
 
 **Step 4:** Run.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     sudo ./a.out
 
 After the code runs, the values of pressed buttons on keypad (button
 Value) will be printed on the screen.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -203,7 +200,7 @@ Value) will be printed on the screen.
     unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
     unsigned char colPins[COLS] = {12, 3, 2, 0};
 
-Declare each key of the matrix keyboard to the array keys[] and define
+Declare each key of the matrix keyboard to the array ``keys[]`` and define
 the pins on each row and column.
 
 .. code-block:: c
@@ -221,12 +218,12 @@ the pins on each row and column.
 This is the part of the main function that reads and prints the button
 value.
 
-The function keyRead() will read the state of every button.
+The function ``keyRead()`` will read the state of every button.
 
-KeyCompare() and keyCopy() are used to judge whether the state of a
+``KeyCompare()`` and ``keyCopy()`` are used to judge whether the state of a
 button has changed (that is, a button has been pressed or released).
 
-keyPrint() will print the button value of the button whose current level
+``keyPrint()`` will print the button value of the button whose current level
 is high level (the button is pressed).
 
 .. code-block:: c
@@ -252,15 +249,15 @@ is high level (the button is pressed).
 This function assigns a high level to each row in turn, and when the key
 in the column is pressed, the column in which the key is located gets a
 high level. After the two-layer loop judgment, the key state compilation
-will generate an array (reasult[]).
+will generate an array (``reasult[]``).
 
 When pressing button 3:
 
 .. image:: media/image187.png
 
 
-RowPin [0] writes in the high level, and colPin[2] gets the high level.
-ColPin [0], colPin[1], colPin[3] get the low level.
+``RowPin [0]`` writes in the high level, and colPin[2] gets the high level.
+``ColPin [0]``, colPin[1], colPin[3] get the low level.
 
 This gives us 0,0,1,0. When rowPin[1], rowPin[2] and rowPin[3] are
 written in high level, colPin[0]~colPin[4] will get low level.

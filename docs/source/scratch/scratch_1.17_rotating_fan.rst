@@ -11,6 +11,12 @@ Required Components
 
 .. image:: media/1.17_list.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Power Supply Module`
+* :ref:`L293D`
+* :ref:`DC Motor`
+
 Build the Circuit
 ---------------------
 

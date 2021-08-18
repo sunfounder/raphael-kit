@@ -10,6 +10,12 @@ Required Components
 
 .. image:: media/1.13_list.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Buzzer`
+* :ref:`Transistor`
+
 Build the Circuit
 ---------------------
 

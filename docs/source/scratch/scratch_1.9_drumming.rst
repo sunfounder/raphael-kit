@@ -10,6 +10,11 @@ Required Components
 
 .. image:: media/1.9_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Touch Switch Module`
+* :ref:`Audio Module and Speaker`
+
 Build the Circuit
 ---------------------
 

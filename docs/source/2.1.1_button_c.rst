@@ -4,7 +4,7 @@
 Introduction
 -----------------
 
-In this lesson, we will learn how to turn on or off the LED by using a
+In this project, we will learn how to turn on or off the LED by using a
 button.
 
 Components
@@ -13,32 +13,11 @@ Components
 .. image:: media/list_2.1.1_Button.png
 
 
-Principle
--------------
-
-**Button**
-
-
-Button is a common component used to control electronic devices. It is
-usually used as switch to connect or break circuits. Although buttons
-come in a variety of sizes and shapes, the one used here is a 6mm
-mini-button as shown in the following pictures.
-
-Two pins on the left are connected, and the one on the right is similar
-to the left, which is shown below:
-
-.. image:: media/image148.png
-
-
-The symbol shown as below is usually used to represent a button in
-circuits.
-
-
-.. image:: media/image301.png
-
-
-When the button is pressed, the 4 pins are connected, thus closing the
-circuit.
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Button`
 
 Schematic Diagram
 ---------------------
@@ -69,6 +48,10 @@ Experimental Procedures
 
 **Step 2**: Open the code file.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/2.1.1/
@@ -78,11 +61,19 @@ Experimental Procedures
 
 **Step 3**: Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 2.1.1_Button.c -lwiringPi
 
 **Step 4**: Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -90,6 +81,10 @@ Experimental Procedures
 
 After the code runs, press the button, the LED lights up; otherwise,
 turns off.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
@@ -130,26 +125,26 @@ turns off.
 
 **Code Explanation**
 
-.. code-block:: 
+.. code-block:: c
 
     #define LedPin      0
 
 Pin GPIO17 in the T_Extension Board is equal to the GPIO0 in the
 wiringPi.
 
-.. code-block:: 
+.. code-block:: c
 
     #define ButtonPin   1
 
 ButtonPin is connected to GPIO1.
 
-.. code-block:: 
+.. code-block:: c
 
     pinMode(LedPin, OUTPUT);
 
 Set LedPin as output to assign value to it.
 
-.. code-block:: 
+.. code-block:: c
 
     pinMode(ButtonPin, INPUT);
 

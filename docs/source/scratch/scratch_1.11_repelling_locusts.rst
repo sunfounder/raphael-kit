@@ -13,6 +13,10 @@ Required Components
 
 .. image:: media/1.11_component.png
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Obstacle Avoidance Module`
+
 Build the Circuit
 ----------------------
 

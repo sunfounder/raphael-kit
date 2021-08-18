@@ -16,6 +16,15 @@ Components
 .. image:: media/list_Welcome.png
     :align: center
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`PIR Motion Sensor Module`
+* :ref:`Servo`
+* :ref:`Buzzer`
+* :ref:`Transistor`
+
 Schematic Diagram
 -------------------
 
@@ -41,17 +50,29 @@ Experimental Procedures
 
 **Step 2:** Change directory.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     cd /home/pi/raphael-kit/c/3.1.2/
 
 **Step 3:** Compile.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block:: 
 
     gcc 3.1.2_Welcome.c -lwiringPi
 
 **Step 4:** Run.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block:: 
 
@@ -62,6 +83,10 @@ door will automatically open (simulated by the servo), turn on the
 indicator and play the doorbell music. After the doorbell music plays,
 the system will automatically close the door and turn off the indicator
 light, waiting for the next time someone passes by.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code Explanation**
 

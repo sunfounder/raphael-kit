@@ -13,18 +13,39 @@ Here is the Email: cs@sunfounder.com.
 
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
 
     component_list
     introduction
     preparation
     gpio_extension_board
     download_the_code
-    for_c_user
-    for_python_user
+
+.. toctree::
+    :maxdepth: 3
+
+    play_with_c
+
+.. toctree::
+    :maxdepth: 3
+
+    play_with_python
+
+.. toctree::
+    :maxdepth: 3
+
     processing/play_with_processing
-    scratch/for_scratch_user
-    appendix
+
+.. toctree::
+    :maxdepth: 3
+    
+    scratch/play_with_scratch
+
+.. toctree::
+    :maxdepth: 2
+
+    appendix/appendix
+    faq
 
 
 

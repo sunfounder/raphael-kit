@@ -9,11 +9,16 @@ In this project, we will draw a dot on Processing, which blinks synchronously wi
 
 **Wiring**
 
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+
 .. image:: img/image49.png
 
 **Sketch**
 
-.. code-block:: arduino
+.. code-block:: Arduino
 
     import processing.io.*;
     int ledPin = 17; 

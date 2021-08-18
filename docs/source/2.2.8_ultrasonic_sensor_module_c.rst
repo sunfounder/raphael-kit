@@ -13,49 +13,9 @@ Components
 
 .. image:: media/list_2.2.5.png
 
-
-Principle
----------
-
-**Ultrasonic**
-
-Ultrasonic ranging module provides 2cm - 400cm non-contact measurement
-function, and the ranging accuracy can reach to 3mm. It can ensure that
-the signal is stable within 5m, and the signal is gradually weakened
-after 5m, till the 7m position disappears.
-
-The module includes ultrasonic transmitters, receiver and control
-circuit. The basic principles are as follows:
-
-(1)Use an IO flip-flop to process a high level signal of at least 10us.
-
-(2)The module automatically sends eight 40khz and detects if there is a
-pulse signal return.
-
-(3)If the signal returns, passing the high level, the high output IO
-duration is the time from the transmission of the ultrasonic wave to the
-return of it. Here, test distance = (high time x sound speed (340 m / s)
-/ 2.
-
-.. image:: media/image217.png
-
-
-.. image:: media/image328.png
-
-
-The timing diagram is shown below. You only need to supply a short 10us
-pulse for the trigger input to start the ranging, and then the module
-will send out an 8 cycle burst of ultrasound at 40 kHz and raise its
-echo. You can calculate the range through the time interval between
-sending trigger signal and receiving echo signal.
-
-Formula: us / 58 = centimeters or us / 148 =inch; or: the range = high
-level time \* velocity (340M/S) / 2; you are suggested to use
-measurement cycle over 60ms in order to prevent signal collisions of
-trigger signal and the echo signal.
-
-.. image:: media/image218.png
-
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Ultrasonic Module`
 
 Schematic Diagram
 -----------------
@@ -72,17 +32,29 @@ Experimental Procedures
 
 **Step 2:** Go to the folder of the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     cd /home/pi/raphael-kit/c/2.2.8/
 
 **Step 3:** Compile the code.
 
+.. raw:: html
+
+   <run></run>
+
 .. code-block::
 
     gcc 2.2.8_Ultrasonic.c -lwiringPi
 
 **Step 4:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
 
 .. code-block::
 
@@ -91,6 +63,10 @@ Experimental Procedures
 With the code run, the ultrasonic sensor module detects the distance
 between the obstacle ahead and the module itself, then the distance
 value will be printed on the screen.
+
+.. note::
+
+    If it does not work after running, please refer to :ref:`C code is not working?`
 
 **Code**
 
