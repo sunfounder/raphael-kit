@@ -32,3 +32,9 @@ displayed on the 7-segment display, while HEX Code corresponds to
 hexadecimal number.
 
 .. image:: img/common_anode.png
+
+**Example**
+
+* :ref:`**1.1.5 4-Digit 7-Segment Display**` (C Project)
+* :ref:`1.1.5 4-Digit 7-Segment Display` (Python Project)
+

@@ -25,7 +25,7 @@ Pins of 74HC595 and their functions:
 
 **Example**
 
-* :ref:`1.1.4 7-segment Display` (C Project)
+* :ref:`**1.1.4 7-segment Display**` (C Project)
 * :ref:`1.1.5 4-Digit 7-Segment Display` (Python Project)
 
 

@@ -17,3 +17,8 @@ Then the host receives the answer signal and begins to receive 40-bit humiture d
 
 
 * `DHT11 Datasheet <https://components101.com/sites/default/files/component_datasheet/DHT11-Temperature-Sensor.pdf>`_
+
+**Example**
+
+* :ref:`**2.2.3 DHT-11**` (C Project)
+* :ref:`2.2.3 DHT-11` (Python Project)

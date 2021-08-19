@@ -32,3 +32,7 @@ level time \* velocity (340M/S) / 2; you are suggested to use
 measurement cycle over 60ms in order to prevent signal collisions of
 trigger signal and the echo signal.
 
+**Example**
+
+* :ref:`**2.2.8 Ultrasonic Sensor Module**` (C Project)
+* :ref:`2.2.8 Ultrasonic Sensor Module` (Python Project)

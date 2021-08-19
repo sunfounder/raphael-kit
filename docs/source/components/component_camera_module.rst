@@ -83,3 +83,8 @@ After the configuration is complete, it is recommended to reboot the Raspberry P
 .. code-block:: 
 
    sudo reboot
+   
+**Example**
+
+* :ref:`3.1.1 Photograph Module` (Python Project)
+* :ref:`1.10 Drumming in the Air` (Scratch Project)

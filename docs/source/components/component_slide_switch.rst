@@ -20,3 +20,7 @@ The circuit symbol of the slide switch is shown as below. The pin2 in the figure
 
 **Example**
 
+* :ref:`**2.1.4 Slide Switch**` (C Project)
+* :ref:`2.1.4 Slide Switch` (Python Project)
+* :ref:`1.15 Inflating the Balloon` (Scratch Project)
+

@@ -16,3 +16,8 @@ The joystick also has a digital input that is actuated when the joystick is pres
 .. image:: img/joystick318.png
     :align: center
     :width: 600
+	
+**Example**
+
+* :ref:`**2.1.9 Joystick**` (C Project)
+* :ref:`2.1.9 Joystick` (Python Project)

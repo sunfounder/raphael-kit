@@ -18,7 +18,9 @@ When a pulse is sent to a servo that is less than 1.5 ms, the servo rotates to a
     :width: 600
     :align: center
 
-
 **Example**
+
+* :ref:`**1.3.2 Servo**` (C Project)
+* :ref:`1.3.2 Servo` (Python Project)
 
 

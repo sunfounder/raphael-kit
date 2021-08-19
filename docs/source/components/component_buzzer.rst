@@ -21,6 +21,11 @@ You can check the pins of the buzzer, the longer one is the anode and the shorte
 
 `Buzzer - Wikipedia <https://en.wikipedia.org/wiki/Buzzer>`_
 
-Example
--------------------
+**Example**
+
+* :ref:`**1.2.1 Active Buzzer**` (C Project)
+* :ref:`**1.2.2 Passive Buzzer**` (C Project)
+* :ref:`1.2.1 Active Buzzer` (Python Project)
+* :ref:`1.2.2 Passive Buzzer` (Python Project)
+* :ref:`1.14 123 Wooden Man` (Scratch Project)
 

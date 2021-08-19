@@ -47,3 +47,8 @@ after the MSB-first data stream.
 .. image:: img/image176.png
 
 * `ADC0831 series Datasheet <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
+
+**Example**
+
+* :ref:`**2.1.7 Potentiometer**` (C Project)
+* :ref:`2.1.7 Potentiometer` (Python Project)

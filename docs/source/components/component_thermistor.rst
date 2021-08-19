@@ -37,5 +37,7 @@ Convert this formula TK=1/(ln(RT/RN)/B+1/TN) to get Kelvin temperature that minu
 
 This relation is an empirical formula. It is accurate only when the temperature and resistance are within the effective range.
 
-Example
--------------------
+**Example**
+
+* :ref:`**2.2.2 Thermistor**` (C Project)
+* :ref:`2.2.2 Thermistor` (Python Project)

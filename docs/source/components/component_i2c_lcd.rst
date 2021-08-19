@@ -24,7 +24,7 @@ Taking the default address of 0x27 as an example, the device address can be modi
 .. image:: img/i2c_address.jpg
     :width: 600
 
+**Example**
 
-
-Example
--------------------
+* :ref:`**1.1.7 I2C LCD1602**` (C Project)
+* :ref:`1.1.7 I2C LCD1602` (Python Project)

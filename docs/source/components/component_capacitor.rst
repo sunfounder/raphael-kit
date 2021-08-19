@@ -23,5 +23,9 @@ There are 103 or 104 label on the ceramic capacitors, which represent the capaci
 
     1F=10^3mF=10^6uF=10^9nF=10^12pF
 
+**Example**
 
+* :ref:`**2.1.2 Micro Switch**` (C Project)
+* :ref:`2.1.4 Slide Switch` (Python Project)
+* :ref:`1.8 Service Bell` (scratch Project)
 

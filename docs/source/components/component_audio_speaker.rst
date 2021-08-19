@@ -60,3 +60,7 @@ If your speaker have no sound, it may be because the Raspberry Pi has selected t
 
 If you feel that the volume of the speakers is too low, you can :ref:`Adjust Volume`.
 
+**Example**
+
+* :ref:`3.1.3 Audio Module` (Python Project)
+* :ref:`1.8 Service Bell` (Scratch Project)

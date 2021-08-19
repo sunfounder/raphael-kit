@@ -13,3 +13,9 @@ If the light beam between the emitter and receiver is interrupted by an obstacle
     The A0 pin on this module is empty and there is no circuit.
 
 .. image:: img/speed_sensor2.png
+
+**Example**
+
+* :ref:`**2.2.6 Speed Sensor Module**` (C Project)
+* :ref:`2.2.6 Speed Sensor Module` (Python Project)
+* :ref:`1.7 Piggy Bank` (Scratch Project)

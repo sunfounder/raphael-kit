@@ -14,3 +14,9 @@ The principle is very simple. When the switch is tilted in a certain angle, the 
     :width: 600
 
 * `SW520D Tilt Switch Datasheet <https://www.tme.com/Document/f1e6cedd8cb7feeb250b353b6213ec6c/SW-520D.pdf>`_
+
+**Example**
+
+* :ref:`**2.1.5 Tilt Switch**` (C Project)
+* :ref:`2.1.5 Tilt Switch` (Python Project)
+* :ref:`1.3 Tumbler` (Scratch Project)

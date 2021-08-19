@@ -85,3 +85,8 @@ The X axis, for example, the Accelerometer X axis raw data is 16384 and
 ranges + / - 250°/ s:
 
 **Angular velocity along the X axis = (16384 / 65536 \* 500)°/s** **=125°/s**
+
+**Example**
+
+* :ref:`**2.2.9 MPU6050 Module**` (C Project)
+* :ref:`2.2.9 MPU6050 Module` (Python Project)
