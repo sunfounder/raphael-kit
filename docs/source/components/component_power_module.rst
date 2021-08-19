@@ -9,7 +9,19 @@ You can just plug it in the breadboard to supply power. It provides a voltage of
     :width: 500
     :align: center
 
-Here is the detailed introduction for the Power Supply Module: `Power Supply Module <https://components101.com/modules/5v-mb102-breadboard-power-supply-module>`_.
+**Features and specifications**
+
+* Input voltage: 6.5 - 12V
+* Two Independent Channel
+* Output voltage: 5V, 3.3V (adjustable via jumpers. 0V, 3.3V, and 5V configuration)
+* Output current: Maximum output current 700mA
+* Onboard berg male header for GND, 5V, 3.3V output
+* ON-OFF Switch available.
+* USB (Type-A) input available.
+* DC Barrel Jack input available.
+* Onboard power LED
+* Dimension: 53mm x 33mm (L x W)
+
 
 **Example**
 
