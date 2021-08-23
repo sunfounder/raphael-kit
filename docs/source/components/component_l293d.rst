@@ -22,5 +22,7 @@ When pin EN is High level, if A is High, Y outputs high level; if A is Low, Y ou
 **Example**
 
 * :ref:`**1.3.1 Motor**` (C Project)
+* :ref:`**3.1.4 Smart Fan**` (C Project)
 * :ref:`1.3.1 Motor` (Python Project)
+* :ref:`4.1.10 Smart Fan` (Python Project)
 * :ref:`1.17 Rotating fan` (Scratch Project)

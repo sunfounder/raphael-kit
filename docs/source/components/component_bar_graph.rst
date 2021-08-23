@@ -19,5 +19,7 @@ The following is the internal schematic diagram of LED Bar Graph. Generally spea
 **Example**
 
 * :ref:`**1.1.3 LED Bar Graph**` (C Project)
+* :ref:`**3.1.5 Battery Indicator**` (C Project)
 * :ref:`1.1.3 LED Bar Graph` (Python Project)
+* :ref:`4.1.11 Battery Indicator` (Python Project)
 * :ref:`1.12 Water Lamp` (Scratch Project)

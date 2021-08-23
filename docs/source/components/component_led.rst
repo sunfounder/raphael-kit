@@ -24,5 +24,7 @@ Here is the detailed introduction for the LED: `LED - Wikipedia <https://en.wiki
 **Example**
 
 * :ref:`**1.1.1 Blinking LED**` (C Project)
+* :ref:`**3.1.6 Traffic Light**` (C Project)
 * :ref:`1.1.1 Blinking LED` (Python Project)
+* :ref:`4.1.12 Traffic Light` (Python Project)
 * :ref:`1.1 Wand` (Scratch Project)

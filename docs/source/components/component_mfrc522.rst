@@ -46,3 +46,4 @@ board space (smaller size), and reduce cost.
 
 * :ref:`**2.2.10 MFRC522 RFID Module**` (C Project)
 * :ref:`2.2.10 MFRC522 RFID Module` (Python Project)
+* :ref:`4.1.19 AttendanceSystem` (Python Project)

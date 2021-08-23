@@ -26,5 +26,7 @@ You can just plug it in the breadboard to supply power. It provides a voltage of
 **Example**
 
 * :ref:`**1.3.1 Motor**` (C Project)
+* :ref:`**3.1.4 Smart Fan**` (C Project)
 * :ref:`1.3.1 Motor` (Python Project)
+* :ref:`4.1.10 Smart Fan` (Python Project)
 * :ref:`1.17 Rotating fan` (Scratch Project)
