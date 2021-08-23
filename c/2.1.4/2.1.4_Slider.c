@@ -38,6 +38,7 @@ int main(void)
 			digitalWrite(led1, HIGH);
 			printf(".....LED2 on\n");
 		}
+		delay(500);
 	}
 
 	return 0;

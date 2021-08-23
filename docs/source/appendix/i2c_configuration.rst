@@ -58,12 +58,20 @@ Then the following codes will appear (the number may be different), if it does n
 **Step 4:** Check the address of the I2C device.
 
 
+.. raw:: html
+
+    <run></run>
+  
 .. code-block:: 
 
     i2cdetect -y 1      # For Raspberry Pi 2 and higher version
 
 
 
+.. raw:: html
+
+   <run></run>
+ 
 .. code-block:: 
 
     i2cdetect -y 0      # For Raspberry Pi 1

@@ -160,7 +160,7 @@ In the function on():
 * ``pthread_t tLed``: Declare a thread ``tLed``.
 * ``pthread_create(&tLed,NULL,ledWork,NULL)``: Create the thread and its prototype is as follows:
 
-.. code-block:: c
+.. code-block:: 
 
     int pthread_create(pthread_t *restrict tidp,const pthread_attr_t*restrict_attr,void*（*start_rtn)(void*),void *restrict arg);
 

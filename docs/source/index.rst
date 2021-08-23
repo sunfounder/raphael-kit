@@ -24,6 +24,7 @@ Here is the Email: cs@sunfounder.com.
     preparation
     gpio_extension_board
     download_the_code
+    
 
 .. toctree::
     :maxdepth: 3
@@ -50,6 +51,7 @@ Here is the Email: cs@sunfounder.com.
 
     appendix/appendix
     faq
+    thank-learning
 
 
 

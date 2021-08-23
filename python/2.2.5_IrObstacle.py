@@ -12,7 +12,7 @@ def loop():
 	while True:
 		if (0 == GPIO.input(ObstaclePin)):
 			print ("Detected Barrier!")
-            time.sleep(1)
+			time.sleep(1)
 			
 
 def destroy():
