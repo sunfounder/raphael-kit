@@ -23,3 +23,8 @@ encoder rotates.
 .. image:: img/image206.png
     :width: 600
     :align: center
+	
+**Example**
+
+* :ref:`**2.1.6 Rotary Encoder Module**` (C Project)
+* :ref:`2.1.6 Rotary Encoder Module` (Python Project)

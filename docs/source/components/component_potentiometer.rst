@@ -36,6 +36,9 @@ The functions of the potentiometer in the circuit are as follows:
 
 If you want to know more about potentiometer, refer to: `Potentiometer - Wikipedia <https://en.wikipedia.org/wiki/Potentiometer.>`_
 
-Example
+**Example**
+
+* :ref:`**2.1.7 Potentiometer**` (C Project)
+* :ref:`2.1.7 Potentiometer` (Python Project)
 
 

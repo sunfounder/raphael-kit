@@ -16,3 +16,10 @@ The joystick also has a digital input that is actuated when the joystick is pres
 .. image:: img/joystick318.png
     :align: center
     :width: 600
+	
+**Example**
+
+* :ref:`**2.1.9 Joystick**` (C Project)
+* :ref:`**3.1.7 Overheat Monitor**` (C Project)
+* :ref:`2.1.9 Joystick` (Python Project)
+* :ref:`4.1.13 Overheat Monitor` (Python Project)

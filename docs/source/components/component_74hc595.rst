@@ -25,8 +25,16 @@ Pins of 74HC595 and their functions:
 
 **Example**
 
-* :ref:`1.1.4 7-segment Display` (C Project)
+* :ref:`**1.1.4 7-segment Display**` (C Project)
+* :ref:`**1.1.5 4-Digit 7-Segment Display**` (C Project)
+* :ref:`**3.1.1 Counting Device**` (C Project)
+* :ref:`**3.1.6 Traffic Light**` (C Project)
+* :ref:`3.1.12_10second_c` (C Project)
+* :ref:`1.1.4 7-segment Display` (Python Project)
 * :ref:`1.1.5 4-Digit 7-Segment Display` (Python Project)
+* :ref:`4.1.7 Counting Device` (Pyhton Project)
+* :ref:`4.1.12 Traffic Light` (Python Project)
+* :ref:`4.1.18_10second_python` (Pyhton Project)
 
 
 

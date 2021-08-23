@@ -12,3 +12,11 @@ This configuration is suitable for polling by a microcontroller, which can be pr
 During each pulse, it checks the remaining four vertical wires in sequence, to determine which one, if any, is carrying a signal. 
 Pullup or pulldown resistors should be added to the input wires to prevent the inputs of the microcontroller from behaving unpredictably when no signal is present.
 
+**Example**
+
+* :ref:`**2.1.8 Keypad**` (C Project)
+* :ref:`**3.1.8 Password Lock**` (C Project)
+* :ref:`**3.1.11 GAME– Guess Number**` (C Project)
+* :ref:`2.1.8 Keypad` (Python Project)
+* :ref:`4.1.14 Password Lock` (Python Project)
+* :ref:`4.1.17 GAME– Guess Number` (Python Project)

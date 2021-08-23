@@ -41,3 +41,9 @@ differences. It communicates with the host machine via the serial manner
 which needs less wiring. You can choose between SPI, I2C and serial UART
 mode (similar to RS232), which helps reduce the connection, save PCB
 board space (smaller size), and reduce cost.
+
+**Example**
+
+* :ref:`**2.2.10 MFRC522 RFID Module**` (C Project)
+* :ref:`2.2.10 MFRC522 RFID Module` (Python Project)
+* :ref:`4.1.19 AttendanceSystem` (Python Project)

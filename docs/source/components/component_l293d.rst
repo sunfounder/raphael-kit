@@ -18,3 +18,11 @@ When pin EN is High level, if A is High, Y outputs high level; if A is Low, Y ou
 .. image:: img/l293d334.png
 
 * `L293D Datasheet <https://www.ti.com/lit/ds/symlink/l293d.pdf?ts=1627004062301&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FL293D>`_
+
+**Example**
+
+* :ref:`**1.3.1 Motor**` (C Project)
+* :ref:`**3.1.4 Smart Fan**` (C Project)
+* :ref:`1.3.1 Motor` (Python Project)
+* :ref:`4.1.10 Smart Fan` (Python Project)
+* :ref:`1.17 Rotating fan` (Scratch Project)

@@ -47,3 +47,18 @@ after the MSB-first data stream.
 .. image:: img/image176.png
 
 * `ADC0831 series Datasheet <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
+
+**Example**
+
+* :ref:`**2.1.7 Potentiometer**` (C Project)
+* :ref:`**2.2.1 Photoresistor**` (C Project)
+* :ref:`**2.2.2 Thermistor**` (C Project)
+* :ref:`**3.1.4 Smart Fan**` (C Project)
+* :ref:`**3.1.5 Battery Indicator**` (C Project)
+* :ref:`**3.1.7 Overheat Monitor**` (C Project)
+* :ref:`2.1.7 Potentiometer` (Python Project)
+* :ref:`2.2.1 Photoresistor` (Pyhton Project)
+* :ref:`2.2.2 Thermistor` (Pyhton Project)
+* :ref:`4.1.10 Smart Fan` (Pyhton Project)
+* :ref:`4.1.11 Battery Indicator` (Pyhton Project)
+* :ref:`4.1.13 Overheat Monitor` (Pyhton Project)

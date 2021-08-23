@@ -83,3 +83,13 @@ After the configuration is complete, it is recommended to reboot the Raspberry P
 .. code-block:: 
 
    sudo reboot
+   
+**Example**
+
+* :ref:`3.1.1 Photograph Module` (Python Project)
+* :ref:`3.1.2 Video Module` (Python Project)
+* :ref:`4.1.1 Camera` (Python Project)
+* :ref:`4.1.4 Automatic Capture Camera` (Python Project)
+* :ref:`4.1.5 Intelligent Visual Doorbell` (Python Project)
+* :ref:`1.10 Drumming in the Air` (Scratch Project)
+* :ref:`1.18 Eating Banana Game` (Scratch Project)

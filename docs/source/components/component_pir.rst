@@ -34,6 +34,10 @@ Choosing different modes by using the jumper cap.
 
 * **L**: Non-repeatable trigger mode, outputs high level when it senses the human body. After the delay, the output will change from high level into low level automatically. 
 
-Example
--------------------
+**Example**
+
+* :ref:`**2.2.7 PIR**` (C Project)
+* :ref:`2.2.7 PIR` (Python Project)
+* :ref:`4.1.4 Automatic Capture Camera` (Python Project)
+* :ref:`1.5 Wake up the Owl` (Scratch Project)
 

@@ -24,7 +24,15 @@ Taking the default address of 0x27 as an example, the device address can be modi
 .. image:: img/i2c_address.jpg
     :width: 600
 
+**Example**
 
-
-Example
--------------------
+* :ref:`**1.1.7 I2C LCD1602**` (C Project)
+* :ref:`**3.1.3 Reversing Alarm**` (C Project)
+* :ref:`**3.1.7 Overheat Monitor**` (C Project)
+* :ref:`**3.1.8 Password Lock**` (C Project)
+* :ref:`3.1.11_c` (C Project)
+* :ref:`1.1.7 I2C LCD1602` (Python Project)
+* :ref:`4.1.9 Reversing Alarm` (Python Project)
+* :ref:`4.1.13 Overheat Monitor` (Python Project)
+* :ref:`4.1.14 Password Lock` (Python Project)
+* :ref:`4.1.17_python` (Python Project)

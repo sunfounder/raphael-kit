@@ -34,3 +34,9 @@ When the plunger is depressed or switched.
 * The normally open circuit is closed.
 
 .. image:: img/micro_switch1.png
+
+**Example**
+
+* :ref:`**2.1.2 Micro Switch**` (C Project)
+* :ref:`2.1.2 Micro Switch` (Python Project)
+* :ref:`1.8 Service Bell` (Scratch Project)

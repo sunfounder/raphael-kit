@@ -1,3 +1,5 @@
+.. _4-digit:
+
 4-Digit 7-Segment Display
 ==================================
 
@@ -32,3 +34,16 @@ displayed on the 7-segment display, while HEX Code corresponds to
 hexadecimal number.
 
 .. image:: img/common_anode.png
+
+**Example**
+
+* :ref:`**1.1.5 4-Digit 7-Segment Display**` (C Project)
+* :ref:`**3.1.1 Counting Device**` (C Project)
+* :ref:`**3.1.6 Traffic Light**` (C Project)
+* :ref:`3.1.12_10second_c` (C Project)
+* :ref:`1.1.5 4-Digit 7-Segment Display` (Python Project)
+* :ref:`4.1.3 Speech Clock` (Pyhton Project)
+* :ref:`4.1.7 Counting Device` (Pyhton Project)
+* :ref:`4.1.12 Traffic Light` (Pyhton Project)
+* :ref:`4.1.18_10second_python` (Pyhton Project)
+

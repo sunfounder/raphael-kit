@@ -31,5 +31,10 @@ Put the label side facing us and the pins facing down. The pins from left to rig
 * `S8050 Transistor Datasheet <https://datasheet4u.com/datasheet-pdf/WeitronTechnology/S8050/pdf.php?id=576670>`_
 * `S8550 Transistor Datasheet <https://www.mouser.com/datasheet/2/149/SS8550-118608.pdf>`_
 
-Example
--------------------
+**Example**
+
+* :ref:`**1.2.1 Active Buzzer**` (C Project S8550)
+* :ref:`**1.3.3 Relay**` (C Project S8050)
+* :ref:`1.2.2 Passive Buzzer` (Python Project S8550)
+* :ref:`1.3.3 Relay` (Python Project S8050)
+* :ref:`1.14 123 Wooden Man` (Scratch Project S8550)

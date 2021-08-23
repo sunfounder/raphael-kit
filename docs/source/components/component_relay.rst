@@ -50,3 +50,7 @@ pulled up to the normally closed contacts under the force of the spring.
 In this way, the switching on and off of the relay can control the state
 of a load circuit.
 
+**Example**
+
+* :ref:`**1.3.3 Relay**` (C Project)
+* :ref:`1.3.3 Relay` (Python Project)

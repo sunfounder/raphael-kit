@@ -26,4 +26,9 @@ A convenient 4-wire serial interface connects to all common µPs. Individual dig
 
 * `MAX7219 Datasheet <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`_
 
+**Example**
 
+* :ref:`**1.1.6 LED Dot Matrix Module**` (C Project)
+* :ref:`3.1.12_10second_c` (C Project)
+* :ref:`1.1.6 LED Dot Matrix` (Python Project)
+* :ref:`4.1.19 AttendanceSystem` (Python Project)
