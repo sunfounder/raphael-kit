@@ -27,7 +27,7 @@ It has two internal metal reeds, sealed in a glass tube, which is filled with in
 
 **Example**
 
-* :ref:`**2.2.4 Reed Switch Module**` (C Project)
+* :ref:`2.2.4 Reed Switch Module` (C Project)
 * :ref:`2.2.4 Reed Switch Module` (Python Project)
 * :ref:`4.1.6 Magnetic Induction Alarm System` (Python Project)
 * :ref:`1.6 Vanishing Vase` (Scratch Project)

@@ -1,4 +1,4 @@
-**3.1.4 Smart Fan**
+3.1.4 Smart Fan
 ======================
 
 Introduction
@@ -258,7 +258,7 @@ Code Explanation
     }
 
 Temperture() works by converting thermistor values read by ADC0834 into
-temperature values. Refer to :ref:`2.2.2_thermistor_c` for more details.
+temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
 
 .. code-block:: c
 

@@ -36,7 +36,7 @@ Choosing different modes by using the jumper cap.
 
 **Example**
 
-* :ref:`**2.2.7 PIR**` (C Project)
+* :ref:`2.2.7 PIR` (C Project)
 * :ref:`2.2.7 PIR` (Python Project)
 * :ref:`4.1.4 Automatic Capture Camera` (Python Project)
 * :ref:`1.5 Wake up the Owl` (Scratch Project)

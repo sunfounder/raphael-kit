@@ -20,8 +20,8 @@ When a pulse is sent to a servo that is less than 1.5 ms, the servo rotates to a
 
 **Example**
 
-* :ref:`**1.3.2 Servo**` (C Project)
-* :ref:`**3.1.2 Welcome**` (C Project)
+* :ref:`1.3.2 Servo` (C Project)
+* :ref:`3.1.2 Welcome` (C Project)
 * :ref:`1.3.2 Servo` (Python Project)
 * :ref:`4.1.8 Welcome` (Python Project)
 

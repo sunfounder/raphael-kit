@@ -19,6 +19,6 @@ Here is the electronic symbol of photoresistor.
 
 **Example**
 
-* :ref:`**2.2.1 Photoresistor**` (C Project)
+* :ref:`2.2.1 Photoresistor` (C Project)
 * :ref:`2.2.1 Photoresistor` (Python Project)
 

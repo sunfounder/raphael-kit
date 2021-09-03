@@ -26,5 +26,5 @@ encoder rotates.
 	
 **Example**
 
-* :ref:`**2.1.6 Rotary Encoder Module**` (C Project)
+* :ref:`2.1.6 Rotary Encoder Module` (C Project)
 * :ref:`2.1.6 Rotary Encoder Module` (Python Project)

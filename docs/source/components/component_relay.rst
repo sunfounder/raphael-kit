@@ -52,5 +52,5 @@ of a load circuit.
 
 **Example**
 
-* :ref:`**1.3.3 Relay**` (C Project)
+* :ref:`1.3.3 Relay` (C Project)
 * :ref:`1.3.3 Relay` (Python Project)

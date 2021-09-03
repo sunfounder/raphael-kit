@@ -16,6 +16,6 @@ If the light beam between the emitter and receiver is interrupted by an obstacle
 
 **Example**
 
-* :ref:`**2.2.6 Speed Sensor Module**` (C Project)
+* :ref:`2.2.6 Speed Sensor Module` (C Project)
 * :ref:`2.2.6 Speed Sensor Module` (Python Project)
 * :ref:`1.7 Piggy Bank` (Scratch Project)

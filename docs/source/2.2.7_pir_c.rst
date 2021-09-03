@@ -1,4 +1,4 @@
-**2.2.7 PIR**
+2.2.7 PIR
 ===============
 
 Introduction
@@ -128,7 +128,7 @@ need to try to adjust these two potentiometers.
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
 These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2_rgbled_c` for more details.
+to :ref:`1.1.2 RGB LED` for more details.
 
 .. code-block:: c
 
