@@ -18,13 +18,14 @@ class Keypad():
         GPIO.setup(self.colsPins, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
     def read(self):
-        pressed_keys = []
+        pressed_keys = ''
         for i, row in enumerate(self.rowsPins):
             GPIO.output(row, GPIO.HIGH)
             for j, col in enumerate(self.colsPins):
                 index = i * len(self.colsPins) + j
                 if (GPIO.input(col) == 1):
-                    pressed_keys.append(self.keys[index])
+                    #pressed_keys.append(self.keys[index])
+                    pressed_keys = self.keys[index]
             GPIO.output(row, GPIO.LOW)
         return pressed_keys
 
@@ -72,6 +73,8 @@ def loop():
             LCD1602.write(15-keyIndex,1, pressed_keys)
             testword[keyIndex]=pressed_keys
             keyIndex+=1
+            #print(testword)
+
             if (keyIndex is LENS):
                 if (check() is 0):
                     LCD1602.clear()
