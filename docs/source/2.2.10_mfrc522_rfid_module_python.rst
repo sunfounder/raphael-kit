@@ -53,7 +53,7 @@ set SPI, skip this step.)
 
     cd /home/pi/raphael-kit/python
 
-**Step 5:** After running `2.2.10_write.py`. You need to write a message first, press `Enter` to confirm, and finally put the card on the MFRC522 RFID module to finish writing.
+**Step 5:** After running ``2.2.10_write.py``. You need to write a message first, press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
 
 .. raw:: html
 
@@ -62,6 +62,8 @@ set SPI, skip this step.)
 .. code-block::
 
     sudo python3 2.2.10_write.py
+
+.. image:: media/write_card.png
 
 **Step 6:** Now run ``2.2.10_read.py`` to read the information of the tag or card you have written.
 

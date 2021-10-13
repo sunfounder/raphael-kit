@@ -34,6 +34,14 @@ Adjust Volume
 
 If you feel that the volume of the speakers is too low, you can adjust it by entering the following command.
 
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    alsamixer
+
 .. image:: media/faq1.png
 
 The default page is shown below.
