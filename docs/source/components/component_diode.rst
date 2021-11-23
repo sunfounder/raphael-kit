@@ -38,5 +38,5 @@ This diode is a semiconductor device that has a very high resistance up to the c
 
 **Example**
 
-* :ref:`1.3.3 Relay` (C Project)
-* :ref:`1.3.3 Relay` (Python Project)
+* :ref:`1.3.3_c` (C Project)
+* :ref:`1.3.3_py` (Python Project)

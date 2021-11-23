@@ -23,10 +23,10 @@ You can check the pins of the buzzer, the longer one is the anode and the shorte
 
 **Example**
 
-* :ref:`1.2.1 Active Buzzer` (C Project)
-* :ref:`1.2.2 Passive Buzzer` (C Project)
-* :ref:`1.2.1 Active Buzzer` (Python Project)
-* :ref:`1.2.2 Passive Buzzer` (Python Project)
+* :ref:`1.2.1_c` (C Project)
+* :ref:`1.2.2_c` (C Project)
+* :ref:`1.2.1_py` (Python Project)
+* :ref:`1.2.2_py` (Python Project)
 * :ref:`1.13 Doorbell` (Scratch Project)
 * :ref:`1.14 123 Wooden Man` (Scratch Project)
 

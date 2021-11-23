@@ -50,15 +50,15 @@ after the MSB-first data stream.
 
 **Example**
 
-* :ref:`2.1.7 Potentiometer` (C Project)
-* :ref:`2.2.1 Photoresistor` (C Project)
-* :ref:`2.2.2 Thermistor` (C Project)
+* :ref:`2.1.7_c` (C Project)
+* :ref:`2.2.1_c` (C Project)
+* :ref:`2.2.2_c` (C Project)
 * :ref:`3.1.4 Smart Fan` (C Project)
 * :ref:`3.1.5 Battery Indicator` (C Project)
 * :ref:`3.1.7 Overheat Monitor` (C Project)
-* :ref:`2.1.7 Potentiometer` (Python Project)
-* :ref:`2.2.1 Photoresistor` (Pyhton Project)
-* :ref:`2.2.2 Thermistor` (Pyhton Project)
+* :ref:`2.1.7_py` (Python Project)
+* :ref:`2.2.1_py` (Pyhton Project)
+* :ref:`2.2.2_py` (Pyhton Project)
 * :ref:`4.1.10 Smart Fan` (Pyhton Project)
 * :ref:`4.1.11 Battery Indicator` (Pyhton Project)
 * :ref:`4.1.13 Overheat Monitor` (Pyhton Project)

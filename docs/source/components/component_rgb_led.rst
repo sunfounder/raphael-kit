@@ -23,6 +23,6 @@ An RGB LED has 4 pins: the longest one is GND; the others are Red, Green and Blu
 
 **Example**
 
-* :ref:`1.1.2 RGB LED` (C Project)
-* :ref:`1.1.2 RGB LED` (Python Project)
+* :ref:`1.1.2_c` (C Project)
+* :ref:`1.1.2_py` (Python Project)
 * :ref:`1.2 Colorful Balls` (Scratch Project)

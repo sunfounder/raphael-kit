@@ -22,5 +22,5 @@ To help you get to know how 7-segment displays(Common Cathode) display Numbers, 
 
 **Example**
 
-* :ref:`1.1.4 7-segment Display` (C Project)
-* :ref:`1.1.4 7-segment Display` (Python Project)
+* :ref:`1.1.4_c` (C Project)
+* :ref:`1.1.4_py` (Python Project)

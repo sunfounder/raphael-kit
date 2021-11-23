@@ -19,8 +19,8 @@ The detection distance can be adjusted by potentiometer, the effective distance 
 
 **Example**
 
-* :ref:`2.2.5 IR Obstacle Avoidance Module` (C Project)
-* :ref:`2.2.5 IR Obstacle Avoidance Sensor` (Python Project)
+* :ref:`2.2.5_c` (C Project)
+* :ref:`2.2.5_py` (Python Project)
 * :ref:`1.11 Repelling locusts` (Scratch Project)
 
 

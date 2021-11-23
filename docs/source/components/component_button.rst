@@ -22,10 +22,10 @@ Since the pin 1 is connected to pin 2, and pin 3 to pin 4, when the button is pr
 
 **Example**
 
-* :ref:`2.1.1 Button` (C Project)
+* :ref:`2.1.1_c` (C Project)
 * :ref:`3.1.4 Smart Fan` (C Project)
 * :ref:`3.1.13 GAME– NotNot` (C Project)
-* :ref:`2.1.1 Button` (Python Project)
+* :ref:`2.1.1_py` (Python Project)
 * :ref:`4.1.2 Music Player` (Python Project)
 * :ref:`4.1.10 Smart Fan` (Python Project)
 * :ref:`1.4 Hare` (Scratch Project)

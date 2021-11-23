@@ -38,7 +38,7 @@ If you want to know more about potentiometer, refer to: `Potentiometer - Wikiped
 
 **Example**
 
-* :ref:`2.1.7 Potentiometer` (C Project)
-* :ref:`2.1.7 Potentiometer` (Python Project)
+* :ref:`2.1.7_c` (C Project)
+* :ref:`2.1.7_py` (Python Project)
 
 

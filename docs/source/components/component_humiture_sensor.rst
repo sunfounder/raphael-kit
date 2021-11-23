@@ -20,5 +20,5 @@ Then the host receives the answer signal and begins to receive 40-bit humiture d
 
 **Example**
 
-* :ref:`2.2.3 DHT-11` (C Project)
-* :ref:`2.2.3 DHT-11` (Python Project)
+* :ref:`2.2.3_c` (C Project)
+* :ref:`2.2.3_py` (Python Project)

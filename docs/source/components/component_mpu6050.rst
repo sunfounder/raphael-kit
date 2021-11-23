@@ -88,5 +88,5 @@ ranges + / - 250°/ s:
 
 **Example**
 
-* :ref:`2.2.9 MPU6050 Module` (C Project)
-* :ref:`2.2.9 MPU6050 Module` (Python Project)
+* :ref:`2.2.9_c` (C Project)
+* :ref:`2.2.9_py` (Python Project)

@@ -17,6 +17,6 @@ The touch detector circuit has an oscillator whose frequency is dependent on cap
 
 **Example**
 
-* :ref:`2.1.3 Touch Switch Module` (C Project)
-* :ref:`2.1.3 Touch Switch Module` (Python Project)
+* :ref:`2.1.3_c` (C Project)
+* :ref:`2.1.3_py` (Python Project)
 * :ref:`1.9 Drumming` (Scratch Project)
