@@ -191,7 +191,8 @@ The initial value of RCLK is set to LOW, where it is set to HIGH, which is to ge
 
 Finally, use the function ``hc595_shift()`` to convert the fields in segCode and display them through the digital tube.   
 
-**Phenomenon Picture**
+Phenomenon Picture
+---------------------------
 
 .. image:: img/image74.jpeg
 
