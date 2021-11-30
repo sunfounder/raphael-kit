@@ -43,6 +43,11 @@ Here is the Email: cs@sunfounder.com.
 
 .. toctree::
     :maxdepth: 3
+
+    nodejs/play_with_nodejs
+
+.. toctree::
+    :maxdepth: 3
     
     scratch/play_with_scratch
 
