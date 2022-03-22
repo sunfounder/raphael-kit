@@ -1,0 +1,104 @@
+2.2.6 Speed Sensor Module
+=========================
+
+Introduction
+------------------
+
+In this project, we will learn the use of the speed sensor module. A Speed sensor module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+
+
+Components
+----------------
+
+.. image:: ../media/2.2.6component.png
+    :width: 700
+    :align: center
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`LED`
+* :ref:`Speed Sensor Module`
+
+Schematic Diagram
+-----------------------
+
+.. image:: ../media/2.2.6circuit.png
+    :width: 400
+    :align: center
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../media/2.2.6fritzing.png
+    :width: 700
+    :align: center
+
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+    
+    cd /home/pi/raphael-kit/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node speed_sensor_module.js
+
+After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
+Remove the obstacle and the green LED will light up again.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    const Rpin = new Gpio(22, { mode: Gpio.OUTPUT });
+    const Gpin = new Gpio(27, { mode: Gpio.OUTPUT });
+
+    const speedPin = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+    speedPin.on('interrupt', (level) => {
+        if (level) {
+            console.log("Light was blocked");
+        }
+        Rpin.digitalWrite(level);
+        Gpin.digitalWrite(!level);
+    });
+
+    process.on('SIGINT', function () {
+        Rpin.digitalWrite(0);
+        Gpin.digitalWrite(0);
+        process.exit();
+    });
+
+**Code Explanation**
+
+The code of this example is almost the same as :ref:`2.1.5 Tilt Switch`, so no need to repeat it.
+
+
+
+**Phenomenon Picture**
+-----------------------
+
+.. image:: ../media/2.2.6photo_interrrupter.JPG
+   :width: 500
+   :align: center
+

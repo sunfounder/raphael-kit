@@ -1,0 +1,150 @@
+2.1.6 Rotary Encoder Module
+===========================
+
+**Introduction**
+------------------
+
+In this project, you will learn about Rotary Encoder. A rotary encoder is
+an electronic switch with a set of regular pulses in strictly timing
+sequence. When used with IC, it can achieve increment, decrement, page
+turning and other operations such as mouse scrolling, menu selection,
+and so on.
+
+**Components**
+------------------
+
+.. image:: ../media/Part_two_25.png
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Rotary Encoder Module`
+
+**Schematic Diagram**
+------------------------
+
+.. image:: ../media/image349.png
+   :width: 3.42083in
+   :height: 1.81181in
+   :align: center
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../media/2.1.6_fritzing.png
+   :align: center
+
+In this example, we can connect the Rotary Encoder pin directly to the
+Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
+Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
+17.
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node rotary_encoder_module.js
+
+You will see the count on the shell. 
+When you turn the rotary encoder clockwise, the count is increased; 
+when turn it counterclockwise, the count is decreased. 
+If you press the switch on the rotary encoder, the readings will return to zero.
+
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    const clkPin = new Gpio(17, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,
+      edge: Gpio.RISING_EDGE
+    });
+    const dtPin = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,    
+    });
+    const swPin = new Gpio(27, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_UP,
+      edge: Gpio.FALLING_EDGE
+    });
+
+    var globalCounter = 0;
+
+    clkPin.on('interrupt',()=>{
+      if(dtPin.digitalRead()==1){
+          globalCounter--;
+      }
+      else{
+          globalCounter++;
+      }
+      console.log(`globalCounter = ${globalCounter}`);
+    });
+
+    swPin.on('interrupt', () => {
+      globalCounter = 0;
+      console.log(`globalCounter = ${globalCounter}`);
+    });
+
+
+
+**Code Explanation**
+
+
+.. code-block:: js
+
+    var globalCounter = 0;
+
+    clkPin.on('interrupt',()=>{
+      if(dtPin.digitalRead()==1){
+          globalCounter--;
+      }
+      else{
+          globalCounter++;
+      }
+      console.log(`globalCounter = ${globalCounter}`);
+    });
+
+When dtPin goes from low to high, if clkPin is high, 
+the count decreases, 
+otherwise the count increases.
+
+
+.. code-block:: js
+
+    swPin.on('interrupt', () => {
+      globalCounter = 0;
+      console.log(`globalCounter = ${globalCounter}`);
+    });
+
+
+The swPin will output low when the shaft is pressed. 
+Let the globalCounter go to zero at this point
+
+
+**Phenomenon Picture**
+-------------------------
+
+.. image:: ../media/2.1.6rotary_ecoder.JPG
+   :width: 7.71736in
+   :height: 5.07569in
+   :align: center
+   
