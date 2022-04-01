@@ -14,36 +14,71 @@ Processing is based on Java, but because program elements in Processing are fair
 
 This text is from the tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_.
 
+
 Install the Processing
 ------------------------------
 
-.. note::
+.. note:: 
 
-    When programming with Processing, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+    Before you can use Processing, you need to access the Raspberry Pi desktop remotely (:ref:`Remote Desktop`) or connect a display for the Raspberry Pi.
+
+.. Run the following command in Terminal to install Processing.
+
+.. .. raw:: html
+
+..    <run></run>
+
+.. .. code-block:: 
+
+..     curl https://processing.org/download/install-arm.sh | sudo sh
+
+.. Once the installation is complete, type ``processing`` to open it.
 
 
-Run the following command in Terminal to install Processing.
+.. .. image:: img/processing1.png
 
-.. raw:: html
 
-   <run></run>
+.. For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
+
+Welcome to Machining! First visit https://processing.org/download and select the ``Linux ARM32-bit`` version
+
+You will then download to a ``.tar.gz`` file that should be familiar to most Linux users. 
+Download the file to your home directory, then open a terminal window and type:
 
 .. code-block:: 
 
-    curl https://processing.org/download/install-arm.sh | sudo sh
+    tar xvfz processing-xxxx.tgz
+
+(Replace xxxx with the rest of the file's name, which is the version number.) This will create a folder named processing-2.0 or something similar. Then change to that directory:
+
+.. code-block:: 
+
+    cd processing-xxxx
+
+and run it:
+
+.. code-block:: 
+
+    ./processing
+
+With any luck, the main Processing window will now be visible.
+
+.. image:: img/processing2.png
 
 
-If you think the above method is too slow, you can also download the image directly from the `Processing for Pi <https://pi.processing.org/download/>`_ page.
+Install Hardware I/O
+--------------------
 
-.. image:: img/processing.png
+In order to use the Raspberry Pi's GPIO, you need to manually add a `Hardware I/O library <https://processing.org/reference/libraries/io/index.html>`_.
 
-Once the installation is complete, type ``processing`` to open it.
+Click ``Sketch`` -> ``Import Library`` -> ``Add Library...`` 
 
+.. image:: img/import-00.png
 
-.. image:: img/processing1.png
+Find Hardware I/O , select it, and then click Install. When done, a checkmark icon will appear.
 
+.. image:: img/import-02.png
 
-For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
 
 Projects
 ---------------
