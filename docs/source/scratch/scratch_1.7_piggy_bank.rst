@@ -6,12 +6,12 @@ In this project we will use Speed sensor module, Raspberry Pi and Scratch to mak
 Place a piece of paper in the middle of the Speed sensor module and you will see a coin fall into the Piggy Bank on the stage.
 
 
-.. image:: media/1.7_header.png
+.. image:: img/1.7_header.png
 
 Required Components
 -----------------------
 
-.. image:: media/1.7_component.png
+.. image:: img/1.7_component.png
 
 * :ref:`GPIO Extension Board`
 * :ref:`Breadboard`
@@ -20,7 +20,7 @@ Required Components
 Build the Circuit
 ---------------------
 
-.. image:: media/1.7_fritzing.png
+.. image:: img/1.7_fritzing.png
 
 Load the Code and See What Happens
 ---------------------------------------
@@ -34,16 +34,16 @@ Tips on Sprite
 
 Select Sprite1 and click **Costumes** in the top left corner; upload **piggybank1.png**, **piggybank2.png** and **piggybank3.png** from the ``home/pi/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **piggybank**.
 
-.. image:: media/1.7_photoInterrupter1.png
+.. image:: img/1.7_photoInterrupter1.png
 
 Tips on Codes
 --------------
 
-.. image:: media/1.7_code2.png
+.. image:: img/1.7_code2.png
 
 When pin17 is low (no coins are put in), switch the sprite's costume to **piggybank1**.
 
-.. image:: media/1.7_code3.png
+.. image:: img/1.7_code3.png
 
 When pin17 is high (a coin is put in), switch the sprite's costume to **piggybank2**, and after 0.5s switch to **piggybank3**, so that we can see a coin falling into the Piggy Bank on the stage.
 

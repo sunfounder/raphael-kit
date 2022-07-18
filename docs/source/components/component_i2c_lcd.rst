@@ -17,7 +17,7 @@ Therefore, LCD1602 with an I2C module is developed to solve the problem. The I2C
 
 Backlight can be enabled by jumper cap, unplugg the jumper cap to disable the backlight. The blue potentiometer on the back is used to adjust the contrast (the clarity of the displayed text), which is increased in the clockwise direction and decreased in the counterclockwise direction.
 
-The default address is basically 0x27, in a few cases it may be 0x3F, which can be known by test (:ref:`I2C Configuration`).
+The default address is basically 0x27, in a few cases it may be 0x3F, which can be known by test (:ref:`i2c_config`).
 
 Taking the default address of 0x27 as an example, the device address can be modified by shorting the A0/A1/A2 pads; in the default state, A0/A1/A2 is 1, and if the pad is shorted, A0/A1/A2 is 0.
 

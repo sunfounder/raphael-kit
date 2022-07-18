@@ -9,7 +9,7 @@ In this project, you will learn about LED Matrix Module. LED Matrix Module uses 
 Components
 ------------------
 
-.. image:: ../media/list_dot.png
+.. image:: ../img/list_dot.png
 
 * :ref:`GPIO Extension Board`
 * :ref:`Breadboard`
@@ -25,14 +25,14 @@ SPICE0       pin 24   10       CE0
 SPISCLK      Pin 23   14       SCLK
 ============ ======== ======== ====
 
-.. image:: ../media/schematic_dot.png
+.. image:: ../img/schematic_dot.png
 
 Experimental Procedures
 ----------------------------
 
 **Step 1:** Build the circuit. 
 
-.. image:: ../media/1.1.6fritzing.png
+.. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
@@ -250,10 +250,10 @@ The variable ``i`` is used to write the 8 data in the ``DISP[]`` glyph into the 
 For example, when j=1, i=1, the data of ``DISP[1][1]`` will be written here, that is, ``0x18``,
 This will cause the second row of the LED Maxtrix to display the image ``00011000``.
 
-.. image:: ../media/led_not.png
+.. image:: ../img/led_not.png
     :width: 400
 
 Phenomenon Picture
 -----------------------
 
-.. image:: ../media/1.1.6led_dot_matrix.JPG
+.. image:: ../img/1.1.6led_dot_matrix.JPG

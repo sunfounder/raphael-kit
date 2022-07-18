@@ -10,19 +10,19 @@ Today, we will use the camera to make a eating banana game. In the stipulated ti
 
 To play the game against a white background, click on the green flag to start. Move colored objects in front of the camera to control the Monkey sprite.
 
-.. image:: media/1.18_header.png
+.. image:: img/1.18_header.png
 
 Required Components
 -----------------------
 
-.. image:: media/1.18_photo1.png
+.. image:: img/1.18_photo1.png
 
 * :ref:`Camera Module`
 
 Build the Circuit
 --------------------
 
-.. image:: media/1.10_camera.png
+.. image:: img/1.10_camera.png
 
 .. note::
 
@@ -42,19 +42,19 @@ First, we delete the original sprite, then add Monkey sprite and Bananas sprite,
 
 Let Bananas appear randomly.
 
-.. image:: media/1.18_code1.png
+.. image:: img/1.18_code1.png
 
 Bananas disappears after encountering the Monkey, which means it was eaten by the Monkey and reappears randomly.
 
-.. image:: media/1.18_code2.png
+.. image:: img/1.18_code2.png
 
 Let the Monkey appear in the center of the stage and initialize the camera data (transparency is set to 20).
 
-.. image:: media/1.18_code3.png
+.. image:: img/1.18_code3.png
 
 If the camera detects an object moving, let the Monkey move towards the object.
 
-.. image:: media/1.18_code4.png
+.. image:: img/1.18_code4.png
 
 Now, click on the green flag at the top of the stage area to start the game.
 

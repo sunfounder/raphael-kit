@@ -11,7 +11,7 @@ They are used to prevent doors from closing if something or someone is in the wa
 Components
 ----------
 
-.. image:: ../media/2.1.2component.png
+.. image:: ../img/2.1.2component.png
 
 * :ref:`GPIO Extension Board`
 * :ref:`Breadboard`
@@ -27,10 +27,10 @@ Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
 pin GPIO22 and GPIO27 respectively. Then when you press and release the 
 move arm of the Micro Switch, you can see the two LEDs light up alternately.
 
-.. image:: ../media/image305.png
+.. image:: ../img/image305.png
 
 
-.. image:: ../media/micro_Schematic.png
+.. image:: ../img/micro_Schematic.png
 
 
 Experimental Procedures
@@ -38,7 +38,7 @@ Experimental Procedures
 
 **Step 1:** Build the circuit.
 
-.. image:: ../media/2.1.4fritzing.png
+.. image:: ../img/2.1.4fritzing.png
 
 **Step 2**: Go to the folder of the code.
 
@@ -116,4 +116,4 @@ Write the same level to led1 and the opposite level to led2.
 Phenomenon Picture
 ------------------
 
-.. image:: ../media/2.1.2micro_switch.JPG
+.. image:: ../img/2.1.2micro_switch.JPG

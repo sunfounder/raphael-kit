@@ -15,17 +15,17 @@ not, please continue).
 
 **3 Interfacing options**
 
-.. image:: media/image282.png
+.. image:: img/image282.png
    :align: center
 
 **P4 SPI**
 
-.. image:: media/image285.png
+.. image:: img/image285.png
    :align: center
 
 **<YES>, then click <OK> and <Finish>.**
 
-.. image:: media/image286.png
+.. image:: img/image286.png
    :align: center 
 
 **Step 2:** Check that the spi modules are loaded and active.

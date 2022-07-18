@@ -9,7 +9,7 @@ Extension Board to avoid GPIO damage caused by frequent plugging in or
 out. This is our 40-pin GPIO Extension Board and GPIO cable for
 Raspberry Pi model B+, 2 model B and 3, 4 model B.
 
-.. image:: media/image32.png
+.. image:: img/image32.png
     :align: center
 
 **Pin Number**
@@ -28,4 +28,4 @@ The following table shows us the naming methods of WiringPi, Board and the intri
 
     3）In Scratch 3  and Processing, the applied naming method is **BCM**.
 
-.. image:: media/gpio_board.png
+.. image:: img/gpio_board.png

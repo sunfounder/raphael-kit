@@ -1,0 +1,143 @@
+.. _1.2.1_py:
+
+1.2.1 Active Buzzer
+===================
+
+Introduction
+------------
+
+In this project, we will learn how to drive an active buzzer to beep with
+a PNP transistor.
+
+Components
+----------
+
+.. image:: ../img/list_1.2.1.png
+
+* :ref:`GPIO Extension Board`
+* :ref:`Breadboard`
+* :ref:`Resistor`
+* :ref:`Buzzer`
+* :ref:`Transistor`
+
+Schematic Diagram
+-----------------
+
+In this experiment, an active buzzer, a PNP transistor and a 1k resistor
+are used between the base of the transistor and GPIO to protect the
+transistor. When the GPIO17 of Raspberry Pi output is supplied with low
+level (0V) by programming, the transistor will conduct because of
+current saturation and the buzzer will make sounds. But when high level
+is supplied to the IO of Raspberry Pi, the transistor will be cut off
+and the buzzer will not make sounds.
+
+.. image:: ../img/image332.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+
+.. image:: ../img/image104.png
+
+**Step 2**: Open the code file.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python
+
+**Step 3**: Run.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.1_ActiveBuzzer.py
+
+The code run, the buzzer beeps.
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    # Set GPIO17 as buzzer pin
+    BeepPin = 17
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.HIGH)
+
+    def main():
+        while True:
+            # Buzzer on (Beep)
+            print ('Buzzer On')
+            GPIO.output(BeepPin, GPIO.LOW)
+            time.sleep(0.1)
+            # Buzzer off
+            print ('Buzzer Off')
+            GPIO.output(BeepPin, GPIO.HIGH)
+            time.sleep(0.1)
+
+    def destroy():
+        # Turn off buzzer
+        GPIO.output(BeepPin, GPIO.HIGH)
+        # Release resource
+        GPIO.cleanup()   
+
+    # If run this script directly, do:
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        # When 'Ctrl+C' is pressed, the program
+        # destroy() will be  executed.
+        except KeyboardInterrupt:
+            destroy()
+
+**Code Explanation**
+
+.. code-block:: python
+
+    GPIO.output(BeepPin, GPIO.LOW)
+
+Set the buzzer pin as low level to make the buzzer beep.  
+
+.. code-block:: python
+
+    time.sleep(0.1)
+
+Wait for 0.1 second. Change the switching frequency by 
+changing this parameter. 
+
+.. note::
+    Not the sound frequency. Active Buzzer cannot change sound frequency.
+
+.. code-block:: python
+
+    GPIO.output(BeepPin, GPIO.HIGH)
+
+Close the buzzer. 
+
+Phenomenon Picture
+------------------
+
+.. image:: ../img/image105.jpeg

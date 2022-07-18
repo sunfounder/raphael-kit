@@ -1,0 +1,85 @@
+3.1.2 Video Module
+=====================
+
+Introduction
+-----------------
+
+In addition to taking photos, the Camera Module can also be used to record videos.
+
+Components
+----------------
+
+.. image:: ../img/photo1.png
+  :width: 800
+
+For more information on how to connect the camera module and its configuration, please refer to :ref:`Camera Module`.
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+
+
+**Step 2:** Open a Terminal and get into the folder of the code.
+
+
+.. code-block::
+
+    cd /home/pi/raphael-kit/python/
+
+**Step 3:** Run.
+
+
+.. code-block::
+
+    sudo python3 3.1.2_VideoModule.py
+
+Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``/home/pi`` directory.
+
+.. note::
+
+    You can also open ``3.1.2_PhotographModule.py`` in the ``/home/pi/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+
+If you want to send photos to your PC, please refer to :ref:`Filezilla Software`.
+
+
+**Code**
+
+.. code-block:: python
+
+    from picamera import PiCamera
+
+    camera = PiCamera()
+    
+    def setup():
+        camera.start_preview(alpha=200)
+    
+    def main():
+        camera.start_recording('/home/pi/my_video.h264')
+        while True:
+            pass    
+    
+    def destroy():
+        camera.stop_recording()
+        camera.stop_preview()
+    
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Code Explanation**
+
+.. code-block:: python
+
+    start_recording(output, format=None, resize=None, splitter_port=1, **options)
+
+Start recording video from the camera, storing it in ``output``.
+
+.. code-block:: python
+
+    camera.stop_recording()
+
+End the recording.

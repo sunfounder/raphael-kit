@@ -35,4 +35,4 @@ Clone the repository from GitHub.
 
 Download the source code from github: https://github.com/sunfounder/raphael-kit
 
-.. image:: media/image33.png
+.. image:: img/image33.png
