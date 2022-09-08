@@ -110,7 +110,7 @@ The green LED will light up when the code is run. If a magnet is placed close to
             GPIO.output(Rpin, 0)
             GPIO.output(Gpin, 1)
 
-    def detect():
+    def detect(self):
         Led(GPIO.input(ReedPin))
 
     def loop():
@@ -163,7 +163,7 @@ Define a function ``Led()`` to turn the two LEDs on or off. If ``x=0``, the red 
 
 .. code-block:: python
 
-    def detect(chn):
+    def detect(self):
     Led(GPIO.input(ReedPin))
 
 In this callback function, the value of the reed switch is used to control the 2 LEDs.
