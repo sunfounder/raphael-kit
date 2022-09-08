@@ -20,7 +20,7 @@ def Led(x):
 		GPIO.output(Rpin, 0)
 		GPIO.output(Gpin, 1)
 
-def detect():
+def detect(self):
 	Led(GPIO.input(ReedPin))
 
 def loop():
