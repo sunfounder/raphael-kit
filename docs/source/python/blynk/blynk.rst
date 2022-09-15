@@ -1,4 +1,4 @@
-Blynk
+IoT
 ======================
 
 In this article, we'll show you how to connect your Raspberry Pi to the **Blynk** platform to make some interesting IoT projects.
