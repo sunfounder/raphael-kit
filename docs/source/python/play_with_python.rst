@@ -16,7 +16,9 @@ Play with Python
 .. toctree::
     :maxdepth: 3
 
-    iot/iot_python
+    blynk/blynk
+    
+.. iot/iot_python
 
 .. toctree::
     :maxdepth: 2
