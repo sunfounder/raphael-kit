@@ -115,4 +115,5 @@ class DHT11(object):
 		if the_bytes[4] != checksum:
 			#print ("Data not good, skip")
 			return False
-		return [the_bytes[0], the_bytes[2]]
+		return the_bytes
+		#return [the_bytes[0], the_bytes[2]]
