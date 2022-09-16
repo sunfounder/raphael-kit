@@ -43,16 +43,17 @@ The steps are as follows.
     gpio_extension_board
     download_the_code
 
+.. toctree::
+    :maxdepth: 3
+
+    python/play_with_python
 
 .. toctree::
     :maxdepth: 3
 
     c/play_with_c
 
-.. toctree::
-    :maxdepth: 3
 
-    python/play_with_python
 
 .. toctree::
     :maxdepth: 3
