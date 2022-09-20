@@ -12,7 +12,7 @@ LCD1602 is a character type liquid crystal display, which can display 32
 Components
 -------------------
 
-.. image:: img/list_i2c_lcd.png
+.. image:: ../img/list_i2c_lcd.png
 
 * :ref:`GPIO Extension Board`
 * :ref:`Breadboard`
@@ -27,7 +27,7 @@ SDA1         Pin 3
 SCL1         Pin 5
 ============ ========
 
-.. image:: img/schematic_i2c_lcd.png
+.. image:: ../img/schematic_i2c_lcd.png
 
 
 Experimental Procedures
@@ -35,7 +35,7 @@ Experimental Procedures
 
 **Step 1:** Build the circuit.
 
-.. image:: img/image96.png
+.. image:: ../img/image96.png
 
 
 **Step 2**: Setup I2C (see :ref:`I2C Configuration`. If you have set I2C, skip this step.)
@@ -116,4 +116,4 @@ In this function, ``data[]`` is the character to be printed on the LCD, and the 
 Phenomenon Picture
 --------------------------
 
-.. image:: img/image97.jpeg
+.. image:: ../img/image97.jpeg
