@@ -19,7 +19,7 @@
 import sphinx_rtd_theme
 
 project = 'SunFounder raphael-kit'
-copyright = '2021, SunFounder'
+copyright = '2022, SunFounder'
 author = 'www.sunfounder.com'
 
 
