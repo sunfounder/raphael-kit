@@ -40,30 +40,42 @@ Install the Processing
 
 .. For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
 
-Welcome to Machining! First visit https://processing.org/download and select the ``Linux ARM32-bit`` version
+#. First visit https://processing.org/download and select the ``Linux（Raspberry Pi 32-bit）`` or ``Linux（Raspberry Pi 64-bit）`` version. Using this method, you can always download the latest version.
 
-You will then download to a ``.tar.gz`` file that should be familiar to most Linux users. 
-Download the file to your home directory, then open a terminal window and type:
+    Or you can use the following command to download the Processing from the Terminal.
 
-.. code-block:: 
+    .. code-block:: 
 
-    tar xvfz processing-xxxx.tgz
+        git clone https://github.com/processing/processing4/releases/download/processing-1286-4.0.1/processing-4.0.1-linux-arm32.tgz
 
-(Replace xxxx with the rest of the file's name, which is the version number.) This will create a folder named processing-2.0 or something similar. Then change to that directory:
+    .. code-block:: 
 
-.. code-block:: 
+        git clone https://github.com/processing/processing4/releases/download/processing-1286-4.0.1/processing-4.0.1-linux-arm64.tgz
 
-    cd processing-xxxx
 
-and run it:
+#. A ``.tar.gz`` file will be downloaded, which most Linux users should be familiar with. Extract the file you just downloaded from its location.
+
+    .. code-block:: 
+
+        tar xvfz processing-xxxx.tgz
+
+    Replace xxxx with the rest of the file's name, which is the version number. This will create a folder named processing-xxxx or something similar. 
+
+#. Then go to that directory:
+
+    .. code-block:: 
+
+        cd processing-xxxx
+
+#. And run it:
 
 .. code-block:: 
 
     ./processing
 
-With any luck, the main Processing window will now be visible.
+#. With any luck, the main Processing window will now be visible.
 
-.. image:: img/processing2.png
+    .. image:: img/processing2.png
 
 
 Install Hardware I/O
