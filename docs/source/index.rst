@@ -2,16 +2,23 @@
 SunFounder Raphael Kit for Raspberry Pi
 ===========================================
 
+Are you new to Raspberry Pi? Are you looking for a clear path to learn Raspberry Pi? 
+Would you like to do more than just copy and paste code, but actually write your own? 
+If you answered yes to any of the above questions, then the Raspberry Pi Education Starter Kit is right for you.
 
-Raphael Kit is a Raspberry Pi learning kit that contains almost all kinds of components, especially a camera module and a speaker, which can realize functions such as monitoring system, voice broadcast and smart doorbell.
+The kit is unlike other kits that only have a variety of projects. It is a true educational kit designed for beginners, whether you are programming beginners, electronics hobbyists, 
+experienced electrical engineers, students or educators, this kit will meet all your needs.
 
-It contains a lot of commonly used input and output components and modules, as well as some basic electronic components (such as resistors and capacitors), which can provide powerful help for your programming learning.
+In addition to including all the hardware and software needed for beginners, the kit also offers an online tutorial with 161 interesting projects in 5 programming languages and 45 free video courses (30 hours) on getting started to mastery.
 
-Contains 4 programming languages: Python, C, Scratch and Java (processing). There are a total of 133 projects for you to choose from.
+This video course is designed for beginners who do not have any programming experience. This course covers the installation and configuration of Raspberry Pi systems, the use of GPIO pins, the use of sensors, and the explanation of circuit and programming knowledge. To ensure beginners can keep up with the pace of the course and learn and master the Raspberry Pi, the course is lively and interesting, step by step.
 
-If you want to learn another projects which we don’t have, please feel free to send Email and we will update to our online tutorials as soon as possible, any suggestions are welcomed.
+After learning the video tutorials, you can practice the use of each component from our online tutorials and play with some more advanced and interesting projects.
 
-Here is the Email: cs@sunfounder.com.
+Alternatively, you can use the components to build projects in other languages, such as C, Scratch, Java (processing) and JavaScript (Nodejs).
+
+If you have any questions, please send an email to cs@sunfounder.com and we will respond as soon as possible.
+
 
 **About the display language**
 
@@ -38,6 +45,7 @@ The steps are as follows.
 .. toctree::
     :maxdepth: 2
 
+    about_video_course
     component_list
     install_setup_os/preparation
     gpio_extension_board

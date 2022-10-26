@@ -1,3 +1,5 @@
+.. _install_wiringpi:
+
 Install and Check the WiringPi
 =======================================
 
