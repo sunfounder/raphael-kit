@@ -11,7 +11,9 @@ experienced electrical engineers, students or educators, this kit will meet all 
 
 In addition to including all the hardware and software needed for beginners, the kit also offers an online tutorial with 161 interesting projects in 5 programming languages and 45 free video courses (30 hours) on getting started to mastery.
 
-The `video course <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O> is designed for beginners who do not have any programming experience. This course covers the installation and configuration of Raspberry Pi systems, the use of GPIO pins, the use of sensors, and the explanation of circuit and programming knowledge. To ensure beginners can keep up with the pace of the course and learn and master the Raspberry Pi, the course is lively and interesting, step by step.
+
+This `video course <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ shows beginners how to set up the Raspberry Pi, use the GPIO pins and sensors, and learn the basics of circuits and programming. Each course has simple and interesting projects for beginners to practice and learn, all you need to do is to follow step by step and eventually you will be able to master the Raspberry Pi and make your own projects.
+
 
 After learning the video tutorials, you can practice the use of each component from our online tutorials and play with some more advanced and interesting projects.
 

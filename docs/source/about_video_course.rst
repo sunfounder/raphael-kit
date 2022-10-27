@@ -3,15 +3,13 @@ About Video Course
 
 .. image:: img/video_paul.png
 
-The kit also contains 45 free video lessons (30 hours) produced by SunFounder and Paul, a experienced programming educator.
+The kit also contains 45 free video lessons (30 hours) produced by SunFounder and Paul McWhorter. Paul is an experienced programming educator with 300,000 followers on YouTube and currently has 45 Raspberry Pi video lessons that continue to be updated weekly.
 
-Paul is an experienced programming educator with 300,000 followers on YouTube and currently has 45 Raspberry Pi video lessons that continue to be updated weekly.
-
-The video lessons are made for beginners who have no basic programming skills and use the Sunfounder Ultimate Raspberry Pi Kit - Raphael Kit.
+The video course is made for beginners who have no basic programming skills and use the Sunfounder Ultimate Raspberry Pi Kit - Raphael Kit.
 
 Here is the video link：https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O
 
-From the video, you will learn the following points：
+From the video, you can：
 
 * Master the installation, configuration and use of the Raspberry Pi system.
 * Understanding and using Raspberry Pi GPIO pins.
