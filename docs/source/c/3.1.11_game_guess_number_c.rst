@@ -90,8 +90,9 @@ After the program runs, there displays the initial page on the LCD:
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`C code is not working?`.
+    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
     * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
+    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
 
 .. code-block:: 
 
@@ -116,7 +117,7 @@ start.)
 The number range of ‘point’ is displayed on the second line. And you
 must type the number within the range. When you type a number, the range
 narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
+appear “You've got it!”
 
 **Code Explanation**
 

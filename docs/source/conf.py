@@ -17,9 +17,10 @@
 
 # -- Project information -----------------------------------------------------
 import sphinx_rtd_theme
+import time
 
-project = 'SunFounder raphael-kit'
-copyright = '2022, SunFounder'
+project = 'SunFounder Ulimate Raphael Kit for Raspberry Pi'
+copyright = f'{time.localtime().tm_year}, SunFounder'
 author = 'www.sunfounder.com'
 
 

@@ -86,7 +86,6 @@ The steps are as follows.
     :maxdepth: 2
 
     appendix/appendix
-    faq
     thank-learning
 
 
