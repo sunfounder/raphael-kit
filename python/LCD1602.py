@@ -2,6 +2,7 @@
 
 import time
 import smbus2 as smbus
+import subprocess
 
 BUS = smbus.SMBus(1)
 
@@ -48,12 +49,32 @@ def send_data(data):
 	buf &= 0xFB               # Make EN = 0
 	write_word(LCD_ADDR ,buf)
 
-def init(addr, bl):
-#	global BUS
-#	BUS = smbus.SMBus(1)
+def i2c_scan():
+    cmd = "i2cdetect -y 1 |awk \'NR>1 {$1=\"\";print}\'"
+    result = subprocess.check_output(cmd, shell=True).decode()
+    result = result.replace("\n", "").replace(" --", "")
+    i2c_list = result.split(' ')
+    return i2c_list
+
+def init(addr=None, bl=1):
 	global LCD_ADDR
 	global BLEN
-	LCD_ADDR = addr
+
+	i2c_list = i2c_scan()
+	print(f"i2c_list: {i2c_list}")
+
+	if addr is None:
+		if '27' in i2c_list:
+			LCD_ADDR = 0x27
+		elif '3f' in i2c_list:
+			LCD_ADDR = 0x3f
+		else:
+			raise IOError("I2C address 0x27 or 0x3f no found.")
+	else:
+		LCD_ADDR = addr
+		if str(hex(addr)).strip('0x') not in i2c_list:
+			raise IOError(f"I2C address {str(hex(addr))} or 0x3f no found.")
+		
 	BLEN = bl
 	try:
 		send_command(0x33) # Must initialize to 8-line mode at first
