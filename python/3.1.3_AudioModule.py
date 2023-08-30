@@ -1,9 +1,13 @@
 from pygame import mixer
+import os
+user = os.getlogin()
+user_home = os.path.expanduser(f'~{user}')
+
 
 mixer.init()
 
 def main():
-    mixer.music.load('/home/pi/raphael-kit/music/my_music.mp3')
+    mixer.music.load(f'{user_home}/raphael-kit/music/my_music.mp3')
     mixer.music.set_volume(0.7)
     mixer.music.play()
     while True:

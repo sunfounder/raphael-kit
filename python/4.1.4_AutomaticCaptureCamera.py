@@ -3,6 +3,10 @@
 from picamera import PiCamera
 import RPi.GPIO as GPIO
 import time
+import os
+user = os.getlogin()
+user_home = os.path.expanduser(f'~{user}')
+
 
 camera = PiCamera()
 
@@ -18,7 +22,7 @@ def main():
     while True:
         pirVal = GPIO.input(pirPin)
         if pirVal==GPIO.HIGH:
-            camera.capture('/home/pi/capture%s.jpg' % i)
+            camera.capture(f'{user_home}/capture%s.jpg' % i)
             print('The number is %s' % i)
             time.sleep(3)
             i = i + 1

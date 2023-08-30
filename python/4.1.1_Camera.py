@@ -3,6 +3,10 @@
 from picamera import PiCamera
 import RPi.GPIO as GPIO
 import time
+import os
+user = os.getlogin()
+user_home = os.path.expanduser(f'~{user}')
+
 
 camera = PiCamera()
 
@@ -31,7 +35,7 @@ def main():
                 time.sleep(0.1)
                 GPIO.output(LedPin, GPIO.HIGH)
                 time.sleep(0.1)
-            camera.capture('/home/pi/my_photo.jpg')
+            camera.capture(f'{user_home}/my_photo.jpg')
             print ('Take a photo!')          
             status = False
         else:

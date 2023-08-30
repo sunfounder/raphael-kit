@@ -3,6 +3,9 @@ from picamera import PiCamera
 from pygame import mixer
 import RPi.GPIO as GPIO
 import time
+import os
+user = os.getlogin()
+user_home = os.path.expanduser(f'~{user}')
 
 camera = PiCamera()
 
@@ -23,11 +26,11 @@ def main():
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
     while True:
         if status:
-            mixer.music.load('/home/pi/raphael-kit/music/doorbell.wav')
+            mixer.music.load(f'{user_home}/raphael-kit/music/doorbell.wav')
             mixer.music.set_volume(0.7)
             mixer.music.play()
             camera.start_preview(alpha=200)
-            camera.start_recording('/home/pi/visitor.h264')
+            camera.start_recording(f'{user_home}/visitor.h264')
             print ('Have a visitor')
             time.sleep(5)
             mixer.music.stop()

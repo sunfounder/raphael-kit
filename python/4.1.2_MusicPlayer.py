@@ -1,6 +1,10 @@
 from pygame import mixer
 import RPi.GPIO as GPIO
 import time
+import os
+user = os.getlogin()
+user_home = os.path.expanduser(f'~{user}')
+
 
 BtnPin1 = 18
 BtnPin2 = 17
@@ -41,7 +45,7 @@ def volUp(pin):
 def main():
     global volume, status
     global downPressed, upPressed, playPressed
-    mixer.music.load('/home/pi/raphael-kit/music/my_music.mp3')
+    mixer.music.load(f'{user_home}/raphael-kit/music/my_music.mp3')
     mixer.music.set_volume(volume)
     mixer.music.play()
     GPIO.add_event_detect(BtnPin1, GPIO.FALLING, callback=play)
