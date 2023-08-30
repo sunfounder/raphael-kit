@@ -39,6 +39,7 @@ This document is available in other languages as well. To switch the display lan
 .. toctree::
     :maxdepth: 2
 
+    About This Kit <self>
     about_video_course
     component_list
     install_setup_os/preparation
