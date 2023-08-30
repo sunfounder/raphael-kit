@@ -55,7 +55,7 @@ Experimental Procedures
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python/
+    cd ~/raphael-kit/python/
 
 **Step 5:** Run.
 
@@ -67,11 +67,11 @@ Experimental Procedures
 
     sudo python3 4.1.1_Camera.py
 
-After the code runs, press the button, the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the ``/home/pi`` directory.
+After the code runs, press the button, the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the ``~`` directory.
 
 .. note::
 
-    You can also open ``4.1.1_Camera.py`` in the ``/home/pi/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    You can also open ``4.1.1_Camera.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
 
 
 If you want to download the photo to your PC, please refer to :ref:`Filezilla Software`.
@@ -92,6 +92,10 @@ If you want to download the photo to your PC, please refer to :ref:`Filezilla So
 	from picamera import PiCamera
 	import RPi.GPIO as GPIO
 	import time
+    import os
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
+
 
 	camera = PiCamera()
 
@@ -120,7 +124,7 @@ If you want to download the photo to your PC, please refer to :ref:`Filezilla So
 					time.sleep(0.1)
 					GPIO.output(LedPin, GPIO.HIGH)
 					time.sleep(0.1)
-				camera.capture('/home/pi/my_photo.jpg')
+				camera.capture(f'{user_home}/my_photo.jpg')
 				print ('Take a photo!')          
 				status = False
 			else:
@@ -163,14 +167,14 @@ When ``takePhotos()`` is called, modify the ``status`` to ``True``.
             time.sleep(0.1)
             GPIO.output(LedPin, GPIO.HIGH)
             time.sleep(0.1)
-        camera.capture('/home/pi/my_photo.jpg')
+        camera.capture(f'{user_home}/my_photo.jpg')
         print ('Take a photo!')          
         status = False
     else:
         GPIO.output(LedPin, GPIO.HIGH)
     time.sleep(1)
 
-When ``status`` is ``True``, the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the ``/home/pi`` directory.
+When ``status`` is ``True``, the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the ``~`` directory.
 
 
 Phenomenon Picture

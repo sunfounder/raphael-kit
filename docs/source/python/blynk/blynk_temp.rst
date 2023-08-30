@@ -46,7 +46,7 @@ In this project, you can see the current temperature and the temperature change 
 
 .. code-block:: 
 
-    cd /home/pi/blynk-raspberrypi-python
+    cd ~/blynk-raspberrypi-python
     sudo nano blynk_temp.py
 
 2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.

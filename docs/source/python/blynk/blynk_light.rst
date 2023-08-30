@@ -43,7 +43,7 @@ In this project, we use Blynk's Silder to control the brightness of the LED, tur
 
 .. code-block:: 
 
-    cd /home/pi/blynk-raspberrypi-python
+    cd ~/blynk-raspberrypi-python
     sudo nano blynk_light.py
 
 2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.

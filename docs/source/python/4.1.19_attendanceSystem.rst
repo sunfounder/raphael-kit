@@ -54,7 +54,7 @@ Step 2: Run the ``2.2.10_write.py`` file to modify the content of the rfid card.
 
 .. code-block:: 
 
-    cd /home/pi/raphael-kit/python
+    cd ~/raphael-kit/python
     sudo python3 2.2.10_write.py
 
 Step 3: Enter the name (here we use ``John``as an example) and press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
@@ -69,7 +69,7 @@ Step 4: Get into the folder of code and run.
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python
+    cd ~/raphael-kit/python
     sudo python3 4.1.19_Attendance_Machine.py
 
 After starting the program, we put the RFID card close to the MFRC522 RFID Module, the Raspberry Pi will send out a voice to greet you and display it on the LED matrix.

@@ -40,7 +40,7 @@ Delete the previous Sprite1 sprite, then add the **Balloon1** sprite.
 
 A balloon explosion sound effect is used in this project, so let's see how it was added.
 
-Click the **Sound** option at the top, then click **Upload Sound** to upload ``boom.wav`` from the ``home/pi/raphael-kit/scratch/sound`` path to Scratch 3.
+Click the **Sound** option at the top, then click **Upload Sound** to upload ``boom.wav`` from the ``~/raphael-kit/scratch/sound`` path to Scratch 3.
 
 .. image:: img/1.15_slide2.png
 

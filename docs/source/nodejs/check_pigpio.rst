@@ -21,7 +21,7 @@ Check if the library is installed successfully, change the directory and enter n
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/nodejs
+    cd ~/raphael-kit/nodejs
     nodejs
 
 .. image:: img/pigpio1.png

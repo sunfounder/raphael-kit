@@ -38,7 +38,7 @@ When you approach the PIR sensor module, you will see the owl on the stage area 
 Tips on Sprite
 ----------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **owl1.png** and **owl2.png** from the ``home/pi/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **owl**.
+Select Sprite1 and click **Costumes** in the top left corner; upload **owl1.png** and **owl2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **owl**.
 
 .. image:: img/1.5_pir1.png
 

@@ -53,7 +53,7 @@ set SPI, skip this step.)
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python
+    cd ~/raphael-kit/python
 
 **Step 5:** After running ``2.2.10_write.py``. You need to write a message first, press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
 

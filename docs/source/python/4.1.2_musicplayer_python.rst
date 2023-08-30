@@ -59,7 +59,7 @@ After building the circuit according to the above diagram, then plug the audio c
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python/
+    cd ~/raphael-kit/python/
 
 **Step 3:** Run.
 
@@ -71,7 +71,7 @@ After building the circuit according to the above diagram, then plug the audio c
 
     python3 4.1.2_MusicPlayer.py
 
-After the code runs, Raspberry Pi will play the ``my_music.mp3`` file in the ``/home/pi/raphael-kit/music`` directory.
+After the code runs, Raspberry Pi will play the ``my_music.mp3`` file in the ``~/raphael-kit/music`` directory.
 
 * Button 1 pauses/play the music.
 * Button 2 decreases the volume.
@@ -93,6 +93,9 @@ If you want to upload other music files to Raspberry Pi, you can refer to :ref:`
     from pygame import mixer
     import RPi.GPIO as GPIO
     import time
+    import os
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
 
     BtnPin1 = 18
     BtnPin2 = 17
@@ -133,7 +136,7 @@ If you want to upload other music files to Raspberry Pi, you can refer to :ref:`
     def main():
         global volume, status
         global downPressed, upPressed, playPressed
-        mixer.music.load('/home/pi/raphael-kit/music/my_music.mp3')
+        mixer.music.load(f'{user_home}/raphael-kit/music/my_music.mp3')
         mixer.music.set_volume(volume)
         mixer.music.play()
         GPIO.add_event_detect(BtnPin1, GPIO.FALLING, callback=play)

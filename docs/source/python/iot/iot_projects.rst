@@ -13,7 +13,7 @@ Then copy the codes from the ``iot`` folder to the ``cloud4rpi-raspberrypi-pytho
 
 .. code-block:: 
 
-    cp -r /home/pi/raphael-kit/iot/* /home/pi/cloud4rpi-raspberrypi-python
+    cp -r ~/raphael-kit/iot/* ~/cloud4rpi-raspberrypi-python
 
 
 .. toctree::

@@ -45,7 +45,7 @@ In this project, you can see the temperature from Blynk and turn on the fan remo
 
 .. code-block:: 
 
-    cd /home/pi/blynk-raspberrypi-python
+    cd ~/blynk-raspberrypi-python
     sudo nano blynk_motor.py
 
 2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.

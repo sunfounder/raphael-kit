@@ -78,7 +78,7 @@ Open the terminal of the Raspberry Pi and download the test examples provided by
 
 .. code-block:: 
 
-  cd /home/pi
+  cd ~
   git clone https://github.com/cloud4rpi/cloud4rpi-raspberrypi-python.git
 
 Use a text editor such as Nano to modify the content of the ``control.py`` file.

@@ -120,7 +120,7 @@ Run the following command to install.
 
 .. code-block::
 
-    cd /home/pi
+    cd ~
     git clone https://github.com/vshymanskyy/blynk-library-python.git
     cd blynk-library-python
     sudo python3 setup.py
@@ -137,7 +137,7 @@ We have provided some examples, please run the following command to download the
 
 .. code-block:: 
 
-    cd /home/pi
+    cd ~
     git clone https://github.com/sunfounder/blynk-raspberrypi-python.git
 
 
@@ -158,7 +158,7 @@ We have provided some examples, please run the following command to download the
 
 .. code-block:: 
 
-    cd /home/pi/blynk-raspberrypi-python
+    cd ~/blynk-raspberrypi-python
     sudo nano blynk_start.py
 
 3. Find the line below and past your ``BLYNK_AUTH_TOKEN``.

@@ -53,7 +53,7 @@ Before this project, you need to make sure you complete :ref:`3.1.1 Photograph M
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python/
+    cd ~/raphael-kit/python/
 
 **Step 5:** Run.
 
@@ -76,7 +76,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-   You can also open ``4.1.4_AutomaticCaptureCamera.py`` in the ``/home/pi/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+   You can also open ``4.1.4_AutomaticCaptureCamera.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
 
 
 
@@ -96,6 +96,10 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
    from picamera import PiCamera
    import RPi.GPIO as GPIO
    import time
+   import os
+   user = os.getlogin()
+   user_home = os.path.expanduser(f'~{user}')
+
 
    camera = PiCamera()
 
@@ -111,7 +115,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
       while True:
          pirVal = GPIO.input(pirPin)
          if pirVal==GPIO.HIGH:
-               camera.capture('/home/pi/capture%s.jpg' % i)
+               camera.capture(f'{user_home}/capture%s.jpg' % i)
                print('The number is %s' % i)
                time.sleep(3)
                i = i + 1
@@ -133,7 +137,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
    pirVal = GPIO.input(pirPin)
    if pirVal==GPIO.HIGH:
-         camera.capture('/home/pi/capture%s.jpg' % i)
+         camera.capture(f'{user_home}/capture%s.jpg' % i)
          print('The number is %s' % i)
          time.sleep(3)
          i = i + 1

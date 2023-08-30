@@ -41,7 +41,7 @@ After building the circuit according to the above diagram, then plug the audio c
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python/
+    cd ~/raphael-kit/python/
 
 **Step 3:** Run.
 
@@ -73,11 +73,14 @@ After the code runs, you can enjoy the music.
 .. code-block:: python
 
     from pygame import mixer
+    import os
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
 
     mixer.init()
     
     def main():
-        mixer.music.load('/home/pi/raphael-kit/music/my_music.mp3')
+        mixer.music.load(f'{user_home}/raphael-kit/music/my_music.mp3')
         mixer.music.set_volume(0.7)
         mixer.music.play()
         while True:
@@ -104,12 +107,12 @@ Import the ``mixer`` method in the ``pygame`` library and initialize the method.
 
 .. code-block:: python
 
-    mixer.music.load('/home/pi/raphael-kit/music/my_music.mp3')
+    mixer.music.load(f'{user_home}/raphael-kit/music/my_music.mp3')
     mixer.music.set_volume(0.7)
     mixer.music.play()
 
 
-This code reads the ``my_music.mp3`` file in the ``/home/pi/raphael-kit/music`` directory and sets the volume to 0.7(The range is 0~1). 
+This code reads the ``my_music.mp3`` file in the ``~/raphael-kit/music`` directory and sets the volume to 0.7(The range is 0~1). 
 The Raspberry Pi will start playing audio When ``mixer.music.play()`` is called.
 
 .. note::

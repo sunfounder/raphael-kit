@@ -44,7 +44,7 @@ Install this sensor and magnet on both sides of the door or window. You will be 
 
 .. code-block:: 
 
-    cd /home/pi/blynk-raspberrypi-python
+    cd ~/blynk-raspberrypi-python
     sudo nano blynk_reed.py
 
 2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.

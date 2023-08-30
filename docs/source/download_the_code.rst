@@ -6,7 +6,7 @@ Before you download the code, please note that the example code is
 
 **Method 1: Use git clone (Recommended)**
 
-Log into Raspberry Pi and then change directory to ``/home/pi``.
+Log into Raspberry Pi and then change directory to ``~``.
 
 .. raw:: html
 
@@ -14,12 +14,12 @@ Log into Raspberry Pi and then change directory to ``/home/pi``.
 
 .. code-block:: 
 
-   cd /home/pi/
+   cd ~/
 
 
 .. note::
 
-   cd to change to the intended directory from the current path. Informally, here is to go to the path ``/home/pi/``.
+   cd to change to the intended directory from the current path. Informally, here is to go to the path ``~/``.
 
 Clone the repository from GitHub.
 

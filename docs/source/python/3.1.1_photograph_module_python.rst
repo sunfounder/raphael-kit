@@ -26,7 +26,7 @@ Experimental Procedures
 
 .. code-block::
 
-    cd /home/pi/raphael-kit/python/
+    cd ~/raphael-kit/python/
 
 **Step 3:** Run.
 
@@ -34,11 +34,11 @@ Experimental Procedures
 
     sudo python3 3.1.1_PhotographModule.py
 
-After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``/home/pi`` directory. 
+After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``~`` directory. 
 
 .. note::
 
-    You can also open ``3.1.1_PhotographModule.py`` in the ``/home/pi/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    You can also open ``3.1.1_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
 
 
 If you want to download the photo to your PC, please refer to :ref:`Filezilla Software`.
@@ -50,6 +50,9 @@ If you want to download the photo to your PC, please refer to :ref:`Filezilla So
 .. code-block:: python
 
     from picamera import PiCamera
+    import os
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
 
     camera = PiCamera()
     
@@ -57,7 +60,7 @@ If you want to download the photo to your PC, please refer to :ref:`Filezilla So
         camera.start_preview(alpha=200)
     
     def main():
-        camera.capture('/home/pi/my_photo.jpg')
+        camera.capture(f'{user_home}/my_photo.jpg')
         while True:
             pass    
     
@@ -93,9 +96,9 @@ This means the default preview overrides whatever is currently visible on the di
 
 .. code-block:: python
 
-    camera.capture('/home/pi/my_photo.jpg')
+    camera.capture(f'{user_home}/my_photo.jpg')
 
-Capture an image from the camera, storing it in ``/home/pi/``.
+Capture an image from the camera, storing it in ``~/``.
 
 .. note::
     You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
@@ -103,4 +106,4 @@ Capture an image from the camera, storing it in ``/home/pi/``.
     .. code-block:: python
 
         for i in 5:
-            camera.capture('/home/pi/my_photo%s.jpg' % i)
+            camera.capture(f'{user_home}/my_photo%s.jpg' % i)

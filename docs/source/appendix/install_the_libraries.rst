@@ -13,7 +13,7 @@ It provides functions for reading digital inputs and setting digital outputs, us
 Works on all versions upt to and including RPI 4. Works with all versions of Debian up to and including Debian Buster 10.
 
 
-Open a terminal and download the ``bcm2835`` library to the ``/home/pi`` path.
+Open a terminal and download the ``bcm2835`` library to the ``~`` path.
 
 .. raw:: html
 
@@ -21,7 +21,7 @@ Open a terminal and download the ``bcm2835`` library to the ``/home/pi`` path.
 
 .. code-block:: 
 
-    cd /home/pi
+    cd ~
     wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.69.tar.gz
 
 Unzip the package.

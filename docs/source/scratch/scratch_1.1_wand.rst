@@ -37,7 +37,7 @@ Click on the **Add Extension** button in the bottom left corner，then add the *
 Load the Code and See What Happens
 -----------------------------------------
 
-Load the code file from your computer(``home/pi/raphael-kit/scratch/code``) to Scratch 3.
+Load the code file from your computer(``~/raphael-kit/scratch/code``) to Scratch 3.
 
 .. image:: img/1.1_scratch_step1.png
 
@@ -55,7 +55,7 @@ Click on the **Upload Sprite**.
 
 .. image:: img/1.1_upload_sprite.png
 
-Upload **Wand.png** from the ``home/pi/raphael-kit/scratch/picture`` path to Scratch 3.
+Upload **Wand.png** from the ``~/raphael-kit/scratch/picture`` path to Scratch 3.
 
 .. image:: img/1.1_upload.png
 
