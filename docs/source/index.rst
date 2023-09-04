@@ -39,11 +39,11 @@ This document is available in other languages as well. To switch the display lan
 .. toctree::
     :maxdepth: 2
 
-    About this Kit <self>
+    About This Kit <self>
     about_video_course
     component_list
     install_setup_os/preparation
-    gpio_extension_board
+    gpio_extension_board 
     download_the_code
 
 .. toctree::
