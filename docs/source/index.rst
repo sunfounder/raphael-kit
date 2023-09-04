@@ -19,7 +19,7 @@ After learning the video tutorials, you can practice the use of each component f
 
 Alternatively, you can use the components to build projects in other languages, such as C, Scratch, Java (processing) and JavaScript (Nodejs).
 
-If you have any questions, please send an email to cs@sunfounder.com and we will respond as soon as possible.
+If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
 
 
 **About the display language**
@@ -39,6 +39,7 @@ This document is available in other languages as well. To switch the display lan
 .. toctree::
     :maxdepth: 2
 
+    About this Kit <self>
     about_video_course
     component_list
     install_setup_os/preparation

@@ -7,21 +7,56 @@ Introduction
 In this project, we will use motors, buttons and thermistors to make a
 manual + automatic smart fan whose wind speed is adjustable.
 
-Components
-------------------
+**Required Components**
+------------------------------
+
+In this project, we need the following components. 
 
 .. image:: ../img/list_Smart_Fan.png
     :align: center
 
-* :ref:`GPIO Extension Board`
-* :ref:`Breadboard`
-* :ref:`Resistor`
-* :ref:`Power Supply Module`
-* :ref:`Thermistor`
-* :ref:`L293D`
-* :ref:`ADC0834`
-* :ref:`Button`
-* :ref:`DC Motor`
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`GPIO Extension Board`
+        - |link_gpio_board_buy|
+    *   - :ref:`Breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`Jumper Wires`
+        - |link_wires_buy|
+    *   - :ref:`Resistor`
+        - |link_resistor_buy|
+    *   - :ref:`Power Supply Module`
+        - \-
+    *   - :ref:`Thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`L293D`
+        - \-
+    *   - :ref:`ADC0834`
+        - \-
+    *   - :ref:`Button`
+        - |link_button_buy|
+    *   - :ref:`DC Motor`
+        - |link_motor_buy|
 
 Schematic Diagram
 ------------------------

@@ -6,13 +6,42 @@ In this project, we will draw a dot on Processing, which blinks synchronously wi
 .. image:: img/blinking_dot.png
 .. image:: img/clickable_dot_on.png
 
+**Required Components**
+
+In this project, we need the following components.
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`GPIO Extension Board`
+        - |link_gpio_board_buy|
+    *   - :ref:`Breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`Jumper Wires`
+        - |link_wires_buy|
+    *   - :ref:`LED`
+        - |link_led_buy|
 
 **Wiring**
-
-* :ref:`GPIO Extension Board`
-* :ref:`Breadboard`
-* :ref:`Resistor`
-* :ref:`LED`
 
 .. image:: img/image49.png
 

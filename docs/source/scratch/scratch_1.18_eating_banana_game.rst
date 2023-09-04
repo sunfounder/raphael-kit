@@ -12,12 +12,38 @@ To play the game against a white background, click on the green flag to start. M
 
 .. image:: img/1.18_header.png
 
-Required Components
------------------------
+**Required Components**
+------------------------------
+
+In this project, we need the following components. 
 
 .. image:: img/1.18_photo1.png
 
-* :ref:`Camera Module`
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`Camera Module`
+        - |link_camera_buy|
+
 
 Build the Circuit
 --------------------

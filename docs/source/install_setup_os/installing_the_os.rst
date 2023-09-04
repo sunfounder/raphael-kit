@@ -1,12 +1,7 @@
-Installing the OS
-=======================
+.. _install_os:
 
-**Required Components**
-
-================== ======================
-Any Raspberry Pi   1 \* Personal Computer
-1 \* Micro SD card 
-================== ======================
+Installing the OS (Common)
+========================================
 
 **Step 1**
 
@@ -41,30 +36,27 @@ Insert your SD card into the computer or laptop SD card slot.
 
 **Step 4**
 
-.. In the Raspberry Pi Imager, select the OS that you want to install and
-.. the SD card you would like to install it on.
+In the Raspberry Pi Imager, select the OS that you want to install and
+the SD card you would like to install it on.
 
-.. .. image:: img/image13.png
-..     :align: center
-
-.. .. note:: 
-
-..     1) You will need to be connected to the internet the first time.
-
-..     2) That OS will then be stored for future offline use(lastdownload.cache, C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache). So the next time you open the software, it will have the display "Released: date, cached on your computer".
-
-Download the `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ image and select it in Raspberry Pi Imager.
-
-.. image:: img/otherOS.png
+.. image:: img/image13.png
     :align: center
 
-.. warning::
-    Raspberry Pi OS has major changes after the 2021-05-28 version, which may cause some functions to be unavailable. Please do not use the latest version for now.
+.. note:: 
+
+    * You will need to be connected to the internet the first time.
+    * That OS will then be stored for future offline use(``lastdownload.cache``, ``C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache``). So the next time you open the software, it will have the display "Released: date, cached on your computer".
+
+.. Download the `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ image and select it in Raspberry Pi Imager.
+
+.. .. image:: img/otherOS.png
+..     :align: center
+
+.. .. warning::
+..     Raspberry Pi OS has major changes after the 2021-05-28 version, which may cause some functions to be unavailable. Please do not use the latest version for now.
 
 
-.. mark
-
-
+.. .. mark
 
 
 **Step 5**
@@ -76,10 +68,12 @@ Select the SD card you are using.
 
 **Step 6**
 
-Press **Ctrl+Shift+X** to open the **Advanced options** page to enable
-SSH and configure wifi, these 2 items must be set, the others depend on
-your choice . You can choose to always use this image customization
-options.
+Press **Ctrl+Shift+X** or click the **setting** icon to open the **Advanced options** page to enable SSH and set username and password. 
+
+    .. note::
+        * Now that the Raspberry Pi doesn't have a default password, you will need to set it yourself. Also, the username can be changed.
+        * For remote access, you will also need to enable SSH manually.
+
 
 .. image:: img/image15.png
     :align: center
@@ -88,10 +82,7 @@ Then scroll down to complete the wifi configuration and click **SAVE**.
 
 .. note::
 
-    **wifi country** should be set the two-letter `ISO/IEC alpha2
-    code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`__ for
-    the country in which you are using your Raspberry Pi, please refer to
-    the following link: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
+    ``wifi country`` should be set the two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ for the country in which you are using your Raspberry Pi.
 
 .. image:: img/image16.png
     :align: center
@@ -119,3 +110,5 @@ represent the completion of writing.
 
 .. image:: img/image19.png
     :align: center
+
+

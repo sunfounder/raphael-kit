@@ -7,16 +7,47 @@ By toggling Slide to the left to start to inflate the balloon, at this time the 
 
 .. image:: img/1.15_header.png
 
-Required Components
------------------------
+**Required Components**
+------------------------------
+
+In this project, we need the following components. 
 
 .. image:: img/1.15_component.png
 
-* :ref:`GPIO Extension Board`
-* :ref:`Breadboard`
-* :ref:`Resistor`
-* :ref:`Slide Switch`
-* :ref:`Capacitor`
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`GPIO Extension Board`
+        - |link_gpio_board_buy|
+    *   - :ref:`Breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`Jumper Wires`
+        - |link_wires_buy|
+    *   - :ref:`Resistor`
+        - |link_resistor_buy|
+    *   - :ref:`Slide Switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`Capacitor`
+        - |link_capacitor_buy|
 
 Build the Circuit
 ---------------------

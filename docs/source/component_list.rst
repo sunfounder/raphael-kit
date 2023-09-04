@@ -26,6 +26,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_transistor
     components/component_capacitor
     components/component_diode
+    components/component_wires
 
 **Chip**
 

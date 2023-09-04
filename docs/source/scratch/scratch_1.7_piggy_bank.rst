@@ -8,14 +8,43 @@ Place a piece of paper in the middle of the Speed sensor module and you will see
 
 .. image:: img/1.7_header.png
 
-Required Components
------------------------
+**Required Components**
+------------------------------
+
+In this project, we need the following components. 
 
 .. image:: img/1.7_component.png
 
-* :ref:`GPIO Extension Board`
-* :ref:`Breadboard`
-* :ref:`Speed Sensor Module`
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`GPIO Extension Board`
+        - |link_gpio_board_buy|
+    *   - :ref:`Breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`Jumper Wires`
+        - |link_wires_buy|
+    *   - :ref:`Speed Sensor Module`
+        - \-
 
 Build the Circuit
 ---------------------

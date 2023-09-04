@@ -9,16 +9,47 @@ Introduction
 Let's try to drive a 7-segment display to show a figure from 0 to 9 and
 A to F.
 
-Components
-----------------
+**Required Components**
+------------------------------
+
+In this project, we need the following components. 
 
 .. image:: ../img/list_7_segment.png
 
-* :ref:`GPIO Extension Board`
-* :ref:`Breadboard`
-* :ref:`Resistor`
-* :ref:`7-segment Display`
-* :ref:`74HC595`
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`GPIO Extension Board`
+        - |link_gpio_board_buy|
+    *   - :ref:`Breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`Jumper Wires`
+        - |link_wires_buy|
+    *   - :ref:`Resistor`
+        - |link_resistor_buy|
+    *   - :ref:`7-segment Display`
+        - |link_7segment_buy|
+    *   - :ref:`74HC595`
+        - |link_74hc595_buy|
 
 Schematic Diagram
 ---------------------
