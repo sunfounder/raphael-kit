@@ -6,7 +6,6 @@ In this project, you can see the temperature from Blynk and turn on the fan remo
 .. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
 
 **Required Components**
-------------------------------
 
 In this project, we need the following components. 
 

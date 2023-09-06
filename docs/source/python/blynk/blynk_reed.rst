@@ -10,7 +10,6 @@ Install this sensor and magnet on both sides of the door or window. You will be 
 .. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
 
 **Required Components**
-------------------------------
 
 In this project, we need the following components. 
 

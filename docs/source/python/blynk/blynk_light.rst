@@ -6,7 +6,6 @@ In this project, we use Blynk's Silder to control the brightness of the LED, tur
 .. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
 
 **Required Components**
-------------------------------
 
 In this project, we need the following components. 
 
