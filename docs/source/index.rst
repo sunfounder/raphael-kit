@@ -33,9 +33,6 @@ This document is available in other languages as well. To switch the display lan
 
 **Contents**
 
-.. image:: img/translate3.png
-    :align: center
-
 .. toctree::
     :maxdepth: 2
 
