@@ -24,8 +24,6 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
 **About the display language**
 
-About the display language
-
 This document is available in other languages as well. To switch the display language, kindly click on the Read the Docs icon located in the lower left corner of the page.
 
 .. image:: img/translation.png
