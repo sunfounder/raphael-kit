@@ -1,72 +1,74 @@
-2.2.5 IR Obstacle Avoidance Sensor
-===================================
+.. _2.2.5_js:
 
-Introduction
+2.2.5 IR障害物回避センサー
+============================
+
+はじめに
 -----------------
 
-In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+このプロジェクトでは、IR障害物回避モジュールについて学びます。これは、短い距離での障害物を検出できるセンサーモジュールで、干渉が少なく、組み立てやすく、使いやすいなどの特徴があります。ロボットの障害物回避、回避カート、組み立てラインのカウントなど、幅広く使用されます。
 
 .. image:: ../img/2.2.5IR_Obstacle.png
    :width: 300
    :align: center
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/2.2.5component.png
    :width: 700
    :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは確かに便利です。リンクは以下の通りです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも別々に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Obstacle Avoidance Module`
+    *   - :ref:`障害物回避モジュール`
         - |link_obstacle_avoidance_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
 .. image:: ../img/IR_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
+実験手順
 -------------------------
 
-**Step 1:** Build the circuit
+**ステップ1:** 回路を組み立てる
 
 .. image:: ../img/2.2.5fritzing.png
    :width: 700
    :align: center
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -76,7 +78,7 @@ Experimental Procedures
    
    cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行する。
 
 .. raw:: html
 
@@ -86,10 +88,9 @@ Experimental Procedures
 
    sudo node ir_obstacle.js
 
-After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
-repeatedly printed on the screen until the your hand is removed.
+コードを実行すると、モジュールのプローブの前に手を置くと、モジュールの出力インジケータが点灯し、手を取り除くまで「Detected Barrier!」と画面に繰り返し表示されます。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -106,9 +107,7 @@ repeatedly printed on the screen until the your hand is removed.
    });
 
 
-
-
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -120,8 +119,8 @@ repeatedly printed on the screen until the your hand is removed.
       edge: Gpio.FALLING_EDGE        
    });
 
-Import the pigpio module, create an object to control the IO port Gpio17,
-Set it to input mode and interrupt on falling edge.
+pigpioモジュールをインポートし、Gpio17のIOポートを制御するオブジェクトを作成します。
+入力モードに設定し、フォーリングエッジでの割り込みを設定します。
 
 .. code-block:: js
 
@@ -129,10 +128,9 @@ Set it to input mode and interrupt on falling edge.
       console.log('Detected Barrier!');        
    });
 
-When an interrupt is triggered, meaning an obstacle is detected, print "Detected Barrier!".
+割り込みがトリガされると、障害物が検出されたことを意味し、「Detected Barrier!」と出力します。
 
-
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/2.2.5IR.JPG

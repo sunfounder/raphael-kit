@@ -1,22 +1,22 @@
-Keypad
+キーパッド
 ========================
 
-A keypad is a rectangular array of 12 or 16 OFF-(ON) buttons. 
-Their contacts are accessed via a header suitable for connection with a ribbon cable or insertion into a printed circuit board. 
-In some keypads, each button connects with a separate contact in the header, while all the buttons share a common ground.
+キーパッドは12個または16個のOFF-(ON)ボタンから成る矩形の配列です。
+各ボタンの接点は、リボンケーブルの接続やプリント基板への挿入に適したヘッダーを介してアクセスされます。
+一部のキーパッドでは、各ボタンがヘッダー内の個々の接点に接続され、すべてのボタンが共通のグラウンドを共有しています。
 
 .. image:: img/keypad314.png
 
-More often, the buttons are matrix encoded, meaning that each of them bridges a unique pair of conductors in a matrix. 
-This configuration is suitable for polling by a microcontroller, which can be programmed to send an output pulse to each of the four horizontal wires in turn. 
-During each pulse, it checks the remaining four vertical wires in sequence, to determine which one, if any, is carrying a signal. 
-Pullup or pulldown resistors should be added to the input wires to prevent the inputs of the microcontroller from behaving unpredictably when no signal is present.
+よくあるケースでは、ボタンはマトリックスでエンコードされ、各ボタンがマトリックス内の一意の導体ペアをブリッジします。
+この配置は、マイクロコントローラによるポーリングに適しており、それぞれの4つの水平なワイヤに順番に出力パルスを送るようプログラムできます。
+各パルス中に、残りの4本の垂直ワイヤを順番にチェックし、どれが信号を伝えているのかを特定します。
+信号が存在しない場合にマイクロコントローラの入力が不安定にならないように、プルアップまたはプルダウン抵抗器を入力ワイヤに追加すべきです。
 
-**Example**
+**例**
 
-* :ref:`2.1.8_c` (C Project)
-* :ref:`3.1.8 Password Lock` (C Project)
-* :ref:`3.1.11 GAME– Guess Number` (C Project)
-* :ref:`2.1.8_py` (Python Project)
-* :ref:`4.1.14 Password Lock` (Python Project)
-* :ref:`4.1.17 GAME– Guess Number` (Python Project)
+* :ref:`2.1.8_c` (Cプロジェクト)
+* :ref:`3.1.8_c` (Cプロジェクト)
+* :ref:`3.1.11_c` (Cプロジェクト)
+* :ref:`2.1.8_py` (Pythonプロジェクト)
+* :ref:`4.1.14_py` (Pythonプロジェクト)
+* :ref:`4.1.17_py` (Pythonプロジェクト)

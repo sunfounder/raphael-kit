@@ -1,76 +1,78 @@
-1.6 Vanishing Vase
+.. _1.6_scratch:
+
+1.6 花瓶の消失
 ========================
 
-Now let's do a little magic trick, do nothing, and then the vase somehow disappears.
+さて、ちょっとしたマジックトリックをやってみましょう。何もしないで、なぜか花瓶が消える。
 
 .. image:: img/1.6_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.6_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Reed Switch Module`
+    *   - :ref:`リードスイッチモジュール`
         - |link_reed_switch_buy|
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.6_fritzing.png
 
-Load the Code and See What Happens
+コードをロードして動作を確認する
 ---------------------------------------
 
-Load the code file (``1.6_vanishing_vase.sb3``) to Scratch 3.
+コードファイル(``1.6_vanishing_vase.sb3``)をScratch 3にロードします。
 
-When you use a magnet near the reed switch module, a vase will appear on the stage, take away the magnet and the vase will disappear.
+リードスイッチモジュールに磁石を近づけると、ステージに花瓶が表示されます。磁石を取り除くと、花瓶が消えます。
 
-Tips on Sprite
-----------------
+スプライトに関するヒント
+---------------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **desk1.png** and **desk2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **desk**.
+Sprite1を選択し、左上の **Costumes** をクリックします。 **Upload Costume** ボタンを使用して ``~/raphael-kit/scratch/picture`` のパスから **desk1.png** と **desk2.png** をアップロードします。デフォルトの2つのコスチュームを削除し、スプライトの名前を **desk** に変更します。
 
 .. image:: img/1.6_vase.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.6_reed2.png
   :width: 400
 
-When the magnet is close to the reed switch module, gpio17 is low, and the costume of the **desk** sprite is switched to **desk1** (the vase is still on the desk).
+磁石がリードスイッチモジュールに近づくと、gpio17は低くなり、 **desk** スプライトのコスチュームは **desk1** （デスク上の花瓶）に切り替えられます。
 
 .. image:: img/1.6_reed3.png
   :width: 400
 
-After taking away the magnet, gpio17 is high, at this time the costume of the **desk** sprite is switched to **desk2** (only one desk).
+磁石を取り除くと、gpio17は高くなります。この時、 **desk** スプライトのコスチュームは **desk2** （デスクのみ）に切り替えられます。

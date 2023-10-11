@@ -1,95 +1,97 @@
-1.8 Service Bell
+.. _1.8_scratch:
+
+1.8 サービスベル
 ===================
 
-Today, we will use Micro Switch, speakers, audio amplifier module, Raspberry Pi and scratch to make a service bell.
+今日は、マイクロスイッチ、スピーカー、オーディオアンプモジュール、Raspberry Pi、およびScratchを使用してサービスベルを作成します。
 
-Tap the Micro Switch to make the service bell sound.
+マイクロスイッチをタップして、サービスベルの音を鳴らします。
 
 .. image:: img/1.8_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.8_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Micro Switch`
+    *   - :ref:`マイクロスイッチ`
         - \-
-    *   - :ref:`Capacitor`
+    *   - :ref:`コンデンサ`
         - |link_capacitor_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`オーディオモジュールとスピーカー`
         - \-
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.8_fritzing.png
 
-
-Load the Code and See What Happens
+コードをロードして動作を確認する
 -----------------------------------------
 
-Load the code file (``1.8_service_bell.sb3``) to Scratch 3.
+コードファイル(``1.8_service_bell.sb3``)をScratch 3にロードします。
 
-Press the micro switch and the service bell will ring once.
+マイクロスイッチを押すと、サービスベルが1回鳴ります。
 
 .. note::
-  
-  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`Change Audio Output` for the solution.
 
-  Also, if you want to adjust the volume level, please refer to :ref:`Adjust Volume`.
+  Raspberry Piがスピーカー付きの画面に接続されている場合、この外部スピーカーから音が出ない場合があります。解決策については、 :ref:`オーディオ出力の変更` を参照してください。
 
-Tips on Sprite
-----------------
+  また、ボリュームレベルを調整したい場合は、 :ref:`音量調整` を参照してください。
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **bell1.png** and **bell2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **bell**.
+スプライトに関するヒント
+---------------------------------
+
+Sprite1を選択し、左上の **Costumes** をクリックします。 **Upload Costume** ボタンを使用して ``~/raphael-kit/scratch/picture`` のパスから **bell1.png** と **bell2.png** をアップロードします。デフォルトの2つのコスチュームを削除し、スプライトの名前を **bell** に変更します。
 
 .. image:: img/1.8_travel1.png
 
-In the **Sounds** option, upload the ``bell.wav`` from the ``~/raphael-kit/scratch/sound`` path to Scratch 3.
+**Sounds** オプションで、 ``~/raphael-kit/scratch/sound`` のパスから ``bell.wav`` をScratch 3にアップロードします。
 
 .. image:: img/1.8_travel2.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.8_travel3.png
   :width: 400
 
-When pin17 is high (the Micro switch is not pressed), switch the costume of the **bell** sprite to **bell1** (released state).
+pin17が高いとき(マイクロスイッチが押されていない場合)、 **bell** スプライトのコスチュームを **bell1** に切り替えます。
 
 .. image:: img/1.8_travel4.png
   :width: 400
 
-Press the micro switch, gpio17 is low level. At this time, switch the costume of the **bell** sprite to **bell2** (press state), and play a sound effect through the speaker.
+マイクロスイッチを押すと、gpio17は低レベルになります。この時、 **bell** スプライトのコスチュームを **bell2** に切り替え、スピーカーを通じてサウンドエフェクトを再生します。
+

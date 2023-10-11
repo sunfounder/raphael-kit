@@ -1,71 +1,68 @@
 .. _2.1.8_c:
 
-2.1.8 Keypad
+2.1.8 キーパッド
 ==================
 
-Introduction
+はじめに
 ------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+キーパッドはボタンの矩形配列です。このプロジェクトでは、それを使用して文字を入力します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。リンクは以下のとおりです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Keypad`
+    *   - :ref:`キーパッド`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image315.png
 
-
 .. image:: ../img/image316.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**ステップ2:** コードファイルを開きます。
 
 .. raw:: html
 
@@ -75,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.8/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -85,7 +82,7 @@ Experimental Procedures
 
     gcc 2.1.8_Keypad.cpp -lwiringPi
 
-**Step 4:** Run.
+**ステップ4:** 実行します。
 
 .. raw:: html
 
@@ -95,14 +92,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+コードを実行した後、キーパッドの押されたボタンの値（ボタン値）が画面に表示されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示された場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -217,7 +213,7 @@ Value) will be printed on the screen.
         return -1;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -230,8 +226,7 @@ Value) will be printed on the screen.
     unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
     unsigned char colPins[COLS] = {12, 3, 2, 0};
 
-Declare each key of the matrix keyboard to the array ``keys[]`` and define
-the pins on each row and column.
+マトリックスキーボードの各キーを配列 ``keys[]`` に宣言し、各行と列のピンを定義します。
 
 .. code-block:: c
 
@@ -245,16 +240,13 @@ the pins on each row and column.
             delay(100);
         }
 
-This is the part of the main function that reads and prints the button
-value.
+これは、ボタン値を読み取り、印刷するメイン関数の部分です。
 
-The function ``keyRead()`` will read the state of every button.
+関数 ``keyRead()`` は、各ボタンの状態を読み取ります。
 
-``KeyCompare()`` and ``keyCopy()`` are used to judge whether the state of a
-button has changed (that is, a button has been pressed or released).
+``KeyCompare()`` および ``keyCopy()`` は、ボタンの状態が変わったかどうか（つまり、ボタンが押されたか、またはリリースされたか）を判断するために使用されます。
 
-``keyPrint()`` will print the button value of the button whose current level
-is high level (the button is pressed).
+``keyPrint()`` は、現在のレベルが高レベルであるボタン（ボタンが押されている）のボタン値を印刷します。
 
 .. code-block:: c
 
@@ -276,23 +268,17 @@ is high level (the button is pressed).
         }
     }
 
-This function assigns a high level to each row in turn, and when the key
-in the column is pressed, the column in which the key is located gets a
-high level. After the two-layer loop judgment, the key state compilation
-will generate an array (``reasult[]``).
+この関数は、各行に順番に高レベルを割り当て、列のキーが押されると、キーが位置している列が高レベルを取得します。2層のループ判断の後、キーの状態のコンパイルが配列(``reasult[]``)を生成します。
 
-When pressing button 3:
+「3」のボタンを押すと：
 
 .. image:: ../img/image187.png
 
+``RowPin [0]`` には高レベルが書き込まれ、colPin[2] は高レベルを取得します。 ``ColPin [0]`` , colPin[1], colPin[3] は低レベルを取得します。
 
-``RowPin [0]`` writes in the high level, and colPin[2] gets the high level.
-``ColPin [0]``, colPin[1], colPin[3] get the low level.
+これにより、0,0,1,0が得られます。rowPin[1]、rowPin[2]、rowPin[3]に高レベルが書き込まれると、colPin[0]〜colPin[4]は低レベルを取得します。
 
-This gives us 0,0,1,0. When rowPin[1], rowPin[2] and rowPin[3] are
-written in high level, colPin[0]~colPin[4] will get low level.
-
-After the loop judgment is completed, an array will be generated:
+ループ判断が完了すると、配列が生成されます：
 
 .. code-block:: c
 
@@ -319,14 +305,9 @@ After the loop judgment is completed, an array will be generated:
         }
     }
 
+これらの2つの関数は、キーの状態が変わったかどうかを判断するために使用されます。例えば、「3」を押して手を放したときや「2」を押したとき、keyCompare()はfalseを返します。
 
-These two functions are used to judge whether the key state has changed,
-for example when you release your hand when pressing '3' or pressing
-'2', keyCompare() returns false.
-
-KeyCopy() is used to re-write the current button value for the a array
-(last_key_pressed[BUTTON_NUM]) after each comparison. So we can compare
-them next time.
+KeyCopy()は、各比較の後に、a配列(last_key_pressed[BUTTON_NUM])に現在のボタン値を再書きするために使用されます。これにより、次回の比較が可能になります。
 
 .. code-block:: c
 
@@ -343,13 +324,11 @@ them next time.
         printf("\n");
     }
 
-This function is used to print the value of the button currently
-pressed. If the button '1' is pressed, the '1' will be printed. If the
-button '1' is pressed and the button '3' is pressed, the '1, 3' will be
-printed.
+この関数は、現在押されているボタンの値を印刷するために使用されます。ボタン「1」が押されている場合、「1」が印刷されます。ボタン「1」が押され、ボタン「3」が押されている場合、「1, 3」が印刷されます。
 
-Phenomenon Picture
+現象の画像
 ------------------
+
 
 .. image:: ../img/image188.jpeg
 

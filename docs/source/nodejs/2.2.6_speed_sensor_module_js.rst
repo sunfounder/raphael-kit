@@ -1,73 +1,74 @@
-2.2.6 Speed Sensor Module
-=========================
+.. _2.2.6_js:
 
-Introduction
+2.2.6 速度センサーモジュール
+=============================
+
+はじめに
 ------------------
 
-In this project, we will learn the use of the speed sensor module. A Speed sensor module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+このプロジェクトでは、速度センサーモジュールの使用方法を学びます。速度センサーモジュールは、モーターのような回転するオブジェクトの速度を測定するためのタコメータの一種です。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/2.2.6component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは確かに便利です。リンクは以下の通りです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも別々に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Speed Sensor Module`
+    *   - :ref:`速度センサーモジュール`
         - \-
 
-Schematic Diagram
+回路図
 -----------------------
 
 .. image:: ../img/2.2.6circuit.png
     :width: 400
     :align: center
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -77,7 +78,7 @@ Experimental Procedures
     
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行する。
 
 .. raw:: html
 
@@ -87,10 +88,10 @@ Experimental Procedures
 
     sudo node speed_sensor_module.js
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+コードを実行すると、緑色のLEDが点灯します。速度センサーモジュールのギャップに障害物を置くと、画面に「light blocked」と表示され、赤色のLEDが点灯します。
+障害物を取り除くと、緑のLEDが再び点灯します。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -119,13 +120,11 @@ Remove the obstacle and the green LED will light up again.
         process.exit();
     });
 
-**Code Explanation**
+**コード説明**
 
-The code of this example is almost the same as :ref:`2.1.5 Tilt Switch`, so no need to repeat it.
+この例のコードは、 :ref:`2.1.5_js` とほぼ同じですので、繰り返し説明する必要はありません。
 
-
-
-**Phenomenon Picture**
+現象の画像
 -----------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG

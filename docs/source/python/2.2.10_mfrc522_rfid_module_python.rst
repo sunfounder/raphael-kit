@@ -1,80 +1,72 @@
 .. _2.2.10_py:
 
-2.2.10 MFRC522 RFID Module
-==========================
+2.2.10 MFRC522 RFIDモジュール
+==============================
 
-Introduction
----------------
+はじめに
+---------
 
-Radio Frequency Identification (RFID) refers to technologies that use
-wireless communication between an object (or tag) and interrogating
-device (or reader) to automatically track and identify such objects.
+RFID（Radio Frequency Identification）とは、オブジェクト（またはタグ）と読み取り装置（またはリーダー）との間で無線通信を行い、オブジェクトを自動的に追跡・識別する技術を指します。
 
-Some of the most common applications for this technology include retail
-supply chains, military supply chains, automated payment methods,
-baggage tracking and management, document tracking and pharmaceutical
-management, to name a few.
+この技術は、小売業の供給チェーン、軍事的な供給チェーン、自動決済、荷物追跡、書類追跡、医薬品管理など、多岐にわたる用途で利用されています。
 
-In this project, we will use RFID for reading and writing.
+本プロジェクトでは、RFIDを使って読み取りと書き込みを行います。
 
-**Required Components**
-------------------------------
+必要な部品
+-----------------------
 
-In this project, we need the following components. 
+本プロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.7.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式をまとめて購入すると便利です。購入リンクは以下です。
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+個別に購入することもできます。下記のリンクからどうぞ。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`MFRC522 Module`
+    *   - :ref:`MFRC522 モジュール`
         - |link_mfrc522_rfid_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image331.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image232.png
 
-**Step 2:** Install the :ref:`Spidev and MFRC522` libraries.
+**ステップ2:** :ref:`SpidevとMFRC522` ライブラリをインストールする。
 
-**Step 3:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
-set SPI, skip this step.)
+**ステップ3:** SPIをセットアップする（詳細は :ref:`SPI設定` を参照。すでにSPIを設定している場合はこのステップはスキップしてください。）
 
-
-**Step 4:** Go to the folder of the code.
+**ステップ4:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -84,7 +76,7 @@ set SPI, skip this step.)
 
     cd ~/raphael-kit/python
 
-**Step 5:** After running ``2.2.10_write.py``. You need to write a message first, press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
+**ステップ5:** ``2.2.10_write.py`` を実行した後、メッセージを書き込み、 ``Enter`` キーを押して確認。次に、MFRC522モジュールにカードをかざし、「データ書き込み完了」と表示されたらカードを取り外すか、別のカードにメッセージを書き込むために ``Ctrl+C`` で終了する。
 
 .. raw:: html
 
@@ -96,7 +88,7 @@ set SPI, skip this step.)
 
 .. image:: ../img/write_card.png
 
-**Step 6:** Now run ``2.2.10_read.py`` to read the information of the tag or card you have written.
+**ステップ6:** ``2.2.10_read.py`` を実行して、書き込んだタグまたはカードの情報を読み取る。
 
 .. raw:: html
 
@@ -107,28 +99,29 @@ set SPI, skip this step.)
 
     sudo python3 2.2.10_read.py
 
-
-**Code Explanation**
+コード説明
+-----------------------
 
 .. code-block:: python
 
     reader = SimpleMFRC522()
 
-Instantiate ``SimpleMFRC522()`` class.
+``SimpleMFRC522()`` クラスをインスタンス化。
 
 .. code-block:: python
 
     reader.read()
 
-This function is used to read card data. If the reading is successful, id and text will be returned.
+この関数はカードデータを読み取るために使用されます。読み取りが成功すると、IDとテキストが返されます。
 
 .. code-block:: python
 
     reader.write(text)
 
-This function is used to write information to the card, press ``Enter`` key to finish writing. ``text`` is the information to be written to the card.
+この関数はカードに情報を書き込むために使用されます。 ``Enter`` キーを押して書き込みを完了します。 ``text`` はカードに書き込む情報です。
 
-Phenomenon Picture
-------------------
+現象の画像
+-------------
 
 .. image:: ../img/image233.jpeg
+

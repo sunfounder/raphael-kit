@@ -1,77 +1,75 @@
-Door Window Sensor
-==================
 
-When you're outside, you've probably had this confusion. "Are the doors and windows of my house closed?"
+ドア・ウィンドウセンサー
+========================
 
-To solve this problem, in this project, we will build a door and window sensor with Reed Switch and magnets.
+外出先で「家のドアや窓は閉まっているのだろうか？」と不安に思ったことはありませんか？
 
-Install this sensor and magnet on both sides of the door or window. You will be able to check whether your doors and windows are closed or not from the Blynk APP on your phone.
+このプロジェクトでは、リードスイッチと磁石を使用して、ドアや窓の開閉状態を感知するセンサーを作成します。
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
+このセンサーと磁石をドアや窓の両側に取り付けることで、スマートフォンのBlynkアプリを使って、ドアや窓がしっかり閉まっているかどうかを確認できます。
 
-**Required Components**
-------------------------------
+.. note:: このプロジェクトを始める前に、 :ref:`bk_start` を完了させることをお勧めします。これにより、Blynkについてより深く理解できます。
 
-In this project, we need the following components. 
+**必要なコンポーネント**
 
-It's definitely convenient to buy a whole kit, here's the link: 
+このプロジェクトには以下の部品が必要です。
+
+一式をまとめて購入するのが便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+個別に購入する場合は、以下のリンクからどうぞ。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
-    *   - :ref:`GPIO Extension Board`
+    *   - 部品説明
+        - 購入リンク
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Reed Switch Module`
+    *   - :ref:`リードスイッチモジュール`
         - |link_reed_switch_buy|
 
 
-
-**1. Wiring**
+**1. 配線**
 
 .. image:: img/wiring_blynk_reed.png
 
-**2. Create Datastream**
+**2. データストリームの作成**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. 右上隅のメニューアイコンをクリックし、ダッシュボードの編集を選びます。
 
     .. image:: img/sp220913_180231.png
 
-2. Go to the Datastreams page and create a New Datastream.
+2. データストリームページに移動し、新しいデータストリームを作成します。
 
     .. image:: img/sp220914_165911.png
 
-3. Create a Virtual Pin V4.
+3. バーチャルピンV4を作成します。
 
     .. image:: img/sp220914_170113.png
 
-#. When finished, click Save And Apply at the top right.
+#. すべての設定が完了したら、右上にある「保存して適用」をクリックします。
 
     .. image:: img/sp220913_182300.png
 
-**3. Run the Code**
+**3. コードの実行**
 
-1. Edit the code
+1. コードを編集します。
 
 .. raw:: html
 
@@ -82,13 +80,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_reed.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. 以下の行を見つけて、 ``BLYNK_AUTH_TOKEN`` を貼り付けます。
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. コードを実行します。
 
 .. raw:: html
 
@@ -98,30 +96,27 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_reed.py
 
-**4. Open Blynk APP**
+**4. Blynkアプリを起動**
 
 .. note::
 
-    As datastreams can only be created in Blynk on the web, you will need to reference different projects to create datastreams on the web, then follow the tutorial below to create widgets in Blynk on your mobile device.
+    BlynkのWebページ上でのみデータストリームを作成できますので、モバイルデバイス上のBlynkでウィジェットを作成するためのチュートリアルに進む前に、Webでデータストリームを作成する必要があります。
 
-#. Open Google Play or APP Store on your mobile device and search for "Blynk IoT" (not Blynk(legacy)) to download.
-#. After opening the APP, login in, this account should be the same as the account used on the web client.
-#. Then go to **Dashboard** (if you don't have one, create one) and you will see that the **Dashboard** for mobile and web are independent of each other.
+#. モバイルデバイスでGoogle PlayまたはAPP Storeを開き、「Blynk IoT」（Blynk（レガシー）ではない）と検索してダウンロードします。
+#. アプリを開いてログインします。このアカウントはWebクライアントで使用したものと同じでなければなりません。
+#. その後、 **Dashboard** （お持ちでない場合は作成してください）にアクセスすると、モバイル用とウェブ用の **Dashboard** がそれぞれ独立していることがわかります。
 
     .. image:: img/APP_1.jpg
 
+#. **Edit** アイコンをクリックします。
+#. 空白エリアをクリックします。
+#. **LED** ウィジェットを選択します。
 
-#. Click **Edit** Icon.
-#. Click on the blank area. 
-#. Choose **LED** widget.
+    .. image:: img/APP_2.jpg
 
-    .. image:: img/APP_2.jpg      
-
-
-#. Now you will see a **LED** widget appear in the blank area, even if it looks like a blank grid, click on it.
-#. **LED** Settings will appear, select the **V4** datastreams you just set in the web page. Note that each widget corresponds to a different datastream in each project.
-#. Go back to the **Dashboard** page. Now if you see that the **LED** widget is filled with color, your door or window is open; if the **LED** widget is not filled with color, the door or window is closed.
+#. 空白エリアに **LED** ウィジェットが表示されますので、それをクリックします。
+#. **LED** の設定画面が表示されるので、Webページで設定した **V4** データストリームを選択します。
+#. **Dashboard** に戻ると、 **LED** ウィジェットが色で埋まっていれば、ドアや窓が開いています；色で埋まっていなければ、ドアや窓は閉まっています。
 
     .. image:: img/APP_3.jpg
-
 

@@ -1,74 +1,70 @@
 .. _2.2.2_c:
 
-2.2.2 Thermistor
+2.2.2 サーミスタ
 ======================
 
-Introduction
+はじめに
 ------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+フォトレジスタが光を感知できるように、サーミスタは温度に敏感な電子デバイスであり、ヒートアラームの作成など、温度制御の機能を実現するために使用できます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入するのは非常に便利です、リンクはこちら： 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - 名前
+        - このキットの内容
+        - リンク
+    *   - ラファエルキット
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、個別にも購入できます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Thermistor`
+    *   - :ref:`トランジスタ`
         - |link_thermistor_buy|
     *   - :ref:`ADC0834`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image323.png
 
-
 .. image:: ../img/image324.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -78,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.2/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルする。
 
 .. raw:: html
 
@@ -89,10 +85,9 @@ Experimental Procedures
     gcc 2.2.2_Thermistor.c -lwiringPi -lm
 
 .. note::
-    -lm is to load the library math. Do not omit, or you will make
-    an error.
+    -lmはmathライブラリをロードするためのものです。省略しないでください、そうしないとエラーになります。
 
-**Step 4:** Run the executable file.
+**ステップ4:** 実行ファイルを実行する。
 
 .. raw:: html
 
@@ -102,14 +97,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+コードを実行すると、サーミスタは周囲の温度を検出し、プログラム計算が完了すると画面に表示されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -199,20 +193,19 @@ be printed on the screen once it finishes the program calculation.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     #include <math.h>
 
-There is a C numerics library which declares a set of functions to
-compute common mathematical operations and transformations.
+Cの数値ライブラリには、共通の数学的操作と変換を計算するための関数群が宣言されています。
 
 .. code-block:: c
 
     analogVal = get_ADC_Result(0);
 
-This function is used to read the value of the thermistor.
+この関数は、サーミスタの値を読み取るために使用されます。
 
 .. code-block:: c
 
@@ -223,43 +216,40 @@ This function is used to read the value of the thermistor.
     Fah = cel * 1.8 +32;
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-These calculations convert the thermistor values into Celsius values.
+これらの計算は、サーミスタの値をセルシウス度に変換しています。
 
 .. code-block:: c
 
     Vr = 5 * (double)(analogVal) / 255;
     Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
 
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
+これらの2行のコードは、読み取られた値analogとともに電圧分布を計算し、サーミスタの抵抗Rtを取得するためのものです。
 
 .. code-block:: c
 
     temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
 
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
+このコードは、Rtを式 **T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** に代入して、ケルビン温度を取得するものです。
 
 .. code-block:: c
 
     temp = temp - 273.15;
 
-Convert Kelvin temperature into degree Celsius.
+ケルビン温度を摂氏に変換します。
 
 .. code-block:: c
 
     Fah = cel * 1.8 +32;
 
-Convert degree Celsius into Fahrenheit.
+摂氏を華氏に変換します。
     
 .. code-block:: c
 
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
+表示器に摂氏、華氏、およびそれらの単位を表示します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image203.jpeg

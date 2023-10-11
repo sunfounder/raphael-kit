@@ -1,21 +1,19 @@
 .. _i2c_config:
 
-I2C Configuration
+I2C設定
 -----------------------
 
-**Step 1**: Enable the I2C port of your Raspberry Pi (If you have
-enabled it, skip this; if you do not know whether you have done that or
-not, please continue).
+**ステップ1**: Raspberry PiのI2Cポートを有効にします（既に有効にしている場合はこのステップをスキップしてください。不明な場合は続けてください）。
 
 .. raw:: html
 
    <run></run>
- 
+  
 .. code-block:: 
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 インターフェイスオプション**
 
 .. image:: img/image282.png
     :align: center
@@ -25,12 +23,12 @@ not, please continue).
 .. image:: img/image283.png
     :align: center
 
-**<Yes>, then <Ok> -> <Finish>**
+**<Yes>, では <Ok> -> <Finish>**
 
 .. image:: img/image284.png
     :align: center
 
-**Step 2:** Check whether the i2c modules are loaded and active.
+**ステップ2**: i2cモジュールがロードされているか確認します。
 
 .. raw:: html
 
@@ -40,14 +38,14 @@ not, please continue).
 
     lsmod | grep i2c
 
-Then the following codes will appear (the number may be different), if it does not appear, please reboot the Raspberry Pi with ``sudo reboot``.
+次のようなコードが表示されれば成功です（数字は異なる場合があります）。表示されない場合は、 ``sudo reboot`` でRaspberry Piを再起動してください。
 
 .. code-block:: 
 
     i2c_dev                     6276    0
     i2c_bcm2708                 4121    0
 
-**Step 3:** Install i2c-tools.
+**ステップ3**: i2c-toolsをインストールします。
 
 .. raw:: html
 
@@ -57,18 +55,15 @@ Then the following codes will appear (the number may be different), if it does n
 
     sudo apt-get install i2c-tools
 
-**Step 4:** Check the address of the I2C device.
-
+**ステップ4**: I2Cデバイスのアドレスを確認します。
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
   
 .. code-block:: 
 
-    i2cdetect -y 1      # For Raspberry Pi 2 and higher version
-
-
+    i2cdetect -y 1      # Raspberry Pi 2以降のバージョン用
 
 .. raw:: html
 
@@ -76,7 +71,7 @@ Then the following codes will appear (the number may be different), if it does n
  
 .. code-block:: 
 
-    i2cdetect -y 0      # For Raspberry Pi 1
+    i2cdetect -y 0      # Raspberry Pi 1用
 
 
 .. code-block:: 
@@ -92,11 +87,11 @@ Then the following codes will appear (the number may be different), if it does n
     60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     70: -- -- -- -- -- -- -- --
 
-If there is an I2C device connected, the address of the device will be displayed.
+I2Cデバイスが接続されている場合、そのデバイスのアドレスが表示されます。
 
-**Step 5:**
+**ステップ5**:
 
-**For C language users:** Install libi2c-dev.
+**C言語ユーザー向け**: libi2c-devをインストールします。
 
 .. raw:: html
 
@@ -106,7 +101,7 @@ If there is an I2C device connected, the address of the device will be displayed
 
     sudo apt-get install libi2c-dev 
 
-**For Python users:** Install smbus for I2C.
+**Pythonユーザー向け**: I2Cのsmbusをインストールします。
 
 .. raw:: html
 
@@ -115,3 +110,4 @@ If there is an I2C device connected, the address of the device will be displayed
 .. code-block:: 
 
     sudo pip3 install smbus2
+

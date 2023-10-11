@@ -1,70 +1,72 @@
-1.1.5 4-Digit 7-Segment Display
+.. _1.1.5_js:
+
+1.1.5 4桁の7セグメントディスプレイ
 ====================================
 
-Introduction
+はじめに
 -----------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+次に、私に続いて4桁の7セグメントディスプレイを制御してみましょう。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下の部品が必要です。
 
 .. image:: img/list_4_digit.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入すると非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも個別に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`4-Digit 7-Segment Display`
+    *   - :ref:`4-digit`
         - \-
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
 .. note::
-    In this projiect, for the 4-Digit 7-Segment Display we should use BS model,if you use AS model it may not light up.
+    このプロジェクトでは、4桁の7セグメントディスプレイにはBSモデルを使用する必要があります。ASモデルを使用すると、点灯しない場合があります。
 
-Schematic Diagram
+回路図
 --------------------
 
 .. image:: img/schmatic_4_digit.png
 
 
-Experimental Procedures
+実験手順
 -------------------------
 
-**Step 1**: Build the circuit.
+**ステップ1**：回路を組み立てます。
 
 .. image:: img/image80.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**：コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -74,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**ステップ3**：コードを実行します。
 
 .. raw:: html
 
@@ -84,9 +86,9 @@ Experimental Procedures
 
     sudo node 4_digit_7_segment_display.js
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
- 
-**Code**
+コードが実行された後、プログラムはカウントを取り、1秒ごとに1ずつ増加します。そして、4桁の7セグメントディスプレイでカウントが表示されます。
+
+**コード**
 
 .. code-block:: js
 
@@ -155,7 +157,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
         counter++;
     }, 1000);
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -165,13 +167,13 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
     const pin4 = new Gpio(17, {mode: Gpio.OUTPUT});
     const placePin = [pin1,pin2,pin3,pin4];    
 
-Initialize pins 10, 25, 27, and 17 as output modes and place them in the array ``placePin`` to facilitate control of the common anode of the four-digit 7-segment display.
+4桁の7セグメントディスプレイの共通アノードを制御しやすくするため、ピン10、25、27、17を出力モードとして初期化し、それらを ``placePin`` 配列に配置します。
 
 .. code-block:: js
 
     const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90];
 
-Define a constant array ``number`` to represent the hexadecimal segment code from 0 to 9 (common anode).
+0から9までの16進セグメントコード（共通アノード）を表すための定数配列 ``number`` を定義します。
 
 .. code-block:: js
 
@@ -179,7 +181,7 @@ Define a constant array ``number`` to represent the hexadecimal segment code fro
         hc595_shift(0xff); 
     }
 
-Write 0xff to turn off the digital tube.
+デジタルチューブを消灯するために0xffを書き込みます。
 
 .. code-block:: js
 
@@ -190,9 +192,9 @@ Write 0xff to turn off the digital tube.
         placePin[digit].digitalWrite(1);
     }
 
-Select the place of the value. 
-there is only one place that should be enable each time. 
-The enabled place will be written high.
+値の場所を選択します。
+一度に有効にするべき場所は1つだけです。
+有効にされた場所はハイに書き込まれます。
 
 .. code-block:: js
 
@@ -217,13 +219,13 @@ The enabled place will be written high.
         }
     }, 5);
 
-this code is used to set the number displayed on the 4-digit 7-segment Dispaly.
+このコードは、4桁の7セグメントディスプレイに表示される数字を設定するために使用されます。
 
-First, start the fourth segment display, write the single-digit number. 
-Then start the third segment display, and type in the tens digit; 
-after that, start the second and the first segment display respectively, 
-and write the hundreds and thousands digits respectively. 
-Because the refreshing speed is very fast, we see a complete four-digit display.
+まず、4番目のセグメントディスプレイを起動し、1桁の数字を書き込みます。
+次に、3番目のセグメントディスプレイを開始し、10桁の数字を入力します。
+その後、2番目と1番目のセグメントディスプレイを順番に起動し、
+それぞれ百桁と千桁の数字を書き込みます。
+リフレッシュ速度が非常に速いため、完全な4桁のディスプレイを見ることができます。
 
 .. code-block:: js
 
@@ -231,11 +233,10 @@ Because the refreshing speed is very fast, we see a complete four-digit display.
         counter++;
     }, 1000);
 
-Add one to the ``counter`` 
-(the four-digit digital tube displays the number plus one) 
-every second that passes.
+経過した毎秒に ``counter`` に1を加算します
+（4桁のデジタルチューブ表示の数字が1加算される）。
 
-Phenomenon Picture
+現象の画像
 -------------------------
 
 .. image:: img/image81.jpeg

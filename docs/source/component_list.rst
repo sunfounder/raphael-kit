@@ -1,22 +1,20 @@
-Components List and Introduction
+部品リストと紹介
 ====================================
 
-Components List
+部品リスト
 -----------------
 
-After opening the package, please check whether the quantity of components is compliance with product description and whether all components are in good condition.
+パッケージを開けた後、部品の数量が製品説明と一致しているか、また全ての部品が良好な状態にあるかを確認してください。
 
-* :download:`Components List <https://github.com/sunfounder/sf-pdf/raw/master/components_list/a0000672-raphael-kit.pdf>`
+* :download:`部品リスト <https://github.com/sunfounder/sf-pdf/raw/master/components_list/a0000672-raphael-kit.pdf>`
 
 
-Components Introductions
+各部品の紹介
 --------------------------
 
+以下は各部品の紹介です。それぞれの部品の動作原理と対応するプロジェクトが含まれています。
 
-Below is the introduction to each component, which contains the operating principle of the component and the corresponding projects.
-
-
-**Basic**
+**基本**
 
 .. toctree::
     :maxdepth: 1
@@ -28,7 +26,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_diode
     components/component_wires
 
-**Chip**
+**チップ**
 
 .. toctree::
     :maxdepth: 1
@@ -39,7 +37,7 @@ Below is the introduction to each component, which contains the operating princi
 
 
 
-**Display**
+**ディスプレイ**
 
 .. toctree::
     :maxdepth: 1
@@ -53,7 +51,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_i2c_lcd
 
 
-**Sound**
+**サウンド**
 
 .. toctree::
     :maxdepth: 1
@@ -61,7 +59,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_buzzer
     components/component_audio_speaker
 
-**Driver**
+**ドライバー**
 
 .. toctree::
     :maxdepth: 1
@@ -72,7 +70,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_relay
     
 
-**Controller**
+**コントローラー**
 
 .. toctree::
     :maxdepth: 1
@@ -85,7 +83,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_rotary_encoder
     components/component_keypad
 
-**Sensor**
+**センサー**
 
 .. toctree::
     :maxdepth: 1

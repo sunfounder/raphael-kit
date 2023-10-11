@@ -1,30 +1,23 @@
-Rotary Encoder Module
-=============================
+ロータリーエンコーダモジュール
+===============================
 
 .. image:: img/rotary_encoder_pic.png
     :width: 300
     :align: center
 
-The rotary encoder module counts the number of pulses output in the forward and reverse directions during rotation. unlike a potentiometer, this rotation count is unlimited and the number of pulses per cycle is 20. Press the key (SW) on the rotary encoder to start counting from zero.
+ロータリーエンコーダモジュールは、回転する際に前方と後方で出力されるパルス数をカウントします。ポテンショメーターと異なり、この回転カウントは無制限で、1サイクルあたりのパルス数は20です。ロータリーエンコーダのキー（SW）を押すと、ゼロからカウントが始まります。
 
-There are mainly two types of rotary encoders: absolute and incremental (relative) encoders. An incremental one is used in this kit.
+主に2種類のロータリーエンコーダがあります：絶対型と増分型（相対型）エンコーダ。このキットでは増分型が使用されています。
 
-Incremental encoders give two-phase square waves, their phase difference is 90, usually called A channel and B channel.
+増分型エンコーダは、2相の矩形波を出力し、その位相差は90で、通常はAチャネルとBチャネルと呼ばれています。
 
-As shown on the right, when channel A changes from high level to low
-level, if channel B is high level, it indicates the rotary encoder spins
-clockwise (CW); if at that moment channel B is low level, it means spins
-counterclockwise (CCW). So if we read the value of channel B when
-channel A is low level, we can know in which direction the rotary
-encoder rotates.
-
-
+右図に示すように、Aチャネルが高レベルから低レベルに変わると、Bチャネルが高レベルの場合、ロータリーエンコーダが時計回り（CW）に回転していることを示します。その時点でBチャネルが低レベルであれば、反時計回り（CCW）に回転していることを意味します。したがって、Aチャネルが低レベルの際にBチャネルの値を読むと、ロータリーエンコーダがどの方向に回転しているのかがわかります。
 
 .. image:: img/image206.png
     :width: 600
     :align: center
-	
-**Example**
 
-* :ref:`2.1.6_c` (C Project)
-* :ref:`2.1.6_py` (Python Project)
+**例**
+
+* :ref:`2.1.6_c` （Cプロジェクト）
+* :ref:`2.1.6_py` （Pythonプロジェクト）

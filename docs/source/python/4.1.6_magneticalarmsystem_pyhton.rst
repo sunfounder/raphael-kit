@@ -1,59 +1,61 @@
-4.1.6 Magnetic Induction Alarm System
+.. _4.1.6_py:
+
+4.1.6 磁気感応警報システム
 ============================================
 
-Introduction
+はじめに
 -----------------
 
-When you get a precious vase, you can make a magnetic induction alarm system for it, no matter who moves it, you can hear the alarm in time.
+貴重な花瓶を手に入れたとき、それに磁気感応警報システムを作成することができます。誰がそれを動かしても、タイムリーに警報を聞くことができます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/3.1.20components.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - |link_passive_buzzer_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
-    *   - :ref:`Reed Switch Module`
+    *   - :ref:`リードスイッチモジュール`
         - |link_reed_switch_buy|
 
 
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== ===
@@ -66,16 +68,16 @@ GPIO27       Pin 13   2        27
    :width: 600
    :align: center
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/3.1.20fritzing.png
   :width: 800
   :align: center
 
-**Step 2:** Get into the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -85,7 +87,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ3:** 実行します。
 
 .. raw:: html
 
@@ -95,13 +97,13 @@ Experimental Procedures
 
     sudo python3 4.1.6_MagneticAlarmSystem.py
 
-If the reed switch is affected by the magnet (for example, the reed switch is placed on the base and the magnet is placed in the vase), the object is safe. At this time, the reed switch is in the closed state, and the buzzer is silent.
-After removing the magnet (such as the vase being stolen), the reed switch is not affected by the magnetic, the switch opens, and the buzzer sounds an alarm.
+リードスイッチが磁石に影響される場合（例えば、リードスイッチがベースに置かれ、磁石が花瓶の中に置かれる）、オブジェクトは安全です。このとき、リードスイッチは閉じた状態であり、ブザーは静かです。
+磁石を取り外すと（例えば、花瓶が盗まれる）、リードスイッチは磁石の影響を受けず、スイッチが開き、ブザーが警報音を鳴らします。
 
-**Code**
+**コード**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    以下のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、それを行う前に、 ``raphael-kit/python`` のようなソースコードパスに移動する必要があります。コードを変更した後、その効果を直接確認するために実行することができます。
 
 .. raw:: html
 
@@ -142,7 +144,7 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
@@ -156,10 +158,9 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
                 GPIO.output(BeepPin, GPIO.HIGH)
                 time.sleep(0.1)
 
-We judge the state of the reed switch in the main loop. If the reed switch is closed, the buzzer does not work; otherwise, the buzzer beeps.
+メインループでリードスイッチの状態を判断します。リードスイッチが閉じている場合、ブザーは動作しません。それ以外の場合、ブザーがビープ音を鳴らします。
 
-
-Phenomenon Picture
+現象の画像
 ------------------------
 
 .. image:: ../img/4.1.6_security.JPG

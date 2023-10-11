@@ -1,12 +1,11 @@
-Download the Code
-=================
+コードのダウンロード
+======================
 
-Before you download the code, please note that the example code is
-**ONLY** test on Raspberry Pi OS. We provide two methods for download:
+コードをダウンロードする前に、このサンプルコードは **Raspberry Pi OSでのみ** テストされていることに注意してください。ダウンロード方法は2つ提供します。
 
-**Method 1: Use git clone (Recommended)**
+**方法1: git cloneを使用する（推奨）**
 
-Log into Raspberry Pi and then change directory to ``~``.
+Raspberry Piにログインした後、ディレクトリを ``~`` に変更します。
 
 .. raw:: html
 
@@ -16,12 +15,11 @@ Log into Raspberry Pi and then change directory to ``~``.
 
    cd ~/
 
-
 .. note::
 
-   cd to change to the intended directory from the current path. Informally, here is to go to the path ``~/``.
+   cdを使用して現在のパスから目的のディレクトリに移動します。非公式には、パス ``~/`` に移動するということです。
 
-Clone the repository from GitHub.
+GitHubからリポジトリをクローンします。
 
 .. raw:: html
 
@@ -31,8 +29,8 @@ Clone the repository from GitHub.
 
    git clone https://github.com/sunfounder/raphael-kit.git
 
-**Method 2: Download the code**
+**方法2: コードをダウンロードする**
 
-Download the source code from github: https://github.com/sunfounder/raphael-kit
+GitHubからソースコードをダウンロードします：https://github.com/sunfounder/raphael-kit
 
 .. image:: img/image33.png

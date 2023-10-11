@@ -1,11 +1,13 @@
-Hello Mouse
+.. _hello_mouse:
+
+マウスで描く
 ==================
 
-In this project, your mouse will keep shooting lines towards a point; move the mouse and you will draw a unique line of stars. Press the mouse to restart the drawing.
+このプロジェクトでは、マウスが点に向かって線を引き続けます。マウスを動かすと、ユニークな星の線を描くことができます。マウスをクリックすると、描画がリスタートされます。
 
 .. image:: img/hello_mouse1.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: arduino
 
@@ -28,14 +30,14 @@ In this project, your mouse will keep shooting lines towards a point; move the m
         background(192, 16, 18);
     }
 
-**How it works?**
+**どのように動作するのか？**
 
-The previous project was drawing a single image without any animation or interaction.
+前のプロジェクトはアニメーションやインタラクションなしで一つの画像を描画していました。
 
-If we want to make an interactive sketch, we need to add the ``setup()`` and ``draw()`` functions (these are built-in functions that are called automatically) to build the frame.
+インタラクティブなスケッチを作成する場合、フレームを構築するために ``setup()`` と ``draw()`` 関数（これらは自動的に呼び出される組み込み関数）を追加する必要があります。
 
-* ``setup()``: Executed only once at the start of the sketch.
-* ``draw()``: Executed repeatedly, where we usually add the sketch for drawing the animation.
+* ``setup()``: スケッチの開始時に一度だけ実行されます。
+* ``draw()``: 繰り返し実行され、アニメーションを描画するためのスケッチを通常追加します。
 
 .. code-block:: arduino
 
@@ -52,9 +54,9 @@ If we want to make an interactive sketch, we need to add the ``setup()`` and ``d
         line(pointX, pointY, mouseX, mouseY);
     }
 
-This sketch above already works smoothly as an interactive sketch.
+上記のスケッチは、インタラクティブなスケッチとしてすでにスムーズに動作しています。
 
-Next you can add a mouse click event. This event can be implemented with the ``mousePressed()`` function, where we add statements to refresh the target point and clear the screen.
+次に、マウスのクリックイベントを追加できます。このイベントは ``mousePressed()`` 関数で実装でき、ターゲットポイントを更新し、画面をクリアするステートメントを追加します。
 
 .. code-block:: arduino
 
@@ -77,6 +79,6 @@ Next you can add a mouse click event. This event can be implemented with the ``m
         background(192, 16, 18);
     }
 
+詳しくは `Processing Reference <https://processing.org/reference/>`_ を参照してください。
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
 

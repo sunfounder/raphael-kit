@@ -1,59 +1,60 @@
-4.1.3 Speech Clock
+.. _4.1.3_py:
+
+4.1.3 音声時計
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
------------------
+はじめに
+--------------------
 
-In this project, let's make a voice clock with a speaker and a 4-digit 7-segment display. The 4-digit 7-segment display will display the time, and the speaker will broadcast the time every hour.
+このプロジェクトでは、スピーカーと4桁の7セグメントディスプレイを用いて音声時計を作成しましょう。4桁の7セグメントディスプレイで時間を表示し、スピーカーで毎時時間をアナウンスします。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには以下のコンポーネントが必要です。
 
 .. image:: ../img/3.1.17components.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式をまとめて購入するのが便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することも可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`オーディオモジュールとスピーカー`
         - \-
-    *   - :ref:`4-Digit 7-Segment Display`
+    *   - :ref:`4桁7セグメントディスプレイ`
         - \-
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
-
-Schematic Diagram
+回路図
 --------------------------
 
 ============ ======== ======== ===
@@ -73,42 +74,42 @@ GPIO24       Pin 18   5        24
   :width: 500
   :align: center
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1：** 回路を作成する。
 
 .. image:: ../img/3.1.17fritzing.png
   :width: 900
   :align: center
 
-Before this project, you need to make sure you complete :ref:`3.1.4 Text-to-speech`.
+このプロジェクトに取り組む前に、 :ref:`3.1.4_py` を完了している必要があります。
 
-**Step 2:** Use the command ``date`` to view the local time.
+**ステップ2：** ``date`` コマンドでローカル時間を確認する。
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     date
 
-If the local time is different from the real time, you need to use the following command to set the time zone.
+ローカル時間が実際の時間と異なる場合、以下のコマンドを使用してタイムゾーンを設定します。
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo dpkg-reconfigure tzdata
 
-Choose your time zone.
+タイムゾーンを選択します。
 
 .. image:: ../img/tzdata.png
 
-**Step 3:** Get into the folder of the code.
+**ステップ3：** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -118,7 +119,7 @@ Choose your time zone.
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ4：** 実行する。
 
 .. raw:: html
 
@@ -128,12 +129,12 @@ Choose your time zone.
 
     python3 4.1.3_SpeechClock.py
 
-When the code is run, the 4-digit 7-segment will display the time and chime on every hour.
+コードが実行されると、4桁の7セグメントディスプレイが時間を表示し、毎時にチャイムが鳴ります。
 
-**Code**
+**コード**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    下記のコードは **修正/リセット/コピー/実行/停止** が可能です。ただし、その前にソースコードのパス、例えば ``raphael-kit/python`` に移動する必要があります。コードを修正した後、直接実行して効果を確認することができます。
 
 .. raw:: html
 
@@ -223,77 +224,78 @@ When the code is run, the 4-digit 7-segment will display the time and chime on e
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
     time.localtime(time.time())
-    hour = int(time.strftime('%H',time.localtime(time.time())))
-    minute = int(time.strftime('%M',time.localtime(time.time())))
+    hour = int(time.strftime('%H', time.localtime(time.time())))
+    minute = int(time.strftime('%M', time.localtime(time.time())))
 
-Through the function ``time.time()``, we can get the timestamp of the current time (the number of floating-point seconds that have passed since the 1970 epoch), and then use the time formatting method of the time module ``(time.localtime(time.time()))`` to process the current timestamp, so that we can format the timestamp as a local time. 
+関数 ``time.time()`` を通して、現在時刻のタイムスタンプ（1970年のエポックから経過した浮動小数点数の秒数）を取得し、timeモジュールの時刻フォーマットメソッド ``(time.localtime(time.time()))`` を使って現在のタイムスタンプを処理することで、タイムスタンプをローカルタイムとしてフォーマットすることができる。
 
-The input result is:
+入力結果は以下のようになります。
 
 ``time.struct_time(tm_year=2021, tm_mon=5, tm_mday=28, tm_hour=13, tm_min=54, tm_sec=26, tm_wday=4, tm_yday=148, tm_isdst=0)``
 
-Finally, we use the ``time.strftime()`` method to format the large string of information into what we want. If you want to get the current hour, you can get it through the function ``time.strftime('%H',time.localtime(time.time()))`` . 
+最後に、 ``time.strftime()`` メソッドを使用して、多くの情報が含まれている文字列を目的に合わせて書式設定します。現在の時間（時）を取得する場合、 ``time.strftime('%H',time.localtime(time.time()))`` 関数を通して取得できます。
 
-The output of the specified formatted string obtained by modifying the first parameter are listed below.
+指定された書式で得られる文字列の出力は、以下のとおりです。
 
 +----+----------------------------------------------------+
-| %y | Two-digit year representation(00-99)               |
+| %y | 2桁の年表示(00-99)                                 |
 +----+----------------------------------------------------+
-| %Y | Four-digit year representation(000-9999)           |
+| %Y | 4桁の西暦表示(000-9999)                            |
 +----+----------------------------------------------------+
-| %m | month(01-12)                                       |
+| %m | 月(01-12)                                          |
 +----+----------------------------------------------------+
-| %H | Day of the month(0-31)                             |
+| %H | 月の曜日(0-31)                                     |
 +----+----------------------------------------------------+
-| %I | Hours in a 24-hour clock(0-23)                     |
+| %I | 24時間表示(0-23)                                   |
 +----+----------------------------------------------------+
-| %M | Hours in 12-hour clock(01-12)                      |
+| %M | 12時間表示(01-12)                                  |
 +----+----------------------------------------------------+
-| %y | Minutes(00=59)                                     |
+| %y | 分(00=59)                                          |
 +----+----------------------------------------------------+
-| %S | second(00-59)                                      |
+| %S | 秒(00-59)                                          |
 +----+----------------------------------------------------+
-| %a | Local simplified week name                         |
+| %a | 地元の簡略化された週名                             |
 +----+----------------------------------------------------+
-| %A | Full local week name                               |
+| %A | 地元の完全な週名                                   |
 +----+----------------------------------------------------+
-| %b | Local simplified month name                        |
+| %b | 現地簡体字月名                                     |
 +----+----------------------------------------------------+
-| %B | Local full month name                              |
+| %B | 現地の月名                                         |
 +----+----------------------------------------------------+
-| %c | Local corresponding date and time display          |
+| %c | 現地対応日付・時刻表示                             |
 +----+----------------------------------------------------+
-| %j | Day of the year(001-366)                           |
+| %j | 曜日(001-366)                                      |
 +----+----------------------------------------------------+
-| %p | The equivalent of local A.M. or P.M.               |
+| %p | 現地の午前または午後に相当。                       |
 +----+----------------------------------------------------+
-| %U | Num of weeks of one year(00-53)starting with Sunday|
+| %U | 日曜日から始まる1年間の週数(00-53)                 |
 +----+----------------------------------------------------+
-| %w | Week (0-6), starting with Sunday                   |
+| %w | 週（0～6）、日曜日から開始                         |
 +----+----------------------------------------------------+
-| %W | Num of weeks of one year(00-53)starting with Monday|
+| %W | 月曜日から始まる1年間の週数(00-53)                 |
 +----+----------------------------------------------------+
-| %x | Local corresponding date representation            |
+| %x | 現地で対応する日付表示                             |
 +----+----------------------------------------------------+
-| %X | Local corresponding time representation            |
+| %X | ローカル対応時間表現                               |
 +----+----------------------------------------------------+
-| %Z | The name of the current time zone                  |
+| %Z | 現在のタイムゾーン名                               |
 +----+----------------------------------------------------+
+
 
 .. note::
-    The output of the ``time.strftime()`` method is all string variables. Before using it, remember to do a coercive type conversion.
+    ``time.strftime()`` メソッドの出力はすべて文字列変数です。使用する前に、強制的な型変換を忘れずに行ってください。
 
 .. code-block:: python
 
-    clearDisplay() 
-    pickDigit(0)  
+    clearDisplay()
+    pickDigit(0)
     hc595_shift(number[minute % 10])
-    
+
     clearDisplay()
     pickDigit(1)
     hc595_shift(number[minute % 100//10])
@@ -306,8 +308,7 @@ The output of the specified formatted string obtained by modifying the first par
     pickDigit(3)
     hc595_shift(number[hour % 100//10])
 
-The tens digit of the hour is displayed on the first 7-segment digital display, and the ones digit is displayed on the second. 
-Then the tens digit of the minutes is displayed on the third digital display, and the ones digit are displayed on the last.
+7セグメントのデジタルディスプレイの最初に時間の10の位が表示され、次に1の位が表示されます。その後、分の10の位が第3のデジタルディスプレイに表示され、1の位は最後に表示されます。
 
 .. code-block:: python
 
@@ -317,10 +318,9 @@ Then the tens digit of the minutes is displayed on the third digital display, an
     elif minute != 0:
         status = 0
 
-When the number of minutes is 0 (by hour), the Raspberry Pi will use TTS to announce the time for us.
+分の数が0（毎時）である場合、Raspberry PiはTTSを使用して時間をお知らせします。
 
-
-Phenomenon Picture
+現象の画像
 ------------------------
 
 .. image:: ../img/4.1.3speech_clock.JPG

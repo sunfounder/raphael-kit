@@ -1,32 +1,31 @@
-Power Supply Module
+電源モジュール
 =====================
 
-When we need a large current to drive a component, which will severely interfere with the normal work of Raspberry Pi. Therefore, we separately supply power for the component by this module to make it run safely and steadily.
+大電流が必要な部品を駆動する場合、Raspberry Piの正常な動作に重大な影響を及ぼします。そのため、このモジュールで部品に独立して電力を供給し、安定して動作させます。
 
-You can just plug it in the breadboard to supply power. It provides a voltage of 3.3V and 5V, and you can connect either via a jumper cap included.
+ブレッドボードに差し込むだけで電力を供給できます。3.3Vと5Vの電圧を供給し、付属のジャンパーキャップを使って接続することができます。
 
 .. image:: img/power_supply.png
     :width: 500
     :align: center
 
-**Features and specifications**
+**特長と仕様**
 
-* Input voltage: 6.5 - 12V
-* Two Independent Channel
-* Output voltage: 5V, 3.3V (adjustable via jumpers. 0V, 3.3V, and 5V configuration)
-* Output current: Maximum output current 700mA
-* Onboard berg male header for GND, 5V, 3.3V output
-* ON-OFF Switch available.
-* USB (Type-A) input available.
-* DC Barrel Jack input available.
-* Onboard power LED
-* Dimension: 53mm x 33mm (L x W)
+* 入力電圧：6.5 - 12V
+* 独立した2つのチャンネル
+* 出力電圧：5V、3.3V（ジャンパーで調整可能。0V、3.3V、5Vの設定）
+* 最大出力電流：700mA
+* GND、5V、3.3V出力用のオンボードの男性ヘッダ
+* ON-OFFスイッチあり。
+* USB（Type-A）入力あり。
+* DCバレルジャック入力あり。
+* オンボードの電源LED
+* 寸法：53mm x 33mm (縦 x 横）
 
+**例**
 
-**Example**
-
-* :ref:`1.3.1_c` (C Project)
-* :ref:`3.1.4 Smart Fan` (C Project)
-* :ref:`1.3.1_py` (Python Project)
-* :ref:`4.1.10 Smart Fan` (Python Project)
-* :ref:`1.17 Rotating fan` (Scratch Project)
+* :ref:`1.3.1_c` (Cプロジェクト)
+* :ref:`3.1.4_c` (Cプロジェクト)
+* :ref:`1.3.1_py` (Pythonプロジェクト)
+* :ref:`4.1.10_py` (Pythonプロジェクト)
+* :ref:`1.17_scratch` (Scratchプロジェクト)

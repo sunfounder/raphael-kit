@@ -1,82 +1,75 @@
-2.1.7 Potentionmeter
-=====================
+.. _2.1.7_js:
 
-Introduction
+2.1.7 ポテンショメータ
+========================
+
+はじめに
 ------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+ADC機能はアナログ信号をデジタル信号に変換するために使用できます。この実験では、ADC0834を用いてADCを取り扱う機能を得ることができます。ここでは、このプロセスをポテンショメータを使って実装します。ポテンショメータは物理的な量である電圧を変化させることができ、それがADC機能によって変換されます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_2.1.4_potentiometer.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一つのキットを購入するのは非常に便利です、以下がリンクです:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Potentiometer`
+    *   - :ref:`ポテンショメータ`
         - |link_potentiometer_buy|
     *   - :ref:`ADC0834`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image311.png
 
-
 .. image:: ../img/image312.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image180.png
 
-
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    チップを配置する際は、写真で示される対応する位置を参照してください。チップの溝が左側になるように配置してください。
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -86,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行します。
 
 .. raw:: html
 
@@ -96,10 +89,9 @@ Experimental Procedures
 
     sudo node potentionmeter.js
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+コードが実行された後、ポテンショメータのノブを回すと、LEDの明るさが変わります。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -118,32 +110,30 @@ of LED will change accordingly.
         });
     }, 100);
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
 
-Import the ``pigpio`` module.
+``pigpio`` モジュールをインポートします。
 
 .. code-block:: js
 
     const ADC0834 = require('./adc0834.js').ADC0834;
 
-We import an ``ADC0834`` constructor to use the adc0834 module.
+``ADC0834`` コンストラクタをインポートして、adc0834モジュールを使用します。
 
 
 .. code-block:: js
 
    const adc = new ADC0834(17, 18, 27);
 
+ADC0834オブジェクトをインスタンス化します。3つのパラメータは、それの3つのピンです。
 
-Instantiate an ADC0834 object, the three parameters are its three pins.
+これはPromiseオブジェクトです。以下のリンクからこの概念を理解する必要があるかもしれません。
 
-This is a promise object, you may need to understand the concept from the following link.
-
-* `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-
+* `Promise <https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 
 .. code-block:: js
 
@@ -156,15 +146,11 @@ This is a promise object, you may need to understand the concept from the follow
         });
     }, 100);
 
-The value of ADC0834 channel 0 (channel 0 is connected to the potentiometer) is read every 100ms, and the value will be stored in ``value``.
+ADC0834のチャネル0の値（チャネル0はポテンショメータに接続されています）は、100msごとに読み取られ、その値は ``value`` に格納されます。
 
-Print ``value`` and use it to control the brightness of the LED, now you can see that the brightness of the LED changes with the value of the potentiometer.
+``value`` を出力して、LEDの明るさを制御するために使用します。これで、ポテンショメータの値に応じてLEDの明るさが変わるのがわかります。
 
-
-
-
-
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image181.jpeg

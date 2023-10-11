@@ -1,51 +1,53 @@
-Inflating the Dot
+.. _inflating_the_dot:
+
+ドットの拡大
 ===========================
 
-Next, let's build a circuit that allows the button to control the size of the dot.
-When we press the button, the dot will quickly get bigger; when we release the button, the dot will gradually get smaller, which makes the dot look like a balloon being inflated.
+次に、ボタンでドットのサイズを制御できる回路を作成しましょう。
+ボタンを押すと、ドットはすぐに大きくなり、ボタンを離すと、ドットは徐々に小さくなります。これにより、ドットは膨らんでいる風船のように見えます。
 
 .. image:: img/dot_size.png
 
-**Required Components**
+**必要な部品**
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、それぞれ別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
 
-**Wiring**
+**配線図**
 
 .. image:: img/button_pressed.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: arduino
 
@@ -71,11 +73,12 @@ You can also buy them separately from the links below.
         ellipse(width/2, height/2,diameter, diameter);
     }
 
-**How it works?**
+**どのように動作するのか？**
 
-This project uses the input function compared to the previous 2 projects that used the output function of the GPIO.
+このプロジェクトは、GPIOの出力機能を使用した前の2つのプロジェクトとは異なり、入力機能を使用しています。
 
-The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
+``GPIO.pinMode()`` 関数は、 ``buttonPin`` をプルアップ入力モードに設定するために使用され、これにより、デフォルトの状態でピンが自動的にハイになります。
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
+次に ``GPIO.digitalRead()`` 関数を使用して ``buttonPin`` の値を読み取ります。値がLOWの場合、ボタンが押されていることを意味し、その時点でドットの直径を5増加させます。ボタンが放されたら、ドットの直径は1減少します。
+
 

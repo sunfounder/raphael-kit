@@ -1,4 +1,4 @@
-Play with C
+Cと遊ぶ
 ===============
 
 .. toctree::

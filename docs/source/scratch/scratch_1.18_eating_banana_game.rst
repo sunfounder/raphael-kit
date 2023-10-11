@@ -1,96 +1,98 @@
-1.18 Eating Banana Game
+.. _1.18_scratch:
+
+1.18 バナナ食べゲーム
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Description
+はじめに
 ---------------
 
-Scratch has a Video Sensing expansion module, which can turn on the camera in Scratch and detect the movement of objects on the camera screen.
+Scratchにはビデオセンシング拡張モジュールがあり、Scratch内のカメラを起動し、カメラ画面上のオブジェクトの動きを検出することができます。
 
-Today, we will use the camera to make a eating banana game. In the stipulated time, help the Monkey eat more bananas.
+今日は、このカメラを使用してバナナを食べるゲームを作ります。制定された時間内に、サルにもっとバナナを食べさせるためのゲームです。
 
-To play the game against a white background, click on the green flag to start. Move colored objects in front of the camera to control the Monkey sprite.
+白い背景でゲームをプレイするには、緑の旗をクリックして開始します。カメラの前で色のついたオブジェクトを動かして、サルのスプライトを操作します。
 
 .. image:: img/1.18_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.18_photo1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`Camera Module`
+    *   - :ref:`カメラモジュール`
         - |link_camera_buy|
 
 
-Build the Circuit
+回路を組む
 --------------------
 
 .. image:: img/1.10_camera.png
 
 .. note::
 
-    You need to refer to :ref:`Camera Module` to connect the camera module and enable the Raspberry Pi camera interface.
+    カメラモジュールを接続し、Raspberry Piのカメラインターフェイスを有効にするには、 :ref:`カメラモジュール` を参照してください。
 
-Load the Code and See What Happens
+コードをロードして動作を確認する
 ---------------------------------------
 
-Load the code file (``1.18_eating_banana_game.sb3``) to Scratch 3.
+Scratch 3に(``1.18_eating_banana_game.sb3``)のコードファイルをロードします。
 
-Tips on Codes
-----------------
+コードに関するヒント
+-------------------------------
 
-Arrange monkeys and bananas
+サルとバナナを配置する
 
-First, we delete the original sprite, then add Monkey sprite and Bananas sprite, and change their sizes to 50.
+まず、元のスプライトを削除し、サルのスプライトとバナナのスプライトを追加し、そのサイズを50に変更します。
 
-Let Bananas appear randomly.
+バナナがランダムに現れるようにします。
 
 .. image:: img/1.18_code1.png
 
-Bananas disappears after encountering the Monkey, which means it was eaten by the Monkey and reappears randomly.
+サルに遭遇した後のバナナが消えると、それはサルに食べられたことを意味し、ランダムに再出現します。
 
 .. image:: img/1.18_code2.png
 
-Let the Monkey appear in the center of the stage and initialize the camera data (transparency is set to 20).
+サルをステージの中央に表示させ、カメラデータを初期化します（透明度を20に設定）。
 
 .. image:: img/1.18_code3.png
 
-If the camera detects an object moving, let the Monkey move towards the object.
+カメラが物体の動きを検出すると、サルをその物体の方向に移動させます。
 
 .. image:: img/1.18_code4.png
 
-Now, click on the green flag at the top of the stage area to start the game.
+ステージエリアの上部の緑の旗をクリックしてゲームを開始します。
 
-Let the Monkey eat bananas, it is very hungry! Try to play this game on a white background to prevent interference from other objects.
+サルにバナナを食べさせてください、とてもお腹が空いています！ 他のオブジェクトからの干渉を防ぐために、白い背景でこのゲームをプレイしてみてください。
 
-Challenge
+チャレンジ
 -------------
 
-I believe that you will be smart enough to program and implement this game soon. Next, we will add some challenges to enrich our game content.
+このゲームのプログラムと実装がすぐにできることを信じています。次に、ゲームの内容を豊かにするためのいくつかのチャレンジを追加します。
 
-· When Monkey eats banana, we add 1 to the score. Within 30s, see who has the highest score!
+· サルがバナナを食べると、スコアに1を追加します。30秒以内に最も高いスコアを持っているのは誰でしょうか！
 
-· When Monkey eats a banana, it emits a suitable sound effect.
+· サルがバナナを食べると、適切な効果音が鳴ります。

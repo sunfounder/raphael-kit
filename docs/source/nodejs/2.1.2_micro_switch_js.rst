@@ -1,78 +1,76 @@
-2.1.2 Micro Switch
+.. _2.1.2_js:
+
+2.1.2 マイクロスイッチ
 =======================
 
-Introduction
+はじめに
 --------------------
 
-In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+このプロジェクトでは、マイクロスイッチの使用方法を学びます。マイクロスイッチは、非常に小さく、最小の圧縮でアクティベートする非常に敏感なスイッチです。信頼性があり、感度が高いため、マイクロスイッチは安全装置としてよく使用されます。
 
-They are used to prevent doors from closing if something or someone is in the way and other applications similar.
+例として、何かや誰かが邪魔をしてドアが閉まらないようにするためや、それに類似する他のアプリケーションに使用されます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/2.1.2component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットをまとめて購入するのは非常に便利です。以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Micro Switch`
+    *   - :ref:`マイクロスイッチ`
         - \-
-    *   - :ref:`Capacitor`
+    *   - :ref:`コンデンサ`
         - |link_capacitor_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-move arm of the Micro Switch, you can see the two LEDs light up alternately.
+マイクロスイッチの左ピンをGPIO17に接続し、2つのLEDをそれぞれGPIO22とGPIO27のピンに接続します。マイクロスイッチの動く腕を押して放すと、2つのLEDが交互に点灯するのが見えます。
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/micro_Schematic.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1**: 回路を組む。
 
 .. image:: ../img/2.1.4fritzing.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -82,7 +80,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**ステップ3**: コードを実行します。
 
 .. raw:: html
 
@@ -92,11 +90,11 @@ Experimental Procedures
 
     sudo node micro_switch.js
 
-While the code is running, press the Micro Switch, 
-then the yellow LED lights up; 
-release the moving arm, the red LED turns on.
+コードが実行されると、マイクロスイッチを押すと、
+黄色のLEDが点灯します。
+動く腕を放すと、赤いLEDが点灯します。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -116,8 +114,7 @@ release the moving arm, the red LED turns on.
         led2.digitalWrite(!level);       
     });
 
-
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -132,8 +129,8 @@ release the moving arm, the red LED turns on.
         edge: Gpio.EITHER_EDGE       
     });
 
-Import the ``pigpio`` module and create three objects led1, led2, micro,
-By reading the level of the micro IO port, the on and off of led1 and led2 are controlled.       
+``pigpio`` モジュールをインポートし、led1、led2、microの3つのオブジェクトを作成します。
+micro IOポートのレベルを読み取ることで、led1とled2のオンとオフを制御します。       
 
 .. code-block:: js
 
@@ -142,10 +139,10 @@ By reading the level of the micro IO port, the on and off of led1 and led2 are c
         led2.digitalWrite(!level);       
     });
 
-When the level of the read micro IO port changes,
-Write the same level to led1 and the opposite level to led2.
+micro IOポートのレベルが変わると、
+led1に同じレベルを、led2には反対のレベルを書き込みます。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/2.1.2micro_switch.JPG

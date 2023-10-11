@@ -20,6 +20,9 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
+2023-10-11:
+    - Japanese version released for the first time.
+
 2023-09-04:
     - Add About this kit page.
     - Add the introduction of Camera Module.

@@ -1,78 +1,75 @@
 .. _1.1.6_py:
 
-1.1.6 LED Dot Matrix
-=====================
+1.1.6 LEDドットマトリックス
+===========================
 
-Introduction
+はじめに
 --------------------
 
-As the name suggests, an LED dot matrix is a matrix composed of LEDs.
-The lighting up and dimming of the LEDs formulate different characters
-and patterns.
+LEDドットマトリックスとは、その名の通り、LEDで構成されたマトリックスです。
+LEDの点灯と消灯により、さまざまな文字やパターンが形成されます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_dot.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入する方が確実に便利です。リンクは以下です：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+個々のパーツも下記のリンクから別々に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
-    *   - :ref:`GPIO Extension Board`
+    *   - コンポーネントの紹介
+        - 購入リンク
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`LED Matrix Module`
+    *   - :ref:`LEDマトリクスモジュール`
         - |link_led_matrix_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== ====
 T-Board Name physical wiringPi BCM
 SPIMOSI      Pin 19   12       MOSI
-SPICE0       pin 24   10       CE0
+SPICE0       Pin 24   10       CE0
 SPISCLK      Pin 23   14       SCLK
 ============ ======== ======== ====
 
 .. image:: ../img/schematic_dot.png
 
-Experimental Procedures
+実験手順
 ----------------------------
 
-**Step 1:** Build the circuit. 
+**ステップ 1:** 回路を組む。
 
 .. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. And the :ref:`Luma.LED_Matrix` module is also needed.
+    実験を開始する前にSPIを有効にしてください。詳細は :ref:`SPI設定` を参照してください。また、 :ref:`Luma.LED_Matrix` モジュールも必要です。
 
-
-**Step 2:** Change directory.
+**ステップ 2:** ディレクトリを変更する。
 
 .. raw:: html
 
@@ -82,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ 3:** 実行する。
 
 .. raw:: html
 
@@ -92,14 +89,14 @@ Experimental Procedures
 
     sudo python3 1.1.6_LedMatrix.py
 
-After running the code, the LED Matrix will display a rectangle for two seconds, then the text 'A' for two seconds, and finally scroll to display the text "Hello, Nice to meet you!
+コードを実行すると、LEDマトリックスは2秒間四角形を表示した後、テキスト「A」を2秒間表示し、最後に「Hello, Nice to meet you!」というテキストをスクロール表示します。
 
-**Code**
+
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    下のコードには、 **修正/リセット/コピー/実行/停止** の操作が可能です。ただし、それ以前に ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、直接実行して効果を確認できます。
 
 .. raw:: html
 
@@ -152,7 +149,7 @@ After running the code, the LED Matrix will display a rectangle for two seconds,
       except KeyboardInterrupt:
          destroy()
 
-**Code Explanation**
+**コードの説明**
 
 .. code-block:: python
 
@@ -164,20 +161,19 @@ After running the code, the LED Matrix will display a rectangle for two seconds,
     from luma.core.legacy.font import proportional, CP437_FONT, LCD_FONT
     import time
 
-Import the relevant libraries, of which ``luma.core`` is a component library that provides a Pillow-compatible canvas for Python 3, as well as other drawing primitives and text rendering features that support small displays on Raspberry Pi and other single-board computers.
-You can visit `https://luma-core.readthedocs.io/en/latest/intro.html <https://luma-core.readthedocs.io/en/latest/intro.html>`_ to learn more.
-
+関連するライブラリをインポートします。``luma.core`` はPython 3のPillow互換キャンバスを提供するコンポーネントライブラリであり、Raspberry Piやその他のシングルボードコンピューターでの小型ディスプレイをサポートするその他の描画機能やテキストレンダリング機能も含まれています。
+詳細は `https://luma-core.readthedocs.io/en/latest/intro.html <https://luma-core.readthedocs.io/en/latest/intro.html>`_ で学べます。
 
 .. code-block:: python
 
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, rotate=1)
 
-Initialize the ``luma.led_matrix.device.max7219`` class.
+``luma.led_matrix.device.max7219`` クラスを初期化します。
 
 .. note::
 
-    If you want to modify the display direction of the LED Matrix, you can do so by modifying the value of rotate, where 0 means no rotation, 1 means 90° clockwise rotation, 2 means 180° rotation, and 3 means 270° clockwise rotation.
+    LEDマトリックスの表示方向を変更したい場合、rotateの値を変更して調整できます。0は回転なし、1は時計回りに90°、2は180°、3は時計回りに270°を意味します。
 
 .. code-block:: python
 
@@ -185,8 +181,7 @@ Initialize the ``luma.led_matrix.device.max7219`` class.
         with canvas(device) as draw:
             draw.rectangle(device.bounding_box, outline="white", fill="black")
 
-Display a hollow rectangle in the edge area of the LED Matrix and modify the value of ``fill`` to ``white`` to display a solid rectangle.
-
+LEDマトリックスのエッジ領域に空の長方形を表示し、 ``fill`` の値を ``white`` に設定することで、塗りつぶしの長方形を表示できます。
 
 .. code-block:: python
 
@@ -194,13 +189,13 @@ Display a hollow rectangle in the edge area of the LED Matrix and modify the val
         with canvas(device) as draw:
             text(draw, (0, 0), "A", fill="white", font=proportional(CP437_FONT))
 
-An "A" is displayed on the (0, 0) coordinate of the LED Matrix, where ``CP437_FONT`` is a font suitable for 8*8 dot matrix screens.
+LEDマトリックスの（0、0）座標に「A」と表示します。ここで ``CP437_FONT`` は8*8ドットマトリックス画面に適したフォントです。
 
 .. code-block:: python
 
     virtual = viewport(device, width=200, height=400)
 
-There is no way to display a line of text in a single 8x8 LED matrix. We need to use the ``luma.core.virtual.viewport`` method so that the text can be scrolled through the virtual viewport.
+シングルの8x8 LEDマトリックスでテキストラインを表示する方法はありません。テキストをスクロール表示するために ``luma.core.virtual.viewport`` メソッドを使用する必要があります。
 
 .. code-block:: python
 
@@ -212,14 +207,14 @@ There is no way to display a line of text in a single 8x8 LED matrix. We need to
             virtual.set_position((offset,0))
             time.sleep(0.1)
 
-``scrollToDisplayText()`` implements "Hello, Nice to meet you!" as a scrolling text on the LED Matrix.
+``scrollToDisplayText()`` は「Hello, Nice to meet you!」というテキストをLEDマトリックス上でスクロール表示します。
 
-First, we pass virtual as an argument to the ``canvas()`` function, so that we can use the virtual window as the current display window. Then the ``text()`` function displays "Hello, Nice to meet you!" on the LED Matrix.
+最初に、 ``canvas()`` 関数に仮想ウィンドウを引数として渡し、現在の表示ウィンドウとして使用します。その後、 ``text()`` 関数で「Hello, Nice to meet you!」をLEDマトリックスに表示します。
 
-Using the for loop function, we move the virtual window in the X direction so that we can see the "Hello, Nice to meet you!" text scrolling.
+forループを使用して、X方向に仮想ウィンドウを移動させ、「Hello, Nice to meet you!」というテキストがスクロール表示されるようにします。
 
-
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/1.1.6led_dot_matrix.JPG
+

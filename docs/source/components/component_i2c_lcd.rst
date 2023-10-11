@@ -6,48 +6,51 @@ I2C LCD1602
 .. image:: img/i2c_lcd1602.png
     :width: 800
 
-* **GND**: Ground
-* **VCC**: Voltage supply, 5V.
-* **SDA**: Serial data line. Connect to VCC through a pullup resistor.
-* **SCL**: Serial clock line. Connect to VCC through a pullup resistor.
+* **GND**: グラウンド
+* **VCC**: 電源供給、5V。
+* **SDA**: シリアルデータライン。プルアップ抵抗を介してVCCに接続。
+* **SCL**: シリアルクロックライン。プルアップ抵抗を介してVCCに接続。
 
-As we all know, though LCD and some other displays greatly enrich the man-machine interaction, they share a common weakness. When they are connected to a controller, multiple IOs will be occupied of the controller which has no so many outer ports. Also it restricts other functions of the controller. 
+LCDやその他のディスプレイは人間とマシンとのインタラクションを豊かにしますが、欠点もあります。それは、制御ユニットに接続すると、多くのIOポートを占有し、その他の機能に制限をかけることです。
 
-Therefore, LCD1602 with an I2C module is developed to solve the problem. The I2C module has a built-in PCF8574 I2C chip that converts I2C serial data to parallel data for the LCD display.        
+その問題を解決するために、I2Cモジュールを搭載したLCD1602が開発されました。このI2Cモジュールには、I2CシリアルデータをLCDディスプレイの並列データに変換する内蔵PCF8574 I2Cチップがあります。
 
 * `PCF8574 Datasheet <https://www.ti.com/lit/ds/symlink/pcf8574.pdf?ts=1627006546204&ref_url=https%253A%252F%252Fwww.google.com%252F>`_
 
-**I2C Address**
+**I2Cアドレス**
 
-The default address is basically 0x27, in a few cases it may be 0x3F.
+基本的にはデフォルトアドレスは0x27で、稀に0x3Fになる場合もあります。
 
-Taking the default address of 0x27 as an example, the device address can be modified by shorting the A0/A1/A2 pads; in the default state, A0/A1/A2 is 1, and if the pad is shorted, A0/A1/A2 is 0.
+デフォルトの0x27を例にとると、A0/A1/A2パッドをショートすることでデバイスアドレスを変更できます。デフォルト状態では、A0/A1/A2は1で、パッドがショートすると0になります。
 
 .. image:: img/i2c_address.jpg
     :width: 600
 
-**Backlight/Contrast**
+**バックライト/コントラスト**
 
-Backlight can be enabled by jumper cap, unplugg the jumper cap to disable the backlight. The blue potentiometer on the back is used to adjust the contrast (the ratio of brightness between the brightest white and the darkest black).
-
+ジャンパーキャップでバックライトを有効にでき、ジャンパーキャップを外すとバックライトを無効にできます。裏側の青い可変抵抗は、コントラスト（最も明るい白と最も暗い黒の明るさの比率）を調整するために使用されます。
 
 .. image:: img/back_lcd1602.jpg
 
-* **Shorting Cap**: Backlight can be enabled by this cap，unplugg this cap to disable the backlight.
-* **Potentiometer**: It is used to adjust the contrast (the clarity of the displayed text), which is increased in the clockwise direction and decreased in the counterclockwise direction.
-
+* **ショートキャップ**: このキャップでバックライトを有効にでき、このキャップを外すとバックライトを無効にできます。
+* **可変抵抗**: 表示テキストの明瞭度を調整するために使用され、時計回りに回すと増加し、反時計回りに回すと減少します。
 
 
 
 **Example**
 
-* :ref:`1.1.7_c` (C Project)
-* :ref:`3.1.3 Reversing Alarm` (C Project)
-* :ref:`3.1.7 Overheat Monitor` (C Project)
-* :ref:`3.1.8 Password Lock` (C Project)
-* :ref:`3.1.11 GAME– Guess Number` (C Project)
-* :ref:`1.1.7_py` (Python Project)
-* :ref:`4.1.9 Reversing Alarm` (Python Project)
-* :ref:`4.1.13 Overheat Monitor` (Python Project)
-* :ref:`4.1.14 Password Lock` (Python Project)
-* :ref:`4.1.17_python` (Python Project)
+* :ref:`1.1.7_c` (Cプロジェクト)
+* :ref:`3.1.3_c` (Cプロジェクト)
+* :ref:`3.1.7_c` (Cプロジェクト)
+* :ref:`3.1.8_c` (Cプロジェクト)
+* :ref:`3.1.11_c` (Cプロジェクト)
+* :ref:`1.1.7_py` (Pythonプロジェクト)
+* :ref:`4.1.9_py` (Pythonプロジェクト)
+* :ref:`4.1.13_py` (Pythonプロジェクト)
+* :ref:`4.1.14_py` (Pythonプロジェクト)
+* :ref:`4.1.17_py` (Pythonプロジェクト)
+
+
+
+
+

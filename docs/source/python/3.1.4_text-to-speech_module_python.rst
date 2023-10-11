@@ -1,67 +1,67 @@
-3.1.4 Text-to-speech
-=======================
+.. _3.1.4_py:
 
-Introduction
+3.1.4 テキストから音声へ（TTS）
+=================================
+
+はじめに
 -----------------
 
-In many places, we can come into contact with TTS (Text-to-speech) technology, which converts text into natural-sounding speech and brings people a good interactive experience.
+TTS（テキストから音声へ）テクノロジーは多くの場面で接触することができます。このテクノロジーはテキストを自然な音声に変換し、ユーザーに良いインタラクティブな体験を提供します。
+このプロジェクトで、Raspberry Piを話すように設定してみましょう。
 
-
-Let's try to make your project speak.
-
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下の通りです。
 
 .. image:: ../img/audio2.png
   :width: 700
   :align: center
-It's definitely convenient to buy a whole kit, here's the link: 
+
+一式をまとめて購入するのが便利です。購入リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下からは各部品を個別に購入も可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
-    *   - :ref:`GPIO Extension Board`
+    *   - コンポーネントの紹介
+        - 購入リンク
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`オーディオモジュールとスピーカー`
         - \-
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/4.1.4fritzing.png
   :width: 800
-  :align: center   
+  :align: center
 
-After building the circuit according to the above diagram, then plug the audio cable into the Raspberry Pi’s 3.5mm audio jack.
+上記の図に従って回路を組み立てた後、3.5mmのオーディオケーブルをRaspberry Piのオーディオジャックに接続します。
 
 .. image:: ../img/audio4.png
-    :width: 400
-    :align: center
+  :width: 400
+  :align: center
 
-**Step 2:** Install ``espeak`` module.
+**ステップ2:** ``espeak`` モジュールをインストールします。
 
 .. raw:: html
 
@@ -71,7 +71,7 @@ After building the circuit according to the above diagram, then plug the audio c
 
     sudo apt-get install espeak -y
 
-**Step 3:** Get into the folder of the code.
+**ステップ3:** コードの保存されているフォルダに移動します。
 
 .. raw:: html
 
@@ -81,7 +81,7 @@ After building the circuit according to the above diagram, then plug the audio c
 
     cd ~/raphael-kit/python/
 
-**Step 4:** Run.
+**ステップ4:** コードを実行します。
 
 .. raw:: html
 
@@ -91,18 +91,19 @@ After building the circuit according to the above diagram, then plug the audio c
 
     python3 3.1.4_Text-to-speech.py
 
-Raspberry pi will greet you kindly after the code runs, and it will say goodbye to you when the code stops.
+コードを実行すると、Raspberry Piが親切な言葉であいさつし、コードを停止するとお別れの言葉を言います。
 
 .. note::
 
-    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`Change Audio Output` to Headphones.
+    スピーカーから音が出ない場合は、Raspberry Piが間違ったオーディオ出力（デフォルトはHDMI）を選択している可能性があります。その場合は、 :ref:`オーディオ出力の変更` を行ってヘッドフォンに設定してください。
 
-    If you feel that the volume of the speakers is too low, you can :ref:`Adjust Volume`.
+    スピーカーの音量が低いと感じる場合は、 :ref:`音量調整` が可能です。
 
-**Code**
+**コード**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect. After confirming that there are no problems, you can use the Copy button to copy the modified code, then open the source code in Terminal via ``nano``  cammand and paste it.
+
+    以下のコードは **修正/リセット/コピー/実行/停止** が可能です。ただし、その前にソースコードの保存先（例： ``raphael-kit/python`` ）に移動する必要があります。
 
 .. raw:: html
 
@@ -127,7 +128,7 @@ Raspberry pi will greet you kindly after the code runs, and it will say goodbye 
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
@@ -135,24 +136,24 @@ Raspberry pi will greet you kindly after the code runs, and it will say goodbye 
 
     tts = TTS(engine="espeak")
 
-Import the TTS class and instantiate an object.
+TTSクラスをインポートし、オブジェクトを生成します。
 
 .. code-block:: python
 
     tts.lang('en-US')
 
-Set the language.
+言語を設定します。
 
 .. note::
-    Currently the switchable language only supports English.
+    現在、切り替え可能な言語は英語のみです。
 
 .. code-block:: python
 
     tts.say("Hello, nice to meet you!")
 
-Fill in the text to be said as a parameter, after executing ``tts.say()``, Raspberry Pi will say the text you wrote.
+``tts.say()`` を実行すると、指定したテキストをRaspberry Piが話します。
 
-Phenomenon Picture
+現象の画像
 ------------------------
 
 .. image:: ../img/3.1.3audio.JPG

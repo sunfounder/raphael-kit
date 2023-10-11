@@ -1,95 +1,94 @@
-2.1.5 Tilt Switch
-=================
+.. _2.1.5_js:
 
-Introduction
+2.1.5 傾きスイッチ
+====================
+
+はじめに
 ------------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+これは、内部に金属のボールが入った傾きスイッチです。小さい角度の傾斜を検出するために使用されます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.1.3_tilt_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットをまとめて購入するのは非常に便利です。以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Tilt Switch`
+    *   - :ref:`傾斜スイッチ`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image307.png
 
-
 .. image:: ../img/image308.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image169.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダへ移動します。
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行します。
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo node tilt_switch.js
 
-Place the tilt vertically, and the green LED will turns on. 
-If you tilt it, the red LED will turns on. 
-Place it vertically again, and the green LED will lights on.
+傾きスイッチを垂直に配置すると、緑のLEDが点灯します。
+それを傾けると、赤いLEDが点灯します。
+再び垂直に配置すると、緑のLEDが点灯します。
 
-**Code**
+**コード**
 
 .. raw:: html
 
@@ -119,7 +118,7 @@ Place it vertically again, and the green LED will lights on.
         led2.digitalWrite(!level);    
     });
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -134,9 +133,8 @@ Place it vertically again, and the green LED will lights on.
         edge: Gpio.EITHER_EDGE        
     }); 
 
-Import the pigpio module and create three objects led1, led2, tilt,
-By reading the level of the tilt IO port, the on and off of led1 and led2 are controlled.       
-
+pigpioモジュールをインポートし、led1、led2、tiltの3つのオブジェクトを作成します。
+tilt IOポートのレベルを読み取ることで、led1とled2のオン・オフを制御します。
 
 .. code-block:: js
 
@@ -146,8 +144,8 @@ By reading the level of the tilt IO port, the on and off of led1 and led2 are co
         edge: Gpio.EITHER_EDGE       
     });
 
-Create a tilt object to control the IO port Gpio17, set it to input mode, pull-down resistor (initially low level).
-And set the interrupt function, the mode is EITHER_EDGE, that is, both rising and falling edges will trigger the interrupt function.
+Gpio17のIOポートを制御するtiltオブジェクトを作成し、入力モードに設定、プルダウン抵抗（初期値はローレベル）を適用します。
+そして、割り込み関数を設定します。モードはEITHER_EDGEで、立ち上がりエッジと立ち下がりエッジの両方で割り込み関数がトリガーされます。
 
 .. code-block:: js
 
@@ -162,14 +160,11 @@ And set the interrupt function, the mode is EITHER_EDGE, that is, both rising an
         led2.digitalWrite(!level);    
     });
 
+割り込みがトリガーされると、led1に同じレベルを書き込み、led2には反対のレベルを書き込みます。
+tilt IOポートが高い場合、ターミナルに「水平」と表示されます。
+tilt IOポートが低い場合、ターミナルに「垂直」と表示されます。
 
-When the interrupt is triggered, write the same level to led1, and write the opposite level to led2.
-When the tilt IO port is high, the terminal prints "Horizontally";
-When the tilt IO port is low, the terminal prints "Vertically".
-
-
-
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image170.jpeg

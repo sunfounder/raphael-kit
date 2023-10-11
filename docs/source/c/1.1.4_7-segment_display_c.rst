@@ -1,67 +1,59 @@
 .. _1.1.4_c:
 
-1.1.4 7-segment Display
+1.1.4 7セグメントディスプレイ
 =============================
 
-Introduction
+はじめに
 -----------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+0から9、AからFまでの数字や文字を7セグメントディスプレイに表示しましょう。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下の通りです。
 
 .. image:: ../img/list_7_segment.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入するのは確かに便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`7-segment Display`
+    *   - :ref:`7セグメントディスプレイ`
         - |link_7segment_buy|
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
-Schematic Diagram
+回路図
 ---------------------
 
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+74HC595のST_CPピンをRaspberry PiのGPIO18に、SH_CPをGPIO27に、DSをGPIO17に接続します。そして、並列出力ポートをLEDセグメントディスプレイの8セグメントに接続します。SH_CP（シフトレジスタのクロック入力）が立ち上がりエッジのときにDSピンのデータをシフトレジスタに入力し、ST_CP（メモリのクロック入力）が立ち上がりエッジのときにメモリレジスタに入力します。その後、Raspberry PiのGPIOを使用してSH_CPとST_CPの状態を制御し、シリアルデータ入力を並列データ出力に変換することで、Raspberry PiのGPIOを節約し、ディスプレイを駆動します。
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -73,14 +65,14 @@ GPIO27       Pin 13   2        27
 .. image:: ../img/schematic_7_segment.png
 
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image73.png
 
-**Step 2:** Get into the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -90,7 +82,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.4/
 
-**Step 3:** Compile.
+**ステップ3:** コンパイルします。
 
 .. raw:: html
 
@@ -100,7 +92,7 @@ Experimental Procedures
 
     gcc 1.1.4_7-Segment.c -lwiringPi
 
-**Step 4:** Run the executable file above.
+**ステップ4:** 上記の実行ファイルを実行します。
 
 .. raw:: html
 
@@ -110,13 +102,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+コードを実行すると、7セグメントディスプレイに0-9、A-Fが表示されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -166,14 +158,14 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 
 .. code-block:: c
 
     unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
-A segment code array from 0 to F in Hexadecimal (Common cathode).
+16進数の0からFまでのセグメントコード配列（共通カソード）。
 
 .. code-block:: c
 
@@ -186,31 +178,31 @@ A segment code array from 0 to F in Hexadecimal (Common cathode).
         digitalWrite(SRCLK, 0);
     }
 
-Set ds, st_cp, sh_cp three pins to OUTPUT, and the initial state as 0.
+ds、st_cp、sh_cpの3つのピンをOUTPUTに設定し、初期状態を0にします。
 
 .. code-block:: c
 
     void hc595_shift(unsigned char dat){}
 
-To assign 8 bit value to 74HC595’s shift register.
+74HC595のシフトレジスタに8ビットの値を代入します。
 
 .. code-block:: c
 
     digitalWrite(SDI, 0x80 & (dat << i));
 
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when i=2, 0x3f will shift left(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+ビット毎にdatデータをSDI(DS)に代入します。ここでは、dat=0x3f(0011 1111)と仮定しています。i=2のとき、0x3fは2ビット左にシフトされます。1111 1100（0x3f << 2）& 1000 0000（0x80）= 1000 0000となり、真となります。
 
 .. code-block:: c
 
     digitalWrite(SRCLK, 1);
 
-SRCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge pulse, then shift the DS date to shift register.
+SRCLKの初期値は0に設定されていましたが、ここで1に設定しています。これは、DSのデータをシフトレジスタにシフトするための立ち上がりエッジパルスを生成するためです。
 
 .. code-block:: c
 
     digitalWrite(RCLK, 1);
 
-RCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge, then shift data from shift register to storage register.
+RCLKの初期値は0に設定されていましたが、ここで1に設定しています。これは、シフトレジスタからストレージレジスタへのデータのシフトのための立ち上がりエッジを生成するためです。
 
 .. code-block:: c
 
@@ -222,12 +214,13 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
             }
         }
 
-In this for loop, we use ``%1X`` to output i as a hexadecimal number. Apply i to find the corresponding segment code in the ``SegCode[]`` array, and employ ``hc595_shift()`` to pass the SegCode into 74HC595's shift register.
+このforループでは、 ``%1X`` を使用してiを16進数で出力しています。iを使用して ``SegCode[]`` 配列内の対応するセグメントコードを見つけ、 ``hc595_shift()`` を使用してそのSegCodeを74HC595のシフトレジスタに渡します。
 
 .. note::
-    The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+    数字の0〜15の16進数形式は（0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F）です。
 
-**Phenomenon Picture**
+現象の画像
+--------------------
 
 .. image:: ../img/image74.jpeg
 

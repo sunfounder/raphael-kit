@@ -1,83 +1,82 @@
-1.11 Repelling locusts
+.. _1.11_scratch:
+
+1.11 バッタを追い払う
 ========================
 
+今日は、IR障害物回避モジュール、Raspberry Pi、およびScratchを使用して、バッタを追い払うゲームを作成します。
 
-Today, we will use IR obstacle avoidance module, Raspberry Pi and Scratch to make a locust repelling game.
-
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+障害物回避モジュールの前に手を置くと、バッタが追い払われるのがわかります。
 
 .. image:: img/1.11_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.11_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Obstacle Avoidance Module`
+    *   - :ref:`障害物回避モジュール`
         - |link_obstacle_avoidance_buy|
 
-Build the Circuit
+回路を組む
 ----------------------
 
 .. image:: img/1.11_fritzing.png
     :width: 700
     :align: center
 
-Load the Code and See What Happens
+コードをロードして動作を確認する
 ----------------------------------------
 
-Load the code file (``1.11_repelling_locusts.sb3``) to Scratch 3.
+Scratch 3に(``1.11_repelling_locusts.sb3``)のコードファイルをロードします。
 
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+障害物回避モジュールの前に手を置くと、バッタが追い払われるのがわかります。
 
+スプライトに関するヒント
+---------------------------------
 
-Tips on Sprite
-----------------
-
-Select Sprite1 and click **Costumes** in the top left corner; upload **locust1.png**, **locust1.png** and **locust3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **locust**.
+Sprite1を選択し、左上の **Costumes** をクリックします。 ``~/raphael-kit/scratch/picture`` のパスから **locust1.png**、 **locust2.png**、および **locust3.png** を **Upload Costume** ボタンを使用してアップロードします。デフォルトの2つのコスチュームを削除し、スプライトの名前を **locust** に変更します。
 
 .. image:: img/1.11_ir1.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.11_ir2.png
   :width: 400
 
-When the IR obstacle avoidance module does not detect an obstacle (no hand is placed in front of the probe), the gpio is high.
+IR障害物回避モジュールが障害物を検出しない場合（プローブの前に手が置かれていない場合）、gpioは高いです。
 
 .. image:: img/1.11_ir3.png
   :width: 400
 
-When gpio17 is high (no obstacles go in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust1 (locusts gather in wheat). Conversely when gpio17 is low (put your hand in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust2 (expel locusts), then switch the locust sprite's costume to locust3 (locusts are completely expelled) after 0.5s.
-
+gpio17が高いとき（IR障害物回避モジュールの前に障害物が入らない場合）、バッタスプライトのコスチュームをlocust1に切り替えます（バッタが小麦に集まる）。逆に、gpio17が低いとき（IR障害物回避モジュールの前に手を置く）、バッタスプライトのコスチュームをlocust2に切り替えます（バッタを追い払う）、そして0.5秒後にバッタスプライトのコスチュームをlocust3に切り替えます（バッタは完全に追い払われる）。

@@ -1,64 +1,65 @@
-3.1.4 Smart Fan
+.. _3.1.4_c:
+
+3.1.4 スマートファン
 ======================
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+このプロジェクトでは、モーター、ボタン、サーミスターを使用して、風速を調整できる手動+自動のスマートファンを作成します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_Smart_Fan.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入すると便利です。以下はそのリンクです。
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することも可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`電源モジュール`
         - \-
-    *   - :ref:`Thermistor`
+    *   - :ref:`サーミスター`
         - |link_thermistor_buy|
     *   - :ref:`L293D`
         - \-
     *   - :ref:`ADC0834`
         - \-
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
-    *   - :ref:`DC Motor`
+    *   - :ref:`DCモーター`
         - |link_motor_buy|
 
-Schematic Diagram
+回路図
 ------------------------
 
 ============ ======== ======== ===
@@ -75,23 +76,21 @@ GPIO13       Pin 33   23       13
 .. image:: ../img/Schematic_three_one4.png
    :align: center
 
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image245.png
     :align: center
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    電源モジュールにはキットの9Vバッテリーバックルを使用して9Vバッテリーを使用することができます。電源モジュールのジャンパーキャップをブレッドボードの5Vバスストリップに挿入します。
 
 .. image:: ../img/image118.jpeg
     :align: center
 
-**Step 2**: Get into the folder of the code.
+**ステップ2**: コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -101,7 +100,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.4/
 
-**Step 3**: Compile.
+**ステップ3**: コンパイルする。
 
 .. raw:: html
 
@@ -111,7 +110,7 @@ Experimental Procedures
 
     gcc 3.1.4_SmartFan.c -lwiringPi -lm
 
-**Step 4**: Run the executable file above.
+**ステップ4**: 上記の実行可能ファイルを実行する。
 
 .. raw:: html
 
@@ -121,19 +120,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+コードを実行すると、ボタンを押すことでファンを起動します。押すたびに1段階の速度が上下します。速度の段階は **0~4** の **5** 種類があります。4\ :sup:`th` 速度段階に設定し、ボタンを押すと、ファンは **0** の風速で停止します。
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+気温が2℃以上上昇または下降すると、速度は自動的に1段階速くまたは遅くなります。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-Code
+コード
 --------
 
 .. code-block:: c
@@ -274,7 +269,7 @@ Code
         return 0;
     }
 
-Code Explanation
+コード説明
 ----------------------
 
 .. code-block:: c
@@ -292,27 +287,24 @@ Code Explanation
         return t;
     }
 
-Temperture() works by converting thermistor values read by ADC0834 into
-temperature values. Refer to :ref:`2.2.2 Thermistor` for more details.
+Temperture()は、ADC0834によって読み取られたサーミスタの値を温度値に変換して動作します。詳細については、 :ref:`2.2.2_c` を参照してください。
 
 .. code-block:: c
 
-    int motor(int level){
-        if(level==0){
-            digitalWrite(MotorEnable,LOW);
-            return 0;
-        }
-        if (level>=4){
-            level =4;
-        }
-        digitalWrite(MotorEnable,HIGH);
-        softPwmWrite(MotorPin1, level*25);
-        return level;    
+    int motor(int level){
+        if(level==0){
+            digitalWrite(MotorEnable,LOW);
+            return 0;
+        }
+        if (level>=4){
+            level =4;
+        }
+        digitalWrite(MotorEnable,HIGH);
+        softPwmWrite(MotorPin1, level*25);
+        return level;     
     }
 
-This function controls the rotating speed of the motor. The range of the
-**Level**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+この関数はモーターの回転速度を制御します。 **Level** の範囲: **0-4** （レベル **0** はモーターの動作を停止します）。一つのレベルの調整は風速の **25%** の変化を意味します。
 
 .. code-block:: c
 
@@ -347,15 +339,14 @@ adjustment stands for a **25%** change of the wind speed.
         return 0;
     }
 
-The function **main()** contains the whole program process as shown:
+**main()** 関数は、以下に示されているプログラムの全体的なプロセスを含んでいます：
 
-1) Constantly read the button state and the current temperature.
+1) ボタンの状態と現在の温度を常に読み取ります。
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+2) 一回の押し下げでlevelを **+1** し、同時に温度も更新されます。 **Level** は **1~4** の範囲です。
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+3) ファンが動作している場合（レベルが **0でない場合** ）、温度は検出されています。 **2℃の+** の変化は、レベルの上下を引き起こします。
 
-4) The motor changes the rotating speed with the **Level**.
+4) モーターは **Level** に従って回転速度を変更します。
+
 

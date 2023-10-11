@@ -1,77 +1,72 @@
 .. _1.3.3_c:
 
-1.3.3 Relay
+1.3.3 リレー
 =================
 
-Introduction
+はじめに
 ------------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+このプロジェクトでは、リレーの使用方法を学びます。これは自動制御システムで一般的に使用されるコンポーネントの一つです。電圧、電流、温度、圧力などが、予定された値に達する、それを超える、またはそれより低くなると、リレーは回路を接続するか、または遮断することで、装置の制御と保護を行います。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_1.3.4.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
-    *   - :ref:`Relay`
+    *   - :ref:`リレー`
         - |link_relay_buy|
-    *   - :ref:`Diode`
+    *   - :ref:`ダイオード`
         - |link_diode_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image345.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image144.png
 
-**Step 2**: Open the code file.
+**ステップ2**: コードファイルを開きます。
 
 .. raw:: html
 
@@ -81,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.3.3
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -91,8 +86,7 @@ Experimental Procedures
 
     gcc 1.3.3_Relay.c -lwiringPi
 
-
-**Step 4:** Run the executable file.
+**ステップ4:** 上記の実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -102,15 +96,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the LED will light up. In addition, you can
-hear a ticktock caused by breaking normally close contact and 
-closing normally open contact.
+コードが実行された後、LEDが点灯します。また、通常閉じている接点を切断し、通常開いている接点を閉じることによるカチカチという音も聞こえます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: そのようなファイルやディレクトリはありません」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -138,25 +130,22 @@ closing normally open contact.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     digitalWrite(RelayPin, LOW);
 
-Set the I/O port as low level (0V), thus the transistor is not energized
-and the coil is not powered. There is no electromagnetic force, so the
-relay opens, LED does not turn on.
+I/Oポートを低レベル（0V）に設定すると、トランジスタは通電せず、コイルにも電力が供給されません。電磁力がないため、リレーは開き、LEDは点灯しません。
 
 .. code-block:: c
 
     digitalWrite(RelayPin, HIGH);
 
-set the I/O port as high level (5V) to energize the transistor. The coil
-of the relay is powered and generate electromagnetic force, and the
-relay closes, LED lights up.
+I/Oポートを高レベル（5V）に設定してトランジスタを通電します。リレーのコイルに電力が供給され、電磁力が発生します。そして、リレーは閉じ、LEDが点灯します。
 
-Phenomenon Picture
+現象の画像
 ------------------
+
 
 .. image:: ../img/image145.jpeg

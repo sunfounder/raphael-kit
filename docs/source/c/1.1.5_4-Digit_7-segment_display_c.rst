@@ -1,59 +1,59 @@
 .. _1.1.5_c:
 
-1.1.5 4-Digit 7-Segment Display
+1.1.5 4桁の7セグメントディスプレイ
 ====================================
 
-Introduction
+はじめに
 -----------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+次に、4桁の7セグメントディスプレイの制御方法を一緒に試してみましょう。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下の通りです。
 
 .. image:: ../img/list_4_digit.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入するのは確かに便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`4-Digit 7-Segment Display`
+    *   - :ref:`4桁7セグメントディスプレイ`
         - \-
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
 .. note::
-    In this projiect, for the 4-Digit 7-Segment Display we should use BS model,if you use AS model it may not light up.
+    このプロジェクトでは、4桁の7セグメントディスプレイにはBSモデルを使用する必要があります。ASモデルを使用すると、点灯しない場合があります。
 
-Schematic Diagram
+回路図
 --------------------------
 
 ============ ======== ======== ===
@@ -70,14 +70,14 @@ GPIO24       Pin 18   5        24
 .. image:: ../img/schmatic_4_digit.png
 
 
-Experimental Procedures
+実験手順
 -----------------------------------
 
-**Step 1**: Build the circuit.
+**ステップ1**: 回路を組み立てます。
 
 .. image:: ../img/image80.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -87,7 +87,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.5/
 
-**Step 3**: Compile the code.
+**ステップ3**: コードをコンパイルします。
 
 .. raw:: html
 
@@ -97,7 +97,7 @@ Experimental Procedures
 
     gcc 1.1.5_4-Digit.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**ステップ4**: 上記の実行ファイルを実行します。
 
 .. raw:: html
 
@@ -107,14 +107,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
-
+コードを実行すると、プログラムがカウントを取得し、1秒ごとに1つ増加し、4桁の7セグメントディスプレイがカウントを表示します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -226,19 +225,19 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
 
 
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     const int placePin[] = {12, 3, 2, 0};
 
-These four pins control the common anode pins of the four-digit 7-segment display.
+これらの4つのピンは、4桁の7セグメントディスプレイの共通アノードピンを制御します。
 
 .. code-block:: c
 
     unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
 
-A segment code array from 0 to 9 in Hexadecimal (Common anode).
+16進数で0から9までのセグメントコード配列（共通アノード）。
 
 .. code-block:: c
 
@@ -251,7 +250,7 @@ A segment code array from 0 to 9 in Hexadecimal (Common anode).
         digitalWrite(placePin[digit], 1);
     }
 
-Select the place of the value. there is only one place that should be enable each time. The enabled place will be written high.
+表示する位置を選択します。1回のみ有効にするべき位置があります。有効な場所はハイに書き込まれます。
 
 .. code-block:: c
 
@@ -276,35 +275,35 @@ Select the place of the value. there is only one place that should be enable eac
         }
     }
 
-The functionis used to set the number displayed on the 4-digit 7-segment display.
+この関数は、4桁の7セグメントディスプレイに表示される数字を設定するために使用されます。
 
-* ``clearDisplay()``：write in 11111111 to turn off these eight LEDs on 7-segment display so as to clear the displayed content.
-* ``pickDigit(0)``：pick the fourth 7-segment display.
-* ``hc595_shift(number[counter%10])``：the number in the single digit of counter will display on the forth segment.
+* ``clearDisplay()``：7セグメントディスプレイのこれらの8つのLEDに11111111を書き込むことで、表示内容をクリアします。
+* ``pickDigit(0)``：4番目の7セグメントディスプレイを選択します。
+* ``hc595_shift(number[counter%10])``：counterの一桁の数字が4つ目のセグメントに表示されます。
 
 .. code-block:: c
 
     signal(SIGALRM, timer); 
 
-This is a system-provided function, the prototype of code is:
+これはシステムが提供する関数で、コードのプロトタイプは：
 
 .. code-block:: c
 
     sig_t signal(int signum,sig_t handler);
 
-After executing the ``signal()`` , once the process receives the corresponding signum (in this case SIGALRM), it immediately pauses the existing task and processes the set function (in this case ``timer(sig)`` ).
+``signal()`` を実行した後、プロセスが対応するsignum（この場合はSIGALRM）を受信すると、現在のタスクがすぐに一時停止し、設定された関数（この場合は ``timer(sig)`` ）が処理されます。
 
 .. code-block:: c
 
     alarm(1);
 
-This is also a system-provided function. The code prototype is:
+これもシステムが提供する関数です。コードのプロトタイプは：
 
 .. code-block:: c
 
     unsigned int alarm (unsigned int seconds);
 
-It generates a SIGALRM signal after a certain number of seconds.
+特定の秒数の後にSIGALRM信号を生成します。
 
 .. code-block:: c
 
@@ -318,10 +317,10 @@ It generates a SIGALRM signal after a certain number of seconds.
         }
     }
 
-We use the functions above to implement the timer function.
-After the ``alarm()`` generates the SIGALRM signal, the timer function is called. Add 1 to counter, and the function, ``alarm(1)`` will be repeatedly called after 1 second.
+上記の関数を使用して、タイマー関数を実装します。
+``alarm()`` がSIGALRM信号を生成した後、timer関数が呼び出されます。counterに1を追加し、 ``alarm(1)`` 関数は1秒後に繰り返し呼び出されます。
 
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/image81.jpeg

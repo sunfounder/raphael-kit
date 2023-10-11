@@ -1,78 +1,71 @@
-2.2.9 MPU6050 Module
-====================
+.. _2.2.9_js:
 
-Introduction
+2.2.9 MPU6050モジュール
+=========================
+
+はじめに
 ------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+MPU-6050は、スマートフォン、タブレット、ウェアラブルセンサー向けに設計された、世界初かつ唯一の6軸モーショントラッキングデバイス（3軸ジャイロスコープと3軸加速度センサー）です。これらの特長には、低電力、低コスト、および高性能の要件が含まれます。
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+この実験では、I2Cを使用してMPU6050の三軸加速度センサと三軸ジャイロスコープの値を取得し、画面に表示します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.6.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`MPU6050 Module`
+    *   - :ref:`MPU6050モジュール`
         - |link_mpu6050_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+MPU6050はI2Cバスインターフェースを介してマイクロコントローラと通信します。SDA1およびSCL1は対応するピンに接続する必要があります。
 
 .. image:: ../img/image330.png
 
 
-Experimental Procedures
+実験手順
 -------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1：** 回路を組む。
 
 .. image:: ../img/image227.png
 
+**ステップ2**：I2Cの設定（付録 :ref:`i2c_config` を参照。I2Cを設定済みの場合は、このステップをスキップしてください。）
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
-
-**Step 2:** Go to the folder of the code.
+**ステップ3：** コードのフォルダに移動。
 
 .. raw:: html
 
@@ -82,17 +75,17 @@ step.)
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Install dependencies.
+**ステップ4：** 依存関係をインストール。
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo npm install mpu6050-gyro
 
-**Step 4:** Run the code.
+**ステップ5：** コードを実行。
 
 .. raw:: html
 
@@ -102,13 +95,11 @@ step.)
 
     sudo node mpu6050_module.js
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+コードを実行すると、MPU6050で読み取られた各軸上の加速度、角速度、およびx軸とy軸の偏差角が計算された後、画面に表示されます。
 
 
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -138,7 +129,7 @@ printed on the screen after being calculating.
         update_telemetry();
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -148,11 +139,11 @@ printed on the screen after being calculating.
     var bus = 1; //i2c bus used   
     var gyro = new gyro( bus,address );
 
-Import the ``mpu6050-gyro`` module, determine the MPU6050 address and the bus creation object gyro,
-It is convenient to call the encapsulated functions in the module.
+``mpu6050-gyro`` モジュールをインポートし、MPU6050のアドレスとジャイロのバス作成オブジェクトを決定します。
+モジュール内のカプセル化された関数を呼び出すのが便利です。
 
 .. note:: 
-    About this module, please refer to: https://www.npmjs.com/package/mpu6050-gyro
+    このモジュールに関しては、以下を参照してください: https://www.npmjs.com/package/mpu6050-gyro
 
 .. code-block:: js
 
@@ -169,15 +160,15 @@ It is convenient to call the encapsulated functions in the module.
     
     setTimeout(update_telemetry, 500);
 
-The module encapsulates three available functions:
+モジュールは、利用可能な3つの関数をカプセル化しています：
 
-``gyro.get_gyro_xyz()``: Returns JSON object with raw x,y,z datas from gyroscope.
+``gyro.get_gyro_xyz()``: ジャイロスコープからの生のx,y,zデータを持つJSONオブジェクトを返します。
 
-``gyro.get_accel_xyz()``: Returns JSON object with raw x,y,z datas from accelerometer.
+``gyro.get_accel_xyz()``: 加速度計からの生のx,y,zデータを持つJSONオブジェクトを返します。
 
-``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: Returns JSON object with roll and pitch in degrees.
+``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: ロールとピッチを度で表したJSONオブジェクトを返します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image228.jpeg

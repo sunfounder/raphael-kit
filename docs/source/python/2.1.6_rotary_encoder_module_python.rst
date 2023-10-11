@@ -1,75 +1,68 @@
 .. _2.1.6_py:
 
-2.1.6 Rotary Encoder Module
-===========================
+2.1.6 ロータリーエンコーダモジュール
+====================================
 
-**Introduction**
+はじめに
 ------------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+このプロジェクトでは、ロータリーエンコーダについて学びます。ロータリーエンコーダは、厳密なタイミングシーケンスで規則的なパルスを持つ電子スイッチです。ICと組み合わせると、インクリメント、デクリメント、ページめくり、マウスのスクロールやメニュー選択など、さまざまな操作を実現できます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると便利です、リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれぞれ個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Rotary Encoder Module`
+    *   - :ref:`ロータリーエンコーダモジュール`
         - |link_rotary_encoder_buy|
 
-**Schematic Diagram**
+回路図
 ------------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
-17.
+この例では、ブレッドボードと40ピンケーブルを使用して、ロータリーエンコーダのピンをRaspberry Piに直接接続します。ロータリーエンコーダのGNDをGNDに、「+」を5Vに、SWをデジタルGPIO27に、DTをデジタルGPIO18に、CLKをデジタルGPIO17に接続します。
 
-**Step 2:** Open the code file.
+**ステップ2:** コードファイルを開く。
 
 .. raw:: html
 
@@ -79,7 +72,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ3:** 実行。
 
 .. raw:: html
 
@@ -89,19 +82,19 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo python3 2.1.6_RotaryEncoder.py
 
-You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+シェル上でカウントが表示されます。ロータリーエンコーダを時計回りに回すとカウントが増加し、反時計回りに回すとカウントが減少します。ロータリーエンコーダのスイッチを押すと、読み取り値がゼロに戻ります。
 
-
-**Code**
+**コード**
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+   下のコードは **修正/リセット/コピー/実行/停止** が可能です。しかし、それを行う前に、ソースコードのパス（例： ``raphael-kit/python`` ）に移動する必要があります。コードを修正した後、そのまま実行して効果を確認できます。
 
 .. raw:: html
 
     <run></run>
+
+
 
 .. code-block:: python
 
@@ -167,20 +160,19 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
          destroy()
 
 
-**Code Analysis**
+**コード説明**
 
-* Read dtPin value when clkPin is low.
-* When clkPin is high, if dtPin goes from low to high, the count decreases, otherwise the count increases.
-* swPin will output low when the shaft is pressed.
+* clkPinが低い状態でdtPinの値を読み取る。
+* clkPinが高い場合、dtPinが低から高に変わるとカウントは減少し、それ以外の場合はカウントが増加する。
+* シャフトが押されると、swPinは低い状態を出力する。
 
-From this, the program flow is shown below:
-
+これに基づいて、プログラムのフローは以下の通りです：
 
 .. image:: ../img/2.1.6_flow.png
    :align: center
 
-**Phenomenon Picture**
--------------------------
+現象の画像
+------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG
    :align: center

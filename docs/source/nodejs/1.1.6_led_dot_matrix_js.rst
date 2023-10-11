@@ -1,50 +1,52 @@
-1.1.6 LED Dot Matrix Module
-==================================
+.. _1.1.6_js:
 
-Introduction
+1.1.6 LEDドットマトリックスモジュール
+======================================
+
+はじめに
 --------------------
 
-In this project, you will learn about LED Matrix Module. LED Matrix Module uses the MAX7219 driver to drive the 8 x 8 LED Matrix.
+このプロジェクトでは、LEDマトリックスモジュールについて学びます。LEDマトリックスモジュールは、MAX7219ドライバを使用して8 x 8のLEDマトリックスを駆動します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_dot.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのは非常に便利です。リンクは以下の通りです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`LED Matrix Module`
+    *   - :ref:`LEDマトリクスモジュール`
         - |link_led_matrix_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== ====
@@ -56,19 +58,18 @@ SPISCLK      Pin 23   14       SCLK
 
 .. image:: ../img/schematic_dot.png
 
-Experimental Procedures
+実験手順
 ----------------------------
 
-**Step 1:** Build the circuit. 
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. 
+    実験を開始する前にSPIをオンにします。詳細は :ref:`SPI設定` を参照してください。
 
-
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -78,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Install dependencies.
+**ステップ3:** 依存関係をインストールします。
 
 .. raw:: html
 
@@ -88,7 +89,7 @@ Experimental Procedures
 
     sudo npm install spi-device
 
-**Step 4:** Run the code.
+**ステップ4:** コードを実行します。
 
 .. raw:: html
 
@@ -98,10 +99,9 @@ Experimental Procedures
 
     sudo node max7219_led_matrix.js 
 
-After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in sequence.
+コードを実行すると、LEDドットマトリックスは順番に0から9、AからZまでを表示します。
 
-
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -199,16 +199,16 @@ After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in se
     }
     main(); 
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
     const spi = require('spi-device');
 
-Import the modules needed for spi communication.
+SPI通信に必要なモジュールをインポートします。
 
 .. note::
-    When you have multiple devices that need spi communication, just connect the cs pins to different pins.
+    SPI通信が必要な複数のデバイスがある場合、csピンを異なるピンに接続するだけです。
 
 .. code-block:: js
 
@@ -241,18 +241,18 @@ Import the modules needed for spi communication.
             })
         }
 
-Implement a ``MAX7219_LED_MATRIX`` class, and the ``write()`` function encapsulated in it can light up the matrix.
+``MAX7219_LED_MATRIX`` クラスを実装し、それにカプセル化された ``write()`` 関数でマトリックスを点灯させることができます。
 
 .. note::
-    The ``async`` keyword is used to modify the function and is usually matched with the ``await`` keyword. The statement modified by the ``await`` keyword needs to wait for the previous code to finish running before executing, achieving the effect of synchronous blocking.
+    ``async`` キーワードは関数を修飾するために使用され、通常 ``await`` キーワードと組み合わせて使用されます。``await`` キーワードで修飾された文は、実行する前に前のコードが実行完了するのを待つ必要があり、同期的なブロッキングの効果を達成します。
 
-* `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
+* `非同期関数 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
 
 .. code-block:: js
 
     lm = new MAX7219_LED_MATRIX(0, 0);
 
-Instantiate an object lm of the ``MAX7219_LED_MATRIX`` class, so that we can call the encapsulated ``write()`` function inside.
+``MAX7219_LED_MATRIX`` クラスのオブジェクトlmをインスタンス化し、内部のカプセル化された ``write()`` 関数を呼び出すことができます。
 
 .. code-block:: js
 
@@ -265,24 +265,23 @@ Instantiate an object lm of the ``MAX7219_LED_MATRIX`` class, so that we can cal
         }
     }
 
-The ``write(row,date)`` function allows you to display specified characters on the LED dot matrix,
-The first parameter selects the row of the LED Matrix (8 rows in total),
-The second parameter enters an 8-bit binary number to control the 8 LEDs of the row (0 means off, 1 means on).
+``write(row,date)`` 関数を使用すると、LEDドットマトリックスに指定した文字を表示できます。
+第一引数はLEDマトリックスの行を選択します（合計8行）。
+第二引数は、行の8つのLEDを制御する8ビットの2進数を入力します（0はオフ、1はオンを意味します）。
 
+変数 ``j`` は、グリフを選択するために使用され、それは ``DISP[]`` です。合計35のグリフがあり、0~9およびA~Zがあります。
 
-The variable ``j`` is used to select the glyph, which is ``DISP[]`` . There are a total of 35 glyphs, 0~9 and A~Z.
+例えば、j=1の場合、LEDマトリックスは **1** の画像を表示する必要があります。
 
-For example, when j=1, the LED Maxtrix should display the image **1** .
+変数 ``i`` は、 ``DISP[]`` グリフの8つのデータを順番にLEDマトリックスに書き込むために使用されます。ループが完了すると、8x8のグラフィックが生成されます。
 
-The variable ``i`` is used to write the 8 data in the ``DISP[]`` glyph into the LED Matrix in turn. After the loop is completed, an 8x8 graphic can be generated.
-
-For example, when j=1, i=1, the data of ``DISP[1][1]`` will be written here, that is, ``0x18``,
-This will cause the second row of the LED Maxtrix to display the image ``00011000``.
+例えば、j=1、i=1の場合、 ``DISP[1][1]`` のデータがここに書き込まれます、つまり ``0x18`` です。
+これにより、LEDマトリックスの2行目は ``00011000`` の画像を表示します。
 
 .. image:: ../img/led_not.png
     :width: 400
 
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/1.1.6led_dot_matrix.JPG

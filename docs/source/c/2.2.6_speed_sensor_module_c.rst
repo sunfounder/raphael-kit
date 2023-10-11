@@ -1,76 +1,74 @@
 .. _2.2.6_c:
 
-2.2.6 Speed Sensor Module
+2.2.6 速度センサーモジュール
 ===============================
 
-Introduction
+はじめに
 ------------------
 
-In this project, we will learn the use of the speed sensor module. A Speed Sensor Module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+このプロジェクトでは、速度センサーモジュールの使用方法を学びます。速度センサーモジュールは、モーターのような回転するオブジェクトの速度を測定するためのタコメータの一種です。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/2.2.6component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てを含むキットを購入するのが便利です。リンクは以下です：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Speed Sensor Module`
+    *   - :ref:`速度センサーモジュール`
         - \-
 
-Schematic Diagram
+回路図
 -----------------------
 
 .. image:: ../img/2.2.6circuit.png
     :width: 400
     :align: center
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-
-
-**Step 2:** Change directory.
+**ステップ2:** ディレクトリを変更します。
 
 .. raw:: html
 
@@ -80,7 +78,7 @@ Experimental Procedures
     
     cd ~/raphael-kit/c/2.2.6/
 
-**Step 3:** Compile.
+**ステップ3:** コンパイルします。
 
 .. raw:: html
 
@@ -90,7 +88,7 @@ Experimental Procedures
 
     gcc 2.2.6_speed_sensor_module.c -lwiringPi
 
-**Step 4:** Run.
+**ステップ4:** 実行します。
 
 .. raw:: html
 
@@ -100,14 +98,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+コードを実行すると、緑のLEDが点灯します。速度センサーモジュールの隙間に障害物を置くと、画面に"light blocked"と表示され、赤いLEDが点灯します。
+障害物を取り除くと、緑のLEDが再び点灯します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -162,7 +160,7 @@ Remove the obstacle and the green LED will light up again.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -180,10 +178,9 @@ Remove the obstacle and the green LED will light up again.
         }
     }    
 
-Set a ``LED()`` function to control the 2 LEDs, the parameter of this function is ``color``.
+2つのLEDを制御するための ``LED()`` 関数を設定します。この関数のパラメータは ``color`` です。
 
-When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`` to ``LOW`` (turn off the green LED); when ``color`` is 1, then light up the green LED and turn off the red LED. 
-
+``color`` が0の場合、 ``Rpin`` を ``HIGH`` に設定します（赤いLEDを点灯）し、 ``Gpin`` を ``LOW`` に設定します（緑のLEDを消灯）。 ``color`` が1の場合、緑のLEDを点灯し、赤いLEDを消灯します。
 
 .. code-block:: c
 
@@ -200,11 +197,9 @@ When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`
         Print(temp);
     }
 
-When you place an obstacle in the gap of the speed sensor module, ``speedPin`` is low level (0), then call ``LED(1)`` function to light up the green LED and "Light was blocked!" is printed.
+速度センサーモジュールの隙間に障害物を置くと、 ``speedPin`` は低レベル（0）となり、 ``LED(1)`` 関数を呼び出して緑のLEDを点灯させ、"Light was blocked!"と表示されます。
 
-
-
-**Phenomenon Picture**
+現象の画像
 -----------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG

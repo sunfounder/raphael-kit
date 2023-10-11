@@ -1,4 +1,4 @@
-Appendix
+付録
 ===============
 
 .. toctree::
@@ -11,3 +11,4 @@ Appendix
     remote_desktop
     filezilla
     blynk_app
+    get_ip

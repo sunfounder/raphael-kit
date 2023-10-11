@@ -1,78 +1,72 @@
 .. _2.1.9_c:
 
-2.1.9 Joystick
-===================
+2.1.9 ジョイスティック
+========================
 
-Introduction
+はじめに
 ------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+このプロジェクトでは、ジョイスティックの動作について学びます。ジョイスティックを操作し、結果を画面に表示します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/image317.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式をまとめて購入するのが便利です。以下のリンクから購入できます：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Joystick Module`
+    *   - :ref:`ジョイスティックモジュール`
         - \-
     *   - :ref:`ADC0834`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+ジョイスティックのデータを読み取る際、軸ごとにいくつかの違いがあります：X軸とY軸のデータはアナログで、アナログ値をデジタル値に変換するためにADC0834を使用する必要があります。Z軸のデータはデジタルで、GPIOを使用して直接読み取ることも、ADCを使用して読み取ることもできます。
 
 .. image:: ../img/image319.png
 
-
 .. image:: ../img/image320.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/image193.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -82,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.9/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルする。
 
 .. raw:: html
 
@@ -92,7 +86,7 @@ Experimental Procedures
 
     gcc 2.1.9_Joystick.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**ステップ4:** 実行ファイルを実行する。
 
 .. raw:: html
 
@@ -102,15 +96,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
-
+コードが実行された後、ジョイスティックを回すと、x、y、Btnの対応する値が画面に表示されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示された場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -194,7 +186,7 @@ x, y, Btn are displayed on screen.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -216,7 +208,7 @@ x, y, Btn are displayed on screen.
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-The working process of the function is detailed in 2.1.4 Potentiometer.
+この関数の動作プロセスは、2.1.4 ポテンショメータで詳しく説明されています。
 
 .. code-block:: c
 
@@ -228,14 +220,9 @@ The working process of the function is detailed in 2.1.4 Potentiometer.
             delay(100);
         }
 
-VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
-respectively. So the function getResult() is called to read the values
-of CH0 and CH1. Then the read values should be stored in the variables
-x_val and y_val. In addition, read the value of SW of joystick and store
-it into the variable Btn_val. Finally, the values of x_val, y_val and
-Btn_val shall be printed with print() function.
+ジョイスティックのVRXとVRYは、ADC0834のCH0とCH1にそれぞれ接続されています。したがって、関数getResult()はCH0とCH1の値を読み取るために呼び出されます。次に、読み取った値を変数x_valとy_valに格納する必要があります。さらに、ジョイスティックのSWの値を読み取り、変数Btn_valに格納します。最後に、x_val、y_val、およびBtn_valの値をprint()関数を使用して表示します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image194.jpeg

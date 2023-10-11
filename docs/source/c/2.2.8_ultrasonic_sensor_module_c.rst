@@ -1,67 +1,65 @@
 .. _2.2.8_c:
 
-2.2.8 Ultrasonic Sensor Module
+2.2.8 超音波センサモジュール
 ====================================
 
-Introduction
+はじめに
 --------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+超音波センサは、オブジェクトの検出や距離の測定に超音波を使用して正確に行います。超音波波を送信し、それを電子信号に変換します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.5.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Ultrasonic Module`
+    *   - :ref:`超音波モジュール`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image329.png
 
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -71,7 +69,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.8/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -81,7 +79,7 @@ Experimental Procedures
 
     gcc 2.2.8_Ultrasonic.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**ステップ4:** 実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -91,15 +89,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+コードを実行すると、超音波センサモジュールは前方の障害物とモジュール自体との距離を検出し、その距離値が画面に表示されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -163,7 +159,7 @@ value will be printed on the screen.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -173,23 +169,20 @@ value will be printed on the screen.
         pinMode(Trig, OUTPUT);
     }
 
-Initialize the ultrasonic pin; meanwhile, set Echo to input, Trig to
-output.
+超音波ピンを初期化し、同時にEchoを入力に、Trigを出力に設定します。
 
 .. code-block:: c
 
     float disMeasure(void){};
 
-This function is used to realize the function of ultrasonic sensor by
-calculating the return detection distance.
+この関数は、戻り検出距離を計算することで超音波センサの機能を実現するために使用されます。
 
 .. code-block:: c
 
     struct timeval tv1;
     struct timeval tv2;
 
-Struct timeval is a structure used to store the current time. The
-complete structure is as follows:
+struct timevalは、現在の時刻を保存するために使用される構造体です。完全な構造体は以下の通りです：
 
 .. code-block:: c
 
@@ -199,9 +192,7 @@ complete structure is as follows:
     __suseconds_t tv_usec;  /* Microseconds. */
     };
 
-Here, tv_sec represents the seconds that Epoch spent when creating
-struct timeval. Tv_usec stands for microseconds or a fraction of
-seconds.
+ここで、tv_secはEpochがstruct timevalを作成した際の秒を表し、tv_usecはマイクロ秒または秒の一部を表します。
 
 .. code-block:: c
 
@@ -209,39 +200,36 @@ seconds.
     delayMicroseconds(10);     
     digitalWrite(Trig, LOW);
 
-A 10us ultrasonic pulse is being sent out.
+10usの超音波パルスが送信されています。
 
 .. code-block:: c
 
     while(!(digitalRead(Echo) == 1));
     gettimeofday(&tv1, NULL);
 
-This empty loop is used to ensure that when the trigger signal is sent,
-there is no interfering echo signal and then get the current time.
+この空のループは、トリガーシグナルを送信したときに干渉するエコーシグナルがないことを確認し、現在の時間を取得するために使用されます。
 
 .. code-block:: c
 
     while(!(digitalRead(Echo) == 0)); 
     gettimeofday(&tv2, NULL);
 
-This empty loop is used to ensure that the next step is not performed
-until the echo signal is received and then get the current time.
+この空のループは、エコーシグナルが受信されるまで次のステップが実行されないようにするため、そして現在の時間を取得するために使用されます。
 
 .. code-block:: c
 
     time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;
     time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
 
-Convert the time stored by struct timeval into a full microsecond time.
+struct timevalで保存された時間を完全なマイクロ秒の時間に変換します。
 
 .. code-block:: c
 
     dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
 
-The distance is calculated by the time interval and the speed of sound
-propagation. The speed of sound in the air: 34000cm/s.
+時間間隔と音の伝播速度によって距離が計算されます。空気中の音の速度：34000cm/s。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image221.jpeg

@@ -1,63 +1,63 @@
-3.1.9 Alarm Bell
+.. _3.1.9_c:
+
+3.1.9 アラームベル
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 -------------
 
-In this project, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+このプロジェクトでは、手動アラーム装置を作成します。トグルスイッチをサーミスタまたは光センサーに置き換えて、温度アラームまたは光アラームを作成できます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_Alarm_Bell.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+まとめて購入するのは便利です。リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - |link_passive_buzzer_buy|
-    *   - :ref:`Slide Switch`
+    *   - :ref:`スライドスイッチ`
         - |link_slide_switch_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
-    *   - :ref:`Capacitor`
+    *   - :ref:`コンデンサ`
         - |link_capacitor_buy|
 
-Schematic Diagram
+配線図
 -------------------
 
 ============ ======== ======== ===
@@ -71,14 +71,14 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1**: Build the circuit.
+**ステップ1**: 回路を組み立てます。
 
 .. image:: ../img/image266.png
 
-**Step 2**: Change directory.
+**ステップ2**: ディレクトリを変更します。
 
 .. raw:: html
 
@@ -88,7 +88,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.9/
 
-**Step 3**: Compile.
+**ステップ3**: コンパイルします。
 
 .. raw:: html
 
@@ -98,7 +98,7 @@ Experimental Procedures
 
     gcc 3.1.9_AlarmBell.c -lwiringPi -lpthread
 
-**Step 4**: Run.
+**ステップ4**: 実行します。
 
 .. raw:: html
 
@@ -108,20 +108,20 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program starts, put the slide switch to the right, and the buzzer will give out alarm sounds. At the same time, the red and green LEDs will flash at a certain frequency.
+プログラムを起動したら、スライドスイッチを右に移動し、ブザーからアラーム音が鳴ります。同時に、赤と緑のLEDが一定の頻度で点滅します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない場合、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     #include <pthread.h>
 
-In this code, you'll use a new library, ``pthread.h``, which is a set of common thread libraries and can realize multithreading. We add the ``-lpthread`` parameter at compile time for the independent working of the LED and the buzzer.
+このコードでは、新しいライブラリである ``pthread.h`` を使用します。これは一般的なスレッドライブラリのセットで、マルチスレッディングを実現できます。LEDとブザーの独立した動作を実現するために、コンパイル時に ``-lpthread`` パラメータを追加します。
 
 .. code-block:: c
 
@@ -140,9 +140,9 @@ In this code, you'll use a new library, ``pthread.h``, which is a set of common 
         }
     }
 
-The function ``ledWork()`` helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+関数 ``ledWork()`` は、これら 2 つの LED の動作状態を設定するのに役立ちます。
+緑色の LED が 0.5 秒間点灯した後、消灯します。
+同様に、赤色 LED が 0.5 秒間点灯し続けた後、消灯します。
 
 .. code-block:: c
 
@@ -161,9 +161,9 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
         }
     }
 
-The function ``buzzWork()`` is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+関数 ``buzzWork()`` は、ブザーの動作状態を設定するために使用されます。
+ここでは、累積または減衰する周波数を 130 ～ 800 に設定します。
+20間隔で。
 
 .. code-block:: c
 
@@ -179,29 +179,27 @@ at an interval of 20.
         pthread_create(&tBuzz,NULL,buzzWork,NULL);      
     }
 
-In the function on():
+「on()」関数では以下のことを実行します：
 
-1) Define the mark ``flag=1``, indicating the ending of the control
-   thread.
+1) マーク ``flag=1`` を定義し、制御スレッドの終了を示します。
 
-2) Create a software-controlled tone pin ``BeepPin``.
+2) ソフトウェア制御されたトーンピン ``BeepPin`` を作成します。
 
-3) Create two separate threads so that the LED and the buzzer can work
-   at the same time.
+3) LEDとブザーが同時に動作できるように、2つの異なるスレッドを作成します。
 
-* ``pthread_t tLed``: Declare a thread ``tLed``.
-* ``pthread_create(&tLed,NULL,ledWork,NULL)``: Create the thread and its prototype is as follows:
+* ``pthread_t tLed``：スレッド ``tLed`` を宣言します。
+* ``pthread_create(&tLed,NULL,ledWork,NULL)``：スレッドを作成し、そのプロトタイプは次のようになります：
 
 .. code-block:: 
 
     int pthread_create(pthread_t *restrict tidp,const pthread_attr_t*restrict_attr,void*（*start_rtn)(void*),void *restrict arg);
 
-If successful, return 0 ；otherwise, return the fall number -1.
+成功した場合、0を返し、それ以外の場合はエラー番号-1を返します。
 
-* The first parameter is a pointer to the thread identifier.
-* The second one is used to set the thread attribute.
-* The third one is the starting address of the thread running function.
-* The last one is the one that runs the function.
+* 最初のパラメータはスレッド識別子へのポインタです。
+* 2番目のパラメータはスレッド属性を設定するために使用されます。
+* 3番目のパラメータはスレッド実行関数の開始アドレスです。
+* 最後のパラメータはその関数を実行するものです。
 
 .. code-block:: c
 
@@ -212,9 +210,7 @@ If successful, return 0 ；otherwise, return the fall number -1.
         digitalWrite(BLedPin,LOW);
     }
 
-
-The function ``Off()`` defines “flag=0” so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+``Off()`` 関数では、「flag=0」と定義してスレッド **ledWork** と **BuzzWork** を終了し、その後ブザーとLEDを消灯させます。
 
 .. code-block:: c
 
@@ -234,13 +230,9 @@ The function ``Off()`` defines “flag=0” so as to exit the threads
         return 0;
     }
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function ``on()`` is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+main()にはプログラムの全体プロセスが含まれており、まずスライドスイッチの値を読み取ります。トグルスイッチが右に切り替えられた場合（読み取りが1）、関数 ``on()`` が呼び出され、ブザーは音を出し、赤いLEDと緑のLEDが点滅します。それ以外の場合、ブザーとLEDは動作しません。
 
-Phenomenon Picture
+現象の画像
 ------------------------
 
 .. image:: ../img/image267.jpeg

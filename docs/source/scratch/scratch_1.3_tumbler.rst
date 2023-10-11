@@ -1,84 +1,84 @@
-1.3 Tumbler
+.. _1.3_scratch:
+
+1.3 タンブラー
 ==================
 
-In this project, we will make a tilt switch controlled tumbler toy.
+このプロジェクトでは、傾きスイッチで制御されるタンブラートイを作成します。
 
 .. image:: img/1.3_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.3_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのが便利です。リンクは以下のとおりです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Tilt Switch` 
+    *   - :ref:`傾斜スイッチ` 
         - \-
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.3_fritzing.png
 
-
-Load the Code and See What Happens
+コードをロードして動作を確認する
 -----------------------------------------
 
-Load the code file (``1.3_tumbler.sb3``) to Scratch 3.
+コードファイル(``1.3_tumbler.sb3``)をScratch 3にロードします。
 
-When the tilt switch is placed upright, the tumbler is standing. If you tilt it, the tumbler will also fall. Place it upright again, and the tumbler will stand up again.
+傾きスイッチが直立しているとき、タンブラーは立っています。傾けると、タンブラーも倒れます。再び直立させると、タンブラーは再び立ち上がります。
 
-
-Tips on Sprite
-----------------
-Select Sprite1 and click **Costumes** in the top left corner; upload **tumbler1.png** and **tumbler2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **tumbler**.
+スプライトに関するヒント
+---------------------------------
+Sprite1 を選択し、左上隅にある **Costumes** をクリックします。 **Upload Costume** ボタンを使用して、 ``~/raphael-kit/scratch/picture`` パスから **tumbler1.png** と **tumbler2.png** をアップロードします。 デフォルトの 2 つのコスチュームを削除し、スプライトの名前を **tumbler** に変更します。
 
 .. image:: img/1.3_add_tumbler.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.3_title2.png
   :width: 400
 
-When the green flag is clicked, the initial state of gpio17 is set to low.
+緑の旗がクリックされると、gpio17の初期状態が低く設定されます。
 
 .. image:: img/1.3_title4.png
   :width: 400
 
-When pin17 is low (the tilt switch is placed upright), we switch the tumbler sprite's costume to tumbler1 (upright state).
+pin17が低い場合（傾きスイッチが直立している場合）、タンブラースプライトの衣装をtumbler1（直立状態）に切り替えます。
 
 .. image:: img/1.3_title3.png
   :width: 400
 
-When pin17 is high (tilt switch is tilted), switch the tumbler sprite's costume to tumbler2 (tilt state).
+pin17が高い場合（傾きスイッチが傾いている場合）、タンブラースプライトの衣装をtumbler2（傾いた状態）に切り替えます。

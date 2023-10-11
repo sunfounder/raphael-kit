@@ -1,80 +1,79 @@
-1.7 Piggy Bank
+.. _1.7_scratch:
+
+1.7 貯金箱
 =========================
 
-In this project we will use Speed sensor module, Raspberry Pi and Scratch to make a Piggy Bank.
+このプロジェクトでは、スピードセンサーモジュール、Raspberry Pi、およびScratchを使用して貯金箱を作成します。
 
-Place a piece of paper in the middle of the Speed sensor module and you will see a coin fall into the Piggy Bank on the stage.
-
+スピードセンサーモジュールの中央に紙を置くと、ステージ上の貯金箱にコインが落ちるのが見えます。
 
 .. image:: img/1.7_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.7_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Speed Sensor Module`
+    *   - :ref:`速度センサーモジュール`
         - \-
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.7_fritzing.png
 
-Load the Code and See What Happens
+コードをロードして動作を確認する
 ---------------------------------------
 
-Load the code file (``1.7_piggy_bank.sb3``) to Scratch 3.
+コードファイル(``1.7_piggy_bank.sb3``)をScratch 3にロードします。
 
-The 2 terminals in the middle of the speed sensor, one is to send light, one is to receive light; if you put a piece of paper in the middle to isolate the light transmission, thus the speed sensor will output a high level. At this point Scratch receives the high level, then switch the costumes of the sprite and you will see a coin fall into the Piggy Bank on the stage.
+スピードセンサーの中央の2つの端子のうち、1つは光を送信するためのもの、もう1つは光を受信するためのものです。中央に紙を置いて光の伝送を遮断すると、スピードセンサーは高レベルを出力します。この時点でScratchは高レベルを受け取り、スプライトのコスチュームを切り替え、ステージ上の貯金箱にコインが落ちるのを見ることができます。
 
-Tips on Sprite
-----------------
+スプライトに関するヒント
+---------------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **piggybank1.png**, **piggybank2.png** and **piggybank3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **piggybank**.
+Sprite1を選択し、左上の **Costumes** をクリックします。 **Upload Costume** ボタンを使用して ``~/raphael-kit/scratch/picture`` のパスから **piggybank1.png**、 **piggybank2.png**、および **piggybank3.png** をアップロードします。デフォルトの2つのコスチュームを削除し、スプライトの名前を **piggybank** に変更します。
 
 .. image:: img/1.7_photoInterrupter1.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.7_code2.png
 
-When pin17 is low (no coins are put in), switch the sprite's costume to **piggybank1**.
+pin17が低いとき(コインが入れられていない場合)、スプライトのコスチュームを **piggybank1** に切り替えます。
 
 .. image:: img/1.7_code3.png
 
-When pin17 is high (a coin is put in), switch the sprite's costume to **piggybank2**, and after 0.5s switch to **piggybank3**, so that we can see a coin falling into the Piggy Bank on the stage.
-
-
+pin17が高いとき(コインが入れられた場合)、スプライトのコスチュームを **piggybank2** に切り替え、0.5秒後に **piggybank3** に切り替えます。これにより、ステージ上の貯金箱にコインが落ちるのが見えます。
 

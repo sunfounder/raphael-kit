@@ -1,31 +1,27 @@
-GPIO Extension Board
+GPIO拡張ボード
 =====================
 
-Before starting to learn the commands, you first need to know more about
-the pins of the Raspberry Pi, which is key to the subsequent study.
+コマンドの学習を始める前に、まずはRaspberry Piのピンについて詳しく知る必要があります。これは後の学習で重要となります。
 
-We can easily lead out pins of the Raspberry Pi to breadboard by GPIO
-Extension Board to avoid GPIO damage caused by frequent plugging in or
-out. This is our 40-pin GPIO Extension Board and GPIO cable for
-Raspberry Pi model B+, 2 model B and 3, 4 model B.
+GPIO拡張ボードを使用することで、Raspberry Piのピンを簡単にブレッドボードに引き出すことができます。これにより、頻繁な挿入・抜去によるGPIOの損傷を防ぐことができます。こちらはRaspberry Pi Model B+、2 Model B、および3, 4 Model B用の40ピンGPIO拡張ボードとGPIOケーブルです。
 
 .. image:: img/image32.png
     :align: center
 
-**Pin Number**
+**ピン番号**
 
-The pins of Raspberry Pi have three kinds of ways to name and they are wiringPi, BCM and Board.
+Raspberry Piのピンには、wiringPi、BCM、Boardという3つの命名方法があります。
 
-Among these naming methods, 40-pin GPIO Extension board uses the naming method, BCM. But for some special pins, such as I2C port and SPI port, they use the Name that comes with themselves. 
+これらの命名方法のうち、40ピンGPIO拡張ボードはBCMという命名方法を採用しています。ただし、I2CポートやSPIポートなど特殊なピンには、それ自体に付いている名称が用いられます。
 
-The following table shows us the naming methods of WiringPi, Board and the intrinsic Name of each pin on GPIO Extension board. For example, for the GPIO17, the Board naming method of it is 11, the wiringPi naming method is 0, and the intrinsic naming method of it is GPIO0.
+次の表は、GPIO拡張ボード上の各ピンのWiringPi、Board、および固有のNameによる命名方法を示しています。例えば、GPIO17の場合、Boardの命名方法では11、wiringPiの命名方法では0、固有の命名方法ではGPIO0となります。
 
 .. note::
 
-    1）In C Language, what is used is the naming method WiringPi.
+    1）C言語では、WiringPiという命名方法が使用されます。
     
-    2）In Python Language, the applied naming methods are **Board** and **BCM**, and the function ``GPIO.setmode()`` is used to set them.
+    2）Python言語では、適用される命名方法は **Board** と **BCM** であり、 ``GPIO.setmode()`` 関数を用いて設定します。
 
-    3）In Scratch 3  and Processing, the applied naming method is **BCM**.
+    3）Scratch 3およびProcessingでは、適用される命名方法は **BCM** です。
 
 .. image:: img/gpio_board.png

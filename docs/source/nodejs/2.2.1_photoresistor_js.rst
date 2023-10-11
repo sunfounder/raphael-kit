@@ -1,76 +1,72 @@
-2.2.1 Photoresistor
+.. _2.2.1_js:
+
+2.2.1 フォトレジスタ
 =========================
 
-Introduction
+はじめに
 ------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+フォトレジスタは日常生活でよく使われる環境光強度の部品です。これにより、コントローラーは昼と夜を認識し、夜のランプなどの照明制御機能を実現します。このプロジェクトはポテンショメータに非常に似ており、それが光を感知するために電圧を変えると考えるかもしれません。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.1_photoresistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
     *   - :ref:`ADC0834`
         - \-
-    *   - :ref:`Photoresistor`
+    *   - :ref:`フォトレジスタ`
         - |link_photoresistor_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image321.png
 
-
 .. image:: ../img/image322.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image198.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -80,20 +76,19 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行します。
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo node photoresistor.js
 
-When the code is running, 
-the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+コードを実行している間、LEDの明るさはフォトレジスタで感知される光の強度に応じて変わります。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -115,14 +110,13 @@ the brightness of the LED will change according to the light intensity sensed by
       });
     }, 100);
 
+**コード説明**
 
+ここでのコードは2.1.7ポテンショメータと同じです。
+詳細は :ref:`2.1.7_js` のコード説明をご参照ください。
 
-**Code Explanation**
-
-The codes here are the same as that in 2.1.7 Potentiometer. 
-Please check the code explanation of :ref:`2.1.7 Potentiometer` for details.
-
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image199.jpeg
+

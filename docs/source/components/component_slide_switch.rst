@@ -1,28 +1,27 @@
-Slide Switch
-==============
+スライドスイッチ
+==================
 
 .. image:: img/slide_switch.png
     :width: 150
     :align: center
 
-A slide switch, just as its name implies, is to slide the switch bar to connect or break the circuit, and further switch circuits. The common-used types are SPDT, SPTT, DPDT, DPTT etc. The slide switch is commonly used in low-voltage circuit. It has the features of flexibility and stability, and  applies in electric instruments and electric toys widely.
-How it works: Set the middle pin as the fixed one. When you pull the slide to the left, the  two pins on the left are connected; when you pull it to the right, the two pins on the right are connected. Thus, it works as a switch connecting or disconnecting circuits. See the figure below:
+スライドスイッチとは、その名の通り、スライドバーを動かして回路を接続または切断するスイッチです。一般に用いられる型は、SPDT、SPTT、DPDT、DPTTなどです。スライドスイッチは低電圧回路でよく用いられ、柔軟性と安定性があり、多くの電気機器や玩具に適用されています。
+動作原理：中央のピンを固定ピンと設定します。スライドを左に引くと、左側の2つのピンが接続されます。右に引くと、右側の2つのピンが接続されます。
 
 .. image:: img/slide_principle.png
     :width: 400
     :align: center
 
-The circuit symbol of the slide switch is shown as below. The pin2 in the figure refers to the middle pin.
+スライドスイッチの回路記号は以下の通りです。図のpin2は中央のピンを指しています。
 
 .. image:: img/slide_symbol.png
     :width: 200
     :align: center
 
-**Example**
+**例**
 
-* :ref:`2.1.4_c` (C Project)
-* :ref:`3.1.9 Alarm Bell` (C Project)
-* :ref:`2.1.4_py` (Python Project)
-* :ref:`4.1.15 Alarm Bell` (Python Project)
-* :ref:`1.15 Inflating the Balloon` (Scratch Project)
-
+* :ref:`2.1.4_c` （Cプロジェクト）
+* :ref:`3.1.9_c` （Cプロジェクト）
+* :ref:`2.1.4_py` （Pythonプロジェクト）
+* :ref:`4.1.15_py` （Pythonプロジェクト）
+* :ref:`1.15_scratch` （Scratchプロジェクト）

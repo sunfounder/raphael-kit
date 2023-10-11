@@ -1,70 +1,66 @@
 .. _2.1.6_c:
 
-2.1.6 Rotary Encoder Module
-=================================
+2.1.6 ロータリーエンコーダモジュール
+=====================================
 
-**Introduction**
+はじめに
 -------------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+このプロジェクトでは、ロータリーエンコーダについて学びます。ロータリーエンコーダは、厳格なタイミングのシーケンスで一定のパルスのセットを持つ電子スイッチです。ICと組み合わせて使用することで、インクリメント、デクリメント、ページのターンなどの操作を実現することができます。マウスのスクロール、メニューの選択などの操作も含まれます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入するのは非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれぞれ別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Rotary Encoder Module`
+    *   - :ref:`ロータリーエンコーダモジュール`
         - |link_rotary_encoder_buy|
 
-**Schematic Diagram**
+回路図
 ------------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-**Step 2:** Open the code file.
+**ステップ2:** コードファイルを開きます。
 
 .. raw:: html
 
@@ -74,7 +70,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.6/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -84,7 +80,7 @@ Experimental Procedures
 
     gcc 2.1.6_RotaryEncoder.c -lwiringPi
 
-**Step 4:** Run.
+**ステップ4:** 実行します。
 
 .. raw:: html
 
@@ -94,13 +90,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+シェル上でカウントが表示されます。ロータリーエンコーダを時計回りに回すと、カウントが増えます。反時計回りに回すと、カウントが減少します。ロータリーエンコーダのスイッチを押すと、読み取り値がゼロにリセットされます。
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+   実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -176,19 +172,18 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
       return 0;
    }
 
-**Code Analysis**
+**コード説明**
 
-* Read dtPin value when clkPin is low.
-* When clkPin is high, if dtPin goes from low to high, the count decreases, otherwise the count increases.
-* swPin will output low when the shaft is pressed.
+* clkPinが低いときにdtPinの値を読み取ります。
+* clkPinが高い場合、dtPinが低から高になると、カウントは減少します。それ以外の場合はカウントが増加します。
+* シャフトが押されるとswPinは低を出力します。
 
-From this, the program flow is shown below:
-
+これに基づいて、以下のプログラムフローが示されます。
 
 .. image:: ../img/2.1.6_flow.png
    :align: center
 
-**Phenomenon Picture**
+現象の画像
 -------------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG

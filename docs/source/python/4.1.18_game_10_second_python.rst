@@ -1,65 +1,61 @@
-.. _4.1.18_10second_python:
+.. _4.1.18_py:
 
-
-4.1.18 GAME - 10 Second
+4.1.18 GAME - 10秒間
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 -------------------
 
-Next, follow me to make a game device to challenge your concentration.
-Tie the tilt switch to a stick to make a magic wand. Shake the wand, the
-4-digit segment display will start counting, shake again will let it
-stop counting. If you succeed in keeping the displayed count at
-**10.00**, then you win. You can play the game with your friends to see
-who is the time wizard.
+次に、あなたの集中力に挑戦するゲームデバイスを作成してみましょう。
+チルトスイッチをスティックに結びつけて、魔法の杖を作ります。杖を振ると、
+4桁のセグメントディスプレイがカウントを開始します。再度振るとカウントが停止します。表示されるカウントが **10.00** のままになったら、あなたの勝ちです。このゲームを友人とプレイして、誰がタイムウィザードであるかを確認してみてください。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_GAME_10_Second.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入することは間違いなく便利です。こちらがリンクです:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれらを個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`4-Digit 7-Segment Display`
+    *   - :ref:`4桁7セグメントディスプレイ`
         - \-
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
-    *   - :ref:`Tilt Switch`
+    *   - :ref:`傾斜スイッチ`
         - \-
 
-Schematic Diagram
+回路図
 ------------------------
 
 ============ ======== ======== ===
@@ -77,14 +73,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one13.png
    :align: center
 
-Experimental Procedures
+実験手順
 ---------------------------------
 
-**Step 1**: Build the circuit.
+**ステップ1**: 回路を組み立てます。
 
 .. image:: ../img/image277.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -94,7 +90,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3**: Run the executable file.
+**ステップ3**: 実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -104,15 +100,12 @@ Experimental Procedures
 
     sudo python3 4.1.18_GAME_10Second.py
 
-Shake the wand, the 4-digit segment display will start counting, shake
-again will let it stop counting. If you succeed in keeping the displayed
-count at **10.00**, then you win. Shake it one more time to start the
-next round of the game.
+杖を振ると、4桁のセグメントディスプレイがカウントを開始します。再度振るとカウントが停止します。表示されるカウントが **10.00** になったら勝ちです。もう一度振るとゲームの次のラウンドが開始されます。
 
-**Code**
+**コード**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    以下のコードを **修正/リセット/コピー/実行/停止** することができます。しかし、それをする前に、 ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、直接実行して効果を確認することができます。
 
 .. raw:: html
 
@@ -229,7 +222,7 @@ next round of the game.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
@@ -246,15 +239,11 @@ next round of the game.
             time.sleep(1)
         gameState = (gameState+1)%2
 
-The game is divided into two modes:
+このゲームは2つのモードに分かれています：
 
-``gameState==0`` is the "start" mode, in which the time is timed and
-displayed on the segment display, and the tilting switch is shaken to
-enter the "show" mode.
+``gameState==0`` は「スタート」モードで、セグメントディスプレイに時間が表示され、傾斜スイッチを振ると「表示」モードに入ります。
 
-``gameState==1`` is the "show" mode, which stops the timing and displays the
-time on the segment display. Shaking the tilt switch again will reset
-the timer and restart the game.
+``gameState==1`` は「表示」モードで、タイミングを停止し、セグメントディスプレイに時間を表示します。傾斜スイッチを再び振ると、タイマーがリセットされ、ゲームが再開されます。
 
 .. code-block:: python
 
@@ -269,9 +258,7 @@ the timer and restart the game.
                 stateChange()
             lastState=currentState
 
-``loop()`` is the main function. First, the time is displayed on the 4-bit
-segment display and the value of the tilt switch is read. If the state
-of the tilt switch has changed, ``stateChange()`` is called.
+``loop()`` はメインの関数です。まず、4ビットのセグメントディスプレイに時間が表示され、傾斜スイッチの値が読み取られます。傾斜スイッチの状態が変わった場合、 ``stateChange()`` が呼び出されます。
 
 .. code-block:: python
 
@@ -282,11 +269,9 @@ of the tilt switch has changed, ``stateChange()`` is called.
         timer1.start()  
         counter += 1
 
-After the interval reaches 0.01s, the timer function is called; add 1 to
-counter, and the timer is used again to execute itself repeatedly every
-0.01s.
+インターバルが0.01sに達すると、timer関数が呼び出されます。カウンターに1を加え、タイマーは0.01sごとに繰り返し自分自身を実行するために再び使用されます。
 
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/image278.jpeg

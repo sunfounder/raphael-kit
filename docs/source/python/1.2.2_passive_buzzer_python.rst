@@ -1,76 +1,74 @@
 .. _1.2.2_py:
 
-1.2.2 Passive Buzzer
+1.2.2 パッシブブザー
 =====================
 
-Introduction
+はじめに
 ------------
 
-In this project, we will learn how to make a passive buzzer play music.
+このプロジェクトでは、パッシブブザーで音楽を演奏する方法について学びます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトに必要なコンポーネントは以下の通りです。
 
 .. image:: ../img/list_1.2.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのも一つの手です。以下がそのリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+下記のリンクから各コンポーネントを個別に購入することも可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - |link_passive_buzzer_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-In this experiment, a passive buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor.
+この実験では、パッシブブザー、PNPトランジスタ、および1kの抵抗を使用しています。
+抵抗はトランジスタのベースとGPIOの間に配置され、トランジスタを保護します。
 
-When GPIO17 is given different frequencies, the passive buzzer will emit
-different sounds; in this way, the buzzer plays music.
+GPIO17に異なる周波数が供給されると、パッシブブザーはそれに応じて異なる音を出します。このようにして、ブザーが音楽を演奏します。
 
 .. image:: ../img/image333.png
 
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1**: Build the circuit. (The Passive buzzer with green circuit board on the back.)
+**ステップ1**: 回路を組み立てます。（パッシブブザーの背面は緑色の基板です。）
 
 .. image:: ../img/image106.png
 
-**Step 2: Change directory.**
+**ステップ2**: ディレクトリを変更します。
 
 .. raw:: html
 
@@ -80,7 +78,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3: Run.**
+**ステップ3**: 実行します。
 
 .. raw:: html
 
@@ -90,14 +88,14 @@ Experimental Procedures
 
     sudo python3 1.2.2_PassiveBuzzer.py
 
-The code run, the buzzer plays a piece of music.
+コードが実行され、ブザーが曲を演奏します。
 
-**Code**
+
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    以下のコードは **修正/リセット/コピー/実行/停止** することができます。ただし、実行する前に、ソースコードのパス、たとえば ``raphael-kit/python`` に移動する必要があります。コードを修正した後は、その効果を直接確認することができます。
 
 .. raw:: html
 
@@ -167,16 +165,15 @@ The code run, the buzzer plays a piece of music.
         except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
             destory()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
     CL = [0, 131, 147, 165, 175, 196, 211, 248]     # Frequency of Bass tone in C major
     CM = [0, 262, 294, 330, 350, 393, 441, 495]     # Frequency of Midrange tone in C major
-    CH = [0, 525, 589, 661, 700, 786, 882, 990]     # Frequency of Treble tone in C major     
+    CH = [0, 525, 589, 661, 700, 786, 882, 990]     # Frequency of Treble tone in C major  
 
-These are the frequencies of each note. The first 0 is to 
-skip CL[0] so that the number 1-7 corresponds to the CDEFGAB of the tone.
+これらは各音の周波数です。最初の0はCL[0]をスキップし、数字の1〜7が音のCDEFGABに対応するようにするためです。
 
 .. code-block:: python
 
@@ -185,7 +182,7 @@ skip CL[0] so that the number 1-7 corresponds to the CDEFGAB of the tone.
                 CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
                 CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5] ]
 
-These arrays are the notes of a song.
+これらの配列は曲の音符です。
 
 .. code-block:: python
 
@@ -193,15 +190,14 @@ These arrays are the notes of a song.
                 1, 3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,
                 1, 1, 3 ]
 
-Every sound beat (each number) represents the ⅛ beat, or 0.5s
+各音のビート（各数字）は、⅛ビート、つまり0.5秒を表します。
 
 .. code-block:: python
 
     Buzz = GPIO.PWM(Buzzer, 440)
     Buzz.start(50)  
 
-Define pin Buzzer as PWM pin, then set its frequency to 440 and 
-Buzz.start(50) is used to run PWM. What’s more, set the duty cycle to 50%.
+ブザー ピンを PWM ピンとして定義し、その周波数を 440 に設定し、Buzz.start(50) を使用して PWM を実行します。 さらに、デューティ サイクルを 50% に設定します。
 
 .. code-block:: python
 
@@ -209,12 +205,12 @@ Buzz.start(50) is used to run PWM. What’s more, set the duty cycle to 50%.
                 Buzz.ChangeFrequency(song_1[i]) 
                 time.sleep(beat_1[i] * 0.5)  
 
-Run a for loop, then the buzzer will play the notes in the array song_1[] 
-with the beats in the beat_1[] array, .
+for ループを実行すると、ブザーが配列 Song_1[] 内のノートを再生します。
+Beat_1[] 配列のビートを使用して、 .
 
-Now you can hear the passive buzzer playing music.
+これで、音楽を再生しているパッシブブザーが聞こえるようになります。
 
-Phenomenon Picture
-------------------
+現象の画像
+-----------------
 
 .. image:: ../img/image107.jpeg

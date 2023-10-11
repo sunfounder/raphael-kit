@@ -72,12 +72,14 @@ html_js_files = [
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js',
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js',
     'https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js',
-
+    'https://ezblock.cc/readDocFile/custom.js',
+    './lang.js', # new
 ]
 html_css_files = [
     'https://ezblock.cc/readDocFile/custom.css',
     'https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css',
     'https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css',
+    'https://ezblock.cc/readDocFile/custom.css',
 ]
 
 

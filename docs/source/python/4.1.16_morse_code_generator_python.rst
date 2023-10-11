@@ -1,59 +1,59 @@
-4.1.16 Morse Code Generator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _4.1.16_py:
 
-Introduction
+4.1.16 モールス符号ジェネレータ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+はじめに
 -----------------
 
-In this project, we'll make a Morse code generator, where you type in a
-series of English letters in the Raspberry Pi to make it appear as Morse
-code.
+このプロジェクトでは、モールス符号ジェネレータを作成します。Raspberry Piに英字のシリーズを入力すると、それがモールス符号として表示されます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_Morse_Code_Generator.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入するのは確かに便利です。こちらがリンクです:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== ===
@@ -65,16 +65,15 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one11.png
    :align: center
 
-Experimental Procedures
+実験手順
 ----------------------------
 
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**ステップ1:** 回路を組み立てる。（ブザーの極性に注意してください。
++ ラベルが付いている方が正極で、もう一方が負極です。）
 
 .. image:: ../img/image269.png
 
-**Step 2**: Open the code file.
+**ステップ2**: コードファイルを開く。
 
 .. raw:: html
 
@@ -84,7 +83,7 @@ negative.)
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**ステップ3**: 実行する。
 
 .. raw:: html
 
@@ -94,10 +93,10 @@ negative.)
 
     sudo python3 4.1.16_MorseCodeGenerator.py
 
-After the program runs, type a series of characters, and the buzzer and
-the LED will send the corresponding Morse code signals.
+プログラムを実行した後、文字のシリーズを入力すると、ブザーと
+LEDが対応するモールス符号の信号を送信します。
 
-**Code**
+**コード**
 
 .. code-block:: python
 
@@ -168,7 +167,7 @@ the LED will send the corresponding Morse code signals.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
@@ -183,24 +182,23 @@ the LED will send the corresponding Morse code signals.
         '!':'101011', '@':'011010', ':':'111000',
         }
 
-This structure MORSE is the dictionary of the Morse code, containing
-characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” “;” “!” “@” .
+この構造体MORSEはモールス符号の辞書で、文字A-Z、数字0-9、および記号「？」「/」「：」「、」「。」「;」「！」「@」を含んでいます。
 
 .. code-block:: python
 
-    def on():
-        GPIO.output(BeepPin, 1)
-        GPIO.output(ALedPin, 1)
+    def on():
+        GPIO.output(BeepPin, 1)
+        GPIO.output(ALedPin, 1)
 
-The function ``on()`` starts the buzzer and the LED.
+関数 ``on()`` はブザーとLEDを起動します。
 
 .. code-block:: python
 
-    def off():
-        GPIO.output(BeepPin, 0)
-        GPIO.output(ALedPin, 0)
+    def off():
+        GPIO.output(BeepPin, 0)
+        GPIO.output(ALedPin, 0)
 
-The function ``off()`` is used to turn off the buzzer and the LED.
+関数 ``off()`` はブザーとLEDをオフにするために使用されます。
 
 .. code-block:: python
 
@@ -210,8 +208,7 @@ The function ``off()`` is used to turn off the buzzer and the LED.
         off()
         time.sleep(dt)
 
-Define a function ``beep()`` to make the buzzer and the LED emit sounds and
-blink in a certain interval of ``dt``.
+関数 ``beep()`` は、ブザーとLEDが ``dt`` の特定の間隔で音を鳴らし、点滅させるための関数を定義します。
 
 .. code-block:: python
 
@@ -225,11 +222,7 @@ blink in a certain interval of ``dt``.
                     beep(pause)
             time.sleep(pause)
 
-The function ``morsecode()`` is used to process the Morse code of input
-characters by making the “1” of the code keep emitting sounds or lights
-and the “0”shortly emit sounds or lights, ex., input “SOS”, and there
-will be a signal containing three short three long and then three short
-segments “ · · · - - - · · · ”.
+関数 ``morsecode()`` は、コードの“1”が音や光を継続的に発するのに対して、「0」が短く音や光を発するように入力文字のモールスコードを処理するために使用されます。例えば、"SOS"と入力すると、信号は三つの短い、三つの長い、その後三つの短いセグメント「· · · - - - · · · 」を持つことになります。
 
 .. code-block:: python
 
@@ -240,14 +233,11 @@ segments “ · · · - - - · · · ”.
             print(code)
             morsecode(code)
 
-When you type the relevant characters with the keyboard, ``upper()`` will
-convert the input letters to their capital form.
+キーボードで関連する文字を入力すると、 ``upper()`` は入力された文字をその大文字形式に変換します。
 
-``printf()`` then prints the clear text on the computer screen, and the
-``morsecod()`` function causes the buzzer and the LED to emit Morse code.
+``printf()`` はコンピュータの画面にクリアテキストを印刷し、 ``morsecod()`` 関数はブザーとLEDがモールスコードを発信するようにします。
 
-
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/image270.jpeg

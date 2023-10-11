@@ -1,23 +1,23 @@
-Thank You
+ありがとう
 ====================
 
-Thanks to the evaluators who evaluated our products, the veterans who provided suggestions for the tutorial, and the users who have been following and supporting us.
-Your valuable suggestions to us are our motivation to provide better products!
+私たちの製品を評価してくださった評価者の方々、チュートリアルにご提案をくださったベテランの方々、そして私たちをフォローし応援してくださっているユーザーの方々に感謝いたします。
+皆様からの貴重なご意見は、より良い製品を提供するためのモチベーションとなっています！
 
-**Particular Thanks**
+**特に感謝**
 
 * Len Davisson
 * Kalen Daniel
 * Juan Delacosta
   
     
-Now, could you spare a little time to fill out this questionnaire?
+では、このアンケートにご協力いただけますか？
 
 .. raw:: html
     
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-AZ1nPakmt9MBxZWVaQDlTZ9V5CL8zq-tTQOno60y9mqgpw/viewform?embedded=true" width="640" height="2127" frameborder="0" marginheight="0" marginwidth="0">正在加载…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-AZ1nPakmt9MBxZWVaQDlTZ9V5CL8zq-tTQOno60y9mqgpw/viewform?embedded=true" width="640" height="2127" frameborder="0" marginheight="0" marginwidth="0">読み込み中...</iframe>
 
 .. note:: 
 
-    After submitting the questionnaire, please go back to the top to view the results.
+    アンケート送信後、トップに戻って結果をご覧ください。
 

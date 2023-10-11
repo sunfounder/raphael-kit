@@ -1,54 +1,56 @@
-4.1.19 AttendanceSystem
+.. _4.1.19_py:
+
+4.1.19 出席システム
 ================================
 
-Introduction
+はじめに
 ---------------
 
-Let's make a simple attendance system. When we scan the card, the Raspberry Pi will record our information and generate a csv file.
+シンプルな出席システムを作成しましょう。カードをスキャンすると、Raspberry Piは私たちの情報を記録し、csvファイルを生成します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下のコンポーネントが必要です。
 
 .. image:: ../img/4.1.20components2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが間違いなく便利です。以下はリンクです:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれぞれのアイテムを購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`オーディオモジュールとスピーカー`
         - \-
-    *   - :ref:`LED Matrix Module`
+    *   - :ref:`LEDマトリクスモジュール`
         - |link_led_matrix_buy|
-    *   - :ref:`MFRC522 Module`
+    *   - :ref:`MFRC522 モジュール`
         - |link_mfrc522_rfid_buy|
 
-Schematic Diagram
+回路図
 ----------------------
 
 ============ ======== ======== ====
@@ -64,20 +66,20 @@ SPISCLK      Pin 23   14       SCLK
 .. image:: ../img/4.1.20_schematic.png
    :align: center
 
-Experimental Procedures
+実験手順
 -------------------------
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
+    実験を開始する前にSPIをオンにしてください。詳しくは :ref:`SPI設定` を参照してください。
     
-    The :ref:`Luma.LED_Matrix` and the :ref:`Spidev and MFRC522` libraries are also needed.
+    :ref:`Luma.LED_Matrix` と :ref:`SpidevとMFRC522` のライブラリも必要です。
 
-Step 1: Build the circuit.
+ステップ1: 回路を組む。
 
 .. image:: ../img/atten1.png
 
-Step 2: Run the ``2.2.10_write.py`` file to modify the content of the rfid card.
+ステップ2: ``2.2.10_write.py`` ファイルを実行して、rfidカードの内容を変更します。
 
 .. raw:: html
 
@@ -88,11 +90,11 @@ Step 2: Run the ``2.2.10_write.py`` file to modify the content of the rfid card.
     cd ~/raphael-kit/python
     sudo python3 2.2.10_write.py
 
-Step 3: Enter the name (here we use ``John``as an example) and press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
+ステップ3: 名前を入力します（ここでは ``John`` を例にします）。「Enter」キーを押して確認し、カードをMFRC522モジュールに置き、"Data writing is complete" が表示されるのを待ち、カードを取り外します。または、別のカードにメッセージを書き直すか、``Ctrl+C`` で終了します。
 
 .. image:: ../img/write_card.png
 
-Step 4: Get into the folder of code and run.
+ステップ4: コードのフォルダに移動して、実行します。
 
 .. raw:: html
 
@@ -103,9 +105,9 @@ Step 4: Get into the folder of code and run.
     cd ~/raphael-kit/python
     sudo python3 4.1.19_Attendance_Machine.py
 
-After starting the program, we put the RFID card close to the MFRC522 RFID Module, the Raspberry Pi will send out a voice to greet you and display it on the LED matrix.
+プログラムを起動した後、RFIDカードをMFRC522 RFIDモジュールに近づけると、Raspberry Piは挨拶の声を出してLEDマトリックスに表示します。
 
-We can also find a ``.csv`` file that records the time and list in the same directory. Open it with the nano command and you will see the record just now.
+同じディレクトリに時間とリストを記録した ``.csv`` ファイルも見つけることができます。nanoコマンドでそれを開くと、今の記録を見ることができます。
 
 .. raw:: html
 
@@ -118,10 +120,11 @@ We can also find a ``.csv`` file that records the time and list in the same dire
 .. image:: ../img/atten3.png
   :width: 400
 
-**Code**
+**コード**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    下記のコードを **修正/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、その効果を直接見るために実行することができます。
+
 
 .. raw:: html
 
@@ -190,10 +193,10 @@ We can also find a ``.csv`` file that records the time and list in the same dire
         except KeyboardInterrupt:
             destroy()
 
-Code Explanation
+コード説明
 -------------------
 
-In order to better understand the program, you may need to complete :ref:`1.1.6 LED Dot Matrix` , :ref:`2.2.10 MFRC522 RFID Module` and :ref:`3.1.4 Text-to-speech` first.
+プログラムをよりよく理解するために、先に :ref:`1.1.6_py`, :ref:`2.2.10_py` および :ref:`3.1.4_py` を完了することをおすすめします。
 
 .. code-block:: python
 
@@ -209,8 +212,8 @@ In order to better understand the program, you may need to complete :ref:`1.1.6 
 	    present_date = year + '.' + month + '.' + day
 	    return present_date, present_time
 
-Use the ``get_time()`` function to get the current timestamp and return two values.
-Among them, ``present_date`` is accurate to the number of days of the current timestamp, and ``present_time`` is accurate to the number of seconds of the current timestamp.
+``get_time()`` 関数を使用して、現在のタイムスタンプを取得し、2つの値を返します。
+その中で、 ``present_date`` は現在のタイムスタンプの日数まで正確であり、 ``present_time`` は現在のタイムスタンプの秒数まで正確です。
 
 .. code-block:: python
 
@@ -219,21 +222,21 @@ Among them, ``present_date`` is accurate to the number of days of the current ti
     present_date, present_time = get_time()
     attendance_statistics[name.rstrip()] = present_time
 
-The ``reader.read()`` function reads the name information, and then creates a greeting.
-Then an ``attendance_statistics`` dictionary is generated, and ``name.rstrip()`` and ``present_time`` are stored as keys and values.
+``reader.read()`` 関数は名前の情報を読み取り、次に挨拶を作成します。
+その後、 ``attendance_statistics`` 辞書が生成され、 ``name.rstrip()`` および ``present_time`` がキーと値として保存されます。
 
 .. code-block:: python
 
     tts.say(greeting)
 
-Say a greeting through the speaker.
+スピーカーを通して挨拶を伝えます。
 
 .. code-block:: python
 
     with open('attendance_sheet.' + present_date + '.csv', 'w') as f:
         [f.write('{0}  {1}\n'.format(key, value)) for key, value in attendance_statistics.items()]
 
-Write the ``attendance_statistics`` to the .csv file.
+``attendance_statistics`` を .csv ファイルに書き込みます。
 
 .. code-block:: python
 
@@ -243,11 +246,11 @@ Write the ``attendance_statistics`` to the .csv file.
         virtual.set_position((offset,0))
         time.sleep(0.1)
 
-Scroll to display this greeting.
+この挨拶をスクロールして表示します。
 
 
-
-
-**Phenomenon Picture**
+現象の画像
+-----------------------
 
 .. image:: ../img/attend_system.JPG
+    :align: center

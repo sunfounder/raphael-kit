@@ -1,42 +1,41 @@
-Micro Switch
+マイクロスイッチ
 =====================
 
 .. image:: img/micro_pic.png
     :width: 200
     :align: center
 
-The construction of a micro switch is really simple. The main parts of the switch are:
+マイクロスイッチの構造は非常にシンプルです。スイッチの主要な部品は以下の通りです。
 
 .. image:: img/micro_switch2.png
     :align: center
 
-* 1.Plunger (Actuator)
-* 2.Cover
-* 3.Moving piece
-* 4.Support
-* 5.Case
-* 6.NO terminal: normally open
-* 7.NC terminal: normally closed
-* 8.Contact
-* 9.Moving arm
+* 1. プランジャ（アクチュエータ）
+* 2. カバー
+* 3. 可動片
+* 4. サポート
+* 5. ケース
+* 6. NO端子：通常開
+* 7. NC端子：通常閉
+* 8. コンタクト
+* 9. 可動アーム
 
+マイクロスイッチが物理的にオブジェクトに接触すると、その接点が位置を変えます。基本的な動作原理は以下のとおりです。
 
-After a micro switch makes physical contact with an object, its contacts change position. The basic working principle is as follows.
+プランジャが解放されているか、または静止している場合。
 
-When the plunger is in the released or rest position.
+* 通常閉回路は電流を通します。
+* 通常開回路は電気的に絶縁されています。
 
-* The normally closed circuit can carry current.
-* The normally open circuit is electrically insulated.
+プランジャが押されたり切り替えられたりした場合。
 
-When the plunger is depressed or switched.
-
-* The normally closed circuit is open.
-* The normally open circuit is closed.
+* 通常閉回路は開きます。
+* 通常開回路は閉じます。
 
 .. image:: img/micro_switch1.png
 
-**Example**
+**例**
 
-* :ref:`2.1.2_c` (C Project)
-* :ref:`2.1.2_py` (Python Project)
-* :ref:`1.8 Service Bell` (Scratch Project)
+* :ref:`2.1.2_c` (Cプロジェクト)
+* :ref:`2.1.2_py` (Pythonプロジェクト)
+* :ref:`1.8_scratch` (Scratchプロジェクト)

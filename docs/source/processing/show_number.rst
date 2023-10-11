@@ -1,52 +1,54 @@
-Show Number
+.. _show_number:
+
+数字の表示
 =============================================
 
-In this project, we use processing to drive a 7-segment display to show a figure from 0 to 9 and A to F.
+このプロジェクトでは、processingを使用して7セグメントディスプレイを駆動し、0から9、AからFまでの数字を表示します。
 
-**Required Components**
+**必要な部品**
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入することは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`7-segment Display`
+    *   - :ref:`7セグメントディスプレイ`
         - |link_7segment_buy|
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
-**Wiring**
+**配線図**
 
 .. image:: img/image125.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: arduino
 
@@ -104,18 +106,17 @@ You can also buy them separately from the links below.
 		hc595_shift(SegCode[number]);
 	}
 
-**How it works?**
+**どのように動作するのか？**
 
-Import ``processing.io.*`` and use the GPIO function library to control the digital tube pins.
+``processing.io.*`` をインポートし、GPIO関数ライブラリを使用してデジタルチューブのピンを制御します。
 
-Define array ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}``
-which represents a segment code array from 0 to F in Hexadecimal (Common cathode).
+``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}`` の配列を定義して、16進数の0からFまでのセグメントコード配列（コモンカソード）を表現します。
 
-``setup()`` function sets the three pins SDI,RCLK and SRCLK as output, and the initial data as 0.
+``setup()`` 関数は、三つのピンSDI、RCLK、およびSRCLKを出力として設定し、初期データを0とします。
 
-``hc595_shift(int dat)`` function is used to shift the ``SegCode`` to 74HC595.
- 
-.. code:: 
+``hc595_shift(int dat)`` 関数は、 ``SegCode`` を74HC595にシフトするために使用されます。
+
+.. code::
 
 	void hc595_shift(int dat){
 	  int i;
@@ -136,18 +137,18 @@ which represents a segment code array from 0 to F in Hexadecimal (Common cathode
 		delay(1);
 		GPIO.digitalWrite(RCLK, 0);
 	}
- 
-``n=(0x80 & (dat << i))`` means to shift dat to the left by ``i`` bits and then do the ``&`` operation with 0x80.
 
-The rule of ``&`` operation is that when both sides of ``&`` are 1, the result is 1, otherwise the result is 0.
+``n=(0x80 & (dat << i))`` は、datを ``i`` ビット左にシフトしてから0x80と ``&`` 操作をすることを意味します。
 
-For example, we assume dat=0x3f,i=2(0011 1111 << 2 shift to 1111 1100), then 1111 1100 & 1000 0000 (0x80)) = 1000 0000.
+``&`` 操作のルールは、 ``&`` の両方が1の場合、結果は1であり、それ以外の場合、結果は0です。
 
-At last assign the dat data to SDI(DS) by bits.
- 
-``digitalWrite(SRCLK, 1)`` when SRCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the DS register to the shift register;
- 
-``digitalWrite(RCLK, 1)`` when RCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the shift register to the storage register.
+例として、dat=0x3f、i=2(0011 1111 << 2は1111 1100にシフト)と仮定します。その後、1111 1100 & 1000 0000(0x80) = 1000 0000となります。
+
+最後に、datデータをビットごとにSDI(DS)に割り当てます。
+
+``digitalWrite(SRCLK, 1)`` SRCLKが0から1への立ち上がりエッジパルスを生成すると、データはDSレジスタからシフトレジスタに転送されます。
+
+``digitalWrite(RCLK, 1)`` RCLKが0から1への立ち上がりエッジパルスを生成すると、データはシフトレジスタからストレージレジスタに転送されます。
 
 .. code::
 
@@ -155,8 +156,8 @@ At last assign the dat data to SDI(DS) by bits.
 	textAlign(CENTER,CENTER);
 	textSize(height*0.8);
 
-The ``fill()`` function used in ``setup()`` can fill the text color, ``textAlign(CENTER,CENTER)`` is used to center the text, ``textSize(height*0.8)`` change the text height to 0.8 times the original.
-These functions can customize the text style displayed on the processing
+``setup()`` で使用される ``fill()`` 関数はテキストの色を塗りつぶすことができ、 ``textAlign(CENTER,CENTER)`` はテキストを中央にするために使用され、 ``textSize(height*0.8)`` はテキストの高さを元の0.8倍に変更します。
+これらの関数は、processingに表示されるテキストスタイルをカスタマイズできます。
 
 .. code::
 
@@ -168,7 +169,7 @@ These functions can customize the text style displayed on the processing
 		hc595_shift(SegCode[number]);
 	}
 
-The ``frameCount`` is a seed, which is related to ``frameRate``.
-By default ``frameRate`` is 60, which means that ``frameCount`` will accumulate 60 times per second.
+``frameCount`` はシードであり、 ``frameRate`` に関連します。
+デフォルトでは ``frameRate`` は60であり、これは ``frameCount`` が1秒に60回蓄積されることを意味します。
 
-Then we can let processing and 7-segment display to show the figure from 0 to 9 and A to F simultaneously.
+その後、processingと7セグメント表示を使用して、0から9、AからFまでの数字を同時に表示することができます。

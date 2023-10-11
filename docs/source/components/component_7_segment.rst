@@ -1,26 +1,26 @@
-7-segment Display
-======================
+7セグメントディスプレイ
+=========================
 
 .. image:: img/7-seg.jpg
 
-A 7-segment display is an 8-shaped component which packages 7 LEDs. Each LED is called a segment - when energized, one segment forms part of a numeral to be displayed.
+7セグメントディスプレイは、7つのLEDを内蔵した8の形をしたコンポーネントです。各LEDはセグメントと呼ばれ、通電されると表示される数字の一部になります。
 
-There are two types of pin connection: Common Cathode (CC) and Common Anode (CA). As the name suggests, a CC display has all the cathodes of the 7 LEDs connected when a CA display has all the anodes of the 7 segments connected.
+ピンの接続には、共通カソード（CC）と共通アノード（CA）の2種類があります。名前が示す通り、CCディスプレイでは7つのLEDのカソードが連結され、CAディスプレイでは7つのセグメントのアノードが連結されています。
 
-In this kit, we use the Common Cathode 7-segment display, here is the electronic symbol.
+このキットでは、共通カソードの7セグメントディスプレイを使用しています。以下はその電子記号です。
 
 .. image:: img/segment_cathode.png
     :width: 800
 
-Each of the LEDs in the display is given a positional segment with one of its connection pins led out from the rectangular plastic package. These LED pins are labeled from "a" through to "g" representing each individual LED. The other LED pins are connected together forming a common pin. So by forward biasing the appropriate pins of the LED segments in a particular order, some segments will brighten and others stay dim, thus showing the corresponding character on the display. 
+ディスプレイに組み込まれている各LEDは、矩形のプラスチックパッケージから導出された接続ピンとともに位置的なセグメントが与えられます。これらのLEDピンは「a」から「g」までラベルが付けられ、各個々のLEDを代表しています。他のLEDピンは共通のピンとして連結されています。そのため、特定の順序でLEDセグメントの適切なピンに順方向バイアスをかけると、一部のセグメントが明るくなり、他の部分は暗くなり、対応する文字が表示されます。
 
-**Display Codes** 
+**表示コード**
 
-To help you get to know how 7-segment displays(Common Cathode) display Numbers, we have drawn the following table. Numbers are the number 0-F displayed on the 7-segment display; (DP) GFEDCBA refers to the corresponding LED set to 0 or 1, For example, 00111111 means that DP and G are set to 0, while others are set to 1. Therefore, the number 0 is displayed on the 7-segment display, while HEX Code corresponds to hexadecimal number.
+7セグメントディスプレイ（共通カソード）が数字をどのように表示するかを理解するために、以下の表を作成しました。数字は0-Fが7セグメントディスプレイで表示され、「(DP)GFEDCBA」は対応するLEDが0または1に設定されていることを示します。例えば、00111111はDPとGが0に設定され、他は1に設定されているため、7セグメントディスプレイには0が表示されます。
 
 .. image:: img/segment_code.png
 
-**Example**
+**例**
 
-* :ref:`1.1.4_c` (C Project)
-* :ref:`1.1.4_py` (Python Project)
+* :ref:`1.1.4_c` (Cプロジェクト)
+* :ref:`1.1.4_py` (Pythonプロジェクト)

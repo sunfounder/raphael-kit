@@ -1,78 +1,70 @@
 .. _2.2.10_c:
 
-2.2.10 MFRC522 RFID Module
+2.2.10 MFRC522 RFIDモジュール
 ================================
 
-Introduction
+はじめに
 ---------------
 
-Radio Frequency Identification (RFID) refers to technologies that use
-wireless communication between an object (or tag) and interrogating
-device (or reader) to automatically track and identify such objects.
+RFID（無線周波数識別）は、オブジェクト（またはタグ）と問い合わせデバイス（またはリーダー）の間の無線通信を使用して、そのようなオブジェクトを自動的に追跡・識別する技術を指します。
 
-Some of the most common applications for this technology include retail
-supply chains, military supply chains, automated payment methods,
-baggage tracking and management, document tracking and pharmaceutical
-management, to name a few.
+この技術の最も一般的な用途には、小売業の供給チェーン、軍事の供給チェーン、自動支払方法、荷物追跡および管理、ドキュメント追跡、薬品管理などがあります。
 
-In this project, we will use RFID for reading and writing.
+このプロジェクトでは、RFIDを読み取りおよび書き込みに使用します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_2.2.7.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのは間違いなく便利です、以下がリンクです:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれぞれ購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`MFRC522 Module`
+    *   - :ref:`MFRC522 モジュール`
         - |link_mfrc522_rfid_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image331.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image232.png
 
+**ステップ2:** SPIを設定します（詳しくは :ref:`SPI設定` を参照してください。すでにSPIを設定している場合は、この手順をスキップしてください。）
 
-**Step 2:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
-set SPI, skip this step.)
-
-**Step 3:** Go to the folder of the code.
+**ステップ3:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -82,7 +74,7 @@ set SPI, skip this step.)
 
     cd ~/raphael-kit/c/2.2.10/
 
-**Step 4:** Compile the code.
+**ステップ4:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -93,8 +85,7 @@ set SPI, skip this step.)
     make read
     make write
 
-
-**Step 5:** After running ``./write``, enter the information, such as the name of the person, and then put the tag or card on the MRC522 module and wait for the writing to be completed.
+**ステップ5:** ``./write`` を実行後、相手の名前などの情報を入力し、MRC522モジュールにタグやカードを置いて書き込みが完了するのを待ちます。
 
 .. raw:: html
 
@@ -104,7 +95,7 @@ set SPI, skip this step.)
 
     sudo ./write
 
-**Step 6:** Now run ``./read`` to read the information of the tag or card you have written.
+**ステップ6:** ``./read`` を実行して、書き込んだタグまたはカードの情報を読み取ります。
 
 .. raw:: html
 
@@ -116,32 +107,29 @@ set SPI, skip this step.)
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     InitRc522();
 
-This function is used to initialize the RFID RC522 module.
+この関数は、RFID RC522モジュールを初期化するためのものです。
 
 .. code-block:: c
 
     uint8_t read_card_data();
 
-This function is used to read the data of the card, and if 
-the read is successful, it will return "1".
+この関数はカードのデータを読み取るためのもので、読み取りが成功すると"1"を返します。
 
 .. code-block:: c
 
     uint8_t write_card_data(uint8_t *data);
 
-This function is used to write the data of card and returns "1" if 
-the write is successful. ``*data`` is the information that will be written 
-to the card.
+この関数はカードのデータを書き込むためのもので、書き込みが成功すると"1"を返します。 ``*data`` はカードに書き込む情報です。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image233.jpeg

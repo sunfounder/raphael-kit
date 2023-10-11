@@ -1,76 +1,70 @@
-1.2.1 Active Buzzer
-====================
+.. _1.2.1_js:
 
-Introduction
+1.2.1 アクティブブザー
+========================
+
+はじめに
 ------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+このプロジェクトでは、PNPトランジスタを使用してアクティブブザーを鳴らす方法を学びます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下のとおりです。
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは非常に便利です。リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+この実験では、アクティブブザー、PNPトランジスタ、トランジスタのベースとGPIOの間に1kの抵抗が使用されます。Raspberry PiのGPIO17がプログラムによって低レベル（0V）で出力されると、トランジスタは電流飽和のために導通し、ブザーが音を出します。しかし、Raspberry PiのIOに高レベルが供給されると、トランジスタがオフになり、ブザーが音を出さなくなります。
 
 .. image:: ../img/image332.png
 
+実験手順
+----------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**ステップ1:** 回路を作成します。（アクティブブザーには、表面に白いテーブルステッカーと黒い背面があります。）
 
 .. image:: ../img/image104.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -80,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run.
+**ステップ3**: 実行します。
 
 .. raw:: html
 
@@ -90,9 +84,9 @@ Experimental Procedures
 
     sudo node active_buzzer.js
 
-The code run, the buzzer beeps.
+コードが実行されると、ブザーが鳴ります。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -108,14 +102,14 @@ The code run, the buzzer beeps.
     process.exit();
   });
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
     const active = new Gpio(17,{mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, and instantiate an object active to control the IO port Gpio17, and the mode is set to output mode.
+``pigpio`` モジュールをインポートし、IOポートGpio17を制御するためのオブジェクトactiveをインスタンス化します。モードは出力モードに設定されています。
 
 .. code-block:: js
 
@@ -123,8 +117,7 @@ Import the ``pigpio`` module, and instantiate an object active to control the IO
     active.digitalWrite(!active.digitalRead());
   }, 500);
 
-The active buzzer is similar to the LED in usage and can be controlled with ``digitalWrite()``, and ``digitalRead()`` is used to read the current pin level.
-Here we make the active buzzer change its working state every 500ms.
+アクティブブザーはLEDの使用方法と似ており、 ``digitalWrite()`` で制御できます。 ``digitalRead()`` は現在のピンレベルを読むために使用されます。ここでは、アクティブブザーを500msごとに動作状態を変更させます。
 
 .. code-block:: js
 
@@ -134,11 +127,11 @@ Here we make the active buzzer change its working state every 500ms.
       process.exit()
   })
 
-Handle Ctrl+C, here is used to stop the buzzer sounding when exiting the program.
+Ctrl+Cを処理します。ここでは、プログラムを終了するときにブザーの音を止めるために使用されます。
 
 `Process - NodeJS <https://nodejs.org/api/process.html>`_
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image105.jpeg

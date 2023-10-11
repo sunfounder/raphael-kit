@@ -1,102 +1,103 @@
-1.16 Fishing Game
+.. _1.16_scratch:
+
+1.16 釣りゲーム
 ========================
 
-Today, we will make a fishing game.
+今日は、釣りゲームを作成します。
 
-Observe the water on the stage area and if you find a fish on the hook, remember to tilt the switch to catch it.
+ステージエリアの水を観察し、魚がフックにかかったのを見つけたら、スイッチを傾けてそれを捕まえることを忘れないでください。
 
 .. image:: img/1.16_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.16_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Tilt Switch`
+    *   - :ref:`傾斜スイッチ`
         - \-
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.16_fritzing.png
 
-Load the Code and See What Happens
+コードをロードして結果を確認する
 ---------------------------------------
 
-Load the code file (``1.16_fishing_game.sb3``) to Scratch 3.
+Scratch 3に(``1.16_fishing_game.sb3``)のコードファイルをロードします。
 
-You will see a child is fishing, after a period of time when the water surface movement, you can shake the tilt switch to catch the fish.
-Remember, if you do not keep shaking the switch, the fish will escape.
+子供が釣りをしているのを見ることができます。水面が動くと、傾斜スイッチを振って魚を捕まえることができます。
+スイッチを振り続けないと、魚が逃げてしまうことを覚えておいてください。
 
-Tips on Sprite
-----------------
+スプライトに関するヒント
+---------------------------------
 
-Select Sprite1, click **Costumes** in the upper left corner; upload 6 pictures (**fish1** to **fish6**) from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes and rename the sprite to **fish**.
+Sprite1を選択し、左上の **Costumes** をクリックします。 ``~/raphael-kit/scratch/picture`` パスから **Upload Costume** ボタンを使用して6枚の画像(**fish1** から **fish6**)をアップロードします。デフォルトの2つのコスチュームを削除し、スプライトの名前を **fish** に変更します。
 
 .. image:: img/1.16_upload_fish.png
 
-
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.16_fish2.png
   :width: 400
 
-Set the initial costume of the **fish** sprite to **fish1** and assign the value of **fish_status** to 0 (when **fish_status=0**, it means the fish is not hooked, when **fish_status=1**, it means the fish is hooked).
+**fish** スプライトの初期コスチュームを **fish1** に設定し、 **fish_status** の値を0に設定します（ **fish_status=0** の場合、魚はフックにかかっていない。 **fish_status=1** の場合、魚はフックにかかっている）。
 
 .. image:: img/1.16_fish3.png
   :width: 400
 
-When **fish_status=0**, i.e. the fish is not hooked yet, start the fishing game. Wait for a random time from 0 to 10 seconds, then assign **fish_status** to 1, which means the fish is hooked, and broadcast a message "The fish is biting".
+**fish_status=0** の場合、つまり魚がまだフックにかかっていない場合、釣りゲームを開始します。0から10秒のランダムな時間を待ち、 **fish_status** を1に設定します。これは魚がフックにかかったことを意味し、"魚がかかった"というメッセージを放送します。
 
 .. note::
 
-  The purpose of the broadcast block is to send a message to other code blocks or other sprites. The message can be either a request or a command.
+  放送ブロックの目的は、他のコードブロックや他のスプライトにメッセージを送ることです。そのメッセージは、要求または命令のいずれかです。
 
 .. image:: img/1.16_fish4.png
   :width: 400
 
-When the message "The fish is biting" is received, let the fish sprite switch between the **fish2** and **fish3** costumes so that we can see the fish biting.
+「魚がかかった」というメッセージを受け取ると、 **fish** スプライトを **fish2** と **fish3** のコスチュームの間で切り替えて、魚がかかるのを見ることができます。
 
 .. image:: img/1.16_fish5.png
   :width: 400
 
-After switching the costume, if the game is not over, it means that the fish is off the hook and gone, so that we will switch the **fish** sprite costume to **fish6** (fish slipped state).
+コスチュームを切り替えた後、ゲームが終了していない場合、それは魚がフックから外れて逃げたことを意味するので、 **fish** スプライトのコスチュームを **fish6** （魚がすべっている状態）に切り替えます。
 
 .. image:: img/1.16_fish6.png
   :width: 400
 
-When gpio17 is high (the tilt switch is tilted), it means the fishing rod is pulled up. At this time, the value of fish_status is judged. If it is 1, it means that the fishing rod was pulled up when the fish was hooked and switched to fish4 costume (fish was caught). On the contrary, it means that the fishing rod pulled up when the fish is not hooked is switched to the fish5 costume (nothing is caught).
+gpio17が高い（傾斜スイッチが傾いている）場合、釣り竿が引き上げられたことを意味します。この時点で、fish_statusの値を判断します。それが1の場合、魚がフックにかかったときに釣り竿が引き上げられ、fish4コスチューム（魚が捕まった）に切り替えられます。逆に、魚がフックにかかっていないときに釣り竿が引き上げられると、fish5コスチューム（何も捕まえられない）に切り替えられます。
 

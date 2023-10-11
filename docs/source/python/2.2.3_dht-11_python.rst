@@ -1,75 +1,68 @@
 .. _2.2.3_py:
 
 2.2.3 DHT-11
-============
+===============
 
-Introduction
+はじめに
 --------------
 
-The digital temperature and humidity sensor DHT11 is a composite sensor
-that contains a calibrated digital signal output of temperature and
-humidity. The technology of a dedicated digital modules collection and
-the technology of the temperature and humidity sensing are applied to
-ensure that the product has high reliability and excellent stability.
+DHT11はデジタル温湿度センサであり、キャリブレートされたデジタル信号出力を持つ複合センサーです。専用のデジタルモジュールの収集技術と温湿度センシング技術が採用されており、高い信頼性と優れた安定性を確保しています。
 
-The sensors include a wet element resistive sensor and a NTC temperature
-sensor and they are connected to a high performance 8-bit
-microcontroller.
+このセンサには、湿素抵抗センサとNTC温度センサが含まれており、高性能8ビットマイクロコントローラに接続されています。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_2.2.3_dht-11.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのが便利です、リンクは以下です：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個々のコンポーネントも購入できます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Humiture Sensor Module`
+    *   - :ref:`湿温センサモジュール`
         - |link_humiture_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image326.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1：** 回路を組み立てます。
 
 .. image:: ../img/image207.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2：** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -79,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file.
+**ステップ3：** 実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -89,15 +82,13 @@ Experimental Procedures
 
     sudo python3 2.2.3_DHT.py
 
-After the code runs, the program will print the temperature and humidity
-detected by DHT11 on the computer screen.
+コードが実行された後、DHT11が検出した温度と湿度がコンピュータ画面に表示されます。
 
-**Code**
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    下のコードは **編集/リセット/コピー/実行/停止** ができますが、それ以前に ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、その効果を直接確認するために実行できます。
 
 .. raw:: html
 
@@ -229,7 +220,7 @@ detected by DHT11 on the computer screen.
         except KeyboardInterrupt:
             destroy() 
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
@@ -245,18 +236,13 @@ detected by DHT11 on the computer screen.
         data = []
         #...
 
-This function is used to implement the functions of DHT11. It stores the
-detected data in the the_bytes[] array. DHT11 transmits data of 40 bits
-at a time. The first 16 bits are related to humidity, the middle 16 bits
-are related to temperature, and the last eight bits are used for
-verification. The data format is:
+この関数は、DHT11の機能を実装するために使用されます。検出したデータはthe_bytes[]配列に格納されます。DHT11は一度に40ビットのデータを送信します。最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用されます。データ形式は次の通りです：
 
-**8bit humidity integer data** +\ **8bit humidity decimal data**
-+\ **8bit temperature integer data** + **8bit temperature decimal data**
-+ **8bit check bit**.
+**8ビット湿度整数データ** +\ **8ビット湿度小数データ**
++\ **8ビット温度整数データ** + **8ビット温度小数データ**
++ **8ビットチェックビット**。
 
-When the validity is detected via the check bit, the function returns
-two results: 1. error; 2. humidity and temperature.
+チェックビットを介して有効性が確認された場合、この関数は2つの結果を返します：1. エラー; 2. 湿度と温度。
 
 .. code-block:: python
 
@@ -267,23 +253,17 @@ two results: 1. error; 2. humidity and temperature.
 
     return the_bytes[0], the_bytes[2]
 
-For example, if the received date is 00101011(8-bit value of humidity
-integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit
-value of temperature integer) 00000000 (8-bit value of temperature
-decimal) 01100111 (check bit)
+例えば、受信したデータが00101011（湿度整数の8ビット値）、00000000（湿度小数の8ビット値）、00111100（温度整数の8ビット値）、00000000（温度小数の8ビット値）、01100111（チェックビット）の場合、
 
-**Calculation:**
+**計算：**
 
-00101011+00000000+00111100+00000000=01100111.
+00101011+00000000+00111100+00000000=01100111。
 
-If the final result is equal to the check bit data, the data
-transmission is abnormal: return False.
+最終結果がチェックビットデータと等しい場合、データ送信は異常です：Falseを返します。
 
-If the final result is equal to the check bit data, the received data is
-correct, then there will return the_bytes[0] and the_bytes[2] and output
-“Humidity =43%，Temperature =60C”.
+最終結果がチェックビットデータと等しい場合、受信データは正確であり、the_bytes[0]とthe_bytes[2]を返して、「湿度=43%、温度=60C」と出力します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image209.jpeg

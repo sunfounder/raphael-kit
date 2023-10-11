@@ -1,57 +1,59 @@
-3.1.13 GAME– NotNot
+.. _3.1.13_c:
+
+3.1.13 ゲーム– ノットノット
 ===========================
 
-Introduction
+はじめに
 -------------------
 
-In this project, we will make an interesting game device, and we call it “Not Not”.
+このプロジェクトでは、面白いゲームデバイスを作成し、それを「ノットノット」と呼びます。
 
-During the game, the dot matrix will refresh an arrow randomly. What you need to do is to press the button in the opposite direction of the arrow within a limited time. If the time is up, or if the button in the same direction as the arrow is pressed, you are out.
+ゲーム中、ドットマトリックスはランダムに矢印を更新します。あなたがする必要があることは、矢印と逆方向にボタンを押すことですが、時間内に行わなければなりません。時間切れになるか、矢印と同じ方向にボタンが押されると、あなたはアウトです。
 
-This game can really practice your reverse thinking, and now shall we have a try?
+このゲームは本当に逆の思考を鍛えることができ、さあ試してみましょうか？
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_GAME_14_NotNot.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+セットをまとめて購入するのは便利です。以下のリンクから入手できます。
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`LED Matrix Module`
+    *   - :ref:`LEDマトリクスモジュール`
         - |link_led_matrix_buy|
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
 
-Schematic Diagram
+回路図
 ------------------------
 
 ============ ======== ======== ====
@@ -66,19 +68,19 @@ SPISCLK      Pin 23   14       SCLK
 .. image:: ../img/Schematic_notnot.png
    :align: center
 
-Experimental Procedures
+実験手順
 ---------------------------------
 
-**Step 1**: Build the circuit.
+**ステップ 1**: 回路を組み立てます。
 
 .. image:: ../img/3.1.14game_notnot.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
-    And the :ref:`BCM2835` library is also needed.
+    実験を開始する前に SPI をオンにしてください。詳細については、:ref:`spi設定` を参照してください。
+    また、:ref:`BCM2835` ライブラリも必要です。
 
-**Step 2**: Go to the folder of the code.
+**ステップ 2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -88,7 +90,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.13/
 
-**Step 3**: Compile the code.
+**ステップ 3**: コードをコンパイルします。
 
 .. raw:: html
 
@@ -98,7 +100,7 @@ Experimental Procedures
 
     make
 
-**Step 4**: Run the executable file.
+**ステップ 4**: 実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -108,28 +110,22 @@ Experimental Procedures
 
     sudo ./3.1.13_GAME_NotNot
 
-After the program starts, a left or right arrow will be refreshed at 
-random on the dot matrix. What you need to do is to press the button 
-in the opposite direction of the arrow, then “√” appears on the dot matrix. If the button in the 
-same direction as the arrow is pressed, you are out and the dot matrix 
-displays “x”. You can also add 2 new buttons or replace them with 
-Joystick keys for up, down, left and right— 4 directions to increase 
-the difficulty of the game.
+プログラムが起動すると、ドットマトリックスにランダムで左または右の矢印が表示されます。あなたが行う必要があることは、矢印の反対方向のボタンを押すことで、「√」がドットマトリックスに表示されます。矢印と同じ方向のボタンが押された場合、あなたはアウトとなり、ドットマトリックスに「x」が表示されます。また、新しいボタンを2つ追加するか、ジョイスティックキーと置き換えて上下左右の4方向にすることもでき、ゲームの難易度を上げることができます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない場合、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code Explanation**
+**コード説明**
 
-Based on :ref:`1.1.6 LED Dot Matrix Module`, this project adds 2 buttons to make an amusing game device.
+:ref:`1.1.6_c` をベースに、このプロジェクトは2つのボタンを追加して楽しいゲームデバイスを作成します。
 
-The whole program process is as below:
+プログラム全体のプロセスは以下の通りです：
 
-#. Use system time to generate a random 0 or 1.
-#. Display a random left or right arrow pattern.
-#. Press the key and determine the result.
-#. Display the right or wrong pattern.
+1. システム時刻を使用して0または1のランダムな値を生成します。
+2. ランダムな左または右の矢印パターンを表示します。
+3. キーを押して結果を判定します。
+4. 正しいまたは誤ったパターンを表示します。
 
 .. image:: ../img/3.1.14_notnot1.png
 
@@ -138,11 +134,10 @@ The whole program process is as below:
     int get_index()
     {
         srand((unsigned)time(NULL));
-        return rand()%2;
+        return rand() % 2;
     }
 
-The seed of the system is changed by the system time, i.e. ``srand((unsigned)time(NULL))``, so that each time the rand function is called the value obtained is completely random, and finally the result obtained is divided by 2, so that the values obtained are 0 and 1.
-
+システムのシードはシステム時刻によって変更されます、すなわち ``srand((unsigned)time(NULL))`` です。そのため、rand関数が呼び出されるたびに得られる値は完全にランダムであり、最終的に得られる値は0と1に分かれます。
 
 .. code-block:: c
 
@@ -165,7 +160,7 @@ The seed of the system is changed by the system time, i.e. ``srand((unsigned)tim
         }
     }
 
-Determines which button was pressed and compares it to the direction of the arrow on the dot matrix and gives the final result of 0 or 1.
+どのボタンが押されたかを判定し、それをドットマトリックスの矢印の方向と比較し、最終的な結果を0または1で返します。
 
 .. image:: ../img/3.1.14_getkey.png
 
@@ -187,6 +182,6 @@ Determines which button was pressed and compares it to the direction of the arro
         }
     }
 
-Depending on the value of the ``stage`` and ``index`` to display the ``left or right`` arrow or the ``right or wrong`` pattern.
+``stage`` と ``index`` の値に応じて、 ``left or right`` の矢印または ``right or wrong`` パターンを表示します。
 
 .. image:: ../img/3.1.14_display.png

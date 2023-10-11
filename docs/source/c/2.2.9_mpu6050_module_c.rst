@@ -1,80 +1,70 @@
 .. _2.2.9_c:
 
-2.2.9 MPU6050 Module
+2.2.9 MPU6050モジュール
 ===========================
 
-Introduction
+はじめに
 ------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+MPU-6050は、世界初かつ唯一の6軸モーショントラッキングデバイス（3軸ジャイロスコープおよび3軸加速度センサー）で、スマートフォン、タブレット、ウェアラブルセンサー向けに設計されています。これらの特性、低消費電力、低コスト、高性能の要件を含みます。
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+この実験では、I2Cを使用してMPU6050の三軸加速センサーと三軸ジャイロスコープの値を取得し、画面に表示します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要なコンポーネントは以下の通りです。
 
 .. image:: ../img/list_2.2.6.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体キットを購入するのは確かに便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`MPU6050 Module`
+    *   - :ref:`MPU6050モジュール`
         - |link_mpu6050_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+MPU6050は、I2Cバスインターフェースを介してマイクロコントローラーと通信します。SDA1とSCL1は、対応するピンに接続する必要があります。
 
 .. image:: ../img/image330.png
 
-
-Experimental Procedures
+実験手順
 ----------------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image227.png
 
+**ステップ2**: I2Cを設定します（詳細は付録 :ref:`i2c_config` を参照してください。すでにI2Cを設定している場合は、この手順をスキップします。）
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
-
-**Step 3:** Go to the folder of the code.
+**ステップ3:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -84,7 +74,7 @@ step.)
 
     cd ~/raphael-kit/c/2.2.9/
 
-**Step 4:** Compile the code.
+**ステップ4:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -94,7 +84,7 @@ step.)
 
     gcc 2.2.9_mpu6050.c -lwiringPi -lm
 
-**Step 5:** Run the executable file.
+**ステップ5:** 実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -104,17 +94,14 @@ step.)
 
     sudo ./a.out
 
-With the code run, deflection angle of x axis, y axis and the
-acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+コードを実行すると、MPU6050で読み取ったx軸、y軸の偏角、各軸上の加速度と角速度が計算されて画面に表示されます。
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
+    * エラープロンプト ``wiringPi.h: No such file or directory`` がある場合は、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` エラーが発生した場合は、 :ref:`i2c_config` を参照してI2Cを有効にし、配線が正しいか確認する必要があります。
 
-
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -200,7 +187,7 @@ printed on the screen after being calculating.
     return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -215,7 +202,7 @@ printed on the screen after being calculating.
     return val;
     }
 
-Read sensor data sent from MPU6050.
+MPU6050から送信されるセンサーデータを読み取ります。
 
 .. code-block:: c
 
@@ -226,7 +213,7 @@ Read sensor data sent from MPU6050.
     return -(radians * (180.0 / M_PI));
     }
 
-We get the deflection angle on the Y-axis.
+Y軸上の偏角を取得します。
 
 .. code-block:: c
 
@@ -237,7 +224,7 @@ We get the deflection angle on the Y-axis.
     return (radians * (180.0 / M_PI));
     }
 
-Calculate the deflection angle of the X-axis.
+X軸の偏角を計算します。
 
 .. code-block:: c
 
@@ -254,8 +241,8 @@ Calculate the deflection angle of the X-axis.
     printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
     printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
 
-Read the values of the x axis, y axis and z axis on the gyroscope sensor, 
-convert the metadata to angular velocity values, and then print them.
+ジャイロスコープセンサーのx軸、y軸、z軸の値を読み取り、
+メタデータを角速度の値に変換して、それらを出力します。
 
 .. code-block:: c
 
@@ -266,24 +253,23 @@ convert the metadata to angular velocity values, and then print them.
     acclX_scaled = acclX / 16384.0;
     acclY_scaled = acclY / 16384.0;
     acclZ_scaled = acclZ / 16384.0;
-        
+
     //Print the X, Y, and Z values of the acceleration sensor.
     printf("My acclX_scaled: %f\n", acclX_scaled);
     printf("My acclY_scaled: %f\n", acclY_scaled);
     printf("My acclZ_scaled: %f\n", acclZ_scaled);
 
-Read the values of the x axis, y axis and z axis on the acceleration sensor,
-convert the metadata to accelerated speed values (gravity unit), and then 
-print them.
+加速度センサーのx軸、y軸、z軸の値を読み取り、
+メタデータを加速度の値（重力単位）に変換して、それらを出力します。
 
 .. code-block:: c
 
     printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
     printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
 
-Print the deflection angles of the x-axis and y-axis.
+x軸とy軸の偏角を出力します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image228.jpeg

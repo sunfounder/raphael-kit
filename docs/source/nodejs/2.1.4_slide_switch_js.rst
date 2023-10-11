@@ -1,79 +1,72 @@
-2.1.4 Slide Switch
-==================
+.. _2.1.4_js:
 
-Introduction
+2.1.4 スライドスイッチ
+=======================
+
+はじめに
 ------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+このプロジェクトでは、スライドスイッチの使用方法を学びます。通常、スライドスイッチはPCB上にはんだ付けされて電源スイッチとして使用されますが、ここではブレッドボードに挿入する必要がありますので、固定されていない場合があります。そして、その機能を示すために、ブレッドボード上で使用します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下のとおりです。
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットをまとめて購入するのは非常に便利です。以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Slide Switch`
+    *   - :ref:`スライドスイッチ`
         - |link_slide_switch_buy|
-    *   - :ref:`Capacitor`
+    *   - :ref:`コンデンサ`
         - |link_capacitor_buy|
 
-Schematic Diagram
+回路図
 -----------------
-
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/image306.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成する。
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -83,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**ステップ3:** コードを実行する。
 
 .. raw:: html
 
@@ -93,10 +86,9 @@ Experimental Procedures
 
     sudo node slide_switch.js
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+コードが実行中の場合、スイッチを左に接続すると、黄色のLEDが点灯します。右にすると、赤い光が点灯します。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -114,10 +106,9 @@ the yellow LED lights up; to the right, the red light turns on.
     slideSwitch.on('interrupt', (level) => {  
         led1.digitalWrite(level);   
         led2.digitalWrite(!level);       
-    });
+    });   
 
-
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -132,20 +123,20 @@ the yellow LED lights up; to the right, the red light turns on.
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, and create three objects led1, led2, slideSwitch, 
-and control the on and off of led1 and led2 by reading the level of the slideSwitch IO port.   
+pigpioモジュールをインポートし、led1、led2、slideSwitchという3つのオブジェクトを作成します。
+slideSwitch IOポートのレベルを読み取り、led1とled2のオンとオフを制御します。
 
 .. code-block:: js
 
     slideSwitch.on('interrupt', (level) => {  
         led1.digitalWrite(level);   
         led2.digitalWrite(!level);       
-    });
+    });   
 
-When the read level of the slideSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+slideSwitch IOポートの読取りレベルが変化すると、
+led1に同じレベルを、led2に反対のレベルを書き込みます。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image162.jpeg

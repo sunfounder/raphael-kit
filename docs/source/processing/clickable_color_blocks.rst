@@ -1,50 +1,52 @@
-Clickable Color Blocks
-=======================
+.. _clickable_color_blocks:
 
-We've already tried drawing a clickable dot to control the LED, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
+クリック可能なカラーブロック
+=============================
+
+すでにLEDの制御のためのクリック可能な点を描画して試してみましたが、さらに一歩進めて、RGBの色を調整するための3つの色付きの四角を描くことを試みましょう！
 
 .. image:: img/colorful_square.png
 
-**Required Components**
+**必要な部品**
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、それぞれ別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
     *   - :ref:`RGB LED`
         - |link_rgb_led_buy|
 
-**Wiring**
+**配線図**
 
 .. image:: img/image61.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: arduino
 
@@ -85,13 +87,13 @@ You can also buy them separately from the links below.
     }
 
 
-**How it works?**
+**どのように動作するのか？**
 
-This project has a lot in common with :ref:`Clickable Dot`, except that it refines the conditions for determining mouse click event.
+このプロジェクトは :ref:`clickable_dot` と多くの共通点がありますが、マウスのクリックイベントを判断する条件を微調整しています。
 
-First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
+まず、 ``draw()`` で三つの色ブロックを描画し、次にmouseX（マウスのX軸座標）の値に基づいてクリックされたカラーブロックを取得し、最後にRGBを対応する色に点灯させます。
 
-**What more?**
+**さらに詳しくは？**
 
-Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
-Now you can try it out for yourself.
+光の追加に基づいて、RGB LEDは7色を表示できます - 赤に緑を追加すると黄色になり、三つの原色をすべて合わせると白になります。
+これを自分で試してみてください。

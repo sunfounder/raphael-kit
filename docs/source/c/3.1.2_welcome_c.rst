@@ -1,65 +1,63 @@
-3.1.2 Welcome
+.. _3.1.2_c:
+
+3.1.2 ようこそ
 ~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 -------------
 
-In this project, we will use PIR to sense the movement of pedestrians,
-and use servos, LED, buzzer to simulate the work of the sensor door of
-the convenience store. When the pedestrian appears within the sensing
-range of the PIR, the indicator light will be on, the door will be
-opened, and the buzzer will play the opening bell.
+このプロジェクトでは、PIRを使用して歩行者の動きを感知し、サーボ、LED、ブザーを使用してコンビニエンスストアのセンサードアの動作をシミュレートします。歩行者がPIRの感知範囲内に現れると、インジケーターライトが点灯し、ドアが開き、ブザーが開閉ベルを鳴らします。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには以下の部品が必要です。
 
 .. image:: ../img/list_Welcome.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+すべてのキットを購入すると確かに便利です。以下のリンクを参照してください。
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することも可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`PIR Motion Sensor Module`
+    *   - :ref:`PIRモーションセンサーモジュール`
         - \-
-    *   - :ref:`Servo`
+    *   - :ref:`サーボ`
         - |link_servo_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - |link_passive_buzzer_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-Schematic Diagram
+回路図
 -------------------
 
 ============ ======== ======== ===
@@ -73,15 +71,15 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one2.png
    :align: center
 
-Experimental Procedures
+実験手順
 -------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image239.png
     :align: center
 
-**Step 2:** Change directory.
+**ステップ2:** ディレクトリを変更する。
 
 .. raw:: html
 
@@ -91,7 +89,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.2/
 
-**Step 3:** Compile.
+**ステップ3:** コンパイルする。
 
 .. raw:: html
 
@@ -101,7 +99,7 @@ Experimental Procedures
 
     gcc 3.1.2_Welcome.c -lwiringPi
 
-**Step 4:** Run.
+**ステップ4:** 実行する。
 
 .. raw:: html
 
@@ -111,13 +109,9 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, if the PIR sensor detects someone passing by, the
-door will automatically open (simulated by the servo), turn on the
-indicator and play the doorbell music. After the doorbell music plays,
-the system will automatically close the door and turn off the indicator
-light, waiting for the next time someone passes by.
+コードを実行した後、PIRセンサーが誰かが通過するのを検知すると、ドアは自動的に開く（サーボによってシミュレートされる）、インジケーターが点灯し、ドアベルの音楽が再生されます。ドアベルの音楽が再生された後、システムは自動的にドアを閉じ、インジケーターライトを消灯し、次回の通過を待つ。
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+PIRモジュールには2つのポテンショメーターがあります：1つは感度を調整するため、もう1つは検出距離を調整するためです。PIRモジュールをより良く動作させるためには、それらの両方を反時計回りに最後まで回す必要があります。
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
@@ -125,9 +119,9 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -139,8 +133,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a function, setAngle to write the angle in the servo that is
-0-180.
+サーボの角度を0-180で書き込む関数、setAngleを作成します。
 
 .. code-block:: c
 
@@ -150,7 +143,7 @@ Create a function, setAngle to write the angle in the servo that is
             delay(beat[i] * 250);
         }
 
-Create a function, doorbell to enable the buzzer to play music.
+ブザーが音楽を再生できるように、doorbellという関数を作成します。
 
 .. code-block:: c
 
@@ -162,8 +155,7 @@ Create a function, doorbell to enable the buzzer to play music.
         }
     }
 
-Create a closedoor function to simulate closing the door, turn off the
-LED and let the servo turn from 180 degrees to 0 degree.
+closedoor関数を作成し、ドアを閉める動作をシミュレートし、LEDをオフにして、サーボを180度から0度まで回転させます。
 
 .. code-block:: c
 
@@ -177,10 +169,7 @@ LED and let the servo turn from 180 degrees to 0 degree.
         closedoor();
     }
 
-The function opendoor() includes several parts: turn on the indicator
-light, turn the servo (simulate the action of opening the door), play
-the doorbell music of the convenience store, and call the function
-closedoor() after playing music.
+関数opendoor()にはいくつかの部分が含まれています：インジケータライトを点灯させ、サーボを回転させる（ドアを開ける動作をシミュレートする）、コンビニのドアベル音楽を再生し、音楽を再生した後に関数closedoor()を呼び出す。
 
 .. code-block:: c
 
@@ -195,12 +184,9 @@ closedoor() after playing music.
             return 1;
     ......
 
-In the function main(), initialize library wiringPi and setup softTone,
-then set ledPin to output state and pirPin to input state. If the PIR
-sensor detects someone passing by, the function opendoor will be called
-to simulate opening the door.
+main()関数では、ライブラリwiringPiを初期化し、softToneを設定した後、ledPinを出力状態にし、pirPinを入力状態に設定します。PIRセンサーが通過する人を検出すると、関数opendoorが呼び出され、ドアを開ける動作がシミュレートされます。
 
-Phenomenon Picture
+現象の画像
 --------------------
 
 .. image:: ../img/image240.jpeg

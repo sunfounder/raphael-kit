@@ -1,43 +1,36 @@
-Camera Module
+カメラモジュール
 ====================================
 
-
-**Description**
+**説明**
 
 .. image:: img/camera_module_pic.png
    :width: 200
    :align: center
 
-This is a 5MP Raspberry Pi camera module with OV5647 sensor. It's plug and play, connect the included ribbon cable to the CSI (Camera Serial Interface) port on your Raspberry Pi and you're ready to go.
+こちらはOV5647センサーを搭載した5MPのRaspberry Pi用カメラモジュールです。付属のリボンケーブルをRaspberry PiのCSI（Camera Serial Interface）ポートに接続するだけで、すぐに使用可能です。
 
-The board is small, about 25mm x 23mm x 9mm, and weighs 3g, making it ideal for mobile or other size and weight-critical applications. The camera module has a native resolution of 5 megapixels and has an on-board fixed focus lens that captures still images at 2592 x 1944 pixels, and also supports 1080p30, 720p60 and 640x480p90 video.
+このモジュールは小型で、寸法は25mm x 23mm x 9mm、重さは3gです。そのため、モバイル機器やサイズ・重量が重要な用途に最適です。カメラはネイティブで5メガピクセルの解像度を持ち、固定フォーカスレンズが搭載されています。静止画は2592 x 1944ピクセルで、また1080p30、720p60、640x480p90ビデオもサポートしています。
 
-.. note:: 
+.. note::
 
-   The module is only capable of capturing pictures and videos, not sound.
+   このモジュールは、写真とビデオのキャプチャのみが可能で、音声は録音できません。
 
+**仕様**
 
+* **静止画解像度**: 2592×1944 
+* **サポートするビデオ解像度**: 1080p/30 fps, 720p/60fps, 640 x480p 60/90ビデオ録画
+* **開口部 (F)**: 1.8 
+* **視野角**: 65度 
+* **寸法**: 24mmx23.5mmx8mm 
+* **重量**: 3g 
+* **インターフェース**: CSIコネクタ
+* **対応OS**: Raspberry Pi OS（最新版推奨）
 
-**Specification**
+**カメラモジュールの組み立て**
 
-* **Static Images Resolution**: 2592×1944 
-* **Supported Video Resolution**: 1080p/30 fps, 720p/ 60fps and 640 x480p 60/90 video recording 
-* **Aperture (F)**: 1.8 
-* **Visual Angle**: 65 degree 
-* **Dimension**: 24mmx23.5mmx8mm 
-* **Weight**: 3g 
-* **Interface**: CSI connector 
-* **Supported OS**: Raspberry Pi OS(latest version recommended) 
+カメラモジュールまたはRaspberry Piには平らなプラスチックコネクタがあります。黒い固定スイッチを慎重に引き出し、FFCケーブルを指示された方向でプラスチックコネクタに差し込み、固定スイッチを元の位置に戻します。
 
-
-
-**Assemble the Camera Module**
-
-
-On the camera module or Raspberry Pi, you will find a flat plastic connector. Carefully pull out the black fixing switch until the fixing switch is partially pulled out. Insert the FFC cable into the plastic connector in the direction shown and push the fixing switch back into place.
-
-If the FFC wire is installed correctly, it will be straight and will not pull out when you gently pull on it. If not, reinstall it again.
-
+FFCケーブルが正しく取り付けられている場合、それはまっすぐで、優しく引っ張っても外れません。そうでない場合は、再度取り付けてください。
 
 .. image:: img/connect_ffc.png
 .. image:: img/1.10_camera.png
@@ -45,11 +38,11 @@ If the FFC wire is installed correctly, it will be straight and will not pull ou
 
 .. warning::
 
-   Do not install the camera with the power on, it may damage your camera.
+   電源が入った状態でカメラを取り付けないでください。カメラが壊れる可能性があります。
 
-**Enable the Camera Interface**
+**カメラインターフェースの有効化**
 
-Run the following command to enable the camera interface of your Raspberry Pi. If you have enabled it, skip this; if you do not know whether you have done that or not, please continue.
+以下のコマンドを実行して、Raspberry Piのカメラインターフェースを有効にします。すでに有効にしている場合はこのステップをスキップしてください。
 
 .. raw:: html
 
@@ -59,22 +52,22 @@ Run the following command to enable the camera interface of your Raspberry Pi. I
 
    sudo raspi-config
 
-**3 Interfacing options**
+**3 インターフェーシングオプション**
 
 .. image:: img/image282.png
    :align: center
 
-**P1 Camera**
+**P1 カメラ**
 
 .. image:: img/camera_config1.png
    :align: center
 
-**<Yes>, then <Ok> -> <Finish>**
+**<Yes>、次に<Ok> -> <Finishz>**
 
 .. image:: img/camera_config2.png
    :align: center
 
-After the configuration is complete, it is recommended to reboot the Raspberry Pi.
+設定が完了したら、Raspberry Piを再起動することをお勧めします。
 
 .. raw:: html
 
@@ -83,13 +76,14 @@ After the configuration is complete, it is recommended to reboot the Raspberry P
 .. code-block:: 
 
    sudo reboot
-   
-**Example**
 
-* :ref:`3.1.1 Photograph Module` (Python Project)
-* :ref:`3.1.2 Video Module` (Python Project)
-* :ref:`4.1.1 Camera` (Python Project)
-* :ref:`4.1.4 Automatic Capture Camera` (Python Project)
-* :ref:`4.1.5 Intelligent Visual Doorbell` (Python Project)
-* :ref:`1.10 Drumming in the Air` (Scratch Project)
-* :ref:`1.18 Eating Banana Game` (Scratch Project)
+**例**
+
+* :ref:`3.1.1_py` （Pythonプロジェクト）
+* :ref:`3.1.2_py` （Pythonプロジェクト）
+* :ref:`4.1.1_py` （Pythonプロジェクト）
+* :ref:`4.1.4_py` （Pythonプロジェクト）
+* :ref:`4.1.5_py` （Pythonプロジェクト）
+* :ref:`1.10_scratch` （Scratchプロジェクト）
+* :ref:`1.18_scratch` （Scratchプロジェクト）
+

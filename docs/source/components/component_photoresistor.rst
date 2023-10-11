@@ -1,24 +1,23 @@
-Photoresistor
-==============
+フォトレジスタ
+================
 
 .. image:: img/photoresistor.png
     :width: 200
     :align: center
 
-A photoresistor or photocell is a light-controlled variable resistor. The resistance of a photoresistor decreases with increasing incident light intensity; in other words, it exhibits photo conductivity. 
+フォトレジスタ、または光電池は、光に応じて抵抗値が変動する可変抵抗器です。具体的には、光の強度が増すとその抵抗値は低くなり、光導電性を示します。
 
-A photoresistor can be applied in light-sensitive detector circuits and light-activated and dark-activated switching circuits acting as a resistance semiconductor. In the dark, a photoresistor can have a resistance as high as several megaohms (MΩ), while in the light, a photoresistor can have a resistance as low as a few hundred ohms.
+このフォトレジスタは、光感応検出回路や光・暗に反応するスイッチ回路での使用が可能です。暗い環境では、数メガオーム（MΩ）に達する高い抵抗値を持ちますが、明るい環境下では数百オームまで下がります。
 
-Here is the electronic symbol of photoresistor.
+以下は、フォトレジスタの電子記号です。
 
 .. image:: img/photoresistor_symbol.png
     :width: 200
     :align: center
 
-* `Photoresistor - Wikipedia <https://en.wikipedia.org/wiki/Photoresistor#:~:text=A%20photoresistor%20(also%20known%20as,on%20the%20component's%20sensitive%20surface>`_
+* `フォトレジスタ - Wikipedia <https://en.wikipedia.org/wiki/Photoresistor#:~:text=A%20photoresistor%20(also%20known%20as,on%20the%20component's%20sensitive%20surface>`_
 
-**Example**
+**例**
 
-* :ref:`2.2.1_c` (C Project)
-* :ref:`2.2.1_py` (Python Project)
-
+* :ref:`2.2.1_c` （Cプロジェクト）
+* :ref:`2.2.1_py` （Pythonプロジェクト）

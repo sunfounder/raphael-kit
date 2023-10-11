@@ -1,74 +1,72 @@
-3.1.2 Video Module
-=====================
+.. _3.1.2_py:
 
-Introduction
+3.1.2 ビデオモジュール
+========================
+
+はじめに
 -----------------
 
-In addition to taking photos, the Camera Module can also be used to record videos.
+このキットでは、写真を撮るだけでなく、カメラモジュールを使ってビデオも録画できます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入する方が確実に便利です。リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`Camera Module`
+    *   - :ref:`カメラモジュール`
         - |link_camera_buy|
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+**ステップ1:** Raspberry Piのデスクトップに移動します。より快適な操作のためには、ディスプレイが必要かもしれません。詳しくは、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。また、遠隔でRaspberry Piのデスクトップにアクセスする方法については、 :ref:`リモートデスクトップ` を参照してください。
 
-
-**Step 2:** Open a Terminal and get into the folder of the code.
-
+**ステップ2:** ターミナルを開き、コードのフォルダに移動します。
 
 .. code-block::
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
-
+**ステップ3:** 実行します。
 
 .. code-block::
 
     sudo python3 3.1.2_VideoModule.py
 
-Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``~`` directory.
+コードを実行して録画を開始します。「Ctrl+C」を押して録画を終了します。ビデオは「my_video.h264」として「~」ディレクトリに保存されます。
 
 .. note::
 
-    You can also open ``3.1.2_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    PythonのIDEを使って、 ``~/raphael-kit/python/`` パスで ``3.1.2_VideoModule.py`` を開き、実行ボタンをクリックして実行、停止ボタンでコードを停止することもできます。
 
-If you want to send photos to your PC, please refer to :ref:`Filezilla Software`.
+もしPCに写真を送りたい場合は、 :ref:`Filezilla Software` を参照してください。
 
-
-**Code**
+**コード**
 
 .. code-block:: python
 
@@ -76,7 +74,6 @@ If you want to send photos to your PC, please refer to :ref:`Filezilla Software`
     import os
     user = os.getlogin()
     user_home = os.path.expanduser(f'~{user}')
-
 
     camera = PiCamera()
     
@@ -99,16 +96,16 @@ If you want to send photos to your PC, please refer to :ref:`Filezilla Software`
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
     start_recording(output, format=None, resize=None, splitter_port=1, **options)
 
-Start recording video from the camera, storing it in ``output``.
+``output`` にビデオを保存するために、カメラからビデオの録画を開始します。
 
 .. code-block:: python
 
     camera.stop_recording()
 
-End the recording.
+録画を終了します。

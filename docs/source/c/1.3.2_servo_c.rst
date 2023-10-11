@@ -1,65 +1,65 @@
 .. _1.3.2_c:
 
-1.3.2 Servo
+1.3.2 サーボ
 =================
 
-Introduction
+はじめに
 --------------
 
-In this project, we will learn how to make the servo rotate.
+このプロジェクトでは、サーボを回転させる方法を学びます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_1.3.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入するのが確かに便利です、こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Servo`
+    *   - :ref:`サーボ`
         - |link_servo_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -69,7 +69,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.3.2
 
-**Step 3**: Compile the code.
+**ステップ3**: コードをコンパイルします。
 
 .. raw:: html
 
@@ -79,7 +79,7 @@ Experimental Procedures
 
     gcc 1.3.2_Servo.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**ステップ4**: 上記の実行ファイルを実行します。
 
 .. raw:: html
 
@@ -89,14 +89,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program is executed, the servo will rotate from 
-0 degrees to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+プログラムを実行した後、サーボは0度から180度まで、そして180度から0度まで回転し、これを繰り返します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
+
 
 .. code-block:: c
 
@@ -137,7 +137,7 @@ After the program is executed, the servo will rotate from
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -145,7 +145,7 @@ After the program is executed, the servo will rotate from
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
 
-Create a ``Map()`` function to map value in the following code.
+次のコードでの値をマッピングする ``Map()`` 関数を作成します。
 
 .. code-block:: c
 
@@ -157,31 +157,29 @@ Create a ``Map()`` function to map value in the following code.
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a funtion, ``setAngle()`` to write angle to the servo.
+サーボに角度を書き込む関数、 ``setAngle()`` を作成します。
 
 .. code-block:: c
 
     softPwmWrite(pin,Map(angle,0,180,5,25));  
 
-This function can change the duty cycle of the PWM.
+この関数はPWMのデューティサイクルを変更することができます。
 
-To make the servo rotate to 0 ~ 180 °, the pulse width should change
-within the range of 0.5ms ~ 2.5ms when the period is 20ms; in the
-function, ``softPwmCreate()`` , we have set that the period is
-200x100us=20ms, thus we need to map 0 ~ 180 to 5x100us ~ 25x100us.
+サーボを0 ~ 180°に回転させるために、周期が20msの時にパルス幅を0.5ms ~ 2.5msの範囲内で変更する必要があります。関数 ``softPwmCreate()`` で、周期が200x100us=20msであることを設定しているので、0 ~ 180を5x100us ~ 25x100usにマッピングする必要があります。
 
-The prototype of this function is shown below.
+この関数のプロトタイプは以下のとおりです。
 
 .. code-block::
 
     int softPwmCreate（int pin，int initialValue，int pwmRange）;
 
-* ``pin``: Any GPIO pin of Raspberry Pi can be set as PWM pin.
-* ``initialValue``: The initial pulse width is that initialValue times 100us.
-* ``pwmRange``: the period of PWM is that pwmRange times 100us.
+* ``pin``: Raspberry Piの任意のGPIOピンをPWMピンとして設定できます。
+* ``initialValue``: 初期のパルス幅は、initialValue倍の100usです。
+* ``pwmRange``: PWMの周期は、pwmRange倍の100usです。
 
-Phenomenon Picture
+現象の画像
 ------------------
+
 
 .. image:: ../img/image126.jpeg
 

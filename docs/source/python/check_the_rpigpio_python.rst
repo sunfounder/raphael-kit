@@ -1,14 +1,11 @@
-Check the ``RPi.GPIO``
+``RPi.GPIO`` の確認
 =================================
 
-If you are a Python user, you can program GPIOs with API provided by
-``RPi.GPIO``.
+Pythonユーザーであれば、 ``RPi.GPIO`` というAPIを使ってGPIOをプログラムできます。
 
-``RPi.GPIO`` is a module to control Raspberry Pi GPIO channels. This package
-provides a class to control the GPIO on a Raspberry Pi. For examples and
-documents, visit: http://sourceforge.net/p/raspberry-gpio-python/wiki/Home/.
+``RPi.GPIO`` は、Raspberry PiのGPIOチャンネルを制御するためのモジュールです。このパッケージには、Raspberry Pi上のGPIOを制御するためのクラスが含まれています。
 
-Test whether RPi.GPIO is installed or not, type in python:
+RPi.GPIOがインストールされているかどうかをテストするには、Pythonで以下のように入力します。
 
 .. raw:: html
 
@@ -20,9 +17,7 @@ Test whether RPi.GPIO is installed or not, type in python:
 
 .. image:: ../img/image27.png
 
-
-In Python CLI, input ``import RPi.GPIO``, If no error prompts, it means
-RPi.GPIO is installed.
+Python CLIで ``import RPi.GPIO`` と入力します。エラーが出なければ、RPi.GPIOがインストールされているということです。
 
 .. raw:: html
 
@@ -34,8 +29,7 @@ RPi.GPIO is installed.
 
 .. image:: ../img/image28.png
 
-
-If you want to quit python CLI, type in:
+Python CLIを終了するには、以下のように入力します：
 
 .. raw:: html
 
@@ -46,5 +40,3 @@ If you want to quit python CLI, type in:
     exit()
 
 .. image:: ../img/image29.png
-
-

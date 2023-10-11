@@ -1,73 +1,68 @@
-2.2.3 DHT-11
-============
+.. _2.2.3_js:
 
-Introduction
+2.2.3 DHT-11
+===============
+
+はじめに
 --------------
 
-The digital temperature and humidity sensor DHT11 is a composite sensor
-that contains a calibrated digital signal output of temperature and
-humidity. The technology of a dedicated digital modules collection and
-the technology of the temperature and humidity sensing are applied to
-ensure that the product has high reliability and excellent stability.
+デジタル温度・湿度センサーDHT11は、温度と湿度のキャリブレートされたデジタル信号出力を含む複合センサーです。専用のデジタルモジュールの収集技術と温湿度センシング技術が適用され、製品の高い信頼性と優れた安定性が確保されています。
 
-The sensors include a wet element resistive sensor and a NTC temperature
-sensor and they are connected to a high performance 8-bit
-microcontroller.
+センサーには、湿度抵抗センサーとNTC温度センサーが含まれており、これらは高性能の8ビットマイクロコントローラに接続されています。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.3_dht-11.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入することは非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Humiture Sensor Module`
+    *   - :ref:`湿温センサモジュール`
         - |link_humiture_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image326.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image207.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -77,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Install dependencies.
+**ステップ3:** 依存関係をインストールします。
 
 .. raw:: html
 
@@ -87,7 +82,7 @@ Experimental Procedures
 
     sudo npm install node-dht-sensor
 
-**Step 4:** Run the code.
+**ステップ4:** コードを実行します。
 
 .. raw:: html
 
@@ -97,10 +92,9 @@ Experimental Procedures
 
     sudo node dht11.js
 
-After the code runs, the program will print the temperature and humidity
-detected by DHT11 on the computer screen.
+コードが実行された後、プログラムはコンピュータの画面上でDHT11によって検出された温度と湿度を表示します。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -114,23 +108,22 @@ detected by DHT11 on the computer screen.
       });
     },1000);
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
     var sensor = require("node-dht-sensor");
 
-Import the module ``node-dht-sensor`` module, which provides functions for us to read the value of DHT-11.
+``node-dht-sensor`` モジュールをインポートします。これにより、DHT-11の値を読み取るための関数が提供されます。
 
 .. note::
-  For more details, please refer to: https://www.npmjs.com/package/node-dht-sensor
+  詳細は以下のリンクを参照してください: https://www.npmjs.com/package/node-dht-sensor
 
 .. code-block:: js
 
     sensor.read(11, 17, function(err, temperature, humidity){...})
 
-The ``node-dht-sensor`` module provides the ``read()`` function for us to read the measured temperature and humidity, 
-where **11** means DHT-11, **17** means and its connected to GPIO17.
+``node-dht-sensor`` モジュールは、測定された温度と湿度を読み取るための ``read()`` 関数を提供しています。ここで、 **11** はDHT-11を意味し、 **17** はそれがGPIO17に接続されていることを意味します。
 
 .. code-block:: js
 
@@ -138,10 +131,9 @@ where **11** means DHT-11, **17** means and its connected to GPIO17.
       console.log(`temp: ${temperature}\`C, humidity: ${humidity}%`);
     }    
 
-When there is no error in the reading, the temperature and humidity values are printed on the terminal.
+読み取りにエラーがない場合、温度と湿度の値が端末に表示されます。
 
-
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image209.jpeg

@@ -1,122 +1,119 @@
-1.17 Rotating fan
+.. _1.17_scratch:
+
+1.17 回転扇風機
 ==================
 
-
-In this project, we will make a spinning star sprite and fan.
+このプロジェクトでは、回転する星のスプライトと扇風機を作成します。
 
 .. image:: img/1.17_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.17_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`電源モジュール`
         - \-
     *   - :ref:`L293D`
         - \-
-    *   - :ref:`DC Motor`
+    *   - :ref:`DCモーター`
         - |link_motor_buy|
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.17_image117.png
 
-Load the Code and See What Happens
+コードをロードして動作を確認する
 ---------------------------------------
 
-Load the code file (``1.17_rotating_fan.sb3``) to Scratch 3.
+Scratch 3に(``1.17_rotating_fan.sb3``)のコードファイルをロードします。
 
-After clicking the green flag on the stage, click on the star sprite，then it and the motor will rotate clockwise; you can change the direction of rotation by clicking on the two **arrow** sprites. When you click on the **star** sprite again, it and the motor will stop rotating.
+ステージ上の緑の旗をクリックした後、星のスプライトをクリックすると、それとモーターが時計回りに回転します。2つの **arrow** スプライトをクリックすることで回転方向を変更できます。再び **star** スプライトをクリックすると、それとモーターの回転が停止します。
 
-Tips on Sprite
-----------------
-Delete the default sprite, then select the **Star** sprite and the **Arrow1** sprite, and copy Arrow1 once.
+スプライトに関するヒント
+---------------------------------
+
+デフォルトのスプライトを削除し、 **Star** スプライトと **Arrow1** スプライトを選択し、Arrow1を1回コピーします。
 
 .. image:: img/1.17_motor1.png
 
-In the **Costumes** option, change the Arrow2 sprite to a different direction costume.
+**Costumes** オプションで、Arrow2スプライトを異なる方向のコスチュームに変更します。
 
 .. image:: img/1.17_motor2.png
 
-Adjust the size and position of the sprite appropriately.
+スプライトのサイズと位置を適切に調整します。
 
 .. image:: img/1.17_motor3.png
 
+コードに関するヒント
+-------------------------------
 
-Tips on Codes
---------------
-
-**Flow Chart**
+**フローチャート**
 
 .. image:: img/1.17_scratch.png
 
-In this code, you will see 2 pink blocks, turn left and turn right, which are our custom blocks (functions).
+このコードには、左回転と右回転の2つのピンクのブロックがあります。これらは私たちのカスタムブロック（関数）です。
 
 .. image:: img/1.17_new_block.png
 
-**How to Make a Block?**
+**ブロックの作成方法は？**
 
-Let's learn how to make a block (function). The block (function) can be used to simplify your program, especially if you perform the same operation multiple times. Putting these operations into a newly declared block can be very convenient for you.
+ブロック（関数）の作成方法を学びましょう。ブロック（関数）は、特に同じ操作を複数回行う場合、プログラムを簡略化するために使用できます。これらの操作を新しく宣言されたブロックに入れることで、非常に便利になります。
 
-First find **My Blocks** in the block palette, then select **Make a Block**.
+まず、ブロックパレットで **My Blocks** を見つけ、 **Make a Block** を選択します。
 
 .. image:: img/1.17_motor4.png
 
-Enter the name of the new block.
+新しいブロックの名前を入力します。
 
 .. image:: img/1.17_motor5.png
 
-After writing the function of the new block in the coding area, save it and then you can find the block in the blocks palette.
+新しいブロックの機能をコーディングエリアに記述した後、保存すると、ブロックパレットでブロックを見つけることができます。
 
 .. image:: img/1.17_motor6.png
 
-**turn left**
+**左に回転**
 
-This is the code inside the turn left block to make the motor rotate counterclockwise.
+これは、モーターを反時計回りに回転させるための左に回転するブロック内のコードです。
 
 .. image:: img/1.17_motor12.png
   :width: 400
 
-**turn right**
+**右に回転**
 
-This is the code inside the turn right block to make the motor rotate clockwise.
-
-
+これは、モーターを時計回りに回転させるための右に回転するブロック内のコードです。
 
 .. image:: img/1.17_motor11.png
   :width: 400
-
-
 

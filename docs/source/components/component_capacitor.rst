@@ -1,34 +1,33 @@
-Capacitor
+コンデンサ
 =============
 
 .. image:: img/103_capacitor.png
 .. image:: img/10uf_cap.png
 
-Capacitor, refers to the amount of charge storage under a given potential difference, denoted as C, and the international unit is farad (F). 
-Generally speaking, electric charges move under force in an electric field. When there is a medium between conductors, the movement of electric charges is hindered and the electric charges accumulate on the conductors, resulting in accumulation of electric charges. 
+コンデンサは、特定の電位差下での電荷蓄積量を指し、記号はCで、国際単位はファラッド（F）です。
+通常、電場内で電荷は力の影響を受けて移動します。しかし、導体間に媒体が存在する場合、電荷の動きは阻害され、導体上に蓄積されます。
 
-The amount of stored electric charges is called capacitance. Because capacitors are one of the most widely used electronic components in electronic equipment, they are widely used in direct current isolation, coupling, bypass, filtering, tuning loops, energy conversion, and control circuits. Capacitors are divided into electrolytic capacitors, solid capacitors, etc.
+この蓄積される電荷の量を容量と呼びます。コンデンサは電子機器において最も幅広く使用される部品の一つであり、直流絶縁、結合、バイパス、フィルタリング、調波回路、エネルギー変換、制御回路などに広く用いられます。コンデンサには、電解コンデンサ、固体コンデンサなどがあります。
 
-According to material characteristics, capacitors can be divided into: aluminum electrolytic capacitors, film capacitors, tantalum capacitors, ceramic capacitors, super capacitors, etc.
+素材特性によって、コンデンサはアルミニウム電解コンデンサ、フィルムコンデンサ、タンタルコンデンサ、セラミックコンデンサ、スーパーコンデンサなどに分類されます。
 
-In this kit, ceramic capacitors and electrolytic capacitors are used. 
+このキットでは、セラミックコンデンサと電解コンデンサが使用されています。
 
-* `Ceramic Capacitor - Wikipedia <https://en.wikipedia.org/wiki/Ceramic_capacitor>`_
+* `セラミックコンデンサ - Wikipedia <https://en.wikipedia.org/wiki/Ceramic_capacitor>`_
+* `電解コンデンサ - Wikipedia <https://en.wikipedia.org/wiki/Electrolytic_capacitor>`_
 
-* `Electrolytic Capacitor - Wikipedia <https://en.wikipedia.org/wiki/Electrolytic_capacitor>`_
+セラミックコンデンサには103または104というラベルがあり、これは容量値を表しています。103=10x10^3pF、104=10x10^4pF
 
-There are 103 or 104 label on the ceramic capacitors, which represent the capacitance value, 103=10x10^3pF, 104=10x10^4pF
-
-**Unit Conversion**
+**単位換算**
 
     1F=10^3mF=10^6uF=10^9nF=10^12pF
 
-**Example**
+**例**
 
-* :ref:`2.1.2_c` (C Project)
-* :ref:`2.1.4_c` (C Project)
-* :ref:`3.1.9 Alarm Bell` (C Project)
-* :ref:`2.1.2_py` (Python Project)
-* :ref:`4.1.15 Alarm Bell` (Python Project)
-* :ref:`1.8 Service Bell` (scratch Project)
+* :ref:`2.1.2_c` (Cプロジェクト)
+* :ref:`2.1.4_c` (Cプロジェクト)
+* :ref:`3.1.9_c` (Cプロジェクト)
+* :ref:`2.1.2_py` (Pythonプロジェクト)
+* :ref:`4.1.15_py` (Pythonプロジェクト)
+* :ref:`1.8_scratch` (Scratchプロジェクト)
 

@@ -1,70 +1,67 @@
-3.1.7 Overheat Monitor
+.. _3.1.7_c:
+
+3.1.7 過熱モニター
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Introduction**
+はじめに
 -------------------
 
-You may want to make an overheat monitoring device that applies to
-various situations, ex., in the factory, if we want to have an alarm and
-the timely automatic turning off of the machine when there is a circuit
-overheating. In this project, we will use thermistor, joystick, buzzer,
-LED and LCD to make an smart temperature monitoring device whose
-threshold is adjustable.
+さまざまな状況に適用できる過熱モニタリングデバイスを作成したい場合、例えば、工場で回路の過熱があるとアラームを鳴らし、適時に機械を自動的にオフにしたい場合などです。このプロジェクトでは、サーミスタ、ジョイスティック、ブザー、LED、およびLCDを使用して、閾値が調整可能なスマートな温度モニタリングデバイスを作成します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_Overheat_Monitor.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのが確実に便利です。リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Joystick Module`
+    *   - :ref:`ジョイスティックモジュール`
         - \-
     *   - :ref:`ADC0834`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
-    *   - :ref:`Thermistor`
+    *   - :ref:`サーミスター`
         - |link_thermistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
 
-**Schematic Diagram**
+**配線図**
 --------------------------
 
 ============ ======== ======== ===
@@ -76,20 +73,20 @@ GPIO22       Pin15    3        22
 GPIO23       Pin16    4        23
 GPIO24       Pin18    5        24
 SDA1         Pin 3             
-SCL1         Pin 5             
+SCL1         Pin 5           
 ============ ======== ======== ===
 
 .. image:: ../img/Schematic_three_one8.png
    :align: center
 
-**Experimental Procedures**
+**実験手順**
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image258.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -99,7 +96,7 @@ SCL1         Pin 5
 
     cd ~/raphael-kit/c/3.1.7/
 
-**Step 3**: Compile the code.
+**ステップ3**: コードをコンパイルします。
 
 .. raw:: html
 
@@ -109,7 +106,7 @@ SCL1         Pin 5
 
     gcc 3.1.7_OverheatMonitor.c -lm -lwiringPi
 
-**Step 4**: Run the executable file.
+**ステップ4**: 実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -119,24 +116,17 @@ SCL1         Pin 5
 
     sudo ./a.out
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+コードが実行されると、現在の温度と高温閾値 **40** が **I2C LCD1602** に表示されます。現在の温度が閾値を超えると、ブザーとLEDがアラームを鳴らします。
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+ここでの **ジョイスティック** は、高温閾値を調整するための押しボタンです。X軸およびY軸方向に **ジョイスティック** を切り替えると、現在の高温閾値を上げたり下げたりできます。再度 **ジョイスティック** を押すと、閾値が初期値にリセットされます。
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * エラーメッセージ ``wiringPi.h: No such file or directory`` が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` というエラーが表示された場合、 :ref:`i2c_config` を参照してI2Cを有効にし、配線が正しいか確認してください。
+    * コードと配線が正常であるが、LCDにコンテンツが表示されない場合、背面のポテンショメーターを回してコントラストを上げることができます。
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -162,9 +152,7 @@ initial value.
         }
     }
 
-This function reads values of X and Y. If ``X>200``, there will return
-``1``; ``X<50``, return ``-1``; ``y>200``, return
-``-10``, and ``y<50``, return ``10``.
+この関数は、XとYの値を読み取ります。 ``X>200`` の場合、 ``1`` が返ります。 ``X<50`` の場合、 ``-1`` が返ります。 ``y>200`` の場合、 ``-10`` が、そして ``y<50`` の場合、 ``10`` が返ります。
 
 .. code-block:: c
 
@@ -174,15 +162,14 @@ This function reads values of X and Y. If ``X>200``, there will return
         upperTem = upperTem + change;
         char str[6];
         snprintf(str,3,"%d",upperTem);
-    write(0,1,str);
-    int len;
-      len = strlen(str);
-      write(len,1,"             ");
+        write(0,1,str);
+        int len;
+        len = strlen(str);
+        write(len,1,"             ");
         delay(100);
     }
 
-This function is for adjusting the threshold and displaying it on the
-I2C LCD1602.
+この関数は、閾値を調整し、それをI2C LCD1602に表示するためのものです。
 
 .. code-block:: c
 
@@ -198,8 +185,8 @@ I2C LCD1602.
         return cel;
     }
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+**ADC0834** の **CH0** (サーミスタ) のアナログ値を読み取り、
+次に、それを温度値に変換します。
 
 .. code-block:: c
 
@@ -207,10 +194,10 @@ then convert it to temperature value.
         char str[6];
         double cel = temperature();
         snprintf(str,6,"%.2f",cel);
-        write(0, 0, "Temp: ");
+        write(0, 0, "Temp:");
         write(6, 0, str);
         snprintf(str,3,"%d",upperTem);
-        write(0, 1, "Upper: ");
+        write(0, 1, "Upper:");
         write(7, 1, str);
         delay(100);
         if(cel >= upperTem){
@@ -223,10 +210,7 @@ then convert it to temperature value.
         }
     }
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+コードが実行されると、現在の温度と高温閾値 **40** が **I2C LCD1602** に表示されます。現在の温度が閾値を超えると、ブザーとLEDがアラームを鳴らします。
 
 .. code-block:: c
 
@@ -254,20 +238,13 @@ to alarm you.
         return 0;
     }
 
-The function ``main()`` contains the whole program process as shown:
+``main()`` 関数には、以下のようなプログラム全体のプロセスが含まれています：
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) プログラムが開始すると、 **stage** の初期値は **0** で、現在の温度と高温閾値 **40** が **I2C LCD1602** に表示されます。現在の温度が閾値を超えると、ブザーとLEDがアラームを鳴らします。
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current threshold. Press the Joystick once again to reset the
-   threshold to initial value.
+2) ジョイスティックを押すと、 **stage** が **1** になり、高温閾値を調整できます。ジョイスティックをX軸およびY軸の方向に切り替えると、現在の閾値を上げたり下げたりできます。ジョイスティックをもう一度押すと、閾値が初期値にリセットされます。
 
-**Phenomenon Picture**
+現象の画像
 -------------------------
 
 .. image:: ../img/image259.jpeg

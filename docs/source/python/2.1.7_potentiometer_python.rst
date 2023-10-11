@@ -1,85 +1,74 @@
 .. _2.1.7_py:
 
-2.1.7 Potentiometer
-===================
+2.1.7 ポテンショメーター
+==========================
 
-Introduction
-------------
+はじめに
+---------------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+このプロジェクトでは、ADC機能を使ってアナログ信号をデジタル信号に変換します。具体的にはADC0834を使用して、ADC関連の機能を実現しています。このプロセスは、ポテンショメーターを用いて実装されます。ポテンショメーターは物理量である電圧を変化させ、それがADC関数によって変換されます。
 
-**Required Components**
-------------------------------
+必要な部品
+------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下のとおりです。
 
 .. image:: ../img/list_2.1.4_potentiometer.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入する方が便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
-    *   - :ref:`GPIO Extension Board`
+    *   - コンポーネントの紹介
+        - 購入リンク
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Potentiometer`
+    *   - :ref:`ポテンショメータ`
         - |link_potentiometer_buy|
     *   - :ref:`ADC0834`
         - \-
 
-
-Schematic Diagram
------------------
+回路図
+-------------
 
 .. image:: ../img/image311.png
 
-
 .. image:: ../img/image312.png
 
+実験手順
+---------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/image180.png
 
-
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    回路図に示されている対応する位置にチップを配置してください。チップの溝は、配置する際には左側になるように注意してください。
 
-**Step 2:** Open the code file
+**ステップ2:** コードファイルを開く。
 
 .. raw:: html
 
@@ -89,7 +78,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ3:** 実行する。
 
 .. raw:: html
 
@@ -99,15 +88,12 @@ Experimental Procedures
 
     sudo python3 2.1.7_Potentiometer.py
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+コードを実行した後、ポテンショメーターのノブを回すと、LEDの明るさがそれに応じて変わります。
 
-**Code**
+**コード**
 
 .. note::
-
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    以下のコードは **修正/リセット/コピー/実行/停止** が可能です。ただし、それを行う前に、 ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、その効果を直接確認するために実行できます。
 
 .. raw:: html
 
@@ -161,20 +147,19 @@ of LED will change accordingly.
         except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
     import ADC0834
 
-import ADC0834 library. You can check the content of the library by
-calling the command nano ADC0834.py.
+ADC0834ライブラリをインポート。ライブラリの内容は、nano ADC0834.pyコマンドで確認できます。
 
 .. code-block:: python
 
     def setup():
         global led_val
-        # Set the GPIO modes to BCM Numbering
+         # Set the GPIO modes to BCM Numbering
         GPIO.setmode(GPIO.BCM)
         # Set all LedPin's mode to output and initial level to High(3.3v)
         GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
@@ -185,11 +170,9 @@ calling the command nano ADC0834.py.
         # Set all begin with value 0
         led_val.start(0)
 
-In setup(), define the naming method as BCM, set LedPin as PWM channel
-and render it a frequency of 2Khz.
+setup()内で、命名方式をBCMに定義し、LedPinをPWMチャンネルに設定、周波数を2KHzに設定します。
 
-**ADC0834.setup():** Initialize ADC0834, and connect the defined CS,
-CLK, DIO of ADC0834 to GPIO17, GPIO18 and GPIO27 respectively.
+**ADC0834.setup():** ADC0834を初期化し、定義されたCS、CLK、DIOをそれぞれGPIO17、GPIO18、GPIO27に接続します。
 
 .. code-block:: python
 
@@ -201,19 +184,11 @@ CLK, DIO of ADC0834 to GPIO17, GPIO18 and GPIO27 respectively.
             led_val.ChangeDutyCycle(R_val)
             time.sleep(0.2)
 
-The function getResult() is used to read the analog values of the four
-channels of ADC0834. By default, the function reads the value of CH0,
-and if you want to read other channels, please input the channel number
-in **( )**, ex. getResult(1).
+関数 getResult() は ADC0834 の 4 チャンネルのアナログ値を読み出すために使用します。デフォルトでは CH0 の値を読み出しますので、他のチャンネルを読み出したい場合は **( )** にチャンネル番号を入力してください（例：getResult(1)）。
 
-The function loop() first reads the value of CH0, then assign the value
-to the variable res. After that, call the function MAP to map the read
-value of potentiometer to 0~100. This step is used to control the duty
-cycle of LedPin. Now, you may see that the brightness of LED is changing
-with the value of potentiometer.
+関数 loop() は、まず CH0 の値を読み取り、その値を変数 res に代入する。その後、ポテンショメーターの読み取った値を0～100にマッピングする関数MAPを呼び出します。このステップは、LedPinのデューティ・サイクルを制御するために使用される。これで、LEDの明るさがポテンショメーターの値によって変化しているのがわかるだろう。
 
-
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image181.jpeg

@@ -1,51 +1,53 @@
-Blinking Dot
+.. _blinking_dot:
+
+点の点滅
 ===========================
 
-In this project, we will draw a dot on Processing, which blinks synchronously with the LED. Please build the circuit as shown in the diagram and run the sketch.
+このプロジェクトでは、LEDと同期して点滅する点をProcessingで描画します。図に示されているように回路を組み立て、スケッチを実行してください。
 
 .. image:: img/blinking_dot.png
 .. image:: img/clickable_dot_on.png
 
-**Required Components**
+**必要な部品**
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、それぞれ別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
     *   - :ref:`LED`
         - |link_led_buy|
 
-**Wiring**
+**配線図**
 
 .. image:: img/image49.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: Arduino
 
@@ -71,19 +73,18 @@ You can also buy them separately from the links below.
         ellipse(width/2, height/2, width*0.75, height*0.75);
     }
 
-**How it works?**
+**どのように動作するのか？**
 
-At the beginning of the sketch, you need to embed Processing's GPIO function library by ``import processing.io.*;``, which is indispensable for circuit experiments.
+スケッチの最初に、回路実験に欠かせないProcessingのGPIO機能ライブラリを ``import processing.io.*;`` で組み込む必要があります。
 
-**Frame rate** is the frequency of bitmaps appearing on the board, expressed in hertz (Hz). In other words, it is also the frequency at which the ``draw()`` function is called. In ``setup()``, setting the **frame rate** to 2 will call ``draw()`` every 0.5s.
+**フレームレート** は、ボード上に表示されるビットマップの頻度で、ヘルツ(Hz)で表されます。言い換えれば、 ``draw()`` 関数が呼ばれる頻度でもあります。 ``setup()`` で **フレームレート** を2に設定すると、 ``draw()`` が0.5秒ごとに呼び出されます。
 
-Each call of the ``draw()`` function takes the inverse of ``state`` and subsequently determines it. If the value is ``true``, the LED is lit and the brush is filled with red; if not, the LED is turned off and the brush is filled with gray.
+``draw()`` 関数の呼び出しごとに ``state`` の逆を取り、それを決定します。値が ``true`` の場合、LEDは点灯し、筆は赤で塗りつぶされます。そうでなければ、LEDは消灯し、筆は灰色で塗りつぶされます。
 
-After completing the judgment, use the ``ellipse()`` function to draw a circle. It should be noted that ``width`` and ``height`` are system variables used to store the width and height of the display window.
+判定を完了した後、 ``ellipse()`` 関数を使用して円を描画します。 ``width`` と ``height`` は、表示ウィンドウの幅と高さを格納するために使用されるシステム変数であることに注意してください。
 
-There are two other points to note. When using GPIOs, you need to use the ``GPIO.pinMode()`` function to set the INPUT/OUTPUT state of the pin, and then use the ``GPIO.digitalWrite()`` function to assign a value (HIGH/LOW) to the pin .
-
+注意すべき他の2点は、GPIOを使用する場合、 ``GPIO.pinMode()`` 関数を使用してピンの入力/出力状態を設定し、 ``GPIO.digitalWrite()`` 関数を使用してピンに値（HIGH/LOW）を割り当てる必要があることです。
 
 .. note::
 
-    Please try to avoid using ``delay()`` in ``draw()`` because it will affect the display window refresh.
+    ``draw()`` 内で ``delay()`` を使用することは避けてください。これは表示ウィンドウのリフレッシュに影響します。

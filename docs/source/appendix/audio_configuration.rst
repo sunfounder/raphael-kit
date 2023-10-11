@@ -1,13 +1,12 @@
-Audio Configuration
+オーディオ設定
 =========================
 
-Change Audio Output
+オーディオ出力の変更
 ----------------------------
 
-If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output, the correct one should be **Headphones**. You can change the audio output by following these steps.
+スピーカーから音が出ない場合、Raspberry Piが誤ってオーディオ出力を選択している可能性があります。正しい選択は **ヘッドフォン** です。以下の手順でオーディオ出力を変更できます。
 
-
-Enter the following command.
+以下のコマンドを入力します。
 
 .. raw:: html
 
@@ -17,22 +16,23 @@ Enter the following command.
 
     sudo raspi-config
 
-Select **1 System Options**.
+**1 システムオプション** を選択します。
 
 .. image:: img/audio1.jpg
 
-Then **S2 Audio**.
+次に **S2 オーディオ**。
 
 .. image:: img/audio2.jpg
 
-After selecting **1 Headphones**, press ``Enter`` to confirm and select ``Finish`` to exit.
+**1 ヘッドフォン** を選択した後、 ``Enter`` キーで確認し、 ``Finish`` で終了します。
 
 .. image:: img/audio3.jpg
 
-Adjust Volume 
+
+音量調整
 ---------------
 
-If you feel that the volume of the speakers is too low, you can adjust it by entering the following command.
+スピーカーの音量が低いと感じる場合、以下のコマンドを入力して調整できます。
 
 .. raw:: html
 
@@ -44,14 +44,14 @@ If you feel that the volume of the speakers is too low, you can adjust it by ent
 
 .. image:: img/faq1.png
 
-The default page is shown below.
+デフォルトページは下記の通りです。
 
 .. image:: img/faq2.png
 
-Press ``F6`` to select **Headphones** mode.
+``F6`` を押して **ヘッドフォン** モードを選択します。
 
 .. image:: img/faq3.png
 
-Then press the arrow keys up and down to adjust the volume level, and press ``ESC`` to exit.
+矢印キーで音量レベルを調整し、 ``ESC`` キーで終了します。
 
 .. image:: img/faq4.png

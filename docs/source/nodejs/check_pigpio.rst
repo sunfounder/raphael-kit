@@ -1,9 +1,11 @@
-Check the pigpio
+.. _check_pigpio:
+
+pigpioの確認
 ===================
 
-pigpio is a module used to control Raspberry Pi GPIO channels. This package provides some methods to control GPIO on Raspberry Pi. For examples and documentation, please visit: https://www.npmjs.com/package/pigpio.
+pigpioは、Raspberry PiのGPIOチャンネルを制御するために使用されるモジュールです。このパッケージには、Raspberry Pi上のGPIOを制御するためのいくつかの方法が提供されています。例やドキュメンテーションについては、 https://www.npmjs.com/package/pigpio をご参照ください。
 
-Enter the following command to install the pigpio library.
+以下のコマンドを入力して、pigpioライブラリをインストールします。
 
 .. raw:: html
 
@@ -13,7 +15,7 @@ Enter the following command to install the pigpio library.
 
     npm install pigpio
 
-Check if the library is installed successfully, change the directory and enter nodejs:
+ライブラリが正常にインストールされたかどうかを確認するため、ディレクトリを変更し、nodejsに入力します:
 
 .. raw:: html
 
@@ -26,7 +28,7 @@ Check if the library is installed successfully, change the directory and enter n
 
 .. image:: img/pigpio1.png
 
-Then enter require('pigpio'):
+次に、require('pigpio')を入力します:
 
 .. raw:: html
 
@@ -38,9 +40,8 @@ Then enter require('pigpio'):
 
 .. image:: img/pigpio2.png   
 
-If the above screen appears, the library installation is successful.
+上記の画面が表示されれば、ライブラリのインストールは成功しています。
 
-
-If you want to exit node CLI, please press Ctrl+C twice.
+node CLIを終了する場合は、Ctrl+Cを2回押してください。
 
 .. image:: img/pigpio3.png

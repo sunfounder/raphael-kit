@@ -1,114 +1,113 @@
-1.15 Inflating the Balloon
+.. _1.15_scratch:
+
+1.15 風船を膨らます
 ==========================
 
-Here, we will play a game of ballooning.
+今回は、風船を膨らませるゲームをプレイします。
 
-By toggling Slide to the left to start to inflate the balloon, at this time the balloon will get bigger and bigger. If the balloon is too large will blow up; if the balloon is too small, it will not float into the air. You need to judge when to toggle the switch to the right to stop pumping.
+スライドを左に切り替えて風船を膨らませることで開始します。この時、風船はどんどん大きくなります。風船が大きすぎると爆発します。小さすぎると空に浮かびません。ポンピングを止めるためにスイッチを右に切り替えるタイミングを判断する必要があります。
 
 .. image:: img/1.15_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.15_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Slide Switch`
+    *   - :ref:`スライドスイッチ`
         - |link_slide_switch_buy|
-    *   - :ref:`Capacitor`
+    *   - :ref:`コンデンサ`
         - |link_capacitor_buy|
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.15_scratch_fritzing.png
 
-Load the Code and See What Happens
------------------------------------------
+コードをロードして結果を確認する
+---------------------------------------
 
-Load the code file (``1.15_inflating_the_balloon.sb3``) to Scratch 3.
+Scratch 3に(``1.15_inflating_the_balloon.sb3``)のコードファイルをロードします。
 
-By toggling Slider to the left to start to inflate the balloon, at this time the balloon will get bigger and bigger. If the balloon is too large will blow up; if the balloon is too small, it will not float into the air. You need to judge when to toggle the switch to the right to stop pumping.
+スライダーを左に切り替えて風船を膨らませることで開始します。この時、風船はどんどん大きくなります。風船が大きすぎると爆発します。風船が小さすぎると空に浮かびません。ポンピングを止めるためにスイッチを右に切り替えるタイミングを判断する必要があります。
 
+スプライトに関するヒント
+---------------------------------
 
-Tips on Sprite
-----------------
-
-Delete the previous Sprite1 sprite, then add the **Balloon1** sprite.
+前のSprite1スプライトを削除し、 **Balloon1** スプライトを追加します。
 
 .. image:: img/1.15_slide1.png
+  :width: 400
 
-A balloon explosion sound effect is used in this project, so let's see how it was added.
+このプロジェクトでは、風船の爆発音効果を使用しています。どのように追加されたか見てみましょう。
 
-Click the **Sound** option at the top, then click **Upload Sound** to upload ``boom.wav`` from the ``~/raphael-kit/scratch/sound`` path to Scratch 3.
+上部の **Sound** オプションをクリックし、 **Upload Sound** をクリックして ``~/raphael-kit/scratch/sound`` パスから ``boom.wav`` をScratch 3にアップロードします。
 
 .. image:: img/1.15_slide2.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.15_slide3.png
   :width: 500
 
-This is an event block, and the trigger condition is that gpio17 is high, that is, the switch is toggled to the left.
+これはイベントブロックで、トリガ条件はgpio17が高い、つまりスイッチが左に切り替えられた場合です。
 
 .. image:: img/1.15_slide4.png
   :width: 400
 
-Set the size threshold of the Ballon1 sprite to 120
+Ballon1スプライトのサイズの閾値を120に設定します。
 
 .. image:: img/1.15_slide7.png
   :width: 400
 
-Move the coordinates of the Balloon1 sprite to (0,0), which is the center of the stage area.
+Balloon1スプライトの座標を(0,0)に移動します。これはステージエリアの中心です。
 
 .. image:: img/1.15_slide8.png
   :width: 300
 
-Set the size of the Balloon1 sprite to 50 and show it in the stage area.
+Balloon1スプライトのサイズを50に設定し、ステージエリアに表示します。
 
 .. image:: img/1.15_slide5.png
 
+風船を膨らますためのループを設定します。このループは、スライダースイッチが右に切り替えられたときに停止します。
 
-Set up a loop to inflate the balloon, this loop stops when the slider switch is toggled to the right.
-
-Within this loop, the balloon size is increased by 1 every 0.1s, and if it is larger than ``maxSize``, the balloon will burst, at which point the boom sound is made and the code is exited.
+このループ内で、風船のサイズは0.1秒ごとに1増加し、 ``maxSize`` よりも大きければ風船は破裂し、その時点でブーム音が鳴り、コードが終了します。
 
 .. image:: img/1.15_slide6.png
   :width: 600
 
-After the last loop exits (Slider toggles to the right), determine the position of the Balloon1 sprite based on its size. If the size of the Balloon1 sprite is greater than 90, lift off (move the coordinates to (0, 90), otherwise land (move the coordinates to (0, -149).
-
-
+最後のループが終了した後（スライダーが右に切り替えられた後）、Balloon1スプライトの位置をそのサイズに基づいて判断します。Balloon1スプライトのサイズが90よりも大きい場合、離陸（座標を(0, 90)に移動）します。そうでなければ、着陸（座標を(0, -149)に移動）します。
 

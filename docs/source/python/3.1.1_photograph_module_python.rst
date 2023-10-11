@@ -1,76 +1,72 @@
 .. _3.1.1_py:
 
-3.1.1 Photograph Module
+3.1.1 写真撮影モジュール
 ==========================
 
-Introduction
+はじめに
 -----------------
 
-In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
+このキットには、カメラモジュールが装備されています。Raspberry Piを使用して写真を撮ってみましょう。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下のコンポーネントが必要です。
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てを一式で購入すると非常に便利です。リンクは以下です：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+個別に購入する場合は、以下のリンクからどうぞ。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`Camera Module`
+    *   - :ref:`カメラモジュール`
         - |link_camera_buy|
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+**ステップ1:** Raspberry Piのデスクトップに移動します。詳細なチュートリアルは、 `Raspberry Piの接続 <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ または :ref:`リモートデスクトップ` を参照してください。
 
-
-**Step 2:** Open a Terminal and get into the folder of the code.
+**ステップ2:** ターミナルを開き、コードのフォルダに移動します。
 
 .. code-block::
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ3:** 実行します。
 
 .. code-block::
 
     sudo python3 3.1.1_PhotographModule.py
 
-After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``~`` directory. 
+コードが実行されると、カメラが写真を撮ります。 ``~`` ディレクトリ内に ``my_photo.jpg`` という名前の写真が保存されます。
 
 .. note::
 
-    You can also open ``3.1.1_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    また、Python IDEを使って ``~/raphael-kit/python/`` パスの ``3.1.1_PhotographModule.py`` を開き、[実行]ボタンをクリックして実行、[停止]ボタンでコードを停止することもできます。
 
+PCに写真をダウンロードしたい場合は、 :ref:`Filezilla Software` を参照してください。
 
-If you want to download the photo to your PC, please refer to :ref:`Filezilla Software`.
-
-
-**Code**
-
+**コード**
 
 .. code-block:: python
 
@@ -99,7 +95,7 @@ If you want to download the photo to your PC, please refer to :ref:`Filezilla So
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
@@ -107,26 +103,27 @@ If you want to download the photo to your PC, please refer to :ref:`Filezilla So
 
     camera = PiCamera()
 
-Import the ``picamera`` library and instantiate the ``PiCamera`` class to use the camera module.
-
-.. code-block:: python
-
-    start_preview(**options)
+``picamera`` ライブラリをインポートして ``PiCamera`` クラスをインスタンス化し、カメラモジュールを使用する。
 
 
-Show the preview overlay and change the transparency level of the preview with ``alpha`` - from 0 to 255. This method starts a camera preview as an overlay on the Pi’s primary display (HDMI or composite). By default, the renderer will be opaque and fullscreen.
+    .. code-block:: python
+
+        start_preview(**options)
 
 
-This means the default preview overrides whatever is currently visible on the display. More specifically, the preview does not rely on a graphical environment like X-Windows (it can run quite happily from a TTY console); it is simply an overlay on the Pi’s video output. To stop the preview and reveal the display again, call ``stop_preview()`` . The preview can be started and stopped multiple times during the lifetime of the ``PiCamera`` object.
+プレビューのオーバーレイを表示し、 ``alpha`` でプレビューの透明度を変更します（0～255）。このメソッドは、カメラのプレビューをPiのプライマリディスプレイ(HDMIまたはコンポジット)にオーバーレイ表示します。デフォルトでは、レンダラーは不透明でフルスクリーンになります。
+
+
+つまり、デフォルトのプレビューは、現在ディスプレイに表示されているものを上書きします。より具体的には、プレビューはX-Windowsのようなグラフィカルな環境には依存しません（TTYコンソールから非常に楽しく実行できます）。プレビューを停止し、再びディスプレイを表示するには、 ``stop_preview()`` を呼び出します。プレビューは ``PiCamera`` オブジェクトが生きている間に何度も開始したり停止したりすることができます。
 
 .. code-block:: python
 
     camera.capture(f'{user_home}/my_photo.jpg')
 
-Capture an image from the camera, storing it in ``~/``.
+カメラから画像をキャプチャし、 ``~/`` に保存する。
 
 .. note::
-    You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
+    ``camera.capture()`` 関数と ``for`` ループを併用することで連続撮影が可能です。また、 ``delay`` 関数で撮影間隔を調整することができます。
 
     .. code-block:: python
 

@@ -1,94 +1,94 @@
-1.13 Doorbell
+.. _1.13_scratch:
+
+1.13 ドアベル
 ==================
 
-Today we will make a doorbell, click the button3 sprite on the stage, the buzzer will sound; click again, the buzzer will stop sounding.
+今日はドアベルを作成します。ステージ上のButton3スプライトをクリックすると、ブザーが鳴ります。再度クリックすると、ブザーの音が止まります。
 
 .. image:: img/1.13_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.13_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.13_image106.png
 
-Load the Code and See What Happens
+コードをロードして結果を確認する
 -----------------------------------------
 
-Load the code file (``1.13_doorbell.sb3``) to Scratch 3.
+Scratch 3に(``1.13_doorbell.sb3``)のコードファイルをロードします。
 
-Click on the green flag on the stage. When we click on the Button 3 sprite, it will turn blue and then the buzzer will sound; when we click again, the **Button3** sprite reverts to gray and the buzzer stops sounding.
+ステージの緑の旗をクリックします。Button 3スプライトをクリックすると、それは青く変わり、ブザーが鳴ります。再度クリックすると、 **Button3** スプライトは灰色に戻り、ブザーの音が止まります。
 
+スプライトに関するヒント
+---------------------------------
 
-Tips on Sprite
-----------------
-
-Delete the default sprite, then choose the **Button 3** sprite.
+デフォルトのスプライトを削除し、 **Button 3** スプライトを選択します。
 
 .. image:: img/1.13_scratch_button3.png
 
-Then set the size to 200.
+次に、そのサイズを200に設定します。
 
 .. image:: img/1.13_scratch_button3_size.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.13_buzzer4.png
   :width: 400
 
-This block allows you to switch the sprite's costume.
+このブロックにより、スプライトのコスチュームを切り替えることができます。
 
 .. image:: img/1.13_buzzer5.png
   :width: 400
 
-Set gpio17 to low to make the buzzer sound; set it to high and the buzzer will not sound.
+gpio17を低に設定してブザーを鳴らし、高に設定するとブザーは鳴らなくなります。
 
+ここでは **status** スイッチを使用します。全体のコードを理解するために、フローチャートを使用して説明します。
 
-The **status** switch is used here, and we will use a flowchart to help you understand the whole code.
-
-When the green flag is clicked, the **status** will be set to 0 first, and wait for the sprite to be clicked at this time; if **button3** sprite is clicked, it will switch to costume as **button-b** costume (blue) and the **status** will be set to 1. When the main program receives the **status** as 1, it will let the buzzer sound at 0.1s interval.
-If **button3** is clicked again, it will switch to **button-a** costume (gray) and **status** will be set to 0 again.
+緑の旗がクリックされると、最初に **status** は0に設定され、この時点でスプライトがクリックされるのを待ちます。 **button3** スプライトがクリックされると、 **button-b** コスチューム（青）に切り替わり、 **status** は1に設定されます。メインプログラムが **status** 1を受け取ると、0.1sの間隔でブザーが鳴ります。
+**button3** が再度クリックされると、 **button-a** コスチューム（灰色）に切り替わり、 **status** は再び0に設定されます。
 
 .. image:: img/1.13_scratch_code.png
 

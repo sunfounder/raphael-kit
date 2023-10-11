@@ -1,78 +1,75 @@
-1.1.1 Blinking LED
+.. _1.1.1_js:
+
+1.1.1 LEDの点滅
 =========================
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will learn how to make a blinking LED by programming.
-Through your settings, your LED can produce a series of interesting
-phenomena. Now, go for it.
+このプロジェクトでは、プログラミングによってLEDを点滅させる方法を学びます。
+あなたの設定により、LEDが一連の面白い現象を生み出すことができます。さあ、始めましょう。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/blinking_led_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式をまとめて購入するのは非常に便利です。以下がそのリンクです:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも個別に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
 
-Schematic Diagram
+回路図
 ---------------------
 
-In this experiment, connect a 220Ω resistor to the anode (the long pin
-of the LED), then the resistor to 3.3 V, and connect the cathode (the
-short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
-an LED, we need to make GPIO17 low (0V) level. We can get this
-phenomenon by programming.
+この実験では、LEDのアノード（LEDの長いピン）に220Ωの抵抗を接続し、抵抗を3.3 Vに、LEDのカソード（短いピン）をRaspberry PiのGPIO17に接続します。したがって、LEDを点灯させるには、GPIO17を低（0V）レベルにする必要があります。これはプログラムで実現できます。
 
 .. image:: img/image48.png
     :width: 800
     :align: center
 
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: img/image49.png
     :width: 800
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -83,9 +80,9 @@ Experimental Procedures
    cd ~/raphael-kit/nodejs/
 
 .. note::
-    Change directory to the path of the code in this experiment via ``cd``.
+    ``cd`` を使用して、この実験のコードのパスにディレクトリを変更します。
 
-**Step 3:** Run the code
+**ステップ3:** コードを実行します
 
 .. raw:: html
 
@@ -96,13 +93,11 @@ Experimental Procedures
    sudo node blink.js
 
 .. note::
-    Here sudo - superuser do, and python means to run the file by Python.
+    ここでのsudoはsuperuser doを意味し、pythonはPythonでファイルを実行することを意味します。
 
-After the code runs, you will see the LED flashing.
+コードを実行すると、LEDが点滅するのがわかります。
 
-**Step 4:** If you want to edit the code file blink.js,
-press ``Ctrl + C`` to stop running the code. Then type the following
-command to open blink.js:
+**ステップ4:** コードファイルblink.jsを編集したい場合は、 ``Ctrl + C`` を押してコードの実行を停止します。次に、blink.jsを開くための以下のコマンドを入力します：
 
 .. raw:: html
 
@@ -113,19 +108,16 @@ command to open blink.js:
    nano blink.js
 
 .. note::
-    nano is a text editor tool. The command is used to open the
-    code file blink.js by this tool.
+    nanoはテキストエディタツールです。このコマンドは、このツールで
+    コードファイルblink.jsを開くために使用されます。
 
-Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
-prompt asking whether to save the changes or not. Type in ``Y`` (save)
-or ``N`` (don’t save).
+``Ctrl+X`` を押して終了します。コードを変更した場合、変更を保存するかどうかを尋ねるプロンプトが表示されます。 ``Y`` （保存する）または ``N`` （保存しない）を入力します。
 
-Then press ``Enter`` to exit. Type in nano blink.js again to
-see the effect after the change.
+次に ``Enter`` を押して終了します。再度nano blink.jsを入力して、変更後の効果を確認します。
 
-**Code**
+**コード**
 
-The following is the program code:
+以下はプログラムコードです：
 
 .. code-block:: js
 
@@ -142,7 +134,7 @@ The following is the program code:
    setInterval(blink_led,300);
 
 
-Alternatively, write the code as a more js-specific arrow function:
+また、コードをjs特有のアロー関数として書くこともできます：
 
 .. code-block:: js
 
@@ -156,38 +148,35 @@ Alternatively, write the code as a more js-specific arrow function:
       led_state = !led_state;
    }, 300);
 
-
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
    const Gpio = require('pigpio').Gpio;
 
-Import the Gpio constructor in the pigpio package in this way, 
-and then define a constant ``Gpio`` to represent this constructor.
+この方法でpigpioパッケージのGpioコンストラクタをインポートし、
+そのコンストラクタを表す定数 ``Gpio`` を定義します。
 
-With a variety of constructor, we can use js to control electronic devices.
-``pigpio`` can be used to implement fast GPIO, PWM, servo control, state change notification and interrupt handling.
+さまざまなコンストラクタを使用すると、jsで電子機器を制御できます。
+``pigpio`` は、高速GPIO、PWM、サーボ制御、状態変更通知、および割り込み処理を実装するために使用できます。
 
 * `pigpio - github <https://github.com/fivdi/pigpio>`_
 
-.. A wrapper for the pigpio C library to enable fast GPIO, PWM, servo control, 
-.. state change notification and interrupt handling with JS on the Raspberry Pi Zero, 
-.. 1, 2, 3 or 4.
+.. Raspberry Pi Zero, 1, 2, 3, 4での高速GPIO, PWM, サーボ制御, 
+.. 状態変更通知および割り込み処理をJSで可能にするpigpio Cライブラリのラッパーです。
 
 .. code-block:: js
 
    const led = new Gpio(17,{mode: Gpio.OUTPUT});
 
-The ``new`` keyword is used to construct instantiated objects of the class.
+``new`` キーワードは、クラスのインスタンス化されたオブジェクトを構築するために使用されます。
 
-Connect the LED to the GPIO17 of the T-shaped expansion board, 
-set the LedPin mode to output and assign it to the constant ``led``, 
-that is, construct a GPIO17 object ``led``, and its mode is the output mode.
+LEDをT字型拡張ボードのGPIO17に接続し、LedPinモードを出力に設定し、定数 ``led`` に割り当てます。
+すなわち、GPIO17オブジェクト ``led`` を構築し、そのモードは出力モードです。
 
-There are two ways to number the IO pins on the Raspberry Pi: 
-BOARD number and BCM number. In our project, we use the BCM number. 
-You need to set each channel used as input or output.
+Raspberry PiのIOピンに番号を付ける方法は2つあります：
+BOARD番号とBCM番号。私たちのプロジェクトでは、BCM番号を使用しています。
+使用する各チャネルを入力または出力として設定する必要があります。
 
 .. code-block:: js
 
@@ -198,15 +187,14 @@ You need to set each channel used as input or output.
 
    setInterval(blink_led,300);
 
-The ``setInterval()`` method can call functions or compute expressions with a specified period (in milliseconds).
-Here we change the operating state of the LED with a period of 300ms.
+``setInterval()`` メソッドは、指定された期間（ミリ秒単位）で関数を呼び出したり、式を計算したりすることができます。
+ここでは、300msの期間でLEDの動作状態を変更します。
 
 *  `setInerval <https://developer.mozilla.org/en-US/docs/Web/API/setInterval>`_
 
-The ``gpio.digitalWrite(level)`` method sets the gpio level to 1 or 0.
+``gpio.digitalWrite(level)`` メソッドは、gpioレベルを1または0に設定します。
 
 .. code-block:: js
-
 
    var led_state = 0;
 
@@ -215,11 +203,11 @@ The ``gpio.digitalWrite(level)`` method sets the gpio level to 1 or 0.
       led_state = !led_state;
    }, 300);
 
-Rewrite the code as an arrow function to make the code shorter.
+コードをアロー関数として書き直して、コードを短くします。
 
 * `Arrow Functions <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>`_
 
-Phenomenon Picture
+現象の画像
 -------------------------
 
 .. image:: img/image54.jpeg

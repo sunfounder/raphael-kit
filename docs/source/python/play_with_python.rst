@@ -1,4 +1,4 @@
-Play with Python
+Pythonで遊ぼう
 ===================
 
 .. toctree::

@@ -1,74 +1,68 @@
 .. _2.2.7_py:
 
-2.2.7 PIR
-=========
+2.2.7 PIRモジュール
+=====================
 
-Introduction
-------------
+はじめに
+--------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+このプロジェクトでは、人体赤外線焦電センサーを使用してデバイスを作成します。誰かがLEDに近づくと、LEDは自動的に点灯します。そうでなければ、光は消えます。この赤外線モーションセンサーは、人や動物が発する赤外線を検出するセンサーの一種です。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要なコンポーネントは以下の通りです。
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを一括で購入する方が便利です。以下がそのリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+各コンポーネントは、以下のリンクから個別にも購入できます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`RGB LED`
         - |link_rgb_led_buy|
-    *   - :ref:`PIR Motion Sensor Module`
+    *   - :ref:`PIRモーションセンサーモジュール`
         - \-
 
-
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image327.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動。
 
 .. raw:: html
 
@@ -78,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file.
+**ステップ3:** 実行可能ファイルを実行。
 
 .. raw:: html
 
@@ -88,20 +82,19 @@ Experimental Procedures
 
     sudo python3 2.2.7_PIR.py
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+コードが実行された後、PIRは周囲を検出し、誰かが通りかかるとRGB LEDが黄色に光ります。
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+PIRモジュールには2つのポテンショメータがあります：一つは感度を調整するため、もう一つは検出距離を調整するためです。PIRモジュールをより効果的に動作させるためには、これらを両方とも反時計回りに最後まで回してください。
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
     :align: center
 
-**Code**
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    下のコードは **修正/リセット/コピー/実行/停止** ができますが、それに先立って、ソースコードのパス、例えば ``raphael-kit/python`` に移動する必要があります。コードを修正した後は、直接実行して効果を確認できます。
 
 .. raw:: html
 
@@ -201,8 +194,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
     def setColor(color):
     ...
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2_py` for more details.
+これらのコードはRGB LEDの色を設定するために使用されます。詳細は :ref:`1.1.2_py` を参照してください。
 
 .. code-block:: python
 
@@ -214,10 +206,9 @@ to :ref:`1.1.2_py` for more details.
             else :
                 setColor(0x0000FF)
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+PIRが人体の赤外線スペクトルを検出すると、RGB LEDは黄色い光を放ちます；そうでなければ、青い光を放ちます。
 
-Phenomenon Picture
-------------------
+現象の画像
+-----------------------
 
 .. image:: ../img/image215.jpeg

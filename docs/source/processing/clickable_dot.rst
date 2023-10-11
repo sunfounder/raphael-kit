@@ -1,50 +1,52 @@
-Clickable Dot
+.. _clickable_dot:
+
+クリック可能な点
 ==================
 
-We've tried drawing motion graphic, responding to mouse event, and controlling LED.  So, we might as well combine these functions, draw a clickable dot, to control the LED!  
+私たちは動きのあるグラフィックを描くこと、マウスイベントに反応すること、そしてLEDを制御することを試みました。それらの機能を組み合わせて、LEDを制御するためのクリック可能な点を描くのもいいでしょう！
 
 .. image:: img/clickable_dot_on.png
 
-**Required Components**
+**必要な部品**
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、それぞれ別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
     *   - :ref:`LED`
         - |link_led_buy|
 
-**Wiring**
+**配線図**
 
 .. image:: img/image49.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: arduino
 
@@ -74,9 +76,9 @@ You can also buy them separately from the links below.
             {state = !state;}
     }
 
-**How it works?**
+**どのように動作するのか？**
 
-This project has a lot in common with :ref:`Blinking Dot`, the difference is that it puts the toggle state in the mouse event.
-This causes the LED to not blink automatically, but to light up and go off with a mouse click.
+このプロジェクトは :ref:`blinking_dot` と多くの共通点がありますが、違いはトグル状態をマウスイベントに入れることです。
+これにより、LEDは自動的に点滅せず、マウスクリックで点灯したり消灯したりします。
 
-And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.
+そして、 ``mouseClicked()`` イベントでは、クリック時のマウスの位置を判断するために ``dist()`` 関数が使用され、マウスとドットの中心との距離が半径より短い場合のみ、ドットがクリックされたとみなされます。

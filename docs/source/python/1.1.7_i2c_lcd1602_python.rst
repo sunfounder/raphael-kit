@@ -3,51 +3,51 @@
 1.1.7 I2C LCD1602
 ======================
 
-Introduction
+はじめに
 ------------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+LCD1602は、キャラクタータイプの液晶ディスプレイで、同時に32
+(16×2)文字を表示することができます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下の部品が必要です。
 
 .. image:: ../img/list_i2c_lcd.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入することは非常に便利です。以下のリンクから購入できます：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+また、以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+回路図
 ---------------------
 
 ============ ========
@@ -58,18 +58,16 @@ SCL1         Pin 5
 
 .. image:: ../img/schematic_i2c_lcd.png
 
-
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ 1:** 回路を組む。
 
 .. image:: ../img/image96.png
 
+**ステップ 2**: I2Cを設定する（ :ref:`i2c_config` を参照。I2Cが設定されている場合は、このステップをスキップしてください。）
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`. If you have set I2C, skip this step.)
-
-**Step 3:** Change directory.
+**ステップ 3:** ディレクトリを変更する。
 
 .. raw:: html
 
@@ -79,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 4:** Run.
+**ステップ 4:** 実行する。
 
 .. raw:: html
 
@@ -89,23 +87,20 @@ Experimental Procedures
 
     sudo python3 1.1.7_Lcd1602.py
 
-After the code runs, you can see ``Greetings!, From SunFounder`` displaying on the LCD.
+コードが実行されると、LCDに ``Greetings!, From SunFounder`` と表示されます。
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * エラー ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` が発生した場合、 :ref:`i2c_config` を参照してI2Cを有効にしてください。
+    * ``ModuleNotFoundError: No module named 'smbus2'`` エラーが表示された場合、 ``sudo pip3 install smbus2`` を実行してください。
+    * エラー ``OSError: [Errno 121] Remote I/O error`` が表示された場合、モジュールの配線が間違っているか、モジュールが壊れている可能性があります。
+    * コードと配線に問題がない場合でも、LCDが内容を表示しない場合は、裏面のポテンショメータを回してコントラストを上げることができます。
 
-
-
-**Code** 
+**コード** 
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    以下のコードは **変更/リセット/コピー/実行/停止** が可能です。しかし、それを行う前に、 ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
 
 .. raw:: html
 
@@ -131,30 +126,28 @@ After the code runs, you can see ``Greetings!, From SunFounder`` displaying on t
         except KeyboardInterrupt:
             destroy()
 
-
-
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
     import LCD1602
 
-This file is an open source file for controlling I2C LCD1602. It allows us to easily use I2C LCD1602.
+このファイルは、I2C LCD1602を制御するためのオープンソースファイルであり、簡単にI2C LCD1602を使用することができます。
 
 .. code-block:: python
 
     LCD1602.init(0x27, 1) 
 
-The function initializes the I2C system with the designated device symbol. The first parameter is the address of the I2C device, which can be detected through the i2cdetect command (see Appendix for details). The address of I2C LCD1602 is generally 0x27.
+この関数は、指定されたデバイスシンボルでI2Cシステムを初期化します。最初のパラメータはI2Cデバイスのアドレスで、i2cdetectコマンド（詳細は付録を参照）で検出できます。I2C LCD1602のアドレスは一般的に0x27です。
 
 .. code-block:: python
 
     LCD1602.write(0, 0, 'Greetings!')
 
-Within this function, 'Greetings!! ' is the character to be printed on the Row 0+1, column 0+1 on LCD. 
-Now you can see “Greetings!! From SunFounder” displayed on the LCD.
+この関数内で、「Greetings!!」はLCDの行0+1、列0+1に印刷される文字です。
+これで、LCDに「Greetings!! From SunFounder」と表示されます。
 
-Phenomenon Picture
+現象の画像
 --------------------------
 
 .. image:: ../img/image97.jpeg

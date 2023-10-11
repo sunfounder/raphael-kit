@@ -1,81 +1,74 @@
 .. _2.1.4_c:
 
-2.1.4 Slide Switch
+2.1.4 スライドスイッチ
 ========================
 
-Introduction
+はじめに
 ------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+このプロジェクトでは、スライドスイッチの使用方法を学びます。通常、スライドスイッチはPCBに電源スイッチとしてはんだ付けされますが、ここではブレッドボードに挿入する必要がありますので、固定されていないかもしれません。そして、その機能を示すために、ブレッドボード上で使用します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのは非常に便利です、以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから各部品を別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Slide Switch`
+    *   - :ref:`スライドスイッチ`
         - |link_slide_switch_buy|
-    *   - :ref:`Capacitor`
+    *   - :ref:`コンデンサ`
         - |link_capacitor_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+スライドスイッチの中央のピンをGPIO17に接続し、二つのLEDをそれぞれGPIO22とGPIO27のピンに接続します。その後、スライドを引っ張ると、二つのLEDが交互に点灯するのが見えます。
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/image306.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -85,7 +78,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.4
 
-**Step 3**: Compile.
+**ステップ3:** コンパイルします。
 
 .. raw:: html
 
@@ -95,7 +88,7 @@ Experimental Procedures
 
     gcc 2.1.4_Slider.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**ステップ4:** 上記の実行ファイルを実行します。
 
 .. raw:: html
 
@@ -105,14 +98,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+コードが実行中の間、スイッチを左に接続すると、黄色のLEDが点灯します。右にすると、赤い光が点灯します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない場合や、「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -149,7 +141,7 @@ the yellow LED lights up; to the right, the red light turns on.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -159,9 +151,7 @@ the yellow LED lights up; to the right, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+スライドが右に引かれると、中央のピンと右のピンが接続されます。Raspberry Piは中央のピンで高いレベルを読み取るため、LED1は点灯し、LED2は消灯します。
 
 .. code-block:: c
 
@@ -171,10 +161,9 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
+スライドが左に引かれると、中央のピンと左のピンが接続されます。Raspberry Piは低いレベルを読み取るので、LED2は点灯し、LED1は消灯します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image162.jpeg

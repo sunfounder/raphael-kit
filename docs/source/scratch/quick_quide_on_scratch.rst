@@ -1,87 +1,78 @@
-Quick Guide on Scratch
+.. _quick_quide_on_scratch:
+
+Scratchのクイックガイド
 ==========================
 
 .. note::
 
-    When programming with Scratch 3, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+    Scratch 3を使用してプログラムする際には、より良い体験のためにスクリーンが必要かもしれません。参考: `Raspberry Piへの接続 <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_。もちろん、スクリーンを持っていない場合、Raspberry Piのデスクトップにリモートでアクセスすることもできます。詳しいチュートリアルは :ref:`リモートデスクトップ` を参照してください。
 
-In addition, Scratch 3 needs at least 1GB of RAM to run, and we recommend a Raspberry Pi 4 with at least 2GB RAM. While you can run Scratch 3 on a Raspberry Pi 2, 3, 3B+, or a Raspberry 4 with 1GB RAM, performance on these models is reduced, and depending on what other software you run at the same time, Scratch 3 may fail to start due to lack of memory.
+さらに、Scratch 3を実行するには少なくとも1GBのRAMが必要です。私たちは、少なくとも2GBのRAMを搭載したRaspberry Pi 4を推奨します。Raspberry Pi 2、3、3B+、または1GB RAMのRaspberry 4でScratch 3を実行することができますが、これらのモデルのパフォーマンスは低下します。また、同時に実行する他のソフトウェアによっては、メモリ不足のためにScratch 3が起動できないことがあります。
 
-Install Scratch 3
--------------------
-When installing Raspberry Pi OS (:ref:`Installing the OS`), you have to choose the version with desktop, either with desktop only or with desktop and recommended software.
+Scratch 3のインストール
+---------------------------
 
-If you install the version with the recommended software, you can see Scratch 3 in the system menu at **Programming**.
+Raspberry Pi OSをインストールする際(:ref:`install_os`), デスクトップ付きのバージョンを選択する必要があります。デスクトップのみ、またはデスクトップと推奨ソフトウェアを選択できます。
 
-If you installed the desktop-only version, you will need to install Scratch 3 manually, as described below.
+推奨ソフトウェア付きのバージョンをインストールした場合、システムメニューの **Programming** でScratch 3を見ることができます。
 
-Open up the menu, click on **Preferences** -> **Recommended Software**.
+デスクトップのみのバージョンをインストールした場合、以下のようにScratch 3を手動でインストールする必要があります。
+
+メニューを開き、 **Preferences** -> **Recommended Software** をクリックします。
 
 .. image:: img/quick_scratch1.png
 
-
-Find scratch 3 and check it, then click **Apply** and finally wait for the installation to finish.
+Scratch 3を探し、チェックを入れて、 **Apply** をクリックしてインストールを完了させます。
 
 .. image:: img/quick_scratch2.png
 
-
-Once the installation is complete, you should see it on the **Programming** in the system menu.
+インストールが完了すると、システムメニューの **Programming** に表示されます。
 
 .. image:: img/quick_scratch3.png
 
+Scratch 3のインターフェースについて
+------------------------------------
 
-About Scratch 3's Interface
-------------------------------
+Scratch 3は楽しく、教育的で、学びやすく設計されています。ブロックベースのプログラミングを使用して、インタラクティブなストーリー、ゲーム、アート、シミュレーションなどを作成するためのツールが備わっています。Scratchには独自のペイントエディタやサウンドエディタも組み込まれています。
 
-Scratch 3 is designed to be fun, educational, and easy to learn. It has tools for creating interactive stories, games, art, simulations, and more, using block-based programming. Scratch also has its own paint editor and sound editor built-in.
-
-The top of scratch 3 has some basic options, the first one from left to right is the language option, you can choose different languages for programming. The second one is the **File** option, you can create new files, read local files and save current files with this option. The third is the **Edit** option, which allows you to resume some deletion operations and enable the acceleration mode (in which the sprite movement becomes particularly fast). The fourth is the **Tutorials** option, which allows you to view tutorials for some projects. The fifth is the file naming option, where you can rename the project.
-
+Scratch 3の上部には基本的なオプションがあります。左から右へ、最初のものは言語オプションで、プログラミングのための異なる言語を選択することができます。次に **File** オプションがあります。このオプションで新しいファイルを作成、ローカルファイルを読み込み、現在のファイルを保存することができます。次は **Edit** オプションで、これにより一部の削除操作を再開したり、加速モードを有効にしたりすることができます（このモードではスプライトの動きが特に速くなります）。4つ目は **Tutorials** オプションで、一部のプロジェクトのチュートリアルを表示することができます。5つ目はファイルの命名オプションで、ここでプロジェクトの名前を変更することができます。
 
 .. image:: img/quick_scratch13.png
 
 **Code**
 
-It has three main sections: a stage area, block palette, and coding area. Programming by clicking and dragging the block on the block palette to the coding area, and finally your programming results will be displayed on the stage area.
+3つの主要なセクションがあります：ステージエリア、ブロックパレット、コーディングエリア。ブロックパレットのブロックをクリックしてコーディングエリアにドラッグすることでプログラミングを行い、最終的にプログラミングの結果がステージエリアに表示されます。
 
 .. image:: img/quick_scratch4.png
 
-
-Here is the sprites area of Scratch 3. Above the area are the basic parameters of the sprites, you can add sprites that come with Scratch 3 or upload local sprites.
+これはScratch 3のスプライトエリアです。このエリアの上には、スプライトの基本パラメータがあり、Scratch 3に付属しているスプライトを追加することも、ローカルのスプライトをアップロードすることもできます。
 
 .. image:: img/quick_scratch5.png
 
-
-Here is the Scratch 3 backdrop area, mainly to add a suitable backdrop for your stage, you can add the backdrop that comes with Scratch 3 or upload a local one.
+これはScratch 3のバックドロップエリアです。主にステージに適したバックドロップを追加するためのもので、Scratch 3に付属しているバックドロップを追加することも、ローカルのものをアップロードすることもできます。
 
 .. image:: img/quick_scratch6.png
 
-
-This is a **Add Extension** button.
+これは **Add Extension** ボタンです。
 
 .. image:: img/quick_scratch7.png
 
-
-In Scratch 3, we can add all kinds of useful extensions, here we take **Video Sensing** as an example and click on it.
+Scratch 3では、さまざまな便利な拡張機能を追加することができます。ここでは **Video Sensing** を例にとり、それをクリックします。
 
 .. image:: img/quick_scratch8.png
 
-
-You will see it on the block palette and you can use the functions associated with this extension. If you have a camera connected, you will see the camera screen on the stage area.
+ブロックパレットに表示され、この拡張機能に関連する機能を使用することができます。カメラが接続されている場合、ステージエリアにカメラの画面が表示されます。
 
 .. image:: img/quick_scratch9.png
 
 **Costumes**
 
-Click on the **Costumes** option in the upper left corner to enter the costumes palette. Different costumes allow the sprites to have different static movements, and when these static movements are stitched together, they form a coherent dynamic movement.
+左上隅の **Costumes** オプションをクリックして、コスチュームパレットに入ります。異なるコスチュームにより、スプライトは異なる静的な動きを持つことができ、これらの静的な動きを一緒に縫い合わせると、連続した動的な動きが形成されます。
 
 .. image:: img/quick_scratch10.png
 
 **Sounds**
 
-You may need to use some music clips to make your experiments more interesting. Click on the **Sounds** option in the upper left corner and you can edit the current sound or select/upload a new one.
+実験をより興味深くするために、いくつかの音楽クリップを使用する必要があるかもしれません。左上隅の **Sounds** オプションをクリックすると、現在の音を編集したり、新しいものを選択/アップロードしたりすることができます。
 
 .. image:: img/quick_scratch11.png
-
-
-

@@ -1,56 +1,53 @@
-SPI Configuration
+SPI設定
 -----------------------
 
-**Step 1**: Enable the SPI port of your Raspberry Pi (If you have
-enabled it, skip this; if you do not know whether you have done that or
-not, please continue).
+**ステップ1**: お使いのRaspberry PiのSPIポートを有効にしてください（すでに有効化している場合はこのステップをスキップ。不明な場合は、続けてください）。
 
 .. raw:: html
 
    <run></run>
-
+  
 .. code-block:: 
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 インターフェースオプション**
 
 .. image:: img/image282.png
-   :align: center
+    :align: center
 
 **P4 SPI**
 
 .. image:: img/image285.png
-   :align: center
+    :align: center
 
-**<YES>, then click <OK> and <Finish>.**
+**<YES>を選択し、<OK>と<Finish>をクリックしてください。**
 
 .. image:: img/image286.png
-   :align: center 
+    :align: center
 
-**Step 2:** Check that the spi modules are loaded and active.
+**ステップ2**: SPIモジュールがロードされていることを確認します。
 
 .. raw:: html
 
    <run></run>
-
+  
 .. code-block:: 
 
     ls /dev/sp*
 
-Then the following codes will appear (the number may be different).
-
+次のようなコードが表示されます（番号は異なる場合があります）。
 
 .. code-block:: 
 
     /dev/spidev0.0  /dev/spidev0.1
 
-**Step 3:** Install Python module SPI-Py.
+**ステップ3**: PythonモジュールSPI-Pyをインストールします。
 
 .. raw:: html
 
    <run></run>
-
+  
 .. code-block:: 
 
     git clone https://github.com/lthiery/SPI-Py.git
@@ -58,5 +55,5 @@ Then the following codes will appear (the number may be different).
     sudo python3 setup.py install
 
 .. note::
-    This step is for python users, if you use C language, please
-    skip.
+    このステップはPythonユーザーのためのものです。C言語を使用している場合は、このステップをスキップしてください。
+

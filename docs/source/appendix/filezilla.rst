@@ -3,29 +3,28 @@ Filezilla Software
 
 .. image:: img/filezilla_icon.png
 
-The File Transfer Protocol (FTP) is a standard communication protocol used for the transfer of computer files from a server to a client on a computer network.
+ファイル転送プロトコル（FTP）は、コンピュータネットワーク上でサーバーからクライアントへコンピュータファイルを転送するための標準的な通信プロトコルです。
 
-Filezilla is an open source software that not only supports FTP, but also FTP over TLS (FTPS) and SFTP. We can use Filezilla to upload local files (such as pictures and audio, etc.) to the Raspberry Pi, or download files from the Raspberry Pi to the local.
+Filezillaはオープンソースソフトウェアで、FTPだけでなくFTP over TLS（FTPS）とSFTPにも対応しています。Raspberry Piへのローカルファイル（例えば画像やオーディオなど）のアップロード、あるいはRaspberry PiからのファイルのダウンロードにFilezillaを使用できます。
 
-**Step 1**: Download Filezilla.
+**ステップ1**： Filezillaをダウンロード。
 
-Download the client from `Filezilla’s official website <https://filezilla-project.org/>`_, Filezilla has a very good tutorial, please refer to: `Documentation - Filezilla <https://wiki.filezilla-project.org/Documentation>`_.
+`Filezillaの公式ウェブサイト <https://filezilla-project.org/>`_ からクライアントをダウンロードしてください。詳しい使い方は、 `Documentation - Filezilla <https://wiki.filezilla-project.org/Documentation>`_ を参照してください。
 
-**Step 2**: Connect to Raspberry Pi
+**ステップ2**： Raspberry Piに接続
 
-After a quick install open it up and now `connect it to an FTP server <https://wiki.filezilla-project.org/Using#Connecting_to_an_FTP_server>`_. It has 3 ways to connect, here we use the **Quick Connect** bar. Enter the **hostname/IP**, **username**, **password** and **port (22)**, then click **Quick Connect** or press **Enter** to connect to the server.
+簡単なインストールの後、`FTPサーバーに接続する <https://wiki.filezilla-project.org/Using#Connecting_to_an_FTP_server>`_ 方法が3種類ありますが、ここでは **クイックコネクト** バーを使用します。 **ホスト名/IP** 、 **ユーザー名** 、 **パスワード** 、 **ポート（22）** を入力し、 **クイックコネクト** をクリックするか、 **Enter** キーを押してサーバーに接続します。
 
 .. image:: img/filezilla_connect.png
 
 .. note::
 
-    Quick Connect is a good way to test your login information. If you want to create a permanent entry, you can select **File**-> **Copy Current Connection to Site Manager** after a successful Quick Connect, enter the name and click **OK**. Next time you will be able to connect by selecting the previously saved site inside **File** -> **Site Manager**.
-    
+    クイックコネクトは、ログイン情報をテストするのに便利です。永続的なエントリーを作成したい場合は、成功したクイックコネクトの後に **File** -> **現在の接続をサイトマネージャーにコピー** を選択し、名前を入力して **OK** をクリックします。次回からは、 **File** -> **Site Manager** 内の保存されたサイトを選択して接続できます。
+
     .. image:: img/ftp_site.png
 
-**Step 3**: Upload/download files.
+**ステップ3**： ファイルのアップロード/ダウンロード。
 
-You can upload local files to Raspberry Pi by dragging and dropping them, or download the files inside Raspberry Pi
-files locally.
+Raspberry Piにローカルファイルをドラッグ&ドロップでアップロードすることも、Raspberry Pi内のファイルをローカルにダウンロードすることもできます。
 
 .. image:: img/upload_ftp.png

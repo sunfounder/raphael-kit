@@ -1,82 +1,75 @@
-2.1.1 Button
+.. _2.1.1_js:
+
+2.1.1 ボタン
 ===============
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+このプロジェクトでは、ボタンを使ってLEDをオンまたはオフにする方法を学びます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.1.1_Button.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットをまとめて購入するのは非常に便利です。以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
 
-Schematic Diagram
----------------------
+回路図
+-----------------
 
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+通常開きのボタンをRaspberry Piの入力として使用します。接続は以下の回路図で示されています。ボタンが押されると、GPIO18は低レベル（0V）になります。プログラミングを通じてGPIO18の状態を検出できます。つまり、GPIO18が低レベルになった場合、ボタンが押されたことを意味します。ボタンが押されたときに対応するコードを実行すると、LEDが点灯します。
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    LEDの長いピンはアノードで、短いピンはカソードです。
 
 .. image:: ../img/image302.png
 
-
 .. image:: ../img/image303.png
 
-
-Experimental Procedures
+実験手順
 ---------------------------
 
-**Step 1**: Build the circuit.
+**ステップ1**: 回路を組む。
 
 .. image:: ../img/image152.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -86,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**ステップ3**: コードを実行します。
 
 .. raw:: html
 
@@ -96,10 +89,10 @@ Experimental Procedures
 
     sudo node button.js
 
-Now, press the button, and the LED will light up; 
-release the button, and the LED will go out. 
+コードが実行されると、ボタンを押すとLEDが点灯し、
+ボタンを離すとLEDが消えます。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -119,7 +112,7 @@ release the button, and the LED will go out.
       led.digitalWrite(level);          
     });
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -127,7 +120,7 @@ release the button, and the LED will go out.
 
     const led = new Gpio(17, {mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, create a led object to control the IO port Gpio17, and set it to output mode.
+``pigpio`` モジュールをインポートし、ledオブジェクトを作成してIOポートGpio17を制御し、出力モードに設定します。
 
 .. code-block:: js
 
@@ -137,9 +130,9 @@ Import the ``pigpio`` module, create a led object to control the IO port Gpio17,
       edge: Gpio.EITHER_EDGE       
     });
 
-Create a button object to control the IO port Gpio18, set it to input mode,
-Pull down (low when the button is not pressed, high when the button is pressed).
-And set the interrupt function, the mode is EITHER_EDGE, that is, both rising and falling edges will trigger the interrupt function.
+ボタンオブジェクトを作成してIOポートGpio18を制御し、入力モードに設定します。
+プルダウン（ボタンが押されていないときは低く、ボタンが押されているときは高く）。
+そして、割り込み関数を設定します。モードはEITHER_EDGEです。つまり、立ち上がりエッジと立ち下がりエッジの両方が割り込み関数をトリガーします。
 
 .. code-block:: js
 
@@ -147,14 +140,14 @@ And set the interrupt function, the mode is EITHER_EDGE, that is, both rising an
       led.digitalWrite(level);          
     });
 
-Write an interrupt function, when the button is pressed, it is a falling edge, triggering the interrupt function,
-At this time, write the low level of the button IO port to the IO port of the led, and the led lights up.
+割り込み関数を記述します。ボタンが押されると、それは立ち下がりエッジであり、割り込み関数をトリガーします。
+この時、ボタンのIOポートの低レベルをledのIOポートに書き込み、ledが点灯します。
 
-When the button is released, it is a rising edge, triggering the interrupt function,
-At this time, the high level of the button IO port is written to the IO port of the led, and the led is off.     
+ボタンが放されると、それは立ち上がりエッジであり、割り込み関数をトリガーします。
+この時、ボタンのIOポートの高レベルをledのIOポートに書き込み、ledはオフになります。     
 
-Phenomenon Picture
-^^^^^^^^^^^^^^^^^^
+現象の画像
+---------------
 
 .. image:: ../img/image153.jpeg
 

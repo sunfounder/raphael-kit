@@ -1,65 +1,64 @@
-2.2.8 Ultrasonic Sensor Module
+.. _2.2.8_js:
+
+2.2.8 超音波センサモジュール
 ==============================
 
-Introduction
+はじめに
 --------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+超音波センサは、物体を正確に検出し、距離を測定するための超音波を使用します。超音波波を送出し、それらを電子信号に変換します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.5.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは確かに便利です。リンクは以下の通りです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも別々に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Ultrasonic Module`
+    *   - :ref:`超音波モジュール`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image329.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -69,7 +68,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行する。
 
 .. raw:: html
 
@@ -79,11 +78,9 @@ Experimental Procedures
 
     sudo node ultrasonic_sensor.js
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+コードが実行された後、超音波センサモジュールは、前方の障害物とモジュール自体との距離を検出し、距離値が画面に表示されます。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -121,14 +118,11 @@ value will be printed on the screen.
 
 
 
-**Code Explanation**
+**コード説明**
 
-The ``trigger`` function can be used to generate a pulse on a GPIO and 
-``alerts`` can be used to determine the time of a GPIO state change 
-accurate to a few microseconds. 
+``trigger`` 関数は、GPIO上でパルスを生成するために使用でき、 ``alerts`` は、GPIOの状態変更の時間を数マイクロ秒の精度で決定するために使用できます。
 
-These two features can be combined to measure distance using a HC-SR04 
-ultrasonic sensor.
+これらの2つの特性は、HC-SR04超音波センサを使用して距離を測定するために組み合わせることができます。
 
 .. code-block:: js
 
@@ -136,7 +130,7 @@ ultrasonic sensor.
       trigger.trigger(10, 1); // Set trigger high for 10 microseconds
     }, 1000);
 
-This is to periodically send out a 10us ultrasonic pulse.
+これは、10usの超音波パルスを定期的に送信するためのものです。
 
 .. code-block:: js
 
@@ -153,14 +147,12 @@ This is to periodically send out a 10us ultrasonic pulse.
     });
   };
 
-This function sets an alert that will record the time between sending the pulse (level is 1) and receiving the echo (level is 0).
-By multiplying the time difference by the speed of sound (and dividing by 2), you can get the distance to the obstacle ahead.
-
-
+この関数は、パルスを送信する時間（レベルが1）とエコーを受信する時間（レベルが0）の間にアラートを設定します。
+時間差に音速を掛ける（そして2で割る）ことで、前方の障害物までの距離を得ることができます。
 
 .. https://github.com/fivdi/pigpio
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image221.jpeg

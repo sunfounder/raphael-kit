@@ -1,76 +1,72 @@
-1.1.4 7-segment Display
+.. _1.1.4_js:
+
+1.1.4 7セグメントディスプレイ
 =============================
 
-Introduction
+はじめに
 --------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+0から9、AからFまでの数字を7セグメントディスプレイに表示する方法を試してみましょう。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/list_7_segment.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれぞれの部品も購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`7-segment Display`
+    *   - :ref:`7セグメントディスプレイ`
         - |link_7segment_buy|
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
-Schematic Diagram
+回路図
 ---------------------
 
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+74HC595のST_CPピンをRaspberry Pi GPIO18に、SH_CPをGPIO27に、DS
+をGPIO17に接続し、並列出力ポートをLEDセグメント
+ディスプレイの8セグメントに接続します。SH_CP（シフトレジスタのクロック入力）が立ち上がりエッジの時にDSピンにデータを入力し、ST_CP（メモリのクロック入力）が立ち上がりエッジの時にメモリレジスタに入力します。その後、Raspberry Pi GPIOを介してSH_CPとST_CPの状態を制御して、シリアルデータ入力を並列データ出力に変換することで、Raspberry Pi GPIOを節約してディスプレイを駆動できます。
 
 .. image:: img/schematic_7_segment.png
 
-Experimental Procedures
+実験手順
 --------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成する。
 
 .. image:: img/image73.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -80,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行する。
 
 .. raw:: html
 
@@ -90,9 +86,9 @@ Experimental Procedures
 
     sudo node 7-segment_display.js
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+コードを実行すると、7セグメントディスプレイが0-9、A-Fを表示します。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -123,13 +119,13 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
     }, 1000);
 
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
     const segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71];
 
-Define a hexadecimal (common cathode) segment code array from 0 to F.   
+0からFまでの16進数（共通カソード）セグメントコード配列を定義します。
 
 .. code-block:: js
 
@@ -137,7 +133,7 @@ Define a hexadecimal (common cathode) segment code array from 0 to F.
     const RCLK = new Gpio(18, { mode: Gpio.OUTPUT });
     const SRCLK = new Gpio(27, { mode: Gpio.OUTPUT });
 
-Initialize pins 17, 18, and 27 as output mode, and copy them to ``SDI``, ``RCLK``, and ``SRCLK`` respectively.
+ピン17、18、27を出力モードとして初期化し、それぞれ ``SDI``、 ``RCLK``、 ``SRCLK`` にコピーします。
 
 .. code-block:: js
 
@@ -153,8 +149,7 @@ Initialize pins 17, 18, and 27 as output mode, and copy them to ``SDI``, ``RCLK`
         RCLK.trigger(1,1);
     }
 
-Implement a ``hc595_shift`` function to convert the fields in the array ``segCode`` into numbers 
-and display them on the digital tube.
+``segCode`` 配列内のフィールドを数字に変換してデジタルチューブに表示する ``hc595_shift`` 関数を実装します。
 
 .. code-block:: js
 
@@ -164,31 +159,29 @@ and display them on the digital tube.
     }
     SDI.digitalWrite(code); 
 
-Assign the dat data to SDI(DS) by bits. 
-Here we assume dat=0x3f(0011 1111, when j=2, 0x3f will shift right(<<) 2 bits. 
-1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
-At this time, 1 is written to SDI.
+ビットごとにdatデータをSDI(DS)に割り当てます。
+ここでは、dat=0x3f(0011 1111)と仮定して、j=2のとき、0x3fは2ビット左(<<)にシフトします。
+1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000、これは真です。
+この時、1がSDIに書き込まれます。
 
 .. code-block:: js
 
     SRCLK.trigger(1,1);
 
-Generate a rising edge pulse and move the DS data to the shift register.
-
+立ち上がりエッジのパルスを生成し、DSデータをシフトレジスタに移動します。
 
 ``trigger(pulseLen, level)``
-    * pulseLen - pulse length in microseconds (1 - 100)
-    * level - 0 or 1
+    * pulseLen - パルスの長さ（マイクロ秒）(1 - 100)
+    * level - 0または1
 
-Sends a trigger pulse to the GPIO. 
-The GPIO is set to level for pulseLen microseconds and then reset to not level.
+GPIOにトリガーパルスを送信します。
+GPIOはpulseLenマイクロ秒の間、レベルに設定され、その後レベルではない状態にリセットされます。
 
 .. code-block:: js
 
     RCLK.trigger(1,1);
 
-Generate a rising edge pulse and move the data from the shift register to the storage register.
-
+立ち上がりエッジのパルスを生成し、シフトレジスタからストレージレジスタにデータを移動します。
 
 .. code-block:: js
 
@@ -198,10 +191,9 @@ Generate a rising edge pulse and move the data from the shift register to the st
         hc595_shift(segCode[index]);
     }, 1000);
 
-Finally, use the function ``hc595_shift()`` to convert the fields in ``segCode`` 
-and display them through the digital tube.   
+最終的に、関数 ``hc595_shift()`` を使用して ``segCode`` のフィールドを変換し、デジタルチューブを通して表示します。
 
-Phenomenon Picture
+現象の画像
 ---------------------------
 
 .. image:: img/image74.jpeg

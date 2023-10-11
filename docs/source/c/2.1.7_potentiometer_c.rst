@@ -1,84 +1,75 @@
 .. _2.1.7_c:
 
-2.1.7 Potentiometer
+2.1.7 ポテンショメーター
 =========================
 
-Introduction
+はじめに
 ------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+ADC機能を使用すると、アナログ信号をデジタル信号に変換できます。この実験では、ADC0834を使用してADCに関する機能を取得します。ここでは、ポテンショメーターを使用してこのプロセスを実装します。ポテンショメーターは物理的な量である電圧を変化させ、これはADC機能によって変換されます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_2.1.4_potentiometer.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。リンクは以下のとおりです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Potentiometer`
+    *   - :ref:`ポテンショメータ`
         - |link_potentiometer_buy|
     *   - :ref:`ADC0834`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image311.png
 
-
 .. image:: ../img/image312.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image180.png
 
-
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    画像で示されている対応する位置を参照して、チップを配置してください。チップの溝は、配置時に左になるようにしてください。
 
-**Step 2:** Open the code file.
+**ステップ2:** コードファイルを開きます。
 
 .. raw:: html
 
@@ -88,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.7/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -98,7 +89,7 @@ Experimental Procedures
 
     gcc 2.1.7_Potentiometer.c -lwiringPi
 
-**Step 4:** Run.
+**ステップ4:** 実行します。
 
 .. raw:: html
 
@@ -108,14 +99,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+コードを実行した後、ポテンショメーターのノブを回すと、LEDの強度がそれに応じて変わります。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示された場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -202,7 +192,7 @@ of LED will change accordingly.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -211,8 +201,8 @@ of LED will change accordingly.
     #define     ADC_DIO   2
     #define     LedPin    3
 
-Define CS, CLK, DIO of ADC0834, and connect them to GPIO0, GPIO1 and
-GPIO2 respectively. Then attach LED to GPIO3.
+ADC0834のCS、CLK、DIOを定義し、GPIO0、GPIO1、およびGPIOに接続します。
+それぞれGPIO2。 次にGPIO3にLEDを取り付けます。
 
 .. code-block:: c
 
@@ -266,14 +256,14 @@ GPIO2 respectively. Then attach LED to GPIO3.
         return(dat1==dat2) ? dat1 : 0;
     }
 
-There is a function of ADC0834 to get Analog to Digital Conversion. The
-specific workflow is as follows:
+ADC0834のアナログからデジタルへの変換を取得する機能があります。
+具体的なワークフローは以下の通りです。
 
 .. code-block:: c
 
     digitalWrite(ADC_CS, 0);
 
-Set CS to low level and start enabling AD conversion.
+CSを低レベルに設定し、AD変換を有効にします。
 
 .. code-block:: c
 
@@ -282,19 +272,16 @@ Set CS to low level and start enabling AD conversion.
     digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
 
-When the low-to-high transition of the clock input occurs at the first
-time, set DIO to 1 as Start bit. In the following three steps, there are
-3 assignment words.
+クロック入力の低から高への遷移が初めて発生するとき、DIOを1に設定してスタートビットとします。次の3つのステップでは、3つの代入語があります。
 
 .. code-block:: c
 
     //Single End mode
     digitalWrite(ADC_CLK,0);
-    igitalWrite(ADC_DIO,1);    delayMicroseconds(2);
-    gitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
 
-As soon as the low-to-high transition of the clock input occurs for the
-second time, set DIO to 1 and choose SGL mode.
+クロック入力の低から高への遷移が2回目に発生するとすぐに、DIOを1に設定し、SGLモードを選択します。
 
 .. code-block:: c
 
@@ -303,8 +290,7 @@ second time, set DIO to 1 and choose SGL mode.
     digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
 
-Once occurs for the third time, the value of DIO is controlled by the
-variable **odd**.
+3回目に発生すると、DIOの値は変数 **odd** によって制御されます。
 
 .. code-block:: c
 
@@ -313,21 +299,16 @@ variable **odd**.
     digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);
 
-The pulse of CLK converted from low level to high level for the forth
-time, the value of DIO is controlled by the variable **sel**.
+CLKのパルスが4回目に低レベルから高レベルに変換されると、DIOの値は変数 **sel** によって制御されます。
 
-Under the condition that channel=0, sel=0, odd=0, the operational
-formulas concerning **sel** and **odd** are as follows:
+channel=0, sel=0, odd=0の条件の下で、 **sel** と **odd** に関する操作式は以下の通りです。
 
 .. code-block:: c
 
     int sel = channel > 1 & 1;
     int odd = channel & 1;
 
-When the condition that channel=1, sel=0, odd=1 is met, please refer to
-the following address control logic table. Here CH1 is chosen, and the
-start bit is shifted into the start location of the multiplexer register
-and conversion starts.
+channel=1, sel=0, odd=1の条件が満たされた場合、以下のアドレス制御ロジックテーブルを参照してください。ここではCH1が選択され、スタートビットが多重器レジスタのスタート位置にシフトされ、変換が開始されます。
 
 .. image:: ../img/image313.png
 
@@ -338,7 +319,7 @@ and conversion starts.
     digitalWrite(ADC_CLK,0);
     digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
 
-Here, set DIO to 1 twice, please ignore it.
+ここで、DIOを2回1に設定しますが、無視してください。
 
 .. code-block:: c
 
@@ -351,10 +332,7 @@ Here, set DIO to 1 twice, please ignore it.
             dat1=dat1<<1 | digitalRead(ADC_DIO);
         }
 
-In the first for() statement, as soon as the fifth pulse of CLK is
-converted from high level to low level, set DIO to input mode. Then the
-conversion starts and the converted value is stored in the variable
-dat1. After eight clock periods, the conversion is complete.
+最初のfor()文では、CLKの5回目のパルスが高レベルから低レベルに変換されるとすぐに、DIOを入力モードに設定します。そして変換が開始され、変換された値は変数dat1に格納されます。8つのクロック周期の後、変換は完了します。
 
 .. code-block:: c
 
@@ -365,8 +343,7 @@ dat1. After eight clock periods, the conversion is complete.
             digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
         }
 
-In the second for() statement, output the converted values via DO after
-other eight clock periods and store them in the variable dat2.
+2つ目のfor()文では、他の8つのクロック周期の後、変換された値をDO経由で出力し、変数dat2に格納します。
 
 .. code-block:: c
 
@@ -374,17 +351,13 @@ other eight clock periods and store them in the variable dat2.
     pinMode(ADC_DIO, OUTPUT);
     return(dat1==dat2) ? dat1 : 0;
 
-return(dat1==dat2) ? dat1 : 0 is used to compare the value gotten during
-the conversion and the output value. If they are equal to each other,
-output the converting value dat1; otherwise, output 0. Here, the
-workflow of ADC0834 is complete.
+return(dat1==dat2) ? dat1 : 0は、変換中に取得された値と出力値を比較するために使用されます。両方が等しい場合は、変換値dat1を出力し、そうでない場合は0を出力します。ここで、ADC0834のワークフローは完了します。
 
 .. code-block:: c
 
     softPwmCreate(LedPin,  0, 100);
 
-The function is to use software to create a PWM pin, LedPin, then the
-initial pulse width is set to 0, and the period of PWM is 100 x 100us.
+この関数は、ソフトウェアを使用してPWMピン、LedPinを作成するためのものです。その後、初期のパルス幅は0に設定され、PWMの周期は100 x 100usとなります。
 
 .. code-block:: c
 
@@ -395,12 +368,9 @@ initial pulse width is set to 0, and the period of PWM is 100 x 100us.
             delay(100);
         }
 
-In the main program, read the value of channel 0 that has been connected
-with a potentiometer. And store the value in the variable analogVal then
-write it in LedPin. Now you can see the brightness of LED changing with
-the value of the potentiometer.
+メインプログラムでは、ポテンショメーターに接続されたチャンネル0の値を読み取ります。そして、その値を変数analogValに格納し、LedPinに書き込みます。これで、ポテンショメーターの値に応じてLEDの明るさが変わるのがわかります。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image181.jpeg

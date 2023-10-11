@@ -1,81 +1,76 @@
 .. _2.1.2_c:
 
-2.1.2 Micro Switch
+2.1.2 マイクロスイッチ
 =======================
 
-Introduction
+はじめに
 --------------------
 
-In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+このプロジェクトでは、マイクロスイッチの使用方法を学びます。マイクロスイッチは、非常に感度が高く、最小の圧縮で動作する小型のスイッチです。信頼性が高く、感度が良いため、マイクロスイッチはしばしば安全装置として使用されます。
 
-They are used to prevent doors from closing if something or someone is in the way and other applications similar.
+これは、何かや誰かが邪魔になってドアが閉まらないようにするためや、それに類似した他のアプリケーションに使用されます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/2.1.2component.png
 
-
-It's definitely convenient to buy a whole kit, here's the link: 
+一式をまとめて購入すると便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - 部品の紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Micro Switch`
+    *   - :ref:`マイクロスイッチ`
         - \-
-    *   - :ref:`Capacitor`
+    *   - :ref:`コンデンサ`
         - |link_capacitor_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-move arm of the Micro Switch, you can see the two LEDs light up alternately.
+マイクロスイッチの左ピンをGPIO17に、2つのLEDをそれぞれGPIO22とGPIO27に接続します。そして、マイクロスイッチの動くアームを押して離すと、2つのLEDが交互に点灯するのが見られます。
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/micro_Schematic.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/2.1.4fritzing.png
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -85,7 +80,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.2
 
-**Step 3**: Compile.
+**ステップ3**: コンパイルする。
 
 .. raw:: html
 
@@ -95,7 +90,7 @@ Experimental Procedures
 
     gcc 2.1.2_MicroSwitch.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**ステップ4**: 上記の実行可能ファイルを実行する。
 
 .. raw:: html
 
@@ -105,13 +100,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, press the Micro Switch, then the yellow LED lights up; release the moving arm, the red LED turns on.
+コードが実行されている間、マイクロスイッチを押すと、黄色のLEDが点灯します。動くアームを離すと、赤いLEDが点灯します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -153,7 +148,7 @@ While the code is running, press the Micro Switch, then the yellow LED lights up
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -163,8 +158,7 @@ While the code is running, press the Micro Switch, then the yellow LED lights up
                 printf("LED1 on\n");
         }
 
-When the moving arm of the micro switch is released, the left pin is connected to the right pin; at this time, a high level will be read on GPIO17, and then LED1 will be on and LED2 will be off.
-
+マイクロスイッチの動くアームが放されると、左のピンは右のピンに接続されます。この時、GPIO17には高レベルが読み取られ、その結果、LED1が点灯し、LED2が消灯します。
 
 .. code-block:: c
 
@@ -174,10 +168,9 @@ When the moving arm of the micro switch is released, the left pin is connected t
                 printf(".....LED2 on\n");
             }
 
-When the move arm is pressed, the left pin and the middle pin are connected. At this point a low level will be read on GPIO17, then turns LED2 on and LED1 off.
+アームが押されると、左のピンと中央のピンが接続されます。この時点でGPIO17には低レベルが読み取られ、LED2が点灯し、LED1が消灯します。
 
-
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/2.1.2micro_switch.JPG

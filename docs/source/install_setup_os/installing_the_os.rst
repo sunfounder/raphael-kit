@@ -1,51 +1,41 @@
 .. _install_os:
 
-Installing the OS (Common)
+OSのインストール（一般手順）
 ========================================
 
-**Step 1**
+**ステップ1**
 
-Raspberry Pi have developed a graphical SD card writing tool that works
-on Mac OS, Ubuntu 18.04 and Windows, and is the easiest option for most
-users as it will download the image and install it automatically to the
-SD card.
+Raspberry Piは、Mac OS、Ubuntu 18.04、およびWindowsで動作するグラフィカルなSDカード書き込みツールを開発しています。このツールはほとんどのユーザーにとって最も簡単な選択肢であり、イメージを自動的にダウンロードしてSDカードにインストールします。
 
-Visit the download page: https://www.raspberrypi.org/software/. Click on
-the link for the **Raspberry Pi Imager** that matches your operating system,
-when the download finishes, click it to launch the installer.
+ダウンロードページ（https://www.raspberrypi.org/software/）にアクセスし、お使いのOSに対応した **Raspberry Pi Imager** のリンクをクリックします。ダウンロードが完了したら、インストーラーを起動します。
 
 .. image:: img/image11.png
     :align: center
 
+**ステップ2**
 
-**Step 2**
+インストーラーを起動すると、OSが実行をブロックしようとする場合があります。例えば、Windowsでは以下のようなメッセージが表示されます：
 
-When you launch the installer, your operating system may try to block
-you from running it. For example, on Windows I receive the following
-message:
-
-If this pops up, click on **More info** and then **Run anyway**, then
-follow the instructions to install the Raspberry Pi Imager.
+このようなポップアップが表示された場合は、 **More info** をクリックしてから **Run anyway** をクリックし、Raspberry Pi Imagerのインストール手順に従います。
 
 .. image:: img/image12.png
     :align: center
 
-**Step 3**
+**ステップ3**
 
-Insert your SD card into the computer or laptop SD card slot.
+SDカードをコンピューターまたはラップトップのSDカードスロットに挿入します。
 
-**Step 4**
+**ステップ4**
 
-In the Raspberry Pi Imager, select the OS that you want to install and
-the SD card you would like to install it on.
+Raspberry Pi Imager内で、インストールしたいOSと使用するSDカードを選択します。
 
 .. image:: img/image13.png
     :align: center
 
-.. note:: 
+.. note::
 
-    * You will need to be connected to the internet the first time.
-    * That OS will then be stored for future offline use(``lastdownload.cache``, ``C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache``). So the next time you open the software, it will have the display "Released: date, cached on your computer".
+    * 初回はインターネットに接続している必要があります。
+    * 選択したOSは、今後オフラインで使用するために保存されます（ ``lastdownload.cache`` 、 ``C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache`` ）。次回ソフトウェアを起動する際、コンピューターにキャッシュされた日付が表示されます。
 
 .. Download the `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ image and select it in Raspberry Pi Imager.
 
@@ -58,57 +48,51 @@ the SD card you would like to install it on.
 
 .. .. mark
 
+**ステップ5**
 
-**Step 5**
-
-Select the SD card you are using.
+使用するSDカードを選択します。
 
 .. image:: img/image14.png
     :align: center
 
-**Step 6**
+**ステップ6**
 
-Press **Ctrl+Shift+X** or click the **setting** icon to open the **Advanced options** page to enable SSH and set username and password. 
+**Ctrl+Shift+X** を押すか、 **setting** アイコンをクリックして **Advanced options** ページを開き、SSHを有効にし、ユーザー名とパスワードを設定します。
 
     .. note::
-        * Now that the Raspberry Pi doesn't have a default password, you will need to set it yourself. Also, the username can be changed.
-        * For remote access, you will also need to enable SSH manually.
-
+        * Raspberry Piにはデフォルトのパスワードがないため、自分で設定する必要があります。また、ユーザー名も変更できます。
+        * リモートアクセスの場合、SSHも手動で有効にする必要があります。
 
 .. image:: img/image15.png
     :align: center
 
-Then scroll down to complete the wifi configuration and click **SAVE**.
+その後、Wi-Fi設定を完了し、 **SAVE** をクリックします。
 
 .. note::
 
-    ``wifi country`` should be set the two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ for the country in which you are using your Raspberry Pi.
+    ``wifi country`` は、Raspberry Piを使用している国の2文字の `ISO/IEC alpha2コード  <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ に設定する必要があります。
 
 .. image:: img/image16.png
     :align: center
 
-**Step 7**
+**ステップ7**
 
-Click the **WRITE** button.
+**WRITE** ボタンをクリックします。
 
 .. image:: img/image17.png
     :align: center
 
-**Step 8**
+**ステップ8**
 
-If your SD card currently has any files on it, you may wish to back up
-these files first to prevent you from permanently losing them. If there
-is no file to be backed up, click **Yes**.
+SDカードに既存のファイルがある場合は、それらのファイルをバックアップしてから進めてください。バックアップするファイルがない場合は、 **Yes** をクリックします。
 
 .. image:: img/image18.png
     :align: center
 
-**Step 9**
+**ステップ9**
 
-After waiting for a period of time, the following window will appear to
-represent the completion of writing.
+一定時間待った後、書き込みが完了したことを示すウィンドウが表示されます。
 
 .. image:: img/image19.png
     :align: center
-
 

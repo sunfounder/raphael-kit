@@ -3,73 +3,67 @@
 2.2.3 DHT-11
 ==================
 
-Introduction
+はじめに
 --------------
 
-The digital temperature and humidity sensor DHT11 is a composite sensor
-that contains a calibrated digital signal output of temperature and
-humidity. The technology of a dedicated digital modules collection and
-the technology of the temperature and humidity sensing are applied to
-ensure that the product has high reliability and excellent stability.
+デジタル温度湿度センサーDHT11は、温度と湿度のキャリブレートされたデジタル信号出力を含む複合センサーです。専用のデジタルモジュール収集技術と温度湿度検知技術が適用されており、製品が高い信頼性と優れた安定性を持っていることを確保します。
 
-The sensors include a wet element resistive sensor and a NTC temperature
-sensor and they are connected to a high performance 8-bit
-microcontroller.
+センサーには、湿式抵抗センサーとNTC温度センサーが含まれており、高性能の8ビットマイクロコントローラーに接続されています。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_2.2.3_dht-11.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全キットを購入することは確かに便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Humiture Sensor Module`
+    *   - :ref:`湿温センサモジュール`
         - |link_humiture_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image326.png
 
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image207.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -79,7 +73,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.3/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -89,7 +83,7 @@ Experimental Procedures
 
     gcc 2.2.3_DHT.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**ステップ4:** 実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -99,14 +93,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the program will print the temperature and humidity
-detected by DHT11 on the computer screen.
+コードが実行されると、プログラムはコンピュータの画面にDHT11で検出された温度と湿度を表示します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラーメッセージが表示される場合「wiringPi.h: No such file or directory」は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -180,7 +173,7 @@ detected by DHT11 on the computer screen.
         return 0 ;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -193,11 +186,11 @@ detected by DHT11 on the computer screen.
         // ...
     }
 
-This function is used to realize the function of DHT11.
+この関数はDHT11の機能を実現するために使用されます。
 
-It generally can be divided into 3 parts:
+主に3つの部分に分けられます：
 
-1. prepare to read the pin:
+1. ピンの読み取り準備:
 
 .. code-block:: c
 
@@ -211,16 +204,14 @@ It generally can be divided into 3 parts:
     // prepare to read the pin
     pinMode(dhtPin, INPUT);
 
-Its communication flow is determined by work timing.
+その通信の流れは、動作タイミングによって決まります。
 
 .. image:: ../img/image208.png
 
 
-When DHT11 starts up, MCU will send a low level signal and then keep the
-signal at high level for 40us. After that, the detection of the
-condition of external environment will start.
+DHT11が起動すると、MCUは低レベルの信号を送信し、その後40usの間に高レベルの信号を維持します。その後、外部環境の条件の検出が始まります。
 
-2. read data:
+2. データ読み取り:
 
 .. code-block:: c
 
@@ -246,16 +237,11 @@ condition of external environment will start.
             }
         }
 
-The loop stores the detected data in the dht11_dat[] array. DHT11
-transmits data of 40 bits at a time. The first 16 bits are related to
-humidity, the middle 16 bits are related to temperature, and the last
-eight bits are used for verification. The data format is:
+このループは、検出されたデータをdht11_dat[]配列に格納します。DHT11は一度に40ビットのデータを送信します。最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用されます。データフォーマットは：
 
-**8bit humidity integer data** + **8bit humidity decimal data** + **8bit
-temperature integer data** + **8bit temperature decimal data** + **8bit
-check bit**.
+**8ビットの湿度整数データ** + **8ビットの湿度小数データ** + **8ビットの温度整数データ** + **8ビットの温度小数データ** + **8ビットのチェックビット**。
 
-3. Print Humidity & Temperature.
+3. 湿度 & 温度の印刷
 
 .. code-block:: c
 
@@ -268,28 +254,21 @@ check bit**.
                 dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
     }
 
-When the data storage is up to 40 bits, check the validity of the data
-through the **check bit (dht11_dat[4])**, and then print the temperature
-and humidity.
+データが40ビットに達したら、 **チェックビット(dht11_dat[4])** を通じてデータの有効性をチェックし、その後、温度と湿度を印刷します。
 
-For example, if the received data is 00101011(8-bit value of humidity
-integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit
-value of temperature integer) 00000000 (8-bit value of temperature
-decimal) 01100111 (check bit)
+例として、受け取ったデータが00101011(湿度整数の8ビット値) 00000000 (湿度小数の8ビット値) 00111100 (温度整数の8ビット値) 00000000 (温度小数の8ビット値) 01100111 (チェックビット)の場合、
 
-**Calculation:**
+**計算:**
 
-00101011+00000000+00111100+00000000=01100111.
+00101011+00000000+00111100+00000000=01100111。
 
-The final result is equal to the check bit data, then the received data
-is correct:
+最終結果がチェックビットデータと等しい場合、受信データは正確です。
 
-Humidity =43%，Temperature =60*C.
+湿度=43%，温度=60°C。
 
-If it is not equal to the check bit data, the data transmission is not
-normal and the data is received again.
+それがチェックビットデータと等しくない場合、データの伝送が正常ではなく、データは再び受信されます。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image209.jpeg

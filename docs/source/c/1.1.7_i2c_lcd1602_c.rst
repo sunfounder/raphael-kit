@@ -3,51 +3,50 @@
 1.1.7 I2C LCD1602
 =======================
 
-Introduction
+はじめに
 ------------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+LCD1602は、文字タイプの液晶ディスプレイで、同時に32 (16*2) 文字を表示することができます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下の部品が必要です。
 
 .. image:: ../img/list_i2c_lcd.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは間違いなく便利です。以下がリンクです:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+回路図
 ---------------------
 
 ============ ========
@@ -58,18 +57,16 @@ SCL1         Pin 5
 
 .. image:: ../img/schematic_i2c_lcd.png
 
-
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image96.png
 
+**ステップ2**: I2Cの設定をします（ :ref:`I2C設定` を参照。もしすでにI2Cを設定している場合は、このステップをスキップしてください。）
 
-**Step 2**: Setup I2C (see :ref:`I2C Configuration`. If you have set I2C, skip this step.)
-
-**Step 3:** Change directory.
+**ステップ3:** ディレクトリを変更します。
 
 .. raw:: html
 
@@ -79,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.7/
 
-**Step 4:** Compile.
+**ステップ4:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -89,7 +86,7 @@ Experimental Procedures
 
     gcc 1.1.7_Lcd1602.c -lwiringPi
 
-**Step 5:** Run.
+**ステップ5:** 実行ファイルを実行します。
 
 .. raw:: html
 
@@ -99,19 +96,19 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you can see ``Greetings!, From SunFounder`` displaying on the LCD.
+コードを実行した後、LCDに ``Greetings!, From SunFounder`` と表示されます。
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * 実行後に動作しない、またはエラーメッセージ ``wiringPi.h: No such file or directory`` が表示された場合、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` というエラーが表示された場合、 :ref:`i2c_config` でI2Cを有効にし、配線が正しいか確認してください。
+    * コードと配線が正しくてもLCDに内容が表示されない場合は、背面のポテンショメータを回してコントラストを上げることができます。
 
-**Code**
+**コード**
 
 * `1.1.7_Lcd1602.c <https://github.com/sunfounder/raphael-kit/blob/master/c/1.1.7/1.1.7_Lcd1602.c>`_
 
-**Code Explanation**
+**コード説明**
 
 .. code-block::
 
@@ -122,28 +119,28 @@ After the code runs, you can see ``Greetings!, From SunFounder`` displaying on t
     void clear(){……}
     void write(int x, int y, char data[]){……}
 
-These functions are used to control I2C LCD1602 open source code. They allow us to easily use I2C LCD1602.
-Among these functions, ``init()`` is used for initialization, ``clear()`` is used to clear the screen, ``write()`` is used to write what is displayed, and other functions support the above functions.
+これらの関数は、I2C LCD1602のオープンソースコードを制御するために使用されます。これにより、I2C LCD1602の使用が容易になります。
+これらの関数の中で、 ``init()`` は初期化用、 ``clear()`` は画面をクリアするためのもの、 ``write()`` は表示するものを書き込むためのものであり、他の関数は上記の関数をサポートするためのものです。
 
 .. code-block:: c
 
     fd = wiringPiI2CSetup(LCDAddr);
 
-This function initializes the I2C system with the specified device symbol. The prototype of the function:
+この関数は、指定されたデバイス記号でI2Cシステムを初期化します。関数のプロトタイプ:
 
 .. code-block:: c
 
     int wiringPiI2CSetup(int devId);
 
-Parameters devId is the address of the I2C device, it can be found through the i2cdetect command(see Appendix) and the devId of I2C LCD1602 is generally 0x27.
+パラメータdevIdは、I2Cデバイスのアドレスで、i2cdetectコマンド(参考文献参照)を使用して見つけることができます。I2C LCD1602のdevIdは通常0x27です。
 
 .. code-block:: c
 
     void write(int x, int y, char data[]){}
 
-In this function, ``data[]`` is the character to be printed on the LCD, and the parameters x and y determine the printing position (line y+1, column x+1 is the starting position of the character to be printed).
+この関数の中で、 ``data[]`` はLCDに印刷される文字であり、パラメータxとyは印刷位置を決定します（行y+1、列x+1が印刷される文字の開始位置です）。
 
-Phenomenon Picture
+現象の画像
 --------------------------
 
 .. image:: ../img/image97.jpeg

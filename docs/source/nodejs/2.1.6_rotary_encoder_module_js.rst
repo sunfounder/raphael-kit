@@ -1,73 +1,72 @@
-2.1.6 Rotary Encoder Module
-===========================
+.. _2.1.6_js:
 
-**Introduction**
+2.1.6 ロータリーエンコーダモジュール
+======================================
+
+はじめに
 ------------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+このプロジェクトでは、ロータリーエンコーダについて学びます。ロータリーエンコーダは、
+一定のタイミングシーケンスでの一定のパルスを持つ電子スイッチです。
+ICと組み合わせると、インクリメント、デクリメント、ページ送りや
+マウスのスクロール、メニュー選択などの操作を実現できます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てを一つのキットで購入すると便利です。以下がそのリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Rotary Encoder Module`
+    *   - :ref:`ロータリーエンコーダモジュール`
         - |link_rotary_encoder_buy|
 
-**Schematic Diagram**
+回路図
 ------------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
-17.
+この例では、ブレッドボードと40ピンケーブルを使って、ロータリーエンコーダのピンを
+Raspberry Piに直接接続できます。ロータリーエンコーダのGNDをGNDに、「+」を5Vに、SWをデジタルGPIO27に、DTをデジタルGPIO18に、CLKをデジタルGPIO 17に接続します。
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -77,7 +76,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行する。
 
 .. raw:: html
 
@@ -87,13 +86,12 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo node rotary_encoder_module.js
 
-You will see the count on the shell. 
-When you turn the rotary encoder clockwise, the count is increased; 
-when turn it counterclockwise, the count is decreased. 
-If you press the switch on the rotary encoder, the readings will return to zero.
+シェル上にカウントが表示されます。
+ロータリーエンコーダを時計回りに回すと、カウントが増加し、
+反時計回りに回すと、カウントが減少します。
+ロータリーエンコーダ上のスイッチを押すと、読み取り値はゼロに戻ります。
 
-
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -133,7 +131,7 @@ If you press the switch on the rotary encoder, the readings will return to zero.
 
 
 
-**Code Explanation**
+**コード説明**
 
 
 .. code-block:: js
@@ -150,10 +148,9 @@ If you press the switch on the rotary encoder, the readings will return to zero.
       console.log(`globalCounter = ${globalCounter}`);
     });
 
-When dtPin goes from low to high, if clkPin is high, 
-the count decreases, 
-otherwise the count increases.
-
+dtPinが低から高になるとき、clkPinが高い場合、
+カウントは減少します。
+そうでない場合、カウントは増加します。
 
 .. code-block:: js
 
@@ -163,11 +160,10 @@ otherwise the count increases.
     });
 
 
-The swPin will output low when the shaft is pressed. 
-Let the globalCounter go to zero at this point
+軸が押されると、swPinは低を出力します。
+この時点でglobalCounterをゼロに設定します。
 
-
-**Phenomenon Picture**
+現象の画像
 -------------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG

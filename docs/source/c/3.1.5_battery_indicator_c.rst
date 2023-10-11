@@ -1,56 +1,57 @@
-3.1.5 Battery Indicator
+.. _3.1.5_c:
+
+3.1.5 バッテリーインジケータ
 ==================================
 
-Introduction
+はじめに
 --------------
 
-In this project, we will make a battery indicator device that can
-visually display the battery level on the LED Bargraph.
+このプロジェクトでは、LEDバーグラフ上でバッテリーレベルを視覚的に表示できるバッテリーインジケータデバイスを作成します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_Battery_Indicator.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+すべてを一つのキットで購入するのが便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`LED Bar Graph`
+    *   - :ref:`LEDバーグラフ`
         - \-
     *   - :ref:`ADC0834`
         - \-
 
-Schematic Diagram
+回路図
 -------------------
 
 ============ ======== ======== ===
@@ -73,14 +74,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one5.png
    :align: center
 
-Experimental Procedures
+実験手順
 -------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image248.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -90,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.5/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -100,7 +101,7 @@ Experimental Procedures
 
     gcc 3.1.5_BatteryIndicator.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**ステップ4:** 実行可能ファイルを起動します。
 
 .. raw:: html
 
@@ -110,16 +111,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program runs, give the 3rd pin of ADC0834 and the GND a
-lead-out wire separately and then lead them to the two poles of a
-battery separately. You can see the corresponding LED on the LED
-Bargraph is lit up to display the power level (measuring range: 0-5V).
+プログラムを実行した後、ADC0834の3番ピンとGNDにそれぞれリードワイヤを取り付け、それらをバッテリーの二極にそれぞれ接続します。LEDバーグラフ上の対応するLEDが点灯し、電源レベル（測定範囲: 0-5V）を表示します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合、 :ref:`install_wiringpi` を参照してください。
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -132,10 +130,7 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
         }
     }
 
-This function works for controlling the turning on or off of the 10 LEDs
-on the LED Bargraph. We give these 10 LEDs high levels to let they are
-off at first, then decide how many LEDs are lit up by changing the
-received analog value.
+この関数はLEDバーグラフ上の10個のLEDの点灯または消灯を制御するためのものです。まず、これらの10個のLEDに高レベルを与えて最初に消灯させ、受け取ったアナログ値を変更することで点灯するLEDの数を決定します。
 
 .. code-block:: c
 
@@ -160,16 +155,13 @@ received analog value.
         return 0;
     }
 
-analogVal produces values (**0-255**) with varying voltage values
-(**0-5V**), ex., if a 3V is detected on a battery, the corresponding
-value **152** is displayed on the voltmeter.
+analogValは、異なる電圧値(**0-5V**)で値(**0-255**)を生成します。例えば、バッテリーで3Vが検出されると、ボルトメーターに対応する値 **152** が表示されます。
 
-The **10** LEDs on the LED Bargraph are used to display the
-**analogVal** readings. 255/10=25, so every **25** the analog value
-increases, one more LED turns on, ex., if “analogVal=150 (about 3V),
-there are 6 LEDs turning on.”
+LEDバーグラフ上の **10** 個のLEDは、 **analogVal** の読み取り値を表示するために使用されます。255/10=25なので、アナログ値が **25** 増加するたびに、1つ多くのLEDが点灯します。例えば、「analogVal=150（約3V）」の場合、6つのLEDが点灯します。
 
-**Phenomenon Picture**
+
+現象の画像
+-------------------------
 
 .. image:: ../img/image249.jpeg
    :align: center

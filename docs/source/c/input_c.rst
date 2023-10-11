@@ -1,7 +1,7 @@
-Input
+入力
 =============
 
-2.1 Controllers
+2.1 コントローラー
 --------------------
 
 .. toctree::
@@ -17,7 +17,7 @@ Input
     2.1.8_keypad_c
     2.1.9_joystick_c
 
-2.2 Sensors
+2.2 センサー
 ---------------
 
 .. toctree::

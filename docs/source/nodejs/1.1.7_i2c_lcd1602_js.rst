@@ -1,51 +1,52 @@
+.. _1.1.7_js:
+
 1.1.7 I2C LCD1602
 =======================
 
-Introduction
+はじめに
 ------------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+LCD1602は、文字タイプの液晶ディスプレイで、同時に32(16×2)の文字を表示することができます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_i2c_lcd.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも個別に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+回路図
 ---------------------
 
 ============ ========
@@ -57,16 +58,16 @@ SCL1         Pin 5
 .. image:: ../img/schematic_i2c_lcd.png
 
 
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/image96.png
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`. If you have set I2C, skip this step.)
+**ステップ2:** I2Cをセットアップする（ :ref:`i2c_config` 参照。すでにI2Cを設定している場合、このステップをスキップしてください。）
 
-**Step 3:** Go to the folder of the code.
+**ステップ3:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -76,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 4:** Install dependencies.
+**ステップ4:** 依存関係をインストールする。
 
 .. raw:: html
 
@@ -86,7 +87,7 @@ Experimental Procedures
 
     sudo npm install @oawu/lcd1602
 
-**Step 5:** Run the code.
+**ステップ5:** コードを実行する。
 
 .. raw:: html
 
@@ -96,9 +97,9 @@ Experimental Procedures
 
     sudo node i2c_lcd1602.js
 
-After the code runs, you can see ``Greetings!!, From SunFounder`` displaying on the LCD.
+コードを実行した後、LCDに ``Greetings!!, From SunFounder`` と表示されるのを確認できます。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -108,17 +109,17 @@ After the code runs, you can see ``Greetings!!, From SunFounder`` displaying on 
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
     const LCD = require('@oawu/lcd1602');
     const lcd = new LCD();
 
-Import the ``lcd1602`` module and represent it with ``lcd``.
+``lcd1602`` モジュールをインポートし、それを ``lcd`` で表します。
 
 .. note::
-    For the lcd1602 module, please refer to: https://www.npmjs.com/package/@oawu/lcd1602
+    lcd1602モジュールについては、次のリンクを参照してください： https://www.npmjs.com/package/@oawu/lcd1602
 
    
 .. code-block:: js
@@ -126,16 +127,16 @@ Import the ``lcd1602`` module and represent it with ``lcd``.
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
-Calling the encapsulated ``text()`` function in the ``LCD`` class can make the lcd1602 display the text we want.
+``LCD`` クラス内にカプセル化された ``text()`` 関数を呼び出すことで、lcd1602に表示したいテキストを表示させることができます。
 
-The ``text()`` function receives three parameters, 
-the first parameter is the line of lcd1602, 
-the second parameter represents the position of the displayed text, 
-and the third parameter represents the text we want to display.
+``text()`` 関数は三つのパラメータを受け取ります。
+最初のパラメータはlcd1602の行を表し、
+二番目のパラメータは表示されるテキストの位置を表し、
+三番目のパラメータは表示したいテキストを表します。
 
-The **1602** number in the LCD model means it has 2 rows of 16 cells each.
+LCDモデルの中の **1602** という数字は、それぞれ16のセルを持つ2行を意味しています。
 
-Phenomenon Picture
+現象の画像
 --------------------------
 
 .. image:: ../img/image97.jpeg

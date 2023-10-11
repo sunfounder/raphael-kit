@@ -1,66 +1,57 @@
-.. _4.1.17_python:
+.. _4.1.17_py:
 
-4.1.17 GAME– Guess Number
-~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1.17 ゲーム – 数字当て
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+数字当ては、楽しいパーティゲームです。あなたと友人は、数字（0〜99）をRaspberry Piに入力し、それがモールスコードとして表示されるようにします。数字を入力するたびに範囲が狭くなり、誰かが正しく答えるとそのプレイヤーが負けて罰されます。例えば、プレイヤーが見ることができない運の数字が51の場合、プレイヤー①が50を入力すると、数字の範囲のヒントが50〜99に変わります。プレイヤー②が70を入力すると、数字の範囲は50〜70となります。プレイヤー③が51を入力すると、このプレイヤーが不運なものとなります。このプロジェクトでは、数字を入力するためのキーパッドと結果を出力するためのLCDを使用します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_GAME_Guess_Number.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入することは非常に便利です。リンクは以下のとおりです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Keypad`
+    *   - :ref:`キーパッド`
         - \-
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
 
-
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== =======
@@ -80,16 +71,16 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: ../img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
+実験の手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image273.png
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`.)
+**ステップ2**: I2Cを設定します（ :ref:`i2c_config` を参照してください。）
 
-**Step 3**: Change directory.
+**ステップ3**: ディレクトリを変更します。
 
 .. raw:: html
 
@@ -99,7 +90,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 4**: Run.
+**ステップ4**: 実行します。
 
 .. raw:: html
 
@@ -109,45 +100,36 @@ Experimental Procedures
 
     sudo python3 4.1.17_GAME_GuessNumber.py
 
-After the program runs, there displays the initial page on the LCD:
+プログラムが実行された後、LCDに初期ページが表示されます：
 
 .. code-block:: 
 
    Welcome!
    Press A to go!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+‘A’を押すと、ゲームが開始され、ゲームページがLCDに表示されます。
 
 .. code-block:: 
 
    Enter number:
    0 ‹point‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+ゲームが始まると、ランダムな数値「 **point** 」が生成されますが、LCDには表示されません。あなたのタスクはそれを推測することです。入力した数字は、最終計算が完了するまでの第一行の末尾に表示されます。（「D」を押して比較を開始し、入力数が **10** より大きい場合、自動的な比較が開始されます。）
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
+「point」の数字範囲は2行目に表示されます。そして、あなたはその範囲内の数字を入力する必要があります。数字を入力すると、範囲が狭まります。もしあなたが運よく、または不運にもラッキーナンバーを手に入れた場合、"当たり！"と表示されます。
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` というエラーが出た場合は、 :ref:`i2c_config` を参照してI2Cを有効にする必要があります。
+    * ``ModuleNotFoundError: No module named 'smbus2'`` エラーが発生した場合は、 ``sudo pip3 install smbus2`` を実行してください。
+    * エラー ``OSError: [Errno 121] Remote I/O error`` が表示された場合、モジュールが間違って配線されているか、モジュールが壊れている可能性があります。
+    * コードと配線が正しく、LCDがまだ内容を表示しない場合、背面の可変抵抗を回してコントラストを上げることができます。
 
-
-**Code**
+**コード**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    下のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、それを行う前に、ソースコードのパス（例： ``raphael-kit/python`` ）に移動する必要があります。コードを変更した後、それを直接実行して効果を確認することができます。
+
 
 .. raw:: html
 
@@ -282,13 +264,11 @@ appear “You've got it!”
       except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
          destroy()
 
-**Code Explanation**
+**コードの説明**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in :ref:`1.1.7_py` and :ref:`2.1.8_py`.
+コードの冒頭部分には、 **keypad** と **I2C LCD1602** の機能関数があります。詳細については、 :ref:`1.1.7_py` および :ref:`2.1.8_py` で学ぶことができます。
 
-Here, what we need to know is as follows:
+以下に、私たちが知る必要がある内容を示します：
 
 .. code-block:: python
 
@@ -300,8 +280,7 @@ Here, what we need to know is as follows:
         count = 0
         print('point is %d' %(pointValue))
 
-The function produces the random number ‘\ **point**\ ’ and resets the
-range hint of the point.
+この関数はランダムな数値「 **point** 」を生成し、pointの範囲のヒントをリセットします。
 
 .. code-block:: python
 
@@ -319,11 +298,8 @@ range hint of the point.
         count = 0
         return 0
 
-``detect_point()`` compares the input number (**count**) with the produced
-“\ **point**\ ”. If the comparing outcome is that they are not same,
-**count** will assign values to **upper** and **lower** and return
-‘\ **0**\ ’; otherwise, if the outcome indicates they are same, there
-returns ‘\ **1**\ ’.
+``detect_point()`` は、入力された数値 (**count**) と生成された “\ **point**\ ” を比較します。比較の結果、2つの値が異なる場合、 **count** は **upper** と **lower** に値を割り当て、‘\ **0**\ ’を返します。逆に、2つの値が同じである場合、‘\ **1**\ ’を返します。
+
 
 .. code-block:: python
 
@@ -341,11 +317,9 @@ returns ‘\ **1**\ ’.
         LCD1602.write(3,1,' < Point < ')
         LCD1602.write(13,1,str(upper))
 
-This function works for displaying the game page.
+この関数はゲームページの表示のためのものです。
 
-``str(count)``: Because ``write()`` can only support the data type —
-**string**, ``str()`` is needed to convert the **number** into
-**string**.
+``str(count)``: ``write()`` はデータタイプとして **string** のみをサポートしているため、 **number** を **string** に変換するために ``str()`` が必要です。
 
 .. code-block:: python
 
@@ -372,27 +346,22 @@ This function works for displaying the game page.
                 print(pressed_keys)
             last_key_pressed = pressed_keys
             time.sleep(0.1)
-   
 
-``main()`` contains the whole process of the program, as show below:
+``main()`` はプログラムの全体のプロセスを含んでおり、以下のように表示されます：
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+1) **I2C LCD1602** と **Keypad** を初期化します。
 
-2) Judge whether the button is pressed and get the button reading.
+2) ボタンが押されたかどうかを判定し、ボタンの読み取りを取得します。
 
-3) If the button ‘\ **A**\ ’ is pressed, a random number **0-99** will
-   appear then the game starts.
+3) ボタン‘\ **A**\ ’が押された場合、ランダムな数字 **0-99** が表示され、ゲームが開始されます。
 
-4) If the button ‘\ **D**\ ’ is detected to have been pressed, the
-   program will enter into the outcome judgement.
+4) ボタン‘\ **D**\ ’が押されたと検出された場合、プログラムは結果の判定に入ります。
 
-5) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+5) ボタン **0-9** が押された場合、 **count** の値が変更されます。 **count** が **10** より大きい場合、判定が開始されます。
 
-6) The changes of the game and its values are displayed on **LCD1602**.
+6) ゲームの変更とその値は **LCD1602** に表示されます。
 
-Phenomenon Picture
+現象の画像
 ------------------------
 
 .. image:: ../img/image274.jpeg

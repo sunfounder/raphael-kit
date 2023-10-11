@@ -1,69 +1,62 @@
 .. _2.1.1_py:
 
-2.1.1 Button
+2.1.1 ボタン
 ===============
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+このプロジェクトでは、ボタンを使用してLEDをオンまたはオフにする方法を学びます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要なコンポーネントは以下の通りです。
 
 .. image:: ../img/list_2.1.1_Button.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットをまとめて購入するのが便利です、以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれぞれ個別にも購入できます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
 
-Schematic Diagram
+回路図
 ---------------------
 
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+通常開のボタンをRaspberry Piの入力として使用し、その接続は以下の回路図で示されています。ボタンが押されると、GPIO18は低レベル（0V）になります。プログラミングを通じてGPIO18の状態を検出できます。つまり、GPIO18が低レベルになった場合、ボタンが押されたことを意味します。ボタンが押されたときに対応するコードを実行すると、LEDが点灯します。
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    LEDの長いピンはアノードで、短いピンはカソードです。
 
 .. image:: ../img/image302.png
 
@@ -71,14 +64,14 @@ the button is pressed, and then the LED will light up.
 .. image:: ../img/image303.png
 
 
-Experimental Procedures
+実験手順
 ---------------------------
 
-**Step 1**: Build the circuit.
+**ステップ1**: 回路を作成します。
 
 .. image:: ../img/image152.png
 
-**Step 2**: Open the code file.
+**ステップ2**: コードファイルを開きます。
 
 .. raw:: html
 
@@ -88,7 +81,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run the code.
+**ステップ3**: コードを実行します。
 
 .. raw:: html
 
@@ -98,16 +91,13 @@ Experimental Procedures
 
     sudo python3 2.1.1_Button.py
 
-Now, press the button, and the LED will light up; press the button
-again, and the LED will go out. At the same time, the state of the LED
-will be printed on the screen.
+これで、ボタンを押すとLEDが点灯し、再度ボタンを押すとLEDが消灯します。同時に、LEDの状態が画面に表示されます。
 
-**Code**
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    下記のコードは **修正/リセット/コピー/実行/停止** が可能です。しかし、その前に ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、直接実行して効果を確認できます。
 
 .. raw:: html
 
@@ -173,27 +163,25 @@ will be printed on the screen.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
     LedPin = 17
 
-Set GPIO17 as LED pin
+GPIO17をLEDピンとして設定します。
 
 .. code-block:: python
 
     BtnPin = 18
 
-Set GPIO18 as button pin
+GPIO18をボタンピンとして設定します。
 
 .. code-block:: python
 
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=swLed)
 
-Set up a falling detect on BtnPin, and then when the value of BtnPin
-changes from a high level to a low level, it means that the button is
-pressed. The next step is calling the function, swled.
+BtnPinに下降エッジ検出を設定し、BtnPinの値が高レベルから低レベルに変わるとボタンが押されたと判断します。次に、関数swLedを呼び出します。
 
 .. code-block:: python
 
@@ -203,14 +191,10 @@ pressed. The next step is calling the function, swled.
     Led_status = not Led_status
     GPIO.output(LedPin, Led_status)
 
-Define a callback function as button callback. When the button is
-pressed at the first time，and the condition, not Led_status is false,
-GPIO.output() function is called to light up the LED. As the button is
-pressed once again, the state of LED will be converted from false to
-true, thus the LED will turn off.
+ボタンが押された場合のコールバック関数を定義します。初めてボタンが押されると、条件「not Led_status」がfalseになり、GPIO.output()関数が呼び出されてLEDが点灯します。ボタンが再度押されると、LEDのステータスがfalseからtrueに変わり、LEDは消灯します。
 
-Phenomenon Picture
-^^^^^^^^^^^^^^^^^^
+現象の画像
+------------
 
 .. image:: ../img/image153.jpeg
 

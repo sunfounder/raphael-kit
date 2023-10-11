@@ -1,16 +1,18 @@
-Draw a Matchmaker
-========================
+.. _draw_a_matchmaker:
 
-You're now running the Processing Development Environment (or PDE). 
-There's not much to it; the large area is the Text Editor, and there's a row of buttons across the top; this is the toolbar. 
-Below the editor is the Message Area, and below that is the Console. 
-The Message Area is used for one line messages, and the Console is used for more technical details.
+マッチメーカーを描画しよう
+============================
 
-Let's get familiar with the usage of Processing and draw a matchmaker.
+あなたは現在、Processing開発環境（またはPDE）を実行しています。
+それはそれほど複雑ではありません。大きなエリアはテキストエディタで、その上部にはボタンの行があり、これがツールバーです。
+エディタの下にはメッセージエリアがあり、その下にはコンソールがあります。
+メッセージエリアは1行のメッセージに使用され、コンソールは技術的な詳細に使用されます。
 
-**Sketch**
+Processingの使用方法を覚え、マッチメーカーを描画しましょう。
 
-Copy the sketch below into Processing and run it. A new display window will appear and a cheering matchmaker will be drawn.
+**スケッチ**
+
+以下のスケッチをProcessingにコピーして実行してください。新しいディスプレイウィンドウが表示され、元気なマッチメーカーが描かれます。
 
 .. code-block:: arduino
 
@@ -28,18 +30,17 @@ Copy the sketch below into Processing and run it. A new display window will appe
 
 .. note:: 
 
-    If you run it and the message area turns red and reports some errors, then there is something wrong with the sketch. Make sure you copy the sample sketch exactly: numbers should be enclosed in parentheses, with commas between each number, and lines should end with semicolons.
+    実行してメッセージエリアが赤くなり、エラーが報告される場合、スケッチに問題があります。サンプルスケッチを正確にコピーしてください: 数字は括弧で囲まれ、各数字の間にはカンマがあり、行はセミコロンで終わる必要があります。
 
+**どのように動作するのか？**
 
-**How it works?**
+ここでのポイントは、ディスプレイウィンドウを紙の四角として扱えると認識することです。
 
-The key here is to realize that the display window can be treated as a square of paper.
+ディスプレイウィンドウの各ピクセルは、空間の点の位置を決定する座標(x,y)です。座標の原点(0,0)は左上角にあり、X軸の正方向は水平に右へ、Y軸の正方向は垂直に下へとなります。
 
-Each pixel of the display window is a coordinate (x,y) that determines the position of a point in space. The origin (0,0) of the coordinates is in the upper left corner, the positive direction of the X-axis is horizontally to the right, and the positive direction of the Y-axis is vertically down.
+私たちがすることは、これらのピクセル座標にどの形と色が表示されるべきかを指定することです。
 
-What we have to do is to specify what shape and color should appear at these pixel coordinates.
-
-For example, draw a rectangle of width 20 and height 60 with coordinates (100,120) as the midpoint.
+例えば、中点として座標(100,120)を持つ幅20、高さ60の四角形を描画します。
 
 .. code-block:: arduino
 
@@ -48,19 +49,13 @@ For example, draw a rectangle of width 20 and height 60 with coordinates (100,12
 
 .. image:: img/draw_one_coodinate.png
 
-Once we understand the relationship between the display window and the axes, this sketch is not difficult for us, we just need to understand some simple graphic drawing statements.
+ディスプレイウィンドウと軸の関係を理解すれば、このスケッチは私たちにとって難しくはありません。単純なグラフィック描画ステートメントを理解するだけで済みます。
 
-    * ``size(width, height)``: Defines the dimension of the display window width and height in units of pixels.
-    * ``background(red, green, blue)``: Set the background color of the display window.
-    * ``rectMode(mode)``: Modifies the location from which rectangles are drawn by changing the way in which parameters given to ``rect()`` are intepreted.
-    * ``rect(x, y, width, height)``: Draws a rectangle to the screen. 
-    * ``ellipse(x, y, width, height)``: Draws an ellipse (oval) to the screen. 
-    * ``line(x1, y1, x2, y2)``: Draws a line (a direct path between two points) to the screen.
+    * ``size(width, height)``: ピクセル単位でディスプレイウィンドウの幅と高さの寸法を定義します。
+    * ``background(red, green, blue)``: ディスプレイウィンドウの背景色を設定します。
+    * ``rectMode(mode)``: ``rect()`` に与えられるパラメータの解釈方法を変更することで、矩形が描画される位置を変更します。
+    * ``rect(x, y, width, height)``: スクリーンに四角形を描画します。
+    * ``ellipse(x, y, width, height)``: スクリーンに楕円を描画します。
+    * ``line(x1, y1, x2, y2)``: スクリーンに線を描画します。
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
-
-
-
-
-
-
+詳しくは `Processing Reference <https://processing.org/reference/>`_ を参照してください。

@@ -1,67 +1,64 @@
-3.1.3 Reversing Alarm
+.. _3.1.3_c:
+
+3.1.3 逆転アラーム
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 -------------
 
-In this project, we will use LCD, buzzer and ultrasonic sensors to make
-a reverse assist system. We can put it on the remote control vehicle to
-simulate the actual process of reversing the car into the garage.
+このプロジェクトでは、LCD、ブザー、超音波センサーを使用して、逆転補助システムを作成します。これをリモコンの車両に取り付けて、車をガレージに逆駐車する実際のプロセスをシミュレートすることができます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには以下の部品が必要です。
 
 .. image:: ../img/list_Reversing_Alarm.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入すると便利です。以下はそのリンクです。
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することも可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
-    *   - :ref:`Ultrasonic Module`
+    *   - :ref:`超音波モジュール`
         - |link_ultrasonic_buy|
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+回路図
 --------------------
 
-Ultrasonic sensor detects the distance between itself and the obstacle
-that will be displayed on the LCD in the form of code. At the same time,
-the ultrasonic sensor let the buzzer issue prompt sound of different
-frequency according to different distance value.
+超音波センサーは障害物との距離を検出し、その情報をコードの形でLCDに表示します。同時に、超音波センサーは距離の値に応じてブザーから異なる周波数の警告音を発します。
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -75,14 +72,14 @@ SCL1         Pin 5
 .. image:: ../img/Schematic_three_one3.png
    :align: center
 
-Experimental Procedures
+実験手順
 ------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image242.png
 
-**Step 2:** Change directory.
+**ステップ2:** ディレクトリを変更する。
 
 .. raw:: html
 
@@ -92,7 +89,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.3/
 
-**Step 3:** Compile.
+**ステップ3:** コンパイルする。
 
 .. raw:: html
 
@@ -102,7 +99,7 @@ Experimental Procedures
 
     gcc 3.1.3_ReversingAlarm.c -lwiringPi
 
-**Step 4:** Run.
+**ステップ4:** 実行する。
 
 .. raw:: html
 
@@ -112,23 +109,18 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, ultrasonic sensor module detects the distance to the
-obstacle and then displays the information about the distance on
-LCD1602; besides, buzzer emits warning tone whose frequency changes with
-the distance.
+コードを実行すると、超音波センサーモジュールは障害物までの距離を検出し、その情報をLCD1602に表示します。さらに、ブザーは距離に応じて周波数が変わる警告音を出します。
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * エラープロンプト ``wiringPi.h: No such file or directory`` が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` というエラーが出た場合、 :ref:`i2c_config` を参照してI2Cを有効にし、配線が正しいか確認してください。
+    * コードと配線が正しいのにLCDに内容が表示されない場合、背面の可変抵抗を回してコントラストを調整してください。
 
-
-**Code**
+**コード**
 
 .. note::
-    The following codes are incomplete. If you want to check the complete codes, 
-    you are suggested to use command nano 3.1.1_ReversingAlarm.c.
+    下記のコードは不完全です。完全なコードを確認するには、コマンドnano 3.1.1_ReversingAlarm.cを使用することをおすすめします。
 
 .. code-block:: c
 
@@ -225,7 +217,7 @@ the distance.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
@@ -234,41 +226,33 @@ the distance.
     lcdInit();
     ultraInit();
 
-In this program, we apply previous components synthetically. Here we use
-buzzers, LCD and ultrasonic. We can initialize them the same way as we
-did before.
+このプログラムでは、前回のコンポーネントを総合的に応用しています。ここではブザー、LCD、超音波を使用しています。以前と同じ方法でこれらを初期化することができます。
 
 .. code-block:: c
 
     dis = disMeasure();
-     printf("%.2f cm \n",dis);
+    printf("%.2f cm \n",dis);
     digitalWrite(Buzzer,LOW);
     if (dis > 400){
-         write(0, 0, "Error");
-         write(3, 1, "Out of range");    
+        write(0, 0, "Error");
+        write(3, 1, "Out of range");    
     }
     else
     {
         write(0, 0, "Distance is");
         sprintf(result,"%.2f cm",dis);
         write(5, 1, result);
-	}
+    }
 
-Here we get the value of the ultrasonic sensor and get the distance
-through calculation.
+ここでは超音波センサの値を取得し、計算を通じて距離を取得します。
 
-If the value of distance is greater than the range value to be detected,
-an error message is printed on the LCD. And if the distance value is
-within the range, the corresponding results will be output.
+距離の値が検出される範囲値よりも大きい場合、LCDにエラーメッセージが表示されます。そして、距離の値が範囲内であれば、対応する結果が出力されます。
 
 .. code-block:: c
 
     sprintf(result,"%.2f cm",dis);
 
-Since the output mode of LCD only supports character type, and the
-variable dis stores the value of float type, we need to use sprintf().
-The function converts the float type value to a character and stores it
-on the string variable result[]. %.2f means to keep two decimal places.
+LCDの出力モードは文字型のみをサポートしているため、変数disにはfloat型の値が格納されているので、sprintf()を使用する必要があります。この関数はfloat型の値を文字に変換し、文字変数result[]に格納します。%.2fは小数点以下2桁を保持することを意味します。
 
 .. code-block:: c
 
@@ -291,13 +275,9 @@ on the string variable result[]. %.2f means to keep two decimal places.
         }
     }
 
-This judgment condition is used to control the sound of the buzzer.
-According to the difference in distance, it can be divided into three
-cases, in which there will be different sound frequencies. Since the
-total value of delay is 500, all of the cases can provide a 500ms
-interval for the ultrasonic sensor.
+この判定条件はブザーの音を制御するために使用されます。距離の違いにより、3つのケースに分けられ、それぞれで異なる音の周波数が出力されます。delayの合計値が500であるため、すべてのケースで超音波センサーに500msの間隔を提供できます。
 
-Phenomenon Picture
+現象の画像
 --------------------
 
 .. image:: ../img/image243.jpeg

@@ -1,83 +1,74 @@
-1.3.1 Motor
+.. _1.3.1_js:
+
+1.3.1 モーター
 =================
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+このプロジェクトでは、L293Dを使用してDCモーターを駆動し、時計回りおよび反時計回りに回転させる方法を学びます。DCモーターには大きな電流が必要なため、安全のために、ここでは電源モジュールを使用してモーターに電源を供給します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下のとおりです。
 
 .. image:: ../img/list_1.3.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは非常に便利です。リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`電源モジュール`
         - \-
     *   - :ref:`L293D`
         - \-
-    *   - :ref:`DC Motor`
+    *   - :ref:`DCモーター`
         - |link_motor_buy|
 
-Schematic Diagram
+回路図
 ------------------
 
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+電源モジュールをブレッドボードに差し込み、ジャンパキャップを5Vのピンに差し込むと、5Vの電圧が出力されます。L293Dのピン1をGPIO22に接続し、高レベルに設定します。ピン2をGPIO27に、ピン7をGPIO17に接続し、一方のピンを高く、もう一方のピンを低く設定します。これにより、モーターの回転方向を変更できます。
 
 .. image:: ../img/image336.png
 
+**実験手順**
 
-**Experimental Procedures**
-
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image117.png
 
-
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    電源モジュールはキットの9Vバッテリーバックルを使用して9Vの電池を使用できます。電源モジュールのジャンパキャップをブレッドボードの5Vバスストリップに挿入します。
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Go to the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -87,7 +78,7 @@ the motor’s rotation direction.
 
     cd ~/raphael-kit/nodejs/
 
-**Step 4**: Run the code.
+**ステップ4**: コードを実行します。
 
 .. raw:: html
 
@@ -97,12 +88,9 @@ the motor’s rotation direction.
 
     sudo node motor.js
 
-As the code runs, the motor first rotates clockwise for 1s then stops for 1s, 
-after that, it rotates anticlockwise for 1s; subsequently, the motor stops 
-for 1s. This series of actions will be executed repeatedly.  
+コードを実行すると、モーターは最初に時計回りに1秒間回転し、その後1秒間停止します。その後、モーターは反時計回りに1秒間回転します。その後、モーターは1秒間停止します。この一連の動作は繰り返し実行されます。
 
-
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -154,7 +142,7 @@ for 1s. This series of actions will be executed repeatedly.
     }, 1000)    
  
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -163,8 +151,7 @@ for 1s. This series of actions will be executed repeatedly.
     MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
 
 
-Import the pigpio module and create three Gpio class objects to control the three IO ports of Gpio17, Gpio27, and Gpio22.
-
+pigpioモジュールをインポートし、Gpio17、Gpio27、Gpio22の3つのIOポートを制御するための3つのGpioクラスオブジェクトを作成します。
 
 .. code-block:: js
 
@@ -194,12 +181,11 @@ Import the pigpio module and create three Gpio class objects to control the thre
         }
     }
 
+モーターを制御するmotor()関数を定義します。
 
-Define a motor() function to control the motor,
-
-#. When the direction is equal to 2, the MotorPin1 port writes a high level, the MotorPin2 port writes a low level, and the enable port MotorEnable writes a high level, and the motor rotates clockwise.
-#. When the direction is equal to 1, the MotorPin1 port writes a low level, the MotorPin2 port writes a high level, and the enable port MotorEnable writes a high level, and the motor rotates counterclockwise.
-#. When the direction is equal to 0, the enable port MotorEnable is written to a low level, and the motor stops rotating.  
+#. directionが2の場合、MotorPin1ポートに高レベルを書き込み、MotorPin2ポートに低レベルを書き込み、有効ポートMotorEnableに高レベルを書き込み、モーターは時計回りに回転します。
+#. directionが1の場合、MotorPin1ポートに低レベルを書き込み、MotorPin2ポートに高レベルを書き込み、有効ポートMotorEnableに高レベルを書き込み、モーターは反時計回りに回転します。
+#. directionが0の場合、有効ポートMotorEnableに低レベルを書き込み、モーターは回転を停止します。
 
 .. code-block:: js
 
@@ -207,10 +193,9 @@ Define a motor() function to control the motor,
     setInterval(() => {
         index=(index+1)%3
         motor(index)
-    }, 1000)    
+    }, 1000)
 
-Let the motor rotate clockwise and counterclockwise alternately, with an interval of 1 second.
-
+モーターを1秒の間隔で時計回りと反時計回りに交互に回転させます。
 
 .. code-block:: js
 
@@ -219,11 +204,10 @@ Let the motor rotate clockwise and counterclockwise alternately, with an interva
         process.exit();
     })
 
+**ctrl+c** が押されたことを検出すると、
+MotorEnableに低を書き込んでモーターの回転を停止します。
 
-When it is detected that **ctrl+c is** pressed,
-MotorEnable is written low to stop the motor from spinning.
-
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image119.jpeg

@@ -1,101 +1,103 @@
-1.14 123 Wooden Man
+.. _1.14_scratch:
+
+1.14 123木人形
 ===========================
 
-Today, we are going to play a game of 123 wooden man.
+今日は、123木人形というゲームをプレイします。
 
-Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right. If the green light is on, the sprite can move; but when the red LED is on, you have to stop the sprite from moving; otherwise the buzzer will keep ringing.
+緑の旗をクリックしてゲームを開始し、キーボードの右矢印キーを押してスプライトを右に進めます。緑のLEDが点灯している場合、スプライトは移動できます。しかし、赤いLEDが点灯している場合、スプライトの移動を停止しなければなりません。そうしないとブザーが鳴り続けます。
 
 .. image:: img/1.14_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.14_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - |link_passive_buzzer_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.14_fritzing.png
 
-
-Load the Code and See What Happens
+コードをロードして結果を確認する
 ---------------------------------------
 
-Load the code file (``1.14_123_wooden_man.sb3``) to Scratch 3.
+Scratch 3に(``1.14_123_wooden_man.sb3``)のコードファイルをロードします。
 
-When the green LED is on, you can use the right arrow key to control **Avery** to walk to the right; when the red LED is on, if you continue to let **Avery** move to the right, then an alarm will sound.
+緑色の LED が点灯している場合は、右矢印キーを使用して **Avery** が右に歩くように制御できます。赤色の LED が点灯しているときに **Avery** を右に動かし続けると、アラームが鳴ります。
 
-Tips on Sprite
-----------------
-Delete the default sprite, then choose the **Avery Walking** sprite.
+スプライトに関するヒント
+---------------------------------
+
+デフォルトのスプライトを削除し、 **Avery Walking** スプライトを選択します。
 
 .. image:: img/1.14_wooden1.png
   :width: 400
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.14_wooden2.png
   :width: 400
 
-Initialize all pins to high.
+すべてのピンを高に初期化します。
 
 .. image:: img/1.14_wooden3.png
   :width: 400
 
-When the game starts, assign the status variable to 1, indicating that the Avery Walking sprite is movable, and then set gpio18 to low, which lights up the green LED for 5s.
+ゲームが開始されると、status変数に1を割り当て、Avery Walkingスプライトが動くことを示し、次にgpio18を低に設定して緑のLEDを5秒間点灯させます。
 
 .. image:: img/1.14_wooden4.png
   :width: 400
 
-Set gpio18 to high, then set gpio27 to low, which means turn off the green LED and light up the yellow LED for 0.5s.
+gpio18を高に設定し、次にgpio27を低に設定します。これは、緑のLEDをオフにし、黄色のLEDを0.5秒間点灯させることを意味します。
 
 .. image:: img/1.14_wooden5.png
   :width: 400
 
-Assign the status variable to 0, which means the Avery Walking sprite is not moving; then set gpio27 to low and gpio17 to high, which turns off the yellow LED and then lights up the red LED for 3s. Finally, set gpio17 to high to turn off the red LED.
+status変数に0を割り当てることで、Avery Walkingスプライトはこの瞬間に動かないことを示します。次に、gpio27を低くし、gpio17を高く設定して、黄色のLEDをオフにし、赤いLEDを3秒間点灯させます。最後に、gpio17を高く設定して赤いLEDをオフにします。
 
 .. image:: img/1.14_wooden6.png
   :width: 400
 
-When we press the right arrow key on the keyboard, we need to switch the **Avery Walking** sprite to the next costume so that we can see Avery walking to the right. Then we need to determine the value of the **status** variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.
+キーボードの右矢印キーを押すと、 **Avery Walking** スプライトを次のコスチュームに切り替えて、Averyが右に歩いているのを見ることができます。次に、 **status** 変数の値を判断する必要があります。0の場合、Avery Walkingスプライトはこの瞬間に動かないことを示し、ブザーが鳴って警告します。
+

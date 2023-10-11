@@ -1,16 +1,18 @@
-What is Nodejs？
+.. _install_nodejs:
+
+Nodejsとは？
 ---------------------------
 
-Node.js was released in May 2009 and developed by Ryan Dahl. It is a JavaScript runtime environment based on the Chrome V8 engine. It uses an event-driven, non-blocking I/O model to allow JavaScript to run on the server-side development platform.
+Node.jsは2009年5月にリリースされ、Ryan Dahlによって開発されました。これはChrome V8エンジンに基づくJavaScriptランタイム環境です。イベント駆動型、ノンブロッキングI/Oモデルを使用して、JavaScriptをサーバーサイド開発プラットフォーム上で実行することができます。
 
-Simply put, Node.js is JavaScript running on the server. If you are familiar with Javascript, then you will easily learn Node.js.
+簡単に言うと、Node.jsはサーバー上で動作するJavaScriptです。Javascriptに慣れていれば、Node.jsを簡単に学ぶことができます。
 
-Nodejs usually uses the command ``npm install xxx`` to install third-party packages, which requires us to install the npm tool, similar to the pip tool in python.
+Nodejsは通常、 ``npm install xxx`` というコマンドを使用してサードパーティのパッケージをインストールします。これにはnpmツールのインストールが必要で、これはpythonのpipツールに似ています。
 
-Install or update nodejs and npm
+nodejsとnpmのインストールまたは更新
 ------------------------------------------
 
-Run the following commands to install and update nodejs and npm.
+nodejsとnpmをインストールおよび更新するには、以下のコマンドを実行します。
 
 .. raw:: html
 
@@ -23,7 +25,7 @@ Run the following commands to install and update nodejs and npm.
     sudo apt-get install npm 
     sudo npm install npm -g
 
-Then check the current Node version with the following command.
+次に、以下のコマンドで現在のNodeのバージョンを確認します。
 
 .. raw:: html
 
@@ -33,7 +35,7 @@ Then check the current Node version with the following command.
 
     node -v
 
-The following command checks the current npm version.
+以下のコマンドで現在のnpmのバージョンを確認します。
 
 .. raw:: html
 

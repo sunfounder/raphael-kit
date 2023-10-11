@@ -1,54 +1,56 @@
-Drag Number
+.. _drag_number:
+
+数字をドラッグ
 ================================================
 
-Let\'s draw a slider bar to control the 7-segment Display.
+7セグメントディスプレイを制御するためのスライダーバーを描画しましょう。
 
 .. image:: img/drag_servo.png
 
-**Required Components**
+**必要な部品**
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが間違いなく便利です。リンクはこちらです： 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`7-segment Display`
+    *   - :ref:`7セグメントディスプレイ`
         - |link_7segment_buy|
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
-**Wiring**
+**配線図**
 
 .. image:: img/image125.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: arduino
 
@@ -157,7 +159,7 @@ You can also buy them separately from the links below.
         }
     }
 
-**How it works?**
+**どのように動作するのか？**
 
-This project integrates the Slider and 7-segment Display of the previous project. For specific knowledge points, please refer to :ref:`Show Number` and :ref:`Metronome`.  
+このプロジェクトは、以前のプロジェクトのスライダーと 7 セグメント ディスプレイを統合します。 具体的な知識については、 :ref:`show_number` と  :ref:`metronome` を参照してください。
 

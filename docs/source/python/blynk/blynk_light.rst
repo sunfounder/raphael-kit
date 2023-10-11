@@ -1,78 +1,76 @@
-Smart Light
-===========
+スマートライト
+===============
 
-In this project, we use Blynk's Silder to control the brightness of the LED, turning it on and off with Switch.
+このプロジェクトでは、Blynkのスライダーを使用してLEDの明るさを制御し、スイッチでオン/オフします。
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
+.. note:: このプロジェクトを開始する前に、 :ref:`bk_start` を完了することをお勧めします。それによって、Blynkに関する理解が深まります。
 
-**Required Components**
-------------------------------
 
-In this project, we need the following components. 
+**必要なコンポーネント**
 
-It's definitely convenient to buy a whole kit, here's the link: 
+このプロジェクトで必要なコンポーネントは以下の通りです。
+
+一式を購入することが便利です、リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
-    *   - :ref:`GPIO Extension Board`
+    *   - コンポーネント紹介
+        - 購入リンク
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
 
-**1. Wiring**
+**1. 配線**
 
 .. image:: img/wiring_led1.png
 
-**2. Create Widget and Datastream**
+**2. ウィジェットとデータストリームの作成**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. 右上のメニューアイコンをクリックして、ダッシュボードの編集を選択します。
 
     .. image:: img/sp220913_180231.png
 
-2. Add a Switch widget and a Slider widget to the Dashboard.
+2. ダッシュボードにスイッチウィジェットとスライダーウィジェットを追加します。
 
     .. image:: img/sp220914_160427.png
 
-3. Create a Datastream for the Switch widget (I used V3). It will be used to control the turning on and off of the LED.
+3. スイッチウィジェット用のデータストリームを作成します（V3を使用しました）。これはLEDのオン/オフ制御に使用されます。
 
     .. image:: img/sp220914_155911.png
 
-4. Create a Datastream for the Slider widget (I used V2), its value range is 0 to 100, it will be used to control the brightness of the LED.
+4. スライダーウィジェット用のデータストリームを作成します（V2を使用しました）、値の範囲は0から100です、これはLEDの明るさを制御するために使用されます。
 
     .. image:: img/sp220914_160234.png
 
-#. When finished, click Save And Apply at the top right.
+#. 完了したら、右上の「保存して適用」をクリックします。
 
     .. image:: img/sp220913_182300.png
 
+**3. コードの実行**
 
-**3. Run the Code**
-
-1. Edit the code
+1. コードを編集します
 
 .. raw:: html
 
@@ -83,13 +81,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_light.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. 下記の行を探して、 ``BLYNK_AUTH_TOKEN`` を貼り付けます。
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. コードを実行します。
 
 .. raw:: html
 
@@ -99,6 +97,6 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_light.py
 
-4. Go to Blynk, operate widget on Dashboard. now you click switch widget will turn on/off LED. slide Slider widget will change LED brightness.
+4. Blynkに移動して、ダッシュボードのウィジェットを操作します。スイッチウィジェットをクリックするとLEDがオン/オフになり、スライダーウィジェットを操作するとLEDの明るさが変わります。
 
-#. If you want to use Blynk on mobile devices, please refer to :ref:`blynk_mobile`.
+#. もしBlynkをモバイルデバイスで使用したい場合は、 :ref:`blynk_mobile` を参照してください。

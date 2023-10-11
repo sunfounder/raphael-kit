@@ -1,99 +1,99 @@
-1.4 Hare
+.. _1.4_scratch:
+
+1.4 野兎
 ==============
 
-Today, we will use Button, Raspberry Pi and Scratch to create a hare with various changes!
+今日、ボタン、Raspberry Pi、およびScratchを使用して、さまざまな変更を持つ野兎を作成します！
 
-When we press the first button, the hare in the stage area will change its body color; when we press the second button, the hare will change its body size; when we press the third button, the hare will take a step forward.
+最初のボタンを押すと、ステージエリアの野兎は体の色を変えます。二つ目のボタンを押すと、野兎は体のサイズを変えます。三つ目のボタンを押すと、野兎は前に一歩進むでしょう。
 
 .. image:: img/1.4_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.4_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのが便利です。リンクは以下のとおりです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.4_scratch_button.png
 
-Load the Code and See What Happens
+コードをロードして動作を確認する
 -----------------------------------------
 
-Load the code file (``1.4_hare.sb3``) into Scratch 3.
+コードファイル(``1.4_hare.sb3``)をScratch 3にロードします。
 
-Now you can try to press each of the 3 buttons to see how the Hare on the stage will change.
+3つのボタンのそれぞれを押して、ステージ上の野兎がどのように変わるかを試してみてください。
 
+スプライトに関するヒント
+---------------------------------
 
-Tips on Sprite
-----------------
-
-Click the **Choose a Sprite** button in the lower right corner of the sprite area, enter **Hare** in the search box, and then click to add it.
+スプライトエリアの右下の **Choose a Sprite** ボタンをクリックし、検索ボックスに **Hare** を入力し、それを追加をクリックします。
 
 .. image:: img/1.4_button1.png
 
-Delete Sprite1.
+Sprite1を削除します。
 
 .. image:: img/1.4_button2.png
 
-
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.4_button3.png
   :width: 400
 
-This is an event block that is triggered when the level of GPIO17 is high, which means that the button is pressed at that moment.
+これは、GPIO17のレベルが高いときにトリガーされるイベントブロックです。つまり、その時点でボタンが押されていることを意味します。
 
 .. image:: img/1.4_button4.png
   :width: 400
 
-This is a block to change the color of **Hare**, the range of the value is 0 ~ 199, beyond 199 will change from 0 again.
+これは **Hare** の色を変えるブロックで、値の範囲は0〜199で、199を超えると再び0から変わります。
 
 .. image:: img/1.4_button5.png
   :width: 250
 
-This is a block used to change the size for sprite, the higher the value, the larger the sprite.
+これはスプライトのサイズを変更するためのブロックで、値が高いほどスプライトは大きくなります。
 
 .. note::
-  The sprite is also not infinitely large, and its maximum size is related to the original image size.
+  スプライトも無限に大きくはありません。その最大サイズは元の画像サイズに関連しています。
 
 .. image:: img/1.4_button6.png
   :width: 200
 
-This is a block that switches sprite costumes, and when **Hare**'s costume keeps switching, it does a series of coherent actions. For example, in this project, make **Hare** take a step forward.
+これはスプライトの衣装を切り替えるブロックで、 **Hare** の衣装が切り替えられ続けると、一連の連続したアクションを行います。たとえば、このプロジェクトでは、 **Hare** が前に一歩進むようにします。

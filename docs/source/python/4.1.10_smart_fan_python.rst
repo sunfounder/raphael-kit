@@ -1,65 +1,65 @@
-4.1.10 Smart Fan
+.. _4.1.10_py:
+
+4.1.10 スマートファン
 =========================
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+このプロジェクトでは、モーター、ボタン、サーミスターを使用して、風速を調整可能な手動+自動スマートファンを製作します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトで必要な部品は以下の通りです。
 
 .. image:: ../img/list_Smart_Fan.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入する方が確実に便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`電源モジュール`
         - \-
-    *   - :ref:`Thermistor`
+    *   - :ref:`サーミスター`
         - |link_thermistor_buy|
     *   - :ref:`L293D`
         - \-
     *   - :ref:`ADC0834`
         - \-
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
-    *   - :ref:`DC Motor`
+    *   - :ref:`DCモーター`
         - |link_motor_buy|
 
-
-Schematic Diagram
+回路図
 ------------------------
 
 ============ ======== ======== ===
@@ -76,22 +76,20 @@ GPIO13       Pin 33   23       13
 .. image:: ../img/Schematic_three_one4.png
    :align: center
 
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image245.png
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    キットの9Vバッテリーバックルを使って、電源モジュールに9Vのバッテリーを適用できます。電源モジュールのジャンパーキャップをブレッドボードの5Vバスストリップに挿入します。
 
 .. image:: ../img/image118.jpeg
    :align: center
 
-**Step 2**: Get into the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -101,29 +99,26 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**ステップ3**: 実行します。
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo python3 4.1.10_SmartFan.py
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+コードを実行しながら、ボタンを押してファンを始動させる。押すたびに1段階スピードが上下します。スピードグレードは **5** 種類あります。
+速度等級があります： **0~4**. 速度等級を4 :sup:`th` に設定してボタンを押すと、ファンは停止します。を押すと風速 **0** で停止します。
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+温度が2℃以上上がるか下がると、速度は自動的に1段階速くなったり遅くなったりします。
 
-Code
+コード
 --------
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    下記のコードを **修正/リセット/コピー/実行/停止** することができます。しかし、その前にソースコードのパス ``raphael-kit/python`` に移動する必要があります。コードを修正した後、その効果を直接確認するために実行することができます。
 
 .. raw:: html
 
@@ -212,7 +207,7 @@ Code
             destroy()
 
 
-Code Explanation
+コード説明
 ---------------------
 
 .. code-block:: python
@@ -226,8 +221,7 @@ Code Explanation
         Fah = Cel * 1.8 + 32
         return Cel
 
-``temperture()`` works by converting thermistor values read by **ADC0834**
-into temperature values. Refer to :ref:`2.2.2_py` for more details.
+``temperture()`` は、 **ADC0834** によって読み取られたサーミスターの値を温度値に変換するためのものです。詳細は :ref:`2.2.2_py` を参照してください。
 
 .. code-block:: python
 
@@ -241,10 +235,7 @@ into temperature values. Refer to :ref:`2.2.2_py` for more details.
         p_M1.ChangeDutyCycle(level*25)
         return level
 
-
-This function controls the rotating speed of the motor. The range of the
-**Lever**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+この関数は、モーターの回転速度を制御します。 **Lever** の範囲は **0-4** （レベル **0** はモーターの動作を停止します）。一つのレベルの調整は風速の **25%** の変化を表します。
 
 .. code-block:: python
 
@@ -269,20 +260,17 @@ adjustment stands for a **25%** change of the wind speed.
                     markTemp=currentTemp             
             level = motor(level)
 
+関数 **main()** は、以下に示すプログラムの全体的なプロセスを含みます：
 
-The function **main()** contains the whole program process as shown:
+1) ボタンの状態と現在の温度を常に読み取ります。
 
-1) Constantly read the button state and the current temperature.
+2) ボタンを押すたびにlevelを **+1** し、同時に温度が更新されます。 **Level** の範囲は **1~4** です。
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+3) ファンが動作しているとき（レベルが **0** でない場合）、温度は検出されます。 **2℃+** の変化でレベルが上下します。
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+4) モーターは **Level** に合わせて回転速度を変更します。
 
-4) The motor changes the rotating speed with the **Level**.
-
-Phenomenon Picture
+現象の画像
 ------------------------
 
 .. image:: ../img/image246.png

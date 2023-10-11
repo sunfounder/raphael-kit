@@ -1,78 +1,70 @@
 .. _1.2.1_c:
 
-1.2.1 Active Buzzer
+1.2.1 アクティブブザー
 =========================
 
-Introduction
+はじめに
 ------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+このプロジェクトでは、PNPトランジスタを使用してアクティブブザーを鳴らす方法を学びます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下の部品が必要です。
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-Schematic Diagram
+回路図
 -----------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+この実験では、アクティブブザー、PNPトランジスタ、トランジスタのベースとGPIO間の1kの抵抗が使用されます。プログラムでRaspberry PiのGPIO17出力に低レベル(0V)が供給されると、トランジスタは電流飽和のために伝導し、ブザーが音を発します。しかし、Raspberry PiのIOに高レベルが供給されると、トランジスタが遮断され、ブザーは音を出さなくなります。
 
 .. image:: ../img/image332.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**ステップ1:** 回路を組み立てます。（アクティブブザーには表面に白いテーブルステッカーがあり、裏面が黒いです。）
 
 .. image:: ../img/image104.png
 
-**Step 2**: Open the code file.
+**ステップ2**: コードファイルを開きます。
 
 .. raw:: html
 
@@ -82,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.2.1/
 
-**Step 3**: Compile the code.
+**ステップ3**: コードをコンパイルします。
 
 .. raw:: html
 
@@ -92,7 +84,7 @@ Experimental Procedures
 
     gcc 1.2.1_ActiveBuzzer.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**ステップ4**: 上記の実行ファイルを実行します。
 
 .. raw:: html
 
@@ -102,13 +94,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-The code run, the buzzer beeps.
+コードが実行されると、ブザーが鳴ります。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しないか、エラーメッセージ「wiringPi.h: No such file or directory」が表示される場合、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -136,25 +128,21 @@ The code run, the buzzer beeps.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     digitalWrite(BeepPin, LOW);
 
-We use an active buzzer in this experiment, so it will make sound 
-automatically when connecting to the direct current. This sketch 
-is to set the I/O port as low level (0V), thus to manage the 
-transistor and make the buzzer beep. 
+この実験ではアクティブブザーを使用しているので、直流電源に接続すると自動的に音がします。このスケッチは、I/Oポートを低レベル(0V)に設定することで、トランジスタを制御してブザーを鳴らすものです。
 
 .. code-block:: c
 
     digitalWrite(BeepPin, HIGH);
 
-To set the I/O port as high level(3.3V), thus the transistor is 
-not energized and the buzzer doesn’t beep.  
+I/Oポートを高レベル(3.3V)に設定することで、トランジスタが励起されず、ブザーが鳴らないようにします。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image105.jpeg

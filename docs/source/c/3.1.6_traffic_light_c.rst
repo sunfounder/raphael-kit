@@ -1,59 +1,59 @@
-3.1.6 Traffic Light
+.. _3.1.6_c:
+
+3.1.6 交通信号機
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 ---------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+このプロジェクトでは、3色のLEDライトを使用して交通信号機の変化を実現し、4桁の7セグメント表示器を使用して各交通状態のタイミングを表示します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_Traffic_Light.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+すべてのキットをまとめて購入するのは非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも個別に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`4-Digit 7-Segment Display`
+    *   - :ref:`4桁7セグメントディスプレイ`
         - \-
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
-Schematic Diagram
+回路図
 --------------------
 
 ============ ======== ======== ===
@@ -73,14 +73,14 @@ SPICE1       Pin 26   11       7
 .. image:: ../img/Schematic_three_one7.png
    :align: center
 
-Experimental Procedures
+実験手順
 ------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: ../img/image254.png
 
-**Step 2:** Change directory.
+**ステップ2:** ディレクトリを変更します。
 
 .. raw:: html
 
@@ -90,7 +90,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.6/
 
-**Step 3:** Compile.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -100,7 +100,7 @@ Experimental Procedures
 
     gcc 3.1.6_TrafficLight.c -lwiringPi
 
-**Step 4:** Run.
+**ステップ4:** 実行。
 
 .. raw:: html
 
@@ -110,17 +110,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly.
+コードが実行されると、LEDは交通信号の色の変化をシミュレートします。まず、赤いLEDが60秒間点灯し、次に緑のLEDが30秒間点灯します。その後、黄色のLEDが5秒間点灯します。それに続いて、赤いLEDが再び60秒間点灯します。この一連のアクションは繰り返し実行されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合、 :ref:`install_wiringpi` を参照してください。
 
-Code
+コード
 ---------
 
 .. code-block:: c
@@ -283,7 +279,7 @@ Code
     }
 
 
-Code Explanation
+コード説明
 --------------------
 
 .. code-block:: c
@@ -300,9 +296,7 @@ Code Explanation
     void clearDisplay();
     void display();
 
-These codes are used to realize the function of number display of 4-Digit 7-Segment 
-Displays. Refer to chapter 1.1.5 of the document for more details. Here, we use the 
-codes to display countdown of traffic light time.
+これらのコードは、4桁7セグメントディスプレイの数値表示機能を実現するために使用されます。詳細については、ドキュメントの1.1.5章を参照してください。ここでは、これらのコードを使用して、交通信号の時間のカウントダウンを表示します。
 
 .. code-block:: c
 
@@ -318,7 +312,7 @@ codes to display countdown of traffic light time.
         digitalWrite(ledPin[colorState],LOW);    
     }
 
-The codes are used to switch the LED on and off.
+これらのコードは、LEDをオンおよびオフに切り替えるために使用されます。
 
 .. code-block:: c
 
@@ -343,10 +337,7 @@ The codes are used to switch the LED on and off.
         }
     }
 
-The codes are used to switch the timer on and off. Refer to chapter
-1.1.5 for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+これらのコードは、タイマーをオンおよびオフに切り替えるために使用されます。詳細については、1.1.5章を参照してください。ここでは、タイマーがゼロに戻ると、colorStateが切り替わり、LEDを切り替え、タイマーに新しい値が割り当てられます。
 
 .. code-block:: c
 
@@ -367,10 +358,9 @@ a new value.
         return 0;
     }
 
-The timer is started in the main() function. In loop() function, use
-**while(1)** loop and call the functions of 4-Digit 7-Segment and LED.
+タイマーはmain()関数で開始されます。loop()関数では、 **while(1)** ループを使用し、4桁7セグメントとLEDの関数を呼び出します。
 
-Phenomenon Picture
+現象の画像
 -------------------
 
 .. image:: ../img/IMG_8319.jpg

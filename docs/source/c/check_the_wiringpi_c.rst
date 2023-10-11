@@ -1,18 +1,13 @@
 .. _install_wiringpi:
 
-Install and Check the WiringPi
+WiringPiのインストールと確認
 =======================================
 
-``wiringPi`` is a C language GPIO library applied to the Raspberry Pi. It complies with GUN Lv3. The functions in wiringPi are
-similar to those in the wiring system of Arduino. They enable the users
-familiar with Arduino to use wiringPi more easily.
+``wiringPi`` は、Raspberry Piに適用されるC言語のGPIOライブラリです。これはGNU Lv3に準拠しています。wiringPiの関数はArduinoのwiringシステムの関数に似ています。これにより、Arduinoに慣れているユーザーがwiringPiをより簡単に使用できます。
 
-``wiringPi`` includes lots of GPIO commands which enable you to control all
-kinds of interfaces on Raspberry Pi. 
+``wiringPi`` には、Raspberry Piのさまざまなインターフェイスを制御できる多くのGPIOコマンドが含まれています。
 
-Please run the following command to install ``wiringPi`` library.
-
-
+以下のコマンドを実行して、 ``wiringPi`` ライブラリをインストールしてください。
 
 .. raw:: html
 
@@ -25,8 +20,7 @@ Please run the following command to install ``wiringPi`` library.
     cd WiringPi 
     ./build
 
-You can test whether the wiringPi
-library is installed successfully or not by the following instruction.
+wiringPiライブラリが正常にインストールされたかどうかは、次の指示に従って確認できます。
 
 .. raw:: html
 
@@ -38,8 +32,7 @@ library is installed successfully or not by the following instruction.
 
 .. image:: ../img/image30.png
 
-
-Check the GPIO with the following command:
+次のコマンドでGPIOを確認します:
 
 .. raw:: html
 
@@ -51,7 +44,5 @@ Check the GPIO with the following command:
 
 .. image:: ../img/image31.png
 
-
-For more details about wiringPi, you can refer to `WiringPi <https://github.com/WiringPi/WiringPi>`_.
-
+wiringPiの詳細については、 `WiringPi <https://github.com/WiringPi/WiringPi>`_ を参照してください。
 

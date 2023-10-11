@@ -1,63 +1,57 @@
-3.1.11 GAME– Guess Number
+.. _3.1.11_c:
+
+3.1.11 ゲーム - 数当て
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+数当ては、楽しいパーティーゲームで、友達と交互に数字（0〜99）を入力していくゲームです。数字を入力するたびに、範囲は狭くなり、プレイヤーが謎を正しく解答するまで続きます。その後、プレイヤーは敗北し、罰せられます。例えば、ラッキーナンバーが51で、プレイヤーたちが見ることができない場合、プレイヤー①が50を入力すると、数字の範囲は50〜99に変わります。プレイヤー②が70を入力すると、数字の範囲は50〜70になります。プレイヤー③が51を入力すると、このプレイヤーが不運なプレイヤーとなります。ここでは、キーパッドを使用して数字を入力し、LCDを使用して結果を表示します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_GAME_Guess_Number.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+すべてのキットを購入するのは確かに便利です。以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+また、以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Keypad`
+    *   - :ref:`キーパッド`
         - \-
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== =======
@@ -77,17 +71,16 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: ../img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
+実験手順
 -----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image273.png
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**ステップ2:** I2C をセットアップします（詳細は付録 :ref:`i2c_config` を参照してください。I2C を設定済みの場合、このステップはスキップします）。
 
-**Step 3**: Change directory.
+**ステップ3:** ディレクトリを変更します。
 
 .. raw:: html
 
@@ -97,7 +90,7 @@ step.)
 
     cd ~/raphael-kit/c/3.1.11/
 
-**Step 4**: Compile.
+**ステップ4:** コンパイルします。
 
 .. raw:: html
 
@@ -107,7 +100,7 @@ step.)
 
     gcc 3.1.11_GAME_GuessNumber.c -lwiringPi
 
-**Step 5**: Run.
+**ステップ5:** 実行します。
 
 .. raw:: html
 
@@ -117,46 +110,35 @@ step.)
 
     sudo ./a.out
 
-After the program runs, there displays the initial page on the LCD:
+プログラムの実行後、LCDに初期ページが表示されます：
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * エラーメッセージ ``wiringPi.h: No such file or directory`` が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` エラーが表示される場合は、I2C を有効にするために :ref:`i2c_config` を参照し、配線が正しいか確認してください。
+    * コードと配線が正常であるにもかかわらず、LCDにコンテンツが表示されない場合は、バックにあるポテンショメーターを回してコントラストを上げることができます。
 
 .. code-block:: 
 
    Welcome!
    Press A to go!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+'A' を押すと、ゲームが開始され、ゲームページがLCDに表示されます。
 
 .. code-block:: 
 
    Enter number:
    0 ‹point‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+ゲーム開始時に乱数「 **point** 」が生成されますが、LCD には表示されません。これを推測する必要があります。 入力した数値は、最終計算が完了するまで最初の行の末尾に表示されます。 (「D」を押すと比較が開始され、入力数値が **10** より大きい場合、自動比較が開始されます。)
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
+2行目には「point」の数値範囲が表示されます。そして、範囲内の数値を入力する必要があります。数値を入力すると範囲が狭くなります。幸か不幸かラッキーナンバーを手に入れた場合は、「You’re got it!」と表示されます。
 
-**Code Explanation**
+**コード説明**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in :ref:`1.1.7 I2C LCD1602` and :ref:`2.1.8 Keypad`.
+コードの最初の部分には **keypad** と **I2C LCD1602** の機能的な機能があります。これらについての詳細は、 :ref:`1.1.7_c` および :ref:`2.1.8_c` で詳しく学ぶことができます。
 
-Here, what we need to know is as follows:
+ここで知っておくべきことは次の通りです：
 
 .. code-block:: c
 
@@ -176,8 +158,7 @@ Here, what we need to know is as follows:
         write(0, 1, "Press A to go!");
     }
     
-This function is used to initially define **I2C LCD1602** and **Keypad**
-and to display “Welcome!” and “Press A to go!”.
+この関数は、 **I2C LCD1602** と **Keypad** を最初に定義し、「Welcome!」と「Press A to go!”」を表示するために使用されます。
 
 .. code-block:: c
 
@@ -190,8 +171,7 @@ and to display “Welcome!” and “Press A to go!”.
         printf("point is %d\n",pointValue);
     }
 
-The function produces the random number ‘\ **point**\ ’ and resets the
-range hint of the point.
+この関数はランダムな数字「 **point** 」を生成し、ポイントの範囲ヒントをリセットします。
 
 .. code-block:: c
 
@@ -214,10 +194,7 @@ range hint of the point.
         return 0;
     }
 
-detect_point() compares the input number with the produced “point”. If
-the comparing outcome is that they are not same, **count** will assign
-values to **upper** and **lower** and return ‘\ **0**\ ’; otherwise, if
-the outcome indicates they are same, there returns ‘\ **1**\ ’.
+detect_point() は入力された数字を生成された 「point」と比較します。比較の結果、同じでない場合、 **count** は **upper** と **lower** に値を割り当て「 **0** 」を返します。同様に、結果が同じである場合、「 **1** 」を返します。
 
 .. code-block:: c
 
@@ -242,10 +219,7 @@ the outcome indicates they are same, there returns ‘\ **1**\ ’.
         write(12,1,str);
     }
 
-This function works for displaying the game page. Pay attention to the
-function **Int2Str(str,count)**, it converts these variables **count**,
-**lower**, and **upper** from **integer** to **character string** for
-the correct display of **lcd**.
+この関数はゲームページを表示するためのものです。関数 **Int2Str(str,count)** に注意してください。これはこれらの変数 **count**、**lower**、**upper** を **integer** から **character string** に変換し、 **lcd** の正しい表示を行います。
 
 .. code-block:: c
 
@@ -289,30 +263,23 @@ the correct display of **lcd**.
     }
 
 
-Main() contains the whole process of the program, as show below:
+Main() 関数はプログラムの全体的なプロセスを含んでおり、以下のように示されています：
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+1) **I2C LCD1602** と **Keypad** を初期化します。
 
-2) Use **init_new_value()** to create a random number **0-99**.
+2) **init_new_value()** を使用してランダムな数値 **0-99** を生成します。
 
-3) Judge whether the button is pressed and get the button reading.
+3) ボタンが押されたかどうかを判断し、ボタンの読み取りを取得します。
 
-4) If the button ‘\ **A**\ ’ is pressed, a random number **0-99** will
-   appear then the game starts.
+4) ボタン「 **A** 」が押された場合、ランダムな数値 **0-99** が表示され、ゲームが開始します。
 
-5) If the button ‘\ **D**\ ’ is detected to have been pressed, the
-   program will enter into the outcome judgement and will display the
-   outcome on the LCD. This step helps that you can also judge the
-   outcome when you press only one number and then the button
-   ‘\ **D**\ ’.
+5) ボタン「 **D** 」が押されたことが検出されると、プログラムは結果の判定に入り、結果をLCDに表示します。このステップにより、1つの数字を押してからボタン「 **D** 」を押すだけで結果を判断できます。
 
-6) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+6) ボタン **0-9** が押されると、 **count** の値が変更されます。 **count** が **10** より大きい場合、判定が開始されます。
 
-7) The changes of the game and its values are displayed on **LCD1602**.
+7) ゲームの変化とその値は **LCD1602** に表示されます。
 
-**Phenomenon Picture**
+現象の画像
 ------------------------
 
 .. image:: ../img/image274.jpeg

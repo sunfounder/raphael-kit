@@ -1,24 +1,20 @@
-Humiture Sensor Module
-=============================
+湿温センサモジュール
+==========================
 
 .. image:: img/dht11_pic.png
     :width: 400
     :align: center
 
-The digital temperature and humidity sensor DHT11 is a composite sensor that contains a calibrated digital signal output of temperature and humidity. 
-The technology of a dedicated digital modules collection and the temperature and humidity sensing technology are applied to ensure that the product has high reliability and excellent long-term stability.
+このデジタル温度・湿度センサDHT11は、温度と湿度のキャリブレートされたデジタル信号出力を含む複合センサです。専用のデジタルモジュール集積技術と温湿度センシング技術が採用されており、製品の高い信頼性と長期間にわたる優れた安定性が確保されています。
 
-
-Only three pins are available for use: VCC, GND, and DATA. 
-The communication process begins with the DATA line sending start signals to DHT11, and DHT11 receives the signals and returns an answer signal. 
-Then the host receives the answer signal and begins to receive 40-bit humiture data (8-bit humidity integer + 8-bit humidity decimal + 8-bit temperature integer + 8-bit temperature decimal + 8-bit checksum).
+使用可能なピンは3つのみ: VCC, GND, DATAです。
+通信プロセスは、DATAラインからDHT11に開始信号を送り、DHT11がこれを受信して応答信号を返すことから始まります。次に、ホストは応答信号を受け取り、40ビットの温湿データ（8ビットの湿度整数 + 8ビットの湿度小数 + 8ビットの温度整数 + 8ビットの温度小数 + 8ビットのチェックサム）を受信します。
 
 .. image:: img/Dht11.png
 
+* `DHT11データシート <https://components101.com/sites/default/files/component_datasheet/DHT11-Temperature-Sensor.pdf>`_
 
-* `DHT11 Datasheet <https://components101.com/sites/default/files/component_datasheet/DHT11-Temperature-Sensor.pdf>`_
+**例**
 
-**Example**
-
-* :ref:`2.2.3_c` (C Project)
-* :ref:`2.2.3_py` (Python Project)
+* :ref:`2.2.3_c` (Cプロジェクト)
+* :ref:`2.2.3_py` (Pythonプロジェクト)

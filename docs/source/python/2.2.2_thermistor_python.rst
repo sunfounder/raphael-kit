@@ -1,74 +1,70 @@
 .. _2.2.2_py:
 
-2.2.2 Thermistor
-================
+2.2.2 サーミスタ
+=================
 
-Introduction
-------------
+はじめに
+----------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+フォトレジスタが光を検知できるように、サーミスタは温度に反応する電子デバイスであり、熱警報のような温度制御機能を実現できます。
 
-**Required Components**
-------------------------------
+必要な部品
+----------------------------------
 
-In this project, we need the following components. 
+このプロジェクトに必要な部品は次のとおりです。
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入することで手間が省けます、リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別にも購入可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Thermistor`
+    *   - :ref:`サーミスター`
         - |link_thermistor_buy|
     *   - :ref:`ADC0834`
         - \-
 
-Schematic Diagram
------------------
+回路図
+---------
 
 .. image:: ../img/image323.png
 
-
 .. image:: ../img/image324.png
 
+実験手順
+-------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**ステップ 1:** 回路を組む。
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ 2:** コードがあるフォルダに移動する。
 
 .. raw:: html
 
@@ -78,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file
+**ステップ 3:** 実行ファイルを起動する
 
 .. raw:: html
 
@@ -88,15 +84,13 @@ Experimental Procedures
 
     sudo python3 2.2.2_Thermistor.py
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+コードが実行された後、サーミスタが周囲の温度を検知し、プログラム計算が完了すると画面に表示されます。
 
-**Code**
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    以下のコードは **修正/リセット/コピー/実行/停止** ができます。ただし、その前に、 ``raphael-kit/python`` などのソースコードパスに移動する必要があります。コードを修正した後は、その効果を直接確認することができます。
 
 .. raw:: html
 
@@ -133,20 +127,19 @@ be printed on the screen once it finishes the program calculation.
         except KeyboardInterrupt:
             ADC0834.destroy()
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
     import math
 
-There is a numerics library which declares a set of functions to compute
-common mathematical operations and transformations.
+このライブラリは、一般的な数学的操作や変換を計算する一連の関数を定義しています。
 
 .. code-block:: python
 
     analogVal = ADC0834.getResult()
 
-This function is used to read the value of the thermistor.
+この関数はサーミスタの値を読み取るために使用されます。
 
 .. code-block:: python
 
@@ -157,44 +150,40 @@ This function is used to read the value of the thermistor.
     Fah = Cel * 1.8 + 32
     print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
 
-These calculations convert the thermistor values into centigrade degree
-and Fahrenheit degree.
+これらの計算は、サーミスタの値を摂氏と華氏に変換します。
 
 .. code-block:: python
 
     Vr = 5 * float(analogVal) / 255
     Rt = 10000 * Vr / (5 - Vr)
 
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
+この2行のコードは、読み取られたアナログ値を用いてRt（サーミスタの抵抗値）を求めるための電圧分布を計算しています。
 
 .. code-block:: python
 
     temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
 
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
+このコードは、ケルビン温度を求めるための公式 **T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** にRtを代入しています。
 
 .. code-block:: python
 
     temp = temp - 273.15
 
-Convert Kelvin temperature into centigrade degree.
+ケルビン温度を摂氏温度に変換します。
 
 .. code-block:: python
 
     Fah = Cel * 1.8 + 32
 
-Convert the centigrade degree into Fahrenheit degree.
+摂氏温度を華氏温度に変換します。
 
 .. code-block:: python
 
     print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
 
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
+表示に摂氏度、華氏度、およびそれらの単位を出力します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image203.jpeg

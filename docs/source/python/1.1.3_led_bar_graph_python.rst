@@ -1,55 +1,53 @@
 .. _1.1.3_py:
 
-1.1.3 LED Bar Graph
-======================
+1.1.3 LEDバーグラフ
+===================
 
-Introduction
+はじめに
 -------------
 
-In this project, we sequentially illuminate the lights on the LED Bar
-Graph.
+本プロジェクトでは、LEDバーグラフ上の複数のLEDを順次点灯させます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+本プロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_led_bar.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+以下のリンクから一式を購入すると非常に便利です：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+個々の部品も以下のリンクから別途購入可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
-    *   - :ref:`GPIO Extension Board`
+    *   - コンポーネントの紹介
+        - 購入リンク
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`LED Bar Graph`
+    *   - :ref:`LEDバーグラフ`
         - \-
 
-Schematic Diagram
+回路図
 -------------------------
 
 ============ ======== ======== ===
@@ -68,18 +66,18 @@ SPICE0       Pin 24   10       8
 
 .. image:: ../img/schematic_led_bar.png
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1**: Build the circuit.
+**ステップ1**: 回路を組み立てます。
 
 .. note::
 
-    Pay attention to the direction when connecting. If you connect it backwards, it will not light up.
+    接続の方向に注意してください。逆に接続すると点灯しない可能性があります。
 
 .. image:: ../img/image66.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2**: コードが保存されているフォルダに移動します。
 
 .. raw:: html
 
@@ -89,7 +87,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3**: Run the executable file.
+**ステップ3**: 実行ファイルを起動します。
 
 .. raw:: html
 
@@ -99,14 +97,13 @@ Experimental Procedures
 
     sudo python3 1.1.3_LedBarGraph.py
 
-After the code runs, you will see the LEDs on the LED bar turn on and
-off regularly.
+コードが正常に実行されると、LEDバーグラフ上のLEDが順次点灯および消灯します。
 
-**Code**
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    下記のコードは **修正/リセット/コピー/実行/停止** が可能ですが、それに先立って、ソースコードの保存先である ``raphael-kit/python`` に移動する必要があります。コードの変更後、その効果を直接確認できます。
 
 .. raw:: html
 
@@ -157,7 +154,7 @@ off regularly.
 
     def destroy():
         for pin in ledPins:
-            GPIO.output(pin, GPIO.LOW)    # turn off all leds
+            GPIO.output(pin, GPIO.LOW)      # turn off all leds
         GPIO.cleanup()                     # Release resource
 
     if __name__ == '__main__':     # Program start from here
@@ -167,10 +164,10 @@ off regularly.
         except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
             destroy()
 
-**Code Explanation**
+**コード説明**
 
 ledPins = [11, 12, 13, 15, 16, 18, 22, 3, 5, 24]
-Create an array and assign it to the pin number corresponding to the LED Bar Graph (11, 12, 13, 15, 16, 18, 22, 3, 5, 24) and the array will be used to control the LED.
+LEDバーグラフに対応するピン番号（11, 12, 13, 15, 16, 18, 22, 3, 5, 24）を配列に割り当て、LEDを制御します。
 
 .. code-block:: python
 
@@ -181,7 +178,7 @@ Create an array and assign it to the pin number corresponding to the LED Bar Gra
             time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
 
-Let the LED on the odd digit of the LED Bar Graph light on in turn.
+LEDバーグラフの奇数位のLEDを順番に点灯させます。
 
 .. code-block:: python
 
@@ -192,7 +189,7 @@ Let the LED on the odd digit of the LED Bar Graph light on in turn.
             time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
 
-Make the LED on the even digit of the LED Bar Graph light on in turn.
+LEDバーグラフの偶数位のLEDを順番に点灯させます。
 
 .. code-block:: python
 
@@ -202,8 +199,9 @@ Make the LED on the even digit of the LED Bar Graph light on in turn.
             time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
 
-Let the LED on the LED Bar Graph light on one by one.
+LEDバーグラフ全体を順番に点灯させます。
 
-**Phenomenon Picture**
+現象の画像
+------------------------
 
 .. image:: ../img/image67.jpeg

@@ -1,36 +1,35 @@
-DC Motor
+DCモーター
 ===================
 
 .. image:: img/image114.jpeg
     :align: center
 
-This is a 3V DC motor. When you give a high level and a low level to each of the 2 terminals, it will rotate.
+これは3V DCモーターです。2つの端子にそれぞれ高レベルと低レベルを与えると、回転します。
 
-* **Size**: 25*20*15MM
-* **Operation Voltage**: 1-6V
-* **Free-run Current** (3V): 70m
-* **A Free-run Speed** (3V): 13000RPM
-* **Stall Current** (3V): 800mA
-* **Shaft Diameter**: 2mm
+* **サイズ**: 25*20*15MM
+* **動作電圧**: 1-6V
+* **無負荷電流** (3V): 70m
+* **無負荷回転速度** (3V): 13000RPM
+* **スタール電流** (3V): 800mA
+* **シャフト径**: 2mm
 
-Direct current (DC) motor is a continuous actuator that converts electrical energy into mechanical energy. DC motors make rotary pumps, fans, compressors, impellers, and other devices work by producing continuous angular rotation.
+直流（DC）モーターは、電気エネルギーを機械エネルギーに変換する連続アクチュエーターです。DCモーターによってロータリーポンプ、ファン、圧縮機、インペラなどの装置が連続的な角度回転を発生させて動作します。
 
-A DC motor consists of two parts, the fixed part of the motor called the **stator** and the internal part of the motor called the **rotor** (or **armature** of a DC motor) that rotates to produce motion.
-The key to generating motion is to position the armature within the magnetic field of the permanent magnet (whose field extends from the north pole to the south pole). The interaction of the magnetic field and the moving charged particles (the current-carrying wire generates the magnetic field) produces the torque that rotates the armature.
+DCモーターは、モーターの固定部分である **ステーター** と、動きを生成するために回転するモーターの内部部分である **ローター** （またはDCモーターの **電梯子** ）から成り立っています。
+動きを生成する鍵は、永久磁石の磁場（北極から南極にかけて伸びる）内で電梯子を配置することです。この磁場と動く帯電粒子（電流を流すワイヤーが磁場を生成）との相互作用によって、電梯子を回転させるトルクが生成されます。
 
 .. image:: img/motor_sche.png
     :align: center
 
-Current flows from the positive terminal of the battery through the circuit, through the copper brushes to the commutator, and then to the armature.
-But because of the two gaps in the commutator, this flow reverses halfway through each complete rotation.
-This continuous reversal essentially converts the DC power from the battery to AC, allowing the armature to experience torque in the right direction at the right time to maintain rotation.
+電流はバッテリーの正極から回路を通り、銅製のブラシを経てコミュテーターへ、そして電梯子へ流れます。
+しかし、コミュテーターには2つのギャップがあり、この流れは一回転ごとに半分で反転します。
+この連続的な反転により、バッテリーからのDC電源がACに変換され、電梯子が適切な方向とタイミングでトルクを経験し、回転を維持します。
 
-* `DC Motor - MagLab <https://nationalmaglab.org/education/magnet-academy/watch-play/interactive/dc-motor>`_
 
-**Example**
+**例**
 
-* :ref:`1.3.1_c` (C Project)
-* :ref:`3.1.4 Smart Fan` (C Project)
-* :ref:`1.3.1_py` (Python Project)
-* :ref:`4.1.10 Smart Fan` (Python Project)
-* :ref:`1.17 Rotating fan` (Scratch Project)
+* :ref:`1.3.1_c` (Cプロジェクト)
+* :ref:`3.1.4_c` (Cプロジェクト)
+* :ref:`1.3.1_py` (Pythonプロジェクト)
+* :ref:`4.1.10_py` (Pythonプロジェクト)
+* :ref:`1.17_scratch` (Scratchプロジェクト)

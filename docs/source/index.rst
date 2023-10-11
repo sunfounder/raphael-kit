@@ -1,45 +1,48 @@
-
 SunFounder Ulimate Raphael Kit for Raspberry Pi
 =======================================================
 
-Are you new to Raspberry Pi? Are you looking for a clear path to learn Raspberry Pi? 
-Would you like to do more than just copy and paste code, but actually write your own? 
-If you answered yes to any of the above questions, then the Raspberry Pi Education Starter Kit - Raphael Kit is right for you.
+ラズベリーパイに初めて挑戦する方はいますか？ラズベリーパイを学ぶ明確な方法をお探しですか？
+コードを単にコピーアンドペーストするだけでなく、自分自身で書きたいと思っていますか？
+もしこれらの質問のいずれかに「はい」と答えたなら、 Raspberry Pi Education Starter Kit - ラファエルキットはあなたにぴったりです。
 
-The kit is unlike other kits that only have a variety of projects. It is a true educational kit designed for beginners, whether you are programming beginners, electronics hobbyists, 
-experienced electrical engineers, students or educators, this kit will meet all your needs.
+このキットは、さまざまなプロジェクトだけを提供する他のキットとは異なり、プログラミング初心者から電子工学の愛好者、経験豊富な電気エンジニア、学生、教育者まで、あらゆるレベルの方々に対応した真の教育キットです。
 
-In addition to including all the hardware and software needed for beginners, the kit also offers an online tutorial with 161 interesting projects in 5 programming languages and 45 free video courses (30 hours) on getting started to mastery.
+初心者に必要なハードウェアとソフトウェアを全て含んでいるだけでなく、5つのプログラミング言語で161の面白いプロジェクトと、45本の無料ビデオコース（合計30時間）をオンラインチュートリアルで提供しています。
 
+この `ビデオコース <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ では、ラズベリーパイのセットアップからGPIOピンやセンサーの使用、基本的な回路とプログラミングについて、初心者が学べます。各コースには簡単で面白いプロジェクトが用意されており、手順に従って進めるだけでラズベリーパイをマスターし、自分自身のプロジェクトを作成できます。
 
-This `video course <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ shows beginners how to set up the Raspberry Pi, use the GPIO pins and sensors, and learn the basics of circuits and programming. Each course has simple and interesting projects for beginners to practice and learn, all you need to do is to follow step by step and eventually you will be able to master the Raspberry Pi and make your own projects.
+ビデオチュートリアルを学び終えたら、オンラインチュートリアルで各コンポーネントの使用方法を練習したり、さらに高度で興味深いプロジェクトに取り組むことができます。
 
+また、C言語やScratch、Java（プロセッシング）、JavaScript（Node.js）など、他の言語でプロジェクトを構築することもできます。
 
-After learning the video tutorials, you can practice the use of each component from our online tutorials and play with some more advanced and interesting projects.
+質問があれば、service@sunfounder.com までメールをお送りください。できるだけ早く回答します。
 
-Alternatively, you can use the components to build projects in other languages, such as C, Scratch, Java (processing) and JavaScript (Nodejs).
+**表示言語について**
 
-If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
+このドキュメントは、他の言語でも利用可能です。
 
-
-**About the display language**
-
-About the display language
-
-This document is available in other languages as well. To switch the display language, kindly click on the Read the Docs icon located in the lower left corner of the page.
+表示言語を変更するには、ページの左下隅にあるRead the Docsのアイコンをクリックしてください。
 
 .. image:: img/translation.png
     :align: center
 
-**Contents**
+.. raw:: html
+
+   <br/>
+
+**目次**
 
 .. image:: img/translate3.png
     :align: center
 
+.. raw:: html
+
+   <br/>
+
 .. toctree::
     :maxdepth: 2
 
-    About This Kit <self>
+    このキットについて <self>
     about_video_course
     component_list
     install_setup_os/preparation
@@ -55,8 +58,6 @@ This document is available in other languages as well. To switch the display lan
     :maxdepth: 3
 
     c/play_with_c
-
-
 
 .. toctree::
     :maxdepth: 3
@@ -79,8 +80,6 @@ This document is available in other languages as well. To switch the display lan
     appendix/appendix
     thank-learning
 
+**著作権に関するお知らせ**
 
-
-**Copyright Notice**
-
-All contents including but not limited to texts, images, and code in this manual are owned by the SunFounder Company. You should only use it for personal study,investigation, enjoyment, or other non-commercial or nonprofit purposes, under therelated regulations and copyrights laws, without infringing the legal rights of the author and relevant right holders. For any individual or organization that uses these for commercial profit without permission, the Company reserves the right to take legal action.
+本マニュアルに含まれるテキスト、画像、コードなどすべての内容はSunFounder社が所有しています。それらは個人的な学習、研究、楽しみ、またはその他の非営利・非商用目的でのみ使用することができ、著作権法および関連規制に基づき、著者および関連する権利者の法的権利を侵害しない範囲で行ってください。許可なく商用で利益を得るためにこれらを使用する個人または組織に対しては、当社は法的手段を講じる権利を保有しています。

@@ -1,59 +1,61 @@
-1.1 Wand
+.. _1.1_scratch:
+
+1.1 魔法の杖
 =================
 
-Today we will use LED, Raspberry Pi and Scratch to make a fun game. When we wave the magic wand, the LED will blink.
+今日はLED、Raspberry Pi、そしてScratchを使用して楽しいゲームを作成します。魔法の杖を振ると、LEDが点滅します。
 
 .. image:: img/1.1_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.1_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのが便利です。リンクは以下のとおりです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
 
-Build the Circuit
+回路を組む
 -----------------------
 
 .. image:: img/1.1_image49.png
 
-Add GPIO Extension
+GPIO拡張を追加
 ---------------------
 
-Click on the **Add Extension** button in the bottom left corner，then add the **Raspberry Pi GPIO**, an extension we use for all of our Scratch projects.
+左下の **拡張機能を追加** ボタンをクリックし、すべてのScratchプロジェクトで使用する **Raspberry Pi GPIO** 拡張機能を追加します。
 
 .. image:: img/1.1_scratchled1.png
     :align: center
@@ -64,59 +66,58 @@ Click on the **Add Extension** button in the bottom left corner，then add the *
 .. image:: img/1.1_scratchled3.png
     :align: center
 
-Load the Code and See What Happens
+コードをロードして何が起こるかを確認する
 -----------------------------------------
 
-Load the code file from your computer(``~/raphael-kit/scratch/code``) to Scratch 3.
+コンピュータから(``~/raphael-kit/scratch/code``)のコードファイルをScratch 3にロードします。
 
 .. image:: img/1.1_scratch_step1.png
 
 .. image:: img/1.1_scratch_step2.png
 
-After clicking the magic wand in the stage area, you will see the LED will blink for two seconds.
+ステージエリアで魔法の杖をクリックすると、LEDが2秒間点滅することが確認できます。
 
 .. image:: img/1.1_step3.png
 
+スプライトに関するヒント
+--------------------------
 
-Tips on Sprite
-----------------
-
-Click on the **Upload Sprite**.
+**Upload Sprite** をクリックします。
 
 .. image:: img/1.1_upload_sprite.png
 
-Upload **Wand.png** from the ``~/raphael-kit/scratch/picture`` path to Scratch 3.
+``~/raphael-kit/scratch/picture`` パスから **Wand.png** をScratch 3にアップロードします。
 
 .. image:: img/1.1_upload.png
 
-Finally, delete the **Sprite1**.
+最後に、 **Sprite1** を削除します。
 
 .. image:: img/1.1_delete.png
 
-Tips on Codes
---------------
+コードに関するヒント
+---------------------
 
 .. image:: img/1.1_LED1.png
   :width: 300
 
-This is an event block whose trigger condition is to click on the green flag on the stage. A trigger event is required at the beginning of all codes, and you can select other trigger events in the **Events** category of the **block palette**.
+これは、ステージ上の緑の旗をクリックしたときのトリガー条件を持つイベントブロックです。すべてのコードの最初にはトリガーイベントが必要であり、 **block palette** の **Events** カテゴリで他のトリガーイベントを選択することができます。
 
 .. image:: img/1.1_events.png
   :width: 300
 
-For example, we can now change the trigger event to a click on the sprite.
+たとえば、トリガーイベントをスプライトのクリックに変更することができます。
 
 .. image:: img/1.1_LED2.png
   :width: 300
 
-This is a block with a set number of cycles. When we fill in the number 10, the events in the block will be executed 10 times.
+これは、一定回数のサイクルを持つブロックです。10という数字を入力すると、ブロック内のイベントが10回実行されます。
 
 .. image:: img/1.1_LED4.png
   :width: 300
 
-This block is used to pause the program for a period of time in seconds.
+このブロックは、一定期間の間、プログラムを一時停止するために使用されます。
 
 .. image:: img/1.1_LED3.png
   :width: 500
 
-Since the BCM naming method is used in Scratch, this code is setting GPIO17(BCM17) as 0V (low level). Since the cathode of LED is connected to GPIO17, thus the LED will light up. On the contrary, if you set GPIO(BCM17) as high, the LED will turn off.
+ScratchでBCM命名方法が使用されているので、このコードはGPIO17(BCM17)を0V(低レベル)に設定しています。LEDのカソードがGPIO17に接続されているため、LEDは点灯します。逆に、GPIO(BCM17)を高に設定すると、LEDはオフになります。

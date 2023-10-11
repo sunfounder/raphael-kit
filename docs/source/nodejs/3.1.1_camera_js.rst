@@ -1,51 +1,52 @@
-3.1.1 Photograph Module
+.. _3.1.1_js:
+
+3.1.1 写真モジュール
 ==========================
 
-Introduction
+はじめに
 -----------------
 
-In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
+このキットには、カメラモジュールが装備されています。Raspberry Piで写真を撮影してみましょう。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットをまとめて購入すると確かに便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`Camera Module`
+    *   - :ref:`カメラモジュール`
         - |link_camera_buy|
 
-Experimental Procedures
+実験手順
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+**ステップ1:** Raspberry Piデスクトップに移動します。より良い体験のためにはスクリーンが必要です。参考：`Raspberry Piに接続 <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ 。または、Raspberry Piのデスクトップにリモートでアクセスします。詳しいチュートリアルは :ref:`リモートデスクトップ` を参照してください。
 
-
-**Step 2:** Open a Terminal and get into the folder of the code.
+**ステップ2:** ターミナルを開き、コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -55,7 +56,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行します。
 
 .. raw:: html
 
@@ -65,11 +66,9 @@ Experimental Procedures
 
     sudo node camera.js
 
-After the code runs, the camera will take a photo. Now you can see the photo named ``test.jpg`` in current directory. 
+コードを実行すると、カメラが写真を撮ります。現在のディレクトリで``test.jpg``という名前の写真を見ることができます。
 
-
-
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -77,21 +76,21 @@ After the code runs, the camera will take a photo. Now you can see the photo nam
 
     exec('libcamera-still -o test.jpg');
 
-**Code Explanation**
+**コードの説明**
 
 .. code-block:: js
 
     const exec = require('child_process').exec;
 
-Import the ``child_process`` module, which allows nodejs to perform various operations on child processes, including creating child processes to directly execute system commands.
+``child_process`` モジュールをインポートします。これにより、nodejsは子プロセスのさまざまな操作を実行できます。これには、システムコマンドを直接実行する子プロセスを作成することも含まれます。
 
 .. note:: 
-    About this module, please refer to: https://nodejs.org/api/child_process.html
+    このモジュールについては、こちらを参照してください： https://nodejs.org/api/child_process.html
 
 .. code-block:: js
 
     exec('libcamera-still -o test.jpg');
 
-After enabling the Camera function, you can directly use the command ``libcamera-still -o test.jpg`` to capture photos in the terminal. We can also use the method provided by the ``child_process`` module ``child_process.exec(cmd, [options] , callback)`` to create child processes to run system commands.
+カメラ機能を有効にすると、ターミナルで ``libcamera-still -o test.jpg`` コマンドを直接使用して写真を撮影できます。また、 ``child_process`` モジュールによって提供されるメソッド ``child_process.exec(cmd, [options] , callback)`` を使用して、システムコマンドを実行する子プロセスを作成することもできます。
 
-By adding loop and delay functions, we can also achieve the effect of timing photos or time-lapse video.
+ループと遅延関数を追加することで、タイミング写真やタイムラプスビデオの効果も得られます。

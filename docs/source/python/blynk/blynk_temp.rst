@@ -1,80 +1,78 @@
-Temperature Recorder
+温度記録器
 ====================
 
-In this project, you can see the current temperature and the temperature change line graph from Blynk.
+このプロジェクトでは、Blynkを使って現在の温度とその変化をライングラフで確認できます。
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
+.. note:: このプロジェクトに取り掛かる前に、 :ref:`bk_start` を完了することをお勧めします。これにより、Blynkについての基本的な理解が得られます。
 
-**Required Components**
-------------------------------
+**必要なコンポーネント**
 
-In this project, we need the following components. 
+このプロジェクトで必要な部品は以下の通りです。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式をまとめて購入すると便利です。下記にリンクを掲載しています：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - 名称
+        - このキットのアイテム
+        - リンク
+    *   - Raphaelキット
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+部品を個別に購入する場合は、以下のリンクからどうぞ。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
-    *   - :ref:`GPIO Extension Board`
+    *   - 部品説明
+        - 購入リンク
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Humiture Sensor Module`
+    *   - :ref:`湿温センサモジュール`
         - |link_humiture_buy|
 
 
-**1. Wiring**
+**1. 配線**
 
 .. image:: img/wiring_blynk_temp.png
 
 
-**2. Create Widget and Datastream**
+**2. ウィジェットとデータストリームの作成**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. 右上のメニューアイコンをクリックし、ダッシュボードの編集を選択します。
 
     .. image:: img/sp220913_180231.png
 
-2. Add a Gauge widget and a Chart widget to the Dashboard.
+2. ダッシュボードにゲージウィジェットとチャートウィジェットを追加します。
 
     .. image:: img/sp220914_175437.png
 
-3. Create a Datastream for the Gauge widget (I used V5). It will be used to display the temperature. Set **DATA TYPE** to ``Double``, **DECIMALS** to ``#. #`` (two valid decimal places).
+3. ゲージウィジェット用のデータストリーム（V5を使用）を作成します。温度表示に使用します。 **DATA TYPE** は ``Double`` 、 **DECIMALS** は ``#. #`` （有効数字2桁）に設定します。
 
     .. image:: img/sp220914_182300.png
 
-4. Add the V5 Datastream you just created to the Chart widget.
+4. チャートウィジェットに先ほど作成したV5データストリームを追加します。
 
     .. image:: img/sp220914_183039.png
 
-#. When finished, click Save And Apply at the top right.
+#. 設定が完了したら、右上にある「保存して適用」をクリックします。
 
     .. image:: img/sp220913_182300.png
 
 
-**3. Run the Code**
+**3. コードの実行**
 
-1. Edit the code
+1. コードを編集します。
 
 .. raw:: html
 
@@ -85,13 +83,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_temp.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. 下記の行を見つけて、 ``BLYNK_AUTH_TOKEN`` を貼り付けます。
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. コードを実行します。
 
 .. raw:: html
 
@@ -101,9 +99,9 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_temp.py
 
-4. Go to Blynk. Now you can view the temperature and temperature change line graph on the Dashboard.
+4. Blynkのダッシュボードで、温度やその変化のライングラフを確認できます。
 
     .. image:: img/sp220915_101137.png
 
+#. モバイルデバイスでBlynkを利用する場合は、 :ref:`blynk_mobile` を参照してください。
 
-#. If you want to use Blynk on mobile devices, please refer to :ref:`blynk_mobile`.

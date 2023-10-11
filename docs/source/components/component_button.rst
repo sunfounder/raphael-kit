@@ -1,32 +1,31 @@
-Button
+ボタン
 ==========
 
 .. image:: img/button.png
     :width: 400
     :align: center
 
-Buttons are a common component used to control electronic devices. They are usually used as switches to connect or break circuits. Although buttons come in a variety of sizes and shapes, the one used here is a 6mm mini-button as shown in the following pictures.
-Pin 1 is connected to pin 2 and pin 3 to pin 4. So you just need to connect either of pin 1 and pin 2 to pin 3 or pin 4.
+ボタンは電子機器を操作する際に広く使われる一般的な部品です。主にスイッチとして回路の接続や遮断に用いられます。多種多様なサイズや形状のボタンが存在しますが、ここでは6mmのミニボタンを使用しています。ピン1とピン2、ピン3とピン4がそれぞれ接続されているので、ピン1またはピン2をピン3またはピン4に接続するだけでよいです。
 
-The following is the internal structure of a button. The symbol on the right below is usually used to represent a button in circuits. 
+次はボタンの内部構造です。下の右側の記号は、回路図でボタンを表現する際に一般的に使用されます。
 
 .. image:: img/button_symbol.png
     :width: 400
     :align: center
 
-Since the pin 1 is connected to pin 2, and pin 3 to pin 4, when the button is pressed, the 4 pins are connected, thus closing the circuit.
+ピン1がピン2に、ピン3がピン4に接続されているため、ボタンが押されると4つのピンが接続され、回路が閉じます。
 
 .. image:: img/button2.png
     :width: 600
     :align: center
 
-**Example**
+**例**
 
-* :ref:`2.1.1_c` (C Project)
-* :ref:`3.1.4 Smart Fan` (C Project)
-* :ref:`3.1.13 GAME– NotNot` (C Project)
-* :ref:`2.1.1_py` (Python Project)
-* :ref:`4.1.2 Music Player` (Python Project)
-* :ref:`4.1.10 Smart Fan` (Python Project)
-* :ref:`1.4 Hare` (Scratch Project)
+* :ref:`2.1.1_c` （Cプロジェクト）
+* :ref:`3.1.4_c` （Cプロジェクト）
+* :ref:`3.1.13_c` （Cプロジェクト）
+* :ref:`2.1.1_py` （Pythonプロジェクト）
+* :ref:`4.1.2_py` （Pythonプロジェクト）
+* :ref:`4.1.10_py` （Pythonプロジェクト）
+* :ref:`1.4_scratch` （Scratchプロジェクト）
 

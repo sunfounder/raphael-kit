@@ -1,85 +1,76 @@
 .. _1.3.1_c:
 
-1.3.1 Motor
+1.3.1 モーター
 =================
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+このプロジェクトでは、L293Dを使ってDCモーターを駆動し、それを時計回りおよび反時計回りに回転させる方法を学びます。DCモーターは大きな電流を必要とするため、安全のために、ここでは電源供給モジュールを使用してモーターに電力を供給します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_1.3.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのが確実に便利です。リンクはこちらです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`電源モジュール`
         - \-
     *   - :ref:`L293D`
         - \-
-    *   - :ref:`DC Motor`
+    *   - :ref:`DCモーター`
         - |link_motor_buy|
 
-Schematic Diagram
+回路図
 ------------------
 
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+電源供給モジュールをブレッドボードに接続し、ジャンパーキャップを5Vのピンに挿入すると、5Vの電圧が出力されます。L293Dのピン1をGPIO22に接続し、高レベルに設定します。ピン2をGPIO27、ピン7をGPIO17に接続し、一方のピンを高に、もう一方を低に設定します。これにより、モーターの回転方向を変更できます。
 
 .. image:: ../img/image336.png
 
 
-**Experimental Procedures**
+実験手順
+------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image117.png
 
-
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    キットの9Vバッテリーバックルを使用して、電源モジュールで9Vのバッテリーを使用できます。電源モジュールのジャンパーキャップをブレッドボードの5Vバスストリップに挿入します。
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Get into the folder of the code.
+**ステップ2**: コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -89,7 +80,7 @@ the motor’s rotation direction.
 
     cd ~/raphael-kit/c/1.3.1/
 
-**Step 3**: Compile.
+**ステップ3**: コンパイルします。
 
 .. raw:: html
 
@@ -99,7 +90,7 @@ the motor’s rotation direction.
 
     gcc 1.3.1_Motor.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**ステップ4**: 上記の実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -109,15 +100,13 @@ the motor’s rotation direction.
 
     sudo ./a.out
 
-As the code runs, the motor first rotates clockwise for 5s then stops for 5s, 
-after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
-for 5s. This series of actions will be executed repeatedly.  
+コードが実行されると、モーターはまず5秒間時計回りに回転し、その後5秒間停止します。その後、モーターは5秒間反時計回りに回転します。その後、モーターは5秒間停止します。この一連のアクションは繰り返し実行されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -170,24 +159,22 @@ for 5s. This series of actions will be executed repeatedly.
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, HIGH);
 
-Enable the L239D.
+L239Dを有効にします。
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, HIGH);
     digitalWrite(MotorPin2, LOW);
 
-Set a high level for 2A(pin 7); since 1,2EN(pin 1) is in 
-high level, 2Y will output high level.
+2A（ピン7）に高いレベルを設定します。1,2EN（ピン1）が高いレベルにあるので、2Yは高いレベルを出力します。
 
-Set a low level for 1A, then 1Y will output low level, and 
-the motor will rotate.
+1Aに低いレベルを設定すると、1Yは低いレベルを出力し、モーターが回転します。
 
 .. code-block:: c
 
@@ -195,22 +182,22 @@ the motor will rotate.
         delay(1000);
     }
 
-this loop is to delay for 3*1000ms.
+このループは3*1000msの遅延のためのものです。
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, LOW)
 
-If 1,2EN (pin1) is in low level, L293D does not work. Motor stops rotating.
+1,2EN（ピン1）が低いレベルにある場合、L293Dは動作しません。モーターの回転が停止します。
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, LOW)
     digitalWrite(MotorPin2, HIGH)
 
-Reverse the current flow of the motor, then the motor will rotate reversely.
+モーターの電流の流れを逆にすると、モーターは逆方向に回転します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image119.jpeg

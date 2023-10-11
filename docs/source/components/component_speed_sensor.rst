@@ -1,21 +1,25 @@
-Speed Sensor Module
+速度センサーモジュール
 ========================
 
 .. image:: img/speed_sensor1.png
     :width: 300
     :align: center
 
-The speed sensor consists of two parts: a transmitter and a receiver. The transmitter emits light, which then enters the receiver.
+速度センサーは送信機と受信機の2部分から構成されています。送信機から光が出力され、その光は受信機に入ります。
 
-If the light beam between the emitter and receiver is interrupted by an obstacle, the receiver will not detect the incident light, then the D0 pin will output low level.
+障害物が送信機と受信機の間の光路を遮断すると、受信機は光を検出できず、D0ピンはローレベルを出力します。
 
 .. note::
-    The A0 pin on this module is empty and there is no circuit.
+    このモジュールのA0ピンは空で、回路がありません。
 
 .. image:: img/speed_sensor2.png
 
-**Example**
+**例**
 
-* :ref:`2.2.6_c` (C Project)
-* :ref:`2.2.6_py` (Python Project)
-* :ref:`1.7 Piggy Bank` (Scratch Project)
+* :ref:`2.2.6_c` （Cプロジェクト）
+* :ref:`2.2.6_py` （ Pythonプロジェクト）
+* :ref:`1.7_scratch` （Scratchプロジェクト）
+
+
+
+

@@ -3,71 +3,67 @@
 2.2.7 PIR
 ===============
 
-Introduction
+はじめに
 ------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+このプロジェクトでは、人体赤外線焦電センサーを使用してデバイスを作成します。誰かがLEDに近づくと、LEDは自動的に点灯します。そうでなければ、光は消えます。この赤外線モーションセンサーは、人や動物が放出する赤外線を検出できるセンサーの一種です。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`RGB LED`
         - |link_rgb_led_buy|
-    *   - :ref:`PIR Motion Sensor Module`
+    *   - :ref:`PIRモーションセンサーモジュール`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image327.png
 
 
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てます。
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -77,7 +73,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.7/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルします。
 
 .. raw:: html
 
@@ -87,7 +83,7 @@ Experimental Procedures
 
     gcc 2.2.7_PIR.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**ステップ4:** 実行ファイルを実行します。
 
 .. raw:: html
 
@@ -97,9 +93,9 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+コードが実行されると、PIRは周囲を検出し、通り過ぎる人を感知した場合はRGB LEDを黄色に点灯させます。
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+PIRモジュールには2つのポテンショメータがあります。1つは感度を調整するためのもの、もう1つは検出距離を調整するためのものです。PIRモジュールをよりよく動作させるためには、両方を反時計回りに最後まで回す必要があります。
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
@@ -107,10 +103,9 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: ``wiringPi.h No such file or directory``, please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -155,15 +150,14 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2 RGB LED` for more details.
+これらのコードはRGB LEDの色を設定するために使用されます。詳細については :ref:`1.1.2_c` を参照してください。
 
 .. code-block:: c
 
@@ -184,10 +178,9 @@ to :ref:`1.1.2 RGB LED` for more details.
         return 0;
     }
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+PIRが人間の赤外線スペクトルを検出すると、RGB LEDは黄色の光を放出します。そうでなければ、青色の光を放出します。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image215.jpeg

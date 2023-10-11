@@ -1,19 +1,19 @@
-Projects
+プロジェクト
 ==================
 
-In this chapter, you will play with Scratch 3 through 18 projects.
+この章では、18のプロジェクトを通してScratch 3を使って遊びます。
 
-If you are a user who has just used Scratch 3, we recommend that you try the projects in order so that you can quickly get started with Scratch 3.
+Scratch 3を初めて使うユーザーの方は、Scratch 3を迅速に始めるために、プロジェクトを順番に試すことをお勧めします。
 
 .. note::
-    Before trying the projects, you should have downloaded the relevant materials and code files.
-    Open a Terminal and enter the following command to download them from github.
+    プロジェクトを試す前に、関連する資料やコードファイルをダウンロードしておく必要があります。
+    ターミナルを開き、次のコマンドを入力してgithubからダウンロードしてください。
 
     .. raw:: html
 
        <run></run>
 
-    .. code-block:: 
+    .. code-block::
 
         git clone https://github.com/sunfounder/raphael-kit.git
 

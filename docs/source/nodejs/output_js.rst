@@ -1,8 +1,8 @@
-Output
+出力
 ==========
 
-1.1 Displays
----------------
+1.1 ディスプレイ
+-------------------
 
 .. toctree::
     :maxdepth: 1
@@ -15,7 +15,7 @@ Output
     1.1.6_led_dot_matrix_js
     1.1.7_i2c_lcd1602_js
 
-1.2 Sound
+1.2 サウンド
 -------------
 
 .. toctree::
@@ -23,7 +23,7 @@ Output
 
     1.2.1_active_buzzer_js
 
-1.3 Drivers
+1.3 ドライバー
 ---------------
 
 .. toctree::

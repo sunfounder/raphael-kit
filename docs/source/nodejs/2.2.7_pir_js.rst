@@ -1,71 +1,68 @@
+.. _2.2.7_js:
+
 2.2.7 PIR
 =========
 
-Introduction
+はじめに
 ------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+このプロジェクトでは、人体赤外線焦電センサを使用してデバイスを作成します。誰かがLEDに近づくと、LEDは自動的に点灯します。そうでない場合は、光が消えます。この赤外線モーションセンサは、人や動物が放射する赤外線を検出できるセンサの一種です。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入するのは確かに便利です。リンクは以下の通りです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも別々に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`RGB LED`
         - |link_rgb_led_buy|
-    *   - :ref:`PIR Motion Sensor Module`
+    *   - :ref:`PIRモーションセンサーモジュール`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image327.png
 
-
-Experimental Procedures
+実験手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -75,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行する。
 
 .. raw:: html
 
@@ -85,13 +82,9 @@ Experimental Procedures
 
     sudo node pir.js
 
-After the code runs, PIR detects surroundings and let RGB LED glow
-yellow if it senses someone walking by. There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. In order to make the PIR module work better, you
-need to try to adjust these two potentiometers.
+コードが実行された後、PIRは周囲を検出し、誰かが通りかかるとRGB LEDを黄色に点灯させます。PIRモジュールには2つのポテンショメータがあります：一つは感度を調整するためのもので、もう一つは検出距離を調整するためのものです。PIRモジュールをより良く動作させるためには、これら2つのポテンショメータを調整する必要があります。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -159,12 +152,12 @@ need to try to adjust these two potentiometers.
         process.exit();
     })
 
-**Code Explanation**
+**コード説明**
 
-The code for this example is a combination of :ref:`2.1.1 Button` and :ref:`1.1.2 RGB LED`, no need to go into details.
+この例のコードは :ref:`2.1.1_js` と :ref:`1.1.2_js` を組み合わせたものです。詳しく説明する必要はありません。
 
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image215.jpeg

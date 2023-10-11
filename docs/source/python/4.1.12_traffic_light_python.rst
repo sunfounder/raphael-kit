@@ -1,60 +1,60 @@
-4.1.12 Traffic Light
+.. _4.1.12_py:
+
+4.1.12 交通信号機
 ========================
 
-Introduction
+はじめに
 ---------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+このプロジェクトでは、三色のLEDライトを使用して交通信号の変化を実現し、各交通状態のタイミングを表示するために4桁の7セグメントディスプレイを使用します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトで必要なコンポーネントは以下の通りです。
 
 .. image:: ../img/list_Traffic_Light.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入すると確かに便利です。リンクはこちら： 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからも別々に購入することができます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`4-Digit 7-Segment Display`
+    *   - :ref:`4桁7セグメントディスプレイ`
         - \-
     *   - :ref:`74HC595`
         - |link_74hc595_buy|
 
 
-Schematic Diagram
+回路図
 --------------------
 
 ============ ======== ======== ===
@@ -74,14 +74,14 @@ SPICE1       Pin 26   11       7
 .. image:: ../img/Schematic_three_one7.png
    :align: center
 
-Experimental Procedures
+実験手順
 ------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/image254.png
 
-**Step 2:** Change directory.
+**ステップ2:** ディレクトリを変更する。
 
 .. raw:: html
 
@@ -91,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ3:** 実行。
 
 .. raw:: html
 
@@ -101,18 +101,14 @@ Experimental Procedures
 
     sudo python3 4.1.12_TrafficLight.py
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly. Meanwhile, the 4-digit 7-segment
-display displays the countdown time continuously.
+コードが実行されると、LEDは交通信号の色の変化をシミュレートします。最初に、赤いLEDが60秒間点灯します。次に、緑のLEDが30秒間点灯します。その後、黄色のLEDが5秒間点灯します。その後、赤いLEDが再び60秒間点灯します。このように、この一連のアクションが繰り返し実行されます。同時に、4桁の7セグメントディスプレイはカウントダウン時間を連続して表示します。
 
-Code
+コード
 ----------
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    以下のコードを **修正/リセット/コピー/実行/停止** することができます。しかし、それを行う前に、 ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、その効果を直接見るために実行することができます。
+
 
 .. raw:: html
 
@@ -255,7 +251,7 @@ Code
             destroy()
 
 
-Code Explanation
+コード説明
 --------------------
 
 .. code-block:: python
@@ -271,10 +267,7 @@ Code Explanation
     def pickDigit(digit):
     def display():
 
-These codes are used to realize the function of number display of
-4-Digit 7-Segment. Refer to chapter 1.1.5 of the document for more
-details. Here, we use the codes to display countdown of traffic light
-time.
+これらのコードは、4桁7セグメントの数字表示の機能を実現するために使用されます。詳細については、ドキュメントの1.1.5章を参照してください。ここでは、コードを使用して交通信号のカウントダウン時間を表示します。
 
 .. code-block:: python
 
@@ -287,7 +280,7 @@ time.
             GPIO.output(ledPin[i], GPIO.HIGH)
         GPIO.output(ledPin[colorState], GPIO.LOW)
 
-The codes are used to switch the LED on and off.
+このコードは、LEDのオン/オフを切り替えるために使用されます。
 
 .. code-block:: python
 
@@ -317,11 +310,7 @@ The codes are used to switch the LED on and off.
             colorState=(colorState+1)%3
         print ("counter : %d    color: %s "%(counter,lightColor[colorState]))
 
-
-The codes are used to switch the timer on and off. Refer to chapter
-1.1.5 for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+このコードは、タイマーのオン/オフを切り替えるために使用されます。詳細については、1.1.5章を参照してください。ここでは、タイマーがゼロに戻ったときに、colorStateが切り替えられてLEDが切り替わり、タイマーに新しい値が割り当てられます。
 
 .. code-block:: python
 
@@ -348,13 +337,11 @@ a new value.
         except KeyboardInterrupt:  
             destroy()  
 
+``setup()`` 関数でタイマーを開始します。 ``loop()`` 関数では、 **while True** を使用して、4桁7セグメントとLEDの関連関数を繰り返し呼び出します。
 
-In ``setup()`` function, start the timer. In ``loop()`` function, a **while
-True** is used: call the relative functions of 4-Digit 7-Segment and LED
-circularly.
-
-Phenomenon Picture
+現象の画像
 -------------------
+
 
 .. image:: ../img/IMG_8319.jpg
    :align: center

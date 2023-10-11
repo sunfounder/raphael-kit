@@ -1,19 +1,18 @@
-Install the Libraries
+ライブラリのインストール
 ==========================
 
-For C User
---------------
+C言語ユーザー向け
+-------------------
 
 BCM2835
 ~~~~~~~~~~~~~~~
-This is a C library for Raspberry Pi (RPi). It provides access to GPIO and other IO functions on the Broadcom BCM 2835 chip, as used in the RaspberryPi, allowing access to the GPIO pins on the 26 pin IDE plug on the RPi board so you can control and interface with various external devices.
+このライブラリはRaspberry Pi（RPi）用のC言語ライブラリです。Broadcom BCM 2835チップにアクセスするためのGPIOやその他のIO機能を提供します。これにより、RPiボードの26ピンIDEプラグ上のGPIOピンを制御し、さまざまな外部デバイスとインターフェースすることができます。
 
-It provides functions for reading digital inputs and setting digital outputs, using SPI and I2C, and for accessing the system timers. Pin event detection is supported by polling (interrupts are not supported).
+デジタル入力の読み取りやデジタル出力の設定、SPIとI2Cの使用、システムタイマーへのアクセス等の関数が提供されています。割り込みはサポートされていませんが、ポーリングによるピンイベント検出がサポートされています。
 
-Works on all versions upt to and including RPI 4. Works with all versions of Debian up to and including Debian Buster 10.
+すべてのRPIバージョンおよびDebian Buster 10を含むすべてのDebianバージョンで動作します。
 
-
-Open a terminal and download the ``bcm2835`` library to the ``~`` path.
+ターミナルを開き、 ``~`` パスに ``bcm2835`` ライブラリをダウンロードしてください。
 
 .. raw:: html
 
@@ -24,7 +23,7 @@ Open a terminal and download the ``bcm2835`` library to the ``~`` path.
     cd ~
     wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.69.tar.gz
 
-Unzip the package.
+ダウンロードしたパッケージを解凍します。
 
 .. raw:: html
 
@@ -34,7 +33,7 @@ Unzip the package.
 
     tar zxvf bcm2835-1.69.tar.gz
 
-Install the BCM2835 library with the following commands.
+以下のコマンドでBCM2835ライブラリをインストールします。
 
 .. raw:: html
 
@@ -48,18 +47,18 @@ Install the BCM2835 library with the following commands.
     sudo make check
     sudo make install
 
-* Reference: `bcm2835 <http://www.airspayce.com/mikem/bcm2835/>`_  
+* 参考: `bcm2835 <http://www.airspayce.com/mikem/bcm2835/>`_  
 
 
-For Python User
+Pythonユーザー向け
 ----------------------
 
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-This is a Python 3 library interfacing LED matrix displays with the MAX7219 driver (using SPI), WS2812 (NeoPixels, inc Pimoroni Unicorn pHat/Hat and Unicorn Hat HD) and APA102 (DotStar) on the Raspberry Pi and other Linux-based single board computers.
+このライブラリはPython 3用で、MAX7219ドライバー（SPIを使用）、WS2812（NeoPixels、Pimoroni Unicorn pHat/HatとUnicorn Hat HD）、およびAPA102（DotStar）を使用してLEDマトリックスディスプレイとインターフェースします。
 
-Install the dependencies for library first with:
+まず、必要な依存ライブラリを以下のコマンドでインストールします。
 
 .. raw:: html
 
@@ -72,7 +71,7 @@ Install the dependencies for library first with:
 
 .. note:: warning
 
-    The default pip and setuptools bundled with apt on Raspbian are really old, and can cause components to not be installed properly. Make sure they are up to date by upgrading them first:
+    Raspbianでaptと共にバンドルされているデフォルトのpipとsetuptoolsは非常に古く、コンポーネントが正しくインストールされない場合があります。最初にそれらをアップグレードしてください。
 
     .. raw:: html
 
@@ -82,7 +81,7 @@ Install the dependencies for library first with:
 
         sudo -H pip install --upgrade --ignore-installed pip setuptools
 
-Proceed to install latest version of the luma.led_matrix library directly from PyPI:
+次に、PyPIからluma.led_matrixライブラリの最新版をインストールします。
 
 .. raw:: html
 
@@ -92,15 +91,14 @@ Proceed to install latest version of the luma.led_matrix library directly from P
 
     sudo python3 -m pip install --upgrade luma.led_matrix
 
+* 参考: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-* Reference: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
-
-Spidev and MFRC522
+SpidevとMFRC522
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``spidev`` library helps handle interactions with the SPI and is a key component to this tutorial as we need it for the Raspberry Pi to interact with the RFID RC522.
+``spidev`` ライブラリはSPIとのインタラクションを助け、このチュートリアルではRaspberry PiがRFID RC522と対話するために必要です。
 
-Run the following command to install ``spidev`` to your Raspberry Pi via ``pip``.
+以下のコマンドでRaspberry Piに ``spidev`` を ``pip`` 経由でインストールします。
 
 .. raw:: html
 
@@ -110,8 +108,7 @@ Run the following command to install ``spidev`` to your Raspberry Pi via ``pip``
 
     sudo pip3 install spidev
 
-
-Continue to install the MFRC522 library.
+続いて、MFRC522ライブラリをインストールします。
 
 .. raw:: html
 
@@ -121,8 +118,8 @@ Continue to install the MFRC522 library.
 
     sudo pip3 install mfrc522
 
-The MFRC522 library contains two files: ``MFRC522.py`` and ``SimpleMFRC522.py``. 
+MFRC522ライブラリには ``MFRC522.py`` と ``SimpleMFRC522.py`` という2つのファイルが含まれています。
 
-Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this library handles all the heavy work of communicating with RFID through Pi's SPI interface.
+そのうち ``MFRC522.py`` はRFID RC522インターフェースの実装で、このライブラリはPiのSPIインターフェースを通じてRFIDと通信するすべての重い作業を処理します。
 
-``SimpleMFRC522.py`` takes the ``MFRC522.py`` file and greatly simplifies it by allowing you to deal with only a few functions instead of a few functions.
+``SimpleMFRC522.py`` は ``MFRC522.py`` ファイルを大幅に簡略化し、いくつかの関数しか扱わなくてもよいようにしています。

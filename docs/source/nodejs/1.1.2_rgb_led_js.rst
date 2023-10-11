@@ -1,72 +1,70 @@
+.. _1.1.2_js:
+
 1.1.2 RGB LED
 ================
 
-Introduction
+はじめに
 --------------
 
-In this project, we will control an RGB LED to flash various colors.
+このプロジェクトでは、様々な色で点滅するRGB LEDを制御します。
 
-**Required Components**
+**必要な部品**
 ------------------------------
 
-In this project, we need the following components. 
-
+このプロジェクトで必要な部品は以下のとおりです。
 
 .. image:: img/list_rgb_led.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのは非常に便利です。以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+また、以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`RGB LED`
         - |link_rgb_led_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
-After connecting the pins of R, G, and B to a current limiting resistor,
-connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest
-pin (GND) of the LED connects to the GND of the Raspberry Pi. When the
-three pins are given different PWM values, the RGB LED will display
-different colors.
+R、G、Bの各ピンを電流制限抵抗に接続した後、それぞれGPIO17、GPIO18、GPIO27に接続します。
+LEDの最も長いピン（GND）はRaspberry PiのGNDに接続します。三つのピンに異なるPWM値を与えると、RGB LEDは異なる色を表示します。
 
 .. image:: img/rgb_led_schematic.png
 
-Experimental Procedures
+実験手順
 ----------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を作成します。
 
 .. image:: img/image61.png
 
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動します。
 
 .. raw:: html
 
@@ -76,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**ステップ3:** コードを実行します。
 
 .. raw:: html
 
@@ -86,9 +84,9 @@ Experimental Procedures
 
     sudo node rgb_led.js
 
-After the code runs, you will see that RGB displays red, green, blue, yellow, pink, and cyan.   
+コードを実行すると、RGBが赤、緑、青、黄、ピンク、シアンを表示することがわかります。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -131,7 +129,7 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
         }
     }, 500);  
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -139,7 +137,7 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
     const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
     const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
 
-Initialize pins 17, 18, and 27 to output mode, and assign them to the constants ``ledred``, ``ledgreen``, and ``ledblue`` respectively.
+17、18、27のピンを出力モードに初期化し、それぞれの定数 ``ledred``、 ``ledgreen``、 ``ledblue`` に割り当てます。
 
 .. code-block:: js
 
@@ -149,10 +147,10 @@ Initialize pins 17, 18, and 27 to output mode, and assign them to the constants 
         ledblue.pwmWrite(b);
     }
 
-Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to pins 17, 18, 27. The Gpio library encapsulates the function ``pwmWrite()`` to write to pins Pulse value, the value is 0x00 to 0xff. Then you can write RGB values to the RGB LED through the ``colorset(r,g,b)`` function, so that it can display a variety of colors. 
+``colorset(r,g,b)`` 関数を実装します。これは、ピン17、18、27にパルス値を書き込むために使用されます。Gpioライブラリは、ピンに書き込むための関数 ``pwmWrite()`` をカプセル化しています。その値は0x00から0xffまでです。その後、 ``colorset(r,g,b)`` 関数を通じてRGB LEDにRGB値を書き込むことで、様々な色を表示することができます。
 
 .. note::
-    For questions about RGB, please refer to the website: https://www.rapidtables.com/web/color/RGB_Color.html
+    RGBに関する質問は、以下のウェブサイトを参照してください： https://www.rapidtables.com/web/color/RGB_Color.html
 
 .. code-block:: js
 
@@ -184,12 +182,11 @@ Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to
         }
     }, 500);  
 
-The RGB LED is controlled by ``colorset()`` executed every 500ms.
-A switch case is used here to select the color emitted by the RGB LEDs.
-Since ``color_index`` is changed by one every cycle, the color of this one RGB LED will change in order.
+RGB LEDは、 ``colorset()`` が500msごとに実行されることで制御されます。
+ここでは、スイッチケースを使用してRGB LEDが放射する色を選択しています。
+``color_index`` は各サイクルで1つずつ変更されるため、この1つのRGB LEDの色は順番に変わります。
 
-
-Phenomenon Picture
+現象の画像
 ------------------------
 
 .. image:: img/image62.jpeg

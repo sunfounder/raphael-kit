@@ -1,28 +1,28 @@
-Play with Processing
+.. _play_with_processing:
+
+Processingを体験しよう
 ==========================
 
-What is Processing？
+Processingとは？
 ---------------------------
 
-Processing is a simple programming environment that was created to make it easier to develop visually oriented applications with an emphasis on animation and providing users with instant feedback through interaction. 
-The developers wanted a means to “sketch” ideas in code. 
-As its capabilities have expanded over the past decade, Processing has come to be used for more advanced production-level work in addition to its sketching role. 
-Originally built as a domain-specific extension to Java targeted towards artists and designers, Processing has evolved into a full-blown design and prototyping tool used for large-scale installation work, motion graphics, and complex data visualization.
+Processingは、アニメーションに焦点を当てた視覚的なアプリケーションの開発を容易にするために作成されたシンプルなプログラミング環境です。ユーザーがインタラクションを通じて即座のフィードバックを受け取ることを強調しています。
+開発者はコードでアイディアを“スケッチ”する手段を求めていました。
+過去10年間でその機能が拡張されてきた結果、Processingはスケッチの役割に加えて、本格的な生産レベルの作業にも使用されるようになりました。
+元々はアーティストやデザイナーを対象としたJavaのドメイン固有の拡張として構築されたProcessingは、大規模なインストール作業、モーショングラフィックス、複雑なデータ可視化に使用される完全なデザインとプロトタイピングツールに進化しました。
 
-Processing is based on Java, but because program elements in Processing are fairly simple, you can learn to use it even if you don't know any Java. If you're familiar with Java, it's best to forget that Processing has anything to do with Java for a while, until you get the hang of how the API works.
+ProcessingはJavaに基づいていますが、Processingのプログラム要素は比較的シンプルであるため、Javaを知らなくても使用することができます。Javaに慣れている場合は、APIの動作方法を理解するまで、ProcessingがJavaと何か関係があると考えるのはやめたほうがよいでしょう。
 
+このテキストは、 `Processingの概要 <https://processing.org/tutorials/overview/>`_ からのものです。
 
-This text is from the tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_.
-
-
-Install the Processing
+Processingのインストール
 ------------------------------
 
 .. note:: 
 
-    Before you can use Processing, you need to access the Raspberry Pi desktop remotely (:ref:`Remote Desktop`) or connect a display for the Raspberry Pi.
+    Processingを使用する前に、Raspberry Piのデスクトップにリモートでアクセスする必要があります(:ref:`リモートデスクトップ`)、またはRaspberry Pi用のディスプレイを接続する必要があります。
 
-.. Run the following command in Terminal to install Processing.
+.. ターミナルで以下のコマンドを実行して、Processingをインストールしてください。
 
 .. .. raw:: html
 
@@ -32,17 +32,15 @@ Install the Processing
 
 ..     curl https://processing.org/download/install-arm.sh | sudo sh
 
-.. Once the installation is complete, type ``processing`` to open it.
-
+.. インストールが完了したら、``processing``と入力して開始してください。
 
 .. .. image:: img/processing1.png
 
+.. 詳しいチュートリアルは、`Pi Processing <https://pi.processing.org/>`_を参照してください。
 
-.. For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
+#. まず https://processing.org/download にアクセスして、 ``Linux（Raspberry Pi 32-bit）`` または ``Linux（Raspberry Pi 64-bit）`` バージョンを選択してください。この方法を使用すると、常に最新バージョンをダウンロードできます。
 
-#. First visit https://processing.org/download and select the ``Linux（Raspberry Pi 32-bit）`` or ``Linux（Raspberry Pi 64-bit）`` version. Using this method, you can always download the latest version.
-
-    Or you can use the following command to download the Processing from the Terminal.
+    また、ターミナルから以下のコマンドを使用してProcessingをダウンロードすることもできます。
 
     .. code-block:: 
 
@@ -52,47 +50,44 @@ Install the Processing
 
         git clone https://github.com/processing/processing4/releases/download/processing-1286-4.0.1/processing-4.0.1-linux-arm64.tgz
 
-
-#. A ``.tar.gz`` file will be downloaded, which most Linux users should be familiar with. Extract the file you just downloaded from its location.
+#. ``.tar.gz`` ファイルがダウンロードされます。ほとんどのLinuxユーザーはこのファイル形式を知っているでしょう。ダウンロードした場所からファイルを展開してください。
 
     .. code-block:: 
 
         tar xvfz processing-xxxx.tgz
 
-    Replace xxxx with the rest of the file's name, which is the version number. This will create a folder named processing-xxxx or something similar. 
+    xxxxをファイル名の残り部分、つまりバージョン番号に置き換えてください。これにより、processing-xxxxという名前のフォルダが作成されるか、それに類似した名前のフォルダが作成されます。 
 
-#. Then go to that directory:
+#. そのディレクトリに移動してください:
 
     .. code-block:: 
 
         cd processing-xxxx
 
-#. And run it:
+#. そして、それを実行してください:
 
 .. code-block:: 
 
     ./processing
 
-#. With any luck, the main Processing window will now be visible.
+#. うまくいけば、メインのProcessingウィンドウが表示されるはずです。
 
     .. image:: img/processing2.png
 
+ハードウェアI/Oのインストール
+--------------------------------
 
-Install Hardware I/O
---------------------
+Raspberry PiのGPIOを使用するためには、手動で `ハードウェアI/Oライブラリ <https://processing.org/reference/libraries/io/index.html>`_ を追加する必要があります。
 
-In order to use the Raspberry Pi's GPIO, you need to manually add a `Hardware I/O library <https://processing.org/reference/libraries/io/index.html>`_.
-
-Click ``Sketch`` -> ``Import Library`` -> ``Add Library...`` 
+``Sketch`` -> ``Import Library`` -> ``Add Library...`` をクリックしてください。
 
 .. image:: img/import-00.png
 
-Find Hardware I/O , select it, and then click Install. When done, a checkmark icon will appear.
+Hardware I/Oを探して選択し、インストールをクリックしてください。完了すると、チェックマークのアイコンが表示されます。
 
 .. image:: img/import-02.png
 
-
-Projects
+プロジェクト
 ---------------
 
 .. toctree::

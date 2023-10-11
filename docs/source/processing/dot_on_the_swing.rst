@@ -1,51 +1,52 @@
-Dot on the Swing
+.. _dot_on_the_swing:
+
+ブランコ上のドット
 ==============================
 
-In this project, 3 buttons are connected, one to change the size of the dot, one to change the position and the last one to change the color. If you press all 3 buttons at the same time, you will get a dot that is swinging and has a variable color.
-
+このプロジェクトでは、3つのボタンが接続されています。1つはドットのサイズを変更するため、もう1つは位置を変更するため、最後の1つは色を変更するためです。3つのボタンを同時に押すと、ブランコを揺らしているような可変色のドットが得られます。
 
 .. image:: img/dancing_dot.png
 
-**Required Components**
+**必要な部品**
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入すると非常に便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから、それぞれ別々に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Button`
+    *   - :ref:`ボタン`
         - |link_button_buy|
 
-**Wiring**
+**配線図**
 
 .. image:: img/circuit_dancing_dot.png
 
-**Sketch**
+**スケッチ**
 
 .. code-block:: arduino
 
@@ -139,30 +140,28 @@ You can also buy them separately from the links below.
         }
     }
 
-**How it works?**
+**どのように動作するのか？**
 
-Instead of drawing dot directly, we create a ``Dot`` class here.
-Then, declare the object (in this case ``myDot``).
+ここでは直接ドットを描画するのではなく、 ``Dot`` クラスを作成します。
+そして、オブジェクト（この場合は ``myDot`` ）を宣言します。
 
-This is a simple way to draw dots with multiple identical properties.
-For example, if we add three functions to the dot in this project - change size, change position and change color - then each dot we declare will have the same function.
-We can use the same button to make them do the same thing, or we can use different buttons to control each dot separately.
+これは、多くの同一のプロパティを持つドットを描画するための簡単な方法です。
+たとえば、このプロジェクトでドットに3つの機能を追加する場合 - サイズの変更、位置の変更、および色の変更 - すべてのドットには同じ機能があります。
+同じボタンを使用して、彼らに同じことをさせることができます。また、各ドットを個別に制御するために異なるボタンを使用することもできます。
 
-Using **classes** makes your sketch beautiful, powerful and flexible.
+**クラス** を使用すると、スケッチが美しく、パワフルで、柔軟になります。
 
-`Class (computer programming) - Wikipedia <https://en.wikipedia.org/wiki/Class_(computer_programming)>`_
+`クラス (コンピュータプログラミング) - Wikipedia <https://en.wikipedia.org/wiki/Class_(computer_programming)>`_
 
-Next, let's take a closer look at the ``Dot`` class. 
-
+次に、 ``Dot`` クラスを詳しく見てみましょう。
 
 .. code-block:: arduino
 
     Dot(float x, float y, float s, int c)
 
-In the declaration, it needs to pass in four parameters, which are the X  and Y coordinate value of the position, the size, and the color (here it is set to the `HSB color mode <https://en.wikipedia.org/wiki/HSL_and_HSV>`_ ).
+宣言には、位置のXおよびY座標値、サイズ、色（ここでは `HSBカラーモード <https://en.wikipedia.org/wiki/HSL_and_HSV>`_ に設定されています）の4つのパラメータを渡す必要があります。
 
-Each parameter will be assigned to 2 sets of values ​​(initial value and current value).
-
+各パラメータは2組の値（初期値と現在の値）に割り当てられます。
 
 .. code-block:: arduino
 
@@ -180,9 +179,9 @@ Each parameter will be assigned to 2 sets of values ​​(initial value and cur
     int currentColor;
     int ColorRange = 80;
 
-In addition to the initial value and the current value, there is also a set of range values. It is not difficult to understand that the initial value is used to determine the initial state of the dot (determined by the incoming parameters), while the current value will change within the range to make the dot move.
+初期値と現在の値の他にも、範囲値のセットがあります。初期値は、ドットの初期状態を決定するために使用され（入力パラメータで決定される）、現在の値は、ドットを動かすための範囲内で変更されることが容易に理解できるでしょう。
 
-Therefore, except for the X coordinate value, the current values of the other three parameters are calculated as follows:
+したがって、X座標値を除いて、他の3つのパラメータの現在の値は以下のように計算されます：
 
 .. code-block:: arduino
 
@@ -198,10 +197,9 @@ Therefore, except for the X coordinate value, the current values of the other th
         currentColor = int(initColor + ColorRange * sin( timer ));
     }
 
+三角関数に慣れていれば、 `サインとコサイン <https://en.wikipedia.org/wiki/Sine>`_ を理解するのは難しくないでしょう。これにより、ドットの現在の値の滑らかな周期的な変化（-1から1まで）が得られます。
 
-If you are familiar with trigonometric functions, it should not be difficult to understand `sine and cosine <https://en.wikipedia.org/wiki/Sine>`_, which gives a smooth periodic change (from -1 to 1) of the current value of the dot.
-
-We also need to add a seed, ``timer``, for the periodic variation. It adds the fixed value in the method ``update()`` and is called in ``draw()``.
+また、周期的な変動のための種、 ``timer`` を追加する必要があります。 ``update()`` の方法で固定値が追加され、 ``draw()`` で呼び出されます。
 
 .. code-block:: arduino
 
@@ -209,7 +207,7 @@ We also need to add a seed, ``timer``, for the periodic variation. It adds the f
         timer += speed;
     }
 
-Finally, the dot is displayed according to the current value using the method ``show()``, which is also called in ``draw()``.
+最後に、 ``show()`` メソッドを使用して、現在の値に基づいてドットを表示します。これも ``draw()`` で呼び出されます。
 
 .. code-block:: arduino
 
@@ -218,9 +216,10 @@ Finally, the dot is displayed according to the current value using the method ``
         ellipse(currentX, currentY, currentSize, currentSize);
     }
 
-**What more?**
+**さらに?**
 
-Having mastered the use of classes, you can already draw multiple dots with the same properties, so why not try to do something cooler.
-For example, how about drawing a stable binary star system, or making a 'DUET' game?
+クラスの使用をマスターすると、同じプロパティを持つ複数のドットを描画することができます。ですから、もっとクールなことを試してみてはどうでしょうか。
+例えば、安定した連星系を描画するか、'DUET'ゲームを作るのはどうでしょうか？
+
 
 

@@ -1,67 +1,64 @@
-4.1.9 Reversing Alarm
+.. _4.1.9_py:
+
+4.1.9 逆転アラーム
 ======================================
 
-Introduction
+はじめに
 -------------
 
-In this project, we will use LCD, buzzer and ultrasonic sensors to make
-a reverse assist system. We can put it on the remote control vehicle to
-simulate the actual process of reversing the car into the garage.
+このプロジェクトでは、LCD、ブザー、超音波センサを使用して、逆方向の補助システムを作成します。これをリモートコントロール車に取り付けて、車をガレージに逆転させる実際のプロセスをシミュレートできます。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_Reversing_Alarm.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット一式を購入すると便利です。リンクは以下の通りです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから部品を個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
-    *   - :ref:`Ultrasonic Module`
+    *   - :ref:`超音波モジュール`
         - |link_ultrasonic_buy|
     *   - :ref:`I2C LCD1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+回路図
 --------------------
 
-Ultrasonic sensor detects the distance between itself and the obstacle
-that will be displayed on the LCD in the form of code. At the same time,
-the ultrasonic sensor let the buzzer issue prompt sound of different
-frequency according to different distance value.
+超音波センサは、自身と障害物との間の距離を検出し、その情報をコードの形でLCDに表示します。同時に、超音波センサは、異なる距離値に応じて、ブザーに異なる周波数のプロンプト音を発出させます。
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -75,16 +72,16 @@ SCL1         Pin 5
 .. image:: ../img/Schematic_three_one3.png
    :align: center
 
-Experimental Procedures
+実験手順
 ------------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image242.png
     :width: 400
     :align: center
 
-**Step 2:** Change directory.
+**ステップ2:** ディレクトリを変更する。
 
 .. raw:: html
 
@@ -94,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**ステップ3:** 実行する。
 
 .. raw:: html
 
@@ -104,23 +101,20 @@ Experimental Procedures
 
     sudo python3 4.1.9_ReversingAlarm.py
 
-As the code runs, ultrasonic sensor module detects the distance to the
-obstacle and then displays the information about the distance on
-LCD1602; besides, buzzer emits warning tone whose frequency changes with
-the distance.
+コードが実行されると、超音波センサモジュールは障害物までの距離を検出し、LCD1602に距離情報を表示します。さらに、ブザーは、距離に応じて周波数が変わる警告音を発します。
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * エラー ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` が表示された場合、I2Cを有効にするために :ref:`i2c_config` を参照してください。
+    * エラー ``ModuleNotFoundError: No module named 'smbus2'`` が表示された場合、 ``sudo pip3 install smbus2`` を実行してください。
+    * エラー ``OSError: [Errno 121] Remote I/O error`` が表示される場合、モジュールが誤って配線されているか、モジュールが壊れています。
+    * コードと配線が正しいのに、LCDが内容を表示しない場合は、裏面のポテンショメータを回してコントラストを上げることができます。
 
-
-**Code**
+**コード**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    以下のコードは **修正/リセット/コピー/実行/停止** が可能です。ただし、それを行う前に、 ``raphael-kit/python`` のようなソースコードのパスへ移動する必要があります。コードを修正した後、その効果を直接確認するために実行することができます。
+
 
 .. raw:: html
 
@@ -213,7 +207,7 @@ the distance.
 
 
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: python
 
@@ -227,9 +221,8 @@ the distance.
         GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
         lcdsetup()
 
-In this program, we apply the previously used components synthetically.
-Here we use buzzers, LCD and ultrasonic. We can initialize them in the
-same way as we did before.
+このプログラムでは、前回使用したコンポーネントを総合的に利用しています。
+ここでは、ブザー、LCD、超音波を使用しています。これらを前回と同じ方法で初期化することができます。
 
 .. code-block:: python
 
@@ -247,20 +240,13 @@ same way as we did before.
         LCD1602.write(0, 0, 'Distance is')
         LCD1602.write(5, 1, str(round(dis,2)) +' cm')
 
-
-Here we get the values of the ultrasonic sensor and get the distance
-through calculation. If the value of distance is greater than the range
-of value to be detected, an error message is printed on the LCD. And if
-the distance is within the working range, the corresponding results will
-be output.
+ここで超音波センサの値を取得し、計算を通じて距離を求めます。距離の値が検出される値の範囲よりも大きい場合、LCDにエラーメッセージが表示されます。距離が動作範囲内である場合、対応する結果が出力されます。
 
 .. code-block:: python
 
     LCD1602.write(5, 1, str(round(dis,2)) +' cm')
 
-Since the LCD output only supports character types, we need to use **str
-()** to convert numeric values to characters. We are going to round it
-to two decimal places.
+LCDの出力は文字型のみをサポートしているため、数値を文字に変換するために **str()** を使用する必要があります。これを小数点第2位まで丸めます。
 
 .. code-block:: python
 
@@ -279,14 +265,12 @@ to two decimal places.
             GPIO.output(BUZZER, GPIO.LOW)
             time.sleep(0.05)
 
-This judgment condition is used to control the sound of the buzzer.
-According to the difference in distance, it can be divided into three
-cases, in which there will be different sound frequencies. Since the
-total value of delay is 500, all of them can provide a 500ms interval
-for the ultrasonic sensor to work.
+この判断条件は、ブザーの音を制御するために使用されます。
+距離の違いに応じて、3つのケースに分けることができ、それぞれで異なる音の周波数が出力されます。遅延の合計値は500なので、これにより超音波センサが動作するための500msの間隔を提供することができます。
 
-Phenomenon Picture
+現象の画像
 --------------------
+
 
 .. image:: ../img/image243.jpeg
    :align: center

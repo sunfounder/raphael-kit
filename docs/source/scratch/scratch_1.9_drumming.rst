@@ -1,84 +1,84 @@
-1.9 Drumming
+.. _1.9_scratch:
+
+1.9 ドラム演奏
 ================
 
-In this project, we play the drum with a touch switch module.
+このプロジェクトでは、タッチスイッチモジュールでドラムを演奏します。
 
 .. image:: img/1.9_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.9_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Touch Switch Module`
+    *   - :ref:`タッチスイッチモジュール`
         - |link_touch_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`オーディオモジュールとスピーカー`
         - \-
 
-Build the Circuit
+回路を組む
 ---------------------
 
 .. image:: img/1.9_fritzing.png
 
-
-Load the Code and See What Happens
+コードをロードして動作を確認する
 ---------------------------------------
 
-Load the code file (``1.9_drumming.sb3``) to Scratch 3.
+コードファイル(``1.9_drumming.sb3``)をScratch 3にロードします。
 
-When you tap on the touch switch module, you will hear the sound of drums coming from the speaker.
+タッチスイッチモジュールにタップすると、スピーカーからドラムの音が聞こえます。
 
+スプライトに関するヒント
+---------------------------------
 
-Tips on Sprite
-----------------
-
-Delete the default sprite, then find the **Drum-snare** sprite and add it, and change the size to 200.
+デフォルトのスプライトを削除し、 **Drum-snare** スプライトを見つけて追加し、そのサイズを200に変更します。
 
 .. image:: img/1.9_touch1.png
 
-Scratch has a **Music** extension to play instruments and drums, now add it via the **Add Extension** button.
+Scratchには楽器やドラムを再生する **Music** 拡張機能があります。今、 **Add Extension** ボタンを使って追加します。
 
 .. image:: img/1.9_touch2.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.9_touch3.png
   :width: 400
 
-When pin17 is low (not tapped on the touch switch module), switch the **Drum-snare** sprite costume to **drum-snare-a**.
+pin17が低いとき(タッチスイッチモジュールにタップされていない場合)、 **Drum-snare** スプライトのコスチュームを **drum-snare-a** に切り替えます。
 
 .. image:: img/1.9_touch4.png
   :width: 600
 
-When you tap on the touch switch module, gpio17 is low. At this point, the **Drum-snare** sprite costume is switched to **drum-snare-b** and the drum sound played on speaker.
+タッチスイッチモジュールにタップすると、gpio17は低いです。この時点で、 **Drum-snare** スプライトのコスチュームを **drum-snare-b** に切り替え、スピーカーでドラムの音を再生します。

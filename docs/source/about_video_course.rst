@@ -1,27 +1,25 @@
-About Video Course
+ビデオコースについて
 =========================
 
 .. image:: img/video_paul.png
 
-The kit also contains 45 free video lessons (30 hours) produced by SunFounder and Paul McWhorter. Paul is an experienced programming educator with 300,000 followers on YouTube and currently has 45 Raspberry Pi video lessons that continue to be updated weekly.
+このキットには、SunFounderとPaul McWhorterが制作した45本の無料ビデオレッスン（合計30時間）も含まれています。PaulはYouTubeで30万人以上のフォロワーを持つ経験豊富なプログラミング教育者であり、現在も週に一度ラズベリーパイのビデオレッスンを更新しています。
 
-The video course is made for beginners who have no basic programming skills and use the Sunfounder Ultimate Raspberry Pi Kit - Raphael Kit.
+このビデオコースは、基本的なプログラミングスキルがなく、Sunfounder Ultimate Raspberry Pi Kit - ラファエルキットを使用する初心者向けに作成されています。
 
-Here is the video link：https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O
+ビデオのリンクはこちら：https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O
 
-From the video, you can：
+このビデオから、以下のことが学べます：
 
-* Master the installation, configuration and use of the Raspberry Pi system.
-* Understanding and using Raspberry Pi GPIO pins.
-* Learn Python's programming logic so you can control what happens in your scripts.
-* Acquire the skill to create Python libraries to better prototype your ideas.
-* Utilize multithreading to run multiple scripts at once.
-* Know how to get and use analog signals from ADC module.
-* Learn the circuit principles so that you can design the circuit to your own specifications.
-* Get to know Joystick, Servo, Ultrasonic module, PIR, DHT11, I2C LCD, Keyboard, etc.
+* ラズベリーパイのシステムのインストール、設定、使用方法をマスター。
+* Raspberry PiのGPIOピンの理解と使用。
+* Pythonのプログラミングロジックを学び、スクリプト内で何が起こるかを制御。
+* アイデアをより効率的にプロトタイピングするためのPythonライブラリの作成スキルを習得。
+* マルチスレッドを活用して複数のスクリプトを同時に実行。
+* ADCモジュールからアナログ信号を取得・活用する方法。
+* 自分自身の仕様に合わせた回路を設計できるように、回路原理を学ぶ。
+* ジョイスティック、サーボ、超音波モジュール、PIR、DHT11、I2C LCD、キーボードなどについて知る。
 
+プログラミングの学習が難しいと心配する必要はありません。当社はあなたをエキスパートとは考えておらず、シンプルで面白いプロジェクトを通じて、ステップバイステップで各ポイントを学ぶように案内します。
 
-You don't have to worry about learning programming too hard, because we don't consider you an expert and will take you step by step, with simple and interesting projects to learn each point and make sure every beginner can learn.
-
-Through the video tutorials, you can make temperature alarm systems, light sensing systems and security monitoring systems, all of which are very common and interesting projects in life.
-
+ビデオチュートリアルを通じて、温度警報システム、光感知システム、セキュリティ監視システムなど、生活でよく見かける興味深いプロジェクトを作成できます。

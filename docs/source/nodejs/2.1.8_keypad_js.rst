@@ -1,53 +1,54 @@
-2.1.8 Keypad
-============
+.. _2.1.8_js:
 
-Introduction
+2.1.8 キーパッド
+==================
+
+はじめに
 ------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+キーパッドは、ボタンの矩形配列です。このプロジェクトでは、文字を入力するためにそれを使用します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要なコンポーネントは以下の通りです。
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全てのキットを購入するのは非常に便利です、こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれらを個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`Keypad`
+    *   - :ref:`キーパッド`
         - \-
 
-Schematic Diagram
+回路図
 -----------------
 
 .. image:: ../img/image315.png
@@ -56,14 +57,14 @@ Schematic Diagram
 .. image:: ../img/image316.png
 
 
-Experimental Procedures
+実験の手順
 -----------------------
 
-**Step 1:** Build the circuit.
+**ステップ1:** 回路を組み立てる。
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**ステップ2:** コードファイルを開きます。
 
 .. raw:: html
 
@@ -73,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run.
+**ステップ3:** 実行する。
 
 .. raw:: html
 
@@ -83,10 +84,9 @@ Experimental Procedures
 
     sudo node keypad.js
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+コードが実行された後、キーパッド上の押されたボタンの値（ボタン値）が画面に表示されます。
 
-**Code**
+**コード**
 
 .. code-block:: js
 
@@ -134,7 +134,7 @@ Value) will be printed on the screen.
     }, 10);
 
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: js
 
@@ -160,19 +160,19 @@ Value) will be printed on the screen.
 
 
 
-In the style of the keypad, declare two sets of pins and a matrix.
+キーパッドのスタイルにて、ピンの2セットとマトリックスを宣言します。
 
-Four of the pins are the row of the keypad, set these pins to OUTPUT mode;
-The other four pins are the columns of the keypad, set these pins to INPUT mode, and set the rising edge interrupt for them.
+ピンの4つはキーパッドの行で、これらのピンをOUTPUTモードに設定します；
+残りの4つのピンはキーパッドの列で、これらのピンをINPUTモードに設定し、それらのための立ち上がりエッジ割り込みを設定します。
 
-The principle that the main controller can obtain the key value is as follows:
-The four row pins provide high level in turn, if a button is pressed,
-The corresponding column pin will get the high level released by the row pin, which will trigger the rising edge interrupt.
+主コントローラがキー値を取得できる原理は以下の通りです：
+4つの行ピンは順番に高レベルを提供し、ボタンが押されると、
+対応する列ピンは行ピンによって解放された高レベルを取得します、これにより立ち上がりエッジ割り込みがトリガーされます。
 
-For example, if I press the button **3** , when the 2nd, 3rd, and 4th row pins release the high level, there is no effect;
-When the row pin in the first position releases the high level, the third column pin will be able to obtain the high level and trigger the rising edge interrupt. At this time, the 1st, 2nd, and 4th column pins do not trigger any events.
+例えば、私がボタン **3** を押すと、2番目、3番目、4番目の行ピンが高レベルを放出しても影響はありません；
+第1位置の行ピンが高レベルを放出すると、3番目の列ピンは高レベルを取得して立ち上がりエッジ割り込みをトリガーします。この時点で、1番目、2番目、4番目の列ピンはイベントをトリガーしません。
 
-Then, according to the 1st row pin that releases the high level and the 3rd column pin that gets the high level, the main controller will be able to know that the position of the pressed button is (1,3), which is the button **3**.
+そして、高レベルを放出する1番目の行ピンと高レベルを取得する3番目の列ピンにより、メインコントローラは押されたボタンの位置が（1,3）であること、つまりボタン **3** であることを知ることができます。
 
 .. image:: ../img/image187.png
 
@@ -188,7 +188,7 @@ Then, according to the 1st row pin that releases the high level and the 3rd colu
         rowsPins[row].digitalWrite(1);
     }, 10);
 
-The four row pins are periodically supplied high, and the variable ``row`` is used to locate the currently working row pin.
+4つの行ピンは定期的に高を供給し、変数 ``row`` は現在作業中の行ピンを位置付けるために使用されます。
 
 .. code-block:: js
 
@@ -204,9 +204,7 @@ The four row pins are periodically supplied high, and the variable ``row`` is us
         });
     }
 
-Set up interrupt functions for the four column pins, 
-and the variable ``col`` is used to locate the column pins that trigger the rising edge interrupt event.
-
+4つの列ピンのための割り込み関数を設定し、変数 ``col`` は立ち上がりエッジ割り込みイベントをトリガーする列ピンを位置付けるために使用されます。
 
 .. code-block:: js
 
@@ -216,10 +214,10 @@ and the variable ``col`` is used to locate the column pins that trigger the risi
     }
     last_key_pressed = pressed_keys;
 
-There is also a piece of code in the break function to get the specific key value from the ``keys`` matrix according to ``row`` and ``col``.
-And every time you get a new key value, print the value.
+break関数内にも、 ``row`` と ``col`` に従って ``keys`` マトリックスから具体的なキー値を取得するためのコード部分があります。
+そして、新しいキー値を毎回取得すると、その値が印刷されます。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image188.jpeg

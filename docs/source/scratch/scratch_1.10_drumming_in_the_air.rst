@@ -1,52 +1,53 @@
-1.10 Drumming in the Air
+.. _1.10_scratch:
+
+1.10 空中ドラム
 ==========================
 
-Today we will learn to use the Raspberry Pi camera, Scratch has an expansion module for Video Sensing which turns on the camera in Scratch and detects the movement of objects on the stage. 
-
+今日は、Raspberry Piのカメラの使用方法を学びます。Scratchにはビデオセンシングの拡張モジュールがあり、Scratch内のカメラをオンにしてステージ上のオブジェクトの動きを検出します。
 
 .. image:: img/1.10_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.10_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。こちらがリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`オーディオモジュールとスピーカー`
         - \-
-    *   - :ref:`Camera Module`
+    *   - :ref:`カメラモジュール`
         - |link_camera_buy|
 
-Build the Circuit
+回路を組む
 -------------------------
 
 .. image:: img/1.10_fritzing_speaker.png
@@ -55,45 +56,43 @@ Build the Circuit
 
 .. note::
   
-  You need to refer to :ref:`Camera Module` to connect the camera module and enable the Raspberry Pi camera interface.
+  カメラモジュールを接続し、Raspberry Piのカメラインターフェースを有効にするには、 :ref:`カメラモジュール` を参照してください。
 
-
-Load the Code and See What Happens
+コードをロードして動作を確認する
 ----------------------------------------
 
-Load the code file (``1.10_drumming_in_the_air.sb3``) to Scratch 3.
+Scratch 3に(``1.10_drumming_in_the_air.sb3``)のコードファイルをロードします。
 
-Click on the green flag to start the game, place your hand in front of the camera module and Scratch 3 will make instrument sounds when your hand is shown touching an instrument on the stage area.
+緑の旗をクリックしてゲームを開始し、カメラモジュールの前に手を置くと、手がステージエリアの楽器に触れているときに楽器の音が鳴るようにScratch 3が反応します。
 
 .. note::
 
-  For a better gaming experience, please try to play on a white background to avoid interference with the camera from other objects.
+  より良いゲーム体験のために、カメラが他のオブジェクトと干渉しないように白い背景でプレイすることをお試しください。
 
-Tips on Sprite
-----------------
+スプライトに関するヒント
+---------------------------------
 
-First delete the default sprites, then find the **Drum-cymbal** sprite and **Drum-snare** sprite and add them.
+まず、デフォルトのスプライトを削除し、 **Drum-cymbal** スプライトと **Drum-snare** スプライトを見つけて追加します。
 
 .. image:: img/1.10_camera1.png
 
-Click the **Add Extension** icon at the bottom left of Scratch and add the **Music** and **Video Sensing** extensions to it.
+Scratchの左下にある **Add Extension** アイコンをクリックして、 **Music** と **Video Sensing** の拡張機能を追加します。
 
 .. image:: img/1.10_scratch.png
 
 .. image:: img/1.10_scratch2.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.10_camera3.png
 
-When the green flag is clicked, it keeps cycling to detect if our hand is moving over the **Drum-cymbal** sprite by more than 60. if so, it is assumed that our hand touched the sprite, at which point the Open Hi-Hat instrument sound is played.
+緑の旗がクリックされると、 **Drum-cymbal** スプライトの上で手が動いているかどうかを60以上で検出するかどうかを継続的に検出します。そうすると、手がスプライトに触れたとみなされ、Open Hi-Hat楽器の音が再生されます。
 
 .. note::
 
-  The movement magnitude refers to the change in coordinates on the stage area, which is calculated with respect to the amount of change in the coordinates of the detection target on the stage area.
+  動きの大きさは、ステージエリア上の座標の変化を参照します。これは、ステージエリアの検出対象の座標の変化量に関して計算されます。
 
 .. image:: img/1.10_camera4.png
 
-Similarly, if the movement of our hand on the **Drum-snare** sprite is detected to be greater than 60, our hand is considered to have touched the sprite and the sound of the snare drum instrument is played.
-
+同様に、 **Drum-snare** スプライト上での手の動きが60以上で検出された場合、手がスプライトに触れたとみなされ、スネアドラムの音が再生されます。

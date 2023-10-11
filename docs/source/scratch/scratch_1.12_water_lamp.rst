@@ -1,118 +1,113 @@
-1.12 Water Lamp
+.. _1.12_scratch:
+
+1.12 水灯
 ================
 
+今日、LEDバーグラフ、Raspberry Pi、およびScratchを使用して、水灯を作成します。
 
-Today, we will use LED Bar Graph, Raspberry Pi and scratch to make a Water Lamp.
-
-The LED Bar Graph will light up in order with the direction of the arrows on the stage.
+LEDバーグラフは、ステージ上の矢印の方向に従って順番に点灯します。
 
 .. image:: img/1.12_header.png
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: img/1.12_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+キット全体を購入するのは確かに便利です。以下がリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクからそれぞれ個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
-    *   - :ref:`LED Bar Graph`
+    *   - :ref:`LEDバーグラフ`
         - \-
 
-Build the Circuit
+回路を組む
 -----------------------
 
 .. image:: img/1.12_image66.png
 
-Load the Code and See What Happens
+コードをロードして動作を確認する
 -----------------------------------------
 
-Load the code file (``1.12_water_lamp.sb3``) from your computer to Scratch 3.
+Scratch 3に(``1.12_water_lamp.sb3``)のコードファイルをお使いのコンピュータからロードします。
 
-By clicking on **Arrow1**, the LEDs on the LED bar are lit in sequence from the left to the right (one at a time) and then off. Click **Arrow2** and the LEDs light up in the opposite order.
+**Arrow1** をクリックすると、LEDバー上のLEDが左から右へと順番に点灯（一度に一つ）し、その後オフになります。 **Arrow2** をクリックすると、LEDは逆の順序で点灯します。
 
-Tips on Sprites
-----------------
+スプライトに関するヒント
+---------------------------------
 
-Delete the default sprite and choose the **Arrow1** sprite.
+デフォルトのスプライトを削除し、 **Arrow1** スプライトを選択します。
 
 .. image:: img/1.12_graph1.png
 
-Here we will need 2 **Arrow1** sprites, which can be done with the duplicate button.
+2つの **Arrow1** スプライトが必要になります。これは、複製ボタンで行うことができます。
 
 .. image:: img/1.12_scratch_duplicate.png
 
-Click on the **Arrow 2** sprite and change the direction of the arrow by selecting costume 2.
+**Arrow 2** スプライトをクリックして、コスチューム2を選択して矢印の方向を変更します。
 
 .. image:: img/1.12_graph2.png
 
-
-Now let's make a variable.
+変数を作成しましょう。
 
 .. image:: img/1.12_graph3.png
 
-
-Name it as **num**.
+それを **num** として名付けます。
 
 .. image:: img/1.12_graph4.png
 
-
-Follow the same method to create a list called **led**.
+同じ方法で、 **led** という名前のリストを作成します。
 
 .. image:: img/1.12_graph6.png
 
+追加した後、ステージエリアに **num** 変数と **led** リストが表示されるはずです。
 
-After adding, you should see the **num** variable and the **led** list on the stage area. 
-
-Click **+** to add 10 list items and enter the pin numbers in order (17,18,27,22,23,24,25,2,3,8).
+**+** をクリックして、10のリストアイテムを追加し、順番にピン番号（17,18,27,22,23,24,25,2,3,8）を入力します。
 
 .. image:: img/1.12_graph7.png
 
-Tips on Codes
---------------
+コードに関するヒント
+-------------------------------
 
 .. image:: img/1.12_graph10.png
   :width: 300
 
-This is an event block that is triggered when the current sprite is clicked.
+これは、現在のスプライトがクリックされたときにトリガーされるイベントブロックです。
 
 .. image:: img/1.12_graph8.png
   :width: 300
 
-The initial value of the **num** variable determines which LED is lit first.
+**num** 変数の初期値は、どのLEDが最初に点灯するかを決定します。
 
 .. image:: img/1.12_graph9.png
 
-
-Set the pin corresponding to **num** in the led list to low to light the LED, and then set the pin corresponding to **num-1** to high to turn off the previous LED.
-
+ledリスト内の **num** に対応するピンを低く設定してLEDを点灯させ、その後 **num-1** に対応するピンを高く設定して前のLEDをオフにします。
 

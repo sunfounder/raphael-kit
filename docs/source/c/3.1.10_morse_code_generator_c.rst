@@ -1,59 +1,59 @@
-3.1.10 Morse Code Generator
+.. _3.1.10_c:
+
+3.1.10 モールス信号ジェネレータ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+はじめに
 -----------------
 
-In this project, we'll make a Morse code generator, where you type in a
-series of English letters in the Raspberry Pi to make it appear as Morse
-code.
+このプロジェクトでは、Raspberry Piに英字のシリーズを入力して、それをモールス信号として表示するモールス信号ジェネレータを作成します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components.
+このプロジェクトには、以下の部品が必要です。
 
 .. image:: ../img/list_Morse_Code_Generator.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+全体のキットを購入することは確かに便利です。以下はリンクです：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+また、以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`抵抗器`
         - |link_resistor_buy|
     *   - :ref:`LED`
         - |link_led_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`ブザー`
         - \-
-    *   - :ref:`Transistor`
+    *   - :ref:`トランジスタ`
         - |link_transistor_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== ===
@@ -65,16 +65,14 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one11.png
    :align: center
 
-Experimental Procedures
+実験手順
 ----------------------------
 
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**ステップ 1:** 回路を組み立てます。（ブザーの極性に注意してください：+ラベルが付いている方が正極で、もう一方が負極です。）
 
 .. image:: ../img/image269.png
 
-**Step 2**: Open the code file.
+**ステップ 2**: コードファイルを開きます。
 
 .. raw:: html
 
@@ -84,7 +82,7 @@ negative.)
 
     cd ~/raphael-kit/c/3.1.10/
 
-**Step 3**: Compile the code.
+**ステップ 3**: コードをコンパイルします。
 
 .. raw:: html
 
@@ -94,7 +92,7 @@ negative.)
 
     gcc 3.1.10_MorseCodeGenerator.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**ステップ 4**: 上記の実行可能ファイルを実行します。
 
 .. raw:: html
 
@@ -104,14 +102,13 @@ negative.)
 
     sudo ./a.out
 
-After the program runs, type a series of characters, and the buzzer and
-the LED will send the corresponding Morse code signals.
+プログラムを実行した後、文字のシリーズを入力し、ブザーとLEDは対応するモールス信号を送信します。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない場合、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
 
-**Code Explanation**
+**コードの説明**
 
 .. code-block:: c
 
@@ -133,8 +130,7 @@ the LED will send the corresponding Morse code signals.
         {';',"101010"},{'!',"101011"}, {'@',"011010"}, {':',"111000"}
     };
 
-This structure MORSE is the dictionary of the Morse code, containing
-characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” “;” “!” “@” .
+この「MORSE」という構造体は、モールス符号の辞書で、A-Zの文字、0-9の数字、および記号「?」「/」「:」「,」「.」「;」「!」「@」を含んでいます。
 
 .. code-block:: c
 
@@ -148,10 +144,7 @@ characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” �
         }    
     }
 
-The function ``lookup()`` works by “checking the dictionary”. Define a
-``key`` search the same words as ``key`` in the structure ``morseDict``
-and return the corresponding information— ``code`` of the certain
-word.
+``lookup()`` 関数は「辞書を調べる」という方法で動作します。 ``key`` を定義し、構造体 ``morseDict`` 内の ``key`` と同じ単語を検索し、特定の単語の ``code`` を返します。
 
 .. code-block:: c
 
@@ -160,7 +153,7 @@ word.
         digitalWrite(BeepPin,HIGH);     
     }
 
-Create a function ``on()`` to start the buzzer and the LED.
+``on()`` 関数を作成して、ブザーとLEDを起動します。
 
 .. code-block:: c
 
@@ -169,7 +162,7 @@ Create a function ``on()`` to start the buzzer and the LED.
         digitalWrite(BeepPin,LOW);
     }
 
-The function ``off()`` turns off the buzzer and the LED.
+``off()`` 関数はブザーとLEDをオフにします。
 
 .. code-block:: c
 
@@ -180,8 +173,7 @@ The function ``off()`` turns off the buzzer and the LED.
         delay(dt);
     }
 
-Define a function ``beep()`` to make the buzzer and the LED emit sounds and
-blink in a certain interval of **dt**.
+ブザーと LED を音を鳴らし、 **dt** の一定間隔で点滅させる関数 ``beep()`` を定義します。
 
 .. code-block:: c
 
@@ -205,11 +197,7 @@ blink in a certain interval of **dt**.
         }
     }
 
-The function ``morsecode()`` is used to process the Morse code of input
-characters by making the “1” of the code keep emitting sounds or lights
-and the “0”shortly emit sounds or lights, ex., input “SOS”, and there
-will be a signal containing three short three long and then three short
-segments “ · · · - - - · · · ”.
+``morsecode()`` 関数は、入力文字のモールス符号を処理するために使用され、コードの「1」は音や光を短く発信し、コードの「0」は音や光を一時的に発信します。例えば、「SOS」と入力すると、「 · · · - - - · · · 」という信号が生成されます。
 
 .. code-block:: c
 
@@ -227,7 +215,7 @@ segments “ · · · - - - · · · ”.
     return orign;
     }
 
-Before coding, you need to unify the letters into capital letters.
+コーディング前に、文字を大文字に統一する必要があります。
 
 .. code-block:: c
 
@@ -245,16 +233,13 @@ Before coding, you need to unify the letters into capital letters.
         }
     }
 
-When you type the relevant characters with the keyboard,
-``code=strupr(code)`` will convert the input letters to their capital form.
+キーボードで関連する文字を入力すると、 ``code=strupr(code)`` が入力文字を大文字に変換します。
 
-``Printf()`` then prints the clear text on the computer screen, and the
-``morsecod()`` function causes the buzzer and the LED to emit Morse code.
+``Printf()`` はコンピュータ画面に明確なテキストを表示し、 ``morsecod()`` 関数はブザーとLEDにモールス信号を発信させます。
 
-Note that the length of the input character mustn’t exceed the
-**length** (can be revised).
+入力文字の長さが **length** を超えてはいけないことに注意してください（必要に応じて変更できます）。
 
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/image270.jpeg

@@ -1,14 +1,13 @@
-Install and Setup Raspberry Pi OS
-====================================
+Raspberry Pi OSのインストールとセットアップ
+=============================================
 
-In this chapter, we firstly learn to start up Raspberry Pi. The content
-includes installing the OS, Raspberry Pi network and how to open terminal.
+この章では、まず最初にRaspberry Piの起動方法について学びます。内容には、OSのインストール、Raspberry Piのネットワーク設定、およびターミナルの開き方が含まれます。
 
 .. note::
 
-    You can check the complete tutorial on the official website of the Raspberry Pi: `raspberry-pi-setting-up <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up>`_.
+    Raspberry Piの公式ウェブサイトで完全なチュートリアルを確認できます: `raspberry-pi-setting-up <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up>`_。
 
-    If your Raspberry Pi is set up, you can skip the part and go into the next chapter.
+    すでにRaspberry Piがセットアップされている場合は、この部分をスキップして次の章に進んでください。
 
 .. toctree::
     :maxdepth: 2

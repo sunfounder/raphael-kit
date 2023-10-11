@@ -1,85 +1,76 @@
 .. _1.3.1_py:
 
-1.3.1 Motor
-=============
+1.3.1 モーター
+=================
 
-Introduction
+はじめに
 -----------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+このプロジェクトでは、L293Dを使用してDCモーターを駆動し、時計回りおよび反時計回りに回転させる方法を学びます。DCモーターは大電流が必要なため、安全を確保する目的で電源モジュールを使用してモーターに電力を供給します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトで必要なコンポーネントは以下のとおりです。
 
 .. image:: ../img/list_1.3.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式をまとめて購入すると便利です、リンクはこちら：
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別にも購入可能です。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの説明
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`電源モジュール`
         - \-
     *   - :ref:`L293D`
         - \-
-    *   - :ref:`DC Motor`
+    *   - :ref:`DCモーター`
         - |link_motor_buy|
 
 
-Schematic Diagram
+回路図
 ------------------
 
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+ブレッドボードに電源モジュールを差し込み、5Vのピンにジャンパーキャップを挿入すると5Vの電圧が出力されます。L293Dの1番ピンをGPIO22に接続し、それをハイレベルに設定します。ピン2をGPIO27、ピン7をGPIO17に接続し、一方をハイ、もう一方をローに設定します。これでモーターの回転方向を変更できます。
 
 .. image:: ../img/image336.png
 
 
-**Experimental Procedures**
+**実験手順**
 
-**Step 1:** Build the circuit.
+**ステップ1：** 回路を組む。
 
 .. image:: ../img/image117.png
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    キット内の9Vバッテリーバックルを使用して、電源モジュールに9Vのバッテリーを接続できます。電源モジュールのジャンパーキャップをブレッドボードの5Vバスストリップに挿入します。
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Get into the folder of the code.
+**ステップ2：** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -89,7 +80,7 @@ the motor’s rotation direction.
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**ステップ3：** 実行。
 
 .. raw:: html
 
@@ -99,20 +90,18 @@ the motor’s rotation direction.
 
     sudo python3 1.3.1_Motor.py
 
-As the code runs, the motor first rotates clockwise for 5s then stops for 5s,
-after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
-for 5s. This series of actions will be executed repeatedly.  
+コードを実行すると、モーターは最初に5秒間時計回りに回転し、次に5秒間停止します。その後、5秒間反時計回りに回転し、再び5秒間停止します。この一連の動作は繰り返し実行されます。
 
-**Code**
+**コード**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    下のコードは **修正/リセット/コピー/実行/停止** が可能です。ただし、その前に ``raphael-kit/python`` のようなソースコードのパスに移動する必要があります。コードを修正した後、その効果を直接確認できます。
 
 .. raw:: html
 
     <run></run>
+
 
 .. code-block:: python
 
@@ -192,7 +181,7 @@ for 5s. This series of actions will be executed repeatedly.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**コード解説**
 
 .. code-block:: python
 
@@ -207,10 +196,7 @@ for 5s. This series of actions will be executed repeatedly.
             print ("Clockwise")
     ...
 
-Create a function, ``motor()`` whose variable is direction. As the
-condition that direction=1 is met, the motor rotates clockwise; when
-direction=-1, the motor rotates anticlockwise; and under the condition
-that direction=0, it stops rotating.
+``motor()`` という関数を作成し、その引数にはdirectionを設定します。direction=1の条件が成立した場合、モーターは時計回りに回転します；direction=-1で反時計回り、direction=0で停止します。
 
 .. code-block:: python
 
@@ -232,16 +218,13 @@ that direction=0, it stops rotating.
             motor(directions['STOP'])
             time.sleep(5)
         
-In the main() function, create an array, directions[], in which CW is
-equal to 1, the value of CCW is -1, and the number 0 refers to Stop.
+main()関数内で、directions[]という配列を作成します。ここで、CWは1に、CCWは-1に、STOPは0に等しいと定義します。
 
-As the code runs, the motor first rotates clockwise for 5s then stop for
-5s, after that, it rotates anticlockwise for 5s; subsequently, the motor
-stops for 5s. This series of actions will be executed repeatedly.
+このコードを実行すると、モーターは初めに5秒間時計回りに回転した後、5秒間停止します。その後、5秒間反時計回りに回転し、再び5秒間停止します。この一連の動作は繰り返されます。
 
-Now, you should see the motor blade rotating.
+これで、モーターブレードが回転しているのが確認できるはずです。
 
-Phenomenon Picture
+現象の画像
 ------------------
 
 .. image:: ../img/image119.jpeg

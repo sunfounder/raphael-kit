@@ -1,52 +1,52 @@
 .. _1.1.6_c:
 
-1.1.6 LED Dot Matrix Module
-==================================
+1.1.6 LEDドットマトリックスモジュール
+======================================
 
-Introduction
+はじめに
 --------------------
 
-In this project, you will learn about LED Matrix Module. LED Matrix Module uses the MAX7219 driver to drive the 8 x 8 LED Matrix.
+このプロジェクトでは、LEDマトリックスモジュールについて学びます。LEDマトリックスモジュールは、MAX7219ドライバを使用して8x8のLEDマトリックスを駆動します。
 
-**Required Components**
+必要な部品
 ------------------------------
 
-In this project, we need the following components. 
+このプロジェクトでは、以下のコンポーネントが必要です。
 
 .. image:: ../img/list_dot.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です。リンクは以下のとおりです。
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - 名前
+        - このキットのアイテム
+        - リンク
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+以下のリンクから個別に購入することもできます。
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`GPIO拡張ボード`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`ブレッドボード`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`ジャンパーワイヤー`
         - |link_wires_buy|
-    *   - :ref:`LED Matrix Module`
+    *   - :ref:`LEDマトリクスモジュール`
         - |link_led_matrix_buy|
 
-Schematic Diagram
+回路図
 -----------------------
 
 ============ ======== ======== ====
@@ -58,19 +58,18 @@ SPISCLK      Pin 23   14       SCLK
 
 .. image:: ../img/schematic_dot.png
 
-Experimental Procedures
+実験の手順
 ----------------------------
 
-**Step 1:** Build the circuit. 
+**ステップ1:** 回路を組む。
 
 .. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. And the :ref:`BCM2835` library is also needed.
+    実験を開始する前にSPIをオンにしてください。詳細は :ref:`SPI設定` を参照してください。また、 :ref:`BCM2835` ライブラリも必要です。
 
-
-**Step 2:** Go to the folder of the code.
+**ステップ2:** コードのフォルダに移動する。
 
 .. raw:: html
 
@@ -80,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.6/
 
-**Step 3:** Compile the code.
+**ステップ3:** コードをコンパイルする。
 
 .. raw:: html
 
@@ -90,7 +89,7 @@ Experimental Procedures
 
     make
 
-**Step 4:**: Run the executable file.
+**ステップ4:** 実行可能ファイルを実行する。
 
 .. raw:: html
 
@@ -100,13 +99,13 @@ Experimental Procedures
 
     sudo ./1.1.6_LedMatrix
 
-After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in sequence.
+コードを実行すると、LEDドットマトリックスが0から9、AからZまでの順番で表示されます。
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    実行後に動作しない、またはエラープロンプトが表示される場合：「wiringPi.h: No such file or directory」、 :ref:`install_wiringpi` を参照してください。
 
-**Code**
+**コード**
 
 .. code-block:: c
 
@@ -226,17 +225,17 @@ After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in se
         return 0;
     }
 
-**Code Explanation**
+**コード説明**
 
 .. code-block:: c
 
     #define Max7219_pinCS  24
 
-The cs pin of the LED Dot Matrix is connected to pin24.
+LEDドットマトリックスのcsピンはpin24に接続されています。
 
 .. note::
 
-    When you have multiple devices that need spi communication, just connect the cs pins on different pins.
+    複数のデバイスがSPI通信を必要とする場合、csピンを異なるピンに接続するだけで済みます。
 
 .. code-block:: c
 
@@ -246,7 +245,7 @@ The cs pin of the LED Dot Matrix is connected to pin24.
 		return 1;
 	}
 
-Check if the bcm2835 library is successfully installed, if not, print the message "Unable to init bcm2835".
+bcm2835ライブラリが正常にインストールされているかを確認し、そうでない場合は「Unable to init bcm2835」というメッセージを出力します。
 
 .. code-block:: c
 
@@ -254,7 +253,7 @@ Check if the bcm2835 library is successfully installed, if not, print the messag
 	Delay_xms(50);
 	Init_MAX7219();
 
-Initialize libraries and module.
+ライブラリとモジュールを初期化します。
 
 .. code-block:: c
 
@@ -270,17 +269,16 @@ Initialize libraries and module.
         }
     }
 
+``Write_Max7219()`` 関数は、LEDドットマトリックス上に指定した文字を表示することができます。第一パラメータは表示される行を入力し、第二パラメータはその行での点灯または消灯を示す8ビットの二進数または16進数を入力します（0はオフ、1は点灯を意味します）。
 
-The ``Write_Max7219()`` function allows you to display the specified character on the LED Dot Matrix, where the first parameter inputs the row in which it is displayed, and the second parameter inputs an 8-bit binary number or a hexadecimal number that indicates the light on or off in that row (0 means off, 1 means lit).
+変数 ``j`` は配列 ``disp1[]`` の行（35行）を、変数 ``i`` は列（8列）を表します。
 
-The variable ``j`` represents the rows in the array ``disp1[]`` (35 rows) and the variable ``i`` represents the column (8 columns).
-    
-For example, when j=1 and i=2, the value ``disp1[1][1]`` (0x18) is displayed on the dot matrix. i loops 8 times to display the full 1 on the dot matrix. After 35 cycles of j, 0-9 and A-Z are displayed on the dot matrix.
+例えば、j=1およびi=2の場合、値 ``disp1[1][1]`` （0x18）がドットマトリックスに表示されます。iは8回ループして、ドットマトリックスに完全な1を表示します。jの35回のサイクル後、0-9とA-Zがドットマトリックスに表示されます。
 
     .. image:: ../img/led_not.png
         :width: 400
 
-Phenomenon Picture
+現象の画像
 -----------------------
 
 .. image:: ../img/1.1.6led_dot_matrix.JPG
