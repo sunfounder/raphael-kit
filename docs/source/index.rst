@@ -25,15 +25,6 @@ SunFounder Ulimate Raphael Kit for Raspberry Pi
 
 質問があれば、service@sunfounder.com までメールをお送りください。できるだけ早く回答します。
 
-**表示言語について**
-
-このドキュメントは、他の言語でも利用可能です。
-
-表示言語を変更するには、ページの左下隅にあるRead the Docsのアイコンをクリックしてください。
-
-.. image:: img/translation.png
-    :align: center
-
 .. raw:: html
 
    <br/>
