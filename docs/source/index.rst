@@ -1,6 +1,12 @@
 SunFounder Ulimate Raphael Kit for Raspberry Pi
 =======================================================
 
+.. note::
+    このドキュメントは以下の言語で利用可能です。
+
+        * |link_jp_tutorials|
+        * |link_en_tutorials|
+
 ラズベリーパイに初めて挑戦する方はいますか？ラズベリーパイを学ぶ明確な方法をお探しですか？
 コードを単にコピーアンドペーストするだけでなく、自分自身で書きたいと思っていますか？
 もしこれらの質問のいずれかに「はい」と答えたなら、 Raspberry Pi Education Starter Kit - ラファエルキットはあなたにぴったりです。
