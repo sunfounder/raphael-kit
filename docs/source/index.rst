@@ -2,6 +2,17 @@
 SunFounder Ulimate Raphael Kit for Raspberry Pi
 =======================================================
 
+
+Thanks for choosing our Ulimate Raphael Kit.
+
+.. note::
+    This document is available in the following languages.
+
+        * |link_jp_tutorials|
+        * |link_en_tutorials|
+    
+    Please click on the respective links to access the document in your preferred language.
+
 Are you new to Raspberry Pi? Are you looking for a clear path to learn Raspberry Pi? 
 Would you like to do more than just copy and paste code, but actually write your own? 
 If you answered yes to any of the above questions, then the Raspberry Pi Education Starter Kit - Raphael Kit is right for you.
