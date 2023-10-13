@@ -257,7 +257,7 @@ rst_epilog += """
 
 .. |link_jp_tutorials| raw:: html
 
-    <a href="https://docs.sunfounder.com/projects/raphael-kit/ja/latest//" target="_blank">日本語オンライン教材</a>
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/ja/latest/" target="_blank">日本語オンライン教材</a>
 
 .. |link_en_tutorials| raw:: html
 
