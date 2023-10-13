@@ -91,7 +91,6 @@ gettext_compact = False # Support for generating the contents of the folders ins
 
 
 # Purchase links of components
-
 rst_epilog = """
 
 .. |link_Raphael_kit| raw:: html
@@ -249,5 +248,19 @@ rst_epilog = """
 .. |link_camera_buy| raw:: html
 
     <a href="https://www.sunfounder.com/products/5mp-1080p-camera" target="_blank">BUY</a>   
+
+"""
+
+# language links
+
+rst_epilog += """
+
+.. |link_jp_tutorials| raw:: html
+
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/ja/latest//" target="_blank">日本語オンライン教材</a>
+
+.. |link_en_tutorials| raw:: html
+
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/en/latest/" target="_blank">English Online-tutorials</a>
 
 """
