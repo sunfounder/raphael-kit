@@ -1,6 +1,8 @@
 SunFounder Ulimate Raphael Kit for Raspberry Pi
 =======================================================
 
+当社のUltimate Raphael Kitを選んでいただき、ありがとうございます。
+
 .. note::
     このドキュメントは以下の言語で利用可能です。
 
