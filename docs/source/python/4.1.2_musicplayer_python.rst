@@ -1,12 +1,14 @@
+.. _4.1.2_py:
+
 4.1.2 Music Player
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Introduction
 -----------------
 
-In project :ref:`3.1.3 Audio Module`, let speaker play a song. Now we add 3 buttons to control the play/pause and volume of the music.
+In project :ref:`3.1.3_py`, let speaker play a song. Now we add 3 buttons to control the play/pause and volume of the music.
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -37,17 +39,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`audio_speaker`
         - \-
-    *   - :ref:`Button`
+    *   - :ref:`button`
         - |link_button_buy|
 
 
@@ -108,7 +110,7 @@ After the code runs, Raspberry Pi will play the ``my_music.mp3`` file in the ``~
 * Button 2 decreases the volume.
 * Button 3 increases the volume.
 
-If you want to upload other music files to Raspberry Pi, you can refer to :ref:`Filezilla Software`.
+If you want to upload other music files to Raspberry Pi, you can refer to :ref:`filezilla`.
 
 **Code**
 

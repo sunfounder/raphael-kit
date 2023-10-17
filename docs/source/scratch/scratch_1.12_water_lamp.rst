@@ -1,6 +1,7 @@
+.. _1.12_scratch:
+
 1.12 Water Lamp
 ================
-
 
 Today, we will use LED Bar Graph, Raspberry Pi and scratch to make a Water Lamp.
 
@@ -8,7 +9,7 @@ The LED Bar Graph will light up in order with the direction of the arrows on the
 
 .. image:: img/1.12_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -37,15 +38,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`LED Bar Graph`
+    *   - :ref:`bar_graph`
         - \-
 
 Build the Circuit

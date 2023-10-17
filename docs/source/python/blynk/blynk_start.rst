@@ -1,4 +1,4 @@
-.. _bk_start:
+.. _bk_start_py:
 
 Get Start with Blynk
 =========================

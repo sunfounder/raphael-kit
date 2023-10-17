@@ -1,3 +1,5 @@
+.. _hello_mouse:
+
 Hello Mouse
 ==================
 

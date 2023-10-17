@@ -1,3 +1,5 @@
+.. _clickable_color_blocks:
+
 Clickable Color Blocks
 =======================
 
@@ -31,13 +33,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`RGB LED`
+    *   - :ref:`rgb_led`
         - |link_rgb_led_buy|
 
 **Wiring**
@@ -87,7 +89,7 @@ You can also buy them separately from the links below.
 
 **How it works?**
 
-This project has a lot in common with :ref:`Clickable Dot`, except that it refines the conditions for determining mouse click event.
+This project has a lot in common with :ref:`clickable_dot`, except that it refines the conditions for determining mouse click event.
 
 First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
 

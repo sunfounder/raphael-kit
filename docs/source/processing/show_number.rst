@@ -1,3 +1,5 @@
+.. _show_number:
+
 Show Number
 =============================================
 
@@ -29,17 +31,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`7-segment Display`
+    *   - :ref:`7_segment`
         - |link_7segment_buy|
-    *   - :ref:`74HC595`
+    *   - :ref:`74hc595`
         - |link_74hc595_buy|
 
 **Wiring**

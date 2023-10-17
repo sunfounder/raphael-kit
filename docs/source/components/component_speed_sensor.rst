@@ -1,3 +1,5 @@
+.. _speed_sensor:
+
 Speed Sensor Module
 ========================
 
@@ -18,4 +20,4 @@ If the light beam between the emitter and receiver is interrupted by an obstacle
 
 * :ref:`2.2.6_c` (C Project)
 * :ref:`2.2.6_py` (Python Project)
-* :ref:`1.7 Piggy Bank` (Scratch Project)
+* :ref:`1.7_scratch` (Scratch Project)

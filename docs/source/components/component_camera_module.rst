@@ -1,3 +1,5 @@
+.. _camera_module:
+
 Camera Module
 ====================================
 
@@ -86,10 +88,10 @@ After the configuration is complete, it is recommended to reboot the Raspberry P
    
 **Example**
 
-* :ref:`3.1.1 Photograph Module` (Python Project)
-* :ref:`3.1.2 Video Module` (Python Project)
-* :ref:`4.1.1 Camera` (Python Project)
-* :ref:`4.1.4 Automatic Capture Camera` (Python Project)
-* :ref:`4.1.5 Intelligent Visual Doorbell` (Python Project)
-* :ref:`1.10 Drumming in the Air` (Scratch Project)
-* :ref:`1.18 Eating Banana Game` (Scratch Project)
+* :ref:`3.1.1_py` (Python Project)
+* :ref:`3.1.2_py` (Python Project)
+* :ref:`4.1.1_py` (Python Project)
+* :ref:`4.1.4_py` (Python Project)
+* :ref:`4.1.5_py` (Python Project)
+* :ref:`1.10_scratch` (Scratch Project)
+* :ref:`1.18_scratch` (Scratch Project)

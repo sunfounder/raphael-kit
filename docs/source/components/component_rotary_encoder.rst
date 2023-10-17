@@ -1,3 +1,5 @@
+.. _rotary_encoder:
+
 Rotary Encoder Module
 =============================
 

@@ -1,3 +1,5 @@
+.. _slide_switch:
+
 Slide Switch
 ==============
 
@@ -21,8 +23,8 @@ The circuit symbol of the slide switch is shown as below. The pin2 in the figure
 **Example**
 
 * :ref:`2.1.4_c` (C Project)
-* :ref:`3.1.9 Alarm Bell` (C Project)
+* :ref:`3.1.9_c` (C Project)
 * :ref:`2.1.4_py` (Python Project)
-* :ref:`4.1.15 Alarm Bell` (Python Project)
-* :ref:`1.15 Inflating the Balloon` (Scratch Project)
+* :ref:`4.1.15_py` (Python Project)
+* :ref:`1.15_scratch` (Scratch Project)
 

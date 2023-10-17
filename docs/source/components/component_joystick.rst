@@ -1,3 +1,5 @@
+.. _joystick:
+
 Joystick Module
 =======================
 
@@ -20,6 +22,6 @@ The joystick also has a digital input that is actuated when the joystick is pres
 **Example**
 
 * :ref:`2.1.9_c` (C Project)
-* :ref:`3.1.7 Overheat Monitor` (C Project)
+* :ref:`3.1.7_c` (C Project)
 * :ref:`2.1.9_py` (Python Project)
-* :ref:`4.1.13 Overheat Monitor` (Python Project)
+* :ref:`4.1.13_py` (Python Project)

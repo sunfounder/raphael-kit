@@ -1,3 +1,5 @@
+.. _1.11_scratch:
+
 1.11 Repelling locusts
 ========================
 
@@ -8,7 +10,7 @@ Place your hand in front of the obstacle avoidance module and you will see the l
 
 .. image:: img/1.11_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -37,13 +39,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Obstacle Avoidance Module`
+    *   - :ref:`infrared_avoidance`
         - |link_obstacle_avoidance_buy|
 
 Build the Circuit

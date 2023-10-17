@@ -1,3 +1,5 @@
+.. _3.1.4_py:
+
 3.1.4 Text-to-speech
 =======================
 
@@ -9,7 +11,7 @@ In many places, we can come into contact with TTS (Text-to-speech) technology, w
 
 Let's try to make your project speak.
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -39,11 +41,11 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`audio_speaker`
         - \-
 
 Experimental Procedures
@@ -95,9 +97,9 @@ Raspberry pi will greet you kindly after the code runs, and it will say goodbye 
 
 .. note::
 
-    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`Change Audio Output` to Headphones.
+    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`change_audio_output` to Headphones.
 
-    If you feel that the volume of the speakers is too low, you can :ref:`Adjust Volume`.
+    If you feel that the volume of the speakers is too low, you can :ref:`adjust_volume`.
 
 **Code**
 

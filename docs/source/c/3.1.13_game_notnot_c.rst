@@ -1,3 +1,5 @@
+.. _3.1.13_c:
+
 3.1.13 GAME– NotNot
 ===========================
 
@@ -10,7 +12,7 @@ During the game, the dot matrix will refresh an arrow randomly. What you need to
 
 This game can really practice your reverse thinking, and now shall we have a try?
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components.
@@ -40,15 +42,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`LED Matrix Module`
+    *   - :ref:`dot_matrix`
         - |link_led_matrix_buy|
-    *   - :ref:`Button`
+    *   - :ref:`button`
         - |link_button_buy|
 
 Schematic Diagram
@@ -122,7 +124,7 @@ the difficulty of the game.
 
 **Code Explanation**
 
-Based on :ref:`1.1.6 LED Dot Matrix Module`, this project adds 2 buttons to make an amusing game device.
+Based on :ref:`1.1.6_c`, this project adds 2 buttons to make an amusing game device.
 
 The whole program process is as below:
 

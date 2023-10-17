@@ -1,3 +1,5 @@
+.. _micro_switch:
+
 Micro Switch
 =====================
 
@@ -39,4 +41,4 @@ When the plunger is depressed or switched.
 
 * :ref:`2.1.2_c` (C Project)
 * :ref:`2.1.2_py` (Python Project)
-* :ref:`1.8 Service Bell` (Scratch Project)
+* :ref:`1.8_scratch` (Scratch Project)

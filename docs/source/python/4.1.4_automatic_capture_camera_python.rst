@@ -1,3 +1,5 @@
+.. _4.1.4_py:
+
 4.1.4 Automatic Capture Camera
 ===================================
 
@@ -6,7 +8,7 @@ Introduction
 
 When you are out, the little squirrels in the woods might visit your windowsill. Let's make a automatic capture camera to leave pictures of these little cuties!
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components.
@@ -37,17 +39,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`Camera Module`
+    *   - :ref:`camera_module`
         - |link_camera_buy|
-    *   - :ref:`PIR Motion Sensor Module`
+    *   - :ref:`pir`
         - \-
 
 
@@ -66,7 +68,7 @@ GPIO17       Pin 11   0        17
 Experimental Procedures
 ------------------------------
 
-Before this project, you need to make sure you complete :ref:`3.1.1 Photograph Module` .
+Before this project, you need to make sure you complete :ref:`3.1.1_py` .
 
 **Step 1:** Build the circuit.
 
@@ -74,9 +76,9 @@ Before this project, you need to make sure you complete :ref:`3.1.1 Photograph M
   :width: 800
   :align: center
 
-**Step 2:** To connect the camera module and complete the configuration, please refer to: :ref:`Camera Module`.
+**Step 2:** To connect the camera module and complete the configuration, please refer to: :ref:`camera_module`.
 
-**Step 3:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+**Step 3:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
 
 **Step 4:** Open a Terminal and get into the folder of the code.
 

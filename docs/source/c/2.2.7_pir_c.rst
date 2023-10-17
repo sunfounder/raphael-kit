@@ -12,7 +12,7 @@ turn on automatically. If not, the light will turn off. This infrared
 motion sensor is a kind of sensor that can detect the infrared emitted
 by human and animals.
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -41,17 +41,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`RGB LED`
+    *   - :ref:`rgb_led`
         - |link_rgb_led_buy|
-    *   - :ref:`PIR Motion Sensor Module`
+    *   - :ref:`pir`
         - \-
 
 Schematic Diagram
@@ -163,7 +163,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
 These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2 RGB LED` for more details.
+to :ref:`1.1.2_c` for more details.
 
 .. code-block:: c
 

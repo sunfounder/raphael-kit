@@ -1,3 +1,5 @@
+.. _2.2.6_js:
+
 2.2.6 Speed Sensor Module
 =========================
 
@@ -6,7 +8,7 @@ Introduction
 
 In this project, we will learn the use of the speed sensor module. A Speed sensor module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -37,17 +39,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`LED`
+    *   - :ref:`led`
         - |link_led_buy|
-    *   - :ref:`Speed Sensor Module`
+    *   - :ref:`speed_sensor`
         - \-
 
 Schematic Diagram
@@ -121,11 +123,11 @@ Remove the obstacle and the green LED will light up again.
 
 **Code Explanation**
 
-The code of this example is almost the same as :ref:`2.1.5 Tilt Switch`, so no need to repeat it.
+The code of this example is almost the same as :ref:`2.1.5_js`, so no need to repeat it.
 
 
 
-**Phenomenon Picture**
+Phenomenon Picture
 -----------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG

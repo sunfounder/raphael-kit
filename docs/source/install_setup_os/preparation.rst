@@ -1,3 +1,5 @@
+.. _preparation:
+
 Install and Setup Raspberry Pi OS
 ====================================
 

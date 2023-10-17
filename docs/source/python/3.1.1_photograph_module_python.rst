@@ -8,7 +8,7 @@ Introduction
 
 In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -38,13 +38,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`Camera Module`
+    *   - :ref:`camera_module`
         - |link_camera_buy|
 
 Experimental Procedures
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
 
 
 **Step 2:** Open a Terminal and get into the folder of the code.
@@ -66,7 +66,7 @@ After the code runs, the camera will take a photo. Now you can see the photo nam
     You can also open ``3.1.1_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
 
 
-If you want to download the photo to your PC, please refer to :ref:`Filezilla Software`.
+If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
 
 **Code**

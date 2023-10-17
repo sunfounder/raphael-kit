@@ -1,4 +1,4 @@
-.. _4-digit:
+.. _4_digit:
 
 4-Digit 7-Segment Display
 ==================================
@@ -37,13 +37,13 @@ hexadecimal number.
 
 **Example**
 
-* :ref:`1.1.5 4-Digit 7-Segment Display` (C Project)
-* :ref:`3.1.1 Counting Device` (C Project)
-* :ref:`3.1.6 Traffic Light` (C Project)
-* :ref:`3.1.12 GAME - 10 Second` (C Project)
-* :ref:`1.1.5 4-Digit 7-Segment Display` (Python Project)
-* :ref:`4.1.3 Speech Clock` (Pyhton Project)
-* :ref:`4.1.7 Counting Device` (Pyhton Project)
-* :ref:`4.1.12 Traffic Light` (Pyhton Project)
-* :ref:`4.1.18_10second_python` (Pyhton Project)
+* :ref:`1.1.5_c` (C Project)
+* :ref:`3.1.1_c` (C Project)
+* :ref:`3.1.6_c` (C Project)
+* :ref:`3.1.12_c` (C Project)
+* :ref:`1.1.5_py` (Python Project)
+* :ref:`4.1.3_py` (Pyhton Project)
+* :ref:`4.1.7_py` (Pyhton Project)
+* :ref:`4.1.12_py` (Pyhton Project)
+* :ref:`4.1.18_py` (Pyhton Project)
 

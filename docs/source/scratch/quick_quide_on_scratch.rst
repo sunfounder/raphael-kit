@@ -1,15 +1,17 @@
+.. _quick_quide_on_scratch:
+
 Quick Guide on Scratch
 ==========================
 
 .. note::
 
-    When programming with Scratch 3, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`Remote Desktop`.
+    When programming with Scratch 3, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
 
 In addition, Scratch 3 needs at least 1GB of RAM to run, and we recommend a Raspberry Pi 4 with at least 2GB RAM. While you can run Scratch 3 on a Raspberry Pi 2, 3, 3B+, or a Raspberry 4 with 1GB RAM, performance on these models is reduced, and depending on what other software you run at the same time, Scratch 3 may fail to start due to lack of memory.
 
 Install Scratch 3
 -------------------
-When installing Raspberry Pi OS (:ref:`Installing the OS`), you have to choose the version with desktop, either with desktop only or with desktop and recommended software.
+When installing Raspberry Pi OS (:ref:`install_os`), you have to choose the version with desktop, either with desktop only or with desktop and recommended software.
 
 If you install the version with the recommended software, you can see Scratch 3 in the system menu at **Programming**.
 

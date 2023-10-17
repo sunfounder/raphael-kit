@@ -1,3 +1,5 @@
+.. _mfrc522:
+
 MFRC522 Module
 =====================
 
@@ -46,4 +48,4 @@ board space (smaller size), and reduce cost.
 
 * :ref:`2.2.10_c` (C Project)
 * :ref:`2.2.10_py` (Python Project)
-* :ref:`4.1.19 AttendanceSystem` (Python Project)
+* :ref:`4.1.19_py` (Python Project)

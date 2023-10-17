@@ -1,3 +1,5 @@
+.. _draw_a_matchmaker:
+
 Draw a Matchmaker
 ========================
 

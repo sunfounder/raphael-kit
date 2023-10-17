@@ -1,3 +1,5 @@
+.. _audio_speaker:
+
 Audio Module and Speaker
 ===========================
 
@@ -56,17 +58,17 @@ After building the circuit according to the above diagram, then plug the audio c
     :align: center
 
 
-If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`Change Audio Output` to **Headphones**.
+If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`change_audio_output` to **Headphones**.
 
-If you feel that the volume of the speakers is too low, you can :ref:`Adjust Volume`.
+If you feel that the volume of the speakers is too low, you can :ref:`adjust_volume`.
 
 **Example**
 
-* :ref:`3.1.3 Audio Module` (Python Project)
-* :ref:`3.1.4 Text-to-speech` (Python Project)
-* :ref:`4.1.2 Music Player` (Python Project)
-* :ref:`4.1.3 Speech Clock` (Python Project)
-* :ref:`4.1.5 Intelligent Visual Doorbell` (Python Project)
-* :ref:`1.8 Service Bell` (Scratch Project)
-* :ref:`1.9 Drumming` (Scratch Project)
-* :ref:`1.10 Drumming in the Air` (Scratch Project)
+* :ref:`3.1.3_py` (Python Project)
+* :ref:`3.1.4_py` (Python Project)
+* :ref:`4.1.2_py` (Python Project)
+* :ref:`4.1.3_py` (Python Project)
+* :ref:`4.1.5_py` (Python Project)
+* :ref:`1.8_scratch` (Scratch Project)
+* :ref:`1.9_scratch` (Scratch Project)
+* :ref:`1.10_scratch` (Scratch Project)

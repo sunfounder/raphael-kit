@@ -1,3 +1,5 @@
+.. _transistor:
+
 Transistor
 ============
 
@@ -33,8 +35,8 @@ Put the label side facing us and the pins facing down. The pins from left to rig
 
 **Example**
 
-* :ref:`1.2.1_c` (C Project S8550)
-* :ref:`1.3.3_c` (C Project S8050)
-* :ref:`1.2.2_py` (Python Project S8550)
-* :ref:`1.3.3_py` (Python Project S8050)
-* :ref:`1.14 123 Wooden Man` (Scratch Project S8550)
+* :ref:`1.2.1_c` (C Project)
+* :ref:`1.3.3_c` (C Project)
+* :ref:`1.2.2_py` (Python Project)
+* :ref:`1.3.3_py` (Python Project)
+* :ref:`1.14_scratch` (Scratch Project)

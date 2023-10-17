@@ -1,3 +1,5 @@
+.. _spi_configuration:
+
 SPI Configuration
 -----------------------
 

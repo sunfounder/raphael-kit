@@ -1,3 +1,5 @@
+.. _1.6_scratch:
+
 1.6 Vanishing Vase
 ========================
 
@@ -5,7 +7,7 @@ Now let's do a little magic trick, do nothing, and then the vase somehow disappe
 
 .. image:: img/1.6_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -34,13 +36,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Reed Switch Module`
+    *   - :ref:`reed_switch`
         - |link_reed_switch_buy|
 
 Build the Circuit

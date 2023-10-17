@@ -1,3 +1,5 @@
+.. _adc0834:
+
 ADC0834
 ==============
 
@@ -53,12 +55,12 @@ after the MSB-first data stream.
 * :ref:`2.1.7_c` (C Project)
 * :ref:`2.2.1_c` (C Project)
 * :ref:`2.2.2_c` (C Project)
-* :ref:`3.1.4 Smart Fan` (C Project)
-* :ref:`3.1.5 Battery Indicator` (C Project)
-* :ref:`3.1.7 Overheat Monitor` (C Project)
+* :ref:`3.1.4_c` (C Project)
+* :ref:`3.1.5_c` (C Project)
+* :ref:`3.1.7_c` (C Project)
 * :ref:`2.1.7_py` (Python Project)
 * :ref:`2.2.1_py` (Pyhton Project)
 * :ref:`2.2.2_py` (Pyhton Project)
-* :ref:`4.1.10 Smart Fan` (Pyhton Project)
-* :ref:`4.1.11 Battery Indicator` (Pyhton Project)
-* :ref:`4.1.13 Overheat Monitor` (Pyhton Project)
+* :ref:`4.1.10_py` (Pyhton Project)
+* :ref:`4.1.11_py` (Pyhton Project)
+* :ref:`4.1.13_py` (Pyhton Project)

@@ -1,3 +1,5 @@
+.. _1.5_scratch:
+
 1.5 Wake up the Owl
 ====================
 
@@ -7,7 +9,7 @@ When someone approaches the PIR sensor module, the owl will wake up from sleep.
 
 .. image:: img/1.5_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -36,13 +38,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`PIR Motion Sensor Module`
+    *   - :ref:`pir`
         - \-
 
 Build the Circuit

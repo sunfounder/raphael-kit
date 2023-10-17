@@ -1,3 +1,5 @@
+.. _1.8_scratch:
+
 1.8 Service Bell
 ===================
 
@@ -7,7 +9,7 @@ Tap the Micro Switch to make the service bell sound.
 
 .. image:: img/1.8_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -36,19 +38,19 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`Micro Switch`
+    *   - :ref:`micro_switch`
         - \-
-    *   - :ref:`Capacitor`
+    *   - :ref:`capacitor`
         - |link_capacitor_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`audio_speaker`
         - \-
 
 Build the Circuit
@@ -66,9 +68,9 @@ Press the micro switch and the service bell will ring once.
 
 .. note::
   
-  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`Change Audio Output` for the solution.
+  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`change_audio_output` for the solution.
 
-  Also, if you want to adjust the volume level, please refer to :ref:`Adjust Volume`.
+  Also, if you want to adjust the volume level, please refer to :ref:`adjust_volume`.
 
 Tips on Sprite
 ----------------

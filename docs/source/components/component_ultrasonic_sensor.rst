@@ -1,3 +1,5 @@
+.. _ultrasonic_sensor:
+
 Ultrasonic Module
 ================================
 
@@ -35,6 +37,6 @@ trigger signal and the echo signal.
 **Example**
 
 * :ref:`2.2.8_c` (C Project)
-* :ref:`3.1.3 Reversing Alarm` (C Project)
+* :ref:`3.1.3_c` (C Project)
 * :ref:`2.2.8_py` (Python Project)
-* :ref:`4.1.9 Reversing Alarm` (Python Project)
+* :ref:`4.1.9_py` (Python Project)

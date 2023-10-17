@@ -1,5 +1,9 @@
+.. _audio_configuration:
+
 Audio Configuration
 =========================
+
+.. _change_audio_output:
 
 Change Audio Output
 ----------------------------
@@ -28,6 +32,8 @@ Then **S2 Audio**.
 After selecting **1 Headphones**, press ``Enter`` to confirm and select ``Finish`` to exit.
 
 .. image:: img/audio3.jpg
+
+.. _adjust_volume:
 
 Adjust Volume 
 ---------------

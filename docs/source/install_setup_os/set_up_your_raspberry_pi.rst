@@ -1,3 +1,5 @@
+.. _set_up_your_raspberry_pi:
+
 Set up Your Raspberry Pi
 ============================
 

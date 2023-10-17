@@ -1,3 +1,5 @@
+.. _resistor:
+
 Resistor
 ============
 

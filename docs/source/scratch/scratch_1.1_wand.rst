@@ -1,3 +1,5 @@
+.. _1.1_scratch:
+
 1.1 Wand
 =================
 
@@ -5,7 +7,7 @@ Today we will use LED, Raspberry Pi and Scratch to make a fun game. When we wave
 
 .. image:: img/1.1_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -34,15 +36,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`LED`
+    *   - :ref:`led`
         - |link_led_buy|
 
 Build the Circuit

@@ -1,3 +1,5 @@
+.. _potentiometer:
+
 Potentiometer
 ===============
 
@@ -34,7 +36,7 @@ The functions of the potentiometer in the circuit are as follows:
 
     When the potentiometer acts as a current controller, the sliding contact terminal must be connected as one of the output terminals.
 
-If you want to know more about potentiometer, refer to: `Potentiometer - Wikipedia <https://en.wikipedia.org/wiki/Potentiometer.>`_
+If you want to know more about potentiometer, refer to: `Potentiometer - Wikipedia <https://en.wikipedia.org/wiki/Potentiometer>`_
 
 **Example**
 

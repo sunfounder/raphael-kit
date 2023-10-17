@@ -1,3 +1,5 @@
+.. _dot_matrix:
+
 LED Matrix Module
 ==============================
 
@@ -29,6 +31,6 @@ A convenient 4-wire serial interface connects to all common µPs. Individual dig
 **Example**
 
 * :ref:`1.1.6_c` (C Project)
-* :ref:`3.1.12 GAME - 10 Second` (C Project)
+* :ref:`3.1.12_c` (C Project)
 * :ref:`1.1.6_py` (Python Project)
-* :ref:`4.1.19 AttendanceSystem` (Python Project)
+* :ref:`4.1.19_py` (Python Project)

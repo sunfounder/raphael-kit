@@ -1,3 +1,5 @@
+.. _led:
+
 LED
 ==========
 
@@ -24,7 +26,7 @@ Here is the detailed introduction for the LED: `LED - Wikipedia <https://en.wiki
 **Example**
 
 * :ref:`1.1.1_c` (C Project)
-* :ref:`3.1.6 Traffic Light` (C Project)
+* :ref:`3.1.6_c` (C Project)
 * :ref:`1.1.1_py` (Python Project)
-* :ref:`4.1.12 Traffic Light` (Python Project)
-* :ref:`1.1 Wand` (Scratch Project)
+* :ref:`4.1.12_py` (Python Project)
+* :ref:`1.1_scratch` (Scratch Project)

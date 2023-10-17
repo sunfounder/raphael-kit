@@ -1,3 +1,5 @@
+.. _1.15_scratch:
+
 1.15 Inflating the Balloon
 ==========================
 
@@ -7,7 +9,7 @@ By toggling Slide to the left to start to inflate the balloon, at this time the 
 
 .. image:: img/1.15_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -36,17 +38,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`Slide Switch`
+    *   - :ref:`slide_switch`
         - |link_slide_switch_buy|
-    *   - :ref:`Capacitor`
+    *   - :ref:`capacitor`
         - |link_capacitor_buy|
 
 Build the Circuit

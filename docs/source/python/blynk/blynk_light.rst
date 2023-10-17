@@ -1,9 +1,11 @@
+.. _blynk_light_py:
+
 Smart Light
 ===========
 
 In this project, we use Blynk's Silder to control the brightness of the LED, turning it on and off with Switch.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
+.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
 
 **Required Components**
 
@@ -31,15 +33,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`LED`
+    *   - :ref:`led`
         - |link_led_buy|
 
 **1. Wiring**

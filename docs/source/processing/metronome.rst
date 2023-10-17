@@ -1,3 +1,5 @@
+.. _metronome:
+
 Metronome
 ====================
 
@@ -31,15 +33,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
     *   - :ref:`Buzzer`
         - |link_passive_buzzer_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`transistor`
         - |link_transistor_buy|
 
 **Wiring**

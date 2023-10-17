@@ -1,9 +1,11 @@
+.. _blynk_motor_py:
+
 Smart Fan
 ===========
 
 In this project, you can see the temperature from Blynk and turn on the fan remotely.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
+.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
 
 **Required Components**
 
@@ -31,23 +33,23 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`power_module`
         - \-
-    *   - :ref:`L293D`
+    *   - :ref:`l293d`
         - \-
-    *   - :ref:`ADC0834`
+    *   - :ref:`adc0834`
         - \-
-    *   - :ref:`Thermistor`
+    *   - :ref:`thermistor`
         - |link_thermistor_buy|
-    *   - :ref:`DC Motor`
+    *   - :ref:`motor`
         - |link_motor_buy|
 
 **1. Wiring**

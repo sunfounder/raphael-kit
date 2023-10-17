@@ -1,3 +1,5 @@
+.. _7_segment:
+
 7-segment Display
 ======================
 

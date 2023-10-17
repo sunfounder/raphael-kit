@@ -1,3 +1,5 @@
+.. _clickable_dot:
+
 Clickable Dot
 ==================
 
@@ -31,13 +33,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`LED`
+    *   - :ref:`led`
         - |link_led_buy|
 
 **Wiring**
@@ -76,7 +78,7 @@ You can also buy them separately from the links below.
 
 **How it works?**
 
-This project has a lot in common with :ref:`Blinking Dot`, the difference is that it puts the toggle state in the mouse event.
+This project has a lot in common with :ref:`blinking_dot`, the difference is that it puts the toggle state in the mouse event.
 This causes the LED to not blink automatically, but to light up and go off with a mouse click.
 
 And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.

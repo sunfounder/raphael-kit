@@ -1,9 +1,11 @@
+.. _blynk_temp_py:
+
 Temperature Recorder
 ====================
 
 In this project, you can see the current temperature and the temperature change line graph from Blynk.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
+.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
 
 **Required Components**
 
@@ -31,15 +33,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`Humiture Sensor Module`
+    *   - :ref:`humiture_sensor`
         - |link_humiture_buy|
 
 

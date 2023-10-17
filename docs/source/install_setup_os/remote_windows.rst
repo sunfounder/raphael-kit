@@ -1,6 +1,7 @@
+.. _remote_windows:
+
 Windows Users
 =======================
-
 
 If you're a Windows user, you can use Windows PowerShell to login Raspberry Pi remotely.
 
@@ -53,6 +54,8 @@ If you're a Windows user, you can use Windows PowerShell to login Raspberry Pi r
     .. image:: img/sp221221_140628.png
         :width: 550
         :align: center
+
+.. _windows_remote_desktop:
 
 Remote Desktop
 ------------------

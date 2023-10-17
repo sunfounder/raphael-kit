@@ -1,12 +1,13 @@
+.. _1.17_scratch:
+
 1.17 Rotating fan
 ==================
-
 
 In this project, we will make a spinning star sprite and fan.
 
 .. image:: img/1.17_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -35,17 +36,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Power Supply Module`
+    *   - :ref:`power_module`
         - \-
-    *   - :ref:`L293D`
+    *   - :ref:`l293d`
         - \-
-    *   - :ref:`DC Motor`
+    *   - :ref:`motor`
         - |link_motor_buy|
 
 Build the Circuit

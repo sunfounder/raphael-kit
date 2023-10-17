@@ -1,3 +1,5 @@
+.. _humiture_sensor:
+
 Humiture Sensor Module
 =============================
 

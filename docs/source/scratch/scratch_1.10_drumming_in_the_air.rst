@@ -1,3 +1,5 @@
+.. _1.10_scratch:
+
 1.10 Drumming in the Air
 ==========================
 
@@ -6,7 +8,7 @@ Today we will learn to use the Raspberry Pi camera, Scratch has an expansion mod
 
 .. image:: img/1.10_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -35,15 +37,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`audio_speaker`
         - \-
-    *   - :ref:`Camera Module`
+    *   - :ref:`camera_module`
         - |link_camera_buy|
 
 Build the Circuit
@@ -55,7 +57,7 @@ Build the Circuit
 
 .. note::
   
-  You need to refer to :ref:`Camera Module` to connect the camera module and enable the Raspberry Pi camera interface.
+  You need to refer to :ref:`camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
 
 
 Load the Code and See What Happens

@@ -1,3 +1,5 @@
+.. _thermistor:
+
 Thermistor
 ===============
 
@@ -40,8 +42,8 @@ This relation is an empirical formula. It is accurate only when the temperature 
 **Example**
 
 * :ref:`2.2.2_c` (C Project)
-* :ref:`3.1.4 Smart Fan` (C Project)
-* :ref:`3.1.7 Overheat Monitor` (C Project)
+* :ref:`3.1.4_c` (C Project)
+* :ref:`3.1.7_c` (C Project)
 * :ref:`2.2.2_py` (Python Project)
-* :ref:`4.1.10 Smart Fan` (Python Project)
-* :ref:`4.1.13 Overheat Monitor` (Python Project)
+* :ref:`4.1.10_py` (Python Project)
+* :ref:`4.1.13_py` (Python Project)

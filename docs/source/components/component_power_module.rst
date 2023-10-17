@@ -1,3 +1,5 @@
+.. _power_module:
+
 Power Supply Module
 =====================
 
@@ -26,7 +28,7 @@ You can just plug it in the breadboard to supply power. It provides a voltage of
 **Example**
 
 * :ref:`1.3.1_c` (C Project)
-* :ref:`3.1.4 Smart Fan` (C Project)
+* :ref:`3.1.4_c` (C Project)
 * :ref:`1.3.1_py` (Python Project)
-* :ref:`4.1.10 Smart Fan` (Python Project)
-* :ref:`1.17 Rotating fan` (Scratch Project)
+* :ref:`4.1.10_py` (Python Project)
+* :ref:`1.17_scratch` (Scratch Project)

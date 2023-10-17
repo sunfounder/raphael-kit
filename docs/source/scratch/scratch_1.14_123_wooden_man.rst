@@ -1,3 +1,5 @@
+.. _1.14_scratch:
+
 1.14 123 Wooden Man
 ===========================
 
@@ -7,7 +9,7 @@ Click on the green flag to start the game, hold down the right arrow key on the 
 
 .. image:: img/1.14_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -36,19 +38,19 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
     *   - :ref:`Buzzer`
         - |link_passive_buzzer_buy|
-    *   - :ref:`LED`
+    *   - :ref:`led`
         - |link_led_buy|
-    *   - :ref:`Transistor`
+    *   - :ref:`transistor`
         - |link_transistor_buy|
 
 

@@ -1,3 +1,5 @@
+.. _pir:
+
 PIR Motion Sensor Module
 ============================
 
@@ -38,6 +40,6 @@ Choosing different modes by using the jumper cap.
 
 * :ref:`2.2.7_c` (C Project)
 * :ref:`2.2.7_py` (Python Project)
-* :ref:`4.1.4 Automatic Capture Camera` (Python Project)
-* :ref:`1.5 Wake up the Owl` (Scratch Project)
+* :ref:`4.1.4_py` (Python Project)
+* :ref:`1.5_scratch` (Scratch Project)
 

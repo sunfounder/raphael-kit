@@ -1,3 +1,5 @@
+.. _1.18_scratch:
+
 1.18 Eating Banana Game
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -12,7 +14,7 @@ To play the game against a white background, click on the green flag to start. M
 
 .. image:: img/1.18_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -41,7 +43,7 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`Camera Module`
+    *   - :ref:`camera_module`
         - |link_camera_buy|
 
 
@@ -52,7 +54,7 @@ Build the Circuit
 
 .. note::
 
-    You need to refer to :ref:`Camera Module` to connect the camera module and enable the Raspberry Pi camera interface.
+    You need to refer to :ref:`camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
 
 Load the Code and See What Happens
 ---------------------------------------

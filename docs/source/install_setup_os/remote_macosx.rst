@@ -1,3 +1,5 @@
+.. _remote_macosx:
+
 Mac OS X user
 ==========================
 

@@ -1,3 +1,5 @@
+.. _1.9_scratch:
+
 1.9 Drumming
 ================
 
@@ -5,7 +7,7 @@ In this project, we play the drum with a touch switch module.
 
 .. image:: img/1.9_header.png
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -34,15 +36,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Touch Switch Module`
+    *   - :ref:`touch_switch`
         - |link_touch_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`audio_speaker`
         - \-
 
 Build the Circuit

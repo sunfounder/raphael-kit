@@ -12,7 +12,7 @@ involving ADC. Here, we implement this process by using potentiometer.
 Potentiometer changes the physical quantity -- voltage, which is
 converted by the ADC function.
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components. 
@@ -41,19 +41,19 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Resistor`
+    *   - :ref:`resistor`
         - |link_resistor_buy|
-    *   - :ref:`LED`
+    *   - :ref:`led`
         - |link_led_buy|
-    *   - :ref:`Potentiometer`
+    *   - :ref:`potentiometer`
         - |link_potentiometer_buy|
-    *   - :ref:`ADC0834`
+    *   - :ref:`adc0834`
         - \-
 
 Schematic Diagram
@@ -144,7 +144,7 @@ of LED will change accordingly.
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-    //Single End mode
+        // Single End mode
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -152,7 +152,7 @@ of LED will change accordingly.
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Select
+        // Select
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
@@ -229,7 +229,7 @@ GPIO2 respectively. Then attach LED to GPIO3.
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-    //Single End mode
+        // Single End mode
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -237,7 +237,7 @@ GPIO2 respectively. Then attach LED to GPIO3.
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-        //Select
+        // Select
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);

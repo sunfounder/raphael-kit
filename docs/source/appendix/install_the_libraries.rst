@@ -1,3 +1,5 @@
+.. _install_the_libraries:
+
 Install the Libraries
 ==========================
 

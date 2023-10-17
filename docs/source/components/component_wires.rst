@@ -1,4 +1,4 @@
-.. _cpn_wires:
+.. _wires:
 
 Jumper Wires
 =====================

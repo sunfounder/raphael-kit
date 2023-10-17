@@ -1,3 +1,5 @@
+.. _74hc595:
+
 74HC595
 ===========
 
@@ -27,14 +29,14 @@ Pins of 74HC595 and their functions:
 
 * :ref:`1.1.4_c` (C Project)
 * :ref:`1.1.5_c` (C Project)
-* :ref:`3.1.1 Counting Device` (C Project)
-* :ref:`3.1.6 Traffic Light` (C Project)
-* :ref:`3.1.12 GAME - 10 Second` (C Project)
+* :ref:`3.1.1_c` (C Project)
+* :ref:`3.1.6_c` (C Project)
+* :ref:`3.1.12_c` (C Project)
 * :ref:`1.1.4_py` (Python Project)
 * :ref:`1.1.5_py` (Python Project)
-* :ref:`4.1.7 Counting Device` (Pyhton Project)
-* :ref:`4.1.12 Traffic Light` (Python Project)
-* :ref:`4.1.18 GAME - 10 Second` (Pyhton Project)
+* :ref:`4.1.7_py` (Pyhton Project)
+* :ref:`4.1.12_py` (Python Project)
+* :ref:`4.1.18_py` (Pyhton Project)
 
 
 

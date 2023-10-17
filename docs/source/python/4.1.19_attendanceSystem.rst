@@ -1,3 +1,5 @@
+.. _4.1.19_py:
+
 4.1.19 AttendanceSystem
 ================================
 
@@ -6,7 +8,7 @@ Introduction
 
 Let's make a simple attendance system. When we scan the card, the Raspberry Pi will record our information and generate a csv file.
 
-**Required Components**
+Required Components
 ------------------------------
 
 In this project, we need the following components.
@@ -35,17 +37,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Audio Module and Speaker`
+    *   - :ref:`audio_speaker`
         - \-
-    *   - :ref:`LED Matrix Module`
+    *   - :ref:`dot_matrix`
         - |link_led_matrix_buy|
-    *   - :ref:`MFRC522 Module`
+    *   - :ref:`mfrc522`
         - |link_mfrc522_rfid_buy|
 
 Schematic Diagram
@@ -88,7 +90,7 @@ Step 2: Run the ``2.2.10_write.py`` file to modify the content of the rfid card.
     cd ~/raphael-kit/python
     sudo python3 2.2.10_write.py
 
-Step 3: Enter the name (here we use ``John``as an example) and press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
+Step 3: Enter the name (here we use ``John`` as an example) and press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
 
 .. image:: ../img/write_card.png
 

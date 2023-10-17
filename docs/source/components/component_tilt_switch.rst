@@ -1,6 +1,7 @@
+.. _tilt_switch:
+
 Tilt Switch
 =============================
-
 
 .. image:: img/tilt_switch.png
     :width: 80
@@ -18,7 +19,7 @@ The principle is very simple. When the switch is tilted in a certain angle, the 
 **Example**
 
 * :ref:`2.1.5_c` (C Project)
-* :ref:`3.1.12 GAME - 10 Second` (C Project)
+* :ref:`3.1.12_c` (C Project)
 * :ref:`2.1.5_py` (Python Project)
-* :ref:`4.1.18 GAME - 10 Second` (Python Project)
-* :ref:`1.3 Tumbler` (Scratch Project)
+* :ref:`4.1.18_py` (Python Project)
+* :ref:`1.3_scratch` (Scratch Project)

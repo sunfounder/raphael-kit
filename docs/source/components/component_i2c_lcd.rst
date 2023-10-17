@@ -1,4 +1,4 @@
-.. _cpn_i2c_lcd1602:
+.. _i2c_lcd1602:
 
 I2C LCD1602
 ==============
@@ -42,12 +42,12 @@ Backlight can be enabled by jumper cap, unplugg the jumper cap to disable the ba
 **Example**
 
 * :ref:`1.1.7_c` (C Project)
-* :ref:`3.1.3 Reversing Alarm` (C Project)
-* :ref:`3.1.7 Overheat Monitor` (C Project)
-* :ref:`3.1.8 Password Lock` (C Project)
-* :ref:`3.1.11 GAME– Guess Number` (C Project)
+* :ref:`3.1.3_c` (C Project)
+* :ref:`3.1.7_c` (C Project)
+* :ref:`3.1.8_c` (C Project)
+* :ref:`3.1.11_c` (C Project)
 * :ref:`1.1.7_py` (Python Project)
-* :ref:`4.1.9 Reversing Alarm` (Python Project)
-* :ref:`4.1.13 Overheat Monitor` (Python Project)
-* :ref:`4.1.14 Password Lock` (Python Project)
-* :ref:`4.1.17_python` (Python Project)
+* :ref:`4.1.9_py` (Python Project)
+* :ref:`4.1.13_py` (Python Project)
+* :ref:`4.1.14_py` (Python Project)
+* :ref:`4.1.17_py` (Python Project)

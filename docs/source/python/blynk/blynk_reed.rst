@@ -1,3 +1,5 @@
+.. _blynk_reed_py:
+
 Door Window Sensor
 ==================
 
@@ -7,7 +9,7 @@ To solve this problem, in this project, we will build a door and window sensor w
 
 Install this sensor and magnet on both sides of the door or window. You will be able to check whether your doors and windows are closed or not from the Blynk APP on your phone.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start`. The following will give you a clear understanding of Blynk.
+.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
 
 **Required Components**
 
@@ -35,13 +37,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`Reed Switch Module`
+    *   - :ref:`reed_switch`
         - |link_reed_switch_buy|
 
 

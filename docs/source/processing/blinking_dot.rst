@@ -1,3 +1,5 @@
+.. _blinking_dot:
+
 Blinking Dot
 ===========================
 
@@ -32,13 +34,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`GPIO Extension Board`
+    *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`Breadboard`
+    *   - :ref:`breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`Jumper Wires`
+    *   - :ref:`wires`
         - |link_wires_buy|
-    *   - :ref:`LED`
+    *   - :ref:`led`
         - |link_led_buy|
 
 **Wiring**
