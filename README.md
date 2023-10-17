@@ -20,8 +20,10 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
-2023-09-04:
+2023-10-17:
+    - Add anchor points to the course project.
 
+2023-09-04:
     - Add About this kit page.
     - Add the introduction of Camera Module.
     - Add component purchase link for each item
