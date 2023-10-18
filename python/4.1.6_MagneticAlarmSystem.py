@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 
-BeepPin = 18
+BeepPin = 27
 ReedPin = 17
 
 def setup():
