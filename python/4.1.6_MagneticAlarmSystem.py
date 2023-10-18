@@ -2,8 +2,8 @@
 import RPi.GPIO as GPIO
 import time
 
-BeepPin = 17
-ReedPin = 18
+BeepPin = 18
+ReedPin = 17
 
 def setup():
 	GPIO.setmode(GPIO.BCM)
