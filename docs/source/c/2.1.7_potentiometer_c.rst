@@ -290,8 +290,8 @@ time, set DIO to 1 as Start bit. In the following three steps, there are
 
     //Single End mode
     digitalWrite(ADC_CLK,0);
-    igitalWrite(ADC_DIO,1);    delayMicroseconds(2);
-    gitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
 
 As soon as the low-to-high transition of the clock input occurs for the
 second time, set DIO to 1 and choose SGL mode.
