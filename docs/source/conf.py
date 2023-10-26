@@ -260,6 +260,10 @@ rst_epilog = """
 
 rst_epilog += """
 
+.. |link_german_tutorials| raw:: html
+
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/de/latest/" target="_blank">Deutsch Online-Kurs</a>
+    
 .. |link_jp_tutorials| raw:: html
 
     <a href="https://docs.sunfounder.com/projects/raphael-kit/ja/latest//" target="_blank">日本語オンライン教材</a>
