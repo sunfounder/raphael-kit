@@ -6,6 +6,7 @@ Danke, dass Sie sich für unser Ulimate Raphael Kit entschieden haben.
 .. note::
     Dieses Dokument ist in den folgenden Sprachen verfügbar.
 
+        * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
     
