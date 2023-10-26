@@ -1,30 +1,28 @@
 .. _play_with_processing:
 
-Play with Processing
-==========================
+Spielen Sie mit der Verarbeitung
+=====================================
 
-What is Processing？
+Was ist Processing?
 ---------------------------
 
-Processing is a simple programming environment that was created to make it easier to develop visually oriented applications with an emphasis on animation and providing users with instant feedback through interaction. 
-The developers wanted a means to “sketch” ideas in code. 
-As its capabilities have expanded over the past decade, Processing has come to be used for more advanced production-level work in addition to its sketching role. 
-Originally built as a domain-specific extension to Java targeted towards artists and designers, Processing has evolved into a full-blown design and prototyping tool used for large-scale installation work, motion graphics, and complex data visualization.
+Processing ist eine einfache Programmierumgebung, die entwickelt wurde, um die Erstellung von visuell orientierten Anwendungen mit Schwerpunkt auf Animation zu vereinfachen und den Benutzern durch Interaktion ein sofortiges Feedback zu bieten.
+Die Entwickler wollten eine Möglichkeit, Ideen im Code zu "skizzieren".
+Mit der Erweiterung seiner Fähigkeiten im Laufe des letzten Jahrzehnts wird Processing neben seiner Skizzierfunktion auch für fortgeschrittene produktionsreife Arbeiten verwendet.
+Ursprünglich als domänenspezifische Erweiterung zu Java für Künstler und Designer erstellt, hat sich Processing zu einem vollwertigen Design- und Prototyping-Tool entwickelt, das für großangelegte Installationsarbeiten, Motion Graphics und komplexe Datenvisualisierung eingesetzt wird.
 
-Processing is based on Java, but because program elements in Processing are fairly simple, you can learn to use it even if you don't know any Java. If you're familiar with Java, it's best to forget that Processing has anything to do with Java for a while, until you get the hang of how the API works.
+Processing basiert auf Java, aber da die Programmelemente in Processing recht einfach sind, können Sie es erlernen, auch wenn Sie kein Java kennen. Wenn Sie mit Java vertraut sind, ist es am besten, zu vergessen, dass Processing etwas mit Java zu tun hat, bis Sie den Dreh raus haben, wie die API funktioniert.
 
+Dieser Text stammt aus dem Tutorial `Processing Übersicht <https://processing.org/tutorials/overview/>`_.
 
-This text is from the tutorial, `Processing Overview <https://processing.org/tutorials/overview/>`_.
-
-
-Install the Processing
+Processing installieren
 ------------------------------
 
 .. note:: 
 
-    Before you can use Processing, you need to access the Raspberry Pi desktop remotely (:ref:`windows_remote_desktop`) or connect a display for the Raspberry Pi.
+    Bevor Sie Processing nutzen können, müssen Sie auf den Raspberry Pi Desktop remote zugreifen (:ref:`windows_remote_desktop`) oder einen Bildschirm für den Raspberry Pi anschließen.
 
-.. Run the following command in Terminal to install Processing.
+.. Führen Sie den folgenden Befehl im Terminal aus, um Processing zu installieren.
 
 .. .. raw:: html
 
@@ -34,17 +32,15 @@ Install the Processing
 
 ..     curl https://processing.org/download/install-arm.sh | sudo sh
 
-.. Once the installation is complete, type ``processing`` to open it.
-
+.. Nachdem die Installation abgeschlossen ist, geben Sie ``processing`` ein, um es zu öffnen.
 
 .. .. image:: img/processing1.png
 
+.. Für ein detailliertes Tutorial, siehe `Pi Processing <https://pi.processing.org/>`_.
 
-.. For a detailed tutorial, please refer to `Pi Processing <https://pi.processing.org/>`_.
+#. Zuerst besuchen Sie https://processing.org/download und wählen die ``Linux（Raspberry Pi 32-bit）`` oder ``Linux（Raspberry Pi 64-bit）`` Version. Mit dieser Methode können Sie immer die neueste Version herunterladen.
 
-#. First visit https://processing.org/download and select the ``Linux（Raspberry Pi 32-bit）`` or ``Linux（Raspberry Pi 64-bit）`` version. Using this method, you can always download the latest version.
-
-    Or you can use the following command to download the Processing from the Terminal.
+    Alternativ können Sie den folgenden Befehl verwenden, um Processing aus dem Terminal herunterzuladen.
 
     .. code-block:: 
 
@@ -54,47 +50,46 @@ Install the Processing
 
         git clone https://github.com/processing/processing4/releases/download/processing-1286-4.0.1/processing-4.0.1-linux-arm64.tgz
 
-
-#. A ``.tar.gz`` file will be downloaded, which most Linux users should be familiar with. Extract the file you just downloaded from its location.
+#. Eine ``.tar.gz`` Datei wird heruntergeladen, mit der die meisten Linux-Benutzer vertraut sein sollten. Entpacken Sie die gerade heruntergeladene Datei.
 
     .. code-block:: 
 
         tar xvfz processing-xxxx.tgz
 
-    Replace xxxx with the rest of the file's name, which is the version number. This will create a folder named processing-xxxx or something similar. 
+    Ersetzen Sie xxxx durch den Rest des Dateinamens, also die Versionsnummer. Dies wird einen Ordner namens processing-xxxx oder ähnliches erstellen. 
 
-#. Then go to that directory:
+#. Wechseln Sie dann in dieses Verzeichnis:
 
     .. code-block:: 
 
         cd processing-xxxx
 
-#. And run it:
+#. Und starten Sie es:
 
 .. code-block:: 
 
     ./processing
 
-#. With any luck, the main Processing window will now be visible.
+#. Mit etwas Glück wird das Hauptfenster von Processing jetzt sichtbar sein.
 
     .. image:: img/processing2.png
 
 
-Install Hardware I/O
---------------------
+Hardware I/O installieren
+-------------------------------
 
-In order to use the Raspberry Pi's GPIO, you need to manually add a `Hardware I/O library <https://processing.org/reference/libraries/io/index.html>`_.
+Um den GPIO des Raspberry Pi zu nutzen, müssen Sie manuell eine `Hardware I/O-Bibliothek <https://processing.org/reference/libraries/io/index.html>`_ hinzufügen.
 
-Click ``Sketch`` -> ``Import Library`` -> ``Add Library...`` 
+Klicken Sie auf ``Sketch`` -> ``Import Library`` -> ``Add Library...`` 
 
 .. image:: img/import-00.png
 
-Find Hardware I/O , select it, and then click Install. When done, a checkmark icon will appear.
+Finden Sie Hardware I/O, wählen Sie es aus und klicken Sie dann auf Installieren. Wenn es fertig ist, erscheint ein Häkchen-Symbol.
 
 .. image:: img/import-02.png
 
 
-Projects
+Projekte
 ---------------
 
 .. toctree::

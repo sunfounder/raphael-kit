@@ -1,7 +1,7 @@
-Input
+Eingabe
 ========
 
-2.1 Controllers
+2.1 Steuergeräte
 --------------------
 
 .. toctree::
@@ -17,7 +17,7 @@ Input
     2.1.8_keypad_js
     2.1.9_joystick_js
 
-2.2 Sensors
+2.2 Sensoren
 ----------------
 
 .. toctree::

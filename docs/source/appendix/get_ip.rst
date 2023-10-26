@@ -1,18 +1,18 @@
 .. _get_ip:
 
-Get the IP address
-=========================
+IP-Adresse ermitteln
+====================
 
-There are many ways to know the IP address, and two of them are listed as follows.
+Es gibt viele Möglichkeiten, die IP-Adresse herauszufinden. Zwei davon werden im Folgenden vorgestellt.
 
-**Checking via the router**
+**Überprüfung über den Router**
 
-If you have permission to log in the router(such as a home network), you can check the addresses assigned to Raspberry Pi on the admin interface of router.
+Wenn Sie die Berechtigung haben, sich am Router anzumelden (wie in einem Heimnetzwerk), können Sie die dem Raspberry Pi zugewiesenen Adressen über die Admin-Oberfläche des Routers einsehen.
 
-The default hostname of the Raspberry Pi OS is raspberrypi, and you need to find it. (If you are using ArchLinuxARM system, please find alarmpi.)
+Der Standard-Hostname des Raspberry Pi OS lautet raspberrypi. Sie müssen danach suchen. (Wenn Sie das ArchLinuxARM-System verwenden, suchen Sie nach alarmpi.)
 
-**Network Segment Scanning**
+**Netzwerksegment-Scan**
 
-You can also use network scanning to look up the IP address of Raspberry Pi. You can apply the software, **Advanced IP scanner** and so on.
+Sie können auch einen Netzwerkscan verwenden, um die IP-Adresse des Raspberry Pi zu ermitteln. Hierzu können Sie Software wie **Advanced IP Scanner** verwenden.
 
-Scan the IP range set, and the name of all connected devices will be displayed. Similarly, the default hostname of the Raspberry Pi OS is raspberrypi, if you haven’t modified it.
+Scannen Sie den eingestellten IP-Bereich, und die Namen aller verbundenen Geräte werden angezeigt. Ähnlich ist der Standard-Hostname des Raspberry Pi OS raspberrypi, sofern Sie ihn nicht geändert haben.

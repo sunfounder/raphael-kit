@@ -1,44 +1,42 @@
 .. _4.1.16_py:
 
-4.1.16 Morse Code Generator
+4.1.16 Morse-Code-Generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einleitung
 -----------------
 
-In this project, we'll make a Morse code generator, where you type in a
-series of English letters in the Raspberry Pi to make it appear as Morse
-code.
+In diesem Projekt erstellen wir einen Morse-Code-Generator, bei dem Sie auf einem Raspberry Pi eine Reihe von englischen Buchstaben eingeben, um sie in Morsecode darzustellen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Morse_Code_Generator.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,11 +53,11 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+T-Board Name physisch wiringPi BCM
 GPIO17       Pin 11   0        17
 GPIO22       Pin 15   3        22
 ============ ======== ======== ===
@@ -67,16 +65,15 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one11.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 ----------------------------
 
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Schritt 1:** Bauen Sie den Schaltkreis. (Achten Sie auf die Pole des Buzzers: 
+Der mit + gekennzeichnete ist der positive Pol und der andere ist der negative.)
 
 .. image:: ../img/image269.png
 
-**Step 2**: Open the code file.
+**Schritt 2**: Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -86,7 +83,7 @@ negative.)
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Schritt 3**: Starten.
 
 .. raw:: html
 
@@ -96,10 +93,10 @@ negative.)
 
     sudo python3 4.1.16_MorseCodeGenerator.py
 
-After the program runs, type a series of characters, and the buzzer and
-the LED will send the corresponding Morse code signals.
+Nachdem das Programm läuft, geben Sie eine Reihe von Zeichen ein, und der Buzzer sowie die LED senden die entsprechenden Morsecode-Signale.
 
 **Code**
+
 
 .. code-block:: python
 
@@ -170,7 +167,7 @@ the LED will send the corresponding Morse code signals.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -185,8 +182,8 @@ the LED will send the corresponding Morse code signals.
         '!':'101011', '@':'011010', ':':'111000',
         }
 
-This structure MORSE is the dictionary of the Morse code, containing
-characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” “;” “!” “@” .
+Diese Struktur namens MORSE ist das Wörterbuch des Morse-Codes und enthält 
+die Zeichen A-Z, die Zahlen 0-9 und die Zeichen „?“ „/“ „:“ „,“ „.“ „;“ „!“ „@“ .
 
 .. code-block:: python
 
@@ -194,7 +191,7 @@ characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” �
         GPIO.output(BeepPin, 1)
         GPIO.output(ALedPin, 1)
 
-The function ``on()`` starts the buzzer and the LED.
+Die Funktion ``on()`` aktiviert den Summer und die LED.
 
 .. code-block:: python
 
@@ -202,7 +199,7 @@ The function ``on()`` starts the buzzer and the LED.
         GPIO.output(BeepPin, 0)
         GPIO.output(ALedPin, 0)
 
-The function ``off()`` is used to turn off the buzzer and the LED.
+Die Funktion ``off()`` wird verwendet, um den Summer und die LED auszuschalten.
 
 .. code-block:: python
 
@@ -212,8 +209,7 @@ The function ``off()`` is used to turn off the buzzer and the LED.
         off()
         time.sleep(dt)
 
-Define a function ``beep()`` to make the buzzer and the LED emit sounds and
-blink in a certain interval of ``dt``.
+Definieren Sie eine Funktion ``beep()``, mit der der Summer und die LED in einem bestimmten Intervall von ``dt`` Töne ausgeben und blinken.
 
 .. code-block:: python
 
@@ -227,11 +223,8 @@ blink in a certain interval of ``dt``.
                     beep(pause)
             time.sleep(pause)
 
-The function ``morsecode()`` is used to process the Morse code of input
-characters by making the “1” of the code keep emitting sounds or lights
-and the “0”shortly emit sounds or lights, ex., input “SOS”, and there
-will be a signal containing three short three long and then three short
-segments “ · · · - - - · · · ”.
+Die Funktion ``morsecode()`` wird verwendet, um den Morsecode von eingegebenen
+Zeichen zu verarbeiten. Dabei lässt der „1“-Code kontinuierlich Töne oder Lichter erzeugen und der „0“-Code gibt kurz Töne oder Lichter aus, z.B. bei der Eingabe von „SOS“ gibt es ein Signal, das aus drei kurzen, drei langen und dann drei kurzen Segmenten „ · · · - - - · · · “ besteht.
 
 .. code-block:: python
 
@@ -242,14 +235,11 @@ segments “ · · · - - - · · · ”.
             print(code)
             morsecode(code)
 
-When you type the relevant characters with the keyboard, ``upper()`` will
-convert the input letters to their capital form.
+Wenn Sie die entsprechenden Zeichen über die Tastatur eingeben, konvertiert ``upper()`` die eingegebenen Buchstaben in ihre Großform.
 
-``printf()`` then prints the clear text on the computer screen, and the
-``morsecod()`` function causes the buzzer and the LED to emit Morse code.
+``printf()`` gibt dann den Klartext auf dem Computerbildschirm aus, und die Funktion ``morsecod()`` lässt den Summer und die LED Morsecode ausgeben.
 
-
-Phenomenon Picture
+Phänomen-Bild
 -----------------------
 
 .. image:: ../img/image270.jpeg

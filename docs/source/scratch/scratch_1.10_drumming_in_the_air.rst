@@ -1,41 +1,40 @@
 .. _1.10_scratch:
 
-1.10 Drumming in the Air
+1.10 Trommeln in der Luft
 ==========================
 
-Today we will learn to use the Raspberry Pi camera, Scratch has an expansion module for Video Sensing which turns on the camera in Scratch and detects the movement of objects on the stage. 
-
+Heute werden wir lernen, wie man die Raspberry Pi Kamera verwendet. Scratch verfügt über ein Erweiterungsmodul für Videoerkennung, welches die Kamera in Scratch aktiviert und die Bewegung von Objekten auf der Bühne erkennt.
 
 .. image:: img/1.10_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: img/1.10_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -48,7 +47,7 @@ You can also buy them separately from the links below.
     *   - :ref:`camera_module`
         - |link_camera_buy|
 
-Build the Circuit
+Schaltung aufbauen
 -------------------------
 
 .. image:: img/1.10_fritzing_speaker.png
@@ -57,45 +56,43 @@ Build the Circuit
 
 .. note::
   
-  You need to refer to :ref:`camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
+  Sie sollten sich auf :ref:`camera_module` beziehen, um das Kameramodul anzuschließen und die Raspberry Pi Kamera-Schnittstelle zu aktivieren.
 
+Laden Sie den Code und sehen Sie, was passiert
+----------------------------------------------------
 
-Load the Code and See What Happens
-----------------------------------------
+Laden Sie die Code-Datei (``1.10_drumming_in_the_air.sb3``) in Scratch 3.
 
-Load the code file (``1.10_drumming_in_the_air.sb3``) to Scratch 3.
-
-Click on the green flag to start the game, place your hand in front of the camera module and Scratch 3 will make instrument sounds when your hand is shown touching an instrument on the stage area.
+Klicken Sie auf die grüne Flagge, um das Spiel zu starten. Halten Sie Ihre Hand vor das Kameramodul, und Scratch 3 wird Instrumentenklänge abspielen, wenn Ihre Hand ein Instrument auf der Bühnenfläche berührt.
 
 .. note::
 
-  For a better gaming experience, please try to play on a white background to avoid interference with the camera from other objects.
+  Für ein besseres Spielerlebnis versuchen Sie, vor einem weißen Hintergrund zu spielen, um Störungen durch andere Objekte zu vermeiden.
 
-Tips on Sprite
+Tipps zu Sprite
 ----------------
 
-First delete the default sprites, then find the **Drum-cymbal** sprite and **Drum-snare** sprite and add them.
+Löschen Sie zuerst die Standard-Sprites. Suchen Sie dann das **Drum-cymbal**-Sprite und das **Drum-snare**-Sprite und fügen Sie sie hinzu.
 
 .. image:: img/1.10_camera1.png
 
-Click the **Add Extension** icon at the bottom left of Scratch and add the **Music** and **Video Sensing** extensions to it.
+Klicken Sie auf das Symbol **Add Extensio** unten links in Scratch und fügen Sie die Erweiterungen **Music** und **Video Sensing** hinzu.
 
 .. image:: img/1.10_scratch.png
 
 .. image:: img/1.10_scratch2.png
 
-Tips on Codes
---------------
+Tipps zu Codes
+-----------------
 
 .. image:: img/1.10_camera3.png
 
-When the green flag is clicked, it keeps cycling to detect if our hand is moving over the **Drum-cymbal** sprite by more than 60. if so, it is assumed that our hand touched the sprite, at which point the Open Hi-Hat instrument sound is played.
+Wenn auf die grüne Flagge geklickt wird, wird ständig überprüft, ob unsere Hand sich um mehr als 60 über das **Drum-cymbal**-Sprite bewegt. Ist dies der Fall, wird davon ausgegangen, dass unsere Hand das Sprite berührt hat, und der Klang des Open Hi-Hat Instruments wird abgespielt.
 
 .. note::
 
-  The movement magnitude refers to the change in coordinates on the stage area, which is calculated with respect to the amount of change in the coordinates of the detection target on the stage area.
+  Die Bewegungsmagnitude bezieht sich auf die Änderung der Koordinaten im Bühnenbereich, die in Bezug auf die Änderung der Koordinaten des Erkennungsziels im Bühnenbereich berechnet wird.
 
 .. image:: img/1.10_camera4.png
 
-Similarly, if the movement of our hand on the **Drum-snare** sprite is detected to be greater than 60, our hand is considered to have touched the sprite and the sound of the snare drum instrument is played.
-
+Ebenso, wenn die Bewegung unserer Hand über das **Drum-snare**-Sprite als größer als 60 erkannt wird, wird angenommen, dass unsere Hand das Sprite berührt hat, und der Klang des Snare Drum Instruments wird abgespielt.

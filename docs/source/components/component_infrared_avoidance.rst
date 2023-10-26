@@ -1,32 +1,25 @@
 .. _infrared_avoidance:
 
-Obstacle Avoidance Module
+Hindernisvermeidungsmodul
 ===========================================
-
 
 .. image:: img/2.2.5IR_Obstacle.png
    :width: 400
    :align: center
 
-The IR obstacle avoidance module has strong adaptability to environmental light, it has a pair of infrared transmitting and receiving tubes.
+Das IR-Hindernisvermeidungsmodul ist sehr anpassungsfähig gegenüber Umgebungslicht und verfügt über ein Paar Infrarot-Sendungs- und Empfangsrohre.
 
-The transmitting tube emits infrared frequency, when the detection direction encounters an obstacle, the infrared radiation is received by the receiving tube, 
-after the comparator circuit processing, the green indicator will light up and output low level signal.
+Die Sendungsröhre sendet Infrarotfrequenzen aus. Trifft die Detektionsrichtung auf ein Hindernis, wird die Infrarotstrahlung von der Empfangsröhre aufgenommen. 
+Nach der Verarbeitung durch den Komparator-Schaltkreis leuchtet die grüne Anzeige auf und gibt ein niedriges Signal aus.
 
-The detection distance can be adjusted by potentiometer, the effective distance range 2-30cm.
+Die Erkennungsentfernung kann mittels Potentiometer eingestellt werden, wobei der effektive Entfernungsbereich zwischen 2 und 30 cm liegt.
 
 .. image:: img/IR_module.png
     :width: 600
     :align: center
 
-**Example**
+**Beispiel**
 
-* :ref:`2.2.5_c` (C Project)
-* :ref:`2.2.5_py` (Python Project)
-* :ref:`1.11_scratch` (Scratch Project)
-
-
-
-
-
-
+* :ref:`2.2.5_c` (C-Projekt)
+* :ref:`2.2.5_py` (Python-Projekt)
+* :ref:`1.11_scratch` (Scratch-Projekt)

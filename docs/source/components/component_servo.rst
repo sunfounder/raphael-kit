@@ -6,25 +6,23 @@ Servo
 .. image:: img/servo.png
     :align: center
 
-A servo is generally composed of the following parts: case, shaft, gear system, potentiometer, DC motor, and embedded board.  
+Ein Servo besteht in der Regel aus folgenden Teilen: Gehäuse, Welle, Getriebesystem, Potentiometer, Gleichstrommotor und eingebetteter Platine.
 
-It works like this: The microcontroller sends out PWM signals to the servo, and then the embedded board in the servo receives the signals through the signal pin and controls the motor inside to turn. As a result, the motor drives the gear system and then motivates the shaft after deceleration. The shaft and potentiometer of the servo are connected together. When the shaft rotates, it drives the potentiometer, so the potentiometer outputs a voltage signal to the embedded board. Then the board determines the direction and speed of rotation based on the current position, so it can stop exactly at the right position as defined and hold there.
+Seine Funktionsweise ist wie folgt: Der Mikrocontroller sendet PWM-Signale an den Servo. Die eingebettete Platine im Servo empfängt diese Signale über den Signaleingang und steuert den im Inneren befindlichen Motor. Dadurch treibt der Motor das Getriebesystem an, welches nach einer Drosselung die Welle antreibt. Die Welle und das Potentiometer des Servos sind miteinander verbunden. Wenn die Welle sich dreht, treibt sie das Potentiometer an, sodass dieses ein Spannungssignal an die eingebettete Platine sendet. Die Platine bestimmt daraufhin, basierend auf der aktuellen Position, die Drehrichtung und -geschwindigkeit, sodass sie genau an der vorgegebenen Position stoppen und dort verharren kann.
 
 .. image:: img/servo_internal.png
     :align: center
 
-The angle is determined by the duration of a pulse that is applied to the control wire. This is called Pulse width Modulation. The servo expects to see a pulse every 20 ms. The length of the pulse will determine how far the motor turns. For example, a 1.5ms pulse will make the motor turn to the 90 degree position (neutral position).
-When a pulse is sent to a servo that is less than 1.5 ms, the servo rotates to a position and holds its output shaft some number of degrees counterclockwise from the neutral point. When the pulse is wider than 1.5 ms the opposite occurs. The minimal width and the maximum width of pulse that will command the servo to turn to a valid position are functions of each servo. Generally the minimum pulse will be about 0.5 ms wide and the maximum pulse will be 2.5 ms wide.
+Der Winkel wird durch die Dauer eines Pulses bestimmt, der auf das Steuerkabel gegeben wird. Dies wird als Pulsweitenmodulation bezeichnet. Der Servo erwartet alle 20 ms einen Puls. Die Länge des Pulses bestimmt, wie weit sich der Motor dreht. Ein 1,5 ms langer Puls beispielsweise bewirkt, dass sich der Motor in die 90-Grad-Position (Neutralstellung) dreht.
+Wird ein Puls gesendet, der kürzer als 1,5 ms ist, dreht sich der Servo in eine Position und hält seine Ausgangswelle einige Grad gegen den Uhrzeigersinn von der Neutralstellung ab. Bei einem Puls, der länger als 1,5 ms ist, tritt das Gegenteil auf. Die minimal erforderliche und die maximal mögliche Pulslänge, die den Servo zu einer gültigen Position steuern, sind von jedem Servo abhängig. In der Regel liegt der Mindestpuls bei etwa 0,5 ms und der Maximalpuls bei 2,5 ms.
 
 .. image:: img/servo_duty.png
     :width: 600
     :align: center
 
-**Example**
+**Beispiel**
 
-* :ref:`1.3.2_c` (C Project)
-* :ref:`3.1.2_c` (C Project)
-* :ref:`1.3.2_py` (Python Project)
-* :ref:`4.1.8_py` (Python Project)
-
-
+* :ref:`1.3.2_c` (C-Projekt)
+* :ref:`3.1.2_c` (C-Projekt)
+* :ref:`1.3.2_py` (Python-Projekt)
+* :ref:`4.1.8_py` (Python-Projekt)

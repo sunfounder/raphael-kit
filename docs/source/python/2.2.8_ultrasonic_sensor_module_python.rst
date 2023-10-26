@@ -1,43 +1,43 @@
 .. _2.2.8_py:
 
-2.2.8 Ultrasonic Sensor Module
+2.2.8 Ultraschallsensor-Modul
 ==============================
 
-Introduction
+Einführung
 --------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Der Ultraschallsensor verwendet Ultraschall, um Objekte präzise zu erkennen und
+Entfernungen zu messen. Er sendet Ultraschallwellen aus und wandelt sie in
+elektronische Signale um.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.2.5.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -48,20 +48,20 @@ You can also buy them separately from the links below.
     *   - :ref:`ultrasonic_sensor`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
 .. image:: ../img/image329.png
 
 
-Experimental Procedures
------------------------
+Experimentelle Verfahren
+---------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -71,7 +71,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file.
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -81,15 +81,15 @@ Experimental Procedures
 
     sudo python3 2.2.8_Ultrasonic.py
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensor-Modul den Abstand
+zwischen dem vorausliegenden Hindernis und dem Modul selbst, dann wird der Abstandswert 
+auf dem Bildschirm angezeigt.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python`` navigieren. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 
 .. raw:: html
@@ -143,14 +143,14 @@ value will be printed on the screen.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     def distance():
 
-This function is used to realize the function of ultrasonic sensor by
-calculating the return detection distance.
+Diese Funktion wird verwendet, um die Funktion des Ultraschallsensors durch
+Berechnung der zurückgegebenen Erkennungsentfernung zu realisieren.
 
 .. code-block:: python
 
@@ -158,7 +158,7 @@ calculating the return detection distance.
     time.sleep(0.00001)
     GPIO.output(TRIG, 0)
 
-This is sending out a 10us ultrasonic pulse.
+Hier wird ein 10µs Ultraschall-Impuls ausgesendet.
 
 .. code-block:: python
 
@@ -166,8 +166,8 @@ This is sending out a 10us ultrasonic pulse.
         a = 0
     time1 = time.time()
 
-This empty loop is used to ensure that when the trigger signal is sent,
-there is no interfering echo signal and then get the current time.
+Diese leere Schleife stellt sicher, dass beim Senden des Auslösesignals
+kein störendes Echo-Signal vorhanden ist und erfasst dann die aktuelle Zeit.
 
 .. code-block:: python
 
@@ -175,23 +175,23 @@ there is no interfering echo signal and then get the current time.
         a = 1
     time2 = time.time()
 
-This empty loop is used to ensure that the next step is not performed
-until the echo signal is received and then get the current time.
+Diese leere Schleife stellt sicher, dass der nächste Schritt nicht ausgeführt wird,
+bis das Echo-Signal empfangen wird, und erfasst dann die aktuelle Zeit.
 
 .. code-block:: python
 
     during = time2 - time1
 
-Execute the interval calculation.
+Führen Sie die Intervallberechnung aus.
 
 .. code-block:: python
 
     return during * 340 / 2 * 100
 
-The distance is calculated in the light of time interval and the speed
-of sound propagation. The speed of sound in the air: 340m/s.
+Die Entfernung wird anhand des Zeitintervalls und der Schallgeschwindigkeit
+berechnet. Die Schallgeschwindigkeit in der Luft beträgt: 340m/s.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image221.jpeg

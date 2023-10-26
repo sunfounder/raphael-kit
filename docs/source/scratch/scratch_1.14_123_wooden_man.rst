@@ -1,42 +1,42 @@
 .. _1.14_scratch:
 
-1.14 123 Wooden Man
+1.14 123 Holzmensch
 ===========================
 
-Today, we are going to play a game of 123 wooden man.
+Heute spielen wir das Spiel "123 Holzmensch".
 
-Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right. If the green light is on, the sprite can move; but when the red LED is on, you have to stop the sprite from moving; otherwise the buzzer will keep ringing.
+Klicken Sie auf die grüne Flagge, um das Spiel zu starten. Halten Sie die rechte Pfeiltaste auf der Tastatur gedrückt, damit die Figur nach rechts geht. Wenn das grüne Licht an ist, kann die Figur sich bewegen; aber wenn die rote LED leuchtet, müssen Sie die Figur stoppen; sonst wird der Summer dauerhaft klingeln.
 
 .. image:: img/1.14_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.14_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTEN ÜBERSICHT
+        - KAUF LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -53,51 +53,51 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
-
-Build the Circuit
+Schaltkreis aufbauen
 ---------------------
 
 .. image:: img/1.14_fritzing.png
 
+Laden Sie den Code und sehen Sie, was passiert
+-------------------------------------------------
 
-Load the Code and See What Happens
----------------------------------------
+Laden Sie die Code-Datei (``1.14_123_wooden_man.sb3``) in Scratch 3.
 
-Load the code file (``1.14_123_wooden_man.sb3``) to Scratch 3.
+Wenn die grüne LED leuchtet, können Sie mit der rechten Pfeiltaste **Avery** steuern, um nach rechts zu gehen; wenn die rote LED leuchtet und Sie **Avery** weiter nach rechts bewegen, wird ein Alarm ausgelöst.
 
-When the green LED is on, you can use the right arrow key to control **Avery** to walk to the right; when the red LED is on, if you continue to let **Avery** move to the right, then an alarm will sound.
+Tipps zu Sprite
+---------------------
 
-Tips on Sprite
-----------------
-Delete the default sprite, then choose the **Avery Walking** sprite.
+Löschen Sie die Standardfigur und wählen Sie dann die **Avery Walking** Figur aus.
 
 .. image:: img/1.14_wooden1.png
   :width: 400
 
-Tips on Codes
+Tipps zu Codes
 --------------
 
 .. image:: img/1.14_wooden2.png
   :width: 400
 
-Initialize all pins to high.
+Alle Pins auf hoch initialisieren.
 
 .. image:: img/1.14_wooden3.png
   :width: 400
 
-When the game starts, assign the status variable to 1, indicating that the Avery Walking sprite is movable, and then set gpio18 to low, which lights up the green LED for 5s.
+Wenn das Spiel startet, setzen Sie die Statusvariable auf 1, was bedeutet, dass die Figur **Avery Walking** beweglich ist. Dann setzen Sie gpio18 auf niedrig, was die grüne LED für 5s aufleuchten lässt.
 
 .. image:: img/1.14_wooden4.png
   :width: 400
 
-Set gpio18 to high, then set gpio27 to low, which means turn off the green LED and light up the yellow LED for 0.5s.
+Setzen Sie gpio18 auf hoch und dann gpio27 auf niedrig, was bedeutet, dass Sie die grüne LED ausschalten und die gelbe LED für 0,5s einschalten.
 
 .. image:: img/1.14_wooden5.png
   :width: 400
 
-Assign the status variable to 0, which means the Avery Walking sprite is not moving; then set gpio27 to low and gpio17 to high, which turns off the yellow LED and then lights up the red LED for 3s. Finally, set gpio17 to high to turn off the red LED.
+Setzen Sie die Statusvariable auf 0, was bedeutet, dass die Figur **Avery Walking** nicht bewegt wird. Setzen Sie dann gpio27 auf niedrig und gpio17 auf hoch, was die gelbe LED ausschaltet und dann die rote LED für 3s einschaltet. Schließlich setzen Sie gpio17 auf hoch, um die rote LED auszuschalten.
 
 .. image:: img/1.14_wooden6.png
   :width: 400
 
-When we press the right arrow key on the keyboard, we need to switch the **Avery Walking** sprite to the next costume so that we can see Avery walking to the right. Then we need to determine the value of the **status** variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.
+Wenn wir die rechte Pfeiltaste auf der Tastatur drücken, müssen wir die **Avery Walking** Figur zum nächsten Kostüm wechseln, damit wir sehen können, wie Avery nach rechts geht. Dann müssen wir den Wert der **status** Variablen bestimmen. Wenn er 0 ist, bedeutet das, dass die Figur **Avery Walking** in diesem Moment nicht bewegt wird, und der Summer wird klingen, um Sie zu warnen, dass Sie die rechte Pfeiltaste nicht erneut drücken können.
+

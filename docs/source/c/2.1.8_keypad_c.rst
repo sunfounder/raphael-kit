@@ -1,42 +1,41 @@
 .. _2.1.8_c:
 
-2.1.8 Keypad
+2.1.8 Tastenfeld
 ==================
 
-Introduction
-------------
+Einführung
+----------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Ein Tastenfeld besteht aus einem rechteckigen Feld von Tasten. In diesem Projekt werden wir es verwenden, um Zeichen einzugeben.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+-------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,23 +48,21 @@ You can also buy them separately from the links below.
     *   - :ref:`keypad`
         - \-
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image315.png
 
-
 .. image:: ../img/image316.png
 
+Experimentelle Verfahren
+------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltkreis aufbauen.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Schritt 2:** Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -75,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.8/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -85,7 +82,7 @@ Experimental Procedures
 
     gcc 2.1.8_Keypad.cpp -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Ausführen.
 
 .. raw:: html
 
@@ -95,12 +92,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Nachdem der Code ausgeführt wurde, werden die Werte der gedrückten Tasten auf dem Tastenfeld (Tastenwert) auf dem Bildschirm angezeigt.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Falls es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -217,7 +213,7 @@ Value) will be printed on the screen.
         return -1;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -230,8 +226,7 @@ Value) will be printed on the screen.
     unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
     unsigned char colPins[COLS] = {12, 3, 2, 0};
 
-Declare each key of the matrix keyboard to the array ``keys[]`` and define
-the pins on each row and column.
+Jeder Taste der Matrix-Tastatur wird im Array ``keys[]`` deklariert und die Pins in jeder Reihe und Spalte definiert.
 
 .. code-block:: c
 
@@ -245,16 +240,13 @@ the pins on each row and column.
             delay(100);
         }
 
-This is the part of the main function that reads and prints the button
-value.
+Dies ist der Teil der Hauptfunktion, der den Tastenwert liest und ausgibt.
 
-The function ``keyRead()`` will read the state of every button.
+Die Funktion ``keyRead()`` liest den Zustand jeder Taste.
 
-``KeyCompare()`` and ``keyCopy()`` are used to judge whether the state of a
-button has changed (that is, a button has been pressed or released).
+``KeyCompare()`` und ``keyCopy()`` werden verwendet, um zu beurteilen, ob sich der Zustand einer Taste geändert hat (also eine Taste gedrückt oder losgelassen wurde).
 
-``keyPrint()`` will print the button value of the button whose current level
-is high level (the button is pressed).
+``keyPrint()`` gibt den Tastenwert der Taste aus, deren aktuelles Level High ist (die Taste wird gedrückt).
 
 .. code-block:: c
 
@@ -276,23 +268,17 @@ is high level (the button is pressed).
         }
     }
 
-This function assigns a high level to each row in turn, and when the key
-in the column is pressed, the column in which the key is located gets a
-high level. After the two-layer loop judgment, the key state compilation
-will generate an array (``reasult[]``).
+Diese Funktion weist jeder Reihe nacheinander ein High-Level zu und wenn die Taste in der Spalte gedrückt wird, erhält die Spalte, in der sich die Taste befindet, ein High-Level. Nach der zweilagigen Schleifenbewertung wird eine Array-Kompilation des Tastenzustands (``result[]``) erstellt.
 
-When pressing button 3:
+Beim Drücken der Taste 3:
 
 .. image:: ../img/image187.png
 
+``RowPin[0]`` wird auf High-Level geschrieben und colPin[2] erhält das High-Level. ``ColPin[0]``, colPin[1], colPin[3] erhalten das Low-Level.
 
-``RowPin [0]`` writes in the high level, and colPin[2] gets the high level.
-``ColPin [0]``, colPin[1], colPin[3] get the low level.
+Dies ergibt 0,0,1,0. Wenn rowPin[1], rowPin[2] und rowPin[3] auf High-Level geschrieben werden, erhalten colPin[0]~colPin[4] das Low-Level.
 
-This gives us 0,0,1,0. When rowPin[1], rowPin[2] and rowPin[3] are
-written in high level, colPin[0]~colPin[4] will get low level.
-
-After the loop judgment is completed, an array will be generated:
+Nach Abschluss der Schleifenbewertung wird ein Array erzeugt:
 
 .. code-block:: c
 
@@ -319,14 +305,9 @@ After the loop judgment is completed, an array will be generated:
         }
     }
 
+Diese beiden Funktionen werden verwendet, um zu beurteilen, ob sich der Tastenzustand geändert hat, z.B. wenn Sie beim Drücken von '3' Ihre Hand loslassen oder '2' drücken, gibt keyCompare() false zurück.
 
-These two functions are used to judge whether the key state has changed,
-for example when you release your hand when pressing '3' or pressing
-'2', keyCompare() returns false.
-
-KeyCopy() is used to re-write the current button value for the a array
-(last_key_pressed[BUTTON_NUM]) after each comparison. So we can compare
-them next time.
+KeyCopy() wird verwendet, um den aktuellen Tastenwert für das Array a (last_key_pressed[BUTTON_NUM]) nach jedem Vergleich neu zu schreiben. Damit können wir sie das nächste Mal vergleichen.
 
 .. code-block:: c
 
@@ -343,13 +324,10 @@ them next time.
         printf("\n");
     }
 
-This function is used to print the value of the button currently
-pressed. If the button '1' is pressed, the '1' will be printed. If the
-button '1' is pressed and the button '3' is pressed, the '1, 3' will be
-printed.
+Diese Funktion wird verwendet, um den Wert der derzeit gedrückten Taste auszugeben. Wenn die Taste '1' gedrückt wird, wird '1' ausgedruckt. Wenn die Taste '1' und die Taste '3' gedrückt werden, wird '1, 3' ausgedruckt.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+---------------
 
 .. image:: ../img/image188.jpeg
 

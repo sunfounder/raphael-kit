@@ -1,24 +1,24 @@
 .. _keypad:
 
-Keypad
+Tastenfeld
 ========================
 
-A keypad is a rectangular array of 12 or 16 OFF-(ON) buttons. 
-Their contacts are accessed via a header suitable for connection with a ribbon cable or insertion into a printed circuit board. 
-In some keypads, each button connects with a separate contact in the header, while all the buttons share a common ground.
+Ein Tastenfeld ist ein rechteckiges Array aus 12 oder 16 AUS-(EIN)-Tasten. 
+Ihre Kontakte können über eine Kopfleiste erreicht werden, die sich für den Anschluss mit einem Flachbandkabel eignet oder in eine Leiterplatte eingefügt werden kann. 
+Bei einigen Tastenfeldern verbindet sich jede Taste mit einem separaten Kontakt im Kopf, während alle Tasten einen gemeinsamen Ground teilen.
 
 .. image:: img/keypad314.png
 
-More often, the buttons are matrix encoded, meaning that each of them bridges a unique pair of conductors in a matrix. 
-This configuration is suitable for polling by a microcontroller, which can be programmed to send an output pulse to each of the four horizontal wires in turn. 
-During each pulse, it checks the remaining four vertical wires in sequence, to determine which one, if any, is carrying a signal. 
-Pullup or pulldown resistors should be added to the input wires to prevent the inputs of the microcontroller from behaving unpredictably when no signal is present.
+Häufiger sind die Tasten matrixcodiert, das heißt, jede von ihnen überbrückt ein einzigartiges Paar von Leitern in einer Matrix. 
+Diese Konfiguration eignet sich für das Polling durch einen Mikrocontroller, der so programmiert werden kann, dass er einen Ausgangsimpuls nacheinander an jede der vier horizontalen Drähte sendet. 
+Während jedes Impulses überprüft er die verbleibenden vier vertikalen Drähte nacheinander, um festzustellen, welcher davon, falls vorhanden, ein Signal führt. 
+Pullup- oder Pulldown-Widerstände sollten zu den Eingangsdrähten hinzugefügt werden, um zu verhindern, dass die Eingänge des Mikrocontrollers unvorhersehbar reagieren, wenn kein Signal vorhanden ist.
 
-**Example**
+**Beispiel**
 
-* :ref:`2.1.8_c` (C Project)
-* :ref:`3.1.8_c` (C Project)
-* :ref:`3.1.11_c` (C Project)
-* :ref:`2.1.8_py` (Python Project)
-* :ref:`4.1.14_py` (Python Project)
-* :ref:`4.1.17_py` (Python Project)
+* :ref:`2.1.8_c` (C-Projekt)
+* :ref:`3.1.8_c` (C-Projekt)
+* :ref:`3.1.11_c` (C-Projekt)
+* :ref:`2.1.8_py` (Python-Projekt)
+* :ref:`4.1.14_py` (Python-Projekt)
+* :ref:`4.1.17_py` (Python-Projekt)

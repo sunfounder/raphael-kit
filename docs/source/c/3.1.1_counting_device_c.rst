@@ -1,21 +1,21 @@
 .. _3.1.1_c:
 
-3.1.1 Counting Device
+3.1.1 Zählgerät
 ============================
 
-Introduction
+Einführung
 -----------------
 
-Here we will make a number-displaying counter system, consisting of a
-PIR sensor and a 4-digit segment display. When the PIR detects that
-someone is passing by, the number on the 4-digit segment display will
-add 1. You can use this counter to count the number of people walking 
-through the passageway.
+Hier erstellen wir ein Zählsystem mit Nummernanzeige, bestehend aus einem 
+PIR-Sensor und einer 4-stelligen Segmentanzeige. Wenn der PIR erkennt, dass 
+jemand vorbeigeht, wird die Zahl auf der 4-stelligen Segmentanzeige um 1 erhöht. 
+Sie können diesen Zähler verwenden, um die Anzahl der Personen zu zählen, die 
+durch den Durchgang gehen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Counting_Device1.png
     :align: center
@@ -23,27 +23,27 @@ In this project, we need the following components.
 .. image:: ../img/list_Counting_Device2.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENEINFÜHRUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,7 +60,7 @@ You can also buy them separately from the links below.
     *   - :ref:`pir`
         - \-
 
-Schematic Diagram
+Schaltplan
 ----------------------
 
 ============ ======== ======== ===
@@ -78,47 +78,47 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one1.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1**: Build the circuit.
+**Schritt 1**: Bauen Sie die Schaltung.
 
 .. image:: ../img/image235.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/raphael-kit/c/3.1.1/
 
-**Step 3**: Compile the code.
+**Schritt 3**: Kompilieren Sie den Code.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     gcc 3.1.1_CountingDevice.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Schritt 4**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo ./a.out
 
-After the code runs, when the PIR detects that someone is passing by,
-the number on the 4-digit segment display will add 1.
+Nachdem der Code ausgeführt wurde und der PIR erkennt, dass jemand vorbeigeht, 
+wird die Zahl auf der 4-stelligen Segmentanzeige um 1 erhöht.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Am PIR-Modul befinden sich zwei Potentiometer: eines zur Einstellung der Empfindlichkeit und das andere zur Einstellung der Erfassungsentfernung. Damit das PIR-Modul besser funktioniert, müssen Sie beide im Uhrzeigersinn bis zum Ende drehen.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
@@ -126,9 +126,9 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", lesen Sie bitte :ref:`install_wiringpi`.
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -151,11 +151,11 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         hc595_shift(number[counter % 10000 / 1000]);
     }
 
-First, start the fourth segment display, write the single-digit number.
-Then start the third segment display, and type in the tens digit; after
-that, start the second and the first segment display respectively, and
-write the hundreds and thousands digits respectively. Because the
-refreshing speed is very fast, we see a complete four-digit display.
+Zuerst starten Sie die vierte Segmentanzeige und schreiben die einstellige Zahl. 
+Dann starten Sie die dritte Segmentanzeige und geben die Zehnerstelle ein; 
+danach starten Sie nacheinander die zweite und die erste Segmentanzeige und 
+geben die Hundert- und Tausenderstellen ein. Da die Aktualisierungsgeschwindigkeit 
+sehr schnell ist, sehen wir eine vollständige vierstellige Anzeige.
 
 .. code-block:: c
 
@@ -172,11 +172,11 @@ refreshing speed is very fast, we see a complete four-digit display.
         }
     }
 
-This is the main function: display the number on the 4-digit segment
-display and read the PIR value. When the PIR detects that someone is
-passing by, the number on the 4-digit segment display will add 1.
+Dies ist die Hauptfunktion: Sie zeigt die Zahl auf der 4-stelligen Segmentanzeige 
+an und liest den PIR-Wert. Wenn der PIR erkennt, dass jemand vorbeigeht, wird die 
+Zahl auf der 4-stelligen Segmentanzeige um 1 erhöht.
 
-Phenomenon Picture
+Phänomen-Bild
 -------------------------
 
 .. image:: ../img/image236.jpeg

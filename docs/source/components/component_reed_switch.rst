@@ -1,35 +1,35 @@
 .. _reed_switch:
 
-Reed Switch Module
+Reed-Schalter-Modul
 ======================
 
 .. image:: img/reed_switch.png
     :width: 300
     :align: center
 
-* Using normally open type reed switch.
-* Comparator output, clean signal, good waveform, strong driving ability, more than 15mA.
-* Working voltage: 3.3V-5V
-* Output form: digital switch output (0 and 1).
-* With fixed bolt holes for easy installation.
-* Small board PCB size: 3.2cm x 1.4cm.
-* Use wide voltage LM393 comparator.
+* Verwendung eines normalerweise offenen Reed-Schalters.
+* Komparatorausgang, klares Signal, gutes Wellenbild, starke Antriebsfähigkeit, mehr als 15mA.
+* Arbeitspannung: 3,3V-5V
+* Ausgabeform: digitaler Schalterausgang (0 und 1).
+* Mit festen Befestigungslöchern für einfache Installation.
+* Kleine PCB-Größe: 3,2cm x 1,4cm.
+* Verwendet den Weitspannungs-Komparator LM393.
 
-The reed switch module consists of a reed switch, potentiometer, LM393 comparator, LED, etc. The internal circuit is shown below, when the magnet is close to the module, it will be on, and the module will output low level; when there is no magnetism, it will be off, and output high level. Reed switch and magnet induction distance should be within 1.5cm, beyond will not be sensitive or no trigger phenomenon, you can also adjust the sensitivity through the potentiometer on the module.
-    
+Das Reed-Schalter-Modul besteht aus einem Reed-Schalter, einem Potentiometer, einem LM393-Komparator, einer LED usw. Die interne Schaltung wird unten gezeigt. Wenn ein Magnet dem Modul nahe kommt, schaltet es ein und das Modul gibt ein niedriges Signal aus; ist kein Magnetfeld vorhanden, schaltet es aus und gibt ein hohes Signal aus. Die Erkennungsdistanz zwischen dem Reed-Schalter und dem Magneten sollte innerhalb von 1,5cm liegen; darüber hinaus wird er unempfindlich oder löst nicht aus. Die Empfindlichkeit kann auch über das Potentiometer am Modul angepasst werden.
+
 .. image:: img/reedswitch_sche.jpg
     :width: 600
     :align: center
 
-Reed switch, also known as a magnetic switch or reed switch.
+Der Reed-Schalter, auch als Magnetischer Schalter oder Reed-Kontakt bekannt.
 
-It has two internal metal reeds, sealed in a glass tube, which is filled with inert gas. Normally the two reeds overlap each other, but are separated by a gap, and the circuit is broken. When there is a magnetic object close to the two reeds will produce a mutual attraction of the magnetic force, which will be sucked together, the circuit is connected. Therefore, the reed switch can be used to make a magnetic sensor.
-        
+Er hat zwei innenliegende Metallzungen, die in einem Glasröhrchen versiegelt sind, welches mit einem Inertgas gefüllt ist. Normalerweise überlappen sich die beiden Zungen, werden jedoch durch eine Lücke getrennt und der Stromkreis ist unterbrochen. Befindet sich ein magnetisches Objekt in der Nähe, erzeugen die beiden Zungen aufgrund der magnetischen Anziehungskraft eine Verbindung und der Stromkreis schließt. Daher kann der Reed-Schalter als magnetischer Sensor verwendet werden.
+
 .. image:: img/HowItWorksReed.jpg
 
-**Example**
+**Beispiel**
 
-* :ref:`2.2.4_c` (C Project)
-* :ref:`2.2.4_py` (Python Project)
-* :ref:`4.1.6_py` (Python Project)
-* :ref:`1.6_scratch` (Scratch Project)
+* :ref:`2.2.4_c` (C-Projekt)
+* :ref:`2.2.4_py` (Python-Projekt)
+* :ref:`4.1.6_py` (Python-Projekt)
+* :ref:`1.6_scratch` (Scratch-Projekt)

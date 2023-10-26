@@ -1,44 +1,42 @@
 .. _4.1.15_py:
 
-4.1.15 Alarm Bell
-~~~~~~~~~~~~~~~~~
+4.1.15 Alarmglocke
+~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+In diesem Projekt werden wir ein manuelles Alarmsystem erstellen. Sie können den Kippschalter durch einen Thermistor oder einen lichtempfindlichen Sensor ersetzen, um einen Temperaturalarm oder einen Lichtalarm zu erstellen.
 
-Required Components
+Erforderliche Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Alarm_Bell.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, ein gesamtes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,7 +57,7 @@ You can also buy them separately from the links below.
     *   - :ref:`capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Schaltbild
 -------------------------
 
 ============ ======== ======== ===
@@ -73,14 +71,14 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1**: Build the circuit.
+**Schritt 1**: Schalten Sie den Stromkreis.
 
 .. image:: ../img/image266.png
 
-**Step 2:** Change directory.
+**Schritt 2:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -90,7 +88,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Schritt 3:** Ausführen.
 
 .. raw:: html
 
@@ -100,14 +98,12 @@ Experimental Procedures
 
     sudo python3 4.1.15_AlarmBell.py
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Nach dem Start des Programms wird der Kippschalter nach rechts geschaltet und der Summer gibt Alarmsignale aus. Gleichzeitig blinken die roten und grünen LEDs mit einer bestimmten Frequenz.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``.
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Davor müssen Sie jedoch zum Quellcode-Pfad, wie ``raphael-kit/python``, navigieren.
 
 .. raw:: html
 
@@ -196,16 +192,16 @@ red and green LEDs will flash at a certain frequency.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     import threading
 
-Here, we import the ``Threading`` module and it allows you to do
-multiple things at once, while normal programs can only execute code
-from top to bottom. With ``Threading`` modules, the LED and the buzzer
-can work separately.
+Hier importieren wir das Modul ``Threading``, welches es ermöglicht,
+mehrere Dinge gleichzeitig zu tun, während normale Programme Code nur
+von oben nach unten ausführen können. Mit den ``Threading``-Modulen können
+die LED und der Summer getrennt voneinander arbeiten.
 
 .. code-block:: python
 
@@ -218,9 +214,9 @@ can work separately.
             time.sleep(0.5)
             GPIO.output(BLedPin,GPIO.LOW)
 
-The function ``ledWork()`` helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+Die Funktion ``ledWork()`` hilft, den Arbeitszustand dieser 2 LEDs zu definieren:
+Sie lässt die grüne LED für 0,5s leuchten und schaltet sie dann aus;
+ebenso lässt sie die rote LED für 0,5s leuchten und schaltet sie dann aus.
 
 .. code-block:: python
 
@@ -234,9 +230,8 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
             Buzz.ChangeFrequency(note)
             time.sleep(0.01)
 
-The function ``buzzWork()`` is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+Die Funktion ``buzzWork()`` wird verwendet, um den Arbeitszustand des Summers zu definieren.
+Hier setzen wir die Frequenz zwischen 130 und 800 und lassen sie in einem Intervall von 20 ansteigen oder abfallen.
 
 .. code-block:: python
 
@@ -249,25 +244,22 @@ at an interval of 20.
         tLed = threading.Thread(target=ledWork) 
         tLed.start()  
 
-In the function ``on()`` :
+In der Funktion ``on()`` :
 
-1) Define the mark “flag=1”, indicating the ending of the control
-   thread.
+1) Definieren Sie die Marke „flag=1“, die das Ende des Steuerthreads anzeigt.
 
-2) Start the Buzz, and set the duty cycle to 50%.
+2) Starten Sie den Summer und setzen Sie den Tastverhältnis auf 50%.
 
-3) Create **2** separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Erstellen Sie **2** separate Threads, damit die LED und der Summer gleichzeitig arbeiten können.
 
-``threading.Thread()`` function is used to create the thread and its prototype is as follows:
+Die Funktion ``threading.Thread()`` wird verwendet, um den Thread zu erstellen, und ihr Prototyp lautet:
 
    ``class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)``
 
-Among the construction methods, the principal parameter is ``target``,
-we need to assign a callable object (here are the functions ``ledWork``
-and ``BuzzWork``) to ``target``.
+Unter den Konstruktionsmethoden ist ``target`` der Hauptparameter,
+wir müssen ein aufrufbares Objekt (hier die Funktionen ``ledWork`` und ``BuzzWork``) zu ``target`` zuweisen.
 
-Next ``start()`` is called to start the thread object, ex., ``tBuzz.start()`` is used to start the newly installed ``tBuzz`` thread.
+Danach wird ``start()`` aufgerufen, um das Thread-Objekt zu starten, z.B. wird ``tBuzz.start()`` verwendet, um den neu installierten Thread ``tBuzz`` zu starten.
 
 .. code-block:: python
 
@@ -278,8 +270,7 @@ Next ``start()`` is called to start the thread object, ex., ``tBuzz.start()`` is
         GPIO.output(ALedPin,GPIO.LOW)
         GPIO.output(BLedPin,GPIO.LOW)
 
-The function ``Off()`` defines “flag=0” so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+Die Funktion ``Off()`` definiert „flag=0“, um die Threads **ledWork** und **BuzzWork** zu beenden und dann den Summer und die LED auszuschalten.
 
 .. code-block:: python
 
@@ -293,13 +284,11 @@ The function ``Off()`` defines “flag=0” so as to exit the threads
                 off()
             lastState=currentState
 
-``Main()`` contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function ``on()`` is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+``Main()`` enthält den gesamten Ablauf des Programms: Zuerst wird der Wert
+des Schiebeschalters gelesen; wenn der Kippschalter nach rechts geschaltet ist (der
+Wert ist 1), wird die Funktion ``on()`` aufgerufen, der Summer gibt Töne aus und die rote und die grüne LED blinken. Andernfalls arbeiten der Summer und die LED nicht.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/image267.jpeg

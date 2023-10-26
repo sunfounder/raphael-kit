@@ -1,37 +1,37 @@
 .. _blynk_light_py:
 
-Smart Light
-===========
+Intelligentes Licht
+===================
 
-In this project, we use Blynk's Silder to control the brightness of the LED, turning it on and off with Switch.
+In diesem Projekt nutzen wir Blynks Slider, um die Helligkeit der LED zu steuern und sie mit einem Schalter ein- und auszuschalten.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
+.. note:: Bevor Sie mit diesem Projekt beginnen, empfehlen wir Ihnen, :ref:`bk_start_py` abzuschließen. Dies wird Ihnen ein klares Verständnis für Blynk vermitteln.
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -44,36 +44,36 @@ You can also buy them separately from the links below.
     *   - :ref:`led`
         - |link_led_buy|
 
-**1. Wiring**
+**1. Verdrahtung**
 
 .. image:: img/wiring_led1.png
 
-**2. Create Widget and Datastream**
+**2. Widget und Datenstrom erstellen**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Klicken Sie auf das Menü-Symbol in der oberen rechten Ecke und wählen Sie "Dashboard bearbeiten".
 
     .. image:: img/sp220913_180231.png
 
-2. Add a Switch widget and a Slider widget to the Dashboard.
+2. Fügen Sie dem Dashboard ein Schalter-Widget und ein Schieberegler-Widget hinzu.
 
     .. image:: img/sp220914_160427.png
 
-3. Create a Datastream for the Switch widget (I used V3). It will be used to control the turning on and off of the LED.
+3. Erstellen Sie einen Datenstrom für das Schalter-Widget (ich habe V3 verwendet). Damit steuern Sie das Ein- und Ausschalten der LED.
 
     .. image:: img/sp220914_155911.png
 
-4. Create a Datastream for the Slider widget (I used V2), its value range is 0 to 100, it will be used to control the brightness of the LED.
+4. Erstellen Sie einen Datenstrom für das Schieberegler-Widget (ich habe V2 verwendet). Sein Wertebereich liegt zwischen 0 und 100. Damit steuern Sie die Helligkeit der LED.
 
     .. image:: img/sp220914_160234.png
 
-#. When finished, click Save And Apply at the top right.
+#. Wenn Sie fertig sind, klicken Sie oben rechts auf "Speichern und Anwenden".
 
     .. image:: img/sp220913_182300.png
 
 
-**3. Run the Code**
+**3. Code ausführen**
 
-1. Edit the code
+1. Den Code bearbeiten
 
 .. raw:: html
 
@@ -84,13 +84,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_light.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. Suchen Sie die untenstehende Zeile und fügen Sie Ihren ``BLYNK_AUTH_TOKEN`` ein.
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -100,6 +100,6 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_light.py
 
-4. Go to Blynk, operate widget on Dashboard. now you click switch widget will turn on/off LED. slide Slider widget will change LED brightness.
+4. Gehen Sie zu Blynk und bedienen Sie das Widget im Dashboard. Wenn Sie jetzt das Schalter-Widget klicken, wird die LED ein-/ausgeschaltet. Das Bewegen des Schieberegler-Widgets ändert die Helligkeit der LED.
 
-#. If you want to use Blynk on mobile devices, please refer to :ref:`blynk_mobile`.
+#. Wenn Sie Blynk auf mobilen Geräten nutzen möchten, ziehen Sie bitte :ref:`blynk_mobile` zurate.

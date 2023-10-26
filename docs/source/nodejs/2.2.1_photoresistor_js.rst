@@ -1,45 +1,41 @@
 .. _2.2.1_js:
 
-2.2.1 Photoresistor
+2.2.1 Fotowiderstand
 =========================
 
-Introduction
-------------
+Einführung
+----------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+Der Fotowiderstand ist eine häufig verwendete Komponente zur Messung der Umgebungslichtintensität im Alltag. Er ermöglicht es dem Controller, Tag und Nacht zu unterscheiden und Lichtsteuerfunktionen wie eine Nachtlampe zu realisieren. Dieses Projekt ähnelt sehr dem Potentiometer, und man könnte denken, dass es die Spannung ändert, um Licht zu erfassen.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+----------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Bauteile.
 
 .. image:: ../img/list_2.2.1_photoresistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -56,44 +52,42 @@ You can also buy them separately from the links below.
     *   - :ref:`photoresistor`
         - |link_photoresistor_buy|
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image321.png
 
-
 .. image:: ../img/image322.png
 
+Experimentelle Verfahren
+---------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Schalten Sie den Schaltkreis.
 
 .. image:: ../img/image198.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Führen Sie den Code aus.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo node photoresistor.js
 
-When the code is running, 
-the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+Während der Code läuft, 
+ändert sich die Helligkeit der LED entsprechend der vom Fotowiderstand erfassten Lichtintensität.
 
 **Code**
 
@@ -117,14 +111,12 @@ the brightness of the LED will change according to the light intensity sensed by
       });
     }, 100);
 
+**Code-Erklärung**
 
+Die Codes hier sind die gleichen wie bei 2.1.7 Potentiometer.
+Bitte überprüfen Sie die Code-Erklärung von :ref:`2.1.7_js` für weitere Details.
 
-**Code Explanation**
-
-The codes here are the same as that in 2.1.7 Potentiometer. 
-Please check the code explanation of :ref:`2.1.7_js` for details.
-
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image199.jpeg

@@ -1,41 +1,41 @@
 .. _1.2.2_c:
 
-1.2.2 Passive Buzzer
+1.2.2 Passiver Summer
 ==========================
 
-Introduction
+Einführung
 ------------
 
-In this project, we will learn how to make a passive buzzer play music.
+In diesem Projekt werden wir lernen, wie man einen passiven Summer Musik spielen lässt.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: ../img/list_1.2.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Set zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - KOMPONENTEN IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -50,27 +50,23 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
-In this experiment, a passive buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor.
+In diesem Experiment wird ein passiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet. Der Widerstand liegt zwischen der Basis des Transistors und GPIO, um den Transistor zu schützen.
 
-When GPIO17 is given different frequencies, the passive buzzer will emit
-different sounds; in this way, the buzzer plays music.
+Wenn GPIO17 verschiedene Frequenzen zugewiesen bekommt, gibt der passive Summer unterschiedliche Töne aus; auf diese Weise spielt der Summer Musik.
 
 .. image:: ../img/image333.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1**: Build the circuit. (The Passive buzzer with green circuit board on the back.)
+**Schritt 1**: Schaltkreis aufbauen. (Der passive Summer hat eine grüne Platine auf der Rückseite.)
 
 .. image:: ../img/image106.png
 
-**Step 2**: Change directory.
+**Schritt 2**: Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -80,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.2.2/
 
-**Step 3**: Compile.
+**Schritt 3**: Kompilieren.
 
 .. raw:: html
 
@@ -90,7 +86,7 @@ Experimental Procedures
 
     gcc 1.2.2_PassiveBuzzer.c -lwiringPi
 
-**Step 4**: Run.
+**Schritt 4**: Ausführen.
 
 .. raw:: html
 
@@ -100,11 +96,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-The code run, the buzzer plays a piece of music.
+Wenn der Code ausgeführt wird, spielt der Summer ein Musikstück.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Ausführen nicht funktioniert oder die Fehlermeldung "wiringPi.h: No such file or directory" angezeigt wird, beachten Sie bitte :ref:`install_wiringpi`.
 
 **Code**
 
@@ -184,7 +180,7 @@ The code run, the buzzer plays a piece of music.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -200,8 +196,8 @@ The code run, the buzzer plays a piece of music.
     #define  CM2  294
 
 
-These frequencies of each note are as shown. CL refers to low note, 
-CM middle note, CH high note, 1-7 correspond to the notes C, D, E, F, G, A, B.
+Die Frequenzen jeder Note sind wie folgt dargestellt. CL steht für tiefe Noten, 
+CM für mittlere Noten, CH für hohe Noten, 1-7 entsprechen den Noten C, D, E, F, G, A, B.
 
 .. code-block:: c
 
@@ -211,8 +207,8 @@ CM middle note, CH high note, 1-7 correspond to the notes C, D, E, F, G, A, B.
     int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
                     1,1,1,1,1,1,3};
 
-The array, ``song_1[]`` stores a musical score of a song in which ``beat_1[]`` 
-refers to the beat of each note in the song (0.5s for each beat).
+Das Array ``song_1[]`` speichert eine Notenfolge eines Liedes, in dem ``beat_1[]`` 
+den Takt jeder Note im Lied bezeichnet (0.5s für jeden Takt).
 
 .. code-block:: c
 
@@ -221,11 +217,10 @@ refers to the beat of each note in the song (0.5s for each beat).
             return 1;
     }
 
-
-This creates a software controlled tone pin. You can use any GPIO pin 
-and the pin numbering will be that of the ``wiringPiSetup()`` function 
-you used. The return value is 0 for success. Anything else and you 
-should check the global errnovariable to see what went wrong.
+Dies erstellt einen softwaregesteuerten Ton-Pin. Sie können jeden GPIO-Pin verwenden,
+und die Pin-Nummerierung ist diejenige der ``wiringPiSetup()``-Funktion, die Sie 
+verwendet haben. Der Rückgabewert ist 0 bei Erfolg. Alles andere und Sie sollten 
+die globale errnovariable überprüfen, um herauszufinden, was schief gelaufen ist.
 
 .. code-block:: c
 
@@ -234,28 +229,28 @@ should check the global errnovariable to see what went wrong.
         delay(beat_1[i] * 500);
     }
 
-Employ a for statement to play song_1.
+Verwenden Sie eine for-Anweisung, um song_1 abzuspielen.
 
-In the judgment condition, **i<sizeof(song_1)/4**\ ，“devide by 4” is
-used because the array ``song_1[]`` is an array of the data type of integer,
-and each element takes up four bytes.
+In der Bedingung **i<sizeof(song_1)/4**\ ，wird „durch 4 teilen“ verwendet,
+da das Array ``song_1[]`` ein Array des Datentyps Integer ist und jedes Element 
+vier Bytes belegt.
 
-The number of elements in ``song_1`` (the number of musical notes) is gotten
-by deviding ``sizeof(song_1)`` by 4.
+Die Anzahl der Elemente in ``song_1`` (die Anzahl der Musiknoten) wird erhalten,
+indem ``sizeof(song_1)`` durch 4 geteilt wird.
 
-To enable each note to play for beat \* 500ms, the function
-``delay(beat_1[i] \* 500)`` is called.
+Um jede Note für beat \* 500ms abspielen zu lassen, wird die Funktion
+``delay(beat_1[i] \* 500)`` aufgerufen.
 
-The prototype of ``softToneWrite(BuzPin, song_1[i])`` is：
+Der Prototyp von ``softToneWrite(BuzPin, song_1[i])`` lautet:
 
 .. code-block:: c
 
     void softToneWrite (int pin, int freq);
 
-This updates the tone frequency value on the given pin. The tone 
-does not stop playing until you set the frequency to 0.
+Dies aktualisiert den Tonfrequenzwert am gegebenen Pin. Der Ton 
+hört nicht auf zu spielen, bis Sie die Frequenz auf 0 setzen.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image107.jpeg

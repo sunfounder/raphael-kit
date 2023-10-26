@@ -3,47 +3,48 @@
 2.2.3 DHT-11
 ============
 
-Introduction
---------------
+Einführung
+----------
 
-The digital temperature and humidity sensor DHT11 is a composite sensor
-that contains a calibrated digital signal output of temperature and
-humidity. The technology of a dedicated digital modules collection and
-the technology of the temperature and humidity sensing are applied to
-ensure that the product has high reliability and excellent stability.
+Der digitale Temperatur- und Feuchtigkeitssensor DHT11 ist ein Verbundsensor, 
+der einen kalibrierten digitalen Signal-Ausgang für Temperatur und 
+Feuchtigkeit enthält. Die Technologie einer speziellen digitalen Modulsammlung 
+sowie die Technologie der Temperatur- und Feuchtigkeitserfassung werden 
+angewendet, um sicherzustellen, dass das Produkt eine hohe Zuverlässigkeit 
+und hervorragende Stabilität aufweist.
 
-The sensors include a wet element resistive sensor and a NTC temperature
-sensor and they are connected to a high performance 8-bit
-microcontroller.
+Die Sensoren beinhalten einen feuchteempfindlichen Widerstandssensor und einen 
+NTC-Temperatursensor, die an einen leistungsstarken 8-Bit-Mikrocontroller 
+angeschlossen sind.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.2.3_dht-11.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -56,20 +57,19 @@ You can also buy them separately from the links below.
     *   - :ref:`humiture_sensor`
         - |link_humiture_buy|
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image326.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Schalten Sie den Schaltkreis.
 
 .. image:: ../img/image207.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Navigieren Sie zu dem Ordner mit dem Code.
 
 .. raw:: html
 
@@ -79,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file.
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -89,14 +89,16 @@ Experimental Procedures
 
     sudo python3 2.2.3_DHT.py
 
-After the code runs, the program will print the temperature and humidity
-detected by DHT11 on the computer screen.
+Nachdem der Code ausgeführt wurde, wird das Programm die von DHT11 erfasste 
+Temperatur und Feuchtigkeit auf dem Computerbildschirm anzeigen.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. 
+    Bevor Sie das tun, müssen Sie jedoch zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. 
+    Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 
 .. raw:: html
@@ -229,7 +231,7 @@ detected by DHT11 on the computer screen.
         except KeyboardInterrupt:
             destroy() 
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -245,18 +247,19 @@ detected by DHT11 on the computer screen.
         data = []
         #...
 
-This function is used to implement the functions of DHT11. It stores the
-detected data in the the_bytes[] array. DHT11 transmits data of 40 bits
-at a time. The first 16 bits are related to humidity, the middle 16 bits
-are related to temperature, and the last eight bits are used for
-verification. The data format is:
+Diese Funktion dient zur Implementierung der Funktionen des DHT11. Die 
+detektierten Daten werden im Array the_bytes[] gespeichert. Der DHT11 
+überträgt jeweils 40 Bits an Daten. Die ersten 16 Bits beziehen sich auf 
+die Feuchtigkeit, die mittleren 16 Bits beziehen sich auf die Temperatur 
+und die letzten acht Bits werden zur Überprüfung verwendet. Das 
+Datenformat lautet:
 
-**8bit humidity integer data** +\ **8bit humidity decimal data**
-+\ **8bit temperature integer data** + **8bit temperature decimal data**
-+ **8bit check bit**.
+**8bit Feuchtigkeits-Ganzzahldaten** +\ **8bit Feuchtigkeits-Nachkommadaten**
++\ **8bit Temperatur-Ganzzahldaten** + **8bit Temperatur-Nachkommadaten**
++ **8bit Prüfbit**.
 
-When the validity is detected via the check bit, the function returns
-two results: 1. error; 2. humidity and temperature.
+Wenn die Gültigkeit über das Prüfbit erkannt wird, gibt die Funktion 
+zwei Ergebnisse zurück: 1. Fehler; 2. Feuchtigkeit und Temperatur.
 
 .. code-block:: python
 
@@ -267,23 +270,23 @@ two results: 1. error; 2. humidity and temperature.
 
     return the_bytes[0], the_bytes[2]
 
-For example, if the received date is 00101011(8-bit value of humidity
-integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit
-value of temperature integer) 00000000 (8-bit value of temperature
-decimal) 01100111 (check bit)
+Beispielsweise, wenn das empfangene Datum 00101011 (8-Bit-Wert der 
+Feuchtigkeitsganzzahl) 00000000 (8-Bit-Wert der Feuchtigkeits-Nachkommazahl) 
+00111100 (8-Bit-Wert der Temperaturganzzahl) 00000000 (8-Bit-Wert der 
+Temperatur-Nachkommazahl) 01100111 (Prüfbit) ist.
 
-**Calculation:**
+**Berechnung:**
 
 00101011+00000000+00111100+00000000=01100111.
 
-If the final result is equal to the check bit data, the data
-transmission is abnormal: return False.
+Wenn das Endergebnis mit den Prüfbitdaten übereinstimmt, ist die 
+Datenübertragung abnormal: Rückgabe False.
 
-If the final result is equal to the check bit data, the received data is
-correct, then there will return the_bytes[0] and the_bytes[2] and output
-“Humidity =43%，Temperature =60C”.
+Wenn das Endergebnis mit den Prüfbitdaten übereinstimmt, sind die 
+empfangenen Daten korrekt, dann wird the_bytes[0] und the_bytes[2] 
+zurückgegeben und "Luftfeuchtigkeit =43%, Temperatur =60C" ausgegeben.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image209.jpeg

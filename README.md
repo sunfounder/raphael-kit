@@ -20,6 +20,9 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
+2023-10-26:
+    - The first release of the German version.
+
 2023-10-17:
     - Add anchor points to the course project.
 

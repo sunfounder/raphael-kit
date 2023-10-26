@@ -1,44 +1,44 @@
 .. _2.1.4_js:
 
-2.1.4 Slide Switch
-==================
+2.1.4 Schiebeschalter
+========================
 
-Introduction
+Einführung
 ------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+In diesem Projekt lernen wir, wie man einen Schiebeschalter verwendet. Üblicherweise wird 
+der Schiebeschalter auf einer PCB als Ein/Aus-Schalter gelötet. Hier müssen wir ihn jedoch
+in das Steckbrett einsetzen, weshalb er möglicherweise nicht fest sitzt. Wir verwenden ihn 
+auf dem Steckbrett, um seine Funktion zu demonstrieren.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten:
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,27 +55,25 @@ You can also buy them separately from the links below.
     *   - :ref:`capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Verbinden Sie den mittleren Pin des Schiebeschalters mit GPIO17 und zwei LEDs jeweils 
+mit den Pins GPIO22 und GPIO27. Wenn Sie den Schalter betätigen, leuchten die beiden LEDs 
+abwechselnd auf.
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/image306.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Wechseln Sie in den Ordner des Codes.
 
 .. raw:: html
 
@@ -85,7 +83,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Schritt 3**: Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -95,8 +93,8 @@ Experimental Procedures
 
     sudo node slide_switch.js
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Während der Code läuft, verbinden Sie den Schalter mit der linken Seite, dann 
+leuchtet die gelbe LED; zur rechten Seite leuchtet die rote LED.
 
 **Code**
 
@@ -119,7 +117,7 @@ the yellow LED lights up; to the right, the red light turns on.
     });
 
 
-**Code Explanation**
+**Code Erklärung**
 
 .. code-block:: js
 
@@ -134,8 +132,8 @@ the yellow LED lights up; to the right, the red light turns on.
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, and create three objects led1, led2, slideSwitch, 
-and control the on and off of led1 and led2 by reading the level of the slideSwitch IO port.   
+Das Modul "pigpio" wird importiert und drei Objekte led1, led2 und slideSwitch erstellt. 
+Das Ein- und Ausschalten von led1 und led2 wird durch Ablesen des Pegels des slideSwitch IO-Ports gesteuert.
 
 .. code-block:: js
 
@@ -144,12 +142,11 @@ and control the on and off of led1 and led2 by reading the level of the slideSwi
         led2.digitalWrite(!level);       
     });
 
-When the read level of the slideSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Wenn sich der abgelesene Pegel des slideSwitch IO-Ports ändert, 
+wird der gleiche Pegel an led1 und der entgegengesetzte Pegel an led2 geschrieben.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image162.jpeg
-
 

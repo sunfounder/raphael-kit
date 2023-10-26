@@ -1,44 +1,42 @@
 .. _3.1.3_c:
 
-3.1.3 Reversing Alarm
+3.1.3 Rückwärtsfahrwarnung
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einleitung
 -------------
 
-In this project, we will use LCD, buzzer and ultrasonic sensors to make
-a reverse assist system. We can put it on the remote control vehicle to
-simulate the actual process of reversing the car into the garage.
+In diesem Projekt werden wir ein LCD, einen Summer und Ultraschallsensoren verwenden, um ein Rückfahrassistenzsystem zu erstellen. Wir können es auf ein ferngesteuertes Fahrzeug setzen, um den tatsächlichen Vorgang des Rückwärtsfahrens eines Autos in die Garage zu simulieren.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Reversing_Alarm.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -57,13 +55,10 @@ You can also buy them separately from the links below.
     *   - :ref:`i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+Schaltplan
 --------------------
 
-Ultrasonic sensor detects the distance between itself and the obstacle
-that will be displayed on the LCD in the form of code. At the same time,
-the ultrasonic sensor let the buzzer issue prompt sound of different
-frequency according to different distance value.
+Der Ultraschallsensor erfasst die Entfernung zwischen sich selbst und dem Hindernis, die in Form von Code auf dem LCD angezeigt wird. Gleichzeitig lässt der Ultraschallsensor den Summer je nach Entfernungsangabe einen Hinweiston unterschiedlicher Frequenz ausgeben.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -77,14 +72,14 @@ SCL1         Pin 5
 .. image:: ../img/Schematic_three_one3.png
    :align: center
 
-Experimental Procedures
-------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltkreis aufbauen.
 
 .. image:: ../img/image242.png
 
-**Step 2:** Change directory.
+**Schritt 2:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -94,7 +89,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.3/
 
-**Step 3:** Compile.
+**Schritt 3:** Kompilieren.
 
 .. raw:: html
 
@@ -104,7 +99,7 @@ Experimental Procedures
 
     gcc 3.1.3_ReversingAlarm.c -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Starten.
 
 .. raw:: html
 
@@ -114,23 +109,19 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, ultrasonic sensor module detects the distance to the
-obstacle and then displays the information about the distance on
-LCD1602; besides, buzzer emits warning tone whose frequency changes with
-the distance.
+Wenn der Code läuft, erfasst das Ultraschallsensormodul die Entfernung zum Hindernis und zeigt die Informationen über die Entfernung auf dem LCD1602 an. Außerdem gibt der Summer einen Warnton aus, dessen Frequenz sich mit der Entfernung ändert.
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
+    * Wenn der Fehlerhinweis ``wiringPi.h: No such file or directory`` erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+    * Wenn der Fehler ``Unable to open I2C device: No such file or directory`` auftritt, sollten Sie sich auf :ref:`i2c_config` beziehen, um I2C zu aktivieren und zu überprüfen, ob die Verkabelung korrekt ist.
+    * Wenn der Code und die Verkabelung in Ordnung sind, das LCD aber immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 
 **Code**
 
 .. note::
-    The following codes are incomplete. If you want to check the complete codes, 
-    you are suggested to use command nano 3.1.1_ReversingAlarm.c.
+    Der folgende Code ist unvollständig. Wenn Sie den vollständigen Code überprüfen möchten, 
+    empfehlen wir, den Befehl nano 3.1.1_ReversingAlarm.c zu verwenden.
 
 .. code-block:: c
 
@@ -227,7 +218,7 @@ the distance.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -236,14 +227,13 @@ the distance.
     lcdInit();
     ultraInit();
 
-In this program, we apply previous components synthetically. Here we use
-buzzers, LCD and ultrasonic. We can initialize them the same way as we
-did before.
+In diesem Programm verwenden wir vorherige Komponenten synthetisch. Hier nutzen wir 
+Summer, LCD und Ultraschall. Wir können sie genauso initialisieren wie zuvor.
 
 .. code-block:: c
 
     dis = disMeasure();
-     printf("%.2f cm \n",dis);
+    printf("%.2f cm \n",dis);
     digitalWrite(Buzzer,LOW);
     if (dis > 400){
          write(0, 0, "Error");
@@ -254,23 +244,22 @@ did before.
         write(0, 0, "Distance is");
         sprintf(result,"%.2f cm",dis);
         write(5, 1, result);
-	}
+    }
 
-Here we get the value of the ultrasonic sensor and get the distance
-through calculation.
+Hier holen wir uns den Wert des Ultraschallsensors und berechnen die Entfernung.
 
-If the value of distance is greater than the range value to be detected,
-an error message is printed on the LCD. And if the distance value is
-within the range, the corresponding results will be output.
+Wenn der Wert der Entfernung größer ist als der zu erkennende Bereichswert, 
+wird eine Fehlermeldung auf dem LCD angezeigt. Wenn der Entfernungswert 
+innerhalb des Bereichs liegt, werden die entsprechenden Ergebnisse ausgegeben.
 
 .. code-block:: c
 
     sprintf(result,"%.2f cm",dis);
 
-Since the output mode of LCD only supports character type, and the
-variable dis stores the value of float type, we need to use sprintf().
-The function converts the float type value to a character and stores it
-on the string variable result[]. %.2f means to keep two decimal places.
+Da der Ausgabemodus des LCD nur den Zeichentyp unterstützt und die 
+Variable dis den Wert des Float-Typs speichert, müssen wir sprintf() verwenden. 
+Die Funktion konvertiert den Wert des Float-Typs in einen Charakter und speichert ihn 
+in der String-Variable result[]. %.2f bedeutet, zwei Dezimalstellen beizubehalten.
 
 .. code-block:: c
 
@@ -293,13 +282,12 @@ on the string variable result[]. %.2f means to keep two decimal places.
         }
     }
 
-This judgment condition is used to control the sound of the buzzer.
-According to the difference in distance, it can be divided into three
-cases, in which there will be different sound frequencies. Since the
-total value of delay is 500, all of the cases can provide a 500ms
-interval for the ultrasonic sensor.
+Diese Bedingung wird verwendet, um den Ton des Summers zu steuern. 
+Je nach Entfernungsunterschied gibt es drei Fälle, in denen unterschiedliche 
+Tonfrequenzen auftreten werden. Da der Gesamtwert von delay 500 beträgt, können alle 
+Fälle dem Ultraschallsensor ein 500 ms-Intervall bieten.
 
-Phenomenon Picture
+Phänomen-Bild
 --------------------
 
 .. image:: ../img/image243.jpeg

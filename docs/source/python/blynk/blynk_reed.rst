@@ -1,41 +1,41 @@
 .. _blynk_reed_py:
 
-Door Window Sensor
-==================
+Tür- und Fenstersensor
+======================
 
-When you're outside, you've probably had this confusion. "Are the doors and windows of my house closed?"
+Wenn Sie unterwegs sind, hatten Sie sicherlich schon einmal diese Unsicherheit: "Sind die Türen und Fenster meines Hauses geschlossen?"
 
-To solve this problem, in this project, we will build a door and window sensor with Reed Switch and magnets.
+Um dieses Problem zu lösen, werden wir in diesem Projekt einen Tür- und Fenstersensor mit Reed-Schalter und Magneten bauen.
 
-Install this sensor and magnet on both sides of the door or window. You will be able to check whether your doors and windows are closed or not from the Blynk APP on your phone.
+Installieren Sie diesen Sensor und den Magneten an beiden Seiten der Tür oder des Fensters. Mit der Blynk-APP auf Ihrem Handy können Sie dann überprüfen, ob Ihre Türen und Fenster geschlossen sind oder nicht.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
+.. note:: Bevor Sie mit diesem Projekt beginnen, empfehlen wir Ihnen, :ref:`bk_start_py` abzuschließen. Dies wird Ihnen ein klares Verständnis für Blynk vermitteln.
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -48,31 +48,31 @@ You can also buy them separately from the links below.
 
 
 
-**1. Wiring**
+**1. Verdrahtung**
 
 .. image:: img/wiring_blynk_reed.png
 
-**2. Create Datastream**
+**2. Datenstrom erstellen**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Klicken Sie auf das Menü-Symbol in der oberen rechten Ecke und wählen Sie "Dashboard bearbeiten".
 
     .. image:: img/sp220913_180231.png
 
-2. Go to the Datastreams page and create a New Datastream.
+2. Gehen Sie zur Seite "Datenströme" und erstellen Sie einen neuen Datenstrom.
 
     .. image:: img/sp220914_165911.png
 
-3. Create a Virtual Pin V4.
+3. Erstellen Sie einen virtuellen Pin V4.
 
     .. image:: img/sp220914_170113.png
 
-#. When finished, click Save And Apply at the top right.
+#. Wenn Sie fertig sind, klicken Sie oben rechts auf "Speichern und Anwenden".
 
     .. image:: img/sp220913_182300.png
 
-**3. Run the Code**
+**3. Code ausführen**
 
-1. Edit the code
+1. Den Code bearbeiten
 
 .. raw:: html
 
@@ -83,13 +83,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_reed.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. Suchen Sie die untenstehende Zeile und fügen Sie Ihren ``BLYNK_AUTH_TOKEN`` ein.
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -99,30 +99,27 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_reed.py
 
-**4. Open Blynk APP**
+**4. Blynk APP öffnen**
 
 .. note::
 
-    As datastreams can only be created in Blynk on the web, you will need to reference different projects to create datastreams on the web, then follow the tutorial below to create widgets in Blynk on your mobile device.
+    Da Datenströme nur in Blynk im Web erstellt werden können, müssen Sie verschiedene Projekte referenzieren, um Datenströme im Web zu erstellen. Befolgen Sie dann das untenstehende Tutorial, um Widgets in Blynk auf Ihrem mobilen Gerät zu erstellen.
 
-#. Open Google Play or APP Store on your mobile device and search for "Blynk IoT" (not Blynk(legacy)) to download.
-#. After opening the APP, login in, this account should be the same as the account used on the web client.
-#. Then go to **Dashboard** (if you don't have one, create one) and you will see that the **Dashboard** for mobile and web are independent of each other.
+#. Öffnen Sie Google Play oder den APP Store auf Ihrem Mobilgerät und suchen Sie nach "Blynk IoT" (nicht Blynk(legacy)) zum Herunterladen.
+#. Nachdem Sie die APP geöffnet haben, melden Sie sich an. Dieses Konto sollte mit dem Konto, das Sie im Web-Client verwendet haben, identisch sein.
+#. Gehen Sie dann zum **Dashboard** (wenn Sie keines haben, erstellen Sie eins). Sie werden feststellen, dass das **Dashboard** für Mobilgeräte und Web unabhängig voneinander sind.
 
     .. image:: img/APP_1.jpg
 
-
-#. Click **Edit** Icon.
-#. Click on the blank area. 
-#. Choose **LED** widget.
+#. Klicken Sie auf das **Edit**-Symbol.
+#. Klicken Sie auf den leeren Bereich.
+#. Wählen Sie das **LED**-Widget.
 
     .. image:: img/APP_2.jpg      
 
-
-#. Now you will see a **LED** widget appear in the blank area, even if it looks like a blank grid, click on it.
-#. **LED** Settings will appear, select the **V4** datastreams you just set in the web page. Note that each widget corresponds to a different datastream in each project.
-#. Go back to the **Dashboard** page. Now if you see that the **LED** widget is filled with color, your door or window is open; if the **LED** widget is not filled with color, the door or window is closed.
+#. Nun sehen Sie ein **LED**-Widget im leeren Bereich, auch wenn es wie ein leeres Gitter aussieht, klicken Sie darauf.
+#. Die **LED**-Einstellungen erscheinen, wählen Sie die Datenströme **V4**, die Sie gerade auf der Webseite eingerichtet haben. Beachten Sie, dass jedes Widget einem anderen Datenstrom in jedem Projekt entspricht.
+#. Gehen Sie zurück zur **Dashboard**-Seite. Wenn das **LED**-Widget jetzt mit Farbe gefüllt ist, ist Ihre Tür oder Ihr Fenster offen; wenn das **LED**-Widget nicht mit Farbe gefüllt ist, sind die Tür oder das Fenster geschlossen.
 
     .. image:: img/APP_3.jpg
-
 

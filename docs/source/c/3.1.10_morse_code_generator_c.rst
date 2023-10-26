@@ -1,44 +1,42 @@
 .. _3.1.10_c:
 
-3.1.10 Morse Code Generator
+3.1.10 Morse-Code-Generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 -----------------
 
-In this project, we'll make a Morse code generator, where you type in a
-series of English letters in the Raspberry Pi to make it appear as Morse
-code.
+In diesem Projekt werden wir einen Morse-Code-Generator erstellen. Geben Sie eine Reihe von englischen Buchstaben in den Raspberry Pi ein, um sie als Morsecode darzustellen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Morse_Code_Generator.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die folgenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,7 +53,7 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== ===
@@ -67,16 +65,15 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one11.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 ----------------------------
 
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Schritt 1:** Bauen Sie den Schaltkreis auf. (Achten Sie auf die Pole des Buzzers:
+Das + Zeichen kennzeichnet den positiven Pol, der andere den negativen.)
 
 .. image:: ../img/image269.png
 
-**Step 2**: Open the code file.
+**Schritt 2**: Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -86,7 +83,7 @@ negative.)
 
     cd ~/raphael-kit/c/3.1.10/
 
-**Step 3**: Compile the code.
+**Schritt 3**: Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -96,7 +93,7 @@ negative.)
 
     gcc 3.1.10_MorseCodeGenerator.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Schritt 4**: Führen Sie die oben genannte ausführbare Datei aus.
 
 .. raw:: html
 
@@ -106,14 +103,13 @@ negative.)
 
     sudo ./a.out
 
-After the program runs, type a series of characters, and the buzzer and
-the LED will send the corresponding Morse code signals.
+Nachdem das Programm ausgeführt wurde, geben Sie eine Reihe von Zeichen ein, und der Buzzer sowie die LED senden die entsprechenden Morsecode-Signale.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -135,8 +131,8 @@ the LED will send the corresponding Morse code signals.
         {';',"101010"},{'!',"101011"}, {'@',"011010"}, {':',"111000"}
     };
 
-This structure MORSE is the dictionary of the Morse code, containing
-characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” “;” “!” “@” .
+Diese Struktur MORSE ist das Wörterbuch des Morse-Codes und enthält
+Buchstaben A-Z, Zahlen 0-9 und Zeichen “?” “/” “:” “,” “.” “;” “!” “@”.
 
 .. code-block:: c
 
@@ -150,10 +146,10 @@ characters A-Z, numbers 0-9 and marks “?” “/” “:” “,” “.” �
         }    
     }
 
-The function ``lookup()`` works by “checking the dictionary”. Define a
-``key`` search the same words as ``key`` in the structure ``morseDict``
-and return the corresponding information— ``code`` of the certain
-word.
+Die Funktion ``lookup()`` funktioniert durch "Nachschlagen im Wörterbuch". Definieren Sie
+einen ``key``, suchen Sie nach denselben Wörtern wie ``key`` in der Struktur ``morseDict``
+und geben Sie die entsprechende Information - den ``code`` des bestimmten
+Worts zurück.
 
 .. code-block:: c
 
@@ -162,7 +158,7 @@ word.
         digitalWrite(BeepPin,HIGH);     
     }
 
-Create a function ``on()`` to start the buzzer and the LED.
+Erstellen Sie eine Funktion ``on()``, um den Summer und die LED zu starten.
 
 .. code-block:: c
 
@@ -171,7 +167,7 @@ Create a function ``on()`` to start the buzzer and the LED.
         digitalWrite(BeepPin,LOW);
     }
 
-The function ``off()`` turns off the buzzer and the LED.
+Die Funktion ``off()`` schaltet den Summer und die LED aus.
 
 .. code-block:: c
 
@@ -182,8 +178,8 @@ The function ``off()`` turns off the buzzer and the LED.
         delay(dt);
     }
 
-Define a function ``beep()`` to make the buzzer and the LED emit sounds and
-blink in a certain interval of **dt**.
+Definieren Sie eine Funktion ``beep()``, damit der Summer und die LED in einem bestimmten Intervall von **dt** Töne abgeben
+und blinken.
 
 .. code-block:: c
 
@@ -207,11 +203,10 @@ blink in a certain interval of **dt**.
         }
     }
 
-The function ``morsecode()`` is used to process the Morse code of input
-characters by making the “1” of the code keep emitting sounds or lights
-and the “0”shortly emit sounds or lights, ex., input “SOS”, and there
-will be a signal containing three short three long and then three short
-segments “ · · · - - - · · · ”.
+Die Funktion ``morsecode()`` wird verwendet, um den Morse-Code der eingegebenen
+Zeichen zu verarbeiten, indem das „1“ des Codes ständig Töne oder Licht abgibt
+und das „0“ kurz Töne oder Licht aussendet, z.B., Eingabe „SOS“, und es
+gibt ein Signal, das drei kurze, drei lange und dann drei kurze Segmente enthält „· · · - - - · · ·”.
 
 .. code-block:: c
 
@@ -229,7 +224,7 @@ segments “ · · · - - - · · · ”.
     return orign;
     }
 
-Before coding, you need to unify the letters into capital letters.
+Bevor Sie den Code schreiben, müssen Sie die Buchstaben zu Großbuchstaben vereinheitlichen.
 
 .. code-block:: c
 
@@ -247,16 +242,16 @@ Before coding, you need to unify the letters into capital letters.
         }
     }
 
-When you type the relevant characters with the keyboard,
-``code=strupr(code)`` will convert the input letters to their capital form.
+Wenn Sie die entsprechenden Zeichen mit der Tastatur eingeben,
+wird ``code=strupr(code)`` die eingegebenen Buchstaben in ihre Großbuchstabenform umwandeln.
 
-``Printf()`` then prints the clear text on the computer screen, and the
-``morsecod()`` function causes the buzzer and the LED to emit Morse code.
+``Printf()`` druckt dann den Klartext auf den Computerbildschirm, und die
+Funktion ``morsecod()`` lässt den Summer und die LED Morse-Code aussenden.
 
-Note that the length of the input character mustn’t exceed the
-**length** (can be revised).
+Beachten Sie, dass die Länge des eingegebenen Zeichens die
+**Länge** (kann revidiert werden) nicht überschreiten darf.
 
-Phenomenon Picture
+Phänomen-Bild
 -----------------------
 
 .. image:: ../img/image270.jpeg

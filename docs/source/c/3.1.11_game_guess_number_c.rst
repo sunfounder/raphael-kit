@@ -1,50 +1,42 @@
 .. _3.1.11_c:
 
-3.1.11 GAME– Guess Number
+3.1.11 SPIEL – Zahlen raten
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+"Zahlen raten" ist ein lustiges Partyspiel, bei dem du und deine Freunde abwechselnd eine Zahl (0~99) eingeben. Mit jeder eingegebenen Zahl wird der Bereich kleiner, bis ein Spieler das Rätsel richtig löst. Dann wird der Spieler besiegt und bestraft. Zum Beispiel, wenn die Glückszahl 51 ist, die die Spieler nicht sehen können, und Spieler ① gibt 50 ein, dann ändert sich die Zahlenbereichsanzeige zu 50~99; wenn Spieler ② 70 eingibt, kann der Zahlenbereich 50~70 sein; wenn Spieler ③ 51 eingibt, ist dieser Spieler der Pechvogel. Hier verwenden wir ein Tastenfeld zur Eingabe von Zahlen und ein LCD zur Ausgabe von Ergebnissen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_GAME_Guess_Number.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,7 +51,7 @@ You can also buy them separately from the links below.
     *   - :ref:`i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== =======
@@ -79,17 +71,16 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: ../img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schalte den Stromkreis.
 
 .. image:: ../img/image273.png
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**Schritt 2**: I2C einrichten (siehe Anhang :ref:`i2c_config`. Wenn Sie I2C bereits eingerichtet haben, überspringen Sie diesen Schritt.)
 
-**Step 3**: Change directory.
+**Schritt 3**: Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -99,7 +90,7 @@ step.)
 
     cd ~/raphael-kit/c/3.1.11/
 
-**Step 4**: Compile.
+**Schritt 4**: Kompilieren.
 
 .. raw:: html
 
@@ -109,7 +100,7 @@ step.)
 
     gcc 3.1.11_GAME_GuessNumber.c -lwiringPi
 
-**Step 5**: Run.
+**Schritt 5**: Ausführen.
 
 .. raw:: html
 
@@ -119,46 +110,35 @@ step.)
 
     sudo ./a.out
 
-After the program runs, there displays the initial page on the LCD:
+Nachdem das Programm gestartet wurde, wird die Startseite auf dem LCD angezeigt:
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Wenn ein Fehlerhinweis ``wiringPi.h: No such file or directory`` erscheint, bitte beziehen Sie sich auf :ref:`install_wiringpi`.
+    * Wenn Sie den Fehler ``Unable to open I2C device: No such file or directory`` erhalten, müssen Sie :ref:`i2c_config` konsultieren, um I2C zu aktivieren und zu überprüfen, ob die Verkabelung korrekt ist.
+    * Wenn der Code und die Verkabelung in Ordnung sind, das LCD jedoch immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 
 .. code-block:: 
 
-   Welcome!
-   Press A to go!
+   Willkommen!
+   Drücken Sie A zum Starten!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+Drücken Sie "A", und das Spiel beginnt, und die Spielseite wird auf dem LCD angezeigt.
 
 .. code-block:: 
 
-   Enter number:
-   0 ‹point‹ 99
+   Nummer eingeben:
+   0 ‹Punkt‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Eine zufällige Zahl '\ **point**\ ' wird erzeugt, aber beim Spielstart nicht auf dem LCD angezeigt, und Ihre Aufgabe ist es, diese zu erraten. Die von Ihnen eingegebene Zahl erscheint am Ende der ersten Zeile, bis die endgültige Berechnung abgeschlossen ist. (Drücken Sie "D", um den Vergleich zu starten. Wenn die eingegebene Zahl größer als **10** ist, beginnt der automatische Vergleich.)
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
+Der Zahlenbereich von "Punkt" wird in der zweiten Zeile angezeigt. Und Sie müssen eine Zahl innerhalb dieses Bereichs eingeben. Wenn Sie eine Zahl eingeben, wird der Bereich enger; wenn Sie zufällig oder unglücklicherweise die Glückszahl bekommen, wird die Meldung "Du hast es geschafft!" angezeigt.
 
-**Code Explanation**
+**Code-Erklärung**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in :ref:`1.1.7_c` and :ref:`2.1.8_c`.
+Zu Beginn des Codes befinden sich die funktionalen Funktionen von **keypad** und **I2C LCD1602**. Mehr Details über sie können Sie in :ref:`1.1.7_c` und :ref:`2.1.8_c` nachlesen.
 
-Here, what we need to know is as follows:
+Hier, was wir wissen müssen, ist folgendes:
 
 .. code-block:: c
 
@@ -178,8 +158,7 @@ Here, what we need to know is as follows:
         write(0, 1, "Press A to go!");
     }
     
-This function is used to initially define **I2C LCD1602** and **Keypad**
-and to display “Welcome!” and “Press A to go!”.
+Diese Funktion dient dazu, **I2C LCD1602** und **Keypad** initial zu definieren und „Willkommen!“ sowie „Drücken Sie A um fortzufahren!“ anzuzeigen.
 
 .. code-block:: c
 
@@ -192,8 +171,7 @@ and to display “Welcome!” and “Press A to go!”.
         printf("point is %d\n",pointValue);
     }
 
-The function produces the random number ‘\ **point**\ ’ and resets the
-range hint of the point.
+Die Funktion erzeugt die Zufallszahl '\ **point**\ ' und setzt den Bereichshinweis für den Punkt zurück.
 
 .. code-block:: c
 
@@ -216,10 +194,7 @@ range hint of the point.
         return 0;
     }
 
-detect_point() compares the input number with the produced “point”. If
-the comparing outcome is that they are not same, **count** will assign
-values to **upper** and **lower** and return ‘\ **0**\ ’; otherwise, if
-the outcome indicates they are same, there returns ‘\ **1**\ ’.
+detect_point() vergleicht die eingegebene Nummer mit dem erzeugten „Punkt“. Wenn das Vergleichsergebnis zeigt, dass sie nicht gleich sind, wird **count** Werte **upper** und **lower** zuweisen und '\ **0**\ ' zurückgeben; ansonsten, wenn sie gleich sind, gibt sie '\ **1**\ ' zurück.
 
 .. code-block:: c
 
@@ -244,10 +219,7 @@ the outcome indicates they are same, there returns ‘\ **1**\ ’.
         write(12,1,str);
     }
 
-This function works for displaying the game page. Pay attention to the
-function **Int2Str(str,count)**, it converts these variables **count**,
-**lower**, and **upper** from **integer** to **character string** for
-the correct display of **lcd**.
+Diese Funktion dient zur Anzeige der Spielseite. Beachten Sie die Funktion **Int2Str(str,count)**, sie konvertiert diese Variablen **count**, **lower** und **upper** von **Integer** zu **character string** für die korrekte Anzeige des **lcd**.
 
 .. code-block:: c
 
@@ -291,30 +263,23 @@ the correct display of **lcd**.
     }
 
 
-Main() contains the whole process of the program, as show below:
+Main() enthält den gesamten Prozess des Programms, wie unten dargestellt:
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+1) Initialisierung von **I2C LCD1602** und **Keypad**.
 
-2) Use **init_new_value()** to create a random number **0-99**.
+2) Verwenden von **init_new_value()**, um eine Zufallszahl **0-99** zu erstellen.
 
-3) Judge whether the button is pressed and get the button reading.
+3) Prüfen, ob die Taste gedrückt wurde und den Tastenwert abrufen.
 
-4) If the button ‘\ **A**\ ’ is pressed, a random number **0-99** will
-   appear then the game starts.
+4) Wenn die Taste '\ **A**\ ' gedrückt wird, erscheint eine Zufallszahl **0-99** und das Spiel beginnt.
 
-5) If the button ‘\ **D**\ ’ is detected to have been pressed, the
-   program will enter into the outcome judgement and will display the
-   outcome on the LCD. This step helps that you can also judge the
-   outcome when you press only one number and then the button
-   ‘\ **D**\ ’.
+5) Wenn festgestellt wird, dass die Taste '\ **D**\ ' gedrückt wurde, tritt das Programm in die Ergebnisbewertung ein und zeigt das Ergebnis auf dem LCD an. Dieser Schritt gewährleistet, dass Sie das Ergebnis auch dann beurteilen können, wenn Sie nur eine Nummer drücken und anschließend die Taste '\ **D**\ ' betätigen.
 
-6) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+6) Wenn eine Taste **0-9** gedrückt wird, ändert sich der Wert von **count**; wenn **count** größer als **10** ist, beginnt die Beurteilung.
 
-7) The changes of the game and its values are displayed on **LCD1602**.
+7) Die Änderungen des Spiels und seiner Werte werden auf **LCD1602** angezeigt.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/image274.jpeg

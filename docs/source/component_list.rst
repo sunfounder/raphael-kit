@@ -1,22 +1,19 @@
-Components List and Introduction
-====================================
+Bauteilliste und Einführung
+===========================
 
-Components List
------------------
+Bauteilliste
+------------
 
-After opening the package, please check whether the quantity of components is compliance with product description and whether all components are in good condition.
+Nach dem Öffnen des Pakets überprüfen Sie bitte, ob die Anzahl der Bauteile der Produktbeschreibung entspricht und ob alle Komponenten in gutem Zustand sind.
 
-* :download:`Components List <https://github.com/sunfounder/sf-pdf/raw/master/components_list/a0000672-raphael-kit.pdf>`
+* :download:`Bauteilliste <https://github.com/sunfounder/sf-pdf/raw/master/components_list/a0000672-raphael-kit.pdf>`
 
+Einführung in die Komponenten
+-----------------------------
 
-Components Introductions
---------------------------
+Im Folgenden finden Sie eine Einführung zu jeder Komponente. Diese beinhaltet das Funktionsprinzip der Komponente und die entsprechenden Projekte.
 
-
-Below is the introduction to each component, which contains the operating principle of the component and the corresponding projects.
-
-
-**Basic**
+**Grundlagen**
 
 .. toctree::
     :maxdepth: 1
@@ -39,7 +36,7 @@ Below is the introduction to each component, which contains the operating princi
 
 
 
-**Display**
+**Anzeige**
 
 .. toctree::
     :maxdepth: 1
@@ -61,7 +58,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_buzzer
     components/component_audio_speaker
 
-**Driver**
+**Anzeige**
 
 .. toctree::
     :maxdepth: 1
@@ -72,7 +69,7 @@ Below is the introduction to each component, which contains the operating princi
     components/component_relay
     
 
-**Controller**
+**Steuergerät**
 
 .. toctree::
     :maxdepth: 1

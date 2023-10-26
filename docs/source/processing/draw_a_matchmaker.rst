@@ -1,18 +1,18 @@
 .. _draw_a_matchmaker:
 
-Draw a Matchmaker
-========================
+Einen Streichholzmann zeichnen
+====================================
 
-You're now running the Processing Development Environment (or PDE). 
-There's not much to it; the large area is the Text Editor, and there's a row of buttons across the top; this is the toolbar. 
-Below the editor is the Message Area, and below that is the Console. 
-The Message Area is used for one line messages, and the Console is used for more technical details.
+Sie befinden sich jetzt in der Processing Development Environment (oder PDE).
+Es gibt nicht viel dazu; der große Bereich ist der Texteditor und oben gibt es eine Reihe von Schaltflächen; das ist die Werkzeugleiste.
+Unterhalb des Editors befindet sich der Nachrichtenbereich und darunter die Konsole.
+Der Nachrichtenbereich wird für Einzeilennachrichten verwendet und die Konsole für detailliertere technische Informationen.
 
-Let's get familiar with the usage of Processing and draw a matchmaker.
+Lassen Sie uns mit der Verwendung von Processing vertraut werden und einen Streichholzmann zeichnen.
 
-**Sketch**
+**Skizze**
 
-Copy the sketch below into Processing and run it. A new display window will appear and a cheering matchmaker will be drawn.
+Kopieren Sie die untenstehende Skizze in Processing und führen Sie sie aus. Ein neues Anzeigefenster wird geöffnet und ein fröhlicher Streichholzmann wird gezeichnet.
 
 .. code-block:: arduino
 
@@ -30,18 +30,17 @@ Copy the sketch below into Processing and run it. A new display window will appe
 
 .. note:: 
 
-    If you run it and the message area turns red and reports some errors, then there is something wrong with the sketch. Make sure you copy the sample sketch exactly: numbers should be enclosed in parentheses, with commas between each number, and lines should end with semicolons.
+    Wenn Sie es ausführen und der Nachrichtenbereich rot wird und einige Fehler anzeigt, dann stimmt etwas mit der Skizze nicht. Stellen Sie sicher, dass Sie die Beispiel-Skizze genau kopieren: Zahlen sollten in Klammern stehen, mit Kommas zwischen jeder Zahl, und Zeilen sollten mit Semikolons enden.
 
+**Wie funktioniert das?**
 
-**How it works?**
+Der Schlüssel hier ist zu erkennen, dass das Anzeigefenster wie ein Quadrat aus Papier behandelt werden kann.
 
-The key here is to realize that the display window can be treated as a square of paper.
+Jeder Pixel des Anzeigefensters ist ein Koordinatenpunkt (x,y), der die Position eines Punktes im Raum bestimmt. Der Ursprung (0,0) der Koordinaten befindet sich in der oberen linken Ecke, die positive Richtung der X-Achse geht horizontal nach rechts und die positive Richtung der Y-Achse geht vertikal nach unten.
 
-Each pixel of the display window is a coordinate (x,y) that determines the position of a point in space. The origin (0,0) of the coordinates is in the upper left corner, the positive direction of the X-axis is horizontally to the right, and the positive direction of the Y-axis is vertically down.
+Unsere Aufgabe ist es zu bestimmen, welche Form und Farbe an diesen Pixel-Koordinaten erscheinen sollen.
 
-What we have to do is to specify what shape and color should appear at these pixel coordinates.
-
-For example, draw a rectangle of width 20 and height 60 with coordinates (100,120) as the midpoint.
+Zum Beispiel ein Rechteck von 20 Breite und 60 Höhe zeichnen, mit den Koordinaten (100,120) als Mittelpunkt.
 
 .. code-block:: arduino
 
@@ -50,19 +49,13 @@ For example, draw a rectangle of width 20 and height 60 with coordinates (100,12
 
 .. image:: img/draw_one_coodinate.png
 
-Once we understand the relationship between the display window and the axes, this sketch is not difficult for us, we just need to understand some simple graphic drawing statements.
+Sobald wir die Beziehung zwischen dem Anzeigefenster und den Achsen verstehen, ist diese Skizze für uns nicht schwierig. Wir müssen nur einige einfache Grafikanweisungen verstehen.
 
-    * ``size(width, height)``: Defines the dimension of the display window width and height in units of pixels.
-    * ``background(red, green, blue)``: Set the background color of the display window.
-    * ``rectMode(mode)``: Modifies the location from which rectangles are drawn by changing the way in which parameters given to ``rect()`` are intepreted.
-    * ``rect(x, y, width, height)``: Draws a rectangle to the screen. 
-    * ``ellipse(x, y, width, height)``: Draws an ellipse (oval) to the screen. 
-    * ``line(x1, y1, x2, y2)``: Draws a line (a direct path between two points) to the screen.
+    * ``size(width, height)``: Definiert die Abmessungen des Anzeigefensters in Pixeln.
+    * ``background(red, green, blue)``: Legt die Hintergrundfarbe des Anzeigefensters fest.
+    * ``rectMode(mode)``: Modifiziert die Position, von der aus Rechtecke gezeichnet werden, indem die Art und Weise geändert wird, wie die an ``rect()`` übergebenen Parameter interpretiert werden.
+    * ``rect(x, y, width, height)``: Zeichnet ein Rechteck auf den Bildschirm.
+    * ``ellipse(x, y, width, height)``: Zeichnet eine Ellipse (Oval) auf den Bildschirm.
+    * ``line(x1, y1, x2, y2)``: Zeichnet eine Linie (einen direkten Pfad zwischen zwei Punkten) auf den Bildschirm.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
-
-
-
-
-
-
+Für mehr Informationen verweisen Sie bitte auf `Processing Referenz <https://processing.org/reference/>`_.

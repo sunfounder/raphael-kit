@@ -1,43 +1,43 @@
 .. _4.1.5_py:
 
-4.1.5 Intelligent Visual Doorbell
+4.1.5 Intelligente visuelle Türklingel
 ==========================================
 
-Introduction
+Einführung
 -----------------
 
-In this project, let's make a DIY intelligent visual doorbell.
+In diesem Projekt erstellen wir eine DIY intelligente visuelle Türklingel.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/3.1.19components.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,7 +55,7 @@ You can also buy them separately from the links below.
         - |link_camera_buy|
 
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== ===
@@ -67,19 +67,18 @@ GPIO27       Pin 13   2        27
    :width: 500
    :align: center
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
-------------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/3.1.19fritzing.png
   :width: 800
   :align: center
 
-Before this project, you need to make sure you complete :ref:`3.1.3_py` & :ref:`3.1.2_py`.
+Vor diesem Projekt sollten Sie sicherstellen, dass Sie :ref:`3.1.3_py` & :ref:`3.1.2_py` abgeschlossen haben.
 
-**Step 2:** Get into the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -89,7 +88,7 @@ Before this project, you need to make sure you complete :ref:`3.1.3_py` & :ref:`
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Schritt 3:** Starten Sie den Code.
 
 .. raw:: html
 
@@ -99,12 +98,12 @@ Before this project, you need to make sure you complete :ref:`3.1.3_py` & :ref:`
 
     python3 4.1.5_DoorBell.py
 
-After the code runs, when the button is pressed, a bell will sound, and the camera will record a 5s video, which is stored as the ``visitor.h264`` file in the ``~`` directory. If you have a screen, you can also view visitors by previewing the video in real time.
+Nachdem der Code ausgeführt wurde, wird beim Drücken des Knopfes ein Klingelton erzeugt und die Kamera nimmt ein 5s Video auf, das als Datei ``visitor.h264`` im Verzeichnis ``~`` gespeichert wird. Wenn Sie einen Bildschirm haben, können Sie die Besucher auch in Echtzeit im Vorschauvideo sehen.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuvor sollten Sie zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. Nach der Änderung des Codes können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 .. raw:: html
 
@@ -166,19 +165,19 @@ After the code runs, when the button is pressed, a bell will sound, and the came
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     status = False
 
-This is a flag used to record whether the doorbell is used.
+Dies ist ein Flag, um aufzuzeichnen, ob die Türklingel verwendet wird.
 
 .. code-block:: python
 
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
 
-Set the event of ``BtnPin``, when the button is pressed (the level signal changes from high to low) , call the function ``takePhotos()``.
+Setzt das Ereignis von ``BtnPin``. Wenn der Knopf gedrückt wird (das Signalsniveau ändert sich von hoch auf niedrig), wird die Funktion ``takePhotos()`` aufgerufen.
 
 .. code-block:: python
 
@@ -195,10 +194,9 @@ Set the event of ``BtnPin``, when the button is pressed (the level signal change
         camera.stop_recording()
         status = False 
 
-Five seconds are used here to play music and record videos, thus functioning as a doorbell.
+Hier werden fünf Sekunden verwendet, um Musik zu spielen und Videos aufzunehmen, wodurch sie als Türklingel fungiert.
 
-
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/4.1.5door_bell.JPG

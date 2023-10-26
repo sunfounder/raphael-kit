@@ -1,53 +1,50 @@
 .. _install_os:
 
-Installing the OS (Common)
-========================================
+Betriebssysteminstallation (Allgemein)
+======================================
 
-**Step 1**
+**Schritt 1**
 
-Raspberry Pi have developed a graphical SD card writing tool that works
-on Mac OS, Ubuntu 18.04 and Windows, and is the easiest option for most
-users as it will download the image and install it automatically to the
-SD card.
+Das Raspberry Pi-Team hat ein grafisches SD-Karten-Beschreibungsprogramm entwickelt, das
+unter Mac OS, Ubuntu 18.04 und Windows funktioniert. Dies ist für die meisten
+Benutzer die einfachste Option, da es das Image herunterlädt und es automatisch auf die
+SD-Karte installiert.
 
-Visit the download page: https://www.raspberrypi.org/software/. Click on
-the link for the **Raspberry Pi Imager** that matches your operating system,
-when the download finishes, click it to launch the installer.
+Besuchen Sie die Download-Seite: https://www.raspberrypi.org/software/. Klicken Sie auf
+den Link für den **Raspberry Pi Imager**, der zu Ihrem Betriebssystem passt. Nachdem der Download abgeschlossen ist, klicken Sie darauf, um den Installer zu starten.
 
 .. image:: img/image11.png
     :align: center
 
+**Schritt 2**
 
-**Step 2**
+Wenn Sie den Installer starten, kann Ihr Betriebssystem versuchen, 
+dies zu blockieren. Zum Beispiel erhalte ich unter Windows folgende
+Meldung:
 
-When you launch the installer, your operating system may try to block
-you from running it. For example, on Windows I receive the following
-message:
-
-If this pops up, click on **More info** and then **Run anyway**, then
-follow the instructions to install the Raspberry Pi Imager.
+Sollte diese Meldung erscheinen, klicken Sie auf **More info** und dann auf **Run anyway**. Folgen Sie dann den Anweisungen, um den Raspberry Pi Imager zu installieren.
 
 .. image:: img/image12.png
     :align: center
 
-**Step 3**
+**Schritt 3**
 
-Insert your SD card into the computer or laptop SD card slot.
+Stecken Sie Ihre SD-Karte in den SD-Kartenslot Ihres Computers oder Laptops.
 
-**Step 4**
+**Schritt 4**
 
-In the Raspberry Pi Imager, select the OS that you want to install and
-the SD card you would like to install it on.
+Im Raspberry Pi Imager wählen Sie das Betriebssystem, das Sie installieren möchten, 
+sowie die SD-Karte, auf die es installiert werden soll.
 
 .. image:: img/image13.png
     :align: center
 
-.. note:: 
+.. note::
 
-    * You will need to be connected to the internet the first time.
-    * That OS will then be stored for future offline use(``lastdownload.cache``, ``C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache``). So the next time you open the software, it will have the display "Released: date, cached on your computer".
+    * Beim ersten Mal muss eine Internetverbindung bestehen.
+    * Das Betriebssystem wird dann für die zukünftige Offline-Nutzung gespeichert (``lastdownload.cache``, ``C:/Users/IhrName/AppData/Local/Raspberry Pi/Imager/cache``). Wenn Sie die Software das nächste Mal öffnen, wird "Veröffentlicht: Datum, im Cache auf Ihrem Computer" angezeigt.
 
-.. Download the `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ image and select it in Raspberry Pi Imager.
+.. Laden Sie das `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_-Bild herunter und wählen Sie es im Raspberry Pi Imager aus.
 
 .. .. image:: img/otherOS.png
 ..     :align: center
@@ -58,57 +55,50 @@ the SD card you would like to install it on.
 
 .. .. mark
 
+**Schritt 5**
 
-**Step 5**
-
-Select the SD card you are using.
+Wählen Sie die verwendete SD-Karte aus.
 
 .. image:: img/image14.png
     :align: center
 
-**Step 6**
+**Schritt 6**
 
-Press **Ctrl+Shift+X** or click the **setting** icon to open the **Advanced options** page to enable SSH and set username and password. 
+Drücken Sie **Ctrl+Shift+X** oder klicken Sie auf das **setting**-Symbol, um die Seite **Advanced options** zu öffnen, um SSH zu aktivieren und Benutzernamen und Passwort festzulegen.
 
     .. note::
-        * Now that the Raspberry Pi doesn't have a default password, you will need to set it yourself. Also, the username can be changed.
-        * For remote access, you will also need to enable SSH manually.
-
+        * Da der Raspberry Pi kein Standardpasswort hat, müssen Sie dieses selbst festlegen. Auch der Benutzername kann geändert werden.
+        * Für den Fernzugriff müssen Sie SSH auch manuell aktivieren.
 
 .. image:: img/image15.png
     :align: center
 
-Then scroll down to complete the wifi configuration and click **SAVE**.
+Scrollen Sie anschließend nach unten, um die WLAN-Konfiguration abzuschließen und klicken Sie auf **SAVE**.
 
 .. note::
 
-    ``wifi country`` should be set the two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ for the country in which you are using your Raspberry Pi.
+    ``wifi country`` sollte auf den zweistelligen `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ für das Land eingestellt werden, in dem Sie Ihren Raspberry Pi verwenden.
 
 .. image:: img/image16.png
     :align: center
 
-**Step 7**
+**Schritt 7**
 
-Click the **WRITE** button.
+Klicken Sie auf die Schaltfläche **WRITE**.
 
 .. image:: img/image17.png
     :align: center
 
-**Step 8**
+**Schritt 8**
 
-If your SD card currently has any files on it, you may wish to back up
-these files first to prevent you from permanently losing them. If there
-is no file to be backed up, click **Yes**.
+Falls sich derzeit Dateien auf Ihrer SD-Karte befinden, möchten Sie diese Dateien möglicherweise zuerst sichern, um sie nicht dauerhaft zu verlieren. Wenn keine Datei gesichert werden muss, klicken Sie auf **Yes**.
 
 .. image:: img/image18.png
     :align: center
 
-**Step 9**
+**Schritt 9**
 
-After waiting for a period of time, the following window will appear to
-represent the completion of writing.
+Nach einer gewissen Wartezeit wird das folgende Fenster angezeigt, das das erfolgreiche Schreiben bestätigt.
 
 .. image:: img/image19.png
     :align: center
-
-

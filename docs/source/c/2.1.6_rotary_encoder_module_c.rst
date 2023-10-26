@@ -1,45 +1,44 @@
 .. _2.1.6_c:
 
-2.1.6 Rotary Encoder Module
+2.1.6 Drehgeber-Modul
 =================================
 
-Introduction
+Einführung
 -------------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+In diesem Projekt werden Sie den Drehgeber kennenlernen. Ein Drehgeber ist
+ein elektronischer Schalter mit einer Reihe von regelmäßigen Impulsen in einer streng getakteten
+Reihenfolge. In Kombination mit einem IC kann er Erhöhungen, Verringerungen, Seitenumbrüche
+und andere Vorgänge wie Mausscrollen, Menüauswahl usw. ausführen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -50,21 +49,21 @@ You can also buy them separately from the links below.
     *   - :ref:`rotary_encoder`
         - |link_rotary_encoder_buy|
 
-**Schematic Diagram**
+Schaltplan
 ------------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie die Schaltung.
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-**Step 2:** Open the code file.
+**Schritt 2:** Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -74,7 +73,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.6/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -84,7 +83,7 @@ Experimental Procedures
 
     gcc 2.1.6_RotaryEncoder.c -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Start.
 
 .. raw:: html
 
@@ -94,11 +93,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+Sie werden den Zählerstand im Shell sehen. Wenn Sie den Drehgeber im Uhrzeigersinn drehen, wird der Zähler erhöht; wenn Sie ihn gegen den Uhrzeigersinn drehen, wird der Zähler verringert. Wenn Sie den Schalter am Drehgeber drücken, wird der Zählerstand auf null zurückgesetzt.
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+   Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", ziehen Sie bitte :ref:`install_wiringpi` zurate.
 
 **Code**
 
@@ -176,19 +175,18 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
       return 0;
    }
 
-**Code Analysis**
+**Code-Erklärung**
 
-* Read dtPin value when clkPin is low.
-* When clkPin is high, if dtPin goes from low to high, the count decreases, otherwise the count increases.
-* swPin will output low when the shaft is pressed.
+* Den Wert von dtPin lesen, wenn clkPin niedrig ist.
+* Wenn clkPin hoch ist und dtPin von niedrig zu hoch wechselt, verringert sich der Zählwert; andernfalls erhöht er sich.
+* swPin gibt einen niedrigen Wert aus, wenn die Achse gedrückt wird.
 
-From this, the program flow is shown below:
-
+Daraus ergibt sich der folgende Programmablauf:
 
 .. image:: ../img/2.1.6_flow.png
    :align: center
 
-**Phenomenon Picture**
+Phänomen-Bild
 -------------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG

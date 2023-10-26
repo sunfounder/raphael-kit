@@ -1,41 +1,41 @@
 .. _1.1.5_c:
 
-1.1.5 4-Digit 7-Segment Display
+1.1.5 4-stellige 7-Segment-Anzeige
 ====================================
 
-Introduction
+Einführung
 -----------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+Als Nächstes folgen Sie mir, um zu lernen, wie man die 4-stellige 7-Segment-Anzeige steuert.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_4_digit.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,9 +51,9 @@ You can also buy them separately from the links below.
         - |link_74hc595_buy|
 
 .. note::
-    In this projiect, for the 4-Digit 7-Segment Display we should use BS model,if you use AS model it may not light up.
+    In diesem Projekt sollten wir für die 4-stellige 7-Segment-Anzeige das BS-Modell verwenden. Wenn Sie das AS-Modell verwenden, leuchtet es möglicherweise nicht.
 
-Schematic Diagram
+Schaltplan
 --------------------------
 
 ============ ======== ======== ===
@@ -70,14 +70,14 @@ GPIO24       Pin 18   5        24
 .. image:: ../img/schmatic_4_digit.png
 
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------------
 
-**Step 1**: Build the circuit.
+**Schritt 1**: Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image80.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -87,7 +87,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.5/
 
-**Step 3**: Compile the code.
+**Schritt 3**: Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -97,7 +97,7 @@ Experimental Procedures
 
     gcc 1.1.5_4-Digit.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Schritt 4**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -107,12 +107,12 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
+Nachdem der Code ausgeführt wurde, zählt das Programm hoch, um 1 pro Sekunde, und die 4-stellige 7-Segment-Anzeige zeigt den Zählstand an.
 
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -226,19 +226,19 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
 
 
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
     const int placePin[] = {12, 3, 2, 0};
 
-These four pins control the common anode pins of the four-digit 7-segment display.
+Diese vier Pins steuern die gemeinsamen Anodenpins der vierstelligen 7-Segment-Anzeige.
 
 .. code-block:: c
 
     unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
 
-A segment code array from 0 to 9 in Hexadecimal (Common anode).
+Ein Segment-Code-Array von 0 bis 9 in Hexadezimal (gemeinsame Anode).
 
 .. code-block:: c
 
@@ -251,7 +251,7 @@ A segment code array from 0 to 9 in Hexadecimal (Common anode).
         digitalWrite(placePin[digit], 1);
     }
 
-Select the place of the value. there is only one place that should be enable each time. The enabled place will be written high.
+Wählen Sie die Position des Werts. Es sollte jeweils nur eine Position aktiviert werden. Die aktivierte Position wird hoch geschrieben.
 
 .. code-block:: c
 
@@ -276,35 +276,35 @@ Select the place of the value. there is only one place that should be enable eac
         }
     }
 
-The functionis used to set the number displayed on the 4-digit 7-segment display.
+Die Funktion wird verwendet, um die Anzeige auf der 4-stelligen 7-Segment-Anzeige festzulegen.
 
-* ``clearDisplay()``：write in 11111111 to turn off these eight LEDs on 7-segment display so as to clear the displayed content.
-* ``pickDigit(0)``：pick the fourth 7-segment display.
-* ``hc595_shift(number[counter%10])``：the number in the single digit of counter will display on the forth segment.
+* ``clearDisplay()``: Schreibt 11111111, um diese acht LEDs auf der 7-Segment-Anzeige auszuschalten und den angezeigten Inhalt zu löschen.
+* ``pickDigit(0)``: Wählt die vierte 7-Segment-Anzeige aus.
+* ``hc595_shift(number[counter%10])``: Die Zahl im Einerbereich von counter wird im vierten Segment angezeigt.
 
 .. code-block:: c
 
     signal(SIGALRM, timer); 
 
-This is a system-provided function, the prototype of code is:
+Dies ist eine systembereitgestellte Funktion, der Prototyp des Codes ist:
 
 .. code-block:: c
 
     sig_t signal(int signum,sig_t handler);
 
-After executing the ``signal()`` , once the process receives the corresponding signum (in this case SIGALRM), it immediately pauses the existing task and processes the set function (in this case ``timer(sig)`` ).
+Nach dem Ausführen von ``signal()`` unterbricht der Prozess bei Erhalt des entsprechenden signum (in diesem Fall SIGALRM) sofort die vorhandene Aufgabe und bearbeitet die eingestellte Funktion (in diesem Fall ``timer(sig)``).
 
 .. code-block:: c
 
     alarm(1);
 
-This is also a system-provided function. The code prototype is:
+Dies ist ebenfalls eine systembereitgestellte Funktion. Der Code-Prototyp ist:
 
 .. code-block:: c
 
     unsigned int alarm (unsigned int seconds);
 
-It generates a SIGALRM signal after a certain number of seconds.
+Es erzeugt nach einer bestimmten Anzahl von Sekunden ein SIGALRM-Signal.
 
 .. code-block:: c
 
@@ -318,10 +318,10 @@ It generates a SIGALRM signal after a certain number of seconds.
         }
     }
 
-We use the functions above to implement the timer function.
-After the ``alarm()`` generates the SIGALRM signal, the timer function is called. Add 1 to counter, and the function, ``alarm(1)`` will be repeatedly called after 1 second.
+Wir verwenden die oben genannten Funktionen, um die Timer-Funktion zu implementieren.
+Nachdem die ``alarm()``-Funktion das SIGALRM-Signal erzeugt hat, wird die Timer-Funktion aufgerufen. Zu counter wird 1 hinzugefügt, und die Funktion ``alarm(1)`` wird nach 1 Sekunde wiederholt aufgerufen.
 
-Phenomenon Picture
+Phänomen-Bild
 -----------------------
 
 .. image:: ../img/image81.jpeg

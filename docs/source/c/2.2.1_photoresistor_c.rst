@@ -1,45 +1,41 @@
 .. _2.2.1_c:
 
-2.2.1 Photoresistor
+2.2.1 Fotowiderstand
 =========================
 
-Introduction
+Einführung
 ------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+Der Fotowiderstand ist eine häufig verwendete Komponente zur Erfassung der Umgebungshelligkeit im Alltag. Er hilft dem Controller, Tag und Nacht zu erkennen und Lichtsteuerungsfunktionen, wie z. B. für Nachtlichter, zu realisieren. Dieses Projekt ähnelt sehr dem Potentiometer, und man könnte denken, dass es die Spannung ändert, um Licht zu erfassen.
 
-Required Components
+Erforderliche Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: ../img/list_2.2.1_photoresistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -56,23 +52,21 @@ You can also buy them separately from the links below.
     *   - :ref:`photoresistor`
         - |link_photoresistor_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
 .. image:: ../img/image321.png
 
-
 .. image:: ../img/image322.png
 
+Experimentelle Verfahren
+---------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image198.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Wechseln Sie in den Ordner mit dem Code.
 
 .. raw:: html
 
@@ -82,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.1/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -92,7 +86,7 @@ Experimental Procedures
 
     gcc 2.2.1_Photoresistor.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -102,11 +96,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-When the code is running, the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+Wenn der Code läuft, wird die Helligkeit der LED je nach vom Fotowiderstand erfasster Lichtintensität variieren.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Start nicht funktioniert oder die Fehlermeldung: \"wiringPi.h: No such file or directory\" erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -195,12 +189,11 @@ When the code is running, the brightness of the LED will change according to the
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
-The codes here are the same as that in 2.1.4 Potentiometer. If you have
-any other questions, please check the code explanation of :ref:`2.1.7_c` for details.
+Die hier verwendeten Codes sind identisch mit denen in 2.1.4 Potentiometer. Wenn Sie weitere Fragen haben, überprüfen Sie bitte die Code-Erklärung von :ref:`2.1.7_c` für weitere Details.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image199.jpeg

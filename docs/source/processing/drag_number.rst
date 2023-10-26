@@ -1,37 +1,37 @@
 .. _drag_number:
 
-Drag Number
+Zahlenregler ziehen
 ================================================
 
-Let\'s draw a slider bar to control the 7-segment Display.
+Lassen Sie uns eine Schiebeleiste zeichnen, um die 7-Segment-Anzeige zu steuern.
 
 .. image:: img/drag_servo.png
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -46,11 +46,11 @@ You can also buy them separately from the links below.
     *   - :ref:`74hc595`
         - |link_74hc595_buy|
 
-**Wiring**
+**Verdrahtung**
 
 .. image:: img/image125.png
 
-**Sketch**
+**Skizze**
 
 .. code-block:: arduino
 
@@ -159,7 +159,7 @@ You can also buy them separately from the links below.
         }
     }
 
-**How it works?**
+**Wie funktioniert das?**
 
-This project integrates the Slider and 7-segment Display of the previous project. For specific knowledge points, please refer to :ref:`show_number` and :ref:`metronome`.  
+Dieses Projekt integriert den Slider und die 7-Segment-Anzeige des vorherigen Projekts. Spezifische Wissenspunkte finden Sie unter :ref:`show_number` und :ref:`metronome`.
 

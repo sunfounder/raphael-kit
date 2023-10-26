@@ -1,50 +1,49 @@
 .. _2.2.10_py:
 
-2.2.10 MFRC522 RFID Module
-==========================
+2.2.10 MFRC522 RFID Modul
+=========================
 
-Introduction
----------------
+Einführung
+----------
 
-Radio Frequency Identification (RFID) refers to technologies that use
-wireless communication between an object (or tag) and interrogating
-device (or reader) to automatically track and identify such objects.
+Die Radiofrequenzidentifikation (RFID) bezieht sich auf Technologien, die
+kabellose Kommunikation zwischen einem Objekt (oder Tag) und einem abfragenden
+Gerät (oder Lesegerät) verwenden, um solche Objekte automatisch zu verfolgen und zu identifizieren.
 
-Some of the most common applications for this technology include retail
-supply chains, military supply chains, automated payment methods,
-baggage tracking and management, document tracking and pharmaceutical
-management, to name a few.
+Einige der häufigsten Anwendungen dieser Technologie sind Einzelhandels-Lieferketten, 
+militärische Lieferketten, automatisierte Zahlungsmethoden, 
+Gepäckverfolgung und -management, Dokumentenverfolgung und Pharmamanagement, um nur einige zu nennen.
 
-In this project, we will use RFID for reading and writing.
+In diesem Projekt verwenden wir RFID zum Lesen und Schreiben.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.2.7.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,26 +54,24 @@ You can also buy them separately from the links below.
     *   - :ref:`mfrc522`
         - |link_mfrc522_rfid_buy|
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image331.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image232.png
 
-**Step 2:** Install the :ref:`Spidev and MFRC522` libraries.
+**Schritt 2:** Installieren Sie die :ref:`Spidev und MFRC522` Bibliotheken.
 
-**Step 3:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
-set SPI, skip this step.)
+**Schritt 3:** Richten Sie SPI ein (siehe :ref:`spi_configuration` für weitere Details. Wenn Sie
+SPI bereits eingerichtet haben, überspringen Sie diesen Schritt.)
 
-
-**Step 4:** Go to the folder of the code.
+**Schritt 4:** Wechseln Sie in den Ordner des Codes.
 
 .. raw:: html
 
@@ -84,7 +81,7 @@ set SPI, skip this step.)
 
     cd ~/raphael-kit/python
 
-**Step 5:** After running ``2.2.10_write.py``. You need to write a message first, press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
+**Schritt 5:** Nach dem Ausführen von ``2.2.10_write.py`` müssen Sie zuerst eine Nachricht schreiben, drücken Sie ``Enter`` zur Bestätigung, legen Sie dann die Karte auf das MFRC522 Modul, warten Sie, bis "Datenbeschreibung abgeschlossen" erscheint, und nehmen Sie die Karte weg oder schreiben Sie die Nachricht auf eine andere Karte und beenden Sie mit ``Ctrl+C``.
 
 .. raw:: html
 
@@ -96,7 +93,7 @@ set SPI, skip this step.)
 
 .. image:: ../img/write_card.png
 
-**Step 6:** Now run ``2.2.10_read.py`` to read the information of the tag or card you have written.
+**Schritt 6:** Führen Sie nun ``2.2.10_read.py`` aus, um die Informationen des Tags oder der Karte, die Sie geschrieben haben, zu lesen.
 
 .. raw:: html
 
@@ -104,31 +101,29 @@ set SPI, skip this step.)
 
 .. code-block::
 
-
     sudo python3 2.2.10_read.py
 
-
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     reader = SimpleMFRC522()
 
-Instantiate ``SimpleMFRC522()`` class.
+Instanziiere die ``SimpleMFRC522()`` Klasse.
 
 .. code-block:: python
 
     reader.read()
 
-This function is used to read card data. If the reading is successful, id and text will be returned.
+Diese Funktion wird verwendet, um Kartendaten zu lesen. Bei erfolgreichem Lesen werden ID und Text zurückgegeben.
 
 .. code-block:: python
 
     reader.write(text)
 
-This function is used to write information to the card, press ``Enter`` key to finish writing. ``text`` is the information to be written to the card.
+Mit dieser Funktion werden Informationen auf die Karte geschrieben. Drücken Sie die ``Enter``-Taste, um das Schreiben zu beenden. ``text`` sind die Informationen, die auf die Karte geschrieben werden sollen.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+----------------
 
 .. image:: ../img/image233.jpeg

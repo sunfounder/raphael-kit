@@ -1,42 +1,42 @@
 .. _1.16_scratch:
 
-1.16 Fishing Game
+1.16 Angelspiel
 ========================
 
-Today, we will make a fishing game.
+Heute erstellen wir ein Angelspiel.
 
-Observe the water on the stage area and if you find a fish on the hook, remember to tilt the switch to catch it.
+Beobachten Sie das Wasser im Bühnenbereich und wenn Sie einen Fisch am Haken sehen, denken Sie daran, den Schalter zu kippen, um ihn zu fangen.
 
 .. image:: img/1.16_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: img/1.16_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ELEMENTE IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,56 +49,54 @@ You can also buy them separately from the links below.
     *   - :ref:`tilt_switch`
         - \-
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.16_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+-------------------------------------------------
 
-Load the code file (``1.16_fishing_game.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.16_fishing_game.sb3``) in Scratch 3.
 
-You will see a child is fishing, after a period of time when the water surface movement, you can shake the tilt switch to catch the fish.
-Remember, if you do not keep shaking the switch, the fish will escape.
+Sie sehen ein Kind, das angelt. Nach einer Weile, wenn sich die Wasseroberfläche bewegt, können Sie den Kippschalter schütteln, um den Fisch zu fangen. Denken Sie daran, wenn Sie den Schalter nicht weiter schütteln, wird der Fisch entkommen.
 
-Tips on Sprite
+Tipps zu Sprite
 ----------------
 
-Select Sprite1, click **Costumes** in the upper left corner; upload 6 pictures (**fish1** to **fish6**) from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes and rename the sprite to **fish**.
+Wählen Sie Sprite1, klicken Sie oben links auf **Costumes**; laden Sie 6 Bilder (**fish1** bis **fish6**) aus dem Pfad ``~/raphael-kit/scratch/bild`` über die Schaltfläche **Upload Costume** hoch; löschen Sie die beiden Standardkostüme und benennen Sie das Sprite in **fish** um.
 
 .. image:: img/1.16_upload_fish.png
 
-
-Tips on Codes
+Tipps zu Codes
 --------------
 
 .. image:: img/1.16_fish2.png
   :width: 400
 
-Set the initial costume of the **fish** sprite to **fish1** and assign the value of **fish_status** to 0 (when **fish_status=0**, it means the fish is not hooked, when **fish_status=1**, it means the fish is hooked).
+Legen Sie das Anfangskostüm des **fish** Sprites auf **fish1** fest und weisen Sie dem Wert von **fish_status** 0 zu (wenn **fish_status=0**, bedeutet das, der Fisch ist nicht am Haken, bei **fish_status=1** ist der Fisch am Haken).
 
 .. image:: img/1.16_fish3.png
   :width: 400
 
-When **fish_status=0**, i.e. the fish is not hooked yet, start the fishing game. Wait for a random time from 0 to 10 seconds, then assign **fish_status** to 1, which means the fish is hooked, and broadcast a message "The fish is biting".
+Wenn **fish_status=0**, also der Fisch noch nicht am Haken ist, beginnen Sie das Angelspiel. Warten Sie eine zufällige Zeit von 0 bis 10 Sekunden, dann setzen Sie **fish_status** auf 1, was bedeutet, dass der Fisch am Haken ist, und senden Sie eine Nachricht "Der Fisch beißt".
 
 .. note::
 
-  The purpose of the broadcast block is to send a message to other code blocks or other sprites. The message can be either a request or a command.
+  Der Zweck des Sendeblocks ist es, eine Nachricht an andere Codeblöcke oder andere Sprites zu senden. Die Nachricht kann entweder eine Anfrage oder ein Befehl sein.
 
 .. image:: img/1.16_fish4.png
   :width: 400
 
-When the message "The fish is biting" is received, let the fish sprite switch between the **fish2** and **fish3** costumes so that we can see the fish biting.
+Wenn die Nachricht "Der Fisch beißt" empfangen wird, lassen Sie das Fischsprite zwischen den Kostümen **fish2** und **fish3** wechseln, damit wir den Fisch sehen können, der beißt.
 
 .. image:: img/1.16_fish5.png
   :width: 400
 
-After switching the costume, if the game is not over, it means that the fish is off the hook and gone, so that we will switch the **fish** sprite costume to **fish6** (fish slipped state).
+Nach dem Wechseln des Kostüms, wenn das Spiel nicht beendet ist, bedeutet das, dass der Fisch vom Haken gerutscht ist und weg ist, so dass wir das Kostüm des **fisch** Sprites auf **fish6** (Fisch rutschte Zustand) wechseln.
 
 .. image:: img/1.16_fish6.png
   :width: 400
 
-When gpio17 is high (the tilt switch is tilted), it means the fishing rod is pulled up. At this time, the value of fish_status is judged. If it is 1, it means that the fishing rod was pulled up when the fish was hooked and switched to fish4 costume (fish was caught). On the contrary, it means that the fishing rod pulled up when the fish is not hooked is switched to the fish5 costume (nothing is caught).
+Wenn gpio17 hoch ist (der Kippschalter ist gekippt), bedeutet das, dass die Angel hochgezogen wird. Zu diesem Zeitpunkt wird der Wert von fish_status überprüft. Wenn er 1 ist, bedeutet das, dass die Angel hochgezogen wurde, als der Fisch am Haken war und auf das Kostüm fish4 (Fisch wurde gefangen) gewechselt wurde. Im Gegenteil, es bedeutet, dass die Angel hochgezogen wurde, als der Fisch nicht am Haken war, wird auf das Kostüm fish5 (nichts gefangen) gewechselt.
 

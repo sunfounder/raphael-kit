@@ -1,41 +1,41 @@
 .. _1.1.5_js:
 
-1.1.5 4-Digit 7-Segment Display
+1.1.5 4-stellige 7-Segment-Anzeige
 ====================================
 
-Introduction
+Einführung
 -----------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+Folgen Sie mir weiter, um zu versuchen, die 4-stellige 7-Segment-Anzeige zu steuern.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/list_4_digit.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENEINFÜHRUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,22 +51,21 @@ You can also buy them separately from the links below.
         - |link_74hc595_buy|
 
 .. note::
-    In this projiect, for the 4-Digit 7-Segment Display we should use BS model,if you use AS model it may not light up.
+    In diesem Projekt sollten wir für die 4-stellige 7-Segment-Anzeige das BS-Modell verwenden. Wenn Sie das AS-Modell verwenden, leuchtet es möglicherweise nicht.
 
-Schematic Diagram
+Schaltplan
 --------------------
 
 .. image:: img/schmatic_4_digit.png
 
-
-Experimental Procedures
+Experimentelle Verfahren
 -------------------------
 
-**Step 1**: Build the circuit.
+**Schritt 1**: Bauen Sie den Schaltkreis.
 
 .. image:: img/image80.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -76,7 +75,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Schritt 3**: Starten Sie den Code.
 
 .. raw:: html
 
@@ -86,8 +85,8 @@ Experimental Procedures
 
     sudo node 4_digit_7_segment_display.js
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
- 
+Nachdem der Code ausgeführt wurde, zählt das Programm hoch, erhöht sich um 1 pro Sekunde, und die 4-stellige 7-Segment-Anzeige zeigt den Zählstand an.
+
 **Code**
 
 .. code-block:: js
@@ -157,7 +156,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
         counter++;
     }, 1000);
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -167,13 +166,13 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
     const pin4 = new Gpio(17, {mode: Gpio.OUTPUT});
     const placePin = [pin1,pin2,pin3,pin4];    
 
-Initialize pins 10, 25, 27, and 17 as output modes and place them in the array ``placePin`` to facilitate control of the common anode of the four-digit 7-segment display.
+Initialisieren Sie die Pins 10, 25, 27 und 17 im Ausgabemodus und legen Sie sie im Array ``placePin`` ab, um die Steuerung der gemeinsamen Anode der vierstelligen 7-Segment-Anzeige zu erleichtern.
 
 .. code-block:: js
 
     const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90];
 
-Define a constant array ``number`` to represent the hexadecimal segment code from 0 to 9 (common anode).
+Definieren Sie ein konstantes Array ``number``, um den hexadezimalen Segmentcode von 0 bis 9 (gemeinsame Anode) darzustellen.
 
 .. code-block:: js
 
@@ -181,7 +180,7 @@ Define a constant array ``number`` to represent the hexadecimal segment code fro
         hc595_shift(0xff); 
     }
 
-Write 0xff to turn off the digital tube.
+Schreiben Sie 0xff, um die digitale Röhre auszuschalten.
 
 .. code-block:: js
 
@@ -192,9 +191,9 @@ Write 0xff to turn off the digital tube.
         placePin[digit].digitalWrite(1);
     }
 
-Select the place of the value. 
-there is only one place that should be enable each time. 
-The enabled place will be written high.
+Wählen Sie die Stelle des Werts aus. 
+Es sollte jedes Mal nur eine Stelle aktiviert werden. 
+Die aktivierte Stelle wird hoch geschrieben.
 
 .. code-block:: js
 
@@ -219,13 +218,13 @@ The enabled place will be written high.
         }
     }, 5);
 
-this code is used to set the number displayed on the 4-digit 7-segment Dispaly.
+Dieser Code dient zum Einstellen der auf der 4-stelligen 7-Segment-Anzeige angezeigten Nummer.
 
-First, start the fourth segment display, write the single-digit number. 
-Then start the third segment display, and type in the tens digit; 
-after that, start the second and the first segment display respectively, 
-and write the hundreds and thousands digits respectively. 
-Because the refreshing speed is very fast, we see a complete four-digit display.
+Zunächst starten Sie die vierte Segmentanzeige und schreiben die einstellige Zahl.
+Danach starten Sie die dritte Segmentanzeige und geben die Zehnerstelle ein;
+danach starten Sie nacheinander die zweite und die erste Segmentanzeige
+und schreiben die Hunderte und Tausende Stellen. 
+Da die Auffrischgeschwindigkeit sehr schnell ist, sehen wir eine vollständige vierstellige Anzeige.
 
 .. code-block:: js
 
@@ -233,14 +232,11 @@ Because the refreshing speed is very fast, we see a complete four-digit display.
         counter++;
     }, 1000);
 
-Add one to the ``counter`` 
-(the four-digit digital tube displays the number plus one) 
-every second that passes.
+Fügen Sie dem ``counter`` 
+(die vierstellige digitale Röhre zeigt die Zahl plus eins an) 
+jede verstrichene Sekunde eins hinzu.
 
-Phenomenon Picture
+Phänomen-Bild
 -------------------------
 
 .. image:: img/image81.jpeg
-
-
-

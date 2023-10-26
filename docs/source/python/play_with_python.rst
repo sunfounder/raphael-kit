@@ -1,5 +1,5 @@
-Play with Python
-===================
+Spielen Sie mit Python
+=========================
 
 .. toctree::
     :maxdepth: 3

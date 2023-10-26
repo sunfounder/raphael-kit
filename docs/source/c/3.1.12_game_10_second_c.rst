@@ -1,47 +1,44 @@
 .. _3.1.12_c:
 
-3.1.12 GAME - 10 Second
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1.12 SPIEL - 10 Sekunden
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 -------------------
 
-Next, follow me to make a game device to challenge your concentration.
-Tie the tilt switch to a stick to make a magic wand. Shake the wand, the
-4-digit segment display will start counting, shake again will let it
-stop counting. If you succeed in keeping the displayed count at
-**10.00**, then you win. You can play the game with your friends to see
-who is the time wizard.
+Folgen Sie mir und erstellen Sie ein Spielgerät, um Ihre Konzentration herauszufordern.
+Befestigen Sie den Neigungsschalter an einem Stock, um einen Zauberstab zu machen. Schütteln Sie den Zauberstab, beginnt das 4-stellige Segment-Display mit dem Zählen, erneutes Schütteln stoppt den Zähler. Wenn es Ihnen gelingt, den angezeigten Zähler bei 
+**10,00** zu halten, dann haben Sie gewonnen. Spielen Sie das Spiel mit Ihren Freunden und finden Sie heraus, wer der Zeitmagier ist.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/list_GAME_10_Second.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -58,7 +55,7 @@ You can also buy them separately from the links below.
     *   - :ref:`tilt_switch`
         - \-
 
-Schematic Diagram
+Schaltplan
 ------------------------
 
 ============ ======== ======== ===
@@ -76,15 +73,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one13.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 ---------------------------------
 
-**Step 1**: Build the circuit.
+**Schritt 1**: Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image277.png
 
-
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -94,7 +90,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.12/
 
-**Step 3**: Compile the code.
+**Schritt 3**: Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -104,7 +100,7 @@ Experimental Procedures
 
     gcc 3.1.12_GAME_10Second.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Schritt 4**: Starten Sie die ausführbare Datei.
 
 .. raw:: html
 
@@ -114,16 +110,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-Shake the wand, the 4-digit segment display will start counting, shake
-again will let it stop counting. If you succeed in keeping the displayed
-count at **10.00**, then you win. Shake it one more time to start the
-next round of the game.
+Schütteln Sie den Zauberstab, das 4-stellige Segment-Display beginnt zu zählen, erneutes Schütteln stoppt den Zähler. Wenn Sie es schaffen, den angezeigten Zähler bei **10,00** zu halten, dann haben Sie gewonnen. Schütteln Sie ihn erneut, um die nächste Runde des Spiels zu starten.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Start nicht funktioniert oder die Fehlermeldung "wiringPi.h: No such file or directory" erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
-**Code Explanation**
+**Code Erklärung**
 
 .. code-block:: c
 
@@ -139,15 +132,11 @@ next round of the game.
         gameState = (gameState + 1)%2;
     }
 
-The game is divided into two modes:
+Das Spiel ist in zwei Modi unterteilt:
 
-gameState=0 is the "start" mode, in which the time is timed and
-displayed on the segment display, and the tilting switch is shaken to
-enter the "show" mode.
+gameState=0 ist der "Start"-Modus, in dem die Zeit gemessen und auf dem Segmentdisplay angezeigt wird. Schütteln Sie den Neigungsschalter, um in den "Show"-Modus zu wechseln.
 
-GameState =1 is the "show" mode, which stops the timing and displays the
-time on the segment display. Shaking the tilt switch again will reset
-the timer and restart the game.
+GameState=1 ist der "Show"-Modus, der das Timing stoppt und die Zeit auf dem Segmentdisplay anzeigt. Ein erneutes Schütteln des Neigungsschalters setzt den Timer zurück und startet das Spiel neu.
 
 .. code-block:: c
 
@@ -164,12 +153,10 @@ the timer and restart the game.
         }
     }
 
-Loop() is the main function. First, the time is displayed on the 4-bit
-segment display and the value of the tilt switch is read. If the state
-of the tilt switch has changed, stateChange() is called.
+Loop() ist die Hauptfunktion. Zuerst wird die Zeit auf dem 4-stelligen Segment-Display angezeigt und der Wert des Neigungsschalters gelesen. Wenn sich der Zustand des Neigungsschalters geändert hat, wird stateChange() aufgerufen.
 
-Phenomenon Picture
------------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image278.jpeg
    :align: center

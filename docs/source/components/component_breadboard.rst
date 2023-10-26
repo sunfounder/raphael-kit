@@ -1,29 +1,21 @@
 .. _breadboard:
 
-Breadboard
-==============
+Steckbrett
+=============
 
 .. image:: img/breadboard.png
     :width: 600
 
-A breadboard is a construction base for prototyping of electronics. Originally the word referred to a literal bread board, a polished piece of wood used for slicing bread.[1] In the 1970s the solderless breadboard (a.k.a. plugboard, a terminal array board) became available and nowadays the term "breadboard" is commonly used to refer to these.
+Ein Steckbrett ist eine Basis für den Prototypenbau in der Elektronik. Ursprünglich bezog sich das Wort auf ein buchstäbliches Schneidebrett, ein poliertes Stück Holz zum Schneiden von Brot.[1] In den 1970er Jahren wurde das lötfreie Steckbrett (auch als Steckplatine oder Terminal-Array-Board bekannt) eingeführt, und heute wird der Begriff "Steckbrett" allgemein für diese verwendet.
 
-It is used to build and test circuits quickly before finishing any circuit design. 
-And it has many holes into which components mentioned above can be inserted like ICs and resistors as well as jumper wires. 
-The breadboard allows you to plug in and remove components easily. 
+Es wird verwendet, um Schaltungen schnell aufzubauen und zu testen, bevor ein Schaltungsdesign abgeschlossen wird.
+Das Steckbrett verfügt über viele Löcher, in die die oben genannten Komponenten wie ICs, Widerstände sowie Jumperkabel eingesteckt werden können.
+Das Steckbrett ermöglicht es, Komponenten leicht ein- und auszustecken.
 
-The picture shows the internal structure of a breadboard. 
-Although these holes on the breadboard appear to be independent of each other, they are actually connected to each other through metal strips internally.
+Das Bild zeigt die innere Struktur eines Steckbretts.
+Obwohl diese Löcher auf dem Steckbrett unabhängig voneinander zu sein scheinen, sind sie tatsächlich intern durch Metallstreifen miteinander verbunden.
 
 .. image:: img/breadboard_internal.png
     :width: 600
 
-If you want to know more about breadboard, refer to: `How to Use a Breadboard - Science Buddies <https://www.sciencebuddies.org/science-fair-projects/references/how-to-use-a-breadboard#pth-smd>`_
-
-
-
-
-
-
-
-
+Wenn Sie mehr über das Steckbrett erfahren möchten, lesen Sie: `Wie man ein Steckbrett verwendet - Science Buddies <https://www.sciencebuddies.org/science-fair-projects/references/how-to-use-a-breadboard#pth-smd>`_.

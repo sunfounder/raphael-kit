@@ -1,43 +1,42 @@
 .. _1.11_scratch:
 
-1.11 Repelling locusts
-========================
+1.11 Heuschrecken vertreiben
+====================================
 
+Heute werden wir das IR-Hindernisvermeidungsmodul, Raspberry Pi und Scratch verwenden, um ein Heuschreckenabwehrspiel zu erstellen.
 
-Today, we will use IR obstacle avoidance module, Raspberry Pi and Scratch to make a locust repelling game.
-
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+Halten Sie Ihre Hand vor das Hindernisvermeidungsmodul und Sie werden sehen, wie die Heuschrecken vertrieben werden.
 
 .. image:: img/1.11_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: img/1.11_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -48,38 +47,36 @@ You can also buy them separately from the links below.
     *   - :ref:`infrared_avoidance`
         - |link_obstacle_avoidance_buy|
 
-Build the Circuit
+Schaltkreis aufbauen
 ----------------------
 
 .. image:: img/1.11_fritzing.png
     :width: 700
     :align: center
 
-Load the Code and See What Happens
-----------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+---------------------------------------------------
 
-Load the code file (``1.11_repelling_locusts.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.11_repelling_locusts.sb3``) in Scratch 3.
 
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+Halten Sie Ihre Hand vor das Hindernisvermeidungsmodul und Sie werden sehen, wie die Heuschrecken vertrieben werden.
 
-
-Tips on Sprite
+Tipps zu Sprite
 ----------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **locust1.png**, **locust1.png** and **locust3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **locust**.
+Wählen Sie Sprite1 und klicken Sie oben links auf **Costumes**; laden Sie **locust1.png**, **locust1.png** und **locust3.png** über den Pfad ``~/raphael-kit/scratch/picture`` mithilfe der Schaltfläche **Upload Costume** hoch; löschen Sie die 2 Standardkostüme und benennen Sie das Sprite in **locust** um.
 
 .. image:: img/1.11_ir1.png
 
-Tips on Codes
---------------
+Tipps zu Codes
+------------------
 
 .. image:: img/1.11_ir2.png
   :width: 400
 
-When the IR obstacle avoidance module does not detect an obstacle (no hand is placed in front of the probe), the gpio is high.
+Wenn das IR-Hindernisvermeidungsmodul kein Hindernis erkennt (keine Hand wird vor der Sonde platziert), ist das GPIO hoch.
 
 .. image:: img/1.11_ir3.png
   :width: 400
 
-When gpio17 is high (no obstacles go in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust1 (locusts gather in wheat). Conversely when gpio17 is low (put your hand in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust2 (expel locusts), then switch the locust sprite's costume to locust3 (locusts are completely expelled) after 0.5s.
-
+Wenn gpio17 hoch ist (keine Hindernisse kommen vor das IR-Hindernisvermeidungsmodul), wechseln Sie das Kostüm des Heuschrecken-Sprites zu locust1 (Heuschrecken sammeln sich im Weizen). Umgekehrt, wenn gpio17 niedrig ist (legen Sie Ihre Hand vor das IR-Hindernisvermeidungsmodul), wechseln Sie das Kostüm des Heuschrecken-Sprites zu locust2 (Heuschrecken vertreiben), und nach 0,5s wechseln Sie das Kostüm des Heuschrecken-Sprites zu locust3 (Heuschrecken sind vollständig vertrieben).

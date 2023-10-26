@@ -1,25 +1,25 @@
 .. _tilt_switch:
 
-Tilt Switch
+Kippschalter
 =============================
 
 .. image:: img/tilt_switch.png
     :width: 80
     :align: center
 
-The tilt switch used here is a ball one with a metal ball inside. It is used to detect inclinations of a small angle.
+Der hier verwendete Kippschalter ist mit einem Metallball im Inneren ausgestattet. Er dient zur Erkennung von Neigungen kleiner Winkel.
 
-The principle is very simple. When the switch is tilted in a certain angle, the ball inside rolls down and touches the two contacts connected to the pins outside, thus triggering circuits. Otherwise the ball will stay away from the contacts, thus breaking the circuits.
+Das Prinzip ist sehr einfach. Wenn der Schalter in einem bestimmten Winkel geneigt wird, rollt der innere Ball nach unten und berührt die beiden Kontakte, die mit den äußeren Pins verbunden sind, wodurch Schaltkreise ausgelöst werden. Andernfalls bleibt der Ball von den Kontakten entfernt, was die Schaltkreise unterbricht.
 
 .. image:: img/tilt_symbol.png
     :width: 600
 
-* `SW520D Tilt Switch Datasheet <https://www.tme.com/Document/f1e6cedd8cb7feeb250b353b6213ec6c/SW-520D.pdf>`_
+* `SW520D Kippschalter Datenblatt <https://www.tme.com/Document/f1e6cedd8cb7feeb250b353b6213ec6c/SW-520D.pdf>`_
 
-**Example**
+**Beispiel**
 
-* :ref:`2.1.5_c` (C Project)
-* :ref:`3.1.12_c` (C Project)
-* :ref:`2.1.5_py` (Python Project)
-* :ref:`4.1.18_py` (Python Project)
-* :ref:`1.3_scratch` (Scratch Project)
+* :ref:`2.1.5_c` (C-Projekt)
+* :ref:`3.1.12_c` (C-Projekt)
+* :ref:`2.1.5_py` (Python-Projekt)
+* :ref:`4.1.18_py` (Python-Projekt)
+* :ref:`1.3_scratch` (Scratch-Projekt)

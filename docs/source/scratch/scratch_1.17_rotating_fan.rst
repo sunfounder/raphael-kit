@@ -1,40 +1,40 @@
 .. _1.17_scratch:
 
-1.17 Rotating fan
-==================
+1.17 Drehender Ventilator
+============================
 
-In this project, we will make a spinning star sprite and fan.
+In diesem Projekt werden wir einen rotierenden Stern-Sprite und einen Ventilator erstellen.
 
 .. image:: img/1.17_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: img/1.17_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,75 +49,70 @@ You can also buy them separately from the links below.
     *   - :ref:`motor`
         - |link_motor_buy|
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.17_image117.png
 
-Load the Code and See What Happens
----------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+------------------------------------------------
 
-Load the code file (``1.17_rotating_fan.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.17_rotating_fan.sb3``) in Scratch 3.
 
-After clicking the green flag on the stage, click on the star sprite，then it and the motor will rotate clockwise; you can change the direction of rotation by clicking on the two **arrow** sprites. When you click on the **star** sprite again, it and the motor will stop rotating.
+Nachdem Sie auf die grüne Flagge auf der Bühne geklickt haben, klicken Sie auf den Stern-Sprite. Dann werden dieser und der Motor im Uhrzeigersinn drehen. Sie können die Drehrichtung ändern, indem Sie auf die beiden **arrow**-Sprites klicken. Wenn Sie erneut auf den **star**-Sprite klicken, hören er und der Motor auf zu drehen.
 
-Tips on Sprite
+Tipps zu Sprite
 ----------------
-Delete the default sprite, then select the **Star** sprite and the **Arrow1** sprite, and copy Arrow1 once.
+
+Löschen Sie den Standard-Sprite und wählen Sie dann den **star**-Sprite und den **Arrow1**-Sprite aus und kopieren Sie Pfeil1 einmal.
 
 .. image:: img/1.17_motor1.png
 
-In the **Costumes** option, change the Arrow2 sprite to a different direction costume.
+Unter der Option **Costumes** ändern Sie das Pfeil2-Sprite zu einem Kostüm in anderer Richtung.
 
 .. image:: img/1.17_motor2.png
 
-Adjust the size and position of the sprite appropriately.
+Passen Sie die Größe und Position des Sprites entsprechend an.
 
 .. image:: img/1.17_motor3.png
 
-
-Tips on Codes
+Tipps zu Codes
 --------------
 
-**Flow Chart**
+**Flussdiagramm**
 
 .. image:: img/1.17_scratch.png
 
-In this code, you will see 2 pink blocks, turn left and turn right, which are our custom blocks (functions).
+In diesem Code sehen Sie 2 rosa Blöcke, links drehen und rechts drehen. Das sind unsere benutzerdefinierten Blöcke (Funktionen).
 
 .. image:: img/1.17_new_block.png
 
-**How to Make a Block?**
+**Wie erstellt man einen Block?**
 
-Let's learn how to make a block (function). The block (function) can be used to simplify your program, especially if you perform the same operation multiple times. Putting these operations into a newly declared block can be very convenient for you.
+Lernen Sie, wie Sie einen Block (Funktion) erstellen. Der Block (Funktion) kann verwendet werden, um Ihr Programm zu vereinfachen, insbesondere wenn Sie die gleiche Operation mehrmals ausführen. Das Platzieren dieser Operationen in einem neu deklarierten Block kann sehr praktisch für Sie sein.
 
-First find **My Blocks** in the block palette, then select **Make a Block**.
+Suchen Sie zuerst **My Blocks** in der Blockpalette und wählen Sie dann **Make a Block**.
 
 .. image:: img/1.17_motor4.png
 
-Enter the name of the new block.
+Geben Sie den Namen des neuen Blocks ein.
 
 .. image:: img/1.17_motor5.png
 
-After writing the function of the new block in the coding area, save it and then you can find the block in the blocks palette.
+Nachdem Sie die Funktion des neuen Blocks im Codierungsbereich geschrieben haben, speichern Sie ihn, und dann können Sie den Block in der Blockpalette finden.
 
 .. image:: img/1.17_motor6.png
 
-**turn left**
+**links drehen**
 
-This is the code inside the turn left block to make the motor rotate counterclockwise.
+Dies ist der Code im Block "links drehen", um den Motor gegen den Uhrzeigersinn zu drehen.
 
 .. image:: img/1.17_motor12.png
   :width: 400
 
-**turn right**
+**rechts drehen**
 
-This is the code inside the turn right block to make the motor rotate clockwise.
-
-
+Dies ist der Code im Block "rechts drehen", um den Motor im Uhrzeigersinn zu drehen.
 
 .. image:: img/1.17_motor11.png
   :width: 400
-
-
-

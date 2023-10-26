@@ -3,40 +3,40 @@
 2.1.9 Joystick
 ==============
 
-Introduction
-------------
+Einführung
+----------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+In diesem Projekt lernen wir, wie ein Joystick funktioniert. Wir bedienen
+den Joystick und zeigen die Ergebnisse auf dem Bildschirm an.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/image317.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,13 +51,13 @@ You can also buy them separately from the links below.
     *   - :ref:`adc0834`
         - \-
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Beim Auslesen der Joystick-Daten gibt es Unterschiede zwischen
+den Achsen: Die Daten der X- und Y-Achse sind analog und müssen mit dem ADC0834 
+in einen digitalen Wert umgewandelt werden. Die Daten der Z-Achse sind digital, sodass 
+sie direkt über GPIO gelesen werden können, oder auch mit ADC.
 
 .. image:: ../img/image319.png
 
@@ -65,14 +65,14 @@ you can directly use the GPIO to read, or you can also use ADC to read.
 .. image:: ../img/image320.png
 
 
-Experimental Procedures
------------------------
+Experimentelle Verfahren
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image193.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Wechseln Sie in den Ordner mit dem Code.
 
 .. raw:: html
 
@@ -82,7 +82,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -92,8 +92,8 @@ Experimental Procedures
 
     sudo node joystick.js
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
+Nachdem der Code ausgeführt wurde, drehen Sie den Joystick. Die entsprechenden Werte von
+x, y und Btn werden auf dem Bildschirm angezeigt.
 
 **Code**
 
@@ -117,15 +117,13 @@ x, y, Btn are displayed on screen.
         console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
     }, 100);
 
-
-
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
     const ADC0834 = require('./adc0834.js').ADC0834;
 
-We import an ``ADC0834`` constructor to use the adc0834 module.
+Wir importieren einen ``ADC0834`` Konstruktor, um das adc0834 Modul zu nutzen.
 
 .. code-block:: js
 
@@ -138,18 +136,15 @@ We import an ``ADC0834`` constructor to use the adc0834 module.
         console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
     }, 100);
 
-
-When reading the values of multiple channels of ADC0834 at the same time, asynchronous programming is required.
-We build a promise function here,
-And use the await instruction of async function to elegantly write this complex asynchronous task.
+Beim gleichzeitigen Auslesen der Werte von mehreren Kanälen des ADC0834 ist asynchrone Programmierung erforderlich.
+Wir erstellen hier eine Promise-Funktion und verwenden die await-Anweisung der asynchronen Funktion, um diese komplexe asynchrone Aufgabe elegant zu schreiben.
 
 * `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 * `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
 
+Phänomen-Bild
+---------------
 
-
-Phenomenon Picture
-------------------
 
 .. image:: ../img/image194.jpeg
 

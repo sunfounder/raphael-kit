@@ -1,38 +1,38 @@
 .. _blinking_dot:
 
-Blinking Dot
+Blinkender Punkt
 ===========================
 
-In this project, we will draw a dot on Processing, which blinks synchronously with the LED. Please build the circuit as shown in the diagram and run the sketch.
+In diesem Projekt werden wir einen Punkt in Processing zeichnen, der synchron mit der LED blinkt. Bitte bauen Sie den Schaltkreis gemäß dem Diagramm auf und führen Sie die Skizze aus.
 
 .. image:: img/blinking_dot.png
 .. image:: img/clickable_dot_on.png
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -43,11 +43,11 @@ You can also buy them separately from the links below.
     *   - :ref:`led`
         - |link_led_buy|
 
-**Wiring**
+**Verdrahtung**
 
 .. image:: img/image49.png
 
-**Sketch**
+**Skizze**
 
 .. code-block:: Arduino
 
@@ -73,19 +73,18 @@ You can also buy them separately from the links below.
         ellipse(width/2, height/2, width*0.75, height*0.75);
     }
 
-**How it works?**
+**Wie funktioniert das?**
 
-At the beginning of the sketch, you need to embed Processing's GPIO function library by ``import processing.io.*;``, which is indispensable for circuit experiments.
+Zu Beginn der Skizze müssen Sie die GPIO-Funktionsbibliothek von Processing mit ``import processing.io.*;`` einbinden, die für Schaltungsexperimente unerlässlich ist.
 
-**Frame rate** is the frequency of bitmaps appearing on the board, expressed in hertz (Hz). In other words, it is also the frequency at which the ``draw()`` function is called. In ``setup()``, setting the **frame rate** to 2 will call ``draw()`` every 0.5s.
+Die **Bildrate** ist die Häufigkeit, mit der Bitmaps auf dem Board erscheinen, ausgedrückt in Hertz (Hz). Anders ausgedrückt, ist es auch die Frequenz, mit der die ``draw()`` Funktion aufgerufen wird. In ``setup()`` ruft die Einstellung der **Bildrate** auf 2 ``draw()`` alle 0,5s auf.
 
-Each call of the ``draw()`` function takes the inverse of ``state`` and subsequently determines it. If the value is ``true``, the LED is lit and the brush is filled with red; if not, the LED is turned off and the brush is filled with gray.
+Bei jedem Aufruf der ``draw()`` Funktion wird das Inverse von ``state`` genommen und anschließend bestimmt. Wenn der Wert ``true`` ist, leuchtet die LED und der Pinsel wird rot gefüllt; wenn nicht, wird die LED ausgeschaltet und der Pinsel mit Grau gefüllt.
 
-After completing the judgment, use the ``ellipse()`` function to draw a circle. It should be noted that ``width`` and ``height`` are system variables used to store the width and height of the display window.
+Nach Abschluss der Beurteilung verwenden Sie die ``ellipse()`` Funktion, um einen Kreis zu zeichnen. Es sollte beachtet werden, dass ``width`` und ``height`` Systemvariablen sind, die zur Speicherung der Breite und Höhe des Anzeigefensters verwendet werden.
 
-There are two other points to note. When using GPIOs, you need to use the ``GPIO.pinMode()`` function to set the INPUT/OUTPUT state of the pin, and then use the ``GPIO.digitalWrite()`` function to assign a value (HIGH/LOW) to the pin .
-
+Es gibt zwei weitere Punkte zu beachten. Bei der Verwendung von GPIOs müssen Sie die ``GPIO.pinMode()`` Funktion verwenden, um den INPUT/OUTPUT-Zustand des Pins einzustellen, und dann die ``GPIO.digitalWrite()`` Funktion verwenden, um einen Wert (HIGH/LOW) dem Pin zuzuweisen.
 
 .. note::
 
-    Please try to avoid using ``delay()`` in ``draw()`` because it will affect the display window refresh.
+    Bitte versuchen Sie, ``delay()`` in ``draw()`` zu vermeiden, da dies die Aktualisierung des Anzeigefensters beeinflusst.

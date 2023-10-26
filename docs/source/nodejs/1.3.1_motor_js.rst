@@ -3,42 +3,39 @@
 1.3.1 Motor
 =================
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+In diesem Projekt lernen wir, wie der L293D verwendet wird, um einen Gleichstrommotor zu steuern und ihn sowohl im Uhrzeigersinn als auch gegen den Uhrzeigersinn zu drehen. Da der Gleichstrommotor einen höheren Strombedarf hat, verwenden wir hier aus Sicherheitsgründen das Power Supply Modul zur Stromversorgung der Motoren.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten:
 
 .. image:: ../img/list_1.3.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist durchaus praktisch, ein komplettes Kit zu kaufen. Hier ist der Link dazu:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Die einzelnen Komponenten können auch über die folgenden Links erworben werden:
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -53,33 +50,26 @@ You can also buy them separately from the links below.
     *   - :ref:`motor`
         - |link_motor_buy|
 
-Schematic Diagram
+Schaltplan
 ------------------
 
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+Stecken Sie das Power Supply Modul in das Breadboard und setzen Sie den Jumper auf den 5V-Pin, sodass eine Spannung von 5V ausgegeben wird. Verbinden Sie Pin 1 des L293D mit GPIO22 und setzen Sie diesen auf High. Verbinden Sie Pin2 mit GPIO27 und Pin7 mit GPIO17. Setzen Sie einen Pin auf High und den anderen auf Low. So können Sie die Drehrichtung des Motors ändern.
 
 .. image:: ../img/image336.png
 
+Experimentelle Verfahren
+----------------------------
 
-**Experimental Procedures**
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
 
 .. image:: ../img/image117.png
 
-
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Das Power Supply Modul kann mit einer 9V Batterie zusammen mit dem 9V Batterieclip aus dem Kit betrieben werden. Stecken Sie den Jumper des Moduls in die 5V-Leiste des Breadboards.
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Wechseln Sie in den Ordner mit dem Code.
 
 .. raw:: html
 
@@ -89,7 +79,7 @@ the motor’s rotation direction.
 
     cd ~/raphael-kit/nodejs/
 
-**Step 4**: Run the code.
+**Schritt 3**: Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -99,10 +89,7 @@ the motor’s rotation direction.
 
     sudo node motor.js
 
-As the code runs, the motor first rotates clockwise for 1s then stops for 1s, 
-after that, it rotates anticlockwise for 1s; subsequently, the motor stops 
-for 1s. This series of actions will be executed repeatedly.  
-
+Während der Code läuft, dreht sich der Motor zuerst für 1 Sekunde im Uhrzeigersinn und stoppt dann für 1 Sekunde. Anschließend dreht er sich für 1 Sekunde gegen den Uhrzeigersinn und stoppt dann erneut für 1 Sekunde. Dieser Ablauf wiederholt sich kontinuierlich.
 
 **Code**
 
@@ -156,7 +143,7 @@ for 1s. This series of actions will be executed repeatedly.
     }, 1000)    
  
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -165,8 +152,7 @@ for 1s. This series of actions will be executed repeatedly.
     MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
 
 
-Import the pigpio module and create three Gpio class objects to control the three IO ports of Gpio17, Gpio27, and Gpio22.
-
+Importieren Sie das pigpio-Modul und erstellen Sie drei Gpio-Klassenobjekte, um die drei IO-Ports von Gpio17, Gpio27 und Gpio22 zu steuern.
 
 .. code-block:: js
 
@@ -196,12 +182,11 @@ Import the pigpio module and create three Gpio class objects to control the thre
         }
     }
 
+Definieren Sie eine motor()-Funktion zur Steuerung des Motors:
 
-Define a motor() function to control the motor,
-
-#. When the direction is equal to 2, the MotorPin1 port writes a high level, the MotorPin2 port writes a low level, and the enable port MotorEnable writes a high level, and the motor rotates clockwise.
-#. When the direction is equal to 1, the MotorPin1 port writes a low level, the MotorPin2 port writes a high level, and the enable port MotorEnable writes a high level, and the motor rotates counterclockwise.
-#. When the direction is equal to 0, the enable port MotorEnable is written to a low level, and the motor stops rotating.  
+#. Wenn die Richtung gleich 2 ist, schreibt der MotorPin1-Port ein hohes Level, der MotorPin2-Port schreibt ein niedriges Level, und der Aktivierungsport MotorEnable schreibt ein hohes Level, wodurch der Motor im Uhrzeigersinn dreht.
+#. Wenn die Richtung gleich 1 ist, schreibt der MotorPin1-Port ein niedriges Level, der MotorPin2-Port schreibt ein hohes Level, und der Aktivierungsport MotorEnable schreibt ein hohes Level, wodurch der Motor gegen den Uhrzeigersinn dreht.
+#. Wenn die Richtung gleich 0 ist, wird am Aktivierungsport MotorEnable ein niedriges Level geschrieben und der Motor stoppt.
 
 .. code-block:: js
 
@@ -211,8 +196,7 @@ Define a motor() function to control the motor,
         motor(index)
     }, 1000)    
 
-Let the motor rotate clockwise and counterclockwise alternately, with an interval of 1 second.
-
+Lassen Sie den Motor abwechselnd im Uhrzeigersinn und gegen den Uhrzeigersinn drehen, mit einem Intervall von 1 Sekunde.
 
 .. code-block:: js
 
@@ -221,11 +205,10 @@ Let the motor rotate clockwise and counterclockwise alternately, with an interva
         process.exit();
     })
 
+Wenn erkannt wird, dass **ctrl+c gedrückt wurde**,
+wird MotorEnable niedrig geschrieben, um den Motor am Drehen zu hindern.
 
-When it is detected that **ctrl+c is** pressed,
-MotorEnable is written low to stop the motor from spinning.
-
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image119.jpeg

@@ -1,43 +1,43 @@
 .. _2.2.6_c:
 
-2.2.6 Speed Sensor Module
-===============================
+2.2.6 Geschwindigkeitssensormodul
+=================================
 
-Introduction
-------------------
+Einführung
+-------------
 
-In this project, we will learn the use of the speed sensor module. A Speed Sensor Module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+In diesem Projekt werden wir den Gebrauch des Geschwindigkeitssensormoduls erlernen. Ein Geschwindigkeitssensormodul ist eine Art von Drehzahlmesser, der zur Messung der Geschwindigkeit eines rotierenden Objekts, wie eines Motors, verwendet wird.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/2.2.6component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -52,25 +52,23 @@ You can also buy them separately from the links below.
     *   - :ref:`speed_sensor`
         - \-
 
-Schematic Diagram
------------------------
+Schaltplan
+-------------
 
 .. image:: ../img/2.2.6circuit.png
     :width: 400
     :align: center
 
-Experimental Procedures
-------------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-
-
-**Step 2:** Change directory.
+**Schritt 2:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -80,7 +78,7 @@ Experimental Procedures
     
     cd ~/raphael-kit/c/2.2.6/
 
-**Step 3:** Compile.
+**Schritt 3:** Kompilieren.
 
 .. raw:: html
 
@@ -90,7 +88,7 @@ Experimental Procedures
 
     gcc 2.2.6_speed_sensor_module.c -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Ausführen.
 
 .. raw:: html
 
@@ -100,12 +98,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+Nachdem der Code ausgeführt wurde, leuchtet die grüne LED. Wenn Sie ein Hindernis in den Spalt des Geschwindigkeitssensormoduls stellen, wird "Licht blockiert" auf dem Bildschirm angezeigt und die rote LED leuchtet. Entfernen Sie das Hindernis und die grüne LED leuchtet wieder.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -162,7 +159,7 @@ Remove the obstacle and the green LED will light up again.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -180,10 +177,9 @@ Remove the obstacle and the green LED will light up again.
         }
     }    
 
-Set a ``LED()`` function to control the 2 LEDs, the parameter of this function is ``color``.
+Stellen Sie eine ``LED()`` Funktion bereit, um die 2 LEDs zu steuern. Der Parameter dieser Funktion ist ``color``.
 
-When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`` to ``LOW`` (turn off the green LED); when ``color`` is 1, then light up the green LED and turn off the red LED. 
-
+Wenn ``color`` 0 ist, setzen Sie ``Rpin`` auf ``HIGH`` (schalten Sie die rote LED ein) und ``Gpin`` auf ``LOW`` (schalten Sie die grüne LED aus); wenn ``color`` 1 ist, schalten Sie die grüne LED ein und die rote LED aus.
 
 .. code-block:: c
 
@@ -200,12 +196,10 @@ When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`
         Print(temp);
     }
 
-When you place an obstacle in the gap of the speed sensor module, ``speedPin`` is low level (0), then call ``LED(1)`` function to light up the green LED and "Light was blocked!" is printed.
+Wenn Sie ein Hindernis in den Spalt des Geschwindigkeitssensormoduls stellen, ist ``speedPin`` auf niedrigem Pegel (0), dann rufen Sie die ``LED(1)`` Funktion auf, um die grüne LED einzuschalten, und es wird "Licht wurde blockiert!" ausgedruckt.
 
-
-
-**Phenomenon Picture**
------------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG
    :width: 500

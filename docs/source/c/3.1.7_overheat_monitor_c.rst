@@ -1,47 +1,42 @@
 .. _3.1.7_c:
 
-3.1.7 Overheat Monitor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1.7 Überhitzungsüberwachung
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 -------------------
 
-You may want to make an overheat monitoring device that applies to
-various situations, ex., in the factory, if we want to have an alarm and
-the timely automatic turning off of the machine when there is a circuit
-overheating. In this project, we will use thermistor, joystick, buzzer,
-LED and LCD to make an smart temperature monitoring device whose
-threshold is adjustable.
+Möglicherweise möchten Sie ein Überhitzungsüberwachungsgerät herstellen, das für verschiedene Situationen geeignet ist, z.B. in der Fabrik, wenn wir einen Alarm haben möchten und das rechtzeitige automatische Abschalten der Maschine, wenn es zu einer Schaltungserhitzung kommt. In diesem Projekt werden wir einen Thermistor, einen Joystick, eine Hupe, eine LED und ein LCD verwenden, um ein intelligentes Temperaturüberwachungsgerät herzustellen, dessen Schwellenwert einstellbar ist.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Overheat_Monitor.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,7 +61,7 @@ You can also buy them separately from the links below.
     *   - :ref:`buzzer`
         - \-
 
-Schematic Diagram
+Schaltplan
 --------------------------
 
 ============ ======== ======== ===
@@ -84,14 +79,14 @@ SCL1         Pin 5
 .. image:: ../img/Schematic_three_one8.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image258.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -101,7 +96,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.7/
 
-**Step 3**: Compile the code.
+**Schritt 3**: Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -109,9 +104,9 @@ Experimental Procedures
 
 .. code-block:: 
 
-    gcc 3.1.7_OverheatMonitor.c -lm -lwiringPi
+    gcc 3.1.7_Überhitzungsüberwachung.c -lm -lwiringPi
 
-**Step 4**: Run the executable file.
+**Schritt 4**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -121,24 +116,17 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Wenn der Code ausgeführt wird, werden die aktuelle Temperatur und der Hochtemperaturschwellenwert **40** auf **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur höher als der Schwellenwert ist, werden die Hupe und die LED gestartet, um Sie zu alarmieren.
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+Der **Joystick** dient hier zum Drücken, um den Hochtemperaturschwellenwert anzupassen. Durch das Umschalten des **Joysticks** in Richtung der X- und Y-Achse können Sie den aktuellen Hochtemperaturschwellenwert erhöhen oder verringern. Drücken Sie den **Joystick** erneut, um den Schwellenwert auf den Ausgangswert zurückzusetzen.
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Wenn die Fehlermeldung ``wiringPi.h: No such file or directory`` angezeigt wird, verweisen Sie bitte auf :ref:`install_wiringpi`.
+    * Wenn Sie den Fehler ``Unable to open I2C device: No such file or directory`` erhalten, müssen Sie sich auf :ref:`i2c_config` beziehen, um I2C zu aktivieren und zu überprüfen, ob die Verdrahtung korrekt ist.
+    * Wenn der Code und die Verdrahtung in Ordnung sind, das LCD jedoch immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -164,9 +152,9 @@ initial value.
         }
     }
 
-This function reads values of X and Y. If ``X>200``, there will return
-``1``; ``X<50``, return ``-1``; ``y>200``, return
-``-10``, and ``y<50``, return ``10``.
+Diese Funktion liest Werte von X und Y. Wenn ``X>200``, wird 
+``1`` zurückgegeben; ``X<50``, gibt ``-1`` zurück; ``y>200``, gibt 
+``-10`` zurück, und ``y<50``, gibt ``10`` zurück.
 
 .. code-block:: c
 
@@ -183,7 +171,7 @@ This function reads values of X and Y. If ``X>200``, there will return
         delay(100);
     }
 
-This function is for adjusting the threshold and displaying it on the
+Diese Funktion dient zur Anpassung des Schwellenwertes und zur Anzeige auf dem 
 I2C LCD1602.
 
 .. code-block:: c
@@ -200,8 +188,8 @@ I2C LCD1602.
         return cel;
     }
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+Liest den analogen Wert des **CH0** (Thermistor) des **ADC0834** und 
+konvertiert ihn in einen Temperaturwert.
 
 .. code-block:: c
 
@@ -225,10 +213,9 @@ then convert it to temperature value.
         }
     }
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Während der Code läuft, werden die aktuelle Temperatur und der Hochtemperatur-
+Schwellenwert **40** auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle 
+Temperatur höher als der Schwellenwert ist, werden Buzzer und LED aktiviert, um Sie zu warnen.
 
 .. code-block:: c
 
@@ -256,20 +243,20 @@ to alarm you.
         return 0;
     }
 
-The function ``main()`` contains the whole program process as shown:
+Die Funktion ``main()`` beinhaltet den gesamten Programmablauf:
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) Bei Programmstart ist der Anfangswert von **stage** **0**, und 
+   die aktuelle Temperatur sowie der Hochtemperatur-Schwellenwert **40** werden 
+   auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur den Schwellenwert 
+   überschreitet, werden Buzzer und LED aktiviert, um Sie zu warnen.
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current threshold. Press the Joystick once again to reset the
-   threshold to initial value.
+2) Drücken Sie den Joystick, wird **stage** auf **1** gesetzt und Sie können 
+   den Hochtemperatur-Schwellenwert anpassen. Durch Kippen des Joysticks in X- 
+   und Y-Richtung kann der aktuelle Schwellenwert angepasst (erhöht oder 
+   verringert) werden. Ein erneutes Drücken des Joysticks setzt den Schwellenwert 
+   auf den Ausgangswert zurück.
 
-Phenomenon Picture
+Phänomen-Bild
 -------------------------
 
 .. image:: ../img/image259.jpeg

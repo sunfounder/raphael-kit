@@ -1,98 +1,98 @@
 .. _1.18_scratch:
 
-1.18 Eating Banana Game
+1.18 Bananen Essen Spiel
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Description
+Beschreibung
 ---------------
 
-Scratch has a Video Sensing expansion module, which can turn on the camera in Scratch and detect the movement of objects on the camera screen.
+Scratch verfügt über ein Video-Sensing-Erweiterungsmodul, mit dem die Kamera in Scratch aktiviert und die Bewegung von Objekten auf dem Kamerabildschirm erkannt werden kann.
 
-Today, we will use the camera to make a eating banana game. In the stipulated time, help the Monkey eat more bananas.
+Heute werden wir die Kamera verwenden, um ein Bananen-Ess-Spiel zu erstellen. Innerhalb der festgelegten Zeit soll dem Affen geholfen werden, mehr Bananen zu essen.
 
-To play the game against a white background, click on the green flag to start. Move colored objects in front of the camera to control the Monkey sprite.
+Um das Spiel vor einem weißen Hintergrund zu spielen, klicken Sie auf die grüne Flagge, um zu starten. Bewegen Sie farbige Objekte vor der Kamera, um den Affen-Sprite zu steuern.
 
 .. image:: img/1.18_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: img/1.18_photo1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTEN-VORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`camera_module`
         - |link_camera_buy|
 
 
-Build the Circuit
---------------------
+Schaltung aufbauen
+---------------------
 
 .. image:: img/1.10_camera.png
 
 .. note::
 
-    You need to refer to :ref:`camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
+    Sie müssen sich auf :ref:`camera_module` beziehen, um das Kameramodul anzuschließen und die Raspberry Pi Kamera-Schnittstelle zu aktivieren.
 
-Load the Code and See What Happens
----------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+---------------------------------------------------
 
-Load the code file (``1.18_eating_banana_game.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.18_eating_banana_game.sb3``) in Scratch 3.
 
-Tips on Codes
+Tipps zu Codes
 ----------------
 
-Arrange monkeys and bananas
+Ordnen Sie Affen und Bananen an.
 
-First, we delete the original sprite, then add Monkey sprite and Bananas sprite, and change their sizes to 50.
+Zuerst löschen wir den ursprünglichen Sprite, dann fügen wir den Affen-Sprite und den Bananen-Sprite hinzu und ändern ihre Größen auf 50.
 
-Let Bananas appear randomly.
+Lassen Sie die Bananen zufällig erscheinen.
 
 .. image:: img/1.18_code1.png
 
-Bananas disappears after encountering the Monkey, which means it was eaten by the Monkey and reappears randomly.
+Die Banane verschwindet, nachdem sie dem Affen begegnet ist, was bedeutet, dass sie vom Affen gegessen wurde und zufällig wieder erscheint.
 
 .. image:: img/1.18_code2.png
 
-Let the Monkey appear in the center of the stage and initialize the camera data (transparency is set to 20).
+Lassen Sie den Affen in der Mitte der Bühne erscheinen und initialisieren Sie die Kameradaten (Transparenz ist auf 20 eingestellt).
 
 .. image:: img/1.18_code3.png
 
-If the camera detects an object moving, let the Monkey move towards the object.
+Wenn die Kamera ein bewegendes Objekt erkennt, soll sich der Affe auf das Objekt zubewegen.
 
 .. image:: img/1.18_code4.png
 
-Now, click on the green flag at the top of the stage area to start the game.
+Jetzt klicken Sie auf die grüne Flagge oben im Bühnenbereich, um das Spiel zu starten.
 
-Let the Monkey eat bananas, it is very hungry! Try to play this game on a white background to prevent interference from other objects.
+Lassen Sie den Affen Bananen essen, er ist sehr hungrig! Versuchen Sie, dieses Spiel vor einem weißen Hintergrund zu spielen, um Störungen durch andere Objekte zu vermeiden.
 
-Challenge
--------------
+Herausforderung
+---------------------
 
-I believe that you will be smart enough to program and implement this game soon. Next, we will add some challenges to enrich our game content.
+Ich bin überzeugt, dass Sie bald schlau genug sein werden, dieses Spiel zu programmieren und umzusetzen. Als Nächstes werden wir einige Herausforderungen hinzufügen, um unseren Spielinhalt zu bereichern.
 
-· When Monkey eats banana, we add 1 to the score. Within 30s, see who has the highest score!
+· Wenn der Affe eine Banane isst, fügen wir 1 zum Punktestand hinzu. Innerhalb von 30s, sehen Sie, wer den höchsten Punktestand hat!
 
-· When Monkey eats a banana, it emits a suitable sound effect.
+· Wenn der Affe eine Banane isst, gibt er einen passenden Soundeffekt ab.

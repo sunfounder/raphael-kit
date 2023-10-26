@@ -1,48 +1,43 @@
 .. _2.2.9_js:
 
-2.2.9 MPU6050 Module
+2.2.9 MPU6050 Modul
 ====================
 
-Introduction
-------------
+Einführung
+----------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+Der MPU-6050 ist das weltweit erste und einzige 6-Achsen-Bewegungserfassungsgerät (3-Achsen-Gyroskop und 3-Achsen-Beschleunigungssensor), das für Smartphones, Tablets und tragbare Sensoren entwickelt wurde, welche diese Eigenschaften besitzen. Dies beinhaltet geringen Stromverbrauch, niedrige Kosten und hohe Leistungsanforderungen.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+In diesem Experiment verwenden wir I2C, um die Werte des Drei-Achsen-Beschleunigungssensors und des Drei-Achsen-Gyroskops des MPU6050 zu ermitteln und sie auf dem Bildschirm anzuzeigen.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+----------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.2.6.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -53,28 +48,23 @@ You can also buy them separately from the links below.
     *   - :ref:`mpu6050`
         - |link_mpu6050_buy|
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+Der MPU6050 kommuniziert über die I2C-Busschnittstelle mit dem Mikrocontroller. SDA1 und SCL1 müssen mit dem entsprechenden Pin verbunden werden.
 
 .. image:: ../img/image330.png
 
-
-Experimental Procedures
+Experimentelle Verfahren
 -------------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image227.png
 
+**Schritt 2:** I2C einrichten (siehe Anhang :ref:`i2c_config`. Wenn Sie I2C bereits eingerichtet haben, überspringen Sie diesen Schritt.)
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
-
-**Step 2:** Go to the folder of the code.
+**Schritt 3:** Navigieren Sie zum Ordner mit dem Code.
 
 .. raw:: html
 
@@ -84,17 +74,17 @@ step.)
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Install dependencies.
+**Schritt 4:** Installieren Sie die Abhängigkeiten.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo npm install mpu6050-gyro
 
-**Step 4:** Run the code.
+**Schritt 5:** Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -104,11 +94,7 @@ step.)
 
     sudo node mpu6050_module.js
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
-
-
+Nachdem der Code ausgeführt wurde, wird der Ablenkwinkel der x- und y-Achse sowie die Beschleunigung und Winkelgeschwindigkeit jeder Achse, die vom MPU6050 gelesen werden, auf dem Bildschirm angezeigt, nachdem sie berechnet wurden.
 
 **Code**
 
@@ -140,7 +126,7 @@ printed on the screen after being calculating.
         update_telemetry();
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -150,11 +136,11 @@ printed on the screen after being calculating.
     var bus = 1; //i2c bus used   
     var gyro = new gyro( bus,address );
 
-Import the ``mpu6050-gyro`` module, determine the MPU6050 address and the bus creation object gyro,
-It is convenient to call the encapsulated functions in the module.
+Importieren Sie das Modul ``mpu6050-gyro``, bestimmen Sie die Adresse des MPU6050 und das Bus-Erstellungsobjekt gyro.
+So können Sie die im Modul gekapselten Funktionen bequem aufrufen.
 
 .. note:: 
-    About this module, please refer to: https://www.npmjs.com/package/mpu6050-gyro
+    Über dieses Modul informieren Sie sich bitte unter: https://www.npmjs.com/package/mpu6050-gyro
 
 .. code-block:: js
 
@@ -171,16 +157,16 @@ It is convenient to call the encapsulated functions in the module.
     
     setTimeout(update_telemetry, 500);
 
-The module encapsulates three available functions:
+Das Modul kapselt drei verfügbare Funktionen:
 
-``gyro.get_gyro_xyz()``: Returns JSON object with raw x,y,z datas from gyroscope.
+``gyro.get_gyro_xyz()``: Gibt ein JSON-Objekt mit rohen x,y,z Daten vom Gyroskop zurück.
 
-``gyro.get_accel_xyz()``: Returns JSON object with raw x,y,z datas from accelerometer.
+``gyro.get_accel_xyz()``: Gibt ein JSON-Objekt mit rohen x,y,z Daten vom Beschleunigungssensor zurück.
 
-``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: Returns JSON object with roll and pitch in degrees.
+``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: Gibt ein JSON-Objekt mit Neigung und Rollen in Grad zurück.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image228.jpeg
     

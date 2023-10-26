@@ -1,18 +1,13 @@
 .. _install_wiringpi:
 
-Install and Check the WiringPi
-=======================================
+Installieren und Überprüfen von WiringPi
+===========================================
 
-``wiringPi`` is a C language GPIO library applied to the Raspberry Pi. It complies with GUN Lv3. The functions in wiringPi are
-similar to those in the wiring system of Arduino. They enable the users
-familiar with Arduino to use wiringPi more easily.
+``wiringPi`` ist eine GPIO-Bibliothek in C für den Raspberry Pi. Sie entspricht GUN Lv3. Die Funktionen in wiringPi ähneln denen im Wiring-System von Arduino. Dies ermöglicht Nutzern, die mit Arduino vertraut sind, die Verwendung von wiringPi leichter zu gestalten.
 
-``wiringPi`` includes lots of GPIO commands which enable you to control all
-kinds of interfaces on Raspberry Pi. 
+``wiringPi`` beinhaltet zahlreiche GPIO-Befehle, mit denen Sie alle Arten von Schnittstellen am Raspberry Pi steuern können.
 
-Please run the following command to install ``wiringPi`` library.
-
-
+Bitte führen Sie den folgenden Befehl aus, um die ``wiringPi``-Bibliothek zu installieren.
 
 .. raw:: html
 
@@ -25,8 +20,7 @@ Please run the following command to install ``wiringPi`` library.
     cd WiringPi 
     ./build
 
-You can test whether the wiringPi
-library is installed successfully or not by the following instruction.
+Sie können testen, ob die wiringPi-Bibliothek erfolgreich installiert wurde, indem Sie den folgenden Befehl ausführen.
 
 .. raw:: html
 
@@ -38,8 +32,7 @@ library is installed successfully or not by the following instruction.
 
 .. image:: ../img/image30.png
 
-
-Check the GPIO with the following command:
+Überprüfen Sie die GPIO mit dem folgenden Befehl:
 
 .. raw:: html
 
@@ -51,7 +44,7 @@ Check the GPIO with the following command:
 
 .. image:: ../img/image31.png
 
+Für weitere Details über wiringPi können Sie sich auf `WiringPi <https://github.com/WiringPi/WiringPi>`_ beziehen.
 
-For more details about wiringPi, you can refer to `WiringPi <https://github.com/WiringPi/WiringPi>`_.
 
 

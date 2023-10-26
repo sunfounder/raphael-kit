@@ -1,16 +1,16 @@
-What is Nodejs？
+Was ist Nodejs?
 ---------------------------
 
-Node.js was released in May 2009 and developed by Ryan Dahl. It is a JavaScript runtime environment based on the Chrome V8 engine. It uses an event-driven, non-blocking I/O model to allow JavaScript to run on the server-side development platform.
+Node.js wurde im Mai 2009 von Ryan Dahl veröffentlicht. Es handelt sich um eine JavaScript-Laufzeitumgebung, die auf der Chrome V8 Engine basiert. Sie verwendet ein ereignisgesteuertes, nicht-blockierendes I/O-Modell, um JavaScript auf der serverseitigen Entwicklungsplattform auszuführen.
 
-Simply put, Node.js is JavaScript running on the server. If you are familiar with Javascript, then you will easily learn Node.js.
+Einfach ausgedrückt, ist Node.js JavaScript, das auf dem Server läuft. Wenn Sie mit Javascript vertraut sind, werden Sie Node.js leicht erlernen.
 
-Nodejs usually uses the command ``npm install xxx`` to install third-party packages, which requires us to install the npm tool, similar to the pip tool in python.
+Nodejs verwendet normalerweise den Befehl ``npm install xxx``, um Drittanbieter-Pakete zu installieren. Dafür müssen wir das npm-Tool installieren, ähnlich dem pip-Tool in Python.
 
-Install or update nodejs and npm
-------------------------------------------
+Nodejs und npm installieren oder aktualisieren
+-------------------------------------------------
 
-Run the following commands to install and update nodejs and npm.
+Führen Sie die folgenden Befehle aus, um nodejs und npm zu installieren und zu aktualisieren.
 
 .. raw:: html
 
@@ -23,7 +23,7 @@ Run the following commands to install and update nodejs and npm.
     sudo apt-get install npm 
     sudo npm install npm -g
 
-Then check the current Node version with the following command.
+Überprüfen Sie anschließend die aktuelle Node-Version mit dem folgenden Befehl.
 
 .. raw:: html
 
@@ -33,7 +33,7 @@ Then check the current Node version with the following command.
 
     node -v
 
-The following command checks the current npm version.
+Mit dem folgenden Befehl überprüfen Sie die aktuelle npm-Version.
 
 .. raw:: html
 

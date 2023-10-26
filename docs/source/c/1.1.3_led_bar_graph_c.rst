@@ -1,18 +1,17 @@
 .. _1.1.3_c:
 
-1.1.3 LED Bar Graph
+1.1.3 LED-Balkendiagramm
 =========================
 
-Introduction
+Einführung
 -------------
 
-In this project, we sequentially illuminate the lights on the LED Bar
-Graph.
+In diesem Projekt lassen wir die Lichter am LED-Balkendiagramm nacheinander leuchten.
 
-Required Components
+Erforderliche Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_led_bar.png
 
@@ -21,20 +20,20 @@ In this project, we need the following components.
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -47,7 +46,7 @@ You can also buy them separately from the links below.
     *   - :ref:`bar_graph`
         - \-
 
-Schematic Diagram
+Schaltplan
 -------------------------
 
 ============ ======== ======== ===
@@ -66,20 +65,18 @@ SPICE0       Pin 24   10       8
 
 .. image:: ../img/schematic_led_bar.png
 
-
-Experimental Procedures
+Experimentelle Verfahren
 ------------------------------
 
-**Step 1**: Build the circuit.
+**Schritt 1**: Bauen Sie den Schaltkreis.
 
 .. note::
 
-    Pay attention to the direction when connecting. If you connect it backwards, it will not light up.
+    Achten Sie auf die Richtung beim Verbinden. Wenn Sie es verkehrt herum anschließen, wird es nicht leuchten.
 
 .. image:: ../img/image66.png
 
-
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Navigieren Sie zu dem Ordner mit dem Code.
 
 .. raw:: html
 
@@ -89,7 +86,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.3/
 
-**Step 3**: Compile the code.
+**Schritt 3**: Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -99,7 +96,7 @@ Experimental Procedures
 
     gcc 1.1.3_LedBarGraph.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -109,13 +106,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you will see the LEDs on the LED bar turn on and off regularly.
+Nachdem der Code ausgeführt wurde, sehen Sie, dass die LEDs auf dem LED-Balken regelmäßig ein- und ausgeschaltet werden.
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
-
+   Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -169,15 +164,13 @@ After the code runs, you will see the LEDs on the LED bar turn on and off regula
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
     int pins[10] = {0,1,2,3,4,5,6,8,9,10};
 
-Create an array and assign it to the pin number corresponding to the LED
-Bar Graph (0,1,2,3,4,5,6,8,9,10) and the array will be used to control
-the LED.
+Erstellen Sie ein Array und weisen Sie es der Pinnummer zu, die dem LED-Balkendiagramm entspricht (0,1,2,3,4,5,6,8,9,10). Dieses Array wird verwendet, um die LED zu steuern.
 
 .. code-block:: c
 
@@ -190,7 +183,7 @@ the LED.
         }
     }
 
-Let the LED on the odd digit of the LED Bar Graph light on in turn.
+Lassen Sie die LEDs an den ungeraden Positionen des LED-Balkendiagramms nacheinander aufleuchten.
 
 .. code-block:: c
 
@@ -203,7 +196,7 @@ Let the LED on the odd digit of the LED Bar Graph light on in turn.
         }
     }
 
-Make the LED on the even digit of the LED Bar Graph light on in turn.
+Lassen Sie die LEDs an den geraden Positionen des LED-Balkendiagramms nacheinander aufleuchten.
 
 .. code-block:: c
 
@@ -215,8 +208,9 @@ Make the LED on the even digit of the LED Bar Graph light on in turn.
         }
     }
 
-Let the LED on the LED Bar Graph light on one by one.
+Lassen Sie die LEDs am LED-Balkendiagramm nacheinander aufleuchten.
 
-**Phenomenon Picture**
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image67.jpeg

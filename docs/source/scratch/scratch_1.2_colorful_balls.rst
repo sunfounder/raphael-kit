@@ -1,41 +1,40 @@
 .. _1.2_scratch:
 
-1.2 Colorful Balls
+1.2 Bunte Bälle
 =====================
 
-
-Clicking on different colored balls on the stage area will cause the RGB LED to light up in different colors.
+Wenn Sie auf unterschiedlich gefärbte Bälle im Bühnenbereich klicken, leuchtet die RGB-LED in verschiedenen Farben auf.
 
 .. image:: img/1.2_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.2_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -48,53 +47,50 @@ You can also buy them separately from the links below.
     *   - :ref:`rgb_led`
         - |link_rgb_led_buy|
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.2_image61.png
 
+Laden Sie den Code und sehen Sie, was passiert
+------------------------------------------------
 
-Load the Code and See What Happens
------------------------------------------
+Nach dem Laden der Code-Datei (``1.2_colorful_balls.sb3``) in Scratch 3 wird die RGB-LED jeweils gelb, blau, rot, grün oder lila leuchten, wenn Sie auf den entsprechenden Ball klicken.
 
-After loading the code file (``1.2_colorful_balls.sb3``) into Scratch 3, the RGB LED will light up yellow, blue, red, green or purple respectively when you click on the corresponding ball.
+Tipps zu Sprite
+-------------------
 
-Tips on Sprites
-----------------
-
-Delete the default sprite, then choose the **Ball** sprite.
+Löschen Sie das Standard-Sprite und wählen Sie das **Ball**-Sprite aus.
 
 .. image:: img/1.2_ball.png
 
-And duplicate it 5 times.
+Und duplizieren Sie es 5 Mal.
 
 .. image:: img/1.2_duplicate_ball.png
 
-Choose different costumes for these 5 **Ball** sprites and move them to the corresponding positions.
+Wählen Sie für diese 5 **Ball**-Sprites unterschiedliche Kostüme und verschieben Sie sie an die entsprechenden Positionen.
 
 .. image:: img/1.2_rgb1.png
 
-Tips on Codes
+Tipps zu Codes
 --------------
-Before understanding the code, we need to understand the `RGB color model <https://en.wikipedia.org/wiki/RGB_color_model>`_.
 
-The RGB color model is an additive color model in which red, green, and blue light are added together in various ways to reproduce a broad array of colors. 
+Bevor wir den Code verstehen, müssen wir das `RGB-Farbmodell <https://en.wikipedia.org/wiki/RGB_color_model>`_ kennen.
 
-Additive color mixing: adding red to green yields yellow; adding green to blue yields cyan; adding blue to red yields magenta; adding all three primary colors together yields white.
+Das RGB-Farbmodell ist ein additives Farbmodell, bei dem rotes, grünes und blaues Licht auf verschiedene Weise hinzugefügt wird, um eine breite Palette von Farben zu reproduzieren.
+
+Additives Farbmischen: Rot und Grün ergibt Gelb; Grün und Blau ergibt Cyan; Blau und Rot ergibt Magenta; Alle drei Primärfarben zusammen ergeben Weiß.
 
 .. image:: img/1.2_rgb_addition.png
   :width: 400
 
-An RGB LED is a combination of 3 LEDs(red LED, green LED, blue LED ) in just one package, you can produce almost any color by combining those three colors.
-It has 4 pins, one of which is GND, and the other 3 pins control 3 LEDs respectively.
+Eine RGB-LED besteht aus 3 LEDs (rote LED, grüne LED, blaue LED) in einem Gehäuse. Mit diesen drei Farben können Sie fast jede Farbe erzeugen.
+Sie hat 4 Pins, einer davon ist GND, und die anderen 3 Pins steuern jeweils eine der 3 LEDs.
 
-So the code to make the RGB LED light yellow is as follows.
+Der Code, um die RGB-LED gelb leuchten zu lassen, lautet also:
 
 .. image:: img/1.2_rgb3.png
 
+Wenn auf das Ball-Sprite (gelber Ball) geklickt wird, setzen wir gpio17 auf high (rote LED an), gpio18 auf high (grüne LED an) und gpio27 auf low (blaue LED aus), damit die RGB-LED gelb leuchtet.
 
-When the Ball sprite (yellow ball) is clicked, we set gpio17 high (red LED on), gpio18 high (green LED on) and gpio27 low (blue LED off) so that the RGB LED will light yellow.
-
-You can Write codes to other sprites in the same way to make the RGB LEDs light up in the corresponding colors.
-
-
+Sie können Codes für andere Sprites auf die gleiche Weise schreiben, damit die RGB-LEDs in den entsprechenden Farben leuchten.

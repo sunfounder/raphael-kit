@@ -1,42 +1,41 @@
 .. _2.1.9_c:
 
 2.1.9 Joystick
-===================
+===============
 
-Introduction
-------------
+Einführung
+----------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+In diesem Projekt werden wir lernen, wie ein Joystick funktioniert. Wir bedienen den Joystick und zeigen die Ergebnisse auf dem Bildschirm an.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/image317.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,28 +50,23 @@ You can also buy them separately from the links below.
     *   - :ref:`adc0834`
         - \-
 
-Schematic Diagram
------------------
+Schaltplan
+---------------------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Wenn die Daten des Joysticks gelesen werden, gibt es Unterschiede zwischen den Achsen: Die Daten der X- und Y-Achse sind analog und müssen mit ADC0834 in einen digitalen Wert umgewandelt werden. Die Daten der Z-Achse sind digital, sodass sie direkt mit dem GPIO gelesen werden können oder auch mit ADC.
 
 .. image:: ../img/image319.png
 
-
 .. image:: ../img/image320.png
 
+Experimentelle Verfahren
+------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image193.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Wechseln Sie in das Verzeichnis des Codes.
 
 .. raw:: html
 
@@ -82,7 +76,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.9/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -92,7 +86,7 @@ Experimental Procedures
 
     gcc 2.1.9_Joystick.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -102,13 +96,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
-
+Nachdem der Code ausgeführt wurde, drehen Sie den Joystick. Die entsprechenden Werte von x, y, Btn werden auf dem Bildschirm angezeigt.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Falls es nach dem Ausführen nicht funktioniert oder die Fehlermeldung "wiringPi.h: No such file or directory" angezeigt wird, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -194,7 +186,7 @@ x, y, Btn are displayed on screen.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -216,7 +208,7 @@ x, y, Btn are displayed on screen.
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-The working process of the function is detailed in 2.1.4 Potentiometer.
+Die Funktionsweise der Funktion ist im Abschnitt 2.1.4 Potentiometer detailliert beschrieben.
 
 .. code-block:: c
 
@@ -228,15 +220,10 @@ The working process of the function is detailed in 2.1.4 Potentiometer.
             delay(100);
         }
 
-VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
-respectively. So the function getResult() is called to read the values
-of CH0 and CH1. Then the read values should be stored in the variables
-x_val and y_val. In addition, read the value of SW of joystick and store
-it into the variable Btn_val. Finally, the values of x_val, y_val and
-Btn_val shall be printed with print() function.
+VRX und VRY des Joysticks sind jeweils mit CH0 und CH1 des ADC0834 verbunden. Daher wird die Funktion getResult() aufgerufen, um die Werte von CH0 und CH1 auszulesen. Die ausgelesenen Werte sollten dann in den Variablen x_val und y_val gespeichert werden. Zusätzlich wird der Wert von SW des Joysticks ausgelesen und in der Variable Btn_val gespeichert. Schließlich werden die Werte von x_val, y_val und Btn_val mit der Funktion print() ausgegeben.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+----------------
 
 .. image:: ../img/image194.jpeg
 

@@ -1,42 +1,42 @@
 .. _1.12_scratch:
 
-1.12 Water Lamp
+1.12 Wasserlampe
 ================
 
-Today, we will use LED Bar Graph, Raspberry Pi and scratch to make a Water Lamp.
+Heute werden wir die LED-Balkenanzeige, Raspberry Pi und Scratch verwenden, um eine Wasserlampe zu erstellen.
 
-The LED Bar Graph will light up in order with the direction of the arrows on the stage.
+Die LED-Balkenanzeige wird in der Reihenfolge der Pfeilrichtung auf der Bühne aufleuchten.
 
 .. image:: img/1.12_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.12_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,71 +49,64 @@ You can also buy them separately from the links below.
     *   - :ref:`bar_graph`
         - \-
 
-Build the Circuit
+Schaltung aufbauen
 -----------------------
 
 .. image:: img/1.12_image66.png
 
-Load the Code and See What Happens
------------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+-------------------------------------------------
 
-Load the code file (``1.12_water_lamp.sb3``) from your computer to Scratch 3.
+Laden Sie die Code-Datei (``1.12_water_lamp.sb3``) von Ihrem Computer in Scratch 3.
 
-By clicking on **Arrow1**, the LEDs on the LED bar are lit in sequence from the left to the right (one at a time) and then off. Click **Arrow2** and the LEDs light up in the opposite order.
+Durch Klicken auf **Arrow1** leuchten die LEDs auf dem LED-Balken nacheinander von links nach rechts (jeweils eine) und gehen dann aus. Klicken Sie auf **Arrow2** und die LEDs leuchten in umgekehrter Reihenfolge.
 
-Tips on Sprites
+Tipps zu Sprites
 ----------------
 
-Delete the default sprite and choose the **Arrow1** sprite.
+Löschen Sie das Standard-Sprite und wählen Sie das Sprite **Arrow1**.
 
 .. image:: img/1.12_graph1.png
 
-Here we will need 2 **Arrow1** sprites, which can be done with the duplicate button.
+Hier benötigen wir 2 **Arrow1** Sprites, was mit der Duplizieren-Taste gemacht werden kann.
 
 .. image:: img/1.12_scratch_duplicate.png
 
-Click on the **Arrow 2** sprite and change the direction of the arrow by selecting costume 2.
+Klicken Sie auf das Sprite **Arrow 2** und ändern Sie die Pfeilrichtung, indem Sie Kostüm 2 auswählen.
 
 .. image:: img/1.12_graph2.png
 
-
-Now let's make a variable.
+Jetzt erstellen wir eine Variable.
 
 .. image:: img/1.12_graph3.png
 
-
-Name it as **num**.
+Benennen Sie sie als **num**.
 
 .. image:: img/1.12_graph4.png
 
-
-Follow the same method to create a list called **led**.
+Verfolgen Sie die gleiche Methode, um eine Liste namens **led** zu erstellen.
 
 .. image:: img/1.12_graph6.png
 
+Nach dem Hinzufügen sollten Sie die Variable **num** und die Liste **led** im Bühnenbereich sehen.
 
-After adding, you should see the **num** variable and the **led** list on the stage area. 
-
-Click **+** to add 10 list items and enter the pin numbers in order (17,18,27,22,23,24,25,2,3,8).
+Klicken Sie auf **+**, um 10 Listenelemente hinzuzufügen und geben Sie die Pin-Nummern in der Reihenfolge (17,18,27,22,23,24,25,2,3,8) ein.
 
 .. image:: img/1.12_graph7.png
 
-Tips on Codes
+Tipps zu Codes
 --------------
 
 .. image:: img/1.12_graph10.png
   :width: 300
 
-This is an event block that is triggered when the current sprite is clicked.
+Dies ist ein Ereignisblock, der ausgelöst wird, wenn das aktuelle Sprite angeklickt wird.
 
 .. image:: img/1.12_graph8.png
   :width: 300
 
-The initial value of the **num** variable determines which LED is lit first.
+Der Anfangswert der Variable **num** bestimmt, welche LED zuerst leuchtet.
 
 .. image:: img/1.12_graph9.png
 
-
-Set the pin corresponding to **num** in the led list to low to light the LED, and then set the pin corresponding to **num-1** to high to turn off the previous LED.
-
-
+Setzen Sie den Pin, der **num** in der Led-Liste entspricht, auf niedrig, um die LED zu beleuchten, und setzen Sie dann den Pin, der **num-1** entspricht, auf hoch, um die vorherige LED auszuschalten.

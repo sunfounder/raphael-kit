@@ -3,47 +3,41 @@
 2.2.3 DHT-11
 ==================
 
-Introduction
+Einführung
 --------------
 
-The digital temperature and humidity sensor DHT11 is a composite sensor
-that contains a calibrated digital signal output of temperature and
-humidity. The technology of a dedicated digital modules collection and
-the technology of the temperature and humidity sensing are applied to
-ensure that the product has high reliability and excellent stability.
+Der digitale Temperatur- und Feuchtigkeitssensor DHT11 ist ein zusammengesetzter Sensor, der einen kalibrierten digitalen Signalausgang von Temperatur und Feuchtigkeit enthält. Die Technologie einer spezialisierten digitalen Modulsammlung und die Technologie der Temperatur- und Feuchtigkeitserfassung werden angewendet, um sicherzustellen, dass das Produkt eine hohe Zuverlässigkeit und ausgezeichnete Stabilität aufweist.
 
-The sensors include a wet element resistive sensor and a NTC temperature
-sensor and they are connected to a high performance 8-bit
-microcontroller.
+Die Sensoren umfassen einen feuchten Widerstandssensor und einen NTC-Temperatursensor, die an einen leistungsfähigen 8-Bit-Mikrocontroller angeschlossen sind.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.2.3_dht-11.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -56,20 +50,19 @@ You can also buy them separately from the links below.
     *   - :ref:`humiture_sensor`
         - |link_humiture_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
 .. image:: ../img/image326.png
 
+Experimentelle Verfahren
+---------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie die Schaltung.
 
 .. image:: ../img/image207.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Wechseln Sie in das Verzeichnis des Codes.
 
 .. raw:: html
 
@@ -79,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.3/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -89,7 +82,7 @@ Experimental Procedures
 
     gcc 2.2.3_DHT.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -99,12 +92,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the program will print the temperature and humidity
-detected by DHT11 on the computer screen.
+Nachdem der Code ausgeführt wurde, zeigt das Programm die von DHT11 erfasste Temperatur und Feuchtigkeit auf dem Computerbildschirm an.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beachten Sie bitte :ref:`install_wiringpi`.
 
 **Code**
 
@@ -180,7 +172,7 @@ detected by DHT11 on the computer screen.
         return 0 ;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -193,11 +185,11 @@ detected by DHT11 on the computer screen.
         // ...
     }
 
-This function is used to realize the function of DHT11.
+Diese Funktion dient zur Implementierung der Funktion von DHT11.
 
-It generally can be divided into 3 parts:
+Sie kann im Allgemeinen in 3 Teile unterteilt werden:
 
-1. prepare to read the pin:
+1. Vorbereitung zum Auslesen des Pins:
 
 .. code-block:: c
 
@@ -211,16 +203,13 @@ It generally can be divided into 3 parts:
     // prepare to read the pin
     pinMode(dhtPin, INPUT);
 
-Its communication flow is determined by work timing.
+Der Kommunikationsfluss wird durch die Arbeitszeitsteuerung bestimmt.
 
 .. image:: ../img/image208.png
 
+Wenn DHT11 startet, sendet der MCU ein niedriges Signal und hält dann das Signal für 40us auf einem hohen Niveau. Danach beginnt die Erfassung des Zustands der Außenumgebung.
 
-When DHT11 starts up, MCU will send a low level signal and then keep the
-signal at high level for 40us. After that, the detection of the
-condition of external environment will start.
-
-2. read data:
+2. Daten auslesen:
 
 .. code-block:: c
 
@@ -246,16 +235,11 @@ condition of external environment will start.
             }
         }
 
-The loop stores the detected data in the dht11_dat[] array. DHT11
-transmits data of 40 bits at a time. The first 16 bits are related to
-humidity, the middle 16 bits are related to temperature, and the last
-eight bits are used for verification. The data format is:
+Die Schleife speichert die erkannten Daten im Array dht11_dat[]. DHT11 überträgt jedes Mal 40 Bits Daten. Die ersten 16 Bits betreffen die Feuchtigkeit, die mittleren 16 Bits die Temperatur und die letzten acht Bits dienen zur Überprüfung. Das Datenformat lautet:
 
-**8bit humidity integer data** + **8bit humidity decimal data** + **8bit
-temperature integer data** + **8bit temperature decimal data** + **8bit
-check bit**.
+**8bit Feuchtigkeits-Ganzzahldaten** + **8bit Feuchtigkeits-Nachkommadaten** + **8bit Temperatur-Ganzzahldaten** + **8bit Temperatur-Nachkommadaten** + **8bit Prüfbit**.
 
-3. Print Humidity & Temperature.
+3. Feuchtigkeit & Temperatur ausgeben.
 
 .. code-block:: c
 
@@ -268,28 +252,21 @@ check bit**.
                 dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
     }
 
-When the data storage is up to 40 bits, check the validity of the data
-through the **check bit (dht11_dat[4])**, and then print the temperature
-and humidity.
+Wenn die Datenspeicherung 40 Bits erreicht, überprüfen Sie die Gültigkeit der Daten über das **Prüfbit (dht11_dat[4])** und geben dann die Temperatur und Feuchtigkeit aus.
 
-For example, if the received data is 00101011(8-bit value of humidity
-integer) 00000000 (8-bit value of humidity decimal) 00111100 (8-bit
-value of temperature integer) 00000000 (8-bit value of temperature
-decimal) 01100111 (check bit)
+Zum Beispiel, wenn die empfangenen Daten 00101011 (8-Bit-Wert für Feuchtigkeitsganzzahl) 00000000 (8-Bit-Wert für Feuchtigkeitsnachkommastellen) 00111100 (8-Bit-Wert für Temperaturganzzahl) 00000000 (8-Bit-Wert für Temperaturnachkommastellen) 01100111 (Prüfbit) sind:
 
-**Calculation:**
+**Berechnung:**
 
 00101011+00000000+00111100+00000000=01100111.
 
-The final result is equal to the check bit data, then the received data
-is correct:
+Das Endergebnis entspricht den Prüfbitdaten, dann sind die empfangenen Daten korrekt:
 
-Humidity =43%，Temperature =60*C.
+Feuchtigkeit =43%，Temperatur =60*C.
 
-If it is not equal to the check bit data, the data transmission is not
-normal and the data is received again.
+Wenn es nicht den Prüfbitdaten entspricht, ist die Datenübertragung nicht normal und die Daten werden erneut empfangen.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image209.jpeg

@@ -1,42 +1,41 @@
 .. _1.2.1_js:
 
-1.2.1 Active Buzzer
+1.2.1 Aktiver Summer
 ====================
 
-Introduction
-------------
+Einführung
+----------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+In diesem Projekt lernen wir, wie man mit einem PNP-Transistor einen aktiven Summer zum Piepen bringt.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,28 +50,21 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+In diesem Versuch werden ein aktiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet, der zwischen der Basis des Transistors und GPIO geschaltet ist, um den Transistor zu schützen. Wenn der GPIO17-Ausgang des Raspberry Pi durch Programmierung mit niedrigem Pegel (0V) versorgt wird, wird der Transistor aufgrund von Stromsättigung leiten und der Summer wird Töne erzeugen. Wenn jedoch ein hoher Pegel an den IO des Raspberry Pi angelegt wird, wird der Transistor gesperrt und der Summer gibt keine Töne aus.
 
 .. image:: ../img/image332.png
 
+Experimentelle Verfahren
+------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Schritt 1:** Bauen Sie den Schaltkreis auf. (Der aktive Summer hat einen weißen Tischaufkleber auf der Oberfläche und eine schwarze Rückseite.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner mit dem Code.
 
 .. raw:: html
 
@@ -82,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run.
+**Schritt 3:** Ausführen.
 
 .. raw:: html
 
@@ -92,7 +84,7 @@ Experimental Procedures
 
     sudo node active_buzzer.js
 
-The code run, the buzzer beeps.
+Wenn der Code läuft, piept der Summer.
 
 **Code**
 
@@ -110,14 +102,14 @@ The code run, the buzzer beeps.
     process.exit();
   });
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
     const active = new Gpio(17,{mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, and instantiate an object active to control the IO port Gpio17, and the mode is set to output mode.
+Importieren Sie das Modul ``pigpio`` und erstellen Sie ein Objekt active, um den IO-Port Gpio17 zu steuern. Der Modus ist auf Ausgabe eingestellt.
 
 .. code-block:: js
 
@@ -125,8 +117,7 @@ Import the ``pigpio`` module, and instantiate an object active to control the IO
     active.digitalWrite(!active.digitalRead());
   }, 500);
 
-The active buzzer is similar to the LED in usage and can be controlled with ``digitalWrite()``, and ``digitalRead()`` is used to read the current pin level.
-Here we make the active buzzer change its working state every 500ms.
+Der aktive Summer funktioniert ähnlich wie die LED und kann mit ``digitalWrite()`` gesteuert werden. ``digitalRead()`` wird verwendet, um den aktuellen Pin-Zustand zu lesen. Hier wechselt der aktive Summer alle 500ms seinen Arbeitszustand.
 
 .. code-block:: js
 
@@ -136,11 +127,11 @@ Here we make the active buzzer change its working state every 500ms.
       process.exit()
   })
 
-Handle Ctrl+C, here is used to stop the buzzer sounding when exiting the program.
+Behandeln von Ctrl+C. Hier wird verwendet, um den Summer beim Beenden des Programms zu stoppen.
 
 `Process - NodeJS <https://nodejs.org/api/process.html>`_
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+---------------
 
 .. image:: ../img/image105.jpeg

@@ -1,23 +1,23 @@
 .. _speed_sensor:
 
-Speed Sensor Module
-========================
+Geschwindigkeitssensormodul
+===============================
 
 .. image:: img/speed_sensor1.png
     :width: 300
     :align: center
 
-The speed sensor consists of two parts: a transmitter and a receiver. The transmitter emits light, which then enters the receiver.
+Der Geschwindigkeitssensor besteht aus zwei Teilen: einem Sender und einem Empfänger. Der Sender emittiert Licht, das anschließend in den Empfänger eindringt.
 
-If the light beam between the emitter and receiver is interrupted by an obstacle, the receiver will not detect the incident light, then the D0 pin will output low level.
+Wird der Lichtstrahl zwischen Sender und Empfänger durch ein Hindernis unterbrochen, erkennt der Empfänger das einfallende Licht nicht, woraufhin der D0-Pin ein niedriges Signal ausgibt.
 
 .. note::
-    The A0 pin on this module is empty and there is no circuit.
+    Der A0-Pin auf diesem Modul ist leer und es gibt keinen Schaltkreis.
 
 .. image:: img/speed_sensor2.png
 
-**Example**
+**Beispiel**
 
-* :ref:`2.2.6_c` (C Project)
-* :ref:`2.2.6_py` (Python Project)
-* :ref:`1.7_scratch` (Scratch Project)
+* :ref:`2.2.6_c` (C-Projekt)
+* :ref:`2.2.6_py` (Python-Projekt)
+* :ref:`1.7_scratch` (Scratch-Projekt)

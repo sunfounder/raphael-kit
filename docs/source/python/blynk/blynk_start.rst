@@ -1,118 +1,112 @@
 .. _bk_start_py:
 
-Get Start with Blynk
+Mit Blynk beginnen
 =========================
 
-You will learn how to use Blynk in this project.
+In diesem Projekt erfahren Sie, wie Sie Blynk verwenden können.
 
-In the event that you trigger widgets on Blynk, your Raspberry Pi will print out their values.
+Wenn Sie Widgets in Blynk auslösen, wird Ihr Raspberry Pi deren Werte ausgeben.
 
-Follow the steps below, and note that you must do them in order and not skip any chapters.
+Befolgen Sie die untenstehenden Schritte und beachten Sie, dass Sie diese in der angegebenen Reihenfolge ausführen und kein Kapitel überspringen sollten.
 
 
 
-1. Configuring the Blynk
+1. Blynk konfigurieren
 --------------------------
 
-
-
-1. Go to the `BLYNK <https://blynk.io/>`_ and click **START FREE**. 
+1. Besuchen Sie die `BLYNK <https://blynk.io/>`_ Webseite und klicken Sie auf **START FREE**.
 
     .. image:: img/sp220607_142551.png
 
-#. Fill in your email address to register an account.
+#. Geben Sie Ihre E-Mail-Adresse ein, um ein Konto zu registrieren.
 
     .. image:: img/sp220607_142807.png
 
-#. Go to your email address to complete your account registration.
+#. Überprüfen Sie Ihre E-Mail, um die Konto-Registrierung abzuschließen.
 
     .. image:: img/sp220607_142936.png
 
-#. Afterwards, **Blynk Tour** will appear and you can read it to learn the basic information about the Blynk.
+#. Anschließend erscheint der **Blynk Tour**. Sie können diesen lesen, um grundlegende Informationen über Blynk zu erfahren.
 
     .. image:: img/sp220607_143244.png
 
-#. Next we need to create a template and device, click **Cancel**.
+#. Als Nächstes müssen wir eine Vorlage und ein Gerät erstellen. Klicken Sie auf **Cancel**.
 
     .. image:: img/sp220607_143608.png
 
-#. Go to Template from the navigation bar.
+#. Gehen Sie zur Vorlage in der Navigationsleiste.
 
     .. image:: img/sp220913_170029.png
 
-#. Create New Template
+#. Neue Vorlage erstellen.
 
     .. image:: img/sp220913_170206.png
 
-
-#. Fill in **NAME**, feel free to do so; **HARDWARE** should be **Raspberry Pi**. Then **Done**.
+#. Füllen Sie das Feld **NAME** aus, wie Sie möchten; bei **HARDWARE** sollte **Raspberry Pi** ausgewählt werden. Klicken Sie anschließend auf **Done**.
 
     .. image:: img/sp220913_170402.png
 
-
-#. You will be redirected to the Info page, just click on save in the top right corner.
+#. Sie werden zur Informationsseite weitergeleitet, klicken Sie oben rechts einfach auf Speichern.
 
     .. image:: img/sp220913_171202.png
 
-#. Go to **Search** page from the navigation bar.
+#. Gehen Sie zur **Search**-Seite über die Navigationsleiste.
 
     .. image:: img/sp220913_172727.png
 
-#. Create New Device.
+#. Neues Gerät erstellen.
 
     .. image:: img/sp220913_173259.png
 
-#. From template.
+#. Aus Vorlage.
 
     .. image:: img/sp220913_173350.png
 
-#. Select **TEMPLATE** as the one you just set, **DEVICE NAME** can be customized. Then click Create.
+#. Wählen Sie bei **TEMPLATE** die von Ihnen erstellte aus, den **DEVICE NAME** können Sie individuell festlegen. Dann auf Erstellen klicken.
 
     .. image:: img/sp220913_173507.png
 
-
-#. You should now see a page like this one, which means that your initial Blynk setup is complete.
+#. Wenn Sie eine Seite wie diese sehen, bedeutet das, dass Ihre erste Blynk-Einrichtung abgeschlossen ist.
 
     .. image:: img/sp220913_173950.png
 
 
-2. Edit Dashboard
+2. Dashboard bearbeiten
 --------------------------------
 
-
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Klicken Sie auf das Menü-Symbol oben rechts und wählen Sie Dashboard bearbeiten.
 
     .. image:: img/sp220913_180231.png
 
-#. Then drag any CONTROL Widgets you want onto the Dashboard. I dragged a Switch and a Slider.
+#. Ziehen Sie anschließend beliebige CONTROL Widgets, die Sie möchten, auf das Dashboard. Ich habe einen Schalter und einen Schieberegler hinzugefügt.
 
     .. image:: img/sp220913_180725.png
 
-#. Tap the setting icon on the widget.
+#. Tippen Sie auf das Einstellungssymbol des Widgets.
 
     .. image:: img/sp220913_180806.png
 
-#. Create Datastream, select Virtual Pin。
+#. Datenstrom erstellen, wählen Sie Virtual Pin.
 
     .. image:: img/sp220913_180906.png
 
-#. Complete the datastream setup. Here is the datastream created for Switch, so **DATA TYPE** select ``Interger``, **MIN** and **MAX** set to ``0`` and ``1``. Create and then Save.
+#. Schließen Sie die Datenstromeinrichtung ab. Hier wurde der Datenstrom für den Schalter erstellt, daher wählen Sie bei **DATA TYPE** ``Interger``, **MIN** und **MAX** auf ``0`` und ``1`` einstellen. Erstellen und dann speichern.
 
     .. image:: img/sp220913_181113.png
 
-#. Use the same steps to create a Datastream for the slider widget, and again, modify **DATA TYPE**, **MIN** and **MAX** to what you need.
+#. Verwenden Sie die gleichen Schritte, um einen Datenstrom für das Schieberegler-Widget zu erstellen und ändern Sie erneut **DATA TYPE**, **MIN** und **MAX** nach Ihren Bedürfnissen.
 
     .. image:: img/sp220913_182042.png
 
-#. When finished, click Save And Apply at the top right.
+#. Wenn Sie fertig sind, klicken Sie oben rechts auf Speichern und Anwenden.
 
     .. image:: img/sp220913_182300.png
 
 
-3. Install the Blynk library
-------------------------------
+3. Die Blynk-Bibliothek installieren
+---------------------------------------
 
-Run the following command to install.
+Führen Sie den folgenden Befehl zur Installation aus.
 
 .. raw:: html
 
@@ -125,11 +119,10 @@ Run the following command to install.
     cd blynk-library-python
     sudo python3 setup.py
 
-4. Download the Example
------------------------
+4. Das Beispiel herunterladen
+---------------------------------
 
-
-We have provided some examples, please run the following command to download them.
+Wir haben einige Beispiele bereitgestellt. Bitte führen Sie den folgenden Befehl aus, um sie herunterzuladen.
 
 .. raw:: html
 
@@ -141,16 +134,14 @@ We have provided some examples, please run the following command to download the
     git clone https://github.com/sunfounder/blynk-raspberrypi-python.git
 
 
-5. Run the Code
------------------
+5. Den Code ausführen
+---------------------------
 
-
-
-1. Go to Blynk's Device Info page, you will see some information under **FIRMWARE CONFIGURATION**, you need to copy **BLYNK_AUTH_TOKEN** down.
+1. Gehen Sie zur Geräte-Info-Seite von Blynk. Unter **FIRMWARE CONFIGURATION** sehen Sie einige Informationen. Sie müssen den **BLYNK_AUTH_TOKEN** kopieren.
 
     .. image:: img/sp220913_182456.png
 
-2. Edit the code.
+2. Bearbeiten Sie den Code.
 
 .. raw:: html
 
@@ -161,13 +152,13 @@ We have provided some examples, please run the following command to download the
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_start.py
 
-3. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+3. Suchen Sie die untenstehende Zeile und fügen Sie Ihren ``BLYNK_AUTH_TOKEN`` ein.
 
 .. code-block:: 
 
     BLYNK_AUTH = 'YourAuthToken'
 
-4. Run the code.
+4. Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -177,11 +168,11 @@ We have provided some examples, please run the following command to download the
 
     sudo python3 blynk_start.py
 
-5. Go to Blynk, and operate the widget on Dashboard.
+5. Öffnen Sie Blynk und bedienen Sie das Widget im Dashboard.
 
     .. image:: img/sp220913_183529.png
 
-6. Now you will be able to see your actions on the terminal.
+6. Jetzt können Sie Ihre Aktionen im Terminal sehen.
 
 .. code-block:: 
 
@@ -199,10 +190,3 @@ We have provided some examples, please run the following command to download the
     V1 value: ['3']
     V1 value: ['8']
     V0 value: ['1']
-
-
-
-
-
-
-

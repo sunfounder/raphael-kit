@@ -1,42 +1,42 @@
 .. _1.4_scratch:
 
-1.4 Hare
+1.4 Hase
 ==============
 
-Today, we will use Button, Raspberry Pi and Scratch to create a hare with various changes!
+Heute werden wir mit Hilfe von Button, Raspberry Pi und Scratch einen Hasen erstellen, der verschiedene Veränderungen zeigt!
 
-When we press the first button, the hare in the stage area will change its body color; when we press the second button, the hare will change its body size; when we press the third button, the hare will take a step forward.
+Wenn wir den ersten Button drücken, ändert der Hase in der Bühnenzone seine Körperfarbe; beim Drücken des zweiten Buttons ändert der Hase seine Körpergröße; und beim Drücken des dritten Buttons macht der Hase einen Schritt nach vorne.
 
 .. image:: img/1.4_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.4_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die folgenden Links erwerben.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,53 +49,51 @@ You can also buy them separately from the links below.
     *   - :ref:`button`
         - |link_button_buy|
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.4_scratch_button.png
 
-Load the Code and See What Happens
------------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+------------------------------------------------
 
-Load the code file (``1.4_hare.sb3``) into Scratch 3.
+Laden Sie die Code-Datei (``1.4_hare.sb3``) in Scratch 3.
 
-Now you can try to press each of the 3 buttons to see how the Hare on the stage will change.
+Jetzt können Sie versuchen, jeden der 3 Buttons zu drücken und zu sehen, wie sich der Hase auf der Bühne verändert.
 
+Tipps zu Sprite
+-------------------
 
-Tips on Sprite
-----------------
-
-Click the **Choose a Sprite** button in the lower right corner of the sprite area, enter **Hare** in the search box, and then click to add it.
+Klicken Sie auf die Schaltfläche **Choose a Sprite** in der unteren rechten Ecke des Sprite-Bereichs, geben Sie **Hare** in das Suchfeld ein und klicken Sie dann, um es hinzuzufügen.
 
 .. image:: img/1.4_button1.png
 
-Delete Sprite1.
+Löschen Sie Sprite1.
 
 .. image:: img/1.4_button2.png
 
-
-Tips on Codes
---------------
+Tipps zu Codes
+-----------------
 
 .. image:: img/1.4_button3.png
   :width: 400
 
-This is an event block that is triggered when the level of GPIO17 is high, which means that the button is pressed at that moment.
+Dies ist ein Ereignisblock, der ausgelöst wird, wenn das Level von GPIO17 hoch ist, was bedeutet, dass der Button in diesem Moment gedrückt wird.
 
 .. image:: img/1.4_button4.png
   :width: 400
 
-This is a block to change the color of **Hare**, the range of the value is 0 ~ 199, beyond 199 will change from 0 again.
+Dieser Block ändert die Farbe von **Hare**. Der Wertebereich liegt zwischen 0 und 199; über 199 beginnt er wieder bei 0.
 
 .. image:: img/1.4_button5.png
   :width: 250
 
-This is a block used to change the size for sprite, the higher the value, the larger the sprite.
+Mit diesem Block wird die Größe des Sprites geändert; je höher der Wert, desto größer der Sprite.
 
 .. note::
-  The sprite is also not infinitely large, and its maximum size is related to the original image size.
+  Der Sprite ist auch nicht unendlich groß, und seine maximale Größe hängt von der ursprünglichen Bildgröße ab.
 
 .. image:: img/1.4_button6.png
   :width: 200
 
-This is a block that switches sprite costumes, and when **Hare**'s costume keeps switching, it does a series of coherent actions. For example, in this project, make **Hare** take a step forward.
+Dieser Block wechselt die Kostüme des Sprites. Wenn das Kostüm von **Hare** kontinuierlich wechselt, führt es eine Reihe kohärenter Aktionen aus. Zum Beispiel, in diesem Projekt, lässt es **Hare** einen Schritt nach vorne machen.

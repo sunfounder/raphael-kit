@@ -1,25 +1,25 @@
 .. _remote_desktop:
 
-Remote Desktop 
+Remote Desktop
 =====================
 
-There are two ways to control the desktop of the Raspberry Pi remotely:
+Es gibt zwei Möglichkeiten, den Desktop des Raspberry Pi aus der Ferne zu steuern:
 
-**VNC** and **XRDP**, you can use any of them.
+**VNC** und **XRDP**. Sie können beide verwenden.
 
 VNC 
 --------------
 
-You can use the function of remote desktop through VNC.
+Sie können die Funktion des Remote-Desktops über VNC nutzen.
 
-**Enable VNC service**
+**VNC-Dienst aktivieren**
 
-The VNC service has been installed in the system. By default, VNC is
-disabled. You need to enable it in config.
+Der VNC-Dienst ist im System bereits installiert. Standardmäßig ist VNC
+deaktiviert. Sie müssen es in der Konfiguration aktivieren.
 
-**Step 1**
+**Schritt 1**
 
-Input the following command:
+Geben Sie den folgenden Befehl ein:
 
 .. raw:: html
 
@@ -32,87 +32,86 @@ Input the following command:
 .. image:: img/image287.png
    :align: center
 
-**Step 2**
+**Schritt 2**
 
-Choose **3** **Interfacing Options** by press the down arrow key on your
-keyboard, then press the **Enter** key.
+Wählen Sie mit der Pfeiltaste nach unten auf Ihrer
+Tastatur **3** **Interfacing Options** und drücken Sie die **Enter**.
 
 .. image:: img/image282.png
    :align: center
 
-**Step 3**
+**Schritt 3**
 
 **P3 VNC**
 
 .. image:: img/image288.png
    :align: center
 
-**Step 4**
+**Schritt 4**
 
-Select **Yes -> OK -> Finish** to exit the configuration.
+Wählen Sie **Yes -> OK -> Finish**, um die Konfiguration zu beenden.
 
 .. image:: img/image289.png
    :align: center
 
-**Login to VNC**
+**In VNC anmelden**
 
-**Step 1**
+**Schritt 1**
 
-You need to download and install the `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ on personal computer. After the installation is done, open it.
+Sie müssen den `VNC Viewer <https://www.realvnc.com/de/connect/download/viewer/>`_ auf Ihrem Computer herunterladen und installieren. Nach der Installation öffnen Sie diesen.
 
-**Step 2**
+**Schritt 2**
 
-Then select \"**New connection**\".
+Wählen Sie dann \"**New connection**\".
 
 .. image:: img/image290.png
    :align: center
 
-**Step 3**
+**Schritt 3**
 
-Input IP address of Raspberry Pi and any **Name**.
+Geben Sie die IP-Adresse des Raspberry Pi und einen beliebigen **Name** ein.
 
 .. image:: img/image291.png
    :align: center
 
-**Step 4**
+**Schritt 4**
 
-Double click the **connection** just created:
+Doppelklicken Sie auf die gerade erstellte **Verbindung**:
 
 .. image:: img/image292.png
    :align: center
 
-**Step 5**
+**Schritt 5**
 
-Enter Username (**pi**) and Password (**raspberry** by default).
+Geben Sie den Benutzernamen (**pi**) und das Passwort (standardmäßig **raspberry**) ein.
 
 .. image:: img/image293.png
    :align: center
 
-**Step 6**
+**Schritt 6**
 
-Now you can see the desktop of the Raspberry Pi:
+Jetzt können Sie den Desktop des Raspberry Pi sehen:
 
 .. image:: img/image294.png
    :align: center
 
-That's the end of the VNC part.
+Das ist das Ende des VNC-Teils.
 
 
 XRDP
 -----------------------
 
-Another method of remote desktop is XRDP, it provides a graphical login to remote machines using RDP (Microsoft
-Remote Desktop Protocol).
+Eine weitere Methode für den Remote-Desktop-Zugriff ist XRDP. Es bietet einen grafischen Login zu entfernten Maschinen über RDP (Microsoft Remote Desktop Protocol).
 
-**Install XRDP**
+**XRDP installieren**
 
-**Step 1**
+**Schritt 1**
 
-Login to Raspberry Pi by using SSH.
+Melden Sie sich über SSH am Raspberry Pi an.
 
-**Step 2**
+**Schritt 2**
 
-Input the following instructions to install XRDP.
+Geben Sie die folgenden Befehle ein, um XRDP zu installieren.
 
 .. raw:: html
 
@@ -123,62 +122,45 @@ Input the following instructions to install XRDP.
    sudo apt-get update
    sudo apt-get install xrdp
 
-**Step 3**
+**Schritt 3**
 
-Later, the installation starts.
-
-Enter \"Y\", press key \"Enter\" to confirm.
+Nachdem die Installation gestartet wurde, bestätigen Sie mit "Y" und drücken Sie die "Enter"-Taste.
 
 .. image:: img/image295.png
    :align: center
 
-**Step 4**
+**Schritt 4**
 
-Finished the installation, you should login to your Raspberry Pi by
-using Windows remote desktop applications.
+Nach der Installation melden Sie sich über Windows Remote-Desktop-Anwendungen an Ihrem Raspberry Pi an.
 
-**Login to XRDP**
+**Anmeldung bei XRDP**
 
-**Step 1**
+**Schritt 1**
 
-If you are a Windows user, you can use the Remote Desktop feature that
-comes with Windows. If you are a Mac user, you can download and use
-Microsoft Remote Desktop from the APP Store, and there is not much
-difference between the two. The next example is Windows remote desktop.
+Wenn Sie ein Windows-Benutzer sind, können Sie die Remote-Desktop-Funktion nutzen, die bei Windows dabei ist. Mac-Benutzer können Microsoft Remote Desktop aus dem APP Store herunterladen. Es gibt nicht viele Unterschiede zwischen den beiden. Das folgende Beispiel zeigt den Windows Remote-Desktop.
 
-**Step 2**
+**Schritt 2**
 
-Type in \"**mstsc**\" in Run (WIN+R) to open the Remote Desktop
-Connection, and input the IP address of Raspberry Pi, then click on
-\"Connect\".
+Geben Sie \"**mstsc**\" in Ausführen (WIN+R) ein, um die Remote-Desktop-Verbindung zu öffnen, tragen Sie die IP-Adresse des Raspberry Pi ein und klicken Sie auf "Verbinden".
 
 .. image:: img/image296.png
    :align: center
 
-**Step 3**
+**Schritt 3**
 
-Then the xrdp login page pops out. Please type in your username and
-password. After that, please click \"OK\". At the first time you log in,
-your username is \"pi\" and the password is \"raspberry\".
+Das XRDP-Anmeldefenster erscheint. Bitte geben Sie Ihren Benutzernamen und Ihr Passwort ein. Klicken Sie dann auf "OK". Beim ersten Login ist Ihr Benutzername "pi" und das Passwort "raspberry".
 
 .. image:: img/image297.png
    :align: center
 
-**Step 4**
+**Schritt 4**
 
-Here, you successfully login to RPi by using the remote desktop.
+Hier haben Sie erfolgreich den RPi über den Remote-Desktop angemeldet.
 
 .. image:: img/image20.png
    :align: center
 
-**Copyright Notice**
+**Urheberrechtshinweis**
 
-All contents including but not limited to texts, images, and code in
-this manual are owned by the SunFounder Company. You should only use it
-for personal study, investigation, enjoyment, or other non-commercial or
-nonprofit purposes, under the related regulations and copyrights laws,
-without infringing the legal rights of the author and relevant right
-holders. For any individual or organization that uses these for
-commercial profit without permission, the Company reserves the right to
-take legal action.
+Alle Inhalte, einschließlich, aber nicht beschränkt auf Texte, Bilder und Code in diesem Handbuch gehören dem SunFounder Unternehmen. Sie dürfen sie nur für persönliches Lernen, Forschung, Freizeit oder andere nicht-kommerzielle oder gemeinnützige Zwecke nutzen, unter Beachtung der entsprechenden Vorschriften und Urheberrechtsgesetze, ohne die rechtlichen Rechte des Autors und der relevanten Rechteinhaber zu verletzen. Für jede Person oder Organisation, die diese ohne Erlaubnis für kommerzielle Gewinne nutzt, behält sich das Unternehmen das Recht vor, rechtliche Schritte einzuleiten.
 

@@ -1,42 +1,41 @@
 .. _2.1.8_py:
 
-2.1.8 Keypad
-============
+2.1.8 Tastenfeld
+================
 
-Introduction
-------------
+Einführung
+-----------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Ein Tastenfeld ist ein rechteckiges Array von Tasten. In diesem Projekt werden wir es verwenden, um Zeichen einzugeben.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,23 +48,21 @@ You can also buy them separately from the links below.
     *   - :ref:`keypad`
         - \-
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image315.png
 
-
 .. image:: ../img/image316.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Schritt 2:** Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -75,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Schritt 3:** Ausführen.
 
 .. raw:: html
 
@@ -85,15 +82,13 @@ Experimental Procedures
 
     sudo python3 2.1.8_Keypad.py
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Nachdem der Code ausgeführt wurde, werden die Werte der gedrückten Tasten auf dem Tastenfeld (Tastenwert) auf dem Bildschirm angezeigt.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuerst müssen Sie zum Quellcode-Pfad gehen, wie z.B. ``raphael-kit/python``. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 .. raw:: html
 
@@ -158,7 +153,7 @@ Value) will be printed on the screen.
         except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -173,8 +168,7 @@ Value) will be printed on the screen.
         keypad = Keypad(rowsPins, colsPins, keys)
         last_key_pressed = []
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Jede Taste der Matrix-Tastatur wird im Array keys[] deklariert und die Pins für jede Reihe und Spalte festgelegt.
 
 .. code-block:: python
 
@@ -186,23 +180,16 @@ the pins on each row and column.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-This is the part of the main function that reads and prints the button
-value.
+Dies ist der Teil der Hauptfunktion, der den Tastenwert liest und ausgibt.
 
-The function ``keyRead()`` will read the state of every button.
+Die Funktion ``keyRead()`` liest den Zustand jeder Taste.
 
-The statement ``if len(pressed_keys) != 0`` and ``last_key_pressed !=
-pressed_keys`` is used to judge
+Die Anweisungen ``if len(pressed_keys) != 0`` und ``last_key_pressed !=
+pressed_keys`` dienen dazu, zu überprüfen, ob eine Taste gedrückt wurde und welcher Zustand die gedrückte Taste hat. (Wenn Sie '3' drücken, während Sie '1' drücken, ist das Urteil zutreffend.)
 
-whether a key is pressed and the state of the pressed button. (If you
-press \'3\' when you press \'1\', the judgement is tenable.)
+Gibt den Wert der aktuell gedrückten Taste aus, wenn die Bedingung erfüllt ist.
 
-Prints the value of the currently pressed key when the condition is
-tenable.
-
-The statement ``last_key_pressed = pressed_keys`` assigns the state of each
-judgment to an array ``last_key_pressed`` to facilitate the next round of
-conditional judgment.
+Die Anweisung ``last_key_pressed = pressed_keys`` weist den Zustand jeder Überprüfung dem Array ``last_key_pressed`` zu, um die nächste Runde der Bedingungsüberprüfung zu erleichtern.
 
 .. code-block:: python
 
@@ -217,33 +204,25 @@ conditional judgment.
                 GPIO.output(row, GPIO.LOW)
             return pressed_keys
 
-This function assigns a high level to each row in turn, and when the
-button in the column is pressed, the column in which the key is located
-gets a high level. After the two-layer loop is judged, the value of the
-button whose state is 1 is stored in the array ``pressed_keys``.
+Diese Funktion weist jeder Reihe nacheinander ein hohes Niveau zu und wenn die Taste in der Spalte gedrückt wird, erhält die Spalte, in der sich die Taste befindet, ein hohes Niveau. Nachdem die zweilagige Schleife geprüft wurde, wird der Wert der Taste, deren Zustand 1 ist, im Array ``pressed_keys`` gespeichert.
 
-If you press the key '3':
+Wenn Sie die Taste '3' drücken:
 
 .. image:: ../img/image187.png
 
+rowPins[0] erhält ein hohes Niveau und colPins[2] ein hohes Niveau.
 
-rowPins[0] is written in high level, and colPins[2] gets high level.
+colPins[0], colPins[1], colPins[3] erhalten ein niedriges Niveau.
 
-colPins[0]、colPins[1]、colPins[3] get low level.
+Es gibt vier Zustände: 0, 0, 1, 0; und wir schreiben '3' in ``pressed_keys``.
 
-There are four states: 0, 0, 1, 0; and we write \'3\' into ``pressed_keys``.
+Wenn rowPins[1], rowPins[2], rowPins[3] ein hohes Niveau erhalten, erhalten colPins[0] bis colPins[4] ein niedriges Niveau.
 
-When rowPins[1] , rowPins[2] , rowPins[3] are written into high level,
-colPins[0] ~ colPins[4] get low level.
+Die Schleife wird gestoppt, es gibt ``pressed_keys = '3'`` zurück.
 
-The loop stopped, there returns ``pressed_keys = ‘3’``.
+Wenn Sie die Tasten '1' und '3' drücken, wird pressed_keys = ['1','3'] zurückgegeben.
 
-If you press the buttons ‘1’ and ‘3’, there will return pressed_keys =
-[‘1’,’3’].
-
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image188.jpeg
-
-

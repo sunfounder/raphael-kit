@@ -1,37 +1,37 @@
 .. _clickable_color_blocks:
 
-Clickable Color Blocks
+Klickbare Farbblöcke
 =======================
 
-We've already tried drawing a clickable dot to control the LED, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
+Wir haben bereits versucht, einen klickbaren Punkt zu zeichnen, um die LED zu steuern. Gehen wir einen Schritt weiter und zeichnen 3 farbige Quadrate, um die RGB-Farben anzupassen!
 
 .. image:: img/colorful_square.png
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -42,11 +42,11 @@ You can also buy them separately from the links below.
     *   - :ref:`rgb_led`
         - |link_rgb_led_buy|
 
-**Wiring**
+**Verdrahtung**
 
 .. image:: img/image61.png
 
-**Sketch**
+**Skizze**
 
 .. code-block:: arduino
 
@@ -86,14 +86,13 @@ You can also buy them separately from the links below.
         }        
     }
 
+**Wie funktioniert das?**
 
-**How it works?**
+Dieses Projekt hat viele Gemeinsamkeiten mit :ref:`clickable_dot`, außer dass es die Bedingungen zur Bestimmung des Mausklick-Ereignisses verfeinert.
 
-This project has a lot in common with :ref:`clickable_dot`, except that it refines the conditions for determining mouse click event.
+Zuerst werden in ``draw()`` drei Farbblöcke gezeichnet, dann wird basierend auf dem Wert von mouseX (der X-Koordinate der Maus) ermittelt, welcher Farbblock angeklickt wurde, und schließlich leuchtet RGB in der entsprechenden Farbe auf.
 
-First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
+**Was noch?**
 
-**What more?**
-
-Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
-Now you can try it out for yourself.
+Basierend auf der Lichtzusatz können wir die RGB-LED sieben Farben anzeigen lassen - Rot zu Grün ergibt Gelb; alle drei Grundfarben zusammen ergeben Weiß.
+Jetzt können Sie es selbst ausprobieren.

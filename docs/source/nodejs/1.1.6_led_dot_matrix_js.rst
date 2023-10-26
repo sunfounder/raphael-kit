@@ -1,41 +1,41 @@
 .. _1.1.6_js:
 
-1.1.6 LED Dot Matrix Module
+1.1.6 LED-Punkt-Matrix-Modul
 ==================================
 
-Introduction
+Einführung
 --------------------
 
-In this project, you will learn about LED Matrix Module. LED Matrix Module uses the MAX7219 driver to drive the 8 x 8 LED Matrix.
+In diesem Projekt werden Sie das LED-Punkt-Matrix-Modul kennenlernen. Das LED-Punkt-Matrix-Modul verwendet den MAX7219-Treiber, um die 8 x 8 LED-Matrix anzusteuern.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_dot.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -46,7 +46,7 @@ You can also buy them separately from the links below.
     *   - :ref:`dot_matrix`
         - |link_led_matrix_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== ====
@@ -58,19 +58,19 @@ SPISCLK      Pin 23   14       SCLK
 
 .. image:: ../img/schematic_dot.png
 
-Experimental Procedures
+Experimentelle Verfahren
 ----------------------------
 
-**Step 1:** Build the circuit. 
+**Schritt 1:** Schalten Sie den Stromkreis.
 
 .. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. 
+    Schalten Sie das SPI vor Beginn des Experiments ein, Einzelheiten finden Sie unter :ref:`spi_configuration`.
 
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -80,7 +80,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Install dependencies.
+**Schritt 3:** Installieren Sie die Abhängigkeiten.
 
 .. raw:: html
 
@@ -90,7 +90,7 @@ Experimental Procedures
 
     sudo npm install spi-device
 
-**Step 4:** Run the code.
+**Schritt 4:** Starten Sie den Code.
 
 .. raw:: html
 
@@ -100,7 +100,7 @@ Experimental Procedures
 
     sudo node max7219_led_matrix.js 
 
-After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in sequence.
+Nachdem der Code ausgeführt wurde, zeigt die LED-Punkt-Matrix nacheinander Zahlen von 0 bis 9 und Buchstaben von A bis Z an.
 
 
 **Code**
@@ -201,16 +201,16 @@ After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in se
     }
     main(); 
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
     const spi = require('spi-device');
 
-Import the modules needed for spi communication.
+Importieren Sie die für die SPI-Kommunikation benötigten Module.
 
 .. note::
-    When you have multiple devices that need spi communication, just connect the cs pins to different pins.
+    Wenn Sie mehrere Geräte haben, die eine SPI-Kommunikation benötigen, schließen Sie einfach die CS-Pins an verschiedene Pins an.
 
 .. code-block:: js
 
@@ -243,18 +243,18 @@ Import the modules needed for spi communication.
             })
         }
 
-Implement a ``MAX7219_LED_MATRIX`` class, and the ``write()`` function encapsulated in it can light up the matrix.
+Implementieren Sie eine ``MAX7219_LED_MATRIX`` Klasse. Die darin gekapselte ``write()`` Funktion kann die Matrix beleuchten.
 
 .. note::
-    The ``async`` keyword is used to modify the function and is usually matched with the ``await`` keyword. The statement modified by the ``await`` keyword needs to wait for the previous code to finish running before executing, achieving the effect of synchronous blocking.
+    Das Schlüsselwort ``async`` wird verwendet, um die Funktion zu modifizieren und wird normalerweise mit dem Schlüsselwort ``await`` abgeglichen. Die durch das Schlüsselwort ``await`` modifizierte Anweisung muss warten, bis der vorherige Code ausgeführt wurde, bevor sie ausgeführt wird, und erreicht den Effekt der synchronen Blockierung.
 
-* `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
+* `Asynchrone Funktion <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
 
 .. code-block:: js
 
     lm = new MAX7219_LED_MATRIX(0, 0);
 
-Instantiate an object lm of the ``MAX7219_LED_MATRIX`` class, so that we can call the encapsulated ``write()`` function inside.
+Erzeugen Sie ein Objekt lm der Klasse ``MAX7219_LED_MATRIX``, damit wir die darin gekapselte ``write()`` Funktion aufrufen können.
 
 .. code-block:: js
 
@@ -267,24 +267,23 @@ Instantiate an object lm of the ``MAX7219_LED_MATRIX`` class, so that we can cal
         }
     }
 
-The ``write(row,date)`` function allows you to display specified characters on the LED dot matrix,
-The first parameter selects the row of the LED Matrix (8 rows in total),
-The second parameter enters an 8-bit binary number to control the 8 LEDs of the row (0 means off, 1 means on).
+Die Funktion ``write(row,date)`` ermöglicht es Ihnen, bestimmte Zeichen auf der LED-Punkt-Matrix anzuzeigen.
+Das erste Parameter wählt die Zeile der LED-Matrix aus (insgesamt 8 Zeilen),
+Das zweite Parameter gibt eine 8-Bit-Binärzahl ein, um die 8 LEDs der Zeile zu steuern (0 bedeutet aus, 1 bedeutet an).
 
+Die Variable ``j`` wird verwendet, um das Glyph auszuwählen, welches ``DISP[]`` ist. Es gibt insgesamt 35 Glyphen, 0~9 und A~Z.
 
-The variable ``j`` is used to select the glyph, which is ``DISP[]`` . There are a total of 35 glyphs, 0~9 and A~Z.
+Zum Beispiel, wenn j=1, sollte die LED-Matrix das Bild **1** anzeigen.
 
-For example, when j=1, the LED Maxtrix should display the image **1** .
+Die Variable ``i`` wird verwendet, um die 8 Daten im ``DISP[]`` Glyph nacheinander in die LED-Matrix zu schreiben. Nach Abschluss der Schleife kann eine 8x8-Grafik erzeugt werden.
 
-The variable ``i`` is used to write the 8 data in the ``DISP[]`` glyph into the LED Matrix in turn. After the loop is completed, an 8x8 graphic can be generated.
-
-For example, when j=1, i=1, the data of ``DISP[1][1]`` will be written here, that is, ``0x18``,
-This will cause the second row of the LED Maxtrix to display the image ``00011000``.
+Zum Beispiel, wenn j=1, i=1, werden die Daten von ``DISP[1][1]`` hier geschrieben, d.h. ``0x18``,
+Das führt dazu, dass die zweite Zeile der LED-Matrix das Bild ``00011000`` anzeigt.
 
 .. image:: ../img/led_not.png
     :width: 400
 
-Phenomenon Picture
+Phänomen-Bild
 -----------------------
 
 .. image:: ../img/1.1.6led_dot_matrix.JPG

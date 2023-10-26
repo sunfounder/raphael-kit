@@ -1,42 +1,41 @@
 .. _2.1.1_py:
 
-2.1.1 Button
+2.1.1 Knopf
 ===============
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+In diesem Projekt lernen wir, wie wir mit einem Knopf die LED ein- oder ausschalten können.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.1.1_Button.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,34 +50,26 @@ You can also buy them separately from the links below.
     *   - :ref:`button`
         - |link_button_buy|
 
-Schematic Diagram
+Schaltplan
 ---------------------
 
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+Verwenden Sie einen normalerweise offenen Knopf als Eingang für den Raspberry Pi, die Verbindung wird im untenstehenden Schaltbild gezeigt. Wenn der Knopf gedrückt wird, wird GPIO18 auf ein niedriges Niveau (0V) wechseln. Durch Programmierung können wir den Zustand von GPIO18 erkennen. Das heißt, wenn GPIO18 auf ein niedriges Niveau wechselt, bedeutet dies, dass der Knopf gedrückt wurde. Sie können den entsprechenden Code ausführen, wenn der Knopf gedrückt wird, und dann wird die LED aufleuchten.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    Der längere Pin der LED ist die Anode und der kürzere ist die Kathode.
 
 .. image:: ../img/image302.png
 
-
 .. image:: ../img/image303.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
----------------------------
-
-**Step 1**: Build the circuit.
+**Schritt 1**: Schalten Sie den Stromkreis.
 
 .. image:: ../img/image152.png
 
-**Step 2**: Open the code file.
+**Schritt 2**: Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -88,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run the code.
+**Schritt 3**: Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -98,15 +89,13 @@ Experimental Procedures
 
     sudo python3 2.1.1_Button.py
 
-Now, press the button, and the LED will light up; press the button
-again, and the LED will go out. At the same time, the state of the LED
-will be printed on the screen.
+Jetzt drücken Sie den Knopf, und die LED wird aufleuchten; drücken Sie den Knopf erneut, und die LED wird erlöschen. Gleichzeitig wird der Zustand der LED auf dem Bildschirm angezeigt.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. Nach der Modifikation können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 
 .. raw:: html
@@ -173,27 +162,25 @@ will be printed on the screen.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     LedPin = 17
 
-Set GPIO17 as LED pin
+Setze GPIO17 als LED-Pin.
 
 .. code-block:: python
 
     BtnPin = 18
 
-Set GPIO18 as button pin
+Setze GPIO18 als Tasten-Pin.
 
 .. code-block:: python
 
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=swLed)
 
-Set up a falling detect on BtnPin, and then when the value of BtnPin
-changes from a high level to a low level, it means that the button is
-pressed. The next step is calling the function, swled.
+Richte eine fallende Erkennung am BtnPin ein. Wenn der Wert von BtnPin von einem hohen auf ein niedriges Niveau wechselt, bedeutet dies, dass die Taste gedrückt wird. Der nächste Schritt ist der Aufruf der Funktion swled.
 
 .. code-block:: python
 
@@ -203,14 +190,10 @@ pressed. The next step is calling the function, swled.
     Led_status = not Led_status
     GPIO.output(LedPin, Led_status)
 
-Define a callback function as button callback. When the button is
-pressed at the first time，and the condition, not Led_status is false,
-GPIO.output() function is called to light up the LED. As the button is
-pressed once again, the state of LED will be converted from false to
-true, thus the LED will turn off.
+Definiere eine Rückruffunktion als Tasten-Rückruf. Wenn die Taste das erste Mal gedrückt wird und die Bedingung, not Led_status, falsch ist, wird die Funktion GPIO.output() aufgerufen, um die LED zu beleuchten. Wenn die Taste erneut gedrückt wird, ändert sich der Zustand der LED von falsch zu wahr, sodass die LED erlischt.
 
-Phenomenon Picture
-^^^^^^^^^^^^^^^^^^
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image153.jpeg
 

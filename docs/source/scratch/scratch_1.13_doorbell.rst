@@ -1,40 +1,40 @@
 .. _1.13_scratch:
 
-1.13 Doorbell
+1.13 Türklingel
 ==================
 
-Today we will make a doorbell, click the button3 sprite on the stage, the buzzer will sound; click again, the buzzer will stop sounding.
+Heute bauen wir eine Türklingel. Klicken Sie auf das Sprite „button3“ auf der Bühne, dann ertönt das Summen; klicken Sie erneut, dann hört das Summen auf.
 
 .. image:: img/1.13_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.13_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,48 +49,45 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
-Build the Circuit
+Schaltkreis aufbauen
 ---------------------
 
 .. image:: img/1.13_image106.png
 
-Load the Code and See What Happens
------------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+------------------------------------------------
 
-Load the code file (``1.13_doorbell.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.13_doorbell.sb3``) in Scratch 3.
 
-Click on the green flag on the stage. When we click on the Button 3 sprite, it will turn blue and then the buzzer will sound; when we click again, the **Button3** sprite reverts to gray and the buzzer stops sounding.
+Klicken Sie auf die grüne Fahne auf der Bühne. Wenn wir auf das Sprite „Button 3“ klicken, wird es blau und der Summer ertönt; klicken wir erneut, kehrt das **Button3** Sprite zu Grau zurück und der Summer hört auf zu summen.
 
-
-Tips on Sprite
+Tipps zu Sprites
 ----------------
 
-Delete the default sprite, then choose the **Button 3** sprite.
+Löschen Sie das Standard-Sprite und wählen Sie dann das Sprite **Button 3** aus.
 
 .. image:: img/1.13_scratch_button3.png
 
-Then set the size to 200.
+Stellen Sie anschließend die Größe auf 200 ein.
 
 .. image:: img/1.13_scratch_button3_size.png
 
-Tips on Codes
+Tipps zu Codes
 --------------
 
 .. image:: img/1.13_buzzer4.png
   :width: 400
 
-This block allows you to switch the sprite's costume.
+Dieser Block ermöglicht das Wechseln des Sprites-Kostüms.
 
 .. image:: img/1.13_buzzer5.png
   :width: 400
 
-Set gpio17 to low to make the buzzer sound; set it to high and the buzzer will not sound.
+Setzen Sie gpio17 auf niedrig, damit der Summer ertönt; setzen Sie ihn auf hoch und der Summer wird nicht ertönen.
 
+Der **status** Schalter wird hier verwendet, und wir werden ein Flussdiagramm verwenden, um Ihnen zu helfen, den gesamten Code zu verstehen.
 
-The **status** switch is used here, and we will use a flowchart to help you understand the whole code.
-
-When the green flag is clicked, the **status** will be set to 0 first, and wait for the sprite to be clicked at this time; if **button3** sprite is clicked, it will switch to costume as **button-b** costume (blue) and the **status** will be set to 1. When the main program receives the **status** as 1, it will let the buzzer sound at 0.1s interval.
-If **button3** is clicked again, it will switch to **button-a** costume (gray) and **status** will be set to 0 again.
+Wenn auf die grüne Fahne geklickt wird, wird **status** zuerst auf 0 gesetzt und wartet zu diesem Zeitpunkt darauf, dass das Sprite angeklickt wird; wenn das **button3** Sprite angeklickt wird, wechselt es zum Kostüm **button-b** (blau) und **status** wird auf 1 gesetzt. Wenn das Hauptprogramm den **status** als 1 empfängt, lässt es den Summer in 0,1s-Intervallen ertönen.
+Wenn **button3** erneut angeklickt wird, wechselt es zum Kostüm **button-a** (grau) und **status** wird wieder auf 0 gesetzt.
 
 .. image:: img/1.13_scratch_code.png
-

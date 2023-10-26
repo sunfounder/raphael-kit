@@ -1,42 +1,41 @@
 .. _2.1.1_js:
 
-2.1.1 Button
-===============
+2.1.1 Schalter
+==============
 
-Introduction
------------------
+Einführung
+----------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+In diesem Projekt lernen wir, wie man eine LED mit einem Schalter ein- oder ausschaltet.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+-------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.1.1_Button.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,34 +50,26 @@ You can also buy them separately from the links below.
     *   - :ref:`button`
         - |link_button_buy|
 
-Schematic Diagram
----------------------
+Schaltplan
+-------------
 
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+Verwenden Sie einen normalerweise offenen Schalter als Eingang des Raspberry Pi. Die Verbindung ist im untenstehenden Schaltplan dargestellt. Wenn der Schalter gedrückt wird, wechselt der GPIO18 in den Niedrigzustand (0V). Über die Programmierung können wir den Zustand des GPIO18 erkennen. Das heißt, wenn der GPIO18 in den Niedrigzustand wechselt, bedeutet dies, dass der Schalter gedrückt wurde. Sie können den entsprechenden Code ausführen, wenn der Schalter gedrückt wird, und dann wird die LED leuchten.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    Der längere Pin der LED ist die Anode und der kürzere ist die Kathode.
 
 .. image:: ../img/image302.png
 
-
 .. image:: ../img/image303.png
 
+Experimentelle Verfahren
+-----------------------------
 
-Experimental Procedures
----------------------------
-
-**Step 1**: Build the circuit.
+**Schritt 1**: Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image152.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -88,18 +79,18 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Schritt 3**: Führen Sie den Code aus.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo node button.js
 
-Now, press the button, and the LED will light up; 
-release the button, and the LED will go out. 
+Jetzt drücken Sie den Schalter, und die LED leuchtet auf. 
+Lassen Sie den Schalter los, und die LED erlischt.
 
 **Code**
 
@@ -107,7 +98,6 @@ release the button, and the LED will go out.
 
     const Gpio = require('pigpio').Gpio; 
 
-    
     const led = new Gpio(17, {mode: Gpio.OUTPUT});
    
     const button = new Gpio(18, {
@@ -116,12 +106,11 @@ release the button, and the LED will go out.
       edge: Gpio.EITHER_EDGE        
     });
 
-    
     button.on('interrupt', (level) => {  
       led.digitalWrite(level);          
     });
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -129,7 +118,7 @@ release the button, and the LED will go out.
 
     const led = new Gpio(17, {mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, create a led object to control the IO port Gpio17, and set it to output mode.
+Importieren Sie das ``pigpio`` Modul, erstellen Sie ein led Objekt, um den IO-Port Gpio17 zu steuern, und setzen Sie ihn in den Ausgabemodus.
 
 .. code-block:: js
 
@@ -139,9 +128,7 @@ Import the ``pigpio`` module, create a led object to control the IO port Gpio17,
       edge: Gpio.EITHER_EDGE       
     });
 
-Create a button object to control the IO port Gpio18, set it to input mode,
-Pull down (low when the button is not pressed, high when the button is pressed).
-And set the interrupt function, the mode is EITHER_EDGE, that is, both rising and falling edges will trigger the interrupt function.
+Erstellen Sie ein Schalter-Objekt, um den IO-Port Gpio18 zu steuern, setzen Sie ihn in den Eingabemodus, setzen Sie den Pull-down-Widerstand (niedrig, wenn der Schalter nicht gedrückt ist, hoch, wenn der Schalter gedrückt ist). Und setzen Sie die Interrupt-Funktion, der Modus ist EITHER_EDGE, d.h. sowohl steigende als auch fallende Flanken lösen die Interrupt-Funktion aus.
 
 .. code-block:: js
 
@@ -149,15 +136,11 @@ And set the interrupt function, the mode is EITHER_EDGE, that is, both rising an
       led.digitalWrite(level);          
     });
 
-Write an interrupt function, when the button is pressed, it is a falling edge, triggering the interrupt function,
-At this time, write the low level of the button IO port to the IO port of the led, and the led lights up.
+Schreiben Sie eine Interrupt-Funktion: Wenn der Schalter gedrückt wird, handelt es sich um eine fallende Flanke, die die Interrupt-Funktion auslöst. Zu diesem Zeitpunkt wird das niedrige Level des Schalter-IO-Ports auf den IO-Port der LED geschrieben, und die LED leuchtet auf.
 
-When the button is released, it is a rising edge, triggering the interrupt function,
-At this time, the high level of the button IO port is written to the IO port of the led, and the led is off.     
+Beim Loslassen des Schalters handelt es sich um eine steigende Flanke, die die Interrupt-Funktion auslöst. Zu diesem Zeitpunkt wird das hohe Level des Schalter-IO-Ports auf den IO-Port der LED geschrieben, und die LED erlischt.
 
-Phenomenon Picture
-^^^^^^^^^^^^^^^^^^
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image153.jpeg
-
-

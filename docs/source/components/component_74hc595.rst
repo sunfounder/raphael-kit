@@ -5,38 +5,35 @@
 
 .. image:: img/74HC595.png
 
-The 74HC595 consists of an 8−bit shift register and a storage register with three−state parallel outputs. It converts serial input into parallel output so you can save IO ports of an MCU.
-When MR (pin10) is high level and OE (pin13) is low level, data is input in the rising edge of SHcp and goes to the memory register through the rising edge of SHcp. If the two clocks are connected together, the shift register is always one pulse earlier than the memory register. There is a serial shift input pin (Ds), a serial output pin (Q) and an asynchronous reset button (low level) in the memory register. The memory register outputs a Bus with a parallel 8-bit and in three states. When OE is enabled (low level), the data in memory register is output to the bus.
+Der 74HC595 besteht aus einem 8-Bit-Schieberegister und einem Speicherregister mit dreistufigen parallelen Ausgängen. Er wandelt serielle Eingaben in parallele Ausgaben um, sodass Sie IO-Ports eines MCU sparen können.
+Wenn MR (Pin10) auf hohem Pegel und OE (Pin13) auf niedrigem Pegel ist, werden Daten bei der steigenden Flanke von SHcp eingegeben und gelangen über die steigende Flanke von SHcp in das Speicherregister. Wenn die beiden Uhren miteinander verbunden sind, ist das Schieberegister immer einen Impuls früher als das Speicherregister. Im Speicherregister gibt es einen seriellen Schiebeeingangspin (Ds), einen seriellen Ausgangspin (Q) und einen asynchronen Reset-Button (niedriger Pegel). Das Speicherregister gibt einen Bus mit einem parallelen 8-Bit und in drei Zuständen aus. Wenn OE aktiviert (niedriger Pegel) ist, werden die Daten im Speicherregister auf den Bus ausgegeben.
 
-* `74HC595 Datasheet <https://www.ti.com/lit/ds/symlink/cd74hc595.pdf?ts=1617341564801>`_
+* `74HC595 Datenblatt <https://www.ti.com/lit/ds/symlink/cd74hc595.pdf?ts=1617341564801>`_
 
 .. image:: img/74hc595_pin.png
     :width: 600
 
-Pins of 74HC595 and their functions:
+Pins des 74HC595 und ihre Funktionen:
 
-* **Q0-Q7**: 8-bit parallel data output pins, able to control 8 LEDs or 8 pins of 7-segment display directly.
-* **Q7’**: Series output pin, connected to DS of another 74HC595 to connect multiple 74HC595s in series
-* **MR**: Reset pin, active at low level; 
-* **SHcp**: Time sequence input of shift register. On the rising edge, the data in shift register moves successively one bit, i.e. data in Q1 moves to Q2, and so forth. While on the falling edge, the data in shift register remain unchanged.
-* **STcp**: Time sequence input of storage register. On the rising edge, data in the shift register moves into memory register.
-* **CE**: Output enable pin, active at low level. 
-* **DS**: Serial data input pin
-* **VCC**: Positive supply voltage.
-* **GND**: Ground.
+* **Q0-Q7**: 8-Bit parallele Datenausgangspins, geeignet zur direkten Steuerung von 8 LEDs oder 8 Pins eines 7-Segment-Displays.
+* **Q7’**: Serieller Ausgangspin, verbunden mit DS eines anderen 74HC595, um mehrere 74HC595s in Serie zu verbinden.
+* **MR**: Reset-Pin, aktiv auf niedrigem Pegel.
+* **SHcp**: Zeitsequenzeingabe des Schieberegisters. Bei der steigenden Flanke verschieben sich die Daten im Schieberegister um jeweils ein Bit, d.h. Daten in Q1 verschieben sich nach Q2 usw. Bei der fallenden Flanke bleiben die Daten im Schieberegister unverändert.
+* **STcp**: Zeitsequenzeingabe des Speicherregisters. Bei der steigenden Flanke werden die Daten im Schieberegister in das Speicherregister verschoben.
+* **CE**: Ausgabefähiger Pin, aktiv auf niedrigem Pegel.
+* **DS**: Serieller Dateneingangspin.
+* **VCC**: Positive Versorgungsspannung.
+* **GND**: Masse.
 
-**Example**
+**Beispiel**
 
-* :ref:`1.1.4_c` (C Project)
-* :ref:`1.1.5_c` (C Project)
-* :ref:`3.1.1_c` (C Project)
-* :ref:`3.1.6_c` (C Project)
-* :ref:`3.1.12_c` (C Project)
-* :ref:`1.1.4_py` (Python Project)
-* :ref:`1.1.5_py` (Python Project)
-* :ref:`4.1.7_py` (Pyhton Project)
-* :ref:`4.1.12_py` (Python Project)
-* :ref:`4.1.18_py` (Pyhton Project)
-
-
-
+* :ref:`1.1.4_c` (C-Projekt)
+* :ref:`1.1.5_c` (C-Projekt)
+* :ref:`3.1.1_c` (C-Projekt)
+* :ref:`3.1.6_c` (C-Projekt)
+* :ref:`3.1.12_c` (C-Projekt)
+* :ref:`1.1.4_py` (Python-Projekt)
+* :ref:`1.1.5_py` (Python-Projekt)
+* :ref:`4.1.7_py` (Python-Projekt)
+* :ref:`4.1.12_py` (Python-Projekt)
+* :ref:`4.1.18_py` (Python-Projekt)

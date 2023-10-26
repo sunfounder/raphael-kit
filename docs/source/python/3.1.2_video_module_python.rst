@@ -1,74 +1,70 @@
 .. _3.1.2_py:
 
-3.1.2 Video Module
+3.1.2 Videomodul
 =====================
 
-Introduction
+Einführung
 -----------------
 
-In addition to taking photos, the Camera Module can also be used to record videos.
+Zusätzlich zum Fotografieren kann das Kameramodul auch zum Aufnehmen von Videos verwendet werden.
 
-Required Components
+Erforderliche Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
+Experimentelle Verfahren
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+**Schritt 1:** Wechseln Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für ein ausführliches Tutorial siehe :ref:`windows_remote_desktop`.
 
-
-**Step 2:** Open a Terminal and get into the folder of the code.
-
+**Schritt 2:** Öffnen Sie ein Terminal und navigieren Sie zum Ordner des Codes.
 
 .. code-block::
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
-
+**Schritt 3:** Ausführen.
 
 .. code-block::
 
     sudo python3 3.1.2_VideoModule.py
 
-Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``~`` directory.
+Starten Sie den Code, um die Aufnahme zu beginnen. Drücken Sie ``Ctrl+C``, um die Aufnahme zu beenden. Benennen Sie das Video ``my_video.h264`` und speichern Sie es im ``~`` Verzeichnis.
 
 .. note::
 
-    You can also open ``3.1.2_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    Sie können auch ``3.1.2_PhotographModule.py`` im ``~/raphael-kit/python/`` Pfad mit einer Python IDE öffnen, den Run-Button klicken, um den Code auszuführen und den Code mit dem Stop-Button stoppen.
 
-If you want to send photos to your PC, please refer to :ref:`filezilla`.
-
+Wenn Sie Fotos an Ihren PC senden möchten, verweisen Sie bitte auf :ref:`filezilla`.
 
 **Code**
 
@@ -78,7 +74,6 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
     import os
     user = os.getlogin()
     user_home = os.path.expanduser(f'~{user}')
-
 
     camera = PiCamera()
     
@@ -101,16 +96,16 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code Erklärung**
 
 .. code-block:: python
 
     start_recording(output, format=None, resize=None, splitter_port=1, **options)
 
-Start recording video from the camera, storing it in ``output``.
+Startet die Videoaufnahme von der Kamera und speichert sie in ``output``.
 
 .. code-block:: python
 
     camera.stop_recording()
 
-End the recording.
+Beendet die Aufnahme.

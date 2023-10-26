@@ -1,43 +1,39 @@
-
-SunFounder Ulimate Raphael Kit for Raspberry Pi
+SunFounder Ulimate Raphael Kit für Raspberry Pi
 =======================================================
 
-
-Thanks for choosing our Ulimate Raphael Kit.
+Danke, dass Sie sich für unser Ulimate Raphael Kit entschieden haben.
 
 .. note::
-    This document is available in the following languages.
+    Dieses Dokument ist in den folgenden Sprachen verfügbar.
 
         * |link_jp_tutorials|
         * |link_en_tutorials|
     
-    Please click on the respective links to access the document in your preferred language.
+    Bitte klicken Sie auf die jeweiligen Links, um das Dokument in Ihrer bevorzugten Sprache aufzurufen.
 
-Are you new to Raspberry Pi? Are you looking for a clear path to learn Raspberry Pi? 
-Would you like to do more than just copy and paste code, but actually write your own? 
-If you answered yes to any of the above questions, then the Raspberry Pi Education Starter Kit - Raphael Kit is right for you.
+Sind Sie neu im Umgang mit dem Raspberry Pi? Suchen Sie nach einem klaren Weg, um den Raspberry Pi zu erlernen? 
+Möchten Sie mehr tun, als nur Code zu kopieren und einzufügen, sondern tatsächlich Ihren eigenen schreiben? 
+Wenn Sie eine dieser Fragen mit Ja beantwortet haben, dann ist das Raspberry Pi Education Starter Kit - Raphael Kit genau das Richtige für Sie.
 
-The kit is unlike other kits that only have a variety of projects. It is a true educational kit designed for beginners, whether you are programming beginners, electronics hobbyists, 
-experienced electrical engineers, students or educators, this kit will meet all your needs.
+Das Kit unterscheidet sich von anderen Kits, die nur eine Vielzahl von Projekten bieten. Es handelt sich um ein echtes Bildungs-Kit, das speziell für Anfänger konzipiert wurde. Ob Sie Anfänger in der Programmierung sind, Elektronikbegeisterte, 
+erfahrene Elektroingenieure, Schüler oder Lehrer, dieses Kit wird all Ihren Anforderungen gerecht.
 
-In addition to including all the hardware and software needed for beginners, the kit also offers an online tutorial with 161 interesting projects in 5 programming languages and 45 free video courses (30 hours) on getting started to mastery.
+Zusätzlich zur Bereitstellung aller für Anfänger benötigten Hardware- und Softwarekomponenten bietet das Kit auch ein Online-Tutorial mit 161 interessanten Projekten in 5 Programmiersprachen und 45 kostenlosen Videokursen (30 Stunden) vom Einstieg bis zur Meisterschaft.
 
+Dieser `Videokurs <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ zeigt Anfängern, wie sie den Raspberry Pi einrichten, die GPIO-Pins und Sensoren verwenden und die Grundlagen von Schaltkreisen und Programmierung erlernen können. Jeder Kurs bietet einfache und spannende Projekte, mit denen Anfänger üben und lernen können. Sie müssen nur Schritt für Schritt folgen, und schließlich werden Sie in der Lage sein, den Raspberry Pi zu beherrschen und Ihre eigenen Projekte zu erstellen.
 
-This `video course <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ shows beginners how to set up the Raspberry Pi, use the GPIO pins and sensors, and learn the basics of circuits and programming. Each course has simple and interesting projects for beginners to practice and learn, all you need to do is to follow step by step and eventually you will be able to master the Raspberry Pi and make your own projects.
+Nachdem Sie die Videotutorials gelernt haben, können Sie die Verwendung jeder Komponente mit unseren Online-Tutorials üben und sich an weiterführenden und interessanteren Projekten versuchen.
 
+Alternativ können Sie die Komponenten auch verwenden, um Projekte in anderen Sprachen wie C, Scratch, Java (Processing) und JavaScript (Nodejs) zu erstellen.
 
-After learning the video tutorials, you can practice the use of each component from our online tutorials and play with some more advanced and interesting projects.
+Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir werden Ihnen so schnell wie möglich antworten.
 
-Alternatively, you can use the components to build projects in other languages, such as C, Scratch, Java (processing) and JavaScript (Nodejs).
-
-If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
-
-**Contents**
+**Inhalt**
 
 .. toctree::
     :maxdepth: 2
 
-    About This Kit <self>
+    Über dieses Kit <self>
     about_video_course
     component_list
     install_setup_os/preparation
@@ -79,6 +75,7 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
 
 
-**Copyright Notice**
+**Urheberrechtshinweis**
 
-All contents including but not limited to texts, images, and code in this manual are owned by the SunFounder Company. You should only use it for personal study,investigation, enjoyment, or other non-commercial or nonprofit purposes, under therelated regulations and copyrights laws, without infringing the legal rights of the author and relevant right holders. For any individual or organization that uses these for commercial profit without permission, the Company reserves the right to take legal action.
+Alle Inhalte dieses Handbuchs, einschließlich, aber nicht beschränkt auf Texte, Bilder und Code, sind Eigentum der SunFounder Company. Sie dürfen diese nur für persönliches Studium, Recherche, Vergnügen oder andere nicht-kommerzielle oder gemeinnützige Zwecke verwenden, gemäß den entsprechenden Bestimmungen und Urheberrechtsgesetzen, ohne die rechtlichen Ansprüche des Autors und der betroffenen Rechteinhaber zu verletzen. Für jede Einzelperson oder Organisation, die diese ohne Erlaubnis für kommerziellen Gewinn nutzt, behält sich das Unternehmen das Recht vor, rechtliche Schritte einzuleiten.
+

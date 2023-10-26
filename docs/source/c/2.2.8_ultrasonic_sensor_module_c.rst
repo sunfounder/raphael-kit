@@ -1,43 +1,43 @@
 .. _2.2.8_c:
 
-2.2.8 Ultrasonic Sensor Module
-====================================
+2.2.8 Ultraschallsensor Modul
+=============================
 
-Introduction
---------------
+Einführung
+----------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Das Ultraschallsensor-Modul verwendet Ultraschall, um Objekte präzise zu erkennen und 
+Entfernungen zu messen. Es sendet Ultraschallwellen aus und wandelt diese in 
+elektronische Signale um.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.2.5.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -48,20 +48,19 @@ You can also buy them separately from the links below.
     *   - :ref:`ultrasonic_sensor`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image329.png
 
+Experimentelle Verfahren
+------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -71,7 +70,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.8/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -81,7 +80,7 @@ Experimental Procedures
 
     gcc 2.2.8_Ultrasonic.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -91,13 +90,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensor-Modul die Entfernung
+zwischen dem vorausliegenden Hindernis und dem Modul selbst, und der Entfernungswert 
+wird auf dem Bildschirm angezeigt.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Ausführen nicht funktioniert oder die Fehlermeldung "wiringPi.h: No such file or directory" erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -163,7 +162,7 @@ value will be printed on the screen.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -173,23 +172,23 @@ value will be printed on the screen.
         pinMode(Trig, OUTPUT);
     }
 
-Initialize the ultrasonic pin; meanwhile, set Echo to input, Trig to
-output.
+Initialisierung des Ultraschall-Pins; dabei wird Echo auf Eingang und Trig auf 
+Ausgang gesetzt.
 
 .. code-block:: c
 
     float disMeasure(void){};
 
-This function is used to realize the function of ultrasonic sensor by
-calculating the return detection distance.
+Diese Funktion dient zur Realisierung der Funktion des Ultraschallsensors durch 
+Berechnung der zurückgegebenen Erfassungsentfernung.
 
 .. code-block:: c
 
     struct timeval tv1;
     struct timeval tv2;
 
-Struct timeval is a structure used to store the current time. The
-complete structure is as follows:
+Struct timeval ist eine Struktur zur Speicherung der aktuellen Zeit. Die 
+vollständige Struktur lautet wie folgt:
 
 .. code-block:: c
 
@@ -199,9 +198,9 @@ complete structure is as follows:
     __suseconds_t tv_usec;  /* Microseconds. */
     };
 
-Here, tv_sec represents the seconds that Epoch spent when creating
-struct timeval. Tv_usec stands for microseconds or a fraction of
-seconds.
+Hierbei steht tv_sec für die Sekunden, die Epoch bei der Erstellung von 
+struct timeval verbracht hat. Tv_usec steht für Mikrosekunden oder einen Bruchteil 
+von Sekunden.
 
 .. code-block:: c
 
@@ -209,39 +208,39 @@ seconds.
     delayMicroseconds(10);     
     digitalWrite(Trig, LOW);
 
-A 10us ultrasonic pulse is being sent out.
+Ein 10us Ultraschallimpuls wird ausgesendet.
 
 .. code-block:: c
 
     while(!(digitalRead(Echo) == 1));
     gettimeofday(&tv1, NULL);
 
-This empty loop is used to ensure that when the trigger signal is sent,
-there is no interfering echo signal and then get the current time.
+Diese leere Schleife dient dazu sicherzustellen, dass beim Senden des Trigger-Signals 
+kein störendes Echo-Signal vorhanden ist und dann die aktuelle Zeit zu erfassen.
 
 .. code-block:: c
 
     while(!(digitalRead(Echo) == 0)); 
     gettimeofday(&tv2, NULL);
 
-This empty loop is used to ensure that the next step is not performed
-until the echo signal is received and then get the current time.
+Diese leere Schleife stellt sicher, dass der nächste Schritt nicht durchgeführt wird, 
+bis das Echo-Signal empfangen wird und dann die aktuelle Zeit erfasst wird.
 
 .. code-block:: c
 
     time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;
     time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
 
-Convert the time stored by struct timeval into a full microsecond time.
+Umwandlung der von struct timeval gespeicherten Zeit in eine vollständige Mikrosekunden-Zeit.
 
 .. code-block:: c
 
     dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
 
-The distance is calculated by the time interval and the speed of sound
-propagation. The speed of sound in the air: 34000cm/s.
+Die Entfernung wird anhand des Zeitintervalls und der Schallgeschwindigkeit berechnet. 
+Die Schallgeschwindigkeit in der Luft beträgt: 34000cm/s.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image221.jpeg

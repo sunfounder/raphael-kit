@@ -3,64 +3,39 @@
 ADC0834
 ==============
 
-ADC0834 is an 8-bit successive approximation analog-to-digital converter that is equipped with an input-configurable
-multichannel multi-plexer and serial input/output. The serial
-input/output is configured to interface with standard shift registers or
-microprocessors.
+Der ADC0834 ist ein 8-Bit-Analog-Digital-Umsetzer auf Basis einer sukzessiven Approximation, der mit einem konfigurierbaren Mehrkanal-Multiplexer und einer seriellen Ein-/Ausgabe ausgestattet ist. Die serielle Ein-/Ausgabe ist so konfiguriert, dass sie mit Standard-Schieberegistern oder Mikroprozessoren kommunizieren kann.
 
 .. image:: img/image309.png
 
 
-**Sequence of Operation**
+**Ablauf einer Umwandlung**
 
-A conversion is initiated by setting CS low, which enables all logic
-circuits. CS must be held low for the complete conversion process. A
-clock input is then received from the processor. On each low-to-high
-transition of the clock input, the data on DI is clocked into the
-multiplexer address shift register. The first logic high on the input is
-the start bit. A 3- to 4-bit assignment word follows the start bit. On
-each successive low-to-high transition of the clock input, the start bit
-and assignment word are shifted through the shift register. When the
-start bit is shifted into the start location of the multiplexer
-register, the input channel is selected and conversion starts. The SAR
-Statu output (SARS) goes high to indicate that a conversion is in
-progress, and DI to the multiplexer shift register is disabled the
-duration of the conversion.
+Eine Umwandlung wird gestartet, indem CS auf niedrig gesetzt wird, was alle Logikschaltungen aktiviert. CS muss während des gesamten Umwandlungsprozesses niedrig gehalten werden. Anschließend wird ein Takt-Eingang vom Prozessor empfangen. Bei jedem Übergang von niedrig nach hoch des Takt-Eingangs wird die Daten auf DI in das Multiplexer-Adressen-Schieberegister getaktet. Das erste logische Hoch am Eingang ist das Startbit. Einem Startbit folgt ein 3- bis 4-Bit-Zuweisungswort. Bei jedem weiteren Übergang von niedrig nach hoch des Takt-Eingangs werden das Startbit und das Zuweisungswort durch das Schieberegister verschoben. Wenn das Startbit in die Startposition des Multiplexerregisters verschoben wird, wird der Eingangskanal ausgewählt und die Umwandlung beginnt. Der SAR-Statusausgang (SARS) wird hochgeschaltet, um anzuzeigen, dass eine Umwandlung im Gange ist, und DI zum Multiplexer-Schieberegister wird während der Umwandlung deaktiviert.
 
-An interval of one clock period is automatically inserted to allow the
-selected multiplexed channel to settle. The data output DO comes out of
-the high-impedance state and provides a leading low for this one clock
-period of multiplexer settling time. The SAR comparator compares
-successive outputs from the resistive ladder with the incoming analog
-signal. The comparator output indicates whether the analog input is
-greater than or less than the resistive ladder output. As the conversion
-proceeds, conversion data is simultaneously output from the DO output
-pin, with the most significant bit (MSB) first.
+Es wird automatisch ein Intervall von einem Taktzyklus eingefügt, um dem ausgewählten Multiplexkanal Zeit zum Setteln zu geben. Der Datenausgang DO verlässt den Hochimpedanz-Zustand und liefert für diese eine Taktperiode des Multiplexer-Setzlungszeit ein führendes Niedrig. Der SAR-Komparator vergleicht aufeinanderfolgende Ausgänge von der Widerstandsleiter mit dem eingehenden analogen Signal. Der Ausgang des Komparators gibt an, ob der analoge Eingang größer oder kleiner als der Ausgang der Widerstandsleiter ist. Während der Umwandlung wird die Umwandlungsdaten gleichzeitig vom DO-Ausgangspin ausgegeben, wobei das am stärksten signifikante Bit (MSB) zuerst kommt.
 
-After eight clock periods, the conversion is complete and the SARS
-output goes low. Finally outputs the least-significant-bit-first data
-after the MSB-first data stream.
+Nach acht Taktperioden ist die Umwandlung abgeschlossen und der SARS-Ausgang wird niedrig. Schließlich gibt er die Daten des am wenigsten signifikanten Bits nach dem MSB-Datenstrom aus.
 
 .. image:: img/image175.png
 
 
-**ADC0834 MUX ADDRESS CONTROL LOGIC TABLE**
+**ADC0834 MUX ADRESSENSTEUERUNGSLOGIK-TABELLE**
 
 .. image:: img/image176.png
 
-* `ADC0831 series Datasheet <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
+* `ADC0831 Serien-Datenblatt <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
 
-**Example**
+**Beispiel**
 
-* :ref:`2.1.7_c` (C Project)
-* :ref:`2.2.1_c` (C Project)
-* :ref:`2.2.2_c` (C Project)
-* :ref:`3.1.4_c` (C Project)
-* :ref:`3.1.5_c` (C Project)
-* :ref:`3.1.7_c` (C Project)
-* :ref:`2.1.7_py` (Python Project)
-* :ref:`2.2.1_py` (Pyhton Project)
-* :ref:`2.2.2_py` (Pyhton Project)
-* :ref:`4.1.10_py` (Pyhton Project)
-* :ref:`4.1.11_py` (Pyhton Project)
-* :ref:`4.1.13_py` (Pyhton Project)
+* :ref:`2.1.7_c` (C-Projekt)
+* :ref:`2.2.1_c` (C-Projekt)
+* :ref:`2.2.2_c` (C-Projekt)
+* :ref:`3.1.4_c` (C-Projekt)
+* :ref:`3.1.5_c` (C-Projekt)
+* :ref:`3.1.7_c` (C-Projekt)
+* :ref:`2.1.7_py` (Python-Projekt)
+* :ref:`2.2.1_py` (Python-Projekt)
+* :ref:`2.2.2_py` (Python-Projekt)
+* :ref:`4.1.10_py` (Python-Projekt)
+* :ref:`4.1.11_py` (Python-Projekt)
+* :ref:`4.1.13_py` (Python-Projekt)

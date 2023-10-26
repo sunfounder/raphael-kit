@@ -1,36 +1,36 @@
-Inflating the Dot
+Aufblasen des Punkts
 ===========================
 
-Next, let's build a circuit that allows the button to control the size of the dot.
-When we press the button, the dot will quickly get bigger; when we release the button, the dot will gradually get smaller, which makes the dot look like a balloon being inflated.
+Als Nächstes bauen wir einen Schaltkreis, der es dem Knopf ermöglicht, die Größe des Punktes zu steuern.
+Wenn wir den Knopf drücken, wird der Punkt schnell größer; wenn wir den Knopf loslassen, wird der Punkt allmählich kleiner, sodass der Punkt wie ein aufblasbarer Ballon wirkt.
 
 .. image:: img/dot_size.png
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -41,11 +41,11 @@ You can also buy them separately from the links below.
     *   - :ref:`button`
         - |link_button_buy|
 
-**Wiring**
+**Verdrahtung**
 
 .. image:: img/button_pressed.png
 
-**Sketch**
+**Skizze**
 
 .. code-block:: arduino
 
@@ -71,11 +71,10 @@ You can also buy them separately from the links below.
         ellipse(width/2, height/2,diameter, diameter);
     }
 
-**How it works?**
+**Wie funktioniert das?**
 
-This project uses the input function compared to the previous 2 projects that used the output function of the GPIO.
+Dieses Projekt verwendet die Eingabefunktion im Vergleich zu den vorherigen 2 Projekten, die die Ausgabefunktion des GPIO genutzt haben.
 
-The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
+Die Funktion ``GPIO.pinMode()`` wird verwendet, um ``buttonPin`` auf den Pull-up-Eingangsmodus einzustellen, was dazu führt, dass der Pin im Standardzustand automatisch hoch geht.
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
-
+Dann verwenden Sie die Funktion ``GPIO.digitalRead()`` um den Wert von ``buttonPin`` zu lesen. Wenn der Wert LOW ist, bedeutet das, dass der Knopf gedrückt ist, zu diesem Zeitpunkt sollte der Durchmesser des Punktes um 5 erhöhen; wenn der Knopf losgelassen wird, dann wird der Durchmesser des Punktes um 1 verringern.

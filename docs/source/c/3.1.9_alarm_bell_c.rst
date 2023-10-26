@@ -1,44 +1,42 @@
 .. _3.1.9_c:
 
-3.1.9 Alarm Bell
+3.1.9 Alarmglocke
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 -------------
 
-In this project, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+In diesem Projekt erstellen wir ein manuelles Alarmsystem. Sie können den Kippschalter durch einen Thermistor oder einen lichtempfindlichen Sensor ersetzen, um einen Temperaturalarm oder einen Lichtalarm zu erstellen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/list_Alarm_Bell.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,7 +57,7 @@ You can also buy them separately from the links below.
     *   - :ref:`capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Schaltplan
 -------------------
 
 ============ ======== ======== ===
@@ -73,14 +71,14 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1**: Build the circuit.
+**Schritt 1**: Schalten Sie den Stromkreis.
 
 .. image:: ../img/image266.png
 
-**Step 2**: Change directory.
+**Schritt 2**: Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -90,7 +88,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.9/
 
-**Step 3**: Compile.
+**Schritt 3**: Kompilieren.
 
 .. raw:: html
 
@@ -100,7 +98,7 @@ Experimental Procedures
 
     gcc 3.1.9_AlarmBell.c -lwiringPi -lpthread
 
-**Step 4**: Run.
+**Schritt 4**: Ausführen.
 
 .. raw:: html
 
@@ -110,20 +108,20 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program starts, put the slide switch to the right, and the buzzer will give out alarm sounds. At the same time, the red and green LEDs will flash at a certain frequency.
+Nachdem das Programm gestartet wurde, schieben Sie den Schiebeschalter nach rechts und der Summer gibt Alarmsignale aus. Gleichzeitig blinken die rote und grüne LED mit einer bestimmten Frequenz.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: No such file or directory\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
     #include <pthread.h>
 
-In this code, you'll use a new library, ``pthread.h``, which is a set of common thread libraries and can realize multithreading. We add the ``-lpthread`` parameter at compile time for the independent working of the LED and the buzzer.
+In diesem Code verwenden Sie eine neue Bibliothek, ``pthread.h``, die ein Satz von gängigen Thread-Bibliotheken ist und die Mehrfachverkabelung ermöglicht. Wir fügen beim Kompilieren den Parameter ``-lpthread`` hinzu, um das unabhängige Arbeiten der LED und des Summers zu ermöglichen.
 
 .. code-block:: c
 
@@ -142,9 +140,9 @@ In this code, you'll use a new library, ``pthread.h``, which is a set of common 
         }
     }
 
-The function ``ledWork()`` helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+Die Funktion ``ledWork()`` dient dazu, den Arbeitszustand dieser 2 LEDs festzulegen:
+Sie lässt die grüne LED für 0,5 Sekunden leuchten und schaltet sie dann aus;
+ebenso lässt sie die rote LED für 0,5 Sekunden leuchten und schaltet sie dann aus.
 
 .. code-block:: c
 
@@ -163,9 +161,8 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
         }
     }
 
-The function ``buzzWork()`` is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+Die Funktion ``buzzWork()`` wird verwendet, um den Arbeitszustand des Buzzers festzulegen.
+Hier setzen wir die Frequenz zwischen 130 und 800, um in einem Intervall von 20 zu akkumulieren oder abzubauen.
 
 .. code-block:: c
 
@@ -181,29 +178,27 @@ at an interval of 20.
         pthread_create(&tBuzz,NULL,buzzWork,NULL);      
     }
 
-In the function on():
+In der Funktion on():
 
-1) Define the mark ``flag=1``, indicating the ending of the control
-   thread.
+1) Definieren Sie die Markierung ``flag=1``, die das Ende des Steuerthreads anzeigt.
 
-2) Create a software-controlled tone pin ``BeepPin``.
+2) Erstellen Sie einen softwaregesteuerten Tonpin ``BeepPin``.
 
-3) Create two separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Erstellen Sie zwei separate Threads, damit die LED und der Buzzer gleichzeitig arbeiten können.
 
-* ``pthread_t tLed``: Declare a thread ``tLed``.
-* ``pthread_create(&tLed,NULL,ledWork,NULL)``: Create the thread and its prototype is as follows:
+* ``pthread_t tLed``: Ein Thread ``tLed`` deklarieren.
+* ``pthread_create(&tLed,NULL,ledWork,NULL)``: Erstellen Sie den Thread und sein Prototyp lautet wie folgt:
 
 .. code-block:: 
 
     int pthread_create(pthread_t *restrict tidp,const pthread_attr_t*restrict_attr,void*（*start_rtn)(void*),void *restrict arg);
 
-If successful, return 0 ；otherwise, return the fall number -1.
+Bei Erfolg, Rückgabewert 0; sonst wird die Fehlerzahl -1 zurückgegeben.
 
-* The first parameter is a pointer to the thread identifier.
-* The second one is used to set the thread attribute.
-* The third one is the starting address of the thread running function.
-* The last one is the one that runs the function.
+* Das erste Parameter ist ein Zeiger auf die Thread-Identifikation.
+* Das zweite dient zur Festlegung des Thread-Attributs.
+* Das dritte ist die Startadresse der Thread-Ausführungsfunktion.
+* Das letzte ist das, das die Funktion ausführt.
 
 .. code-block:: c
 
@@ -214,9 +209,7 @@ If successful, return 0 ；otherwise, return the fall number -1.
         digitalWrite(BLedPin,LOW);
     }
 
-
-The function ``Off()`` defines “flag=0” so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+Die Funktion ``Off()`` definiert „flag=0“, um die Threads **ledWork** und **BuzzWork** zu beenden und dann den Buzzer und die LED auszuschalten.
 
 .. code-block:: c
 
@@ -236,13 +229,9 @@ The function ``Off()`` defines “flag=0” so as to exit the threads
         return 0;
     }
 
-Main() contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function ``on()`` is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+Main() enthält den gesamten Ablauf des Programms: Zuerst wird der Wert des Schiebeschalters gelesen; wenn der Kippschalter nach rechts gekippt wird (der Wert ist 1), wird die Funktion ``on()`` aufgerufen, der Buzzer gibt Töne ab und die roten und grünen LEDs blinken. Andernfalls arbeiten der Buzzer und die LED nicht.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/image267.jpeg

@@ -1,17 +1,15 @@
 IoT
 ======================
 
-In this article, we'll show you how to connect your Raspberry Pi to the **Blynk** platform to make some interesting IoT projects.
+In diesem Artikel zeigen wir Ihnen, wie Sie Ihren Raspberry Pi mit der **Blynk** Plattform verbinden können, um spannende IoT-Projekte zu realisieren.
 
-Blynk is a full suite of software required to prototype, 
-deploy, and remotely manage connected electronic devices at any scale: 
-from personal IoT projects to millions of commercial connected products. 
-With Blynk anyone can connect their hardware to the cloud and build a no-code iOS, 
-Android, and web applications to analyze real-time and historical data coming from devices, 
-control them remotely from anywhere in the world, receive important notifications, 
-and much more…
-
-
+Blynk ist ein umfassendes Softwarepaket, das zum Prototyping, 
+zur Implementierung und zur Fernverwaltung von elektronischen Geräten jeder Größenordnung erforderlich ist: 
+von persönlichen IoT-Projekten bis hin zu Millionen von kommerziellen vernetzten Produkten. 
+Mit Blynk kann jeder seine Hardware mit der Cloud verbinden und ohne Programmierkenntnisse iOS-, 
+Android- und Webanwendungen erstellen, um Echtzeit- und historische Daten von Geräten zu analysieren, 
+sie von überall auf der Welt fernzusteuern, wichtige Benachrichtigungen zu erhalten 
+und vieles mehr…
 
 .. image:: img/blynk-iot.png
 

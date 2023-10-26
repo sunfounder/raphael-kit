@@ -1,33 +1,30 @@
 .. _gpio_extension_board:
 
-GPIO Extension Board
-=====================
+GPIO-Erweiterungsplatine
+========================
 
-Before starting to learn the commands, you first need to know more about
-the pins of the Raspberry Pi, which is key to the subsequent study.
+Bevor Sie mit dem Erlernen der Befehle beginnen, müssen Sie sich zuerst näher mit 
+den Pins des Raspberry Pi beschäftigen, da diese für das nachfolgende Studium von zentraler Bedeutung sind.
 
-We can easily lead out pins of the Raspberry Pi to breadboard by GPIO
-Extension Board to avoid GPIO damage caused by frequent plugging in or
-out. This is our 40-pin GPIO Extension Board and GPIO cable for
-Raspberry Pi model B+, 2 model B and 3, 4 model B.
+Mit Hilfe der GPIO-Erweiterungsplatine können wir die Pins des Raspberry Pi problemlos auf ein Steckbrett führen, um Schäden am GPIO durch häufiges Ein- und Ausstecken zu vermeiden. Dies ist unsere 40-polige GPIO-Erweiterungsplatine und das GPIO-Kabel für Raspberry Pi Modell B+, Modell B 2 und Modell B 3, 4.
 
 .. image:: img/image32.png
     :align: center
 
-**Pin Number**
+**Pin-Nummerierung**
 
-The pins of Raspberry Pi have three kinds of ways to name and they are wiringPi, BCM and Board.
+Die Pins des Raspberry Pi können auf drei verschiedene Arten benannt werden: WiringPi, BCM und Board.
 
-Among these naming methods, 40-pin GPIO Extension board uses the naming method, BCM. But for some special pins, such as I2C port and SPI port, they use the Name that comes with themselves. 
+Von diesen Benennungsmethoden verwendet die 40-polige GPIO-Erweiterungsplatine die Methode BCM. Einige spezielle Pins, wie der I2C-Port und der SPI-Port, verwenden jedoch den Namen, der ihnen bereits zugeordnet ist.
 
-The following table shows us the naming methods of WiringPi, Board and the intrinsic Name of each pin on GPIO Extension board. For example, for the GPIO17, the Board naming method of it is 11, the wiringPi naming method is 0, and the intrinsic naming method of it is GPIO0.
+Die folgende Tabelle zeigt die Benennungsmethoden von WiringPi, Board und den eigentlichen Namen jedes Pins auf der GPIO-Erweiterungsplatine. Zum Beispiel hat der GPIO17 im Board-Namensschema die Bezeichnung 11, im WiringPi-Namensschema die Bezeichnung 0 und im eigentlichen Namensschema die Bezeichnung GPIO0.
 
 .. note::
 
-    1）In C Language, what is used is the naming method WiringPi.
+    1）In der C-Sprache wird das Namensschema WiringPi verwendet.
     
-    2）In Python Language, the applied naming methods are **Board** and **BCM**, and the function ``GPIO.setmode()`` is used to set them.
-
-    3）In Scratch 3  and Processing, the applied naming method is **BCM**.
+    2）In der Python-Sprache werden die Namensschemata **Board** und **BCM** angewendet, und die Funktion ``GPIO.setmode()`` dient zur Einstellung dieser.
+    
+    3）In Scratch 3 und Processing wird das Namensschema **BCM** verwendet.
 
 .. image:: img/gpio_board.png

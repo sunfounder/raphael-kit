@@ -1,13 +1,13 @@
 .. _hello_mouse:
 
-Hello Mouse
+Hallo Maus
 ==================
 
-In this project, your mouse will keep shooting lines towards a point; move the mouse and you will draw a unique line of stars. Press the mouse to restart the drawing.
+In diesem Projekt wird Ihre Maus ständig Linien zu einem Punkt schießen; bewegen Sie die Maus, und Sie werden eine einzigartige Linie aus Sternen zeichnen. Drücken Sie die Maus, um die Zeichnung neu zu starten.
 
 .. image:: img/hello_mouse1.png
 
-**Sketch**
+**Skizze**
 
 .. code-block:: arduino
 
@@ -30,14 +30,14 @@ In this project, your mouse will keep shooting lines towards a point; move the m
         background(192, 16, 18);
     }
 
-**How it works?**
+**Wie funktioniert das?**
 
-The previous project was drawing a single image without any animation or interaction.
+Das vorherige Projekt hat ein einzelnes Bild gezeichnet, ohne Animation oder Interaktion.
 
-If we want to make an interactive sketch, we need to add the ``setup()`` and ``draw()`` functions (these are built-in functions that are called automatically) to build the frame.
+Wenn wir eine interaktive Skizze erstellen wollen, müssen wir die ``setup()`` und ``draw()`` Funktionen hinzufügen (dies sind eingebaute Funktionen, die automatisch aufgerufen werden), um den Rahmen zu erstellen.
 
-* ``setup()``: Executed only once at the start of the sketch.
-* ``draw()``: Executed repeatedly, where we usually add the sketch for drawing the animation.
+* ``setup()``: Wird nur einmal zu Beginn der Skizze ausgeführt.
+* ``draw()``: Wird wiederholt ausgeführt, hier fügen wir normalerweise die Skizze zum Zeichnen der Animation hinzu.
 
 .. code-block:: arduino
 
@@ -54,9 +54,9 @@ If we want to make an interactive sketch, we need to add the ``setup()`` and ``d
         line(pointX, pointY, mouseX, mouseY);
     }
 
-This sketch above already works smoothly as an interactive sketch.
+Die obige Skizze funktioniert bereits reibungslos als interaktive Skizze.
 
-Next you can add a mouse click event. This event can be implemented with the ``mousePressed()`` function, where we add statements to refresh the target point and clear the screen.
+Als nächstes können Sie ein Mausklick-Ereignis hinzufügen. Dieses Ereignis kann mit der ``mousePressed()`` Funktion implementiert werden, in der wir Anweisungen zum Aktualisieren des Zielpunkts und zum Löschen des Bildschirms hinzufügen.
 
 .. code-block:: arduino
 
@@ -79,6 +79,5 @@ Next you can add a mouse click event. This event can be implemented with the ``m
         background(192, 16, 18);
     }
 
-
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
+Für mehr Informationen verweisen Sie bitte auf `Processing Referenz <https://processing.org/reference/>`_.
 

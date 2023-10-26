@@ -1,47 +1,47 @@
 .. _2.2.5_js:
 
-2.2.5 IR Obstacle Avoidance Sensor
+2.2.5 IR Hindernisvermeidungssensor
 ===================================
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+In diesem Projekt lernen wir den IR-Hindernisvermeidungsmodul kennen. Es handelt sich hierbei um einen Sensor, der dazu verwendet werden kann, Hindernisse auf kurze Distanzen zu erkennen. Er zeichnet sich durch geringe Störungen, einfache Montage und Benutzerfreundlichkeit aus. Der Sensor findet breite Anwendung in Robotern zur Hindernisvermeidung, vermeidungsgesteuerten Wagen, Zählungen in Fertigungsstraßen und vielem mehr.
 
 .. image:: ../img/2.2.5IR_Obstacle.png
    :width: 300
    :align: center
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten:
 
 .. image:: ../img/2.2.5component.png
    :width: 700
    :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link dazu:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Die Teile können auch einzeln über die folgenden Links erworben werden:
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -52,23 +52,23 @@ You can also buy them separately from the links below.
     *   - :ref:`infrared_avoidance`
         - |link_obstacle_avoidance_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 .. image:: ../img/IR_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -------------------------
 
-**Step 1:** Build the circuit
+**Schritt 1:** Schaltung aufbauen
 
 .. image:: ../img/2.2.5fritzing.png
    :width: 700
    :align: center
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Wechseln Sie in das Verzeichnis des Codes.
 
 .. raw:: html
 
@@ -78,7 +78,7 @@ Experimental Procedures
    
    cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Starten Sie den Code.
 
 .. raw:: html
 
@@ -88,8 +88,7 @@ Experimental Procedures
 
    sudo node ir_obstacle.js
 
-After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
-repeatedly printed on the screen until the your hand is removed.
+Nachdem der Code ausgeführt wurde und Sie Ihre Hand vor den Sensor halten, leuchtet die Ausgabeanzeige auf und "Detected Barrier!" wird solange auf dem Bildschirm angezeigt, bis Sie Ihre Hand entfernen.
 
 **Code**
 
@@ -107,10 +106,7 @@ repeatedly printed on the screen until the your hand is removed.
       console.log('Detected Barrier!');        
    });
 
-
-
-
-**Code Explanation**
+**Code Erklärung**
 
 .. code-block:: js
 
@@ -122,8 +118,7 @@ repeatedly printed on the screen until the your hand is removed.
       edge: Gpio.FALLING_EDGE        
    });
 
-Import the pigpio module, create an object to control the IO port Gpio17,
-Set it to input mode and interrupt on falling edge.
+Importieren Sie das pigpio-Modul und erstellen Sie ein Objekt, um den IO-Port Gpio17 zu steuern. Stellen Sie ihn auf den Eingabemodus und unterbrechen Sie ihn bei fallender Flanke.
 
 .. code-block:: js
 
@@ -131,10 +126,9 @@ Set it to input mode and interrupt on falling edge.
       console.log('Detected Barrier!');        
    });
 
-When an interrupt is triggered, meaning an obstacle is detected, print "Detected Barrier!".
+Wenn ein Interrupt ausgelöst wird, was bedeutet, dass ein Hindernis erkannt wurde, geben Sie "Detected Barrier!" aus.
 
-
-Phenomenon Picture
+Phänomen-Bild
 -----------------------
 
 .. image:: ../img/2.2.5IR.JPG

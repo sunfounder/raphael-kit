@@ -1,45 +1,45 @@
 .. _1.3.3_c:
 
-1.3.3 Relay
+1.3.3 Relais
 =================
 
-Introduction
-------------
+Einführung
+----------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+In diesem Projekt lernen wir, ein Relais zu verwenden. Es gehört zu den häufig 
+verwendeten Komponenten in automatischen Steuerungssystemen. Wenn Spannung, Strom, 
+Temperatur, Druck usw. einen vorbestimmten Wert erreichen, überschreiten oder 
+darunter liegen, schaltet das Relais den Stromkreis ein oder unterbricht ihn, um 
+die Ausrüstung zu steuern und zu schützen.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: ../img/list_1.3.4.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -58,20 +58,19 @@ You can also buy them separately from the links below.
     *   - :ref:`diode`
         - |link_diode_buy|
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image345.png
 
+Experimentelle Verfahren
+------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image144.png
 
-**Step 2**: Open the code file.
+**Schritt 2:** Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -81,7 +80,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.3.3
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -91,8 +90,7 @@ Experimental Procedures
 
     gcc 1.3.3_Relay.c -lwiringPi
 
-
-**Step 4:** Run the executable file.
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -102,13 +100,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the LED will light up. In addition, you can
-hear a ticktock caused by breaking normally close contact and 
-closing normally open contact.
+Nachdem der Code ausgeführt wurde, leuchtet die LED auf. Zusätzlich können Sie 
+ein Ticktack-Geräusch hören, das durch das Trennen des normal geschlossenen Kontakts 
+und das Schließen des normal geöffneten Kontakts verursacht wird.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", ziehen Sie bitte :ref:`install_wiringpi` zu Rate.
 
 **Code**
 
@@ -138,25 +136,25 @@ closing normally open contact.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
     digitalWrite(RelayPin, LOW);
 
-Set the I/O port as low level (0V), thus the transistor is not energized
-and the coil is not powered. There is no electromagnetic force, so the
-relay opens, LED does not turn on.
+Setzen Sie den I/O-Port auf niedriges Niveau (0V), sodass der Transistor nicht bestromt 
+wird und die Spule nicht mit Strom versorgt wird. Es gibt keine elektromagnetische Kraft, 
+also öffnet das Relais, die LED schaltet sich nicht ein.
 
 .. code-block:: c
 
     digitalWrite(RelayPin, HIGH);
 
-set the I/O port as high level (5V) to energize the transistor. The coil
-of the relay is powered and generate electromagnetic force, and the
-relay closes, LED lights up.
+Setzen Sie den I/O-Port auf hohes Niveau (5V), um den Transistor zu bestromen. Die Spule 
+des Relais wird mit Strom versorgt und erzeugt eine elektromagnetische Kraft, das 
+Relais schließt und die LED leuchtet auf.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+---------------
 
 .. image:: ../img/image145.jpeg

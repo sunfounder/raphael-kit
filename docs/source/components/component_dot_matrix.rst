@@ -1,36 +1,35 @@
 .. _dot_matrix:
 
-LED Matrix Module
+LED Matrix Modul
 ==============================
 
 .. image:: img/max7219_module.jpg
     :width: 400
     :align: center
 
-This is a common cathode 8x8 dot matrix module driven by MAX7219, the module operating voltage is 5V, the size is 50mmx32mmx15mm, the left side is input port, the right side is output port, support multiple modules cascade.
+Dies ist ein gängiges Kathoden-8x8-Punkt-Matrix-Modul, das von MAX7219 angetrieben wird. Die Betriebsspannung des Moduls beträgt 5V, die Größe ist 50mmx32mmx15mm. Die linke Seite ist der Eingangsanschluss, die rechte Seite der Ausgangsanschluss. Es unterstützt die Kaskadierung mehrerer Module.
 
-* **VCC**: Positive Supply Voltage. Connect to +5V.
-* **GND**: Ground (both GND pins must be connected)
-* **DIN**: Serial-Data Input. Data is loaded into the internal 16-bit shift register on CLK’s rising edge.
-* **CS**: Chip-Select Input. Serial data is loaded into the shift register while CS is low. The last 16 bits of serial data are latched on CS’s rising edge.
-* **CLK**: Serial-Clock Input. 10MHz maximum rate. On CLK’s rising edge, data is shifted into the internal shift register. On CLK’s falling edge, data is clocked out of DOUT. On the MAX7221, the CLK input is active only while CS is low.
+* **VCC**: Positive Versorgungsspannung. Verbinden mit +5V.
+* **GND**: Masse (beide GND-Pins müssen verbunden werden)
+* **DIN**: Serieller Dateneingang. Daten werden bei steigender Flanke von CLK in das interne 16-Bit-Schieberegister geladen.
+* **CS**: Chip-Select Eingang. Serielle Daten werden geladen, während CS niedrig ist. Die letzten 16 Bits serieller Daten werden bei steigender Flanke von CS übernommen.
+* **CLK**: Serieller Takteingang. Maximalrate 10MHz. Bei steigender Flanke von CLK werden Daten in das interne Schieberegister verschoben. Bei fallender Flanke von CLK werden Daten aus DOUT getaktet. Bei MAX7221 ist der CLK-Eingang nur aktiv, wenn CS niedrig ist.
 
 **MAX7219**
 
-The MAX7219 is a compact, serial input/output common-cathode display drivers that interface microprocessors (µPs) to 7-segment numeric LED displays of up to 8 digits, bar-graph displays, or 64 individual LEDs. Included on-chip are a BCD code-B
-decoder, multiplex scan circuitry, segment and digit drivers, and an 8x8 static RAM that stores each digit.
+Der MAX7219 ist ein kompakter, serieller Ein-/Ausgabe-Common-Kathoden-Anzeigetreiber, der Mikroprozessoren (µPs) mit bis zu 8-stelligen 7-Segment-LED-Anzeigen, Balkenanzeigen oder 64 einzelnen LEDs verbindet. Auf dem Chip enthalten sind ein BCD-Code-B Decoder, Multiplex-Scan-Schaltungen, Segment- und Zifferntreiber sowie ein 8x8 statischer RAM, der jede Ziffer speichert.
 
-Only one external resistor is required to set the segment current for all LEDs. The MAX7221 is compatible with SPI™, QSPI™, and MICROWIRE™, and has slewrate-limited segment drivers to reduce EMI.
+Es wird nur ein externer Widerstand benötigt, um den Segmentstrom für alle LEDs festzulegen. Der MAX7221 ist kompatibel mit SPI™, QSPI™ und MICROWIRE™ und verfügt über segmentierte Treiber mit begrenzter Flankensteilheit zur Reduzierung von EMI.
 
-A convenient 4-wire serial interface connects to all common µPs. Individual digits may be addressed and updated without rewriting the entire display. The MAX7219/MAX7221 also allow the user to select codeB decoding or no-decode for each digit.
+Eine praktische 4-Draht-Schnittstelle verbindet alle gängigen µPs. Einzelne Ziffern können adressiert und aktualisiert werden, ohne das gesamte Display neu zu schreiben. Der MAX7219/MAX7221 ermöglicht es dem Benutzer auch, die CodeB-Decodierung oder keine Decodierung für jede Ziffer auszuwählen.
 
 .. image:: img/max7219_sche.png
 
-* `MAX7219 Datasheet <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`_
+* `MAX7219 Datenblatt <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`_
 
-**Example**
+**Beispiel**
 
-* :ref:`1.1.6_c` (C Project)
-* :ref:`3.1.12_c` (C Project)
-* :ref:`1.1.6_py` (Python Project)
-* :ref:`4.1.19_py` (Python Project)
+* :ref:`1.1.6_c` (C-Projekt)
+* :ref:`3.1.12_c` (C-Projekt)
+* :ref:`1.1.6_py` (Python-Projekt)
+* :ref:`4.1.19_py` (Python-Projekt)

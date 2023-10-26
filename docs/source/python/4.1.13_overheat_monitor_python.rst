@@ -1,47 +1,47 @@
 .. _4.1.13_py:
 
-4.1.13 Overheat Monitor
+4.1.13 Überhitzungsüberwachung
 ================================
 
-Introduction
+Einführung
 -------------------
 
-You may want to make an overheat monitoring device that applies to
-various situations, ex., in the factory, if we want to have an alarm and
-the timely automatic turning off of the machine when there is a circuit
-overheating. In this project, we will use thermistor, joystick, buzzer,
-LED and LCD to make an smart temperature monitoring device whose
-threshold is adjustable.
+Möglicherweise möchten Sie ein Überhitzungsüberwachungsgerät erstellen, das für 
+verschiedene Situationen geeignet ist, z. B. in einer Fabrik, wenn wir einen Alarm 
+wünschen und die Maschine bei einer Schaltkreisüberhitzung rechtzeitig automatisch 
+ausschalten möchten. In diesem Projekt werden wir einen Thermistor, einen Joystick, 
+einen Summer, eine LED und ein LCD verwenden, um ein intelligentes Temperaturüberwachungsgerät 
+zu erstellen, dessen Schwellenwert einstellbar ist.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Overheat_Monitor.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,7 +66,7 @@ You can also buy them separately from the links below.
     *   - :ref:`buzzer`
         - \-
 
-Schematic Diagram
+Schaltplan
 --------------------------
 
 ============ ======== ======== ===
@@ -84,15 +84,15 @@ SCL1         Pin 5
 .. image:: ../img/Schematic_three_one8.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
 
 .. image:: ../img/image258.png
 
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -102,7 +102,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3**: Run the executable file.
+**Schritt 3**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -110,31 +110,24 @@ Experimental Procedures
 
 .. code-block:: 
 
-    sudo python3 4.1.13_OverheatMonitor.py
+    sudo python3 4.1.13_ÜberhitzungsMonitor.py
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Wenn der Code ausgeführt wird, werden die aktuelle Temperatur und der Hochtemperaturschwellenwert **40** auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur größer als der Schwellenwert ist, werden der Summer und die LED gestartet, um Sie zu alarmieren.
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+Der **Joystick** dient hier zum Einstellen des Hochtemperaturschwellenwerts. Das Kippen des **Joysticks** in Richtung der X- und Y-Achse kann den aktuellen Hochtemperaturschwellenwert anpassen (erhöhen oder verringern). Drücken Sie den **Joystick** erneut, um den Schwellenwert auf den Anfangswert zurückzusetzen.
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
+    * Bei dem Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` müssen Sie :ref:`i2c_config` konsultieren, um den I2C zu aktivieren.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führen Sie bitte ``sudo pip3 install smbus2`` aus.
+    * Wenn der Fehler ``OSError: [Errno 121] Remote I/O error`` erscheint, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
+    * Wenn der Code und die Verkabelung in Ordnung sind, das LCD jedoch weiterhin keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuerst müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. Nach dem Ändern des Codes können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
 
 .. raw:: html
 
@@ -240,7 +233,7 @@ initial value.
         except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -258,9 +251,7 @@ initial value.
         else:
             return 0
 
-This function reads values of X and Y. If **X>200**, there will return
-“\ **1**\ ”; **X<50**, return “\ **-1**\ ”; **y>200**, return
-“\ **-10**\ ”, and **y<50**, return “\ **10**\ ”.
+Diese Funktion liest die Werte von X und Y. Wenn **X>200**, wird „\ **1**\ ” zurückgegeben; **X<50**, Rückgabe von „\ **-1**\ ”; **y>200**, Rückgabe von „\ **-10**\ ” und **y<50**, Rückgabe von „\ **10**\ ”.
 
 .. code-block:: python
 
@@ -273,8 +264,7 @@ This function reads values of X and Y. If **X>200**, there will return
     LCD1602.write(len(strUpperTem),1, '              ')
         time.sleep(0.1)
 
-This function is for adjusting the threshold and displaying it on the
-I2C LCD1602.
+Diese Funktion dient zur Anpassung des Schwellenwerts und zur Anzeige auf dem I2C LCD1602.
 
 .. code-block:: python
 
@@ -287,8 +277,7 @@ I2C LCD1602.
         Fah = Cel * 1.8 + 32
         return round(Cel,2)
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+Liest den Analogwert des **CH0** (Thermistor) von **ADC0834** und konvertiert ihn dann in einen Temperaturwert.
 
 .. code-block:: python
 
@@ -307,10 +296,7 @@ then convert it to temperature value.
             GPIO.output(buzzPin, GPIO.LOW)
             GPIO.output(ledPin, GPIO.LOW)
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Während der Code ausgeführt wird, werden die aktuelle Temperatur und der Hochtemperaturschwellenwert **40** auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur über dem Schwellenwert liegt, werden der Summer und die LED aktiviert, um Sie zu alarmieren.
 
 .. code-block:: python
 
@@ -329,20 +315,13 @@ to alarm you.
             else:
                 monitoring_temp()
 
-The function ``main()`` contains the whole program process as shown:
+Die Funktion ``main()`` enthält den gesamten Ablauf des Programms wie dargestellt:
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) Wenn das Programm startet, ist der Anfangswert von **stage** **0** und die aktuelle Temperatur sowie der Hochtemperaturschwellenwert **40** werden auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur über dem Schwellenwert liegt, werden der Summer und die LED aktiviert, um Sie zu alarmieren.
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current high-temperature threshold. Press the Joystick once again to
-   reset the threshold to initial value.
+2) Drücken Sie den Joystick, dann wird **stage** auf **1** gesetzt und Sie können den Hochtemperaturschwellenwert anpassen. Das Kippen des Joysticks in Richtung der X- und Y-Achse kann den aktuellen Hochtemperaturschwellenwert anpassen (erhöhen oder verringern). Drücken Sie den Joystick erneut, um den Schwellenwert auf den Anfangswert zurückzusetzen.
 
-Phenomenon Picture
+Phänomen-Bild
 -------------------------
 
 .. image:: ../img/image259.jpeg

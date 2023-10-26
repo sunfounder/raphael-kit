@@ -1,44 +1,43 @@
 .. _3.1.3_py:
 
-3.1.3 Audio Module
+3.1.3 Audiomodul
 =====================
 
-Introduction
+Einführung
 -----------------
 
-In this project, let's make a DIY stereo with an audio power amplifier module, 8ohm/2w speakers and a 3.5mm Audio cable.
+In diesem Projekt erstellen wir ein DIY-Stereo mit einem Audioverstärkermodul, 8 Ohm/2W-Lautsprechern und einem 3,5 mm Audiokabel.
 
-
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/audio2.png
   :width: 700
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -47,22 +46,22 @@ You can also buy them separately from the links below.
     *   - :ref:`audio_speaker`
         - \-
 
-Experimental Procedures
-------------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/4.1.4fritzing.png
     :width: 800
     :align: center
 
-After building the circuit according to the above diagram, then plug the audio cable into the Raspberry Pi’s 3.5mm audio jack.
+Nachdem Sie den Schaltkreis gemäß dem obigen Diagramm erstellt haben, stecken Sie das Audiokabel in die 3,5 mm Audiobuchse des Raspberry Pi.
 
 .. image:: ../img/audio4.png
     :width: 400
     :align: center
 
-**Step 2:** Get into the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -72,7 +71,7 @@ After building the circuit according to the above diagram, then plug the audio c
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Schritt 3:** Ausführen.
 
 .. raw:: html
 
@@ -82,18 +81,18 @@ After building the circuit according to the above diagram, then plug the audio c
 
     python3 3.1.3_AudioModule.py
 
-After the code runs, you can enjoy the music.
+Nachdem der Code ausgeführt wurde, können Sie die Musik genießen.
 
 .. note::
 
-    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`change_audio_output` to Headphones.
+    Wenn Ihr Lautsprecher keinen Ton hat, liegt das möglicherweise daran, dass der Raspberry Pi den falschen Audioausgang ausgewählt hat (Standard ist HDMI). Sie müssen dann :ref:`change_audio_output` auf Kopfhörer ändern.
 
-    If you feel that the volume of the speakers is too low, you can :ref:`adjust_volume`.
+    Wenn Sie das Gefühl haben, dass die Lautstärke der Lautsprecher zu niedrig ist, können Sie :ref:`adjust_volume` einstellen.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python`` navigieren. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
 
 .. raw:: html
 
@@ -124,7 +123,7 @@ After the code runs, you can enjoy the music.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -132,7 +131,7 @@ After the code runs, you can enjoy the music.
 
     mixer.init()
 
-Import the ``mixer`` method in the ``pygame`` library and initialize the method.
+Hier wird die Methode ``mixer`` aus der ``pygame``-Bibliothek importiert und die Methode initialisiert.
 
 .. code-block:: python
 
@@ -140,22 +139,21 @@ Import the ``mixer`` method in the ``pygame`` library and initialize the method.
     mixer.music.set_volume(0.7)
     mixer.music.play()
 
-
-This code reads the ``my_music.mp3`` file in the ``~/raphael-kit/music`` directory and sets the volume to 0.7(The range is 0~1). 
-The Raspberry Pi will start playing audio When ``mixer.music.play()`` is called.
+Dieser Code liest die Datei ``my_music.mp3`` im Verzeichnis ``~/raphael-kit/music`` und stellt die Lautstärke auf 0,7 ein (der Bereich liegt zwischen 0~1). 
+Der Raspberry Pi beginnt mit der Audio-Wiedergabe, wenn ``mixer.music.play()`` aufgerufen wird.
 
 .. note::
     
-    You can also upload other music files to your Raspberry Pi. For a detailed tutorial, please refer to: :ref:`filezilla`
+    Sie können auch andere Musikdateien auf Ihren Raspberry Pi hochladen. Für ein detailliertes Tutorial verweisen Sie bitte auf: :ref:`filezilla`
 
 .. code-block:: python
 
     mixer.music.stop()
 
-Calling ``mixer.music.stop()`` will stop playing audio.
-In addition, you can also pause with ``mixer.music.pause()`` and continue with ``mixer.music.unpause()``.
+Durch Aufrufen von ``mixer.music.stop()`` wird die Audiowiedergabe gestoppt.
+Zusätzlich können Sie mit ``mixer.music.pause()`` pausieren und mit ``mixer.music.unpause()`` fortsetzen.
 
-**Phenomenon Picture**
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/3.1.3audio.JPG

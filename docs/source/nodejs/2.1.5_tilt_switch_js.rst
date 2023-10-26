@@ -1,42 +1,41 @@
 .. _2.1.5_js:
 
-2.1.5 Tilt Switch
-=================
+2.1.5 Kippschalter
+=====================
 
-Introduction
-------------
+Einführung
+----------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Dies ist ein Kippschalter mit einem Metallball im Inneren. Er wird verwendet, um Neigungen eines kleinen Winkels zu erkennen.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.1.3_tilt_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,45 +50,41 @@ You can also buy them separately from the links below.
     *   - :ref:`tilt_switch`
         - \-
 
-Schematic Diagram
------------------
+Schaltplan
+----------
 
 .. image:: ../img/image307.png
 
-
 .. image:: ../img/image308.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/image169.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Zum Ordner des Codes navigieren.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Code ausführen.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo node tilt_switch.js
 
-Place the tilt vertically, and the green LED will turns on. 
-If you tilt it, the red LED will turns on. 
-Place it vertically again, and the green LED will lights on.
+Stellen Sie den Kippschalter vertikal auf, und die grüne LED leuchtet. Neigen Sie ihn, und die rote LED leuchtet. Stellen Sie ihn wieder vertikal auf, und die grüne LED leuchtet erneut.
 
 **Code**
 
@@ -121,7 +116,7 @@ Place it vertically again, and the green LED will lights on.
         led2.digitalWrite(!level);    
     });
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -136,9 +131,7 @@ Place it vertically again, and the green LED will lights on.
         edge: Gpio.EITHER_EDGE        
     }); 
 
-Import the pigpio module and create three objects led1, led2, tilt,
-By reading the level of the tilt IO port, the on and off of led1 and led2 are controlled.       
-
+Das Modul pigpio wird importiert und drei Objekte led1, led2, tilt erstellt. Durch das Auslesen des Pegels des IO-Ports tilt werden led1 und led2 gesteuert.    
 
 .. code-block:: js
 
@@ -148,8 +141,7 @@ By reading the level of the tilt IO port, the on and off of led1 and led2 are co
         edge: Gpio.EITHER_EDGE       
     });
 
-Create a tilt object to control the IO port Gpio17, set it to input mode, pull-down resistor (initially low level).
-And set the interrupt function, the mode is EITHER_EDGE, that is, both rising and falling edges will trigger the interrupt function.
+Erstellung eines Kippschalter-Objekts zur Steuerung des IO-Ports Gpio17, Einstellung auf Eingabemodus, Pull-Down-Widerstand (initial niedriger Pegel). Und Einstellung der Interrupt-Funktion, Modus ist EITHER_EDGE, d.h. sowohl steigende als auch fallende Flanken lösen die Interrupt-Funktion aus.
 
 .. code-block:: js
 
@@ -164,16 +156,9 @@ And set the interrupt function, the mode is EITHER_EDGE, that is, both rising an
         led2.digitalWrite(!level);    
     });
 
+Wenn der Interrupt ausgelöst wird, wird derselbe Pegel an led1 und der gegenteilige Pegel an led2 geschrieben. Wenn der IO-Port tilt hoch ist, gibt das Terminal "Horizontal" aus; wenn der IO-Port tilt niedrig ist, gibt das Terminal "Vertikal" aus.
 
-When the interrupt is triggered, write the same level to led1, and write the opposite level to led2.
-When the tilt IO port is high, the terminal prints "Horizontally";
-When the tilt IO port is low, the terminal prints "Vertically".
-
-
-
-Phenomenon Picture
-------------------
+Phänomen-Bild
+-------------
 
 .. image:: ../img/image170.jpeg
-
-

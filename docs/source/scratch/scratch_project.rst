@@ -1,13 +1,13 @@
-Projects
+Projekte
 ==================
 
-In this chapter, you will play with Scratch 3 through 18 projects.
+In diesem Kapitel werden Sie Scratch 3 anhand von 18 Projekten kennenlernen.
 
-If you are a user who has just used Scratch 3, we recommend that you try the projects in order so that you can quickly get started with Scratch 3.
+Wenn Sie ein Nutzer sind, der Scratch 3 gerade erst verwendet, empfehlen wir Ihnen, die Projekte der Reihe nach auszuprobieren, um schnell mit Scratch 3 vertraut zu werden.
 
 .. note::
-    Before trying the projects, you should have downloaded the relevant materials and code files.
-    Open a Terminal and enter the following command to download them from github.
+    Bevor Sie mit den Projekten beginnen, sollten Sie die entsprechenden Materialien und Code-Dateien heruntergeladen haben.
+    Öffnen Sie ein Terminal und geben Sie den folgenden Befehl ein, um sie von Github herunterzuladen.
 
     .. raw:: html
 

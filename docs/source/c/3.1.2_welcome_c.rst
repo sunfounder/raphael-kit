@@ -1,46 +1,42 @@
 .. _3.1.2_c:
 
-3.1.2 Welcome
+3.1.2 Willkommen
 ~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 -------------
 
-In this project, we will use PIR to sense the movement of pedestrians,
-and use servos, LED, buzzer to simulate the work of the sensor door of
-the convenience store. When the pedestrian appears within the sensing
-range of the PIR, the indicator light will be on, the door will be
-opened, and the buzzer will play the opening bell.
+In diesem Projekt werden wir PIR verwenden, um die Bewegung von Fußgängern zu erfassen und mit Servos, LEDs und Summer die Funktion einer Sensorschutztür eines Convenience-Stores zu simulieren. Wenn ein Fußgänger im Erfassungsbereich des PIR erscheint, leuchtet die Kontrolllampe auf, die Tür öffnet sich und der Summer gibt das Öffnungssignal wieder.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Welcome.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die unten stehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,7 +57,7 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
+Schaltplan
 -------------------
 
 ============ ======== ======== ===
@@ -75,15 +71,15 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one2.png
    :align: center
 
-Experimental Procedures
--------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image239.png
     :align: center
 
-**Step 2:** Change directory.
+**Schritt 2:** Wechseln Sie das Verzeichnis.
 
 .. raw:: html
 
@@ -93,7 +89,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.2/
 
-**Step 3:** Compile.
+**Schritt 3:** Kompilieren.
 
 .. raw:: html
 
@@ -103,7 +99,7 @@ Experimental Procedures
 
     gcc 3.1.2_Welcome.c -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Starten.
 
 .. raw:: html
 
@@ -113,13 +109,9 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, if the PIR sensor detects someone passing by, the
-door will automatically open (simulated by the servo), turn on the
-indicator and play the doorbell music. After the doorbell music plays,
-the system will automatically close the door and turn off the indicator
-light, waiting for the next time someone passes by.
+Nachdem der Code ausgeführt wurde und der PIR-Sensor jemanden erkennt, der vorbeigeht, wird die Tür automatisch geöffnet (simuliert durch den Servo), die Anzeige eingeschaltet und die Türklingel-Musik abgespielt. Nachdem die Türklingelmusik gespielt wurde, schließt das System automatisch die Tür, schaltet die Anzeige aus und wartet auf das nächste Vorbeigehen einer Person.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Am PIR-Modul befinden sich zwei Potentiometer: eines zur Einstellung der Empfindlichkeit und eines zur Einstellung der Erfassungsentfernung. Damit das PIR-Modul optimal funktioniert, müssen Sie beide im Uhrzeigersinn bis zum Anschlag drehen.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
@@ -127,9 +119,9 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
-**Code Explanation**
+**Code Erklärung**
 
 .. code-block:: c
 
@@ -141,8 +133,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a function, setAngle to write the angle in the servo that is
-0-180.
+Erstellen Sie eine Funktion namens setAngle, um den Winkel des Servos im Bereich von 0 bis 180 Grad zu definieren.
 
 .. code-block:: c
 
@@ -152,7 +143,7 @@ Create a function, setAngle to write the angle in the servo that is
             delay(beat[i] * 250);
         }
 
-Create a function, doorbell to enable the buzzer to play music.
+Erstellen Sie eine Funktion namens doorbell, um den Summer Musik spielen zu lassen.
 
 .. code-block:: c
 
@@ -164,8 +155,7 @@ Create a function, doorbell to enable the buzzer to play music.
         }
     }
 
-Create a closedoor function to simulate closing the door, turn off the
-LED and let the servo turn from 180 degrees to 0 degree.
+Erstellen Sie eine Funktion namens closedoor, die das Schließen der Tür simuliert, die LED ausschaltet und den Servo von 180 Grad auf 0 Grad dreht.
 
 .. code-block:: c
 
@@ -179,14 +169,11 @@ LED and let the servo turn from 180 degrees to 0 degree.
         closedoor();
     }
 
-The function opendoor() includes several parts: turn on the indicator
-light, turn the servo (simulate the action of opening the door), play
-the doorbell music of the convenience store, and call the function
-closedoor() after playing music.
+Die Funktion opendoor() beinhaltet mehrere Teile: das Einschalten der Kontrollleuchte, das Drehen des Servos (simuliert das Öffnen der Tür), das Abspielen der Türklingelmusik des Convenience-Stores und das Aufrufen der Funktion closedoor() nach dem Abspielen der Musik.
 
 .. code-block:: c
 
-        int main(void)
+    int main(void)
     {
         if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
             printf("setup wiringPi failed !");
@@ -197,12 +184,9 @@ closedoor() after playing music.
             return 1;
     ......
 
-In the function main(), initialize library wiringPi and setup softTone,
-then set ledPin to output state and pirPin to input state. If the PIR
-sensor detects someone passing by, the function opendoor will be called
-to simulate opening the door.
+In der Funktion main() wird die Bibliothek wiringPi initialisiert und softTone eingerichtet. Dann wird ledPin auf den Ausgabezustand und pirPin auf den Eingabezustand gesetzt. Wenn der PIR-Sensor jemanden erkennt, der vorbeigeht, wird die Funktion opendoor aufgerufen, um das Öffnen der Tür zu simulieren.
 
-Phenomenon Picture
+Phänomen-Bild
 --------------------
 
 .. image:: ../img/image240.jpeg

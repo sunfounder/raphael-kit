@@ -1,42 +1,42 @@
 .. _1.1.4_c:
 
-1.1.4 7-segment Display
+1.1.4 7-Segment-Anzeige
 =============================
 
-Introduction
+Einführung
 -----------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+Versuchen wir, eine 7-Segment-Anzeige zu steuern, um eine Zahl von 0 bis 9 und
+ein Buchstabe von A bis F anzuzeigen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/list_7_segment.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,17 +51,12 @@ You can also buy them separately from the links below.
     *   - :ref:`74hc595`
         - |link_74hc595_buy|
 
-Schematic Diagram
+Schaltplan
 ---------------------
 
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+Verbinden Sie den ST_CP-Pin des 74HC595 mit dem GPIO18 des Raspberry Pi, SH_CP mit GPIO27 und DS
+mit GPIO17, die parallelen Ausgangsports mit den 8 Segmenten der LED-Segment-
+Anzeige. Daten im DS-Pin werden in das Schieberegister eingegeben, wenn SH_CP (der Clock-Eingang des Schieberegisters) an der steigenden Flanke ist, und in das Speicherregister, wenn ST_CP (der Clock-Eingang des Speichers) an der steigenden Flanke ist. Dann können Sie die Zustände von SH_CP und ST_CP über die GPIOs des Raspberry Pi steuern, um serielle Dateneingaben in parallele Datenausgaben zu transformieren, um so GPIOs des Raspberry Pi zu sparen und die Anzeige zu steuern.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -72,15 +67,14 @@ GPIO27       Pin 13   2        27
 
 .. image:: ../img/schematic_7_segment.png
 
-
-Experimental Procedures
+Experimentelle Verfahren
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image73.png
 
-**Step 2:** Get into the folder of the code.
+**Schritt 2:** Navigieren Sie zum Code-Ordner.
 
 .. raw:: html
 
@@ -90,7 +84,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.4/
 
-**Step 3:** Compile.
+**Schritt 3:** Kompilieren.
 
 .. raw:: html
 
@@ -100,7 +94,7 @@ Experimental Procedures
 
     gcc 1.1.4_7-Segment.c -lwiringPi
 
-**Step 4:** Run the executable file above.
+**Schritt 4:** Führen Sie die oben erstellte ausführbare Datei aus.
 
 .. raw:: html
 
@@ -110,11 +104,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+Nachdem der Code ausgeführt wurde, zeigt die 7-Segment-Anzeige 0-9, A-F an.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -166,14 +160,14 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 
 .. code-block:: c
 
     unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
-A segment code array from 0 to F in Hexadecimal (Common cathode).
+Ein Segmentcode-Array von 0 bis F in Hexadezimal (Gemeinsame Kathode).
 
 .. code-block:: c
 
@@ -186,31 +180,31 @@ A segment code array from 0 to F in Hexadecimal (Common cathode).
         digitalWrite(SRCLK, 0);
     }
 
-Set ds, st_cp, sh_cp three pins to OUTPUT, and the initial state as 0.
+Setze ds, st_cp, sh_cp auf drei Pins als OUTPUT und den anfänglichen Zustand auf 0.
 
 .. code-block:: c
 
     void hc595_shift(unsigned char dat){}
 
-To assign 8 bit value to 74HC595’s shift register.
+Um dem 74HC595's Schieberegister einen 8-Bit-Wert zuzuweisen.
 
 .. code-block:: c
 
     digitalWrite(SDI, 0x80 & (dat << i));
 
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when i=2, 0x3f will shift left(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+Weise die dat Daten bitweise an SDI(DS) zu. Hier nehmen wir an, dass dat=0x3f (0011 1111) ist; wenn i=2, wird 0x3f 2 Bits nach links verschoben. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, ergibt wahr.
 
 .. code-block:: c
 
     digitalWrite(SRCLK, 1);
 
-SRCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge pulse, then shift the DS date to shift register.
+Der Anfangswert von SRCLK wurde auf 0 gesetzt, und hier wird er auf 1 gesetzt, um einen ansteigenden Flankenimpuls zu erzeugen und das DS Datum ins Schieberegister zu verschieben.
 
 .. code-block:: c
 
     digitalWrite(RCLK, 1);
 
-RCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge, then shift data from shift register to storage register.
+Der Anfangswert von RCLK wurde auf 0 gesetzt, und hier wird er auf 1 gesetzt, um eine ansteigende Flanke zu erzeugen und dann die Daten vom Schieberegister ins Speicherregister zu verschieben.
 
 .. code-block:: c
 
@@ -222,12 +216,13 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
             }
         }
 
-In this for loop, we use ``%1X`` to output i as a hexadecimal number. Apply i to find the corresponding segment code in the ``SegCode[]`` array, and employ ``hc595_shift()`` to pass the SegCode into 74HC595's shift register.
+In dieser For-Schleife verwenden wir ``%1X``, um i als hexadezimale Zahl auszugeben. Nutzen Sie i, um den entsprechenden Segmentcode im ``SegCode[]`` Array zu finden, und verwenden Sie ``hc595_shift()`` um den SegCode ins 74HC595's Schieberegister zu übergeben.
 
 .. note::
-    The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+    Die hexadezimalen Formate der Zahlen 0~15 sind (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
 
-**Phenomenon Picture**
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image74.jpeg
 

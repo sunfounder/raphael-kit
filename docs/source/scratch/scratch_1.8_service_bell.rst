@@ -1,42 +1,42 @@
 .. _1.8_scratch:
 
-1.8 Service Bell
+1.8 Serviceklingel
 ===================
 
-Today, we will use Micro Switch, speakers, audio amplifier module, Raspberry Pi and scratch to make a service bell.
+Heute verwenden wir Mikroschalter, Lautsprecher, Audioverstärkermodul, Raspberry Pi und Scratch, um eine Serviceklingel zu bauen.
 
-Tap the Micro Switch to make the service bell sound.
+Betätigen Sie den Mikroschalter, um den Klang der Serviceklingel auszulösen.
 
 .. image:: img/1.8_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.8_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -53,45 +53,44 @@ You can also buy them separately from the links below.
     *   - :ref:`audio_speaker`
         - \-
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.8_fritzing.png
 
+Laden Sie den Code und sehen Sie, was passiert
+---------------------------------------------------
 
-Load the Code and See What Happens
------------------------------------------
+Laden Sie die Code-Datei (``1.8_service_bell.sb3``) in Scratch 3.
 
-Load the code file (``1.8_service_bell.sb3``) to Scratch 3.
-
-Press the micro switch and the service bell will ring once.
+Drücken Sie den Mikroschalter, und die Serviceklingel wird einmal klingeln.
 
 .. note::
   
-  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`change_audio_output` for the solution.
+  Wenn Ihr Raspberry Pi an einen Bildschirm mit Lautsprechern angeschlossen ist, kann dies dazu führen, dass dieser externe Lautsprecher keinen Ton ausgibt. Bitte beziehen Sie sich auf :ref:`change_audio_output` für eine Lösung.
 
-  Also, if you want to adjust the volume level, please refer to :ref:`adjust_volume`.
+  Wenn Sie außerdem die Lautstärke anpassen möchten, konsultieren Sie bitte :ref:`adjust_volume`.
 
-Tips on Sprite
-----------------
+Tipps zu Sprite
+---------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **bell1.png** and **bell2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **bell**.
+Wählen Sie Sprite1 und klicken Sie in der oberen linken Ecke auf **Costumes**. Laden Sie **bell1.png** und **bell2.png** über den Pfad ``~/raphael-kit/scratch/picture`` mit der Schaltfläche **Upload Costume** hoch. Löschen Sie die beiden Standardkostüme und benennen Sie das Sprite in **bell** um.
 
 .. image:: img/1.8_travel1.png
 
-In the **Sounds** option, upload the ``bell.wav`` from the ``~/raphael-kit/scratch/sound`` path to Scratch 3.
+Im **Sounds**-Bereich laden Sie die Datei ``bell.wav`` aus dem Pfad ``~/raphael-kit/scratch/sound`` in Scratch 3 hoch.
 
 .. image:: img/1.8_travel2.png
 
-Tips on Codes
+Tipps zu Codes
 --------------
 
 .. image:: img/1.8_travel3.png
   :width: 400
 
-When pin17 is high (the Micro switch is not pressed), switch the costume of the **bell** sprite to **bell1** (released state).
+Wenn pin17 hoch ist (der Mikroschalter ist nicht betätigt), wechseln Sie das Kostüm des Sprites **bell** zu **bell1** (entspannter Zustand).
 
 .. image:: img/1.8_travel4.png
   :width: 400
 
-Press the micro switch, gpio17 is low level. At this time, switch the costume of the **bell** sprite to **bell2** (press state), and play a sound effect through the speaker.
+Drücken Sie den Mikroschalter, gpio17 ist auf niedrigem Level. Zu diesem Zeitpunkt wechseln Sie das Kostüm des Sprites **bell** zu **bell2** (gedrückter Zustand) und spielen Sie einen Soundeffekt über den Lautsprecher ab.

@@ -1,37 +1,37 @@
 .. _clickable_dot:
 
-Clickable Dot
+Klickbarer Punkt
 ==================
 
-We've tried drawing motion graphic, responding to mouse event, and controlling LED.  So, we might as well combine these functions, draw a clickable dot, to control the LED!  
+Wir haben bereits Bewegungsgrafiken gezeichnet, auf Mausereignisse reagiert und LEDs gesteuert. Also könnten wir diese Funktionen kombinieren und einen klickbaren Punkt zeichnen, um die LED zu steuern!
 
 .. image:: img/clickable_dot_on.png
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -42,11 +42,11 @@ You can also buy them separately from the links below.
     *   - :ref:`led`
         - |link_led_buy|
 
-**Wiring**
+**Verdrahtung**
 
 .. image:: img/image49.png
 
-**Sketch**
+**Skizze**
 
 .. code-block:: arduino
 
@@ -76,9 +76,8 @@ You can also buy them separately from the links below.
             {state = !state;}
     }
 
-**How it works?**
+**Wie funktioniert das?**
 
-This project has a lot in common with :ref:`blinking_dot`, the difference is that it puts the toggle state in the mouse event.
-This causes the LED to not blink automatically, but to light up and go off with a mouse click.
+Dieses Projekt hat viele Gemeinsamkeiten mit :ref:`blinking_dot`. Der Unterschied besteht darin, dass der Umschaltzustand im Mausevent platziert ist. Dies führt dazu, dass die LED nicht automatisch blinkt, sondern mit einem Mausklick ein- und ausgeschaltet wird.
 
-And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.
+Im ``mouseClicked()``-Ereignis wird die ``dist()``-Funktion verwendet, um die Position der Maus zum Zeitpunkt des Klicks zu bestimmen. Der Punkt wird nur dann als angeklickt betrachtet, wenn der Abstand zwischen der Maus und dem Zentrum des Punktes kleiner als der Radius ist.

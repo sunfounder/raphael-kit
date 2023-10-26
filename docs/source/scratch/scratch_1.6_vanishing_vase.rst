@@ -1,40 +1,40 @@
 .. _1.6_scratch:
 
-1.6 Vanishing Vase
+1.6 Verschwindende Vase
 ========================
 
-Now let's do a little magic trick, do nothing, and then the vase somehow disappears.
+Lassen Sie uns jetzt einen kleinen Zaubertrick vollführen: Nichts tun und plötzlich verschwindet die Vase.
 
 .. image:: img/1.6_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.6_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, ein ganzes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links erwerben.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -45,34 +45,34 @@ You can also buy them separately from the links below.
     *   - :ref:`reed_switch`
         - |link_reed_switch_buy|
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.6_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+---------------------------------------------------
 
-Load the code file (``1.6_vanishing_vase.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.6_vanishing_vase.sb3``) in Scratch 3.
 
-When you use a magnet near the reed switch module, a vase will appear on the stage, take away the magnet and the vase will disappear.
+Wenn Sie einen Magneten in die Nähe des Reed-Schalter-Moduls bringen, erscheint eine Vase auf der Bühne. Entfernen Sie den Magneten, verschwindet die Vase.
 
-Tips on Sprite
-----------------
+Tipps zu Sprite
+-------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **desk1.png** and **desk2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **desk**.
+Wählen Sie Sprite1 aus und klicken Sie in der oberen linken Ecke auf **Costumes**; laden Sie **desk1.png** und **desk2.png** über den Pfad ``~/raphael-kit/scratch/picture`` mit der Schaltfläche **Upload Costume** hoch; löschen Sie die beiden Standardkostüme und benennen Sie das Sprite in **desk** um.
 
 .. image:: img/1.6_vase.png
 
-Tips on Codes
---------------
+Tipps zu Codes
+----------------
 
 .. image:: img/1.6_reed2.png
   :width: 400
 
-When the magnet is close to the reed switch module, gpio17 is low, and the costume of the **desk** sprite is switched to **desk1** (the vase is still on the desk).
+Wenn der Magnet dem Reed-Schalter-Modul nahe ist, ist gpio17 niedrig, und das Kostüm des **desk**-Sprites wird auf **desk1** gewechselt (die Vase steht noch auf dem Tisch).
 
 .. image:: img/1.6_reed3.png
   :width: 400
 
-After taking away the magnet, gpio17 is high, at this time the costume of the **desk** sprite is switched to **desk2** (only one desk).
+Nach dem Entfernen des Magneten ist gpio17 hoch. Zu diesem Zeitpunkt wird das Kostüm des **desk**-Sprites auf **desk2** gewechselt (nur ein Tisch).

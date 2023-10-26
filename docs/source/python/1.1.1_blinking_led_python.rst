@@ -1,45 +1,43 @@
 .. _1.1.1_py:
 
-1.1.1 Blinking LED
+1.1.1 Blinkende LED
 =========================
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will learn how to make a blinking LED by programming.
-Through your settings, your LED can produce a series of interesting
-phenomena. Now, go for it.
+In diesem Projekt lernen wir, wie man eine blinkende LED durch Programmierung zum Blinken bringt. Durch Ihre Einstellungen kann Ihre LED eine Reihe interessanter Phänomene erzeugen. Legen Sie jetzt los.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/blinking_led_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -53,23 +51,16 @@ You can also buy them separately from the links below.
         - |link_led_buy|
 
 
-Schematic Diagram
+Schaltplan
 ---------------------
 
-In this experiment, connect a 220Ω resistor to the anode (the long pin
-of the LED), then the resistor to 3.3 V, and connect the cathode (the
-short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
-an LED, we need to make GPIO17 low (0V) level. We can get this
-phenomenon by programming.
+In diesem Experiment verbinden Sie einen 220Ω Widerstand mit der Anode (dem langen Pin der LED), dann den Widerstand mit 3,3 V und schließen die Kathode (den kurzen Pin) der LED an GPIO17 des Raspberry Pi an. Um eine LED einzuschalten, müssen wir GPIO17 auf das niedrige (0V) Level bringen. Dieses Phänomen können wir durch Programmierung erreichen.
 
 .. note::
 
-    **Pin11** refers to the 11th pin of the Raspberry Pi from left to right, and its corresponding **wiringPi** and **BCM** pin numbers are shown in the following table.
+    **Pin11** bezieht sich auf den 11. Pin des Raspberry Pi von links nach rechts, und die entsprechenden **wiringPi** und **BCM** Pin-Nummern sind in der folgenden Tabelle angegeben.
 
-In the C language related content, we make GPIO0 equivalent to 0 in the
-wiringPi. Among the Python language related content, BCM 17 is 17 in the
-BCM column of the following table. At the same time, they are the same
-as the 11th pin on the Raspberry Pi, Pin 11.
+In den C-Spracheninhalten machen wir GPIO0 gleich 0 in der wiringPi. In den Python-Spracheninhalten ist BCM 17 in der BCM-Spalte der folgenden Tabelle 17. Gleichzeitig sind sie dasselbe wie der 11. Pin am Raspberry Pi, Pin 11.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -80,31 +71,26 @@ GPIO17       Pin 11   0        17
     :width: 800
     :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltkreis aufbauen.
 
 .. image:: ../img/image49.png
     :width: 800
     :align: center
 
-**Step 2:** Go to the folder of the code and run it.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes und führen Sie ihn aus.
 
-1. If you use a screen, you're recommended to take the following steps.
+1. Wenn Sie einen Bildschirm verwenden, empfehlen wir Ihnen, die folgenden Schritte zu befolgen.
 
-Find 1.1.1_BlinkingLed.py and double click it to open. Now you're in the
-file.
+Finden Sie 1.1.1_BlinkingLed.py und doppelklicken Sie darauf, um es zu öffnen. Jetzt sind Sie in der Datei.
 
-Click **Run** ->\ **Run Module** in the window and the following
-contents will appear.
+Klicken Sie auf **Run** ->\ **Run Module** im Fenster, und die folgenden Inhalte werden angezeigt.
 
-To stop it from running, just click the X button on the top right to
-close it and then you'll back to the code. If you modify the code,
-before clicking **Run Module (F5)** you need to save it first. Then you
-can see the results.
+Um es zu stoppen, klicken Sie einfach auf das X-Symbol oben rechts, um es zu schließen, und dann kehren Sie zum Code zurück. Wenn Sie den Code ändern, müssen Sie ihn vor dem Klicken auf **Run Module (F5)** zuerst speichern. Dann können Sie die Ergebnisse sehen.
 
-2. If you log into the Raspberry Pi remotely, type in the command:
+2. Wenn Sie sich aus der Ferne in den Raspberry Pi einloggen, geben Sie den Befehl ein:
 
 .. raw:: html
 
@@ -115,9 +101,9 @@ can see the results.
    cd ~/raphael-kit/python
 
 .. note::
-    Change directory to the path of the code in this experiment via ``cd``.
+    Wechseln Sie über ``cd`` zum Pfad des Codes in diesem Experiment.
 
-**Step 3:** Run the code
+**Schritt 3:** Führen Sie den Code aus
 
 .. raw:: html
 
@@ -128,13 +114,13 @@ can see the results.
    sudo python3 1.1.1_BlinkingLed.py
 
 .. note::
-    Here sudo - superuser do, and python means to run the file by Python.
+    Hier bedeutet sudo - Superuser do, und python bedeutet, die Datei mit Python auszuführen.
 
-After the code runs, you will see the LED flashing.
+Nachdem der Code ausgeführt wurde, sehen Sie die blinkende LED.
 
-**Step 4:** If you want to edit the code file 1.1.1_BlinkingLed.py,
-press ``Ctrl + C`` to stop running the code. Then type the following
-command to open 1.1.1_BlinkingLed.py:
+**Schritt 4:** Wenn Sie die Code-Datei 1.1.1_BlinkingLed.py bearbeiten möchten, 
+drücken Sie ``Ctrl + C``, um die Ausführung des Codes zu stoppen. Geben Sie dann 
+den folgenden Befehl ein, um 1.1.1_BlinkingLed.py zu öffnen:
 
 .. raw:: html
 
@@ -145,23 +131,23 @@ command to open 1.1.1_BlinkingLed.py:
    nano 1.1.1_BlinkingLed.py
 
 .. note::
-    nano is a text editor tool. The command is used to open the
-    code file 1.1.1_BlinkingLed.py by this tool.
+    nano ist ein Texteditor-Tool. Mit dem Befehl wird die 
+    Code-Datei 1.1.1_BlinkingLed.py mit diesem Tool geöffnet.
 
-Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
-prompt asking whether to save the changes or not. Type in ``Y`` (save)
-or ``N`` (don’t save).
+Drücken Sie ``Ctrl+X``, um zu beenden. Wenn Sie den Code geändert haben, 
+erscheint eine Aufforderung, ob Sie die Änderungen speichern möchten oder nicht. 
+Geben Sie ``Y`` (speichern) oder ``N`` (nicht speichern) ein.
 
-Then press ``Enter`` to exit. Type in nano 1.1.1_BlinkingLed.py again to
-see the effect after the change.
+Drücken Sie dann ``Enter`` zum Beenden. Geben Sie erneut nano 1.1.1_BlinkingLed.py ein, 
+um den Effekt nach der Änderung zu sehen.
 
 **Code**
 
-The following is the program code:
+Im Folgenden finden Sie den Programmcode:
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+   Sie können den untenstehenden Code **Bearbeiten/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Doch bevor Sie dies tun, müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 .. raw:: html
 
@@ -204,36 +190,34 @@ The following is the program code:
       except KeyboardInterrupt:
          destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
    #!/usr/bin/env python3
 
-When the system detects this, it will search the installation path of
-python in the env setting, then call the corresponding interpreter to
-complete the operation. It’s to prevent the user not installing the
-python onto the ``/usr/bin`` default path.
+Wenn das System dies erkennt, wird es den Installationspfad von
+Python in der env-Einstellung suchen und dann den entsprechenden Interpreter aufrufen, 
+um den Vorgang abzuschließen. Dies verhindert, dass der Benutzer Python nicht im Standardpfad ``/usr/bin`` installiert hat.
 
 .. code-block:: python
 
    import RPi.GPIO as GPIO
 
-In this way, import the RPi.GPIO library, then define a variable, GPIO
-to replace RPI.GPIO in the following code.
+Auf diese Weise wird die RPi.GPIO-Bibliothek importiert und dann eine Variable, GPIO,
+definiert, um RPI.GPIO im folgenden Code zu ersetzen.
 
 .. code-block:: python
 
    import time
 
-Import time package, for time delay function in the following program.
+Time-Paket importieren, für die Zeitverzögerungsfunktion im folgenden Programm.
 
 .. code-block:: python
 
    LedPin = 17
 
-LED connects to the GPIO17 of the T-shape extension board, namely, BCM
-17.
+Die LED ist mit dem GPIO17 des T-förmigen Erweiterungsboards verbunden, also BCM 17.
 
 .. code-block:: python
 
@@ -241,33 +225,31 @@ LED connects to the GPIO17 of the T-shape extension board, namely, BCM
       GPIO.setmode(GPIO.BCM)
       GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
 
-Set LedPin's mode to output, and initial level to High (3.3v).
+Setze den Modus von LedPin auf Ausgang und das Anfangsniveau auf High (3,3V).
 
-There are two ways of numbering the IO pins on a Raspberry Pi within
-RPi.GPIO: BOARD numbers and BCM numbers. In our projects, what we use is
-BCM numbers. You need to set up every channel you are using as an input
-or an output.
+Es gibt zwei Möglichkeiten, die IO-Pins auf einem Raspberry Pi innerhalb von
+RPi.GPIO zu nummerieren: BOARD-Nummern und BCM-Nummern. In unseren Projekten verwenden wir
+BCM-Nummern. Sie müssen jeden Kanal, den Sie als Eingang oder Ausgang verwenden, einrichten.
 
 .. code-block:: python
 
    GPIO.output(LedPin, GPIO.LOW)
 
-Set GPIO17(BCM17) as 0V (low level). Since the cathode of LED is
-connected to GPIO17, thus the LED will light up.
+Setze GPIO17(BCM17) auf 0V (niedriges Niveau). Da die Kathode der LED an GPIO17 angeschlossen ist, 
+leuchtet die LED auf.
 
 .. code-block:: python
 
    time.sleep(0.5)
 
-Delay for 0.5 second. Here, the statement is delay function in C language, the unit is second.
+Verzögerung um 0,5 Sekunden. Hierbei handelt es sich um die Verzögerungsfunktion in der C-Sprache, die Einheit ist Sekunden.
 
 .. code-block:: python
 
    def destroy():
-      GPIO.cleanup()  
+      GPIO.cleanup()
 
-Define a destroy function for clean up everything after the script
-finished.
+Definiere eine Zerstörungsfunktion, um nach Beendigung des Skripts alles aufzuräumen.
 
 .. code-block:: python
 
@@ -279,13 +261,12 @@ finished.
       except KeyboardInterrupt:
          destroy()
 
-This is the general running structure of the code. When the program
-starts to run, it initializes the pin by running the setup(), and then
-runs the code in the main() function to set the pin to high and low
-levels. When ``Ctrl+C`` is pressed, the program,
-destroy() will be  executed.  
+Das ist die allgemeine Laufstruktur des Codes. Wenn das Programm zu laufen beginnt, 
+initialisiert es den Pin durch Ausführung von setup() und führt dann den Code in der 
+main()-Funktion aus, um den Pin auf hohe und niedrige Niveaus zu setzen. Wenn ``Ctrl+C`` gedrückt wird, 
+wird das Programm destroy() ausgeführt.
 
-Phenomenon Picture
+Phänomen-Bild
 --------------------
 
 .. image:: ../img/image54.jpeg

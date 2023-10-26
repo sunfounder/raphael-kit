@@ -1,42 +1,42 @@
 .. _1.5_scratch:
 
-1.5 Wake up the Owl
+1.5 Den Eulen wecken
 ====================
 
-Today we are going to play a game of waking up the owl.
+Heute spielen wir ein Spiel, in dem wir die Eule aufwecken.
 
-When someone approaches the PIR sensor module, the owl will wake up from sleep.
+Wenn sich jemand dem PIR-Sensormodul nähert, wird die Eule aus dem Schlaf erwachen.
 
 .. image:: img/1.5_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+In diesem Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.5_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die folgenden Links erwerben.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -47,46 +47,44 @@ You can also buy them separately from the links below.
     *   - :ref:`pir`
         - \-
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.5_fritzing.png
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Auf dem PIR-Modul gibt es zwei Potentiometer: eines zur Einstellung der Empfindlichkeit und das andere zur Einstellung der Erkennungsdistanz. Um das PIR-Modul optimal zu nutzen, sollten Sie beide Potentiometer bis zum Anschlag gegen den Uhrzeigersinn drehen.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
     :align: center
 
-Load the Code and See What Happens
----------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+-------------------------------------------------------
 
-Load the code file (``1.5_wake_up_the_owl.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.5_wake_up_the_owl.sb3``) in Scratch 3.
 
-When you approach the PIR sensor module, you will see the owl on the stage area open its wings and wake up, and when you leave, the owl will go back to sleep again.
+Wenn Sie sich dem PIR-Sensormodul nähern, sehen Sie, wie die Eule im Bühnenbereich ihre Flügel ausbreitet und aufwacht. Entfernen Sie sich wieder, wird die Eule erneut einschlafen.
 
+Tipps zu Sprite
+-------------------
 
-Tips on Sprite
-----------------
-
-Select Sprite1 and click **Costumes** in the top left corner; upload **owl1.png** and **owl2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **owl**.
+Wählen Sie Sprite1 aus und klicken Sie in der oberen linken Ecke auf **Costumes**; laden Sie **owl1.png** und **owl2.png** über den Pfad ``~/raphael-kit/scratch/picture`` mit der Schaltfläche **Upload Costume** hoch; löschen Sie die beiden Standardkostüme und benennen Sie das Sprite in **owl** um.
 
 .. image:: img/1.5_pir1.png
 
-Tips on Codes
+Tipps zu Codes
 --------------
 
 .. image:: img/1.3_title2.png
 
-
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Wenn die grüne Flagge angeklickt wird, wird der anfängliche Zustand von gpio17 auf niedrig gesetzt.
 
 .. image:: img/1.5_owl1.png
   :width: 400
 
-When pin17 is low (no one is approaching), switch the costume of the owl sprite to owl1 (sleeping state).
+Wenn pin17 niedrig ist (sich niemand nähert), wechseln Sie das Kostüm des Eulen-Sprites zu owl1 (Schlafzustand).
 
 .. image:: img/1.5_owl2.png
   :width: 400
 
-When pin17 is high (someone is approaching), we switch the costume of owl sprite to owl2 (wake up state).
+Wenn pin17 hoch ist (sich jemand nähert), wechseln wir das Kostüm des Eulen-Sprites zu owl2 (Aufwachzustand).

@@ -1,32 +1,25 @@
 .. _rotary_encoder:
 
-Rotary Encoder Module
+Drehgebermodul
 =============================
 
 .. image:: img/rotary_encoder_pic.png
     :width: 300
     :align: center
 
-The rotary encoder module counts the number of pulses output in the forward and reverse directions during rotation. unlike a potentiometer, this rotation count is unlimited and the number of pulses per cycle is 20. Press the key (SW) on the rotary encoder to start counting from zero.
+Das Drehgebermodul zählt die Anzahl der Impulse, die während der Drehung in Vorwärts- und Rückwärtsrichtung ausgegeben werden. Im Gegensatz zu einem Potentiometer ist diese Drehzahl unbegrenzt und die Anzahl der Impulse pro Zyklus beträgt 20. Durch Drücken der Taste (SW) auf dem Drehgeber beginnt die Zählung von null.
 
-There are mainly two types of rotary encoders: absolute and incremental (relative) encoders. An incremental one is used in this kit.
+Es gibt hauptsächlich zwei Arten von Drehgebern: Absolut- und Inkrementalgeber (relative Geber). In diesem Set wird ein Inkrementalgeber verwendet.
 
-Incremental encoders give two-phase square waves, their phase difference is 90, usually called A channel and B channel.
+Inkrementalgeber erzeugen zweiphasige Rechteckwellen, deren Phasendifferenz 90 Grad beträgt, normalerweise als Kanal A und B bezeichnet.
 
-As shown on the right, when channel A changes from high level to low
-level, if channel B is high level, it indicates the rotary encoder spins
-clockwise (CW); if at that moment channel B is low level, it means spins
-counterclockwise (CCW). So if we read the value of channel B when
-channel A is low level, we can know in which direction the rotary
-encoder rotates.
-
-
+Wie rechts dargestellt, wenn Kanal A von hohem auf niedriges Niveau wechselt und Kanal B dabei auf hohem Niveau ist, zeigt dies an, dass der Drehgeber im Uhrzeigersinn (CW) dreht. Wenn jedoch zu diesem Zeitpunkt Kanal B auf niedrigem Niveau ist, bedeutet dies, dass er gegen den Uhrzeigersinn (CCW) dreht. Wenn wir also den Wert von Kanal B lesen, während Kanal A auf niedrigem Niveau ist, können wir feststellen, in welche Richtung der Drehgeber dreht.
 
 .. image:: img/image206.png
     :width: 600
     :align: center
 	
-**Example**
+**Beispiel**
 
-* :ref:`2.1.6_c` (C Project)
-* :ref:`2.1.6_py` (Python Project)
+* :ref:`2.1.6_c` (C-Projekt)
+* :ref:`2.1.6_py` (Python-Projekt)

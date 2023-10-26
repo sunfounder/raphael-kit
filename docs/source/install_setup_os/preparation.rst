@@ -1,16 +1,17 @@
 .. _preparation:
 
-Install and Setup Raspberry Pi OS
-====================================
+Installation und Einrichtung des Raspberry Pi OS
+=====================================================
 
-In this chapter, we firstly learn to start up Raspberry Pi. The content
-includes installing the OS, Raspberry Pi network and how to open terminal.
+In diesem Kapitel lernen wir zunächst, den Raspberry Pi zu starten. Der Inhalt 
+umfasst die Installation des Betriebssystems, das Raspberry Pi Netzwerk und wie man das Terminal öffnet.
 
 .. note::
 
-    You can check the complete tutorial on the official website of the Raspberry Pi: `raspberry-pi-setting-up <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up>`_.
+    Das vollständige Tutorial finden Sie auf der offiziellen Webseite des Raspberry Pi: `raspberry-pi-setting-up <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up>`_.
 
-    If your Raspberry Pi is set up, you can skip the part and go into the next chapter.
+    Wenn Ihr Raspberry Pi bereits eingerichtet ist, können Sie diesen Abschnitt überspringen und zum nächsten Kapitel wechseln.
+
 
 .. toctree::
     :maxdepth: 2

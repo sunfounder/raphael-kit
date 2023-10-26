@@ -1,27 +1,25 @@
-About Video Course
+Über den Videokurs
 =========================
 
 .. image:: img/video_paul.png
 
-The kit also contains 45 free video lessons (30 hours) produced by SunFounder and Paul McWhorter. Paul is an experienced programming educator with 300,000 followers on YouTube and currently has 45 Raspberry Pi video lessons that continue to be updated weekly.
+Das Set enthält auch 45 kostenlose Videolektionen (30 Stunden), die von SunFounder und Paul McWhorter produziert wurden. Paul ist ein erfahrener Programmierlehrer mit 300.000 Followern auf YouTube und hat derzeit 45 Raspberry Pi Videolektionen, die wöchentlich aktualisiert werden.
 
-The video course is made for beginners who have no basic programming skills and use the Sunfounder Ultimate Raspberry Pi Kit - Raphael Kit.
+Der Videokurs ist für Anfänger konzipiert, die keine grundlegenden Programmierkenntnisse haben und das Sunfounder Ultimate Raspberry Pi Kit - Raphael Kit verwenden.
 
-Here is the video link：https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O
+Hier ist der Videolink: https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O
 
-From the video, you can：
+Aus dem Video können Sie:
 
-* Master the installation, configuration and use of the Raspberry Pi system.
-* Understanding and using Raspberry Pi GPIO pins.
-* Learn Python's programming logic so you can control what happens in your scripts.
-* Acquire the skill to create Python libraries to better prototype your ideas.
-* Utilize multithreading to run multiple scripts at once.
-* Know how to get and use analog signals from ADC module.
-* Learn the circuit principles so that you can design the circuit to your own specifications.
-* Get to know Joystick, Servo, Ultrasonic module, PIR, DHT11, I2C LCD, Keyboard, etc.
+* Die Installation, Konfiguration und Nutzung des Raspberry Pi Systems meistern.
+* Verstehen und verwenden von Raspberry Pi GPIO-Pins.
+* Die Programmierlogik von Python erlernen, um zu steuern, was in Ihren Skripten passiert.
+* Die Fähigkeit erwerben, Python-Bibliotheken zu erstellen, um Ihre Ideen besser zu prototypisieren.
+* Multithreading nutzen, um mehrere Skripte gleichzeitig auszuführen.
+* Erfahren, wie Sie analoge Signale vom ADC-Modul erhalten und verwenden.
+* Die Schaltungsprinzipien erlernen, sodass Sie die Schaltung nach Ihren eigenen Spezifikationen entwerfen können.
+* Lernen Sie Joystick, Servo, Ultraschallmodul, PIR, DHT11, I2C LCD, Tastatur usw. kennen.
 
+Sie müssen sich keine Sorgen machen, dass das Erlernen der Programmierung zu schwer ist, denn wir betrachten Sie nicht als Experten und werden Sie Schritt für Schritt anleiten, mit einfachen und interessanten Projekten, um jeden Punkt zu lernen und sicherzustellen, dass jeder Anfänger lernen kann.
 
-You don't have to worry about learning programming too hard, because we don't consider you an expert and will take you step by step, with simple and interesting projects to learn each point and make sure every beginner can learn.
-
-Through the video tutorials, you can make temperature alarm systems, light sensing systems and security monitoring systems, all of which are very common and interesting projects in life.
-
+Durch die Videotutorials können Sie Temperaturalarmsysteme, Lichterfassungssysteme und Sicherheitsüberwachungssysteme erstellen, die alle sehr gängige und interessante Projekte im Alltag sind.

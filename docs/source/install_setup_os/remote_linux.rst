@@ -1,15 +1,14 @@
 .. _remote_linux:
 
-Linux /Unix Users
+Linux-/Unix-Benutzer
 ==========================
 
-
-#. Go to **Applications**->\ **Utilities**, find the **Terminal**, and open it.
+#. Navigieren Sie zu **Applications**->\ **Utilities**, suchen Sie das **Terminal** und öffnen Sie es.
 
     .. image:: img/image21.png
         :align: center
 
-#. Check if your Raspberry Pi is on the same network by type in ``ping <hostname>.local``. 
+#. Überprüfen Sie, ob Ihr Raspberry Pi im selben Netzwerk ist, indem Sie ``ping <hostname>.local`` eingeben.
 
     .. code-block:: shell
 
@@ -19,20 +18,17 @@ Linux /Unix Users
         :width: 550
         :align: center
 
-    * If terminal prompts ``ping: cannot resolve <hostname>.local``, it is possible that the Raspberry Pi failed to connect to the network. Please check the network.
-    * If you really can't ping ``<hostname>.local``, try to :ref:`get_ip`  and ``ping <IP address>`` instead. (e.g., ``ping 192.168.6.116``)
-    * If multiple prompts like ``64 bytes from <IP address>: icmp_seq=0 ttl=64 time=0.464 ms`` appear, it means your computer can access the Raspberry Pi.
+    * Wenn das Terminal ``ping: cannot resolve <hostname>.local`` anzeigt, könnte es sein, dass der Raspberry Pi keine Verbindung zum Netzwerk hat. Bitte überprüfen Sie das Netzwerk.
+    * Wenn Sie ``<hostname>.local`` wirklich nicht anpingen können, versuchen Sie :ref:`get_ip` und geben Sie stattdessen ``ping <IP-Adresse>`` ein (z. B. ``ping 192.168.6.116``).
+    * Wenn mehrere Meldungen wie ``64 Bytes von <IP-Adresse>: icmp_seq=0 ttl=64 time=0.464 ms`` erscheinen, bedeutet dies, dass Ihr Computer auf den Raspberry Pi zugreifen kann.
 
-
-
-
-#. Type in ``ssh <username>@<hostname>.local`` (or ``ssh <username>@<IP address>``).
+#. Geben Sie ``ssh <username>@<hostname>.local`` (oder ``ssh <username>@<IP-Adresse>``) ein.
 
     .. code-block:: shell
 
         ssh pi@raspberrypi.local
 
-#. The following message may appear.
+#. Die folgende Nachricht könnte erscheinen.
 
     .. code-block::
 
@@ -40,16 +36,15 @@ Linux /Unix Users
         ECDSA key fingerprint is SHA256:7ggckKZ2EEgS76a557cddfxFNDOBBuzcJsgaqA/igz4.
         Are you sure you want to continue connecting (yes/no/[fingerprint])? 
 
-    Input \"yes\".
+    Geben Sie "yes" ein.
 
     .. image:: img/mac-ssh-login.png
         :width: 550
         :align: center
 
+#. Geben Sie das zuvor festgelegte Passwort ein (Meines ist ``raspberry``).
 
-#. Input the password you set before. (Mine is ``raspberry``.)
-
-#. We now get the Raspberry Pi connected and are ready to go to the nextstep.
+#. Nun ist der Raspberry Pi verbunden, und wir können zum nächsten Schritt übergehen.
 
     .. image:: img/mac-ssh-terminal.png
         :width: 550

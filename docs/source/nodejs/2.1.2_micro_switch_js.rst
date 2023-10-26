@@ -1,43 +1,43 @@
 .. _2.1.2_js:
 
-2.1.2 Micro Switch
+2.1.2 Mikroschalter
 =======================
 
-Introduction
+Einführung
 --------------------
 
-In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+In diesem Projekt werden wir lernen, wie man einen Mikroschalter verwendet. Ein Mikroschalter ist ein kleiner, sehr empfindlicher Schalter, der minimalen Druck zum Aktivieren benötigt. Aufgrund ihrer Zuverlässigkeit und Empfindlichkeit werden Mikroschalter häufig als Sicherheitsvorrichtung eingesetzt. 
 
-They are used to prevent doors from closing if something or someone is in the way and other applications similar.
+Sie werden beispielsweise verwendet, um Türen am Schließen zu hindern, wenn sich jemand oder etwas im Weg befindet, und für ähnliche Anwendungen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/2.1.2component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -54,27 +54,23 @@ You can also buy them separately from the links below.
     *   - :ref:`capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
-Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-move arm of the Micro Switch, you can see the two LEDs light up alternately.
+Verbinden Sie den linken Pin des Mikroschalters mit GPIO17 und zwei LEDs mit den Pins GPIO22 und GPIO27. Wenn Sie dann den Bewegungsarm des Mikroschalters drücken und loslassen, leuchten die beiden LEDs abwechselnd auf.
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/micro_Schematic.png
 
+Experimentelle Verfahren
+---------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
 
 .. image:: ../img/2.1.4fritzing.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -84,7 +80,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Schritt 3:** Starten Sie den Code.
 
 .. raw:: html
 
@@ -94,9 +90,9 @@ Experimental Procedures
 
     sudo node micro_switch.js
 
-While the code is running, press the Micro Switch, 
-then the yellow LED lights up; 
-release the moving arm, the red LED turns on.
+Während der Code läuft, drücken Sie den Mikroschalter. 
+Dann leuchtet die gelbe LED auf; 
+lassen Sie den Bewegungsarm los, schaltet sich die rote LED ein.
 
 **Code**
 
@@ -119,7 +115,7 @@ release the moving arm, the red LED turns on.
     });
 
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -134,8 +130,8 @@ release the moving arm, the red LED turns on.
         edge: Gpio.EITHER_EDGE       
     });
 
-Import the ``pigpio`` module and create three objects led1, led2, micro,
-By reading the level of the micro IO port, the on and off of led1 and led2 are controlled.       
+Importieren Sie das Modul ``pigpio`` und erstellen Sie drei Objekte: led1, led2 und micro.
+Durch das Auslesen des Pegels des micro IO-Ports werden das Ein- und Ausschalten von led1 und led2 gesteuert.
 
 .. code-block:: js
 
@@ -144,10 +140,11 @@ By reading the level of the micro IO port, the on and off of led1 and led2 are c
         led2.digitalWrite(!level);       
     });
 
-When the level of the read micro IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Wenn sich der Pegel des ausgelesenen micro IO-Ports ändert, 
+wird der gleiche Pegel an led1 und der entgegengesetzte Pegel an led2 geschrieben.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/2.1.2micro_switch.JPG
+

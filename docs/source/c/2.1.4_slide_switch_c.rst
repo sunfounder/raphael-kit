@@ -1,44 +1,43 @@
 .. _2.1.4_c:
 
-2.1.4 Slide Switch
+2.1.4 Schiebeschalter
 ========================
 
-Introduction
+Einführung
 ------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+In diesem Projekt lernen wir, wie man einen Schiebeschalter verwendet. Üblicherweise wird
+der Schiebeschalter auf einer PCB als Ein-/Ausschalter gelötet, aber hier müssen wir ihn
+in das Steckbrett einsetzen, sodass er möglicherweise nicht fest sitzt. Auf dem Steckbrett verwenden wir ihn, um seine Funktion zu demonstrieren.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Bauteile. 
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,27 +54,24 @@ You can also buy them separately from the links below.
     *   - :ref:`capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Verbinden Sie den mittleren Pin des Schiebeschalters mit GPIO17 und zwei LEDs jeweils mit
+den Pins GPIO22 und GPIO27. Wenn Sie den Schalter betätigen, können Sie sehen, wie die beiden LEDs abwechselnd leuchten.
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/image306.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Navigieren Sie zum Verzeichnis des Codes.
 
 .. raw:: html
 
@@ -85,7 +81,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.4
 
-**Step 3**: Compile.
+**Schritt 3**: Kompilieren.
 
 .. raw:: html
 
@@ -95,7 +91,7 @@ Experimental Procedures
 
     gcc 2.1.4_Slider.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**Schritt 4**: Führen Sie die oben erstellte ausführbare Datei aus.
 
 .. raw:: html
 
@@ -105,12 +101,12 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Während der Code läuft, verbinden Sie den Schalter mit der linken Seite, dann
+leuchtet die gelbe LED; wenn nach rechts verbunden, leuchtet die rote LED.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beachten Sie bitte :ref:`install_wiringpi`.
 
 **Code**
 
@@ -149,7 +145,7 @@ the yellow LED lights up; to the right, the red light turns on.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -159,9 +155,9 @@ the yellow LED lights up; to the right, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+Wenn der Schiebeschalter nach rechts gezogen wird, sind der mittlere und der rechte Pin
+verbunden; der Raspberry Pi liest am mittleren Pin ein hohes Signal, sodass
+LED1 eingeschaltet und LED2 ausgeschaltet ist.
 
 .. code-block:: c
 
@@ -171,10 +167,11 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
+Wenn der Schiebeschalter nach links gezogen wird, sind der mittlere und der linke Pin
+verbunden; der Raspberry Pi liest ein niedriges Signal, sodass
+LED2 eingeschaltet und LED1 ausgeschaltet ist.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image162.jpeg

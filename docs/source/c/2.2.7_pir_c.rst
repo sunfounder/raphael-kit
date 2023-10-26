@@ -3,43 +3,39 @@
 2.2.7 PIR
 ===============
 
-Introduction
+Einführung
 ------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+In diesem Projekt werden wir ein Gerät mithilfe von Infrarotsensoren erstellen, die auf die Körperwärme reagieren. Wenn sich jemand dem LED nähert, schaltet es sich automatisch ein. Ist dies nicht der Fall, schaltet sich das Licht aus. Dieser Infrarot-Bewegungssensor ist eine Art von Sensor, der das von Menschen und Tieren ausgestrahlte Infrarot erkennen kann.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten:
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen:
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -54,20 +50,19 @@ You can also buy them separately from the links below.
     *   - :ref:`pir`
         - \-
 
-Schematic Diagram
+Schaltplan
 -----------------
 
 .. image:: ../img/image327.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -77,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.7/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -87,7 +82,7 @@ Experimental Procedures
 
     gcc 2.2.7_PIR.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -97,9 +92,9 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+Nachdem der Code ausgeführt wurde, erkennt PIR seine Umgebung und lässt die RGB-LED gelb leuchten, wenn es jemanden vorbeigehen spürt.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Am PIR-Modul befinden sich zwei Potentiometer: eines zur Einstellung der Empfindlichkeit und das andere zur Einstellung der Erfassungsentfernung. Um das PIR-Modul besser funktionieren zu lassen, müssen Sie beide im Uhrzeigersinn bis zum Anschlag drehen.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
@@ -107,8 +102,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: ``wiringPi.h No such file or directory``, please refer to :ref:`install_wiringpi`.
-
+    Falls es nach der Ausführung nicht funktioniert oder eine Fehlermeldung angezeigt wird: ``wiringPi.h No such file or directory``, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -155,15 +149,14 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2_c` for more details.
+Diese Codes werden verwendet, um die Farbe der RGB-LED einzustellen. Für weitere Details verweisen Sie bitte auf :ref:`1.1.2_c`.
 
 .. code-block:: c
 
@@ -184,10 +177,9 @@ to :ref:`1.1.2_c` for more details.
         return 0;
     }
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+Wenn das PIR das infrarote Spektrum des Menschen erkennt, gibt die RGB-LED gelbes Licht ab; wenn nicht, strahlt sie blaues Licht aus.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image215.jpeg

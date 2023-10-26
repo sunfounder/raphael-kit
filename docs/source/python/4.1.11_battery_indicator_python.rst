@@ -1,43 +1,43 @@
 .. _4.1.11_py:
 
-4.1.11 Battery Indicator
+4.1.11 Batterieanzeige
 ===================================
 
-Introduction
+Einführung
 --------------
 
-In this project, we will make a battery indicator device that can
-visually display the battery level on the LED Bargraph.
+In diesem Projekt werden wir ein Gerät für die Batterieanzeige erstellen, welches
+den Batteriestatus visuell auf der LED-Balkenanzeige darstellen kann.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/list_Battery_Indicator.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die folgenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -52,7 +52,7 @@ You can also buy them separately from the links below.
     *   - :ref:`adc0834`
         - \-
 
-Schematic Diagram
+Schaltplan
 -------------------
 
 ============ ======== ======== ===
@@ -75,14 +75,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one5.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/image248.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Zum Ordner des Codes navigieren.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file.
+**Schritt 3:** Die ausführbare Datei starten.
 
 .. raw:: html
 
@@ -102,15 +102,15 @@ Experimental Procedures
 
     sudo python3 4.1.11_BatteryIndicator.py
 
-After the program runs, give the 3rd pin of ADC0834 and the GND a
-lead-out wire separately and then lead them to the two poles of a
-battery separately. You can see the corresponding LED on the LED
-Bargraph is lit up to display the power level (measuring range: 0-5V).
+Nachdem das Programm gestartet ist, verbinden Sie den 3. Pin des ADC0834 und den GND 
+mit jeweils einem Draht und führen Sie diese dann zu den beiden Polen einer 
+Batterie. Sie können sehen, dass die entsprechende LED auf der LED-Balkenanzeige 
+aufleuchtet, um den Ladestand anzuzeigen (Messbereich: 0-5V).
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Starten/Stoppen**. Aber zuvor müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
 
 .. raw:: html
 
@@ -152,7 +152,7 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
         except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -162,10 +162,10 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
         for i in range(value):
             GPIO.output(ledPins[i],GPIO.LOW)
 
-This function works for controlling the turning on or off of the **10**
-LEDs on the LED Bargraph. We give these **10** LEDs high levels to let
-they are **off** at first, then decide how many LEDs are lit up by
-changing the received analog value.
+Diese Funktion dient dazu, das Ein- oder Ausschalten der **10** 
+LEDs auf der LED-Balkenanzeige zu steuern. Zuerst schalten wir diese **10** 
+LEDs durch hohe Pegel **aus** und entscheiden dann, wie viele LEDs 
+leuchten, indem wir den empfangenen Analogwert ändern.
 
 .. code-block:: python
 
@@ -174,16 +174,16 @@ changing the received analog value.
             analogVal = ADC0834.getResult()
             LedBarGraph(int(analogVal/25))
 
-analogVal produces values (**0-255**) with varying voltage values
-(**0-5V**), ex., if a 3V is detected on a battery, the corresponding
-value **152** is displayed on the voltmeter.
+analogVal liefert Werte (**0-255**) basierend auf unterschiedlichen Spannungswerten 
+(**0-5V**). Zum Beispiel, wenn eine Spannung von 3V an einer Batterie erkannt wird, 
+wird der entsprechende Wert **152** auf dem Voltmeter angezeigt.
 
-The **10** LEDs on the LED Bargraph are used to display the
-**analogVal** readings. 255/10=25, so every **25** the analog value
-increases, one more LED turns on, ex., if “analogVal=150 (about 3V),
-there are 6 LEDs turning on.”
+Die **10** LEDs auf der LED-Balkenanzeige dienen zur Anzeige der 
+**analogVal**-Messwerte. 255/10=25, das bedeutet, dass für alle **25**, 
+um die der Analogwert steigt, eine weitere LED eingeschaltet wird. Zum Beispiel, 
+wenn "analogVal=150 (etwa 3V) sind, leuchten 6 LEDs."
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------------------
 
 .. image:: ../img/image249.jpeg

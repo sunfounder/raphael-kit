@@ -1,41 +1,41 @@
 .. _1.1.6_c:
 
-1.1.6 LED Dot Matrix Module
+1.1.6 LED Dot Matrix Modul
 ==================================
 
-Introduction
+Einführung
 --------------------
 
-In this project, you will learn about LED Matrix Module. LED Matrix Module uses the MAX7219 driver to drive the 8 x 8 LED Matrix.
+In diesem Projekt werden Sie das LED Matrix Modul kennenlernen. Das LED Matrix Modul verwendet den MAX7219 Treiber, um die 8 x 8 LED Matrix zu steuern.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: ../img/list_dot.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch separat über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -46,7 +46,7 @@ You can also buy them separately from the links below.
     *   - :ref:`dot_matrix`
         - |link_led_matrix_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== ====
@@ -58,19 +58,18 @@ SPISCLK      Pin 23   14       SCLK
 
 .. image:: ../img/schematic_dot.png
 
-Experimental Procedures
+Experimentelle Verfahren
 ----------------------------
 
-**Step 1:** Build the circuit. 
+**Schritt 1:** Bauen Sie die Schaltung. 
 
 .. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. And the :ref:`BCM2835` library is also needed.
+    Schalten Sie das SPI vor Beginn des Experiments ein. Siehe :ref:`spi_configuration` für Details. Auch die :ref:`BCM2835` Bibliothek wird benötigt.
 
-
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -80,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.6/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -90,7 +89,7 @@ Experimental Procedures
 
     make
 
-**Step 4:**: Run the executable file.
+**Schritt 4:** Starten Sie die ausführbare Datei.
 
 .. raw:: html
 
@@ -100,11 +99,11 @@ Experimental Procedures
 
     sudo ./1.1.6_LedMatrix
 
-After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in sequence.
+Nachdem der Code ausgeführt wurde, zeigt die LED Dot Matrix nacheinander Zahlen von 0 bis 9 und Buchstaben von A bis Z an.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: No such file or directory\", bitte beziehen Sie sich auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -226,17 +225,17 @@ After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in se
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
     #define Max7219_pinCS  24
 
-The cs pin of the LED Dot Matrix is connected to pin24.
+Der CS-Pin des LED Dot Matrix ist mit Pin24 verbunden.
 
 .. note::
 
-    When you have multiple devices that need spi communication, just connect the cs pins on different pins.
+    Wenn Sie mehrere Geräte haben, die eine SPI-Kommunikation benötigen, verbinden Sie einfach die CS-Pins mit unterschiedlichen Pins.
 
 .. code-block:: c
 
@@ -246,7 +245,7 @@ The cs pin of the LED Dot Matrix is connected to pin24.
 		return 1;
 	}
 
-Check if the bcm2835 library is successfully installed, if not, print the message "Unable to init bcm2835".
+Überprüfen Sie, ob die bcm2835-Bibliothek erfolgreich installiert wurde. Wenn nicht, geben Sie die Nachricht "Unable to init bcm2835" aus.
 
 .. code-block:: c
 
@@ -254,7 +253,7 @@ Check if the bcm2835 library is successfully installed, if not, print the messag
 	Delay_xms(50);
 	Init_MAX7219();
 
-Initialize libraries and module.
+Initialisieren Sie die Bibliotheken und das Modul.
 
 .. code-block:: c
 
@@ -270,17 +269,16 @@ Initialize libraries and module.
         }
     }
 
+Die Funktion ``Write_Max7219()`` ermöglicht es Ihnen, das angegebene Zeichen auf dem LED Dot Matrix anzuzeigen. Der erste Parameter gibt die Zeile an, in der es angezeigt wird, und der zweite Parameter gibt eine 8-Bit-Binärzahl oder eine hexadezimale Zahl an, die das Licht in dieser Zeile anzeigt (0 bedeutet aus, 1 bedeutet an).
 
-The ``Write_Max7219()`` function allows you to display the specified character on the LED Dot Matrix, where the first parameter inputs the row in which it is displayed, and the second parameter inputs an 8-bit binary number or a hexadecimal number that indicates the light on or off in that row (0 means off, 1 means lit).
+Die Variable ``j`` repräsentiert die Zeilen im Array ``disp1[]`` (35 Zeilen) und die Variable ``i`` repräsentiert die Spalte (8 Spalten).
 
-The variable ``j`` represents the rows in the array ``disp1[]`` (35 rows) and the variable ``i`` represents the column (8 columns).
-    
-For example, when j=1 and i=2, the value ``disp1[1][1]`` (0x18) is displayed on the dot matrix. i loops 8 times to display the full 1 on the dot matrix. After 35 cycles of j, 0-9 and A-Z are displayed on the dot matrix.
+Zum Beispiel, wenn j=1 und i=2 ist, wird der Wert ``disp1[1][1]`` (0x18) auf der Punktmatrix angezeigt. i durchläuft 8 Schleifen, um die vollständige 1 auf der Punktmatrix anzuzeigen. Nach 35 Zyklen von j werden 0-9 und A-Z auf der Punktmatrix angezeigt.
 
     .. image:: ../img/led_not.png
         :width: 400
 
-Phenomenon Picture
------------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/1.1.6led_dot_matrix.JPG

@@ -3,40 +3,40 @@
 1.1.7 I2C LCD1602
 ======================
 
-Introduction
+Einführung
 ------------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+Das LCD1602 ist ein Zeichen-Flüssigkristall-Display, das 32
+(16*2) Zeichen gleichzeitig anzeigen kann.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_i2c_lcd.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch separat über die untenstehenden Links erwerben.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -47,7 +47,7 @@ You can also buy them separately from the links below.
     *   - :ref:`i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+Schaltplan
 ---------------------
 
 ============ ========
@@ -58,18 +58,16 @@ SCL1         Pin 5
 
 .. image:: ../img/schematic_i2c_lcd.png
 
-
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image96.png
 
+**Schritt 2**: Richten Sie I2C ein (siehe :ref:`i2c_config`. Wenn Sie I2C bereits eingerichtet haben, überspringen Sie diesen Schritt.)
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`. If you have set I2C, skip this step.)
-
-**Step 3:** Change directory.
+**Schritt 3:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -79,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 4:** Run.
+**Schritt 4:** Ausführen.
 
 .. raw:: html
 
@@ -89,22 +87,20 @@ Experimental Procedures
 
     sudo python3 1.1.7_Lcd1602.py
 
-After the code runs, you can see ``Greetings!, From SunFounder`` displaying on the LCD.
+Nachdem der Code ausgeführt wurde, können Sie ``Greetings!, From SunFounder`` auf dem LCD sehen.
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
-
+    * Wenn Sie den Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` erhalten, müssen Sie :ref:`i2c_config` konsultieren, um das I2C zu aktivieren.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führen Sie bitte ``sudo pip3 install smbus2`` aus.
+    * Wenn der Fehler ``OSError: [Errno 121] Remote I/O error`` erscheint, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
+    * Wenn der Code und die Verdrahtung in Ordnung sind, aber das LCD immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 
 **Code** 
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuerst müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
 
 
 .. raw:: html
@@ -133,28 +129,28 @@ After the code runs, you can see ``Greetings!, From SunFounder`` displaying on t
 
 
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     import LCD1602
 
-This file is an open source file for controlling I2C LCD1602. It allows us to easily use I2C LCD1602.
+Diese Datei ist eine Open-Source-Datei zur Steuerung von I2C LCD1602. Sie ermöglicht uns die einfache Verwendung von I2C LCD1602.
 
 .. code-block:: python
 
-    LCD1602.init(0x27, 1) 
+    LCD1602.init(0x27, 1)
 
-The function initializes the I2C system with the designated device symbol. The first parameter is the address of the I2C device, which can be detected through the i2cdetect command (see Appendix for details). The address of I2C LCD1602 is generally 0x27.
+Die Funktion initialisiert das I2C-System mit dem vorgegebenen Gerätesymbol. Der erste Parameter ist die Adresse des I2C-Geräts, die über den Befehl i2cdetect ermittelt werden kann (siehe Anhang für Details). Die Adresse von I2C LCD1602 ist in der Regel 0x27.
 
 .. code-block:: python
 
     LCD1602.write(0, 0, 'Greetings!')
 
-Within this function, 'Greetings!! ' is the character to be printed on the Row 0+1, column 0+1 on LCD. 
-Now you can see “Greetings!! From SunFounder” displayed on the LCD.
+In dieser Funktion steht 'Greetings!!' für den Text, der in Zeile 0+1, Spalte 0+1 auf dem LCD angezeigt wird.
+Jetzt können Sie „Greetings!! Von SunFounder“ auf dem LCD sehen.
 
-Phenomenon Picture
+Phänomen-Bild
 --------------------------
 
 .. image:: ../img/image97.jpeg

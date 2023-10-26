@@ -1,43 +1,42 @@
 .. _1.7_scratch:
 
-1.7 Piggy Bank
+1.7 Sparschwein
 =========================
 
-In this project we will use Speed sensor module, Raspberry Pi and Scratch to make a Piggy Bank.
+In diesem Projekt verwenden wir das Geschwindigkeitssensor-Modul, Raspberry Pi und Scratch, um ein Sparschwein zu erstellen.
 
-Place a piece of paper in the middle of the Speed sensor module and you will see a coin fall into the Piggy Bank on the stage.
-
+Legen Sie ein Stück Papier in die Mitte des Geschwindigkeitssensors und Sie werden sehen, wie eine Münze auf der Bühne in das Sparschwein fällt.
 
 .. image:: img/1.7_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.7_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -48,35 +47,32 @@ You can also buy them separately from the links below.
     *   - :ref:`speed_sensor`
         - \-
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.7_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Laden Sie den Code und sehen Sie, was passiert
+---------------------------------------------------
 
-Load the code file (``1.7_piggy_bank.sb3``) to Scratch 3.
+Laden Sie die Code-Datei (``1.7_piggy_bank.sb3``) in Scratch 3.
 
-The 2 terminals in the middle of the speed sensor, one is to send light, one is to receive light; if you put a piece of paper in the middle to isolate the light transmission, thus the speed sensor will output a high level. At this point Scratch receives the high level, then switch the costumes of the sprite and you will see a coin fall into the Piggy Bank on the stage.
+Die 2 Kontakte in der Mitte des Geschwindigkeitssensors dienen dazu, Licht zu senden bzw. zu empfangen. Wenn Sie ein Stück Papier in die Mitte legen, um die Lichtübertragung zu isolieren, gibt der Geschwindigkeitssensor ein hohes Signal aus. Zu diesem Zeitpunkt erhält Scratch das hohe Signal, wechselt dann die Kostüme des Sprites und Sie sehen, wie eine Münze auf der Bühne in das Sparschwein fällt.
 
-Tips on Sprite
-----------------
+Tipps zu Sprite
+-------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **piggybank1.png**, **piggybank2.png** and **piggybank3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **piggybank**.
+Wählen Sie Sprite1 und klicken Sie in der oberen linken Ecke auf **Costumes**. Laden Sie **piggybank1.png**, **piggybank2.png** und **piggybank3.png** über den Pfad ``~/raphael-kit/scratch/picture`` mit der Schaltfläche **Upload Costume** hoch. Löschen Sie die beiden Standardkostüme und benennen Sie das Sprite in **piggybank** um.
 
 .. image:: img/1.7_photoInterrupter1.png
 
-Tips on Codes
---------------
+Tipps zu Codes
+----------------
 
 .. image:: img/1.7_code2.png
 
-When pin17 is low (no coins are put in), switch the sprite's costume to **piggybank1**.
+Wenn pin17 niedrig ist (keine Münzen eingeworfen werden), wechseln Sie das Kostüm des Sprites zu **piggybank1**.
 
 .. image:: img/1.7_code3.png
 
-When pin17 is high (a coin is put in), switch the sprite's costume to **piggybank2**, and after 0.5s switch to **piggybank3**, so that we can see a coin falling into the Piggy Bank on the stage.
-
-
-
+Wenn pin17 hoch ist (eine Münze wird eingeworfen), wechseln Sie das Kostüm des Sprites zu **piggybank2** und nach 0,5s zu **piggybank3**, sodass wir sehen können, wie eine Münze auf der Bühne in das Sparschwein fällt.

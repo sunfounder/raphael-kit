@@ -1,9 +1,9 @@
-Audiovisual
+Audiovisuell
 =============
 
 .. note::
 
-    When use the camera module, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+    Wenn Sie das Kameramodul verwenden, benötigen Sie möglicherweise einen Bildschirm für ein besseres Erlebnis. Weitere Informationen finden Sie unter: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Natürlich können Sie auch ohne Bildschirm auf den Raspberry Pi-Desktop zugreifen. Für ein ausführliches Tutorial verweisen Sie bitte auf :ref:`windows_remote_desktop`.
 
 .. toctree::
     :maxdepth: 1

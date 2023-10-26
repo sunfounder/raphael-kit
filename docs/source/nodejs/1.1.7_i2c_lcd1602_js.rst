@@ -3,40 +3,40 @@
 1.1.7 I2C LCD1602
 =======================
 
-Introduction
+Einführung
 ------------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+LCD1602 ist ein Zeichentyp-Liquid-Crystal-Display, das gleichzeitig 32 
+(16*2) Zeichen anzeigen kann.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_i2c_lcd.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -47,7 +47,7 @@ You can also buy them separately from the links below.
     *   - :ref:`i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+Schaltplan
 ---------------------
 
 ============ ========
@@ -58,17 +58,16 @@ SCL1         Pin 5
 
 .. image:: ../img/schematic_i2c_lcd.png
 
-
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image96.png
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`. If you have set I2C, skip this step.)
+**Schritt 2**: Richten Sie I2C ein (siehe :ref:`i2c_config`. Wenn Sie I2C bereits eingerichtet haben, überspringen Sie diesen Schritt.)
 
-**Step 3:** Go to the folder of the code.
+**Schritt 3:** Navigieren Sie zum Ordner mit dem Code.
 
 .. raw:: html
 
@@ -78,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 4:** Install dependencies.
+**Schritt 4:** Installieren Sie die Abhängigkeiten.
 
 .. raw:: html
 
@@ -88,7 +87,7 @@ Experimental Procedures
 
     sudo npm install @oawu/lcd1602
 
-**Step 5:** Run the code.
+**Schritt 5:** Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -98,7 +97,7 @@ Experimental Procedures
 
     sudo node i2c_lcd1602.js
 
-After the code runs, you can see ``Greetings!!, From SunFounder`` displaying on the LCD.
+Nachdem der Code ausgeführt wurde, können Sie ``Greetings!!, From SunFounder`` auf dem LCD sehen.
 
 **Code**
 
@@ -110,17 +109,17 @@ After the code runs, you can see ``Greetings!!, From SunFounder`` displaying on 
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
     const LCD = require('@oawu/lcd1602');
     const lcd = new LCD();
 
-Import the ``lcd1602`` module and represent it with ``lcd``.
+Importieren Sie das ``lcd1602`` Modul und repräsentieren Sie es mit ``lcd``.
 
 .. note::
-    For the lcd1602 module, please refer to: https://www.npmjs.com/package/@oawu/lcd1602
+    Für das lcd1602 Modul, bitte schauen Sie unter: https://www.npmjs.com/package/@oawu/lcd1602
 
    
 .. code-block:: js
@@ -128,16 +127,16 @@ Import the ``lcd1602`` module and represent it with ``lcd``.
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
-Calling the encapsulated ``text()`` function in the ``LCD`` class can make the lcd1602 display the text we want.
+Das Aufrufen der gekapselten ``text()`` Funktion in der ``LCD`` Klasse ermöglicht es dem lcd1602, den gewünschten Text anzuzeigen.
 
-The ``text()`` function receives three parameters, 
-the first parameter is the line of lcd1602, 
-the second parameter represents the position of the displayed text, 
-and the third parameter represents the text we want to display.
+Die ``text()`` Funktion erhält drei Parameter, 
+das erste Parameter ist die Zeile des lcd1602, 
+das zweite Parameter gibt die Position des angezeigten Textes an, 
+und das dritte Parameter repräsentiert den Text, den wir anzeigen möchten.
 
-The **1602** number in the LCD model means it has 2 rows of 16 cells each.
+Die Zahl **1602** im LCD-Modell bedeutet, dass es 2 Reihen von jeweils 16 Zellen hat.
 
-Phenomenon Picture
+Phänomen-Bild
 --------------------------
 
 .. image:: ../img/image97.jpeg

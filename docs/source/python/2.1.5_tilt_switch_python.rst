@@ -1,42 +1,42 @@
 .. _2.1.5_py:
 
-2.1.5 Tilt Switch
-=================
+2.1.5 Neigungsschalter
+=========================
 
-Introduction
-------------
+Einführung
+----------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Dies ist ein Kugel-Neigungsschalter mit einer Metallkugel im Inneren. Er dient zur
+Erkennung von Neigungen in einem kleinen Winkel.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.1.3_tilt_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,23 +51,21 @@ You can also buy them separately from the links below.
     *   - :ref:`tilt_switch`
         - \-
 
-Schematic Diagram
------------------
+Schaltplan
+---------------------
 
 .. image:: ../img/image307.png
 
-
 .. image:: ../img/image308.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/image169.png
 
-**Step 2:** Change directory.
+**Schritt 2:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -77,7 +75,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Schritt 3:** Starten.
 
 .. raw:: html
 
@@ -87,15 +85,15 @@ Experimental Procedures
 
     sudo python3 2.1.5_Tilt.py
 
-Place the tilt vertically, and the green LED will turns on. If you
-tilt it, "Tilt!" will be printed on the screen and the red LED will
-turns on. Place it vertically again, and the green LED will lights on.
+Stellen Sie den Neigungsschalter vertikal auf, und die grüne LED wird eingeschaltet. Wenn Sie
+ihn neigen, wird "Tilt!" auf dem Bildschirm angezeigt und die rote LED wird
+eingeschaltet. Stellen Sie ihn wieder vertikal auf, und die grüne LED leuchtet wieder auf.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **ändern/zurücksetzen/kopieren/ausführen/stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 
 .. raw:: html
@@ -151,13 +149,13 @@ turns on. Place it vertically again, and the green LED will lights on.
         except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     GPIO.add_event_detect(TiltPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
-Set up a detect on TiltPin, and callback function to detect.
+Richte eine Erkennung am TiltPin ein und rufe die Callback-Funktion zur Erkennung auf.
 
 .. code-block:: python
 
@@ -169,8 +167,8 @@ Set up a detect on TiltPin, and callback function to detect.
             GPIO.output(Rpin, 0)
             GPIO.output(Gpin, 1)
 
-Define a function Led() to turn the two LEDs on or off. If x=0, the red
-LED lights up; otherwise, the green LED will be lit.
+Definiere eine Funktion Led(), um die beiden LEDs ein- oder auszuschalten. Wenn x=0, leuchtet die rote
+LED; ansonsten wird die grüne LED eingeschaltet.
 
 .. code-block:: python
 
@@ -180,7 +178,7 @@ LED lights up; otherwise, the green LED will be lit.
             print ('    *   Tilt!   *')
             print ('    *************')
 
-Create a function, Print() to print the characters above on the screen.
+Erstelle eine Funktion, Print(), um die obigen Zeichen auf dem Bildschirm anzuzeigen.
 
 .. code-block:: python
 
@@ -188,12 +186,12 @@ Create a function, Print() to print the characters above on the screen.
         Led(GPIO.input(TiltPin))
         Print(GPIO.input(TiltPin))
 
-Define a callback function for tilt callback. Get the read value of the
-tilt switch then the function Led() controls the turning on or off of
-the two LEDs that is depended on the read value of the tilt switch.
+Definiere eine Callback-Funktion für die Neigungsrückmeldung. Hole den gelesenen Wert des
+Neigungsschalters, dann steuert die Funktion Led() das Ein- oder Ausschalten
+der beiden LEDs, abhängig vom gelesenen Wert des Neigungsschalters.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image170.jpeg
 

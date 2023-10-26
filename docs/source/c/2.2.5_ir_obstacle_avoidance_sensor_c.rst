@@ -1,44 +1,43 @@
 .. _2.2.5_c:
 
-2.2.5 IR Obstacle Avoidance Module
+2.2.5 IR Hindernisvermeidungsmodul
 ========================================
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+In diesem Projekt werden wir das IR Hindernisvermeidungsmodul kennenlernen. Dies ist ein Sensor-Modul, das zur Erkennung von Hindernissen in kurzer Entfernung verwendet werden kann. Es weist geringe Störanfälligkeit auf, ist einfach zu montieren und zu verwenden. Das Modul kann in Robotern zur Hindernisvermeidung, hindernisvermeidenden Wagen, zur Zählung an Montagelinien und mehr eingesetzt werden.
 
-
-Required Components
+Erforderliche Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/2.2.5component.png
    :width: 700
    :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die folgenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -49,23 +48,23 @@ You can also buy them separately from the links below.
     *   - :ref:`infrared_avoidance`
         - |link_obstacle_avoidance_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 .. image:: ../img/IR_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltkreis aufbauen.
 
 .. image:: ../img/2.2.5fritzing.png
    :width: 700
    :align: center
 
-**Step 2:** Change directory.
+**Schritt 2:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -75,7 +74,7 @@ Experimental Procedures
    
    cd ~/raphael-kit/c/2.2.5/
 
-**Step 3:** Compile.
+**Schritt 3:** Kompilieren.
 
 .. raw:: html
 
@@ -85,7 +84,7 @@ Experimental Procedures
 
    gcc 2.2.5_IrObstacle.c -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Ausführen.
 
 .. raw:: html
 
@@ -95,12 +94,11 @@ Experimental Procedures
 
    sudo ./a.out
 
-After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
-repeatedly printed on the screen.
+Nachdem der Code ausgeführt wurde und Sie Ihre Hand vor den Sensor des Moduls halten, leuchtet die Ausgabeanzeige des Moduls auf und "Detected Barrier!" wird wiederholt auf dem Bildschirm angezeigt.
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+   Wenn es nach dem Ausführen nicht funktioniert oder der Fehlerhinweis "wiringPi.h: No such file or directory" erscheint, beachten Sie bitte :ref:`install_wiringpi`.
 
 **Code**
 
@@ -135,7 +133,7 @@ repeatedly printed on the screen.
       return 0;
    }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -144,7 +142,7 @@ repeatedly printed on the screen.
       printf("Detected Barrier !\n");
    }
 
-Define a function ``myISR()`` to print ``obstacle detected`` , indicating that an obstacle is detected.
+Definieren Sie eine Funktion ``myISR()``, um ``obstacle detected`` auszugeben, was darauf hinweist, dass ein Hindernis erkannt wurde.
 
 .. code-block:: c
 
@@ -153,23 +151,21 @@ Define a function ``myISR()`` to print ``obstacle detected`` , indicating that a
       return 1;
    }
 
+Diese Funktion ``wiringPiISR()`` registriert die Funktion ``myISR()``, um Unterbrechungen am angegebenen ``ObstaclePin`` zu empfangen.
 
-This ``wiringPiISR()`` function registers a ``myISR()`` function to received interrupts on the specified ``ObstaclePin``.
+Wenn der ObstaclePin von Hoch auf Niedrig wechselt, bedeutet dies, dass ein Hindernis erkannt wurde. Zu diesem Zeitpunkt rufen Sie die Funktion ``myISR()`` auf, um "Detected Barrier!" auszugeben.
 
-When ObstaclePin changes from high to low, it means that an obstacle is detected. At this time, call the ``myISR()`` function to print "Detected Barrier !"
-
-The prototype of this ``wiringPiISR()`` function is shown below.
+Das Prototyp dieser Funktion ``wiringPiISR()`` wird unten gezeigt.
 
 .. code-block:: c
 
    int wiringPiISR (int pin, int edgeType,  void (*function)(void)) ;
 
-The edgeType parameter is either ``INT_EDGE_FALLING`` , ``INT_EDGE_RISING`` , ``INT_EDGE_BOTH`` or ``INT_EDGE_SETUP`` . If it is ``INT_EDGE_SETUP`` then no initialisation of the pin will happen – it’s assumed that you have already setup the pin elsewhere (e.g. with the gpio program), but if you specify one of the other types, then the pin will be exported and initialised as specified. 
+Der Parameter edgeType ist entweder ``INT_EDGE_FALLING``, ``INT_EDGE_RISING``, ``INT_EDGE_BOTH`` oder ``INT_EDGE_SETUP``. Wenn es ``INT_EDGE_SETUP`` ist, wird keine Initialisierung des Pins durchgeführt – es wird angenommen, dass Sie den Pin bereits woanders initialisiert haben (z. B. mit dem gpio-Programm). Aber wenn Sie einen der anderen Typen angeben, wird der Pin wie angegeben exportiert und initialisiert.
 
-For more information, please refer to: `wiringPi-Functions (API) <https://projects.drogon.net/raspberry-pi/wiringpi/functions/>`_.
+Für weitere Informationen verweisen Sie bitte auf: `wiringPi-Functions (API) <https://projects.drogon.net/raspberry-pi/wiringpi/functions/>`_.
 
-
-Phenomenon Picture
+Phänomen-Bild
 -----------------------
 
 .. image:: ../img/2.2.5IR.JPG

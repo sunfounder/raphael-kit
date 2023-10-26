@@ -1,43 +1,42 @@
 .. _4.1.10_py:
 
-4.1.10 Smart Fan
-=========================
+4.1.10 Intelligenter Ventilator
+================================
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+In diesem Projekt werden wir Motoren, Tasten und Thermistoren verwenden, um einen manuellen + automatischen intelligenten Ventilator zu bauen, dessen Windgeschwindigkeit einstellbar ist.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/list_Smart_Fan.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,8 +59,7 @@ You can also buy them separately from the links below.
     *   - :ref:`motor`
         - |link_motor_buy|
 
-
-Schematic Diagram
+Schaltplan
 ------------------------
 
 ============ ======== ======== ===
@@ -78,22 +76,20 @@ GPIO13       Pin 33   23       13
 .. image:: ../img/Schematic_three_one4.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image245.png
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Das Strommodul kann eine 9V-Batterie mit der 9V-Batteriehalterung aus dem Kit verwenden. Setzen Sie den Jumper des Strommoduls in die 5V-Busleisten des Breadboards.
 
 .. image:: ../img/image118.jpeg
    :align: center
 
-**Step 2**: Get into the folder of the code.
+**Schritt 2**: Wechseln Sie in den Ordner des Codes.
 
 .. raw:: html
 
@@ -103,7 +99,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Schritt 3**: Starten.
 
 .. raw:: html
 
@@ -113,19 +109,15 @@ Experimental Procedures
 
     sudo python3 4.1.10_SmartFan.py
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+Wenn der Code ausgeführt wird, starten Sie den Ventilator durch Drücken der Taste. Jedes Mal, wenn Sie drücken, wird die Geschwindigkeitsstufe um 1 erhöht oder verringert. Es gibt **5** Geschwindigkeitsstufen: **0~4**. Wenn auf die 4. Geschwindigkeitsstufe eingestellt ist und Sie die Taste drücken, stoppt der Ventilator mit einer Windgeschwindigkeit von **0**.
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+Wenn sich die Temperatur um mehr als 2℃ erhöht oder verringert, wird die Geschwindigkeit automatisch um 1 Stufe schneller oder langsamer.
 
 Code
 --------
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuerst müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` gehen. Nach dem Ändern des Codes können Sie ihn direkt ausführen, um den Effekt zu sehen.
 
 .. raw:: html
 
@@ -214,8 +206,7 @@ Code
             destroy()
 
 
-Code Explanation
----------------------
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -228,8 +219,7 @@ Code Explanation
         Fah = Cel * 1.8 + 32
         return Cel
 
-``temperture()`` works by converting thermistor values read by **ADC0834**
-into temperature values. Refer to :ref:`2.2.2_py` for more details.
+``temperture()`` funktioniert, indem es Thermistor-Werte, die vom **ADC0834** gelesen werden, in Temperaturwerte umwandelt. Weitere Details finden Sie unter :ref:`2.2.2_py`.
 
 .. code-block:: python
 
@@ -244,9 +234,7 @@ into temperature values. Refer to :ref:`2.2.2_py` for more details.
         return level
 
 
-This function controls the rotating speed of the motor. The range of the
-**Lever**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+Diese Funktion steuert die Drehgeschwindigkeit des Motors. Der Bereich des **Hebels**: **0-4** (Stufe **0** stoppt den arbeitenden Motor). Eine Stufenanpassung entspricht einer **25%** Änderung der Windgeschwindigkeit.
 
 .. code-block:: python
 
@@ -272,19 +260,17 @@ adjustment stands for a **25%** change of the wind speed.
             level = motor(level)
 
 
-The function **main()** contains the whole program process as shown:
+Die Funktion **main()** enthält den gesamten Programmvorgang, wie folgt dargestellt:
 
-1) Constantly read the button state and the current temperature.
+1) Ständiges Auslesen des Tastenzustands und der aktuellen Temperatur.
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+2) Jeder Tastendruck erhöht die Stufe um **+1** und gleichzeitig wird die Temperatur aktualisiert. Der **Level** reicht von **1~4**.
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+3) Während der Ventilator arbeitet (die Stufe ist **nicht 0**), wird die Temperatur überwacht. Eine Änderung von **+2℃** führt zur Erhöhung oder Verringerung der Stufe.
 
-4) The motor changes the rotating speed with the **Level**.
+4) Der Motor ändert die Drehgeschwindigkeit entsprechend dem **Level**.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/image246.png

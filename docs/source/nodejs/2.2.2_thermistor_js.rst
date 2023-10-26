@@ -3,41 +3,39 @@
 2.2.2 Thermistor
 ================
 
-Introduction
-------------
+Einführung
+----------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Genauso wie ein Fotowiderstand Licht erfassen kann, ist ein Thermistor ein temperaturempfindliches elektronisches Bauelement, das für die Realisierung von Temperaturregelungsfunktionen eingesetzt werden kann, beispielsweise um einen Hitzewarnmelder zu bauen.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Bauteile.
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -52,44 +50,41 @@ You can also buy them separately from the links below.
     *   - :ref:`adc0834`
         - \-
 
-Schematic Diagram
-------------------
+Schaltplan
+-------------
 
 .. image:: ../img/image323.png
 
-
 .. image:: ../img/image324.png
 
+Experimentelle Verfahren
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Führen Sie den Code aus.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block:: 
+.. code-block::
 
     sudo node thermistor.js
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Wenn der Code ausgeführt wird, erfasst der Thermistor die Umgebungstemperatur, die auf dem Bildschirm angezeigt wird, sobald die Programmberechnung abgeschlossen ist.
 
 **Code**
 
@@ -115,7 +110,7 @@ be printed on the screen once it finishes the program calculation.
       });
     }, 1000);
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -132,8 +127,7 @@ be printed on the screen once it finishes the program calculation.
       });
     }, 1000);
 
-We can read the ``value`` of the thermistor through the statement ``adc.read(0).then((value) => {...})``
-
+Wir können den ``Wert`` des Thermistors mit der Anweisung ``adc.read(0).then((value) => {...})`` auslesen.
 
 .. code-block:: js
 
@@ -144,41 +138,41 @@ We can read the ``value`` of the thermistor through the statement ``adc.read(0).
     var Fah = (cel * 1.8 + 32).toFixed(2);
     console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
 
-These operations convert the thermistor value to a Celsius temperature value.
+Diese Operationen konvertieren den Thermistorwert in einen Celsius-Temperaturwert.
 
 .. code-block:: js
 
     var Vr = 5 * value / 255;
     var Rt = 10000 * Vr / (5 - Vr);
 
-These two lines of code are used to calculate the voltage distribution from the read values, resulting in Rt (resistance of the thermistor).
+Diese beiden Codezeilen dienen dazu, die Spannungsverteilung aus den gelesenen Werten zu berechnen, was in Rt (Widerstand des Thermistors) resultiert.
 
 .. code-block:: js
 
-    var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));  
+    var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));
 
-This code refers to substituting Rt into the formula **TK=1/(ln(RT/RN)/B+1/TN)** to get the temperature in Kelvin.
+Dieser Code bezieht sich darauf, Rt in die Formel **TK=1/(ln(RT/RN)/B+1/TN)** einzusetzen, um die Temperatur in Kelvin zu erhalten.
 
 .. code-block:: js
 
     var cel = (temp - 273.15).toFixed(2);
 
-This paragraph is to convert the Kelvin temperature to Celsius with two decimal places.
+Dieser Abschnitt konvertiert die Kelvin-Temperatur in Celsius mit zwei Dezimalstellen.
 
 .. code-block:: js
 
     var Fah = (cel * 1.8 + 32).toFixed(2);
 
-This paragraph converts Celsius to Fahrenheit with two decimal places.
+Dieser Abschnitt konvertiert Celsius in Fahrenheit mit zwei Dezimalstellen.
 
 .. code-block:: js
 
     console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
 
-Print Celsius, Fahrenheit and their units on the terminal.  
+Gibt Celsius, Fahrenheit und ihre Einheiten im Terminal aus.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+----------------
 
 .. image:: ../img/image203.jpeg
     

@@ -1,76 +1,72 @@
 .. _3.1.1_py:
 
-3.1.1 Photograph Module
+3.1.1 Fotografie-Modul
 ==========================
 
-Introduction
+Einführung
 -----------------
 
-In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
+In diesem Kit ist ein Kameramodul enthalten. Lassen Sie uns versuchen, mit dem Raspberry Pi ein Foto aufzunehmen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
-------------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+**Schritt 1:** Gehen Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie vielleicht einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für ein detailliertes Tutorial siehe :ref:`windows_remote_desktop`.
 
-
-**Step 2:** Open a Terminal and get into the folder of the code.
+**Schritt 2:** Öffnen Sie ein Terminal und wechseln Sie in den Ordner mit dem Code.
 
 .. code-block::
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Schritt 3:** Führen Sie den Code aus.
 
 .. code-block::
 
-    sudo python3 3.1.1_PhotographModule.py
+    sudo python3 3.1.1_FotografieModul.py
 
-After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``~`` directory. 
+Nachdem der Code ausgeführt wurde, wird die Kamera ein Foto aufnehmen. Jetzt können Sie das Foto mit dem Namen ``my_photo.jpg`` im ``~`` Verzeichnis sehen.
 
 .. note::
 
-    You can also open ``3.1.1_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    Sie können auch ``3.1.1_PhotographModule.py`` im Pfad ``~/raphael-kit/python/`` mit einer Python-IDE öffnen, auf die Schaltfläche Ausführen klicken, um den Code auszuführen, und den Code mit der Schaltfläche Stopp beenden.
 
-
-If you want to download the photo to your PC, please refer to :ref:`filezilla`.
-
+Wenn Sie das Foto auf Ihren PC herunterladen möchten, beachten Sie bitte :ref:`filezilla`.
 
 **Code**
-
 
 .. code-block:: python
 
@@ -99,7 +95,7 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -107,26 +103,24 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
     camera = PiCamera()
 
-Import the ``picamera`` library and instantiate the ``PiCamera`` class to use the camera module.
+Importiert die Bibliothek ``picamera`` und instanziiert die Klasse ``PiCamera``, um das Kameramodul zu verwenden.
 
 .. code-block:: python
 
     start_preview(**options)
 
+Zeigt die Vorschau-Overlay an und ändert die Transparenzstufe der Vorschau mit ``alpha`` - von 0 bis 255. Diese Methode startet eine Kamera-Vorschau als Overlay auf dem primären Display des Pi (HDMI oder Composite). Standardmäßig ist der Renderer opak und im Vollbildmodus.
 
-Show the preview overlay and change the transparency level of the preview with ``alpha`` - from 0 to 255. This method starts a camera preview as an overlay on the Pi’s primary display (HDMI or composite). By default, the renderer will be opaque and fullscreen.
-
-
-This means the default preview overrides whatever is currently visible on the display. More specifically, the preview does not rely on a graphical environment like X-Windows (it can run quite happily from a TTY console); it is simply an overlay on the Pi’s video output. To stop the preview and reveal the display again, call ``stop_preview()`` . The preview can be started and stopped multiple times during the lifetime of the ``PiCamera`` object.
+Das bedeutet, dass die Standardvorschau das aktuell auf dem Display sichtbare Bild überschreibt. Genauer gesagt, die Vorschau ist nicht auf eine grafische Umgebung wie X-Windows angewiesen (sie kann problemlos von einer TTY-Konsole aus laufen); es handelt sich lediglich um ein Overlay auf dem Videoausgang des Pi. Um die Vorschau zu stoppen und das Display wieder sichtbar zu machen, rufen Sie ``stop_preview()`` auf. Die Vorschau kann während der Lebensdauer des ``PiCamera``-Objekts mehrmals gestartet und gestoppt werden.
 
 .. code-block:: python
 
     camera.capture(f'{user_home}/my_photo.jpg')
 
-Capture an image from the camera, storing it in ``~/``.
+Macht ein Bild von der Kamera und speichert es in ``~/``.
 
 .. note::
-    You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
+    Mit der Funktion ``camera.capture()`` und der ``for``-Schleife können Sie Serienaufnahmen durchführen. Verwenden Sie die ``delay``-Funktion, um das Zeitintervall für das Aufnehmen von Bildern anzupassen.
 
     .. code-block:: python
 

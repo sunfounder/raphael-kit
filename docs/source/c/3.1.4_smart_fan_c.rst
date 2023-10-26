@@ -1,43 +1,43 @@
 .. _3.1.4_c:
 
-3.1.4 Smart Fan
-======================
+3.1.4 Intelligenter Ventilator
+==================================
 
-Introduction
+Einführung
 -----------------
 
-In this project, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+In diesem Projekt verwenden wir Motoren, Tasten und Thermistoren, um einen
+manuellen + automatischen intelligenten Ventilator zu bauen, dessen Windgeschwindigkeit einstellbar ist.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Smart_Fan.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,11 +60,11 @@ You can also buy them separately from the links below.
     *   - :ref:`motor`
         - |link_motor_buy|
 
-Schematic Diagram
+Schaltplan
 ------------------------
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+T-Board Name physisch wiringPi BCM
 GPIO17       Pin 11   0        17
 GPIO18       Pin 12   1        18
 GPIO27       Pin 13   2        27
@@ -77,23 +77,21 @@ GPIO13       Pin 33   23       13
 .. image:: ../img/Schematic_three_one4.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image245.png
     :align: center
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Das Strommodul kann mit dem 9V-Batterieclip im Kit eine 9V-Batterie nutzen. Setzen Sie den Jumper des Strommoduls in die 5V-Busleisten des Breadboards.
 
 .. image:: ../img/image118.jpeg
     :align: center
 
-**Step 2**: Get into the folder of the code.
+**Schritt 2**: Wechseln Sie in den Ordner mit dem Code.
 
 .. raw:: html
 
@@ -103,7 +101,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.4/
 
-**Step 3**: Compile.
+**Schritt 3**: Kompilieren.
 
 .. raw:: html
 
@@ -113,7 +111,7 @@ Experimental Procedures
 
     gcc 3.1.4_SmartFan.c -lwiringPi -lm
 
-**Step 4**: Run the executable file above.
+**Schritt 4**: Führen Sie die obige ausführbare Datei aus.
 
 .. raw:: html
 
@@ -123,17 +121,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+Wenn der Code läuft, starten Sie den Ventilator durch Drücken der Taste. Jedes Mal, wenn Sie drücken, wird die Geschwindigkeitsstufe um 1 erhöht oder verringert. Es gibt **5** Geschwindigkeitsstufen: **0~4**. Wenn Sie auf die 4\ :sup:`te` Geschwindigkeitsstufe eingestellt sind und die Taste drücken, stoppt der Ventilator mit einer **0** Windgeschwindigkeit.
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+Wenn die Temperatur um mehr als 2℃ steigt oder fällt, wird die Geschwindigkeit automatisch um 1 Stufe schneller oder langsamer.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Starten nicht funktioniert oder ein Fehlerhinweis erscheint: \"wiringPi.h: No such file or directory\", beachten Sie bitte :ref:`install_wiringpi`.
 
 Code
 --------
@@ -276,8 +270,7 @@ Code
         return 0;
     }
 
-Code Explanation
-----------------------
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -294,8 +287,8 @@ Code Explanation
         return t;
     }
 
-Temperture() works by converting thermistor values read by ADC0834 into
-temperature values. Refer to :ref:`2.2.2_c` for more details.
+Temperture() funktioniert, indem es Thermistorwerte, die von ADC0834 gelesen werden, in
+Temperaturwerte umwandelt. Weitere Einzelheiten finden Sie unter :ref:`2.2.2_c`.
 
 .. code-block:: c
 
@@ -312,9 +305,8 @@ temperature values. Refer to :ref:`2.2.2_c` for more details.
         return level;    
     }
 
-This function controls the rotating speed of the motor. The range of the
-**Level**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+Diese Funktion steuert die Drehgeschwindigkeit des Motors. Der Bereich des
+**Level**: **0-4** (Stufe **0** stoppt den arbeitenden Motor). Eine Stufenanpassung steht für eine Änderung der Windgeschwindigkeit um **25%**.
 
 .. code-block:: c
 
@@ -349,15 +341,15 @@ adjustment stands for a **25%** change of the wind speed.
         return 0;
     }
 
-The function **main()** contains the whole program process as shown:
+Die Funktion **main()** enthält den gesamten Programmvorgang wie gezeigt:
 
-1) Constantly read the button state and the current temperature.
+1) Ständiges Auslesen des Tastenzustandes und der aktuellen Temperatur.
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+2) Jeder Tastendruck erhöht level um **+1** und gleichzeitig wird die Temperatur 
+   aktualisiert. Der **Level** bewegt sich im Bereich **1~4**.
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+3) Solange der Ventilator arbeitet (der Level ist **nicht 0**), wird die Temperatur überwacht. Eine Änderung um **2℃\ +** bewirkt das Hoch- und Heruntersetzen des Levels.
 
-4) The motor changes the rotating speed with the **Level**.
+4) Der Motor ändert die Drehgeschwindigkeit entsprechend dem **Level**.
+
 

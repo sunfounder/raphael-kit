@@ -1,45 +1,44 @@
 .. _2.1.6_js:
 
-2.1.6 Rotary Encoder Module
-===========================
+2.1.6 Drehgeber Modul
+=====================
 
-Introduction
-------------------
+Einführung
+----------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+In diesem Projekt werden Sie den Drehgeber kennenlernen. Ein Drehgeber ist
+ein elektronischer Schalter mit einer Reihe von regelmäßigen Impulsen in strengem 
+Zeitablauf. In Verbindung mit einem IC können Sie Erhöhen, Verringern, Seitenumbruch 
+und andere Vorgänge wie Maus-Scrolling, Menüauswahl usw. realisieren.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+---------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -50,26 +49,26 @@ You can also buy them separately from the links below.
     *   - :ref:`rotary_encoder`
         - |link_rotary_encoder_buy|
 
-chematic Diagram
-------------------------
+Schaltplan
+----------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
------------------------
+Experimentelle Verfahren
+------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
+In diesem Beispiel können wir den Drehgeber-Pin direkt an den 
+Raspberry Pi anschließen. Verwenden Sie dazu ein Breadboard und ein 40-Pin-Kabel. Verbinden Sie 
+das GND des Drehgebers mit GND, 「+」mit 5V, SW mit digitalem GPIO27, DT mit digitalem GPIO18 und CLK mit digitalem GPIO
 17.
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
 
 .. raw:: html
 
@@ -79,7 +78,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -89,10 +88,10 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo node rotary_encoder_module.js
 
-You will see the count on the shell. 
-When you turn the rotary encoder clockwise, the count is increased; 
-when turn it counterclockwise, the count is decreased. 
-If you press the switch on the rotary encoder, the readings will return to zero.
+Sie werden die Zählung in der Shell sehen. 
+Wenn Sie den Drehgeber im Uhrzeigersinn drehen, erhöht sich der Zählerstand; 
+drehen Sie ihn gegen den Uhrzeigersinn, verringert sich der Zählerstand. 
+Wenn Sie den Schalter am Drehgeber drücken, wird der Zählerstand auf null zurückgesetzt.
 
 
 **Code**
@@ -135,8 +134,8 @@ If you press the switch on the rotary encoder, the readings will return to zero.
 
 
 
-**Code Explanation**
 
+**Code Erklärung**
 
 .. code-block:: js
 
@@ -152,9 +151,9 @@ If you press the switch on the rotary encoder, the readings will return to zero.
       console.log(`globalCounter = ${globalCounter}`);
     });
 
-When dtPin goes from low to high, if clkPin is high, 
-the count decreases, 
-otherwise the count increases.
+Wenn dtPin von niedrig auf hoch wechselt und clkPin hoch ist,
+die Zählung nimmt ab,
+andernfalls erhöht sich die Anzahl.
 
 
 .. code-block:: js
@@ -165,12 +164,11 @@ otherwise the count increases.
     });
 
 
-The swPin will output low when the shaft is pressed. 
-Let the globalCounter go to zero at this point
+Der swPin gibt einen Low-Ausgang aus, wenn die Welle gedrückt wird.
+Lassen Sie den globalCounter an dieser Stelle auf Null gehen
 
-
-Phenomenon Picture
--------------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG
    :align: center

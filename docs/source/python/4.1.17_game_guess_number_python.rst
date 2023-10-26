@@ -1,50 +1,42 @@
 .. _4.1.17_py:
 
-4.1.17 GAME– Guess Number
-~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1.17 SPIEL – Zahlenraten
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+Zahlenraten ist ein unterhaltsames Partyspiel, bei dem Sie und Ihre Freunde abwechselnd eine Zahl (0~99) eingeben. Der Bereich wird mit der Eingabe der Zahl kleiner, bis ein Spieler das Rätsel richtig beantwortet. Dann wird dieser Spieler besiegt und bestraft. Zum Beispiel, wenn die Glückszahl 51 ist, die die Spieler nicht sehen können, und der Spieler ① 50 eingibt, ändert sich der Zahlenbereich zu 50~99; wenn der Spieler ② 70 eingibt, kann der Zahlenbereich 50~70 sein; wenn der Spieler ③ 51 eingibt, ist dieser Spieler der Pechvogel. Hier verwenden wir ein Tastenfeld zur Eingabe von Zahlen und ein LCD zur Ausgabe von Ergebnissen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/list_GAME_Guess_Number.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,8 +51,7 @@ You can also buy them separately from the links below.
     *   - :ref:`i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
-
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== =======
@@ -80,16 +71,16 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: ../img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image273.png
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`.)
+**Schritt 2**: I2C einrichten (siehe :ref:`i2c_config`.)
 
-**Step 3**: Change directory.
+**Schritt 3**: Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -99,7 +90,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 4**: Run.
+**Schritt 4**: Ausführen.
 
 .. raw:: html
 
@@ -109,45 +100,35 @@ Experimental Procedures
 
     sudo python3 4.1.17_GAME_GuessNumber.py
 
-After the program runs, there displays the initial page on the LCD:
+Nach dem Start des Programms wird die Startseite auf dem LCD angezeigt:
 
 .. code-block:: 
 
-   Welcome!
-   Press A to go!
+   Willkommen!
+   Drücke A zum Starten!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+Drücken Sie „A“, und das Spiel beginnt und die Spielseite wird auf dem LCD angezeigt.
 
 .. code-block:: 
 
-   Enter number:
-   0 ‹point‹ 99
+   Zahl eingeben:
+   0 ‹Punkt‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Eine zufällige Zahl „\ **Punkt**\ “ wird erzeugt, aber beim Spielstart nicht auf dem LCD angezeigt. Ihre Aufgabe ist es, diese zu erraten. Die von Ihnen eingegebene Zahl erscheint am Ende der ersten Zeile, bis die endgültige Berechnung abgeschlossen ist. (Drücken Sie „D“, um den Vergleich zu starten. Wenn die eingegebene Zahl größer als **10** ist, beginnt der automatische Vergleich.)
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
+Der Zahlenbereich von „Punkt“ wird in der zweiten Zeile angezeigt. Sie müssen eine Zahl innerhalb dieses Bereichs eingeben. Wenn Sie eine Zahl eingeben, verkleinert sich der Bereich. Wenn Sie zufällig oder unglücklicherweise die Glückszahl erreichen, erscheint die Meldung „Du hast es geschafft!“
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
+    * Wenn der Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` auftritt, müssen Sie :ref:`i2c_config` konsultieren, um I2C zu aktivieren.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führen Sie bitte ``sudo pip3 install smbus2`` aus.
+    * Wenn der Fehler ``OSError: [Errno 121] Remote I/O error`` erscheint, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
+    * Wenn der Code und die Verdrahtung in Ordnung sind, das LCD aber immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 .. raw:: html
 
@@ -282,13 +263,13 @@ appear “You've got it!”
       except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
          destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in :ref:`1.1.7_py` and :ref:`2.1.8_py`.
+Zu Beginn des Codes finden sich die Funktionsmethoden von 
+**keypad** und **I2C LCD1602**. Detailliertere Informationen über diese können 
+in :ref:`1.1.7_py` und :ref:`2.1.8_py` nachgelesen werden.
 
-Here, what we need to know is as follows:
+Wichtige Stellen im Code sind wie folgt:
 
 .. code-block:: python
 
@@ -300,8 +281,7 @@ Here, what we need to know is as follows:
         count = 0
         print('point is %d' %(pointValue))
 
-The function produces the random number ‘\ **point**\ ’ and resets the
-range hint of the point.
+Die Funktion generiert die zufällige Zahl „\ **Punkt**\ “ und setzt den Bereichs-Hinweis zurück.
 
 .. code-block:: python
 
@@ -319,11 +299,7 @@ range hint of the point.
         count = 0
         return 0
 
-``detect_point()`` compares the input number (**count**) with the produced
-“\ **point**\ ”. If the comparing outcome is that they are not same,
-**count** will assign values to **upper** and **lower** and return
-‘\ **0**\ ’; otherwise, if the outcome indicates they are same, there
-returns ‘\ **1**\ ’.
+``detect_point()`` vergleicht die eingegebene Zahl (**count**) mit dem generierten „\ **Punkt**\ “. Wenn das Ergebnis des Vergleichs zeigt, dass sie nicht gleich sind, weist **count** Werte an **upper** und **lower** zu und gibt „\ **0**\ “ zurück. Andernfalls, wenn sie gleich sind, gibt es „\ **1**\ “ zurück.
 
 .. code-block:: python
 
@@ -341,11 +317,9 @@ returns ‘\ **1**\ ’.
         LCD1602.write(3,1,' < Point < ')
         LCD1602.write(13,1,str(upper))
 
-This function works for displaying the game page.
+Die Funktion dient dazu, die Spielseite anzuzeigen.
 
-``str(count)``: Because ``write()`` can only support the data type —
-**string**, ``str()`` is needed to convert the **number** into
-**string**.
+``str(count)``: Da ``write()`` nur den Datentyp **string** unterstützt, ist ``str()`` notwendig, um die **Zahl** in einen **String** zu konvertieren.
 
 .. code-block:: python
 
@@ -372,27 +346,22 @@ This function works for displaying the game page.
                 print(pressed_keys)
             last_key_pressed = pressed_keys
             time.sleep(0.1)
-   
 
-``main()`` contains the whole process of the program, as show below:
+``main()`` beinhaltet den gesamten Prozess des Programms, wie unten gezeigt:
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+1) Initialisierung von **I2C LCD1602** und **Keypad**.
 
-2) Judge whether the button is pressed and get the button reading.
+2) Überprüfung, ob eine Taste gedrückt wurde und das Auslesen der Taste.
 
-3) If the button ‘\ **A**\ ’ is pressed, a random number **0-99** will
-   appear then the game starts.
+3) Wenn die Taste „\ **A**\ “ gedrückt wird, erscheint eine Zufallszahl zwischen **0-99** und das Spiel beginnt.
 
-4) If the button ‘\ **D**\ ’ is detected to have been pressed, the
-   program will enter into the outcome judgement.
+4) Wird die Taste „\ **D**\ “ erkannt, tritt das Programm in das Ergebnisurteil ein.
 
-5) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+5) Wenn die Taste **0-9** gedrückt wird, ändert sich der Wert von **count**; ist **count** größer als **10**, beginnt das Urteil.
 
-6) The changes of the game and its values are displayed on **LCD1602**.
+6) Die Änderungen des Spiels und seiner Werte werden auf dem **LCD1602** angezeigt.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/image274.jpeg

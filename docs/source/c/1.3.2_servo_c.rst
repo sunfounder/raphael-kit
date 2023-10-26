@@ -3,39 +3,39 @@
 1.3.2 Servo
 =================
 
-Introduction
+Einführung
 --------------
 
-In this project, we will learn how to make the servo rotate.
+In diesem Projekt lernen wir, wie man den Servo zum Drehen bringt.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_1.3.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -46,20 +46,20 @@ You can also buy them separately from the links below.
     *   - :ref:`servo`
         - |link_servo_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Experimentelle Verfahren
+--------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Wechseln Sie in das Verzeichnis mit dem Code.
 
 .. raw:: html
 
@@ -69,7 +69,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.3.2
 
-**Step 3**: Compile the code.
+**Schritt 3**: Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -79,7 +79,7 @@ Experimental Procedures
 
     gcc 1.3.2_Servo.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Schritt 4**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -89,12 +89,12 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program is executed, the servo will rotate from 
-0 degrees to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Nachdem das Programm ausgeführt wurde, wird der Servo 
+von 0 Grad auf 180 Grad und dann von 180 Grad auf 0 Grad zirkulär drehen.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -137,7 +137,7 @@ After the program is executed, the servo will rotate from
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -145,7 +145,7 @@ After the program is executed, the servo will rotate from
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
 
-Create a ``Map()`` function to map value in the following code.
+Erstellen Sie eine ``Map()``-Funktion, um Werte im folgenden Code zuzuordnen.
 
 .. code-block:: c
 
@@ -157,30 +157,30 @@ Create a ``Map()`` function to map value in the following code.
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a funtion, ``setAngle()`` to write angle to the servo.
+Erstellen Sie eine Funktion namens ``setAngle()``, um dem Servo einen Winkel zuzuweisen.
 
 .. code-block:: c
 
     softPwmWrite(pin,Map(angle,0,180,5,25));  
 
-This function can change the duty cycle of the PWM.
+Diese Funktion kann den Tastgrad des PWM ändern.
 
-To make the servo rotate to 0 ~ 180 °, the pulse width should change
-within the range of 0.5ms ~ 2.5ms when the period is 20ms; in the
-function, ``softPwmCreate()`` , we have set that the period is
-200x100us=20ms, thus we need to map 0 ~ 180 to 5x100us ~ 25x100us.
+Um den Servo auf 0 ~ 180 ° zu drehen, sollte die Impulsbreite
+im Bereich von 0,5ms ~ 2,5ms variieren, wenn die Periode 20ms beträgt; in der
+Funktion ``softPwmCreate()`` haben wir festgelegt, dass die Periode 
+200x100us=20ms beträgt, daher müssen wir 0 ~ 180 auf 5x100us ~ 25x100us mappen.
 
-The prototype of this function is shown below.
+Der Prototyp dieser Funktion ist unten dargestellt.
 
 .. code-block::
 
-    int softPwmCreate（int pin，int initialValue，int pwmRange）;
+    int softPwmCreate(int pin, int initialValue, int pwmRange);
 
-* ``pin``: Any GPIO pin of Raspberry Pi can be set as PWM pin.
-* ``initialValue``: The initial pulse width is that initialValue times 100us.
-* ``pwmRange``: the period of PWM is that pwmRange times 100us.
+* ``pin``: Jeder GPIO-Pin des Raspberry Pi kann als PWM-Pin festgelegt werden.
+* ``initialValue``: Die anfängliche Impulsbreite beträgt initialValue mal 100us.
+* ``pwmRange``: Die Periode des PWM beträgt pwmRange mal 100us.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image126.jpeg

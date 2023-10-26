@@ -1,43 +1,43 @@
 .. _4.1.6_py:
 
-4.1.6 Magnetic Induction Alarm System
+4.1.6 Magnetinduktions-Alarm-System
 ============================================
 
-Introduction
+Einführung
 -----------------
 
-When you get a precious vase, you can make a magnetic induction alarm system for it, no matter who moves it, you can hear the alarm in time.
+Wenn Sie eine wertvolle Vase besitzen, können Sie ein Magnetinduktions-Alarm-System dafür erstellen. Wer auch immer sie bewegt, Sie können den Alarm rechtzeitig hören.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/3.1.20components.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein gesamtes Kit zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch über die untenstehenden Links einzeln kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,7 +55,7 @@ You can also buy them separately from the links below.
         - |link_reed_switch_buy|
 
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
 ============ ======== ======== ===
@@ -68,16 +68,16 @@ GPIO27       Pin 13   2        27
    :width: 600
    :align: center
 
-Experimental Procedures
-------------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/3.1.20fritzing.png
   :width: 800
   :align: center
 
-**Step 2:** Get into the folder of the code.
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -87,7 +87,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Schritt 3:** Starten.
 
 .. raw:: html
 
@@ -97,13 +97,13 @@ Experimental Procedures
 
     sudo python3 4.1.6_MagneticAlarmSystem.py
 
-If the reed switch is affected by the magnet (for example, the reed switch is placed on the base and the magnet is placed in the vase), the object is safe. At this time, the reed switch is in the closed state, and the buzzer is silent.
-After removing the magnet (such as the vase being stolen), the reed switch is not affected by the magnetic, the switch opens, and the buzzer sounds an alarm.
+Wenn der Reed-Schalter vom Magneten beeinflusst wird (zum Beispiel wenn der Reed-Schalter auf dem Sockel und der Magnet in der Vase platziert ist), ist das Objekt sicher. Zu diesem Zeitpunkt ist der Reed-Schalter geschlossen und der Summer gibt keinen Ton ab.
+Wird der Magnet entfernt (z.B. wenn die Vase gestohlen wird), wird der Reed-Schalter nicht mehr magnetisch beeinflusst, der Schalter öffnet sich und der Summer gibt einen Alarmton ab.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Starten/Stoppen**. Aber zuerst müssen Sie zum Quellcodepfad wie ``raphael-kit/python`` navigieren. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 .. raw:: html
 
@@ -115,8 +115,8 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
     import RPi.GPIO as GPIO
     import time
 
-    BeepPin = 17
-    ReedPin = 18
+    BeepPin = 27
+    ReedPin = 17
 
     def setup():
         GPIO.setmode(GPIO.BCM)
@@ -144,7 +144,7 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
@@ -158,10 +158,9 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
                 GPIO.output(BeepPin, GPIO.HIGH)
                 time.sleep(0.1)
 
-We judge the state of the reed switch in the main loop. If the reed switch is closed, the buzzer does not work; otherwise, the buzzer beeps.
+Im Hauptloop beurteilen wir den Zustand des Reed-Schalters. Wenn der Reed-Schalter geschlossen ist, arbeitet der Summer nicht; ansonsten gibt der Summer einen Piepton aus.
 
-
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: ../img/4.1.6_security.JPG

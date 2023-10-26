@@ -1,37 +1,37 @@
 .. _blynk_motor_py:
 
-Smart Fan
-===========
+Intelligenter Ventilator
+========================
 
-In this project, you can see the temperature from Blynk and turn on the fan remotely.
+In diesem Projekt können Sie die Temperatur über Blynk ablesen und den Ventilator aus der Ferne einschalten.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
+.. note:: Bevor Sie mit diesem Projekt beginnen, empfehlen wir Ihnen, :ref:`bk_start_py` abzuschließen. Dies wird Ihnen ein klares Verständnis für Blynk vermitteln.
 
-**Required Components**
+**Benötigte Komponenten**
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, gleich ein ganzes Kit zu kaufen. Hier finden Sie den Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können die Teile auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -52,37 +52,35 @@ You can also buy them separately from the links below.
     *   - :ref:`motor`
         - |link_motor_buy|
 
-**1. Wiring**
+**1. Verdrahtung**
 
 .. image:: img/wiring_blynk_motor.png
 
+**2. Widget und Datenstrom erstellen**
 
-**2. Create Widget and Datastream**
-
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Klicken Sie auf das Menü-Symbol in der oberen rechten Ecke und wählen Sie "Dashboard bearbeiten".
 
     .. image:: img/sp220913_180231.png
 
-2. Add a Switch widget and a Label widget to the Dashboard.
+2. Fügen Sie ein Schalter-Widget und ein Beschriftungs-Widget zum Dashboard hinzu.
 
     .. image:: img/sp220914_175437.png
 
-3. Create a Datastream (I used V3) for the Switch widget. It will be used to turn on the Motor.
+3. Erstellen Sie einen Datenstrom (ich habe V3 verwendet) für das Schalter-Widget. Dieser wird zum Einschalten des Motors verwendet.
 
     .. image:: img/sp220914_155911.png
 
-4. Create a Datastream for the Label widget(I used V0). It will be used to display the temperature. Set **DATA TYPE** to String.
+4. Erstellen Sie einen Datenstrom für das Beschriftungs-Widget (ich habe V0 verwendet). Dieser wird zur Anzeige der Temperatur verwendet. Stellen Sie **DATA TYPE** auf Zeichenkette (String) ein.
 
     .. image:: img/sp220914_175616.png
 
-#. When finished, click Save And Apply at the top right.
+#. Wenn Sie fertig sind, klicken Sie oben rechts auf "Speichern und Anwenden".
 
     .. image:: img/sp220913_182300.png
 
+**3. Code ausführen**
 
-**3. Run the Code**
-
-1. Edit the code
+1. Code bearbeiten
 
 .. raw:: html
 
@@ -93,13 +91,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_motor.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. Suchen Sie die untenstehende Zeile und fügen Sie Ihren ``BLYNK_AUTH_TOKEN`` ein.
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -109,6 +107,6 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_motor.py
 
-4. Go to Blynk, on the Dashboard you can check the temperature via Label widget; you can turn on/off the fan via Switch widget.
+4. Öffnen Sie Blynk und auf dem Dashboard können Sie die Temperatur über das Beschriftungs-Widget überprüfen; Sie können den Ventilator über das Schalter-Widget ein- und ausschalten.
 
-#. If you want to use Blynk on mobile devices, please refer to :ref:`blynk_mobile`.
+#. Falls Sie Blynk auf mobilen Geräten nutzen möchten, verweisen Sie bitte auf :ref:`blynk_mobile`.

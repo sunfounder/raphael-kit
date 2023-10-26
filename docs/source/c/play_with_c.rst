@@ -1,5 +1,5 @@
-Play with C
-===============
+Spielen Sie mit C
+====================
 
 .. toctree::
     :maxdepth: 3

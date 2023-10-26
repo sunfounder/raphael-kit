@@ -1,16 +1,16 @@
 .. _remote_windows:
 
-Windows Users
+Windows-Benutzer
 =======================
 
-If you're a Windows user, you can use Windows PowerShell to login Raspberry Pi remotely.
+Wenn Sie ein Windows-Benutzer sind, können Sie die Windows PowerShell verwenden, um sich aus der Ferne am Raspberry Pi anzumelden.
 
-#. Press the ``windows`` + ``R`` shortcut key in your keyboard to open the **Run** program. Then type **powershell** in the input box. 
+#. Drücken Sie die Tastenkombination ``windows`` + ``R`` auf Ihrer Tastatur, um das Programm **Run** zu öffnen. Geben Sie dann **powershell** in das Eingabefeld ein.
 
     .. image:: img/sp221221_135900.png
         :align: center
 
-#. Check if your Raspberry Pi is on the same network by type in ``ping <hostname>.local``. 
+#. Überprüfen Sie, ob Ihr Raspberry Pi im selben Netzwerk ist, indem Sie ``ping <hostname>.local`` eingeben.
 
     .. code-block:: shell
 
@@ -20,19 +20,17 @@ If you're a Windows user, you can use Windows PowerShell to login Raspberry Pi r
         :width: 550
         :align: center
 
-    * If terminal prompts ``Ping request could not find host <hostname>.local``, it is possible that the Raspberry Pi failed to connect to the network.lease check the network.
-    * If you really can't ping ``<hostname>.local``, try to :ref:`get_ip`  and ``ping <IP address>`` instead. (e.g., ``ping 192.168.6.116``)
-    * If multiple prompts like "Reply from <IP address>: bytes=32 time<1ms TTL=64" appear, it means your computer can access the Raspberry Pi.
+    * Wenn das Terminal die Meldung ``Ping request could not find host <hostname>.local`` ausgibt, ist es möglich, dass der Raspberry Pi keine Netzwerkverbindung hat. Überprüfen Sie das Netzwerk.
+    * Wenn Sie ``<hostname>.local`` wirklich nicht anpingen können, versuchen Sie :ref:`get_ip` zu verwenden und stattdessen ``ping <IP-Adresse>`` auszuführen (z. B. ``ping 192.168.6.116``).
+    * Wenn mehrere Meldungen wie "Antwort von <IP-Adresse>: Bytes=32 Zeit<1ms TTL=64" erscheinen, bedeutet dies, dass Ihr Computer auf den Raspberry Pi zugreifen kann.
 
-
-#. Type in ``ssh <username>@<hostname>.local`` (or ``ssh <username>@<IP address>``).
+#. Geben Sie ``ssh <username>@<hostname>.local`` (oder ``ssh <username>@<IP address>``) ein.
 
     .. code-block:: shell
 
         ssh pi@raspberrypi.local
 
-
-#. The following message may appear.
+#. Die folgende Nachricht könnte erscheinen.
 
     .. code-block::
 
@@ -40,16 +38,14 @@ If you're a Windows user, you can use Windows PowerShell to login Raspberry Pi r
         ECDSA key fingerprint is SHA256:7ggckKZ2EEgS76a557cddfxFNDOBBuzcJsgaqA/igz4.
         Are you sure you want to continue connecting (yes/no/[fingerprint])? 
 
-    Input \"yes\".
+    Geben Sie "yes" ein.
 
-#. Input the password you set before. (Mine is ``raspberry``.)
+#. Geben Sie das zuvor festgelegte Passwort ein (Meines ist ``raspberry``).
 
     .. note::
-        When you input the password, the characters do not display on
-        window accordingly, which is normal. What you need is to input the
-        correct password.
+        Beim Eingeben des Passworts werden die Zeichen nicht im Fenster angezeigt, was normal ist. Wichtig ist, dass Sie das richtige Passwort eingeben.
 
-#. We now get the Raspberry Pi connected and are ready to go to the next step.
+#. Nun ist der Raspberry Pi verbunden, und wir sind bereit für den nächsten Schritt.
 
     .. image:: img/sp221221_140628.png
         :width: 550
@@ -57,19 +53,18 @@ If you're a Windows user, you can use Windows PowerShell to login Raspberry Pi r
 
 .. _windows_remote_desktop:
 
-Remote Desktop
+Remote-Desktop
 ------------------
 
-If you're not satisfied with using the command window to access your Raspberry Pi, you can also use the remote desktop feature to easily manage files on your Raspberry Pi using a GUI.
+Wenn Sie nicht zufrieden sind, den Befehlsfenster zum Zugriff auf Ihren Raspberry Pi zu verwenden, können Sie auch die Remote-Desktop-Funktion nutzen, um Dateien auf Ihrem Raspberry Pi über eine GUI zu verwalten.
 
-Here we use `VNC® Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_.
+Hier verwenden wir den `VNC® Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_.
 
-**Enable VNC service**
+**VNC-Dienst aktivieren**
 
-The VNC service has been installed in the system. By default, VNC is
-disabled. You need to enable it in config.
+Der VNC-Dienst ist im System installiert. Standardmäßig ist VNC deaktiviert. Sie müssen ihn in der Konfiguration aktivieren.
 
-#. Input the following command:
+#. Geben Sie den folgenden Befehl ein:
 
     .. raw:: html
 
@@ -79,37 +74,36 @@ disabled. You need to enable it in config.
 
         sudo raspi-config
 
-
-#. Choose **3** **Interfacing Options** by press the down arrow key on your keyboard, then press the **Enter** key.
+#. Wählen Sie **3** **Interfacing Options** mit der Abwärtspfeiltaste Ihrer Tastatur aus und drücken Sie die **Enter**.
 
     .. image:: img/image282.png
         :align: center
 
-#. Then **P3 VNC**. 
+#. Danach **P3 VNC**.
 
     .. image:: img/image288.png
         :align: center
 
-#. Use the arrow keys on the keyboard to select **<Yes>** -> **<OK>** -> **<Finish>** to complete the setup.
+#. Verwenden Sie die Pfeiltasten auf der Tastatur, um **<Yes>** -> **<OK>** -> **<Finish>** auszuwählen und die Einrichtung abzuschließen.
 
     .. image:: img/mac_vnc8.png
         :align: center
 
-**Login to VNC**
+**In VNC anmelden**
 
-#. You need to download and install the `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ on personal computer.
+#. Sie müssen den `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ auf Ihrem persönlichen Computer herunterladen und installieren.
 
-#.  Open it once the installation is complete. Then, enter the host name or IP address and press Enter.
+#. Öffnen Sie ihn nach Abschluss der Installation. Geben Sie dann den Hostnamen oder die IP-Adresse ein und drücken Sie Enter.
 
     .. image:: img/vnc_viewer1.png
         :align: center
 
-#. After entering your Raspberry Pi name and password, click **OK**.
+#. Nachdem Sie Ihren Raspberry Pi-Namen und Ihr Passwort eingegeben haben, klicken Sie auf **OK**.
 
     .. image:: img/vnc_viewer2.png
         :align: center
 
-#. Now you can see the desktop of the Raspberry Pi.
+#. Nun können Sie den Desktop des Raspberry Pi sehen.
 
     .. image:: img/login1.png
         :align: center

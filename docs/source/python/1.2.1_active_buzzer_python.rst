@@ -1,42 +1,41 @@
 .. _1.2.1_py:
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Aktiver Summer
+====================
 
-Introduction
-------------
+Einführung
+----------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+In diesem Projekt lernen wir, wie man mit einem PNP-Transistor einen aktiven Summer zum Piepen bringt.
 
-Required Components
-------------------------------
+Benötigte Komponenten
+-------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,29 +50,21 @@ You can also buy them separately from the links below.
     *   - :ref:`transistor`
         - |link_transistor_buy|
 
+Schaltplan
+----------
 
-Schematic Diagram
------------------
-
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+In diesem Experiment werden ein aktiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet. Der Widerstand befindet sich zwischen der Basis des Transistors und GPIO, um den Transistor zu schützen. Wenn der GPIO17 des Raspberry Pi durch Programmierung mit einer niedrigen Spannung (0V) versorgt wird, wird der Transistor wegen Stromsättigung leiten und der Summer wird tönen. Wenn jedoch eine hohe Spannung am IO des Raspberry Pi anliegt, wird der Transistor unterbrochen und der Summer gibt keinen Ton aus.
 
 .. image:: ../img/image332.png
 
+Experimentelle Verfahren
+------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Schritt 1:** Schalten Sie die Schaltung. (Der aktive Summer hat einen weißen Tischaufkleber auf der Oberfläche und eine schwarze Rückseite.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Open the code file.
+**Schritt 2**: Öffnen Sie die Code-Datei.
 
 .. raw:: html
 
@@ -83,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Schritt 3**: Starten.
 
 .. raw:: html
 
@@ -93,13 +84,13 @@ Experimental Procedures
 
     sudo python3 1.2.1_ActiveBuzzer.py
 
-The code run, the buzzer beeps.
+Nachdem der Code ausgeführt wurde, piept der Summer.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Starten/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad, wie ``raphael-kit/python``, navigieren. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 
 .. raw:: html
@@ -145,31 +136,31 @@ The code run, the buzzer beeps.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.LOW)
 
-Set the buzzer pin as low level to make the buzzer beep.  
+Legen Sie den Summer-Pin auf ein niedriges Niveau, damit der Summer piept.
 
 .. code-block:: python
 
     time.sleep(0.1)
 
-Wait for 0.1 second. Change the switching frequency by 
-changing this parameter. 
+Warten Sie 0,1 Sekunde. Ändern Sie die Schaltfrequenz, indem 
+Sie diesen Parameter anpassen.
 
 .. note::
-    Not the sound frequency. Active Buzzer cannot change sound frequency.
+    Nicht die Tonfrequenz. Ein aktiver Summer kann die Tonfrequenz nicht ändern.
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.HIGH)
 
-Close the buzzer. 
+Schalten Sie den Summer aus.
 
-Phenomenon Picture
-------------------
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image105.jpeg

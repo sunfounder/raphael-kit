@@ -1,42 +1,42 @@
 .. _2.1.5_c:
 
-2.1.5 Tilt Switch
+2.1.5 Neigungsschalter
 =======================
 
-Introduction
+Einführung
 ------------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Dies ist ein Neigungsschalter mit einer Metallkugel im Inneren. Er wird verwendet, um
+Neigungen von kleinem Winkel zu erkennen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
 
 .. image:: ../img/list_2.1.3_tilt_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -51,7 +51,7 @@ You can also buy them separately from the links below.
     *   - :ref:`tilt_switch`
         - \-
 
-Schematic Diagram
+Schaltplan
 -----------------
 
 .. image:: ../img/image307.png
@@ -60,14 +60,14 @@ Schematic Diagram
 .. image:: ../img/image308.png
 
 
-Experimental Procedures
------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/image169.png
 
-**Step 2:** Change directory.
+**Schritt 2:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -77,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.5/
 
-**Step 3:** Compile.
+**Schritt 3:** Kompilieren.
 
 .. raw:: html
 
@@ -87,7 +87,7 @@ Experimental Procedures
 
     gcc 2.1.5_Tilt.c -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Ausführen.
 
 .. raw:: html
 
@@ -97,14 +97,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-Place the tilt vertically, and the green LED will turns on. If you
-tilt it, "Tilt!" will be printed on the screen and the red LED will
-lights on. Place it vertically again, and the green LED will turns on
-again.
+Stellen Sie den Neigungsschalter vertikal auf, und die grüne LED wird leuchten. Wenn Sie
+ihn neigen, wird "Neigung!" auf dem Bildschirm ausgedruckt und die rote LED wird
+leuchten. Stellen Sie ihn wieder vertikal auf, und die grüne LED wird erneut leuchten.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
 
 **Code**
 
@@ -163,7 +162,7 @@ again.
         return 0;
     }
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -185,9 +184,9 @@ again.
             printf("LED Error");
     }
 
-Define a function ``LED()`` to turn the two LEDs on or off. If the parameter
-color is RED, the red LED lights up; similarly, if the parameter color
-is GREEN, the green LED will turns on.
+Definieren Sie eine Funktion ``LED()`` um die beiden LEDs ein- oder auszuschalten. Wenn der Parameter
+color ROT ist, leuchtet die rote LED; ebenso leuchtet die grüne LED, wenn der Parameter
+color GRÜN ist.
 
 .. code-block:: c
 
@@ -207,11 +206,11 @@ is GREEN, the green LED will turns on.
             }
         }
 
-If the read value of tilt switch is 0, it means that the tilt switch is
-tilted then you write the parameter ”RED” into function LED to get the
-red LED lighten up; otherwise, the green LED will lit.
+Wenn der gelesene Wert des Neigungsschalters 0 ist, bedeutet dies, dass der Neigungsschalter
+geneigt ist. Dann geben Sie den Parameter "ROT" in die Funktion LED ein, damit die
+rote LED leuchtet; andernfalls wird die grüne LED leuchten.
 
-Phenomenon Picture
+Phänomen-Bild
 ------------------
 
 .. image:: ../img/image170.jpeg

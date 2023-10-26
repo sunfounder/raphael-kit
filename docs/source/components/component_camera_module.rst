@@ -1,45 +1,38 @@
 .. _camera_module:
 
-Camera Module
+Kameramodul
 ====================================
 
-
-**Description**
+**Beschreibung**
 
 .. image:: img/camera_module_pic.png
    :width: 200
    :align: center
 
-This is a 5MP Raspberry Pi camera module with OV5647 sensor. It's plug and play, connect the included ribbon cable to the CSI (Camera Serial Interface) port on your Raspberry Pi and you're ready to go.
+Dies ist ein 5MP Raspberry Pi Kameramodul mit OV5647 Sensor. Es ist Plug-and-Play; schließen Sie das beiliegende Flachbandkabel an den CSI (Camera Serial Interface) Anschluss Ihres Raspberry Pi an, und Sie können loslegen.
 
-The board is small, about 25mm x 23mm x 9mm, and weighs 3g, making it ideal for mobile or other size and weight-critical applications. The camera module has a native resolution of 5 megapixels and has an on-board fixed focus lens that captures still images at 2592 x 1944 pixels, and also supports 1080p30, 720p60 and 640x480p90 video.
+Die Platine ist klein, etwa 25mm x 23mm x 9mm, und wiegt 3g. Das macht sie ideal für mobile Anwendungen oder andere Anwendungen, bei denen Größe und Gewicht kritisch sind. Das Kameramodul hat eine native Auflösung von 5 Megapixeln und verfügt über eine fest eingestellte Linse, die Standbilder mit 2592 x 1944 Pixel aufnimmt. Es unterstützt auch 1080p30, 720p60 und 640x480p90 Video.
 
 .. note:: 
 
-   The module is only capable of capturing pictures and videos, not sound.
+   Das Modul kann nur Bilder und Videos aufnehmen, keinen Ton.
 
+**Spezifikation**
 
+* **Auflösung statischer Bilder**: 2592×1944 
+* **Unterstützte Videoauflösung**: 1080p/30 fps, 720p/60fps und 640x480p 60/90 Videoaufnahme 
+* **Blende (F)**: 1.8 
+* **Betrachtungswinkel**: 65 Grad 
+* **Maße**: 24mmx23.5mmx8mm 
+* **Gewicht**: 3g 
+* **Schnittstelle**: CSI Anschluss 
+* **Unterstütztes Betriebssystem**: Raspberry Pi OS(neueste Version empfohlen) 
 
-**Specification**
+**Montage des Kameramoduls**
 
-* **Static Images Resolution**: 2592×1944 
-* **Supported Video Resolution**: 1080p/30 fps, 720p/ 60fps and 640 x480p 60/90 video recording 
-* **Aperture (F)**: 1.8 
-* **Visual Angle**: 65 degree 
-* **Dimension**: 24mmx23.5mmx8mm 
-* **Weight**: 3g 
-* **Interface**: CSI connector 
-* **Supported OS**: Raspberry Pi OS(latest version recommended) 
+Am Kameramodul oder Raspberry Pi finden Sie einen flachen Kunststoffanschluss. Ziehen Sie vorsichtig den schwarzen Befestigungsschalter heraus, bis er teilweise herausgezogen ist. Führen Sie das FFC-Kabel in die gezeigte Richtung in den Kunststoffanschluss ein und schieben Sie den Befestigungsschalter wieder zurück.
 
-
-
-**Assemble the Camera Module**
-
-
-On the camera module or Raspberry Pi, you will find a flat plastic connector. Carefully pull out the black fixing switch until the fixing switch is partially pulled out. Insert the FFC cable into the plastic connector in the direction shown and push the fixing switch back into place.
-
-If the FFC wire is installed correctly, it will be straight and will not pull out when you gently pull on it. If not, reinstall it again.
-
+Wenn das FFC-Kabel korrekt installiert ist, wird es gerade sein und sich nicht herausziehen lassen, wenn Sie leicht daran ziehen. Wenn nicht, installieren Sie es erneut.
 
 .. image:: img/connect_ffc.png
 .. image:: img/1.10_camera.png
@@ -47,11 +40,11 @@ If the FFC wire is installed correctly, it will be straight and will not pull ou
 
 .. warning::
 
-   Do not install the camera with the power on, it may damage your camera.
+   Schließen Sie die Kamera nicht an, wenn die Stromversorgung eingeschaltet ist. Dies kann Ihre Kamera beschädigen.
 
-**Enable the Camera Interface**
+**Kamera-Schnittstelle aktivieren**
 
-Run the following command to enable the camera interface of your Raspberry Pi. If you have enabled it, skip this; if you do not know whether you have done that or not, please continue.
+Führen Sie den folgenden Befehl aus, um die Kamera-Schnittstelle Ihres Raspberry Pi zu aktivieren. Wenn Sie dies bereits getan haben, überspringen Sie diesen Schritt. Wenn Sie nicht sicher sind, ob Sie dies getan haben, fahren Sie bitte fort.
 
 .. raw:: html
 
@@ -71,12 +64,12 @@ Run the following command to enable the camera interface of your Raspberry Pi. I
 .. image:: img/camera_config1.png
    :align: center
 
-**<Yes>, then <Ok> -> <Finish>**
+**<Yes>, dann <Ok> -> <Finish>**
 
 .. image:: img/camera_config2.png
    :align: center
 
-After the configuration is complete, it is recommended to reboot the Raspberry Pi.
+Nach Abschluss der Konfiguration wird empfohlen, den Raspberry Pi neu zu starten.
 
 .. raw:: html
 
@@ -86,12 +79,12 @@ After the configuration is complete, it is recommended to reboot the Raspberry P
 
    sudo reboot
    
-**Example**
+**Beispiel**
 
-* :ref:`3.1.1_py` (Python Project)
-* :ref:`3.1.2_py` (Python Project)
-* :ref:`4.1.1_py` (Python Project)
-* :ref:`4.1.4_py` (Python Project)
-* :ref:`4.1.5_py` (Python Project)
-* :ref:`1.10_scratch` (Scratch Project)
-* :ref:`1.18_scratch` (Scratch Project)
+* :ref:`3.1.1_py` (Python-Projekt)
+* :ref:`3.1.2_py` (Python-Projekt)
+* :ref:`4.1.1_py` (Python-Projekt)
+* :ref:`4.1.4_py` (Python-Projekt)
+* :ref:`4.1.5_py` (Python-Projekt)
+* :ref:`1.10_scratch` (Scratch-Projekt)
+* :ref:`1.18_scratch` (Scratch-Projekt)

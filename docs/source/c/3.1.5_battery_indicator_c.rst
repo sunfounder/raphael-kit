@@ -1,43 +1,43 @@
 .. _3.1.5_c:
 
-3.1.5 Battery Indicator
+3.1.5 Batterieanzeige
 ==================================
 
-Introduction
+Einführung
 --------------
 
-In this project, we will make a battery indicator device that can
-visually display the battery level on the LED Bargraph.
+In diesem Projekt erstellen wir ein Gerät zur Batterieanzeige, das
+den Batteriestatus auf einem LED-Balkendiagramm visuell darstellen kann.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Battery_Indicator.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist sicherlich praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -52,7 +52,7 @@ You can also buy them separately from the links below.
     *   - :ref:`adc0834`
         - \-
 
-Schematic Diagram
+Schaltplan
 -------------------
 
 ============ ======== ======== ===
@@ -75,14 +75,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one5.png
    :align: center
 
-Experimental Procedures
+Experimentelle Verfahren
 -------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/image248.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Zum Ordner des Codes navigieren.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.5/
 
-**Step 3:** Compile the code.
+**Schritt 3:** Code kompilieren.
 
 .. raw:: html
 
@@ -102,7 +102,7 @@ Experimental Procedures
 
     gcc 3.1.5_BatteryIndicator.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Schritt 4:** Die ausführbare Datei starten.
 
 .. raw:: html
 
@@ -112,16 +112,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program runs, give the 3rd pin of ADC0834 and the GND a
-lead-out wire separately and then lead them to the two poles of a
-battery separately. You can see the corresponding LED on the LED
-Bargraph is lit up to display the power level (measuring range: 0-5V).
+Nachdem das Programm gestartet wurde, verbinden Sie den 3. Pin des ADC0834 und GND jeweils mit einem Kabel und führen Sie diese dann zu den beiden Polen einer Batterie. Sie können sehen, wie die entsprechende LED auf dem LED-Balkendiagramm aufleuchtet, um den Leistungsstand anzuzeigen (Messbereich: 0-5V).
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn es nach dem Starten nicht funktioniert oder ein Fehlerhinweis erscheint: \"wiringPi.h: No such file or directory\", verweisen Sie bitte auf :ref:`install_wiringpi`.
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: c
 
@@ -134,10 +131,8 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
         }
     }
 
-This function works for controlling the turning on or off of the 10 LEDs
-on the LED Bargraph. We give these 10 LEDs high levels to let they are
-off at first, then decide how many LEDs are lit up by changing the
-received analog value.
+Diese Funktion dient zur Steuerung des Ein- oder Ausschaltens der 10 LEDs
+auf dem LED-Balkendiagramm. Wir geben diesen 10 LEDs zuerst hohe Levels, um sicherzustellen, dass sie ausgeschaltet sind, und entscheiden dann, wie viele LEDs durch Ändern des empfangenen Analogwertes eingeschaltet werden.
 
 .. code-block:: c
 
@@ -162,16 +157,15 @@ received analog value.
         return 0;
     }
 
-analogVal produces values (**0-255**) with varying voltage values
-(**0-5V**), ex., if a 3V is detected on a battery, the corresponding
-value **152** is displayed on the voltmeter.
+analogVal produziert Werte (**0-255**) bei unterschiedlichen Spannungswerten
+(**0-5V**), z.B., wenn eine 3V an einer Batterie erkannt wird, wird der entsprechende
+Wert **152** auf dem Voltmeter angezeigt.
 
-The **10** LEDs on the LED Bargraph are used to display the
-**analogVal** readings. 255/10=25, so every **25** the analog value
-increases, one more LED turns on, ex., if “analogVal=150 (about 3V),
-there are 6 LEDs turning on.”
+Die **10** LEDs auf dem LED-Balkendiagramm werden verwendet, um die
+**analogVal**-Ablesungen anzuzeigen. 255/10=25, also jedes Mal, wenn der Analogwert um **25** steigt, wird eine weitere LED eingeschaltet, z.B., wenn “analogVal=150 (etwa 3V), sind 6 LEDs eingeschaltet.”
 
-**Phenomenon Picture**
+Phänomen-Bild
+--------------------
 
 .. image:: ../img/image249.jpeg
    :align: center

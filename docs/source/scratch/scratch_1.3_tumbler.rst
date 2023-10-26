@@ -1,40 +1,40 @@
 .. _1.3_scratch:
 
-1.3 Tumbler
-==================
+1.3 Kipp-Schalter-Spielzeug
+================================
 
-In this project, we will make a tilt switch controlled tumbler toy.
+In diesem Projekt werden wir ein Spielzeug bauen, das durch einen Kippschalter gesteuert wird.
 
 .. image:: img/1.3_header.png
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/1.3_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die folgenden Links erwerben.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -47,40 +47,39 @@ You can also buy them separately from the links below.
     *   - :ref:`tilt_switch` 
         - \-
 
-Build the Circuit
+Schaltung aufbauen
 ---------------------
 
 .. image:: img/1.3_fritzing.png
 
+Laden Sie den Code und sehen Sie, was passiert
+------------------------------------------------
 
-Load the Code and See What Happens
------------------------------------------
+Laden Sie die Code-Datei (``1.3_tumbler.sb3``) in Scratch 3.
 
-Load the code file (``1.3_tumbler.sb3``) to Scratch 3.
+Wenn der Kippschalter senkrecht steht, steht auch das Spielzeug. Wenn Sie ihn kippen, fällt das Spielzeug. Stellen Sie ihn wieder senkrecht auf, und das Spielzeug richtet sich wieder auf.
 
-When the tilt switch is placed upright, the tumbler is standing. If you tilt it, the tumbler will also fall. Place it upright again, and the tumbler will stand up again.
+Tipps zu Sprite
+------------------
 
-
-Tips on Sprite
-----------------
-Select Sprite1 and click **Costumes** in the top left corner; upload **tumbler1.png** and **tumbler2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **tumbler**.
+Wählen Sie Sprite1 und klicken Sie oben links auf **Kostüme**; laden Sie **tumbler1.png** und **tumbler2.png** aus dem Pfad ``~/raphael-kit/scratch/picture`` über die Schaltfläche **Kostüm hochladen**; löschen Sie die beiden standardmäßigen Kostüme und benennen Sie das Sprite in **tumbler** um.
 
 .. image:: img/1.3_add_tumbler.png
 
-Tips on Codes
---------------
+Tipps zu Codes
+----------------
 
 .. image:: img/1.3_title2.png
   :width: 400
 
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Wenn die grüne Flagge angeklickt wird, wird der Anfangszustand von gpio17 auf niedrig gesetzt.
 
 .. image:: img/1.3_title4.png
   :width: 400
 
-When pin17 is low (the tilt switch is placed upright), we switch the tumbler sprite's costume to tumbler1 (upright state).
+Wenn pin17 niedrig ist (der Kippschalter steht senkrecht), wechseln wir das Kostüm des tumbler Sprites zu tumbler1 (aufrechter Zustand).
 
 .. image:: img/1.3_title3.png
   :width: 400
 
-When pin17 is high (tilt switch is tilted), switch the tumbler sprite's costume to tumbler2 (tilt state).
+Wenn pin17 hoch ist (Kippschalter ist gekippt), wechseln wir das Kostüm des tumbler Sprites zu tumbler2 (gekippter Zustand).

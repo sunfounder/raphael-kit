@@ -3,41 +3,40 @@
 1.1.2 RGB LED
 ================
 
-Introduction
+Einführung
 --------------
 
-In this project, we will control an RGB LED to flash various colors.
+In diesem Projekt werden wir eine RGB-LED steuern, um verschiedene Farben blinken zu lassen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
-
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: img/list_rgb_led.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -50,25 +49,21 @@ You can also buy them separately from the links below.
     *   - :ref:`rgb_led`
         - |link_rgb_led_buy|
 
-Schematic Diagram
+Schaltplan
 -----------------------
 
-After connecting the pins of R, G, and B to a current limiting resistor,
-connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest
-pin (GND) of the LED connects to the GND of the Raspberry Pi. When the
-three pins are given different PWM values, the RGB LED will display
-different colors.
+Nachdem die Pins von R, G und B mit einem strombegrenzenden Widerstand verbunden sind, schließen Sie sie jeweils an die GPIO17, GPIO18 und GPIO27 an. Der längste Pin (GND) der LED wird mit dem GND des Raspberry Pi verbunden. Wenn den drei Pins unterschiedliche PWM-Werte gegeben werden, zeigt die RGB-LED verschiedene Farben an.
 
 .. image:: img/rgb_led_schematic.png
 
-Experimental Procedures
+Experimentelle Verfahren
 ----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: img/image61.png
 
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -78,7 +73,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Starten Sie den Code.
 
 .. raw:: html
 
@@ -88,7 +83,7 @@ Experimental Procedures
 
     sudo node rgb_led.js
 
-After the code runs, you will see that RGB displays red, green, blue, yellow, pink, and cyan.   
+Nachdem der Code ausgeführt wurde, werden Sie sehen, dass die RGB-LED rot, grün, blau, gelb, rosa und cyan anzeigt.   
 
 **Code**
 
@@ -133,7 +128,7 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
         }
     }, 500);  
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: js
 
@@ -141,7 +136,7 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
     const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
     const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
 
-Initialize pins 17, 18, and 27 to output mode, and assign them to the constants ``ledred``, ``ledgreen``, and ``ledblue`` respectively.
+Initialisieren Sie die Pins 17, 18 und 27 im Ausgabemodus und weisen Sie sie den Konstanten ``ledred``, ``ledgreen`` und ``ledblue`` zu.
 
 .. code-block:: js
 
@@ -151,10 +146,10 @@ Initialize pins 17, 18, and 27 to output mode, and assign them to the constants 
         ledblue.pwmWrite(b);
     }
 
-Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to pins 17, 18, 27. The Gpio library encapsulates the function ``pwmWrite()`` to write to pins Pulse value, the value is 0x00 to 0xff. Then you can write RGB values to the RGB LED through the ``colorset(r,g,b)`` function, so that it can display a variety of colors. 
+Implementieren Sie eine ``colorset(r,g,b)`` Funktion, die dazu dient, Puls-Werte an die Pins 17, 18 und 27 zu schreiben. Die Gpio-Bibliothek kapselt die Funktion ``pwmWrite()`` ein, um Puls-Werte an Pins zu schreiben. Der Wert reicht von 0x00 bis 0xff. Mit der Funktion ``colorset(r,g,b)`` können Sie dann RGB-Werte an die RGB-LED schreiben, sodass sie verschiedene Farben anzeigen kann.
 
 .. note::
-    For questions about RGB, please refer to the website: https://www.rapidtables.com/web/color/RGB_Color.html
+    Bei Fragen zu RGB verweisen wir auf die Webseite: https://www.rapidtables.com/web/color/RGB_Color.html
 
 .. code-block:: js
 
@@ -186,12 +181,11 @@ Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to
         }
     }, 500);  
 
-The RGB LED is controlled by ``colorset()`` executed every 500ms.
-A switch case is used here to select the color emitted by the RGB LEDs.
-Since ``color_index`` is changed by one every cycle, the color of this one RGB LED will change in order.
+Die RGB-LED wird durch ``colorset()`` gesteuert, das alle 500ms ausgeführt wird.
+Hier wird ein Switch-Case verwendet, um die von den RGB-LEDs ausgestrahlte Farbe auszuwählen.
+Da ``color_index`` in jedem Zyklus um eins geändert wird, ändert sich die Farbe dieser RGB-LED in der Reihenfolge.
 
-
-Phenomenon Picture
+Phänomen-Bild
 ------------------------
 
 .. image:: img/image62.jpeg

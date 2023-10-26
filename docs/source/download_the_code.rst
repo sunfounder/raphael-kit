@@ -1,12 +1,12 @@
-Download the Code
-=================
+Code herunterladen
+==================
 
-Before you download the code, please note that the example code is
-**ONLY** test on Raspberry Pi OS. We provide two methods for download:
+Bevor Sie den Code herunterladen, beachten Sie bitte, dass der Beispielcode
+**AUSSCHLIESSLICH** auf Raspberry Pi OS getestet wurde. Wir bieten zwei Methoden zum Herunterladen an:
 
-**Method 1: Use git clone (Recommended)**
+**Methode 1: Mit git clone (Empfohlen)**
 
-Log into Raspberry Pi and then change directory to ``~``.
+Melden Sie sich beim Raspberry Pi an und wechseln Sie dann das Verzeichnis zu ``~``.
 
 .. raw:: html
 
@@ -19,9 +19,9 @@ Log into Raspberry Pi and then change directory to ``~``.
 
 .. note::
 
-   cd to change to the intended directory from the current path. Informally, here is to go to the path ``~/``.
+   Mit cd wechseln Sie von dem aktuellen Pfad in das gewünschte Verzeichnis. Umgangssprachlich bedeutet das hier, zum Pfad ``~/`` zu gehen.
 
-Clone the repository from GitHub.
+Klonen Sie das Repository von GitHub.
 
 .. raw:: html
 
@@ -31,8 +31,8 @@ Clone the repository from GitHub.
 
    git clone https://github.com/sunfounder/raphael-kit.git
 
-**Method 2: Download the code**
+**Methode 2: Code herunterladen**
 
-Download the source code from github: https://github.com/sunfounder/raphael-kit
+Laden Sie den Quellcode von github herunter: https://github.com/sunfounder/raphael-kit
 
 .. image:: img/image33.png

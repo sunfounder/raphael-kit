@@ -1,44 +1,44 @@
 .. _3.1.6_c:
 
-3.1.6 Traffic Light
+3.1.6 Verkehrsampel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Introduction
+Einführung
 ---------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+In diesem Projekt nutzen wir LED-Leuchten in drei Farben, um den 
+Wechsel von Verkehrsampeln darzustellen. Zudem wird eine vierstellige 7-Segment-Anzeige verwendet,
+um die Zeitdauer jeder Ampelphase anzuzeigen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components.
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_Traffic_Light.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, gleich ein ganzes Set zu kaufen. Hier ist der Link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können die Teile aber auch einzeln über die untenstehenden Links erwerben.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,7 +55,7 @@ You can also buy them separately from the links below.
     *   - :ref:`74hc595`
         - |link_74hc595_buy|
 
-Schematic Diagram
+Schaltplan
 --------------------
 
 ============ ======== ======== ===
@@ -75,14 +75,14 @@ SPICE1       Pin 26   11       7
 .. image:: ../img/Schematic_three_one7.png
    :align: center
 
-Experimental Procedures
-------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Schaltung aufbauen.
 
 .. image:: ../img/image254.png
 
-**Step 2:** Change directory.
+**Schritt 2:** Verzeichnis wechseln.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.6/
 
-**Step 3:** Compile.
+**Schritt 3:** Kompilieren.
 
 .. raw:: html
 
@@ -102,7 +102,7 @@ Experimental Procedures
 
     gcc 3.1.6_TrafficLight.c -lwiringPi
 
-**Step 4:** Run.
+**Schritt 4:** Programm ausführen.
 
 .. raw:: html
 
@@ -112,15 +112,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly.
+Während das Programm läuft, simulieren die LEDs den Farbwechsel von 
+Verkehrsampeln. Zuerst leuchtet die rote LED 60s lang, dann die grüne LED 
+für 30s und anschließend die gelbe LED für 5s. Danach leuchtet wieder die rote LED für 60s.
+Dieser Ablauf wiederholt sich fortlaufend.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Wenn nach dem Starten ein Problem auftritt oder die Fehlermeldung: \"wiringPi.h: No such file or directory\" erscheint, verweisen Sie bitte auf :ref:`install_wiringpi`.
 
 Code
 ---------
@@ -285,7 +284,7 @@ Code
     }
 
 
-Code Explanation
+Code-Erklärung
 --------------------
 
 .. code-block:: c
@@ -302,9 +301,7 @@ Code Explanation
     void clearDisplay();
     void display();
 
-These codes are used to realize the function of number display of 4-Digit 7-Segment 
-Displays. Refer to chapter 1.1.5 of the document for more details. Here, we use the 
-codes to display countdown of traffic light time.
+Diese Codes dienen dazu, die Anzeigefunktion von 4-stelligen 7-Segment-Anzeigen zu realisieren. Für weitere Details verweisen Sie bitte auf Kapitel 1.1.5 des Dokuments. Hier nutzen wir die Codes, um den Countdown der Ampelzeit anzuzeigen.
 
 .. code-block:: c
 
@@ -320,7 +317,7 @@ codes to display countdown of traffic light time.
         digitalWrite(ledPin[colorState],LOW);    
     }
 
-The codes are used to switch the LED on and off.
+Die Codes werden verwendet, um die LED ein- und auszuschalten.
 
 .. code-block:: c
 
@@ -345,10 +342,8 @@ The codes are used to switch the LED on and off.
         }
     }
 
-The codes are used to switch the timer on and off. Refer to chapter
-1.1.5 for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Die Codes werden verwendet, um den Timer ein- und auszuschalten. Weitere Details finden Sie im Kapitel
+1.1.5. Hier wird, wenn der Timer null erreicht, der `colorState` gewechselt, um die LED umzuschalten, und der Timer erhält einen neuen Wert.
 
 .. code-block:: c
 
@@ -369,10 +364,10 @@ a new value.
         return 0;
     }
 
-The timer is started in the main() function. In loop() function, use
-**while(1)** loop and call the functions of 4-Digit 7-Segment and LED.
+Der Timer wird in der `main()` Funktion gestartet. In der `loop()` Funktion wird eine 
+**while(1)** Schleife verwendet und die Funktionen von 4-stelligen 7-Segment-Anzeigen und LED aufgerufen.
 
-Phenomenon Picture
+Phänomen-Bild
 -------------------
 
 .. image:: ../img/IMG_8319.jpg

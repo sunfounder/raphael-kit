@@ -1,43 +1,43 @@
 .. _2.2.6_js:
 
-2.2.6 Speed Sensor Module
-=========================
+2.2.6 Geschwindigkeitssensor-Modul
+==================================
 
-Introduction
-------------------
+Einführung
+-------------
 
-In this project, we will learn the use of the speed sensor module. A Speed sensor module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+In diesem Projekt werden wir die Verwendung des Geschwindigkeitssensor-Moduls erlernen. Ein Geschwindigkeitssensor-Modul ist eine Art von Tachometer, der dazu verwendet wird, die Geschwindigkeit eines rotierenden Objekts, wie eines Motors, zu messen.
 
-Required Components
+Benötigte Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir folgende Komponenten.
 
 .. image:: ../img/2.2.6component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen. Hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
     *   - Name	
-        - ITEMS IN THIS KIT
+        - ARTIKEL IN DIESEM KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -52,34 +52,33 @@ You can also buy them separately from the links below.
     *   - :ref:`speed_sensor`
         - \-
 
-Schematic Diagram
------------------------
+Schaltplan
+----------------------
 
 .. image:: ../img/2.2.6circuit.png
     :width: 400
     :align: center
 
-Experimental Procedures
-------------------------------
+Experimentelle Verfahren
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-
-**Step 2:** Go to the folder of the code.
+**Schritt 2:** Wechseln Sie in den Ordner mit dem Code.
 
 .. raw:: html
 
    <run></run>
 
 .. code-block::
-    
+
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Schritt 3:** Führen Sie den Code aus.
 
 .. raw:: html
 
@@ -89,8 +88,7 @@ Experimental Procedures
 
     sudo node speed_sensor_module.js
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+Nachdem der Code ausgeführt wurde, leuchtet die grüne LED auf. Wenn Sie ein Hindernis in den Spalt des Geschwindigkeitssensor-Moduls stellen, wird "Licht blockiert" auf dem Bildschirm angezeigt und die rote LED leuchtet auf. Entfernen Sie das Hindernis, und die grüne LED leuchtet wieder auf.
 
 **Code**
 
@@ -121,16 +119,13 @@ Remove the obstacle and the green LED will light up again.
         process.exit();
     });
 
-**Code Explanation**
+**Code-Erklärung**
 
-The code of this example is almost the same as :ref:`2.1.5_js`, so no need to repeat it.
+Der Code dieses Beispiels ist fast identisch mit :ref:`2.1.5_js`, daher ist eine Wiederholung nicht notwendig.
 
-
-
-Phenomenon Picture
------------------------
+Phänomen-Bild
+----------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG
    :width: 500
    :align: center
-

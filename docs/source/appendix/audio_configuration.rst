@@ -1,17 +1,16 @@
 .. _audio_configuration:
 
-Audio Configuration
+Audio-Konfiguration
 =========================
 
 .. _change_audio_output:
 
-Change Audio Output
+Audio-Ausgabe ändern
 ----------------------------
 
-If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output, the correct one should be **Headphones**. You can change the audio output by following these steps.
+Wenn aus Ihrem Lautsprecher kein Ton kommt, liegt es möglicherweise daran, dass der Raspberry Pi die falsche Audio-Ausgabe gewählt hat. Die richtige Auswahl sollte **Kopfhörer** sein. Sie können die Audio-Ausgabe mit den folgenden Schritten ändern.
 
-
-Enter the following command.
+Geben Sie den folgenden Befehl ein.
 
 .. raw:: html
 
@@ -21,24 +20,24 @@ Enter the following command.
 
     sudo raspi-config
 
-Select **1 System Options**.
+Wählen Sie **1 System Options** aus.
 
 .. image:: img/audio1.jpg
 
-Then **S2 Audio**.
+Dann **S2 Audio**.
 
 .. image:: img/audio2.jpg
 
-After selecting **1 Headphones**, press ``Enter`` to confirm and select ``Finish`` to exit.
+Nachdem Sie **1 Headphones** ausgewählt haben, drücken Sie ``Enter``, um zu bestätigen und wählen Sie ``Finish`` zum Beenden.
 
 .. image:: img/audio3.jpg
 
 .. _adjust_volume:
 
-Adjust Volume 
----------------
+Lautstärke anpassen
+------------------------
 
-If you feel that the volume of the speakers is too low, you can adjust it by entering the following command.
+Wenn Sie der Meinung sind, dass die Lautstärke des Lautsprechers zu niedrig ist, können Sie diese durch Eingabe des folgenden Befehls anpassen.
 
 .. raw:: html
 
@@ -50,14 +49,14 @@ If you feel that the volume of the speakers is too low, you can adjust it by ent
 
 .. image:: img/faq1.png
 
-The default page is shown below.
+Die Standardansicht wird unten gezeigt.
 
 .. image:: img/faq2.png
 
-Press ``F6`` to select **Headphones** mode.
+Drücken Sie ``F6``, um den Modus **Headphones** auszuwählen.
 
 .. image:: img/faq3.png
 
-Then press the arrow keys up and down to adjust the volume level, and press ``ESC`` to exit.
+Verwenden Sie dann die Pfeiltasten nach oben und unten, um die Lautstärke einzustellen, und drücken Sie ``ESC``, um zu beenden.
 
 .. image:: img/faq4.png

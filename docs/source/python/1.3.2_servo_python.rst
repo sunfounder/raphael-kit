@@ -3,39 +3,39 @@
 1.3.2 Servo
 ============
 
-Introduction
+Einführung
 --------------
 
-In this project, we will learn how to make the servo rotate.
+In diesem Projekt werden wir lernen, wie man das Servo zum Drehen bringt.
 
-Required Components
+Erforderliche Komponenten
 ------------------------------
 
-In this project, we need the following components. 
+Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_1.3.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Name
+        - ARTIKEL IN DIESEM SET
         - LINK
-    *   - Raphael Kit
+    *   - Raphael Set
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
 
     *   - :ref:`gpio_extension_board`
         - |link_gpio_board_buy|
@@ -46,20 +46,20 @@ You can also buy them separately from the links below.
     *   - :ref:`servo`
         - |link_servo_buy|
 
-Schematic Diagram
+Schaltplan
 --------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Experimentelle Verfahren
+----------------------------
 
-**Step 1:** Build the circuit.
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Schritt 2**: Wechseln Sie in den Ordner des Codes.
 
 .. raw:: html
 
@@ -69,7 +69,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3**: Run the executable file.
+**Schritt 3**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -79,14 +79,14 @@ Experimental Procedures
 
     sudo python3 1.3.2_Servo.py
 
-After the program is executed, the servo will rotate from 0 degrees 
-to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Nachdem das Programm ausgeführt wurde, wird das Servo von 0 Grad 
+auf 180 Grad drehen und dann von 180 Grad auf 0 Grad, zyklisch.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python`` wechseln. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
 
 
 .. raw:: html
@@ -140,16 +140,16 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
             destroy()
         
 
-**Code Explanation**
+**Code-Erklärung**
 
 .. code-block:: python
 
     p = GPIO.PWM(ServoPin, 50)     # set Frequecy to 50Hz
     p.start(0)                     # Duty Cycle = 0
 
-Set the servoPin to PWM pin, then the frequency to 50hz, and the period to 20ms.
+Legen Sie den servoPin als PWM-Pin fest, setzen Sie dann die Frequenz auf 50hz und die Periode auf 20ms.
 
-p.start(0): Run the PWM function，and set the initial value to 0.
+p.start(0): Starten Sie die PWM-Funktion und setzen Sie den Anfangswert auf 0.
 
 .. code-block:: python
 
@@ -158,20 +158,20 @@ p.start(0): Run the PWM function，and set the initial value to 0.
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
         p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it
-    
-Create a function, setAngle() to write angle that ranges from 0 to 180 into the servo.
+
+Erstellen Sie eine Funktion, setAngle(), um einen Winkel von 0 bis 180 Grad in das Servo zu schreiben.
 
 .. code-block:: python
 
     angle = max(0, min(180, angle))
 
-This code is used to limit the angle within the range 0-180°.
+Dieser Code dient dazu, den Winkel im Bereich von 0-180° zu begrenzen.
 
-The min() function returns the minimum of the input values. 
-If 180<angle, then return 180,if not, return angle.
+Die min()-Funktion gibt den kleinsten der eingegebenen Werte zurück. 
+Wenn 180<angle, dann gibt 180 zurück, ansonsten angle.
 
-The max() method returns the maximum element in an iterable or largest of 
-two or more parameters. If 0>angle, then return 0, if not, return angle.
+Die max()-Methode gibt das größte Element in einem Iterable oder das größte von 
+zwei oder mehr Parametern zurück. Wenn 0>angle, dann gibt 0 zurück, ansonsten angle.
 
 .. code-block:: python
 
@@ -179,16 +179,16 @@ two or more parameters. If 0>angle, then return 0, if not, return angle.
     pwm = map(pulse_width, 0, 20000, 0, 100)
     p.ChangeDutyCycle(pwm)
 
-To render a range 0 ~ 180 ° to the servo, the pulse width of the servo
-is set to 0.5ms(500us)-2.5ms(2500us).
+Um einen Bereich von 0 ~ 180° an das Servo zu übergeben, wird die Pulslänge des Servos
+auf 0,5ms(500us)-2,5ms(2500us) gesetzt.
 
-The period of PWM is 20ms(20000us), thus the duty cycle of PWM is
-(500/20000)%-(2500/20000)%, and the range 0 ~ 180 is mapped to 2.5 ~
-12.5.
+Die Periode von PWM beträgt 20ms(20000us), so liegt das Tastverhältnis von PWM bei
+(500/20000)%-(2500/20000)%, und der Bereich von 0 ~ 180 wird auf 2,5 ~
+12,5 abgebildet.
 
-
-Phenomenon Picture
+Phänomen Bild
 ------------------
+
 
 .. image:: ../img/image126.jpeg
 
