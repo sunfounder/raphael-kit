@@ -6,6 +6,7 @@ SunFounder Ulimate Raphael Kit for Raspberry Pi
 .. note::
     このドキュメントは以下の言語で利用可能です。
 
+        * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
 
