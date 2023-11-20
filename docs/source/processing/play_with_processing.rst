@@ -44,11 +44,12 @@ Processingのインストール
 
     .. code-block:: 
 
-        git clone https://github.com/processing/processing4/releases/download/processing-1286-4.0.1/processing-4.0.1-linux-arm32.tgz
+        wget https://github.com/benfry/processing4/releases/download/processing-1293-4.3/processing-4.3-linux-arm32.tgz
 
     .. code-block:: 
 
-        git clone https://github.com/processing/processing4/releases/download/processing-1286-4.0.1/processing-4.0.1-linux-arm64.tgz
+        wget https://github.com/benfry/processing4/releases/download/processing-1293-4.3/processing-4.3-linux-arm64.tgz
+
 
 #. ``.tar.gz`` ファイルがダウンロードされます。ほとんどのLinuxユーザーはこのファイル形式を知っているでしょう。ダウンロードした場所からファイルを展開してください。
 
