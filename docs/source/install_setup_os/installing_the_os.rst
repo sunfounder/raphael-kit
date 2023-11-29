@@ -5,110 +5,159 @@ Installing the OS (Common)
 
 **Step 1**
 
-Raspberry Pi have developed a graphical SD card writing tool that works
-on Mac OS, Ubuntu 18.04 and Windows, and is the easiest option for most
-users as it will download the image and install it automatically to the
-SD card.
+The Raspberry Pi team offers a user-friendly graphical SD card writing tool compatible with Mac OS, Ubuntu 18.04, and Windows. This is the most convenient option for most users, as it automatically downloads and installs the OS image to the SD card.
 
-Visit the download page: https://www.raspberrypi.org/software/. Click on
-the link for the **Raspberry Pi Imager** that matches your operating system,
-when the download finishes, click it to launch the installer.
+Visit the download page: https://www.raspberrypi.org/software/. Choose the **Raspberry Pi Imager** for your operating system. Once downloaded, open it to begin the installation.
+
+.. image:: img/image2.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**Step 2**
+
+Upon launching the installer, your OS might prompt a security warning. For instance, Windows may show this message:
+
+If you encounter this, select **More info** and then **Run anyway**. Follow the on-screen instructions to install the Raspberry Pi Imager.
+
+.. image:: img/image3.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**Step 3**
+
+After installing the Imager, open the application by clicking the **Raspberry Pi Imager** icon or executing `rpi-imager`.
+
+.. image:: img/image4.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**Step 4**
+
+Click **Choose device** and select your Raspberry Pi model from the list.
+
+.. image:: img/image5.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**Step 5**
+
+Next, click **Choose OS** and pick an operating system to install. The Imager will display the recommended Raspberry Pi OS version for your model at the top of the list.
+
+.. image:: img/image6.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**Step 6**
+
+Connect your preferred storage medium, like a microSD card, using an external or built-in SD card reader. Then, click Choose storage and select your storage device.
+
+.. note:: 
+
+    * Ensure to select the correct storage device if multiple are connected. Devices can often be identified by their size. Disconnect others if uncertain.
+
+.. image:: img/image7.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**Step 7**
+
+Press the **NEXT** button and choose **EDIT SETTINGS** to access the OS Customization page.
+
+.. image:: img/image8.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**Step 8**
+
+Set the **hostname**, the identifier your Raspberry Pi uses on the network via mDNS.
+Connect your Raspberry Pi to your network, and other devices can interact with it using ``<hostname>.local`` or ``<hostname>.lan``.
+
+.. image:: img/image9.png
+    :align: center
+
+Set the **username** and **password** for the Raspberry Pi's administrator account.
+
+.. note::
+        * With no default password on the Raspberry Pi, it's essential to create your own. The username is also customizable.
+
+.. image:: img/image10.png
+    :align: center
+
+Configure wireless LAN by entering your network's **SSID** and **password**.
+
+.. note::
+
+    Set the ``Wireless LAN country`` to your country's two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_.
 
 .. image:: img/image11.png
     :align: center
 
+.. raw:: html
 
-**Step 2**
+    <br/>
 
-When you launch the installer, your operating system may try to block
-you from running it. For example, on Windows I receive the following
-message:
+**Step 9**
 
-If this pops up, click on **More info** and then **Run anyway**, then
-follow the instructions to install the Raspberry Pi Imager.
+Click **SERVICES** to enable SSH and opt for password-based login. Then click **Save**.
 
 .. image:: img/image12.png
     :align: center
 
-**Step 3**
+.. raw:: html
 
-Insert your SD card into the computer or laptop SD card slot.
+    <br/>
 
-**Step 4**
+**Step 10**
 
-In the Raspberry Pi Imager, select the OS that you want to install and
-the SD card you would like to install it on.
+Click the **Yes** button.
 
 .. image:: img/image13.png
     :align: center
 
-.. note:: 
+.. raw:: html
 
-    * You will need to be connected to the internet the first time.
-    * That OS will then be stored for future offline use(``lastdownload.cache``, ``C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache``). So the next time you open the software, it will have the display "Released: date, cached on your computer".
+    <br/>
 
-.. Download the `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ image and select it in Raspberry Pi Imager.
+**Step 11**
 
-.. .. image:: img/otherOS.png
-..     :align: center
-
-.. .. warning::
-..     Raspberry Pi OS has major changes after the 2021-05-28 version, which may cause some functions to be unavailable. Please do not use the latest version for now.
-
-
-.. .. mark
-
-
-**Step 5**
-
-Select the SD card you are using.
+If your SD card contains files, consider backing them up to avoid permanent loss. If no backup is needed, click **Yes**.
 
 .. image:: img/image14.png
     :align: center
 
-**Step 6**
+.. raw:: html
 
-Press **Ctrl+Shift+X** or click the **setting** icon to open the **Advanced options** page to enable SSH and set username and password. 
+    <br/>
 
-    .. note::
-        * Now that the Raspberry Pi doesn't have a default password, you will need to set it yourself. Also, the username can be changed.
-        * For remote access, you will also need to enable SSH manually.
+**Step 12**
 
+The completion of the writing process will be indicated by the following window after a wait.
 
 .. image:: img/image15.png
     :align: center
 
-Then scroll down to complete the wifi configuration and click **SAVE**.
+.. raw:: html
 
-.. note::
-
-    ``wifi country`` should be set the two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ for the country in which you are using your Raspberry Pi.
-
-.. image:: img/image16.png
-    :align: center
-
-**Step 7**
-
-Click the **WRITE** button.
-
-.. image:: img/image17.png
-    :align: center
-
-**Step 8**
-
-If your SD card currently has any files on it, you may wish to back up
-these files first to prevent you from permanently losing them. If there
-is no file to be backed up, click **Yes**.
-
-.. image:: img/image18.png
-    :align: center
-
-**Step 9**
-
-After waiting for a period of time, the following window will appear to
-represent the completion of writing.
-
-.. image:: img/image19.png
-    :align: center
-
+    <br/>
 

@@ -6,8 +6,7 @@ Set up Your Raspberry Pi
 If You Have a Screen
 -------------------------
 
-If you have a screen, it will be easy for you to operate on the
-Raspberry Pi.
+If you have a screen, it will be easy for you to operate on the Raspberry Pi.
 
 **Required Components**
 
@@ -26,14 +25,27 @@ Raspberry Pi.
 
 #. Connect the screen to Raspberry Pi’s HDMI port and make sure your screen is plugged into a wall socket and switched on.
 
-    .. note::
-
-        If you use a Raspberry Pi 4, you need to connect the screen to the HDMI0 (nearest the power in port).
+   .. note::
+   
+      If you use a Raspberry Pi 4, you need to connect the screen to the HDMI0 (nearest the power in port).
 
 #. Use the power adapter to power the Raspberry Pi. After a few seconds, the Raspberry Pi OS desktop will be displayed.
 
-    .. image:: img/login1.png
-        :align: center
+   .. image:: img/login1.png
+       :align: center
+   
+   .. raw:: html
+   
+       <br/>
+
+#. You can launch a web browser on your Raspberry Pi system and access this tutorial page. This makes it convenient to copy instructions and execute them in the Terminal.
+
+   .. image:: img/login2.png
+       :align: center
+   
+.. raw:: html
+   
+   <br/>
 
 .. _no_screen:
 
@@ -41,6 +53,12 @@ If You Have No Screen
 --------------------------
 
 If you don't have a monitor, you can remotely log into your Raspberry Pi.
+
+**Required Components**
+
+* Any Raspberry Pi   
+* 1 * Power Adapter
+* 1 * Micro SD card
 
 You can apply the SSH command to open the Raspberry Pi's Bash shell. Bash is the standard default shell for Linux. The shell itself is a command (instruction) when the user uses Unix/Linux. Most of what you need to do can be done through the shell.
 

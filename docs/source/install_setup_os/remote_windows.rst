@@ -85,7 +85,7 @@ disabled. You need to enable it in config.
     .. image:: img/image282.png
         :align: center
 
-#. Then **P3 VNC**. 
+#. Then **VNC**. 
 
     .. image:: img/image288.png
         :align: center
