@@ -98,6 +98,10 @@ Legen Sie den **hostname** fest.
 .. image:: img/image9.png
     :align: center
 
+.. raw:: html
+
+    <br/>
+
 Legen Sie den **username** und das **password** für das Administrator-Konto des Raspberry Pi fest.
 
 .. note::
@@ -105,6 +109,10 @@ Legen Sie den **username** und das **password** für das Administrator-Konto des
 
 .. image:: img/image10.png
     :align: center
+
+.. raw:: html
+
+    <br/>
 
 Konfigurieren Sie das WLAN, indem Sie den **SSID** und das **Passwort** Ihres Netzwerks eingeben.
 
