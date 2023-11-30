@@ -90,8 +90,11 @@ Press the **NEXT** button and choose **EDIT SETTINGS** to access the OS Customiz
 
 **Step 8**
 
-Set the **hostname**, the identifier your Raspberry Pi uses on the network via mDNS.
-Connect your Raspberry Pi to your network, and other devices can interact with it using ``<hostname>.local`` or ``<hostname>.lan``.
+
+Set the **hostname**.
+
+.. note::
+        * The hostname option defines the hostname your Raspberry Pi broadcasts to the network using mDNS. When you connect your Raspberry Pi to your network, other devices on the network can communicate with your computer using ``<hostname>.local`` or ``<hostname>.lan``.
 
 .. image:: img/image9.png
     :align: center
