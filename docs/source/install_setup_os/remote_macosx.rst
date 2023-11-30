@@ -147,7 +147,7 @@ Macユーザーにとって、Raspberry Piのデスクトップへの直接ア�
     .. image:: img/image282.png
         :align: center
 
-#. 次に **P3 VNC** を選択します。
+#. 次に **VNC** を選択します。
 
     .. image:: img/image288.png
         :align: center

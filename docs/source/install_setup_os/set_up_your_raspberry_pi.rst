@@ -23,14 +23,27 @@ Raspberry Piのセットアップ
 
 #. 画面をRaspberry PiのHDMIポートに接続し、画面の電源がコンセントに挿入され、電源が入っていることを確認します。
 
-    .. note::
+   .. note::
 
-        Raspberry Pi 4を使用する場合、画面はHDMI0ポート（電源ポートに最も近い）に接続する必要があります。
+       Raspberry Pi 4を使用する場合、画面はHDMI0ポート（電源ポートに最も近い）に接続する必要があります。
 
 #. 電源アダプターを使用してRaspberry Piに電源を供給します。数秒後にRaspberry Pi OSのデスクトップが表示されます。
 
-    .. image:: img/login1.png
-        :align: center
+   .. image:: img/login1.png
+       :align: center
+   
+   .. raw:: html
+   
+       <br/>
+
+#. Raspberry Piシステム上でウェブブラウザを起動し、このチュートリアルページにアクセスすることができます。これにより、指示をコピーしてターミナルで実行するのが便利になります。
+
+   .. image:: img/login2.png
+       :align: center
+
+.. raw:: html
+   
+   <br/>
 
 .. _no_screen:
 
@@ -38,6 +51,12 @@ Raspberry Piのセットアップ
 --------------------------
 
 画面がない場合でも、Raspberry Piにリモートでログインできます。
+
+**必要なコンポーネント**
+
+* 任意のRaspberry Pi   
+* 1 * 電源アダプター
+* 1 * マイクロSDカード
 
 SSHコマンドを使用して、Raspberry PiのBashシェルを開きます。BashはLinuxの標準的なデフォルトシェルです。シェル自体は、ユーザーがUnix/Linuxを使用する際のコマンド（指示）です。必要な操作のほとんどはシェルを通じて行うことができます。
 

@@ -77,7 +77,7 @@ VNCサービスはシステムにインストール済みですが、デフォ�
     .. image:: img/image282.png
         :align: center
 
-#. 次に **P3 VNC**。
+#. 次に **VNC**。
 
     .. image:: img/image288.png
         :align: center

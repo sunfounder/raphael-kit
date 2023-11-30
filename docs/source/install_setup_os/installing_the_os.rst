@@ -1,98 +1,175 @@
 .. _install_os:
 
-OSのインストール（一般手順）
+OSのインストール（共通）
 ========================================
 
-**ステップ1**
+**ステップ 1**
 
-Raspberry Piは、Mac OS、Ubuntu 18.04、およびWindowsで動作するグラフィカルなSDカード書き込みツールを開発しています。このツールはほとんどのユーザーにとって最も簡単な選択肢であり、イメージを自動的にダウンロードしてSDカードにインストールします。
+Raspberry Piチームは、Mac OS、Ubuntu 18.04、Windowsと互換性のあるユーザーフレンドリーなグラフィカルSDカードライティングツールを提供しています。これは、OSイメージを自動的にダウンロードし、SDカードにインストールするため、多くのユーザーにとって最も便利なオプションです。
 
-ダウンロードページ（https://www.raspberrypi.org/software/）にアクセスし、お使いのOSに対応した **Raspberry Pi Imager** のリンクをクリックします。ダウンロードが完了したら、インストーラーを起動します。
+ダウンロードページを訪れてください： https://www.raspberrypi.org/software/ 。お使いのオペレーティングシステム用の **Raspberry Pi Imager** を選択してください。ダウンロード後、開いてインストールを開始します。
+
+.. image:: img/image2.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**ステップ 2**
+
+インストーラーを起動すると、OSからセキュリティ警告が表示されることがあります。例えば、Windowsではこのメッセージが表示されるかもしれません：
+
+これに遭遇した場合は、 **More info** を選択し、その後 **Run anyway** を選択します。画面の指示に従ってRaspberry Pi Imagerをインストールしてください。
+
+.. image:: img/image3.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**ステップ 3**
+
+Imagerをインストールした後、 **Raspberry Pi Imager** のアイコンをクリックするか、 `rpi-imager` を実行してアプリケーションを開きます。
+
+.. image:: img/image4.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**ステップ 4**
+
+**Choose device** をクリックし、リストからRaspberry Piモデルを選択します。
+
+.. image:: img/image5.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**ステップ 5**
+
+次に、 **Choose OS** をクリックし、インストールするオペレーティングシステムを選択します。
+
+.. image:: img/image6.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**ステップ 6**
+
+外部または内蔵のSDカードリーダーを使用して、好みのストレージ媒体（例えば、microSDカード）に接続します。その後、ストレージを選択をクリックし、ストレージデバイスを選択します。
+
+.. note:: 
+
+    * 複数のデバイスが接続されている場合は、正しいストレージデバイスを選択してください。デバイスは、しばしばそのサイズで識別できます。不確かな場合は他のデバイスを切断してください。
+
+.. image:: img/image7.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+**ステップ 7**
+
+**NEXT** ボタンを押して **EDIT SETTINGS** を選択し、OSカスタマイズページにアクセスします。
+
+.. image:: img/image8.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+
+**ステップ 8**
+
+**hostname** を設定します。
+
+.. note::
+        * ホスト名オプションは、Raspberry PiがmDNSを使用してネットワークにブロードキャストするホスト名を定義します。Raspberry Piをネットワークに接続すると、ネットワーク上の他のデバイスが ``<hostname>.local`` または ``<hostname>.lan`` を使用してコンピュータと通信できます。
+
+.. image:: img/image9.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+Raspberry Piの管理者アカウントの **username** と **password** を設定します。
+
+.. note::
+        * Raspberry Piにはデフォルトのパスワードがないため、独自のパスワードを作成することが不可欠です。ユーザー名もカスタマイズ可能です。
+
+.. image:: img/image10.png
+    :align: center
+
+.. raw:: html
+
+    <br/>
+
+ネットワークの **SSID** と **password** を入力してワイヤレスLANを設定します。
+
+.. note::
+
+    ``Wireless LAN country`` をあなたの国の二文字の `ISO/IEC alpha2コード <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ に設定します。
 
 .. image:: img/image11.png
     :align: center
 
-**ステップ2**
+.. raw:: html
 
-インストーラーを起動すると、OSが実行をブロックしようとする場合があります。例えば、Windowsでは以下のようなメッセージが表示されます：
+    <br/>
 
-このようなポップアップが表示された場合は、 **More info** をクリックしてから **Run anyway** をクリックし、Raspberry Pi Imagerのインストール手順に従います。
+**ステップ 9**
+
+**SERVICES** をクリックしてSSHを有効にし、パスワードベースのログインを選択します。次に **Save** をクリックします。
 
 .. image:: img/image12.png
     :align: center
 
-**ステップ3**
+.. raw:: html
 
-SDカードをコンピューターまたはラップトップのSDカードスロットに挿入します。
+    <br/>
 
-**ステップ4**
+**ステップ 10**
 
-Raspberry Pi Imager内で、インストールしたいOSと使用するSDカードを選択します。
+**Yes** ボタンをクリックします。
 
 .. image:: img/image13.png
     :align: center
 
-.. note::
+.. raw:: html
 
-    * 初回はインターネットに接続している必要があります。
-    * 選択したOSは、今後オフラインで使用するために保存されます（ ``lastdownload.cache`` 、 ``C:/Users/yourname/AppData/Local/Raspberry Pi/Imager/cache`` ）。次回ソフトウェアを起動する際、コンピューターにキャッシュされた日付が表示されます。
+    <br/>
 
-.. Download the `raspios_armhf-2020-05-28 <https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-05-28/2021-05-07-raspios-buster-armhf.zip>`_ image and select it in Raspberry Pi Imager.
+**ステップ 11**
 
-.. .. image:: img/otherOS.png
-..     :align: center
-
-.. .. warning::
-..     Raspberry Pi OS has major changes after the 2021-05-28 version, which may cause some functions to be unavailable. Please do not use the latest version for now.
-
-
-.. .. mark
-
-**ステップ5**
-
-使用するSDカードを選択します。
+SDカードにファイルが含まれている場合は、永久的な損失を避けるためにバックアップを検討してください。バックアップが不要な場合は、 **Yes** をクリックします。
 
 .. image:: img/image14.png
     :align: center
 
-**ステップ6**
+.. raw:: html
 
-**Ctrl+Shift+X** を押すか、 **setting** アイコンをクリックして **Advanced options** ページを開き、SSHを有効にし、ユーザー名とパスワードを設定します。
+    <br/>
 
-    .. note::
-        * Raspberry Piにはデフォルトのパスワードがないため、自分で設定する必要があります。また、ユーザー名も変更できます。
-        * リモートアクセスの場合、SSHも手動で有効にする必要があります。
+**ステップ 12**
+
+書き込みプロセスの完了は、待機後に以下のウィンドウによって示されます。
 
 .. image:: img/image15.png
     :align: center
 
-その後、Wi-Fi設定を完了し、 **SAVE** をクリックします。
+.. raw:: html
 
-.. note::
+    <br/>
 
-    ``wifi country`` は、Raspberry Piを使用している国の2文字の `ISO/IEC alpha2コード  <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ に設定する必要があります。
-
-.. image:: img/image16.png
-    :align: center
-
-**ステップ7**
-
-**WRITE** ボタンをクリックします。
-
-.. image:: img/image17.png
-    :align: center
-
-**ステップ8**
-
-SDカードに既存のファイルがある場合は、それらのファイルをバックアップしてから進めてください。バックアップするファイルがない場合は、 **Yes** をクリックします。
-
-.. image:: img/image18.png
-    :align: center
-
-**ステップ9**
-
-一定時間待った後、書き込みが完了したことを示すウィンドウが表示されます。
-
-.. image:: img/image19.png
-    :align: center
 
