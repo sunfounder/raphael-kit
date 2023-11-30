@@ -79,7 +79,7 @@ Der VNC-Dienst ist im System installiert. Standardmäßig ist VNC deaktiviert. S
     .. image:: img/image282.png
         :align: center
 
-#. Danach **P3 VNC**.
+#. Danach **VNC**.
 
     .. image:: img/image288.png
         :align: center

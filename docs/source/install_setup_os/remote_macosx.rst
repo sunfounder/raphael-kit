@@ -140,7 +140,7 @@ Keinen temporären Monitor (oder TV) zur Verfügung?
     .. image:: img/image282.png
         :align: center
 
-#. Wählen Sie dann **P3 VNC** aus.
+#. Wählen Sie dann **VNC** aus.
 
     .. image:: img/image288.png
         :align: center
