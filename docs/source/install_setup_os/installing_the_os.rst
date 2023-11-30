@@ -90,7 +90,6 @@ Press the **NEXT** button and choose **EDIT SETTINGS** to access the OS Customiz
 
 **Step 8**
 
-
 Set the **hostname**.
 
 .. note::
@@ -99,6 +98,10 @@ Set the **hostname**.
 .. image:: img/image9.png
     :align: center
 
+.. raw:: html
+
+    <br/>
+
 Set the **username** and **password** for the Raspberry Pi's administrator account.
 
 .. note::
@@ -106,6 +109,10 @@ Set the **username** and **password** for the Raspberry Pi's administrator accou
 
 .. image:: img/image10.png
     :align: center
+
+.. raw:: html
+
+    <br/>
 
 Configure wireless LAN by entering your network's **SSID** and **password**.
 
