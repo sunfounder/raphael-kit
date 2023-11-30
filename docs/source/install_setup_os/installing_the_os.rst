@@ -53,7 +53,7 @@ Klicken Sie auf **Choose device** und wählen Sie Ihr Raspberry Pi-Modell aus de
 
 **Schritt 5**
 
-Klicken Sie anschließend auf **Choose OS** und wählen Sie ein Betriebssystem zur Installation aus. Der Imager zeigt die empfohlene Raspberry Pi OS-Version für Ihr Modell oben in der Liste an.
+Klicken Sie anschließend auf **Choose OS** und wählen Sie ein Betriebssystem zur Installation aus. 
 
 .. image:: img/image6.png
     :align: center
