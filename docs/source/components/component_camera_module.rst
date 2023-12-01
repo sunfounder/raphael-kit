@@ -34,6 +34,7 @@ The board is small, about 25mm x 23mm x 9mm, and weighs 3g, making it ideal for 
 
 
 **Assemble the Camera Module**
+-------------------------------------
 
 
 On the camera module or Raspberry Pi, you will find a flat plastic connector. Carefully pull out the black fixing switch until the fixing switch is partially pulled out. Insert the FFC cable into the plastic connector in the direction shown and push the fixing switch back into place.
@@ -49,7 +50,10 @@ If the FFC wire is installed correctly, it will be straight and will not pull ou
 
    Do not install the camera with the power on, it may damage your camera.
 
+.. _enable_camera:
+
 **Enable the Camera Interface**
+---------------------------------------
 
 Run the following command to enable the camera interface of your Raspberry Pi. If you have enabled it, skip this; if you do not know whether you have done that or not, please continue.
 
