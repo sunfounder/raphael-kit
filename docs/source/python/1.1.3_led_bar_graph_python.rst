@@ -119,29 +119,29 @@ SPICE0       Pin 24   10       8
     def oddLedBarGraph():
         for i in range(5):
             j = i*2
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
     def evenLedBarGraph():
         for i in range(5):
             j = i*2+1
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
     def allLedBarGraph():
         for i in ledPins:
-            GPIO.output(i,GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.HIGH)
 
     def setup():
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
         for i in ledPins:
             GPIO.setup(i, GPIO.OUT)   # Set all ledPins' mode is output
-            GPIO.output(i, GPIO.LOW) # Set all ledPins to high(+3.3V) to off led
+            GPIO.output(i, GPIO.HIGH) # Set all ledPins to high(+3.3V) to off led
 
     def loop():
         while True:
@@ -154,8 +154,8 @@ SPICE0       Pin 24   10       8
 
     def destroy():
         for pin in ledPins:
-            GPIO.output(pin, GPIO.LOW)      # turn off all leds
-        GPIO.cleanup()                     # Release resource
+            GPIO.output(pin, GPIO.HIGH)      # turn off all leds
+        GPIO.cleanup()                       # Release resource
 
     if __name__ == '__main__':     # Program start from here
         setup()
@@ -174,9 +174,9 @@ LEDバーグラフに対応するピン番号（11, 12, 13, 15, 16, 18, 22, 3, 5
     def oddLedBarGraph():
         for i in range(5):
             j = i*2
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
 LEDバーグラフの奇数位のLEDを順番に点灯させます。
 
@@ -185,9 +185,9 @@ LEDバーグラフの奇数位のLEDを順番に点灯させます。
     def evenLedBarGraph():
         for i in range(5):
             j = i*2+1
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
 LEDバーグラフの偶数位のLEDを順番に点灯させます。
 
@@ -195,9 +195,9 @@ LEDバーグラフの偶数位のLEDを順番に点灯させます。
 
     def allLedBarGraph():
         for i in ledPins:
-            GPIO.output(i,GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.HIGH)
 
 LEDバーグラフ全体を順番に点灯させます。
 
