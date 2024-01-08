@@ -122,29 +122,29 @@ off regularly.
     def oddLedBarGraph():
         for i in range(5):
             j = i*2
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
     def evenLedBarGraph():
         for i in range(5):
             j = i*2+1
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
     def allLedBarGraph():
         for i in ledPins:
-            GPIO.output(i,GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.HIGH)
 
     def setup():
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
         for i in ledPins:
             GPIO.setup(i, GPIO.OUT)   # Set all ledPins' mode is output
-            GPIO.output(i, GPIO.LOW) # Set all ledPins to high(+3.3V) to off led
+            GPIO.output(i, GPIO.HIGH) # Set all ledPins to high(+3.3V) to off led
 
     def loop():
         while True:
@@ -157,7 +157,7 @@ off regularly.
 
     def destroy():
         for pin in ledPins:
-            GPIO.output(pin, GPIO.LOW)    # turn off all leds
+            GPIO.output(pin, GPIO.HIGH)    # turn off all leds
         GPIO.cleanup()                     # Release resource
 
     if __name__ == '__main__':     # Program start from here
@@ -177,9 +177,9 @@ Create an array and assign it to the pin number corresponding to the LED Bar Gra
     def oddLedBarGraph():
         for i in range(5):
             j = i*2
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
 Let the LED on the odd digit of the LED Bar Graph light on in turn.
 
@@ -188,9 +188,9 @@ Let the LED on the odd digit of the LED Bar Graph light on in turn.
     def evenLedBarGraph():
         for i in range(5):
             j = i*2+1
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
 Make the LED on the even digit of the LED Bar Graph light on in turn.
 
@@ -198,9 +198,9 @@ Make the LED on the even digit of the LED Bar Graph light on in turn.
 
     def allLedBarGraph():
         for i in ledPins:
-            GPIO.output(i,GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.HIGH)
 
 Let the LED on the LED Bar Graph light on one by one.
 
