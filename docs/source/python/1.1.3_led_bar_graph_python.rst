@@ -120,29 +120,29 @@ Nachdem der Code ausgeführt wurde, werden Sie sehen, dass die LEDs auf der LED-
     def oddLedBarGraph():
         for i in range(5):
             j = i*2
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
     def evenLedBarGraph():
         for i in range(5):
             j = i*2+1
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
     def allLedBarGraph():
         for i in ledPins:
-            GPIO.output(i,GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.HIGH)
 
     def setup():
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
         for i in ledPins:
             GPIO.setup(i, GPIO.OUT)   # Set all ledPins' mode is output
-            GPIO.output(i, GPIO.LOW) # Set all ledPins to high(+3.3V) to off led
+            GPIO.output(i, GPIO.HIGH) # Set all ledPins to high(+3.3V) to off led
 
     def loop():
         while True:
@@ -155,7 +155,7 @@ Nachdem der Code ausgeführt wurde, werden Sie sehen, dass die LEDs auf der LED-
 
     def destroy():
         for pin in ledPins:
-            GPIO.output(pin, GPIO.LOW)    # turn off all leds
+            GPIO.output(pin, GPIO.HIGH)    # turn off all leds
         GPIO.cleanup()                     # Release resource
 
     if __name__ == '__main__':     # Program start from here
@@ -175,9 +175,9 @@ Erstellen Sie ein Array und weisen Sie ihm die Pinnummer zu, die dem LED-Balkend
     def oddLedBarGraph():
         for i in range(5):
             j = i*2
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
 Lassen Sie die LED an der ungeraden Position des LED-Balkendiagramms nacheinander leuchten.
 
@@ -186,9 +186,9 @@ Lassen Sie die LED an der ungeraden Position des LED-Balkendiagramms nacheinande
     def evenLedBarGraph():
         for i in range(5):
             j = i*2+1
-            GPIO.output(ledPins[j],GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(ledPins[j],GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(ledPins[j],GPIO.HIGH)
 
 Lassen Sie die LED an der geraden Position des LED-Balkendiagramms nacheinander leuchten.
 
@@ -196,9 +196,9 @@ Lassen Sie die LED an der geraden Position des LED-Balkendiagramms nacheinander 
 
     def allLedBarGraph():
         for i in ledPins:
-            GPIO.output(i,GPIO.HIGH)
-            time.sleep(0.3)
             GPIO.output(i,GPIO.LOW)
+            time.sleep(0.3)
+            GPIO.output(i,GPIO.HIGH)
 
 Lassen Sie die LEDs auf dem LED-Balkendiagramm nacheinander leuchten.
 
