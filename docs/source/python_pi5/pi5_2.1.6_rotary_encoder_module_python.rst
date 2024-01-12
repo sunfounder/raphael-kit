@@ -1,0 +1,210 @@
+.. _2.1.6_py:
+
+2.1.6 Rotary Encoder Module
+===========================
+
+Introduction
+------------
+
+In this project, you will learn about Rotary Encoder. A rotary encoder is
+an electronic switch with a set of regular pulses in strictly timing
+sequence. When used with IC, it can achieve increment, decrement, page
+turning and other operations such as mouse scrolling, menu selection,
+and so on.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_list.png
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`rotary_encoder`
+        - |link_rotary_encoder_buy|
+
+Schematic Diagram
+------------------------
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_schematic.png
+   :align: center
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_circuit.png
+
+In this example, we can connect the Rotary Encoder pin directly to the
+Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
+Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
+17.
+
+**Step 2:** Open the code file.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Step 3:** Run.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.6_RotaryEncoder_zero.py
+
+You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+
+
+**Code**
+
+.. note::
+
+   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RotaryEncoder, Button
+   from time import sleep
+
+   # Initialize the rotary encoder and button
+   encoder = RotaryEncoder(a=17, b=18)  # Rotary Encoder connected to GPIO pins 17 (CLK) and 18 (DT)
+   button = Button(27)                  # Button connected to GPIO pin 27
+
+   global_counter = 0  # Track the rotary encoder's position
+
+   def rotary_change():
+      """ Update the global counter based on the rotary encoder's rotation. """
+      global global_counter
+      global_counter += encoder.steps  # Adjust counter based on encoder steps
+      encoder.steps = 0  # Reset encoder steps after updating counter
+      print('Global Counter =', global_counter)  # Display current counter value
+
+   def reset_counter():
+      """ Reset the global counter to zero when the button is pressed. """
+      global global_counter
+      global_counter = 0  # Reset the counter
+      print('Counter reset')  # Indicate counter reset
+
+   # Assign the reset_counter function to button press event
+   button.when_pressed = reset_counter
+
+   try:
+      # Monitor rotary encoder continuously and process changes
+      while True:
+         rotary_change()  # Handle rotary encoder changes
+         sleep(0.1)  # Short delay to reduce CPU load
+
+   except KeyboardInterrupt:
+      # Gracefully handle a keyboard interrupt (Ctrl+C)
+      pass
+
+
+
+**Code Analysis**
+
+#. Imports the ``RotaryEncoder`` and ``Button`` classes from the ``gpiozero`` library, and the ``sleep`` function for delays.
+
+   .. code-block:: python
+
+      #!/usr/bin/env python3
+      from gpiozero import RotaryEncoder, Button
+      from time import sleep
+
+#. Initializes the rotary encoder with GPIO pins 17 and 18, and a button on GPIO pin 27.
+
+   .. code-block:: python
+
+      # Initialize the rotary encoder and button
+      encoder = RotaryEncoder(a=17, b=18)  # Rotary Encoder connected to GPIO pins 17 (CLK) and 18 (DT)
+      button = Button(27)                  # Button connected to GPIO pin 27
+
+#. Declares a global variable ``global_counter`` to track the position of the rotary encoder.
+
+   .. code-block:: python
+
+      global_counter = 0  # Track the rotary encoder's position
+
+#. Defines a function ``rotary_change`` to update the global counter based on the rotary encoder's rotation.
+
+   .. code-block:: python
+
+      def rotary_change():
+         """ Update the global counter based on the rotary encoder's rotation. """
+         global global_counter
+         global_counter += encoder.steps  # Adjust counter based on encoder steps
+         encoder.steps = 0  # Reset encoder steps after updating counter
+         print('Global Counter =', global_counter)  # Display current counter value
+
+#. Defines a function ``reset_counter`` to reset the global counter to zero when the button is pressed.
+
+   .. code-block:: python
+
+      def reset_counter():
+         """ Reset the global counter to zero when the button is pressed. """
+         global global_counter
+         global_counter = 0  # Reset the counter
+         print('Counter reset')  # Indicate counter reset
+
+#. Assigns the ``reset_counter`` function to be called when the button is pressed.
+
+   .. code-block:: python
+
+      # Assign the reset_counter function to button press event
+      button.when_pressed = reset_counter
+
+#. In a continuous loop, the script calls ``rotary_change`` to handle rotary encoder changes and introduces a short delay to reduce CPU load. Uses a try-except block to handle KeyboardInterrupts gracefully.
+
+   .. code-block:: python
+
+      try:
+         # Monitor rotary encoder continuously and process changes
+         while True:
+            rotary_change()  # Handle rotary encoder changes
+            sleep(0.1)  # Short delay to reduce CPU load
+
+      except KeyboardInterrupt:
+         # Gracefully handle a keyboard interrupt (Ctrl+C)
+         pass
+

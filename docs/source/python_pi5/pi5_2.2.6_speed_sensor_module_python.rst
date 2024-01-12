@@ -1,0 +1,213 @@
+.. _2.2.6_py:
+
+2.2.3 Speed Sensor Module
+=========================
+
+Introduction
+------------------
+
+In this project, we will learn the use of the speed sensor module. A Speed sensor module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_list.png
+    :width: 700
+    :align: center
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`speed_sensor`
+        - \-
+
+Schematic Diagram
+-----------------------
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_schematic.png
+    :width: 400
+    :align: center
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_circuit.png
+    :width: 700
+    :align: center
+
+
+**Step 2:** Change directory.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+    
+    cd ~/raphael-kit/python-pi5
+
+**Step 3:** Run.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.6_speed_sensor_module_zero.py
+
+After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
+Remove the obstacle and the green LED will light up again.
+
+**Code**
+
+.. note::
+
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button
+   from signal import pause
+
+   # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
+   speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
+   green_led = LED(27)                      # Green LED connected to GPIO pin 27
+   red_led = LED(22)                        # Red LED connected to GPIO pin 22
+
+   def update_leds():
+       """
+       Update the state of LEDs based on the speed sensor.
+       - If the sensor is pressed (triggered), the red LED is turned on and a message is printed.
+       - If the sensor is released (not triggered), the green LED is turned on.
+       """
+       if speed_sensor.is_pressed:
+           green_led.off()  # Turn off green LED
+           red_led.on()     # Turn on red LED
+           print('Light was blocked')  # Print message indicating sensor is triggered
+       else:
+           green_led.on()   # Turn on green LED
+           red_led.off()    # Turn off red LED
+
+   try:
+       # Main loop to continuously check sensor state
+       while True:
+           # Update LEDs based on sensor state changes
+           speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
+           speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
+
+   except KeyboardInterrupt:
+       # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
+       pass
+
+
+**Code Explanation**
+
+#. The ``gpiozero`` library is imported to use its ``LED`` and ``Button`` classes for interacting with the GPIO pins. The ``signal`` library is imported for the ``pause`` function, which is used to keep the script running.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button
+       from signal import pause
+
+#. speed_sensor is set as a ``Button`` on GPIO pin 17. The ``pull_up=False`` parameter indicates that the internal pull-up resistor is not used. ``green_led`` and ``red_led`` are initialized as ``LED`` objects connected to GPIO pins 27 and 22, respectively.
+
+   .. code-block:: python
+
+       # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
+       speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
+       green_led = LED(27)                      # Green LED connected to GPIO pin 27
+       red_led = LED(22)                        # Red LED connected to GPIO pin 22
+
+#. The ``update_leds`` function checks the state of the speed sensor. If the sensor is pressed (activated), it turns off the green LED, turns on the red LED, and prints a message. If the sensor is released, it does the opposite.
+
+   .. code-block:: python
+
+       def update_leds():
+           """
+           Update the state of LEDs based on the speed sensor.
+           - If the sensor is pressed (triggered), the red LED is turned on and a message is printed.
+           - If the sensor is released (not triggered), the green LED is turned on.
+           """
+           if speed_sensor.is_pressed:
+               green_led.off()  # Turn off green LED
+               red_led.on()     # Turn on red LED
+               print('Light was blocked')  # Print message indicating sensor is triggered
+           else:
+               green_led.on()   # Turn on green LED
+               red_led.off()    # Turn off red LED
+
+#. The main loop continuously checks the state of the speed sensor. The ``when_pressed`` and ``when_released`` attributes are event handlers that call the ``update_leds`` function when the sensor state changes. The try-except block is for handling a KeyboardInterrupt for a graceful exit.
+
+   .. code-block:: python
+
+       try:
+           # Main loop to continuously check sensor state
+           while True:
+               # Update LEDs based on sensor state changes
+               speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
+               speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
+
+       except KeyboardInterrupt:
+           # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
+           pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
