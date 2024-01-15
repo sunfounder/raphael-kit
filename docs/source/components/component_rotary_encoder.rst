@@ -7,18 +7,15 @@ Rotary Encoder Module
     :width: 300
     :align: center
 
-The rotary encoder module counts the number of pulses output in the forward and reverse directions during rotation. unlike a potentiometer, this rotation count is unlimited and the number of pulses per cycle is 20. Press the key (SW) on the rotary encoder to start counting from zero.
+A rotary encoder is a position sensor that converts the rotation of a knob into an output signal, indicating the direction in which the knob is turned.
+
+Rotary encoders are digital versions of potentiometers, offering greater versatility. They can rotate continuously, while potentiometers have limited rotation. Potentiometers indicate exact knob position, while rotary encoders show changes in position.
 
 There are mainly two types of rotary encoders: absolute and incremental (relative) encoders. An incremental one is used in this kit.
 
-Incremental encoders give two-phase square waves, their phase difference is 90, usually called A channel and B channel.
+Incremental encoders produce two-phase square waves, with a 90-degree phase difference commonly referred to as the A and B channels.
 
-As shown on the right, when channel A changes from high level to low
-level, if channel B is high level, it indicates the rotary encoder spins
-clockwise (CW); if at that moment channel B is low level, it means spins
-counterclockwise (CCW). So if we read the value of channel B when
-channel A is low level, we can know in which direction the rotary
-encoder rotates.
+As illustrated below, when channel A transitions from a high level to a low level, if channel B is at a high level, it indicates that the rotary encoder is rotating clockwise (CW); if at that moment channel B is at a low level, it means the rotation is counterclockwise (CCW). Therefore, by reading the value of channel B when channel A is at a low level, we can determine the direction in which the rotary encoder rotates.
 
 
 
