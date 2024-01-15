@@ -7,13 +7,15 @@ Drehgebermodul
     :width: 300
     :align: center
 
-Das Drehgebermodul zählt die Anzahl der Impulse, die während der Drehung in Vorwärts- und Rückwärtsrichtung ausgegeben werden. Im Gegensatz zu einem Potentiometer ist diese Drehzahl unbegrenzt und die Anzahl der Impulse pro Zyklus beträgt 20. Durch Drücken der Taste (SW) auf dem Drehgeber beginnt die Zählung von null.
+Ein Drehgeber ist ein Positionssensor, der die Rotation eines Knopfes in ein Ausgangssignal umwandelt und die Richtung anzeigt, in welche der Knopf gedreht wird.
 
-Es gibt hauptsächlich zwei Arten von Drehgebern: Absolut- und Inkrementalgeber (relative Geber). In diesem Set wird ein Inkrementalgeber verwendet.
+Drehgeber sind digitale Versionen von Potentiometern und bieten eine größere Vielseitigkeit. Sie können sich kontinuierlich drehen, während Potentiometer einen begrenzten Drehbereich haben. Potentiometer zeigen die genaue Knopfposition an, während Drehgeber Veränderungen in der Position anzeigen.
 
-Inkrementalgeber erzeugen zweiphasige Rechteckwellen, deren Phasendifferenz 90 Grad beträgt, normalerweise als Kanal A und B bezeichnet.
+Es gibt hauptsächlich zwei Arten von Drehgebern: absolute und inkrementelle (relative) Encoder. In diesem Kit wird ein inkrementeller verwendet.
 
-Wie rechts dargestellt, wenn Kanal A von hohem auf niedriges Niveau wechselt und Kanal B dabei auf hohem Niveau ist, zeigt dies an, dass der Drehgeber im Uhrzeigersinn (CW) dreht. Wenn jedoch zu diesem Zeitpunkt Kanal B auf niedrigem Niveau ist, bedeutet dies, dass er gegen den Uhrzeigersinn (CCW) dreht. Wenn wir also den Wert von Kanal B lesen, während Kanal A auf niedrigem Niveau ist, können wir feststellen, in welche Richtung der Drehgeber dreht.
+Inkrementelle Encoder erzeugen zweiphasige Rechteckwellen mit einer 90-Grad-Phasendifferenz, die üblicherweise als A- und B-Kanal bezeichnet werden.
+
+Wie unten veranschaulicht, bedeutet es beim Übergang des Kanals A von einem hohen Pegel zu einem niedrigen Pegel - wenn Kanal B auf hohem Niveau ist -, dass sich der Drehgeber im Uhrzeigersinn (CW) dreht; befindet sich Kanal B in diesem Moment auf niedrigem Niveau, bedeutet dies eine Rotation entgegen dem Uhrzeigersinn (CCW). Indem wir also den Wert des Kanals B lesen, wenn Kanal A auf niedrigem Level ist, können wir die Drehrichtrung bestimmen, in welche sich der Drehencoder bewegt.
 
 .. image:: img/image206.png
     :width: 600
