@@ -1,4 +1,4 @@
-.. _1.2.1_py:
+.. _1.2.1_py_pi5:
 
 1.2.1 Active Buzzer
 ===================
@@ -62,6 +62,11 @@ level (3.3V) by programming, the transistor will conduct because of
 current saturation and the buzzer will make sounds. But when low level
 is supplied to the IO of Raspberry Pi, the transistor will be cut off
 and the buzzer will not make sounds.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
 
 .. image:: ../python_pi5/img/1.2.1_active_buzzer_schematic.png
 

@@ -1,4 +1,4 @@
-.. _1.2.2_py:
+.. _1.2.2_py_pi5:
 
 1.2.2 Passive Buzzer
 =====================
@@ -59,6 +59,11 @@ transistor.
 
 When GPIO17 is given different frequencies, the passive buzzer will emit
 different sounds; in this way, the buzzer plays music.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
 
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_schematic.png
 
