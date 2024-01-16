@@ -73,9 +73,12 @@ If you have any questions, please send an email to service@sunfounder.com and we
     
     scratch/play_with_scratch
 
+
+
 .. toctree::
     :maxdepth: 2
 
+    pi5_other_languages
     appendix/appendix
     thank-learning
 

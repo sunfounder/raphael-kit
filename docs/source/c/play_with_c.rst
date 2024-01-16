@@ -1,5 +1,5 @@
-Play with C
-===============
+Play with C (for Pi 4)
+======================
 
 .. toctree::
     :maxdepth: 3

@@ -1,4 +1,4 @@
-Play with Python (for Pi5) 
+Play with Python (for Pi 5) 
 ============================
 
 .. toctree::
