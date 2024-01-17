@@ -211,7 +211,7 @@ The following is the program code:
 
 #. This line creates an LED object connected to GPIO pin 17. 
 
-    .. code-block:: python
+   .. code-block:: python
 
        # Initialize an LED connected to GPIO pin 17 using the GPIO Zero library.
        led = LED(17)
