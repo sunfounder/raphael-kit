@@ -1,0 +1,189 @@
+.. _3.1.1_py_pi5:
+
+3.1.1 Photograph Module
+==========================
+
+Introduction
+-----------------
+
+In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/3.3.1_photograph_list.png
+  :width: 800
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`camera_module`
+        - |link_camera_buy|
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+
+**Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
+
+**Step 3:** Open a Terminal and get into the folder of the code.
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Step 4:** Run.
+
+.. code-block::
+
+    sudo python3 3.1.1_PhotographModule_zero.py
+
+After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``~`` directory. 
+
+.. note::
+
+    You can also open ``3.1.1_PhotographModule.py`` in the ``~/raphael-kit/python-pi5/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+
+
+If you want to download the photo to your PC, please refer to :ref:`filezilla`.
+
+
+**Code**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3    
+   from picamera2 import Picamera2, Preview
+   import os
+
+   # Get the current user's login name
+   user = os.getlogin()
+   # Get the path to the user's home directory
+   user_home = os.path.expanduser(f'~{user}')
+
+   # Create a Picamera2 instance
+   camera = Picamera2()
+   # Retrieve the default preview configuration
+   preview_config = camera.preview_configuration
+
+   try:
+       # Set preview size and format
+       preview_config.size = (800, 600)
+       preview_config.format = 'XRGB8888'  
+       # Start the camera preview in QTGL mode
+       camera.start_preview(Preview.QTGL)
+       # Start the camera
+       camera.start()
+       # Capture and save a photo to the user's home directory
+       camera.capture_file(f'{user_home}/my_photo.jpg')
+
+   except KeyboardInterrupt:
+       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+       camera.stop_preview()
+       pass
+
+
+**Code Explanation**
+
+#. Imports the ``Picamera2`` and ``Preview`` classes from the picamera2 library, and the ``os`` module for operating system interactions.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3    
+       from picamera2 import Picamera2, Preview
+       import os
+
+#. Retrieves the current user's login name and the path to their home directory.
+
+   .. code-block:: python
+
+       # Get the current user's login name
+       user = os.getlogin()
+       # Get the path to the user's home directory
+       user_home = os.path.expanduser(f'~{user}')
+
+#. Creates an instance of the ``Picamera2`` class and retrieves the default preview configuration.
+
+   .. code-block:: python
+
+       # Create a Picamera2 instance
+       camera = Picamera2()
+       # Retrieve the default preview configuration
+       preview_config = camera.preview_configuration
+
+#. Sets the size and format of the camera preview. The size is set to 800x600 pixels, and the format is set to ``XRGB8888``.
+
+   .. code-block:: python
+
+       try:
+           # Set preview size and format
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
+
+           ...
+
+#. Starts the camera preview in QTGL mode, which is a method for displaying the preview, and then starts the camera itself.
+
+   .. code-block:: python
+
+       try:
+           ...
+           
+           # Start the camera preview in QTGL mode
+           camera.start_preview(Preview.QTGL)
+           # Start the camera
+           camera.start()
+
+           ...
+
+#. Capture an image from the camera, storing it in ``~/``.
+
+   .. code-block:: python
+
+       try:
+           ...           
+           
+           # Capture and save a photo to the user's home directory
+           camera.capture_file(f'{user_home}/my_photo.jpg')
+
+   .. note::
+       You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
+
+       .. code-block:: python
+
+           for i in 5:
+               camera.capture(f'{user_home}/my_photo%s.jpg' % i)
+
+#. This block of code handles a KeyboardInterrupt (such as Ctrl+C) by stopping the camera preview. The `pass` statement is used to handle the exception without doing anything else.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+           camera.stop_preview()
+           pass
+
+
+

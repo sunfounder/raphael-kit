@@ -1,0 +1,235 @@
+.. _3.1.2_py_pi5:
+
+3.1.2 Video Module
+=====================
+
+Introduction
+-----------------
+
+In addition to taking photos, the Camera Module can also be used to record videos.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../python_pi5/img/3.3.2_photograph_list.png
+  :width: 800
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`camera_module`
+        - |link_camera_buy|
+
+Experimental Procedures
+------------------------------
+
+**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+
+**Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
+
+**Step 3:** Open a Terminal and get into the folder of the code.
+
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Step 4:** Run.
+
+
+.. code-block::
+
+    sudo python3 3.1.2_VideoModule_zero.py
+
+Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``~`` directory.
+
+.. note::
+
+    You can also open ``3.1.2_PhotographModule_zero.py`` in the ``~/raphael-kit/python-pi5`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+
+If you want to send photos to your PC, please refer to :ref:`filezilla`.
+
+
+**Code**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   import time
+   from picamera2 import Picamera2, Preview
+   from picamera2.encoders import H264Encoder
+   from picamera2.outputs import FfmpegOutput
+   import os
+
+   # Get the current user's login name
+   user = os.getlogin()
+   # Get the path to the user's home directory
+   user_home = os.path.expanduser(f'~{user}')
+
+   # Create a Picamera2 instance
+   camera = Picamera2()
+   # Retrieve the default preview configuration
+   preview_config = camera.preview_configuration
+
+   try:
+       # Configure preview size and format
+       preview_config.size = (800, 600)
+       preview_config.format = 'XRGB8888'
+       # Start the camera preview in QTGL mode
+       camera.start_preview(Preview.QTGL)
+
+       # Define video configuration with size, frame rate, and buffer count
+       conf = {'size': (800, 600)}
+       controls = {'FrameRate': 40}
+       config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+       # Create a video encoder with a specified bitrate
+       encoder = H264Encoder(bitrate=10000000)
+       # Define output file for the video
+       output = FfmpegOutput(f'{user_home}/my_video.mp4')
+       # Configure and start recording
+       camera.configure(config)
+       camera.start_recording(encoder, output)
+       # Record for 10 seconds
+       time.sleep(10)
+       # Stop the recording
+       camera.stop_recording()
+
+   except KeyboardInterrupt:
+       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+       camera.stop_preview()
+       pass
+
+
+**Code Explanation**
+
+#. Imports necessary libraries and classes. The ``picamera2`` library is used for camera control, ``H264Encoder`` for video encoding, and ``FfmpegOutput`` for defining the video output file.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import time
+       from picamera2 import Picamera2, Preview
+       from picamera2.encoders import H264Encoder
+       from picamera2.outputs import FfmpegOutput
+       import os
+
+#. Retrieves the current user's login name and the path to their home directory.
+
+   .. code-block:: python
+
+       # Get the current user's login name
+       user = os.getlogin()
+       # Get the path to the user's home directory
+       user_home = os.path.expanduser(f'~{user}')
+
+#. Creates an instance of the ``Picamera2`` class and retrieves the default preview configuration.
+
+   .. code-block:: python
+
+       # Create a Picamera2 instance
+       camera = Picamera2()
+       # Retrieve the default preview configuration
+       preview_config = camera.preview_configuration
+
+#. Sets the size and format of the camera preview. The size is set to 800x600 pixels, and the format is set to ``XRGB8888``.
+
+   .. code-block:: python
+
+       try:
+           # Configure preview size and format
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
+           
+#. Starts the camera preview in QTGL mode, a graphical preview mode.
+
+   .. code-block:: python
+
+       try:
+           ...          
+             
+           # Start the camera preview in QTGL mode
+           camera.start_preview(Preview.QTGL)
+           
+           ...
+
+#. Defines the video configuration with a frame size of 800x600 pixels and a frame rate of 40 frames per second.
+
+   .. code-block:: python
+
+       try:
+           ...
+           
+           # Define video configuration with size, frame rate, and buffer count
+           conf = {'size': (800, 600)}
+           controls = {'FrameRate': 40}
+           config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+           
+           ...
+
+#. Creates a video encoder with a specified bitrate of 10 Mbps, using the H.264 encoding format. Sets up the output file path for the video, saving it as ``my_video.mp4`` in the user's home directory.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Create a video encoder with a specified bitrate
+           encoder = H264Encoder(bitrate=10000000)
+           # Define output file for the video
+           output = FfmpegOutput(f'{user_home}/my_video.mp4')
+           
+           ...
+
+#. Configures the camera with the defined video settings, starts recording using the specified encoder and output file, records for 10 seconds, and then stops the recording.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Configure and start recording
+           camera.configure(config)
+           camera.start_recording(encoder, output)
+           # Record for 10 seconds
+           time.sleep(10)
+           # Stop the recording
+           camera.stop_recording()
+
+#. This block of code handles a KeyboardInterrupt (such as Ctrl+C) by stopping the camera preview. The `pass` statement is used to  handle the exception without doing anything else.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+           camera.stop_preview()
+           pass
+
+
+
+
+
+
+

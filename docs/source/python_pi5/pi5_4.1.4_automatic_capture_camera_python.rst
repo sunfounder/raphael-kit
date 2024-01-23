@@ -1,0 +1,236 @@
+.. _4.1.4_py_pi5:
+
+4.1.2 Automatic Capture Camera
+===================================
+
+Introduction
+-----------------
+
+When you are out, the little squirrels in the woods might visit your windowsill. Let's make a automatic capture camera to leave pictures of these little cuties!
+
+Required Components
+------------------------------
+
+In this project, we need the following components.
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_list.png
+  :width: 800
+  :align: center
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`camera_module`
+        - |link_camera_buy|
+    *   - :ref:`pir`
+        - \-
+
+
+Schematic Diagram
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_schematic.png
+   :width: 400
+   :align: center
+
+Experimental Procedures
+------------------------------
+
+Before this project, you need to make sure you complete :ref:`3.1.1_py_pi5` .
+
+**Step 1:** Build the circuit.
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_circuit.png
+  :width: 800
+  :align: center
+
+**Step 2:** To connect the camera module and complete the configuration, please refer to: :ref:`camera_module`.
+
+**Step 3:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+
+**Step 4:** Open a Terminal and get into the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Step 5:** Run.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.4_AutomaticCaptureCamera_zero.py
+
+After the code runs, PIR will detect the surrounding environment, and if it senses the little squirrel passing by, the camera will take a photo.
+The photo interval is 3 seconds, and the total number of photos taken will be displayed through the print window.
+
+There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+
+.. image:: ../python_pi5/img/4.1.4_PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+   You can also open ``4.1.4_AutomaticCaptureCamera_zero.py`` in the ``~/raphael-kit/python-pi5/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+
+
+
+**Code**
+
+.. note::
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3  
+    from picamera2 import Picamera2, Preview
+    from gpiozero import MotionSensor
+    import time
+    import os
+
+    # Retrieve the current user's login name and home directory
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
+
+    # Initialize the camera
+    camera = Picamera2()
+    camera.start()
+
+    # Initialize the motion sensor on GPIO pin 17
+    pir = MotionSensor(17)
+
+    try:
+        i = 1  # Initialize the image count
+        while True:
+            if pir.motion_detected:
+                # Capture an image when motion is detected and save it with a unique number
+                camera.capture_file(f'{user_home}/capture%s.jpg' % i)
+                print('The number is %s' % i)  # Print the image count
+                time.sleep(3)  # Wait for 3 seconds before next detection
+                i += 1  # Increment the image count
+            else:
+                print('waiting')  # Print 'waiting' when no motion is detected
+                time.sleep(0.5)  # Check for motion every 0.5 seconds
+
+    except KeyboardInterrupt:
+        # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
+        camera.stop_preview()
+        pass
+
+
+**Code Explanation**
+
+#. Imports the `Picamera2` and `Preview` classes for camera control, the `MotionSensor` class for motion detection, and standard libraries `time` and `os` for time handling and operating system interactions.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3  
+       from picamera2 import Picamera2, Preview
+       from gpiozero import MotionSensor
+       import time
+       import os
+
+#. Retrieves the current user's login name and home directory for saving captured images.
+
+   .. code-block:: python
+
+       # Retrieve the current user's login name and home directory
+       user = os.getlogin()
+       user_home = os.path.expanduser(f'~{user}')
+
+#. Initializes the camera and starts it.
+
+   .. code-block:: python
+
+       # Initialize the camera
+       camera = Picamera2()
+       camera.start()
+
+#. Initializes a PIR motion sensor connected to GPIO pin 17.
+
+   .. code-block:: python
+
+       # Initialize the motion sensor on GPIO pin 17
+       pir = MotionSensor(17)
+
+#. Initializes a counter ``i`` to track the number of images captured. In an infinite loop, checks if motion is detected. If motion is detected, captures an image, saves it with a unique name based on the counter ``i``, prints the image number, and waits for 3 seconds before checking for motion again. The counter ``i`` is incremented after each capture.
+
+   .. code-block:: python
+
+       try:
+           i = 1  # Initialize the image count
+           while True:
+               if pir.motion_detected:
+                   # Capture an image when motion is detected and save it with a unique number
+                   camera.capture_file(f'{user_home}/capture%s.jpg' % i)
+                   print('The number is %s' % i)  # Print the image count
+                   time.sleep(3)  # Wait for 3 seconds before next detection
+                   i += 1  # Increment the image count
+
+#. If no motion is detected, prints ``waiting`` and checks for motion every 0.5 seconds.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           while True:           
+               ...
+               
+               else:
+                   print('waiting')  # Print 'waiting' when no motion is detected
+                   time.sleep(0.5)  # Check for motion every 0.5 seconds
+
+#. Catches a KeyboardInterrupt (like Ctrl+C) to stop the camera preview and exit the script gracefully.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
+           camera.stop_preview()
+           pass
+
