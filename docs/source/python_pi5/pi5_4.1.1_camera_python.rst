@@ -1,0 +1,280 @@
+.. _4.1.1_py_pi5:
+
+4.1.1 カメラ
+~~~~~~~~~~~~~~~~
+
+はじめに
+-----------------
+
+このセクションでは、シャッターボタンを押すとLEDが点滅しながらカメラが撮影するカメラを作成します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/4.1.1_camera_list.png
+  :width: 800
+  :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`button`
+..         - |link_button_buy|
+..     *   - :ref:`camera_module`
+..         - |link_camera_buy|
+
+回路図
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.1_camera_schematic.png
+   :align: center
+
+実験手順
+------------------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/4.1.1_camera_circuit.png
+  :width: 800
+  :align: center
+
+**ステップ 2:** カメラモジュールを接続し、設定を完了してください。詳細は、 :ref:`camera_module` を参照してください。
+
+**ステップ 3:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`windows_remote_desktop` の詳細なチュートリアルを参照してください。
+
+**ステップ 4:** ターミナルを開き、コードのフォルダに入ります。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 5:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.1_Camera_zero.py
+
+コードを実行した後、ボタンを押すと、Raspberry PiはLEDを点滅させながら写真を撮ります。写真は ``my_photo.jpg`` という名前で ``~/`` ディレクトリに保存されます。
+
+.. note::
+
+    ``~/raphael-kit/python-pi5`` パスの ``4.1.1_Camera_zero.py`` をPython IDEで開き、実行ボタンをクリックしてコードを実行し、停止ボタンでコードを停止することもできます。
+
+写真をPCにダウンロードしたい場合は、 :ref:`filezilla` を参照してください。
+
+**コード**
+
+.. note::
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from picamera2 import Picamera2, Preview
+   from gpiozero import LED, Button
+   import time
+   import os
+
+   # 現在のユーザーのログイン名とホームディレクトリを取得
+   user = os.getlogin()
+   user_home = os.path.expanduser(f'~{user}')
+
+   # カメラを初期化
+   camera = Picamera2()
+   camera.start()
+
+   # カメラの状態を追跡する変数を初期化
+   global status
+   status = False
+
+   # LEDとボタンをGPIOピン番号で設定
+   led = LED(17)
+   button = Button(18)
+
+   def takePhotos(pin):
+       """ボタンが押されたときにカメラの状態をTrueに設定する関数。"""
+       global status
+       status = True
+
+   try:
+       # ボタンが押されたときに呼び出される関数を割り当て
+       button.when_pressed = takePhotos
+       
+       # メインループ
+       while True:
+           # ボタンが押されたか確認
+           if status:
+               # LEDを5回点滅
+               for i in range(5):
+                   led.on()
+                   time.sleep(0.1)
+                   led.off()
+                   time.sleep(0.1)
+               # 写真を撮影して保存
+               camera.capture_file(f'{user_home}/my_photo.jpg')
+               print('写真を撮りました！')          
+               # 状態をリセット
+               status = False
+           else:
+               # 撮影していないときはLEDを消灯
+               led.off()
+           
+           # ボタンの状態を再確認する前に短い間隔を待機
+           time.sleep(1)
+
+   except KeyboardInterrupt:
+       # KeyboardInterruptが発生した場合、カメラのプレビューを停止してLEDを消灯
+       camera.stop_preview()
+       led.off()
+       pass
+
+**コード説明**
+
+#. 時間処理、カメラ制御、GPIOコンポーネント制御のための必要なライブラリをインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from picamera2 import Picamera2, Preview
+       from gpiozero import LED, Button
+       import time
+       import os
+
+#. 写真の保存先として、現在のユーザーのログイン名とホームディレクトリを取得します。
+
+   .. code-block:: python
+
+       # 現在のユーザーのログイン名とホームディレクトリを取得
+       user = os.getlogin()
+       user_home = os.path.expanduser(f'~{user}')
+
+#. カメラを初期化し、開始します。
+
+   .. code-block:: python
+
+       # カメラを初期化
+       camera = Picamera2()
+       camera.start()
+
+#. ``status`` をグローバル変数として宣言し、 ``False`` に初期化します。
+
+   .. code-block:: python
+
+       # カメラの状態を追跡する変数を初期化
+       global status
+       status = False
+
+#. GPIOピン17に接続されたLEDと、GPIOピン18に接続されたボタンを初期化します。
+
+   .. code-block:: python
+
+       # LEDとボタンをGPIOピン番号で設定
+       led = LED(17)
+       button = Button(18)
+
+#. ボタンが押されたときにグローバル変数 ``status`` を ``True`` に設定する関数 ``takePhotos`` を定義します。
+
+   .. code-block:: python
+
+       def takePhotos(pin):
+           """ボタンが押されたときにカメラの状態をTrueに設定する関数。"""
+           global status
+           status = True
+
+#. ``takePhotos`` 関数がボタンが押されたときに呼び出されるように割り当てます。
+
+   .. code-block:: python
+
+       try:
+           # ボタンが押されたときに呼び出される関数を割り当て
+           button.when_pressed = takePhotos
+           
+           ...
+
+#. ``status`` が ``True`` であるかどうかを継続的にチェックします。そうであれば、LEDを5回点滅させ、写真を撮影し、 ``status`` をリセットします。そうでなければ、LEDは消灯したままです。ループの各イテレーションの間に1秒の遅延があります。
+
+   .. code-block:: python
+
+       try:        
+           ...
+           
+           # メインループ
+           while True:
+               # ボタンが押されたか確認
+               if status:
+                   # LEDを5回点滅
+                   for i in range(5):
+                       led.on()
+                       time.sleep(0.1)
+                       led.off()
+                       time.sleep(0.1)
+                   # 写真を撮影して保存
+                   camera.capture_file(f'{user_home}/my_photo.jpg')
+                   print('写真を撮りました！')          
+                   # 状態をリセット
+                   status = False
+               else:
+                   # 撮影していないときはLEDを消灯
+                   led.off()
+               
+               # ボタンの状態を再確認する前に短い間隔を待機
+               time.sleep(1)
+
+#. Ctrl+CのようなKeyboardInterruptを捕捉し、カメラのプレビューを停止し、LEDを消灯してから終了します。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # KeyboardInterruptが発生した場合、カメラのプレビューを停止してLEDを消灯
+           camera.stop_preview()
+           led.off()
+           pass

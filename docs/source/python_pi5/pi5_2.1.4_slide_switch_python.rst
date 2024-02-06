@@ -1,0 +1,183 @@
+.. _2.1.4_py_pi5:
+
+2.1.4 スライドスイッチ
+==================================
+
+はじめに
+------------
+
+このプロジェクトでは、スライドスイッチの使用方法を学びます。通常、スライドスイッチはPCB上に電源スイッチとしてはんだ付けされますが、ここではブレッドボードに挿入するため、しっかり固定されない場合があります。ブレッドボード上でのその機能を示すために使用します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_list.png
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`slide_switch`
+..         - |link_slide_switch_buy|
+..     *   - :ref:`capacitor`
+..         - |link_capacitor_buy|
+
+回路図
+-----------------
+
+スライドスイッチの中央のピンをGPIO17に接続し、
+二つのLEDをそれぞれGPIO22とGPIO27のピンに接続します。
+スライドを引くと、二つのLEDが交互に点灯するのが見られます。
+
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_schematic_2.png
+
+
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てる。
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_circuit.png
+
+**ステップ 2**: コードのフォルダに移動する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 3**: 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.4_Slider_zero.py
+
+コードが実行されている間、スイッチを左につなぐと、黄色いLEDが点灯します。右につなぐと、赤いLEDが点灯します。
+
+**コード**
+
+.. note::
+
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # GPIO制御のためのLEDとButtonクラスをインポート
+   from time import sleep  # 遅延を追加するためにsleep関数をインポート
+
+   # プルアップ抵抗を無効にしてGPIOピン17にマイクロスイッチを初期化
+   micro_switch = Button(17, pull_up=False)
+   # GPIOピン22にLED1を初期化
+   led1 = LED(22)
+   # GPIOピン27にLED2を初期化
+   led2 = LED(27)
+
+   try:
+       # マイクロスイッチの状態に基づいてLEDの状態を制御するメインループ
+       while True:
+           if micro_switch.is_pressed:  # マイクロスイッチが押されているかチェック
+               print('    LED1 ON    ')  # 状態メッセージを表示
+               led1.on()   # LED1を点灯
+               led2.off()  # LED2を消灯
+           else:  # マイクロスイッチが押されていない場合
+               print('    LED2 ON    ')  # 状態メッセージを表示
+               led1.off()  # LED1を消灯
+               led2.on()   # LED2を点灯
+
+           sleep(0.5)  # スイッチの状態を再チェックする前に0.5秒待つ
+
+   except KeyboardInterrupt:
+       # キーボード割り込み（Ctrl+C）によるループからの清潔な退出を処理
+       pass
+ 
+
+**コード説明**
+
+#. この行はスクリプトをPython 3で実行するように設定します。GPIOデバイスを制御するために ``gpiozero`` から ``LED`` と ``Button`` をインポートし、遅延を追加するために ``time`` から ``sleep`` をインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # GPIO制御のためのLEDとButtonクラスをインポート
+       from time import sleep  # 遅延を追加するためにsleep関数をインポート
+
+#. プルアップ抵抗を無効にしてGPIOピン17に接続されたマイクロスイッチ、およびGPIOピン22と27に接続された二つのLEDを初期化します。
+
+   .. code-block:: python
+
+       # プルアップ抵抗を無効にしてGPIOピン17にマイクロスイッチを初期化
+       micro_switch = Button(17, pull_up=False)
+       # GPIOピン22にLED1を初期化
+       led1 = LED(22)
+       # GPIOピン27にLED2を初期化
+       led2 = LED(27)
+
+#. メインループでは、マイクロスイッチの状態をチェックします。押された場合、LED1が点灯しLED2が消灯します；押されていない場合、LED1が消灯しLED2が点灯します。このループは0.5秒ごとに繰り返されます。Ctrl+C（KeyboardInterrupt）を捕捉して、スクリプトを優雅に終了させることができます。
+
+   .. code-block:: python
+
+       try:
+       # マイクロスイッチの状態に基づいてLEDの状態を制御するメインループ
+       while True:
+           if micro_switch.is_pressed:  # マイクロスイッチが押されているかチェック
+               print('    LED1 ON    ')  # 状態メッセージを表示
+               led1.on()   # LED1を点灯
+               led2.off()  # LED2を消灯
+           else:  # マイクロスイッチが押されていない場合
+               print('    LED2 ON    ')  # 状態メッセージを表示
+               led1.off()  # LED1を消灯
+               led2.on()   # LED2を点灯
+
+           sleep(0.5)  # スイッチの状態を再チェックする前に0.5秒待つ
+
+       except KeyboardInterrupt:
+           # キーボード割り込み（Ctrl+C）によるループからの清潔な退出を処理
+           pass

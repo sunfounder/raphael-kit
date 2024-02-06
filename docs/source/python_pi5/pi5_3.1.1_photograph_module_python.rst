@@ -1,0 +1,184 @@
+.. _3.1.1_py_pi5:
+
+3.1.1 写真モジュール
+==========================
+
+はじめに
+-----------------
+
+このキットにはカメラモジュールが装備されているため、Raspberry Piで写真を撮影してみましょう。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/3.3.1_photograph_list.png
+  :width: 800
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`camera_module`
+..         - |link_camera_buy|
+
+実験手順
+------------------------------
+
+**ステップ 1:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`windows_remote_desktop` の詳細なチュートリアルを参照してください。
+
+**ステップ 2:** カメラが有効になっているか確認します。指示については、 :ref:`enable_camera` を参照してください。
+
+**ステップ 3:** ターミナルを開き、コードのフォルダに入ります。
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 4:** 実行します。
+
+.. code-block::
+
+    sudo python3 3.1.1_PhotographModule_zero.py
+
+コードが実行された後、カメラが写真を撮ります。 ``~/`` ディレクトリに ``my_photo.jpg`` という名前の写真を見ることができます。
+
+.. note::
+
+    ``~/raphael-kit/python-pi5/`` パスの ``3.1.1_PhotographModule.py`` をPython IDEで開き、実行ボタンをクリックしてコードを実行し、停止ボタンでコードを停止することもできます。
+
+写真をPCにダウンロードしたい場合は、 :ref:`filezilla` を参照してください。
+
+**コード**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3    
+   from picamera2 import Picamera2, Preview
+   import os
+
+   # 現在のユーザーのログイン名を取得
+   user = os.getlogin()
+   # ユーザーのホームディレクトリのパスを取得
+   user_home = os.path.expanduser(f'~{user}')
+
+   # Picamera2インスタンスを作成
+   camera = Picamera2()
+   # デフォルトのプレビュー設定を取得
+   preview_config = camera.preview_configuration
+
+   try:
+       # プレビューサイズとフォーマットを設定
+       preview_config.size = (800, 600)
+       preview_config.format = 'XRGB8888'  
+       # QTGLモードでカメラプレビューを開始
+       camera.start_preview(Preview.QTGL)
+       # カメラを開始
+       camera.start()
+       # ユーザーのホームディレクトリに写真をキャプチャして保存
+       camera.capture_file(f'{user_home}/my_photo.jpg')
+
+   except KeyboardInterrupt:
+       # KeyboardInterrupt（例えば、Ctrl+C）が発生した場合はカメラプレビューを停止
+       camera.stop_preview()
+       pass
+
+
+**コード説明**
+
+#. picamera2ライブラリから ``Picamera2`` と ``Preview`` クラスをインポートし、オペレーティングシステムの相互作用に ``os`` モジュールを使用します。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3    
+       from picamera2 import Picamera2, Preview
+       import os
+
+#. 現在のユーザーのログイン名とそのホームディレクトリのパスを取得します。
+
+   .. code-block:: python
+
+       # 現在のユーザーのログイン名を取得
+       user = os.getlogin()
+       # ユーザーのホームディレクトリのパスを取得
+       user_home = os.path.expanduser(f'~{user}')
+
+#. ``Picamera2`` クラスのインスタンスを作成し、デフォルトのプレビュー設定を取得します。
+
+   .. code-block:: python
+
+       # Picamera2インスタンスを作成
+       camera = Picamera2()
+       # デフォルトのプレビュー設定を取得
+       preview_config = camera.preview_configuration
+
+#. カメラプレビューのサイズとフォーマットを設定します。サイズは800x600ピクセルに設定され、フォーマットは ``XRGB8888`` に設定されます。
+
+   .. code-block:: python
+
+       try:
+           # プレビューサイズとフォーマットを設定
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
+
+           ...
+
+#. QTGLモードでカメラプレビューを開始し、その後カメラ自体を開始します。
+
+   .. code-block:: python
+
+       try:
+           ...
+           
+           # QTGLモードでカメラプレビューを開始
+           camera.start_preview(Preview.QTGL)
+           # カメラを開始
+           camera.start()
+
+           ...
+
+#. カメラから画像をキャプチャし、 ``~/`` に保存します。
+
+   .. code-block:: python
+
+       try:
+           ...           
+           
+           # ユーザーのホームディレクトリに写真をキャプチャして保存
+           camera.capture_file(f'{user_home}/my_photo.jpg')
+
+   .. note::
+       ``camera.capture()`` 関数と ``for`` ループを一緒に使用して連続撮影を実現できます。撮影の時間間隔を調整するには ``delay`` 関数を使用します。
+
+       .. code-block:: python
+
+           for i in range(5):
+               camera.capture(f'{user_home}/my_photo{str(i)}.jpg')
+
+#. このコードブロックは、Ctrl+CなどのKeyboardInterruptを処理し、カメラプレビューを停止します。 `pass` 文は、例外を処理する際に他の操作を行わないように使用されます。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # KeyboardInterrupt（例えば、Ctrl+C）が発生した場合はカメラプレビューを停止
+           camera.stop_preview()
+           pass

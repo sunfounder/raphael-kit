@@ -1,0 +1,228 @@
+.. _3.1.2_py_pi5:
+
+3.1.2 ビデオモジュール
+=========================
+
+はじめに
+-----------------
+
+写真撮影に加えて、カメラモジュールを使用してビデオを録画することもできます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/3.3.2_photograph_list.png
+  :width: 800
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`camera_module`
+..         - |link_camera_buy|
+
+実験手順
+------------------------------
+
+**ステップ 1:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`windows_remote_desktop` の詳細なチュートリアルを参照してください。
+
+**ステップ 2:** カメラが有効になっているか確認します。指示については、 :ref:`enable_camera` を参照してください。
+
+**ステップ 3:** ターミナルを開き、コードのフォルダに入ります。
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 4:** 実行します。
+
+.. code-block::
+
+    sudo python3 3.1.2_VideoModule_zero.py
+
+コードを実行して録画を開始します。 ``Ctrl+C`` を押して録画を終了します。ビデオは ``my_video.h264`` という名前で ``~/`` ディレクトリに保存されます。
+
+.. note::
+
+    ``~/raphael-kit/python-pi5`` パスの ``3.1.2_PhotographModule_zero.py`` をPython IDEで開き、実行ボタンをクリックしてコードを実行し、停止ボタンでコードを停止することもできます。
+
+写真をPCに送りたい場合は、 :ref:`filezilla` を参照してください。
+
+**コード**
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   import time
+   from picamera2 import Picamera2, Preview
+   from picamera2.encoders import H264Encoder
+   from picamera2.outputs import FfmpegOutput
+   import os
+
+   # 現在のユーザーのログイン名を取得
+   user = os.getlogin()
+   # ユーザーのホームディレクトリのパスを取得
+   user_home = os.path.expanduser(f'~{user}')
+
+   # Picamera2インスタンスを作成
+   camera = Picamera2()
+   # デフォルトのプレビュー設定を取得
+   preview_config = camera.preview_configuration
+
+   try:
+       # プレビューサイズとフォーマットを設定
+       preview_config.size = (800, 600)
+       preview_config.format = 'XRGB8888'
+       # QTGLモードでカメラプレビューを開始
+       camera.start_preview(Preview.QTGL)
+
+       # ビデオ設定を定義し、サイズ、フレームレート、バッファ数を設定
+       conf = {'size': (800, 600)}
+       controls = {'FrameRate': 40}
+       config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+       # 指定されたビットレートでビデオエンコーダを作成
+       encoder = H264Encoder(bitrate=10000000)
+       # ビデオの出力ファイルを定義
+       output = FfmpegOutput(f'{user_home}/my_video.mp4')
+       # 録画を設定して開始
+       camera.configure(config)
+       camera.start_recording(encoder, output)
+       # 10秒間録画
+       time.sleep(10)
+       # 録画を停止
+       camera.stop_recording()
+
+   except KeyboardInterrupt:
+       # KeyboardInterrupt（例えば、Ctrl+C）が発生した場合はカメラプレビューを停止
+       camera.stop_preview()
+       pass
+
+
+**コード説明**
+
+#. 必要なライブラリとクラスをインポートします。 ``picamera2`` ライブラリはカメラ制御用、 ``H264Encoder`` はビデオエンコーディング用、 ``FfmpegOutput`` はビデオ出力ファイルを定義するために使用されます。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import time
+       from picamera2 import Picamera2, Preview
+       from picamera2.encoders import H264Encoder
+       from picamera2.outputs import FfmpegOutput
+       import os
+
+#. 現在のユーザーのログイン名とそのホームディレクトリのパスを取得します。
+
+   .. code-block:: python
+
+       # 現在のユーザーのログイン名を取得
+       user = os.getlogin()
+       # ユーザーのホームディレクトリのパスを取得
+       user_home = os.path.expanduser(f'~{user}')
+
+#. ``Picamera2`` クラスのインスタンスを作成し、デフォルトのプレビュー設定を取得します。
+
+   .. code-block:: python
+
+       # Picamera2インスタンスを作成
+       camera = Picamera2()
+       # デフォルトのプレビュー設定を取得
+       preview_config = camera.preview_configuration
+
+#. プレビューのサイズとフォーマットを設定します。サイズは800x600ピクセルに設定され、フォーマットは ``XRGB8888`` に設定されます。
+
+   .. code-block:: python
+
+       try:
+           # プレビューサイズとフォーマットを設定
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
+
+#. QTGLモードでカメラプレビューを開始します。これはグラフィカルなプレビューモードです。
+
+   .. code-block:: python
+
+       try:
+           ...          
+             
+           # QTGLモードでカメラプレビューを開始
+           camera.start_preview(Preview.QTGL)
+
+           ...
+
+#. ビデオ設定を800x600ピクセルのフレームサイズと、秒間40フレームのフレームレートで定義します。
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # ビデオ設定を定義し、サイズ、フレームレート、バッファ数を設定
+           conf = {'size': (800, 600)}
+           controls = {'FrameRate': 40}
+           config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+
+           ...
+
+#. 10Mbpsの指定されたビットレートでH.264エンコーディング形式を使用するビデオエンコーダを作成します。ビデオの出力ファイルパスを設定し、ユーザーのホームディレクトリに ``my_video.mp4`` として保存します。
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # 指定されたビットレートでビデオエンコーダを作成
+           encoder = H264Encoder(bitrate=10000000)
+           # ビデオの出力ファイルを定義
+           output = FfmpegOutput(f'{user_home}/my_video.mp4')
+
+           ...
+
+#. 定義されたビデオ設定でカメラを設定し、指定されたエンコーダと出力ファイルを使用して録画を開始し、10秒間録画した後、録画を停止します。
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # 録画を設定して開始
+           camera.configure(config)
+           camera.start_recording(encoder, output)
+           # 10秒間録画
+           time.sleep(10)
+           # 録画を停止
+           camera.stop_recording()
+
+#. このコードブロックは、Ctrl+CなどのKeyboardInterruptを処理し、カメラプレビューを停止します。 `pass` 文は、例外を処理する際に他の操作を行わないように使用されます。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # KeyboardInterrupt（例えば、Ctrl+C）が発生した場合はカメラプレビューを停止
+           camera.stop_preview()
+           pass
+
+
+

@@ -1,0 +1,184 @@
+.. _4.1.6_py_pi5:
+
+4.1.3 磁気誘導アラームシステム
+============================================
+
+はじめに
+-----------------
+
+貴重な花瓶を手に入れたとき、誰かがそれを動かしたらすぐにアラームを聞くことができる磁気誘導アラームシステムを作ることができます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_list.png
+  :width: 800
+  :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`Buzzer`
+..         - |link_passive_buzzer_buy|
+..     *   - :ref:`transistor`
+..         - |link_transistor_buy|
+..     *   - :ref:`reed_switch`
+..         - |link_reed_switch_buy|
+
+
+回路図
+----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_schematic.png
+   :align: center
+
+実験手順
+------------------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_circuit.png
+  :width: 800
+  :align: center
+
+**ステップ 2:** コードのフォルダに入ります。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 3:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.6_MagneticAlarmSystem_zero.py
+
+リードスイッチが磁石の影響を受ける場合（例えば、リードスイッチを台座に置き、磁石を花瓶に置く）、物体は安全です。このとき、リードスイッチは閉じた状態にあり、ブザーは鳴りません。
+磁石を取り除く（例えば、花瓶が盗まれる）と、リードスイッチは磁気の影響を受けず、スイッチが開き、ブザーがアラームを鳴らします。
+
+**コード**
+
+.. note::
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Buzzer, Button
+   import time
+
+   # GPIOピン27にブザーを初期化
+   buzzer = Buzzer(27)
+   # プルアップ抵抗を有効にしてGPIOピン17にリードスイッチを初期化
+   reed_switch = Button(17, pull_up=True)
+
+   try:
+       while True:
+           # リードスイッチが押されているかチェック
+           if reed_switch.is_pressed:
+               # リードスイッチが押されている場合、ブザーをオフにする
+               buzzer.off()
+           else:
+               # リードスイッチが押されていない場合、ブザーを鳴らす
+               buzzer.on()
+               time.sleep(0.1)  # 0.1秒間ブザーをオン
+               buzzer.off()
+               time.sleep(0.1)  # 0.1秒間ブザーをオフ
+
+   except KeyboardInterrupt:
+       # プログラムが中断された場合（例：キーボード割り込み）、ブザーをオフにする
+       buzzer.off()
+       pass
+
+
+**コード説明**
+
+#. 必要なクラス ``Buzzer`` と ``Button`` を ``gpiozero`` ライブラリから、そしてPythonの標準ライブラリから ``time`` モジュールをインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Buzzer, Button
+       import time
+
+#. ``Buzzer`` オブジェクトはGPIOピン27にリンクされ、 ``pull_up=True`` 引数を持つ ``Button`` （リードスイッチとして機能）はGPIOピン17に接続され、内部プルアップ抵抗が有効になります。
+
+   .. code-block:: python
+
+       # GPIOピン27にブザーを初期化
+       buzzer = Buzzer(27)
+       # プルアップ抵抗を有効にしてGPIOピン17にリードスイッチを初期化
+       reed_switch = Button(17, pull_up=True)
+
+#. ``try`` ブロックには無限ループ( ``while True`` )が含まれ、リードスイッチの状態をチェックします。押されている場合（ ``is_pressed`` ）、ブザーはオフになります。そうでない場合、ブザーはビープ音を出します（0.1秒オン、0.1秒オフ）。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # リードスイッチが押されているかチェック
+               if reed_switch.is_pressed:
+                   # リードスイッチが押されている場合、ブザーをオフにする
+                   buzzer.off()
+               else:
+                   # リードスイッチが押されていない場合、ブザーを鳴らす
+                   buzzer.on()
+                   time.sleep(0.1)  # 0.1秒間ブザーをオン
+                   buzzer.off()
+                   time.sleep(0.1)  # 0.1秒間ブザーをオフ
+
+#. ``except`` ブロックは、ターミナルでCtrl+CのようなKeyboardInterruptを捕捉し、安全にブザーをオフにします。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # プログラムが中断された場合（例：キーボード割り込み）、ブザーをオフにする
+           buzzer.off
+           pass

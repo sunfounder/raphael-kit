@@ -1,0 +1,202 @@
+.. _2.1.6_py_pi5:
+
+2.1.6 ロータリーエンコーダーモジュール
+================================================
+
+はじめに
+------------
+
+このプロジェクトでは、ロータリーエンコーダーについて学びます。ロータリーエンコーダーは、厳密なタイミングのシーケンスで一連の定期的なパルスを持つ電子スイッチです。ICと併用すると、増加、減少、ページ送りなどの操作や、マウスのスクロール、メニュー選択などが実現できます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_list.png
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`rotary_encoder`
+..         - |link_rotary_encoder_buy|
+
+回路図
+------------------------
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_schematic.png
+   :align: center
+
+
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てる。
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_circuit.png
+
+この例では、ロータリーエンコーダーのピンをブレッドボードと40ピンケーブルを使用してラズベリーパイに直接接続し、ロータリーエンコーダーのGNDをGNDに、「+」を5Vに、SWをデジタルGPIO27に、DTをデジタルGPIO18に、CLKをデジタルGPIO17に接続します。
+
+**ステップ 2:** コードファイルを開く。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 3:** 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.6_RotaryEncoder_zero.py
+
+シェル上でカウントが表示されます。ロータリーエンコーダーを時計回りに回すと、カウントが増えます。反時計回りに回すと、カウントが減ります。ロータリーエンコーダーのスイッチを押すと、数値がゼロに戻ります。
+
+**コード**
+
+.. note::
+
+   下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RotaryEncoder, Button
+   from time import sleep
+
+   # ロータリーエンコーダーとボタンを初期化
+   encoder = RotaryEncoder(a=17, b=18)  # GPIOピン17（CLK）、18（DT）に接続されたロータリーエンコーダー
+   button = Button(27)                  # GPIOピン27に接続されたボタン
+
+   global_counter = 0  # ロータリーエンコーダーの位置を追跡
+
+   def rotary_change():
+      """ ロータリーエンコーダーの回転に基づいてグローバルカウンターを更新。 """
+      global global_counter
+      global_counter += encoder.steps  # エンコーダーステップに基づいてカウンター調整
+      encoder.steps = 0  # カウンター更新後にエンコーダーステップをリセット
+      print('Global Counter =', global_counter)  # 現在のカウンター値を表示
+
+   def reset_counter():
+      """ ボタンが押された時にグローバルカウンターをゼロにリセット。 """
+      global global_counter
+      global_counter = 0  # カウンターをリセット
+      print('Counter reset')  # カウンターリセットを示す
+
+   # ボタン押下イベントにreset_counter関数を割り当て
+   button.when_pressed = reset_counter
+
+   try:
+      # ロータリーエンコーダーを継続的に監視し、変更を処理
+      while True:
+         rotary_change()  # ロータリーエンコーダーの変更を処理
+         sleep(0.1)  # CPU負荷を減らすために短い遅延
+
+   except KeyboardInterrupt:
+      # Ctrl+C（キーボード割り込み）を優雅に処理
+      pass
+
+
+**コード解析**
+
+#. ``gpiozero`` ライブラリから ``RotaryEncoder`` と ``Button`` クラスをインポートし、遅延のために ``sleep`` 関数を使用します。
+
+   .. code-block:: python
+
+      #!/usr/bin/env python3
+      from gpiozero import RotaryEncoder, Button
+      from time import sleep
+
+#. GPIOピン17と18にロータリーエンコーダーを、GPIOピン27にボタンを初期化します。
+
+   .. code-block:: python
+
+      # ロータリーエンコーダーとボタンを初期化
+      encoder = RotaryEncoder(a=17, b=18)  # GPIOピン17（CLK）と18（DT）に接続されたロータリーエンコーダー
+      button = Button(27)                  # GPIOピン27に接続されたボタン
+
+#. ロータリーエンコーダーの位置を追跡するために ``global_counter`` グローバル変数を宣言します。
+
+   .. code-block:: python
+
+      global_counter = 0  # ロータリーエンコーダーの位置を追跡
+
+#. ロータリーエンコーダーの回転に基づいてグローバルカウンターを更新する ``rotary_change`` 関数を定義します。
+
+   .. code-block:: python
+
+      def rotary_change():
+         """ ロータリーエンコーダーの回転に基づいてグローバルカウンターを更新します。 """
+         global global_counter
+         global_counter += encoder.steps  # エンコーダーのステップに基づいてカウンターを調整
+         encoder.steps = 0  # カウンターを更新後にエンコーダーのステップをリセット
+         print('Global Counter =', global_counter)  # 現在のカウンター値を表示
+
+#. ボタンが押されたときにグローバルカウンターをゼロにリセットする ``reset_counter`` 関数を定義します。
+
+   .. code-block:: python
+
+      def reset_counter():
+         """ ボタンが押されたときにグローバルカウンターをゼロにリセットします。 """
+         global global_counter
+         global_counter = 0  # カウンターをリセット
+         print('Counter reset')  # カウンターリセットを示す
+
+#. ボタンが押されたときに呼び出されるように ``reset_counter`` 関数を割り当てます。
+
+   .. code-block:: python
+
+      # ボタン押下イベントにreset_counter関数を割り当て
+      button.when_pressed = reset_counter
+
+#. 継続的なループ内でスクリプトは ``rotary_change`` を呼び出してロータリーエンコーダーの変更を処理し、CPU負荷を減らすために短い遅延を導入します。KeyboardInterruptsを優雅に処理するためにtry-exceptブロックを使用します。
+
+   .. code-block:: python
+
+      try:
+         # ロータリーエンコーダーを継続的に監視し、変更を処理
+         while True:
+            rotary_change()  # ロータリーエンコーダーの変更を処理
+            sleep(0.1)  # CPU負荷を減らすための短い遅延
+
+      except KeyboardInterrupt:
+         # キーボード割り込み（Ctrl+C）を優雅に処理
+         pass
+

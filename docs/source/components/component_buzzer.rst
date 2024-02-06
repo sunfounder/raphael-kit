@@ -27,5 +27,5 @@
 * :ref:`1.2.2_c` （Cプロジェクト）
 * :ref:`1.2.1_py` （Pythonプロジェクト）
 * :ref:`1.2.2_py` （Pythonプロジェクト）
-* :ref:`1.13 Doorbell` （Scratchプロジェクト）
-* :ref:`1.14 123 Wooden Man` （Scratchプロジェクト）
+* :ref:`1.13_scratch` （Scratchプロジェクト）
+* :ref:`1.14_scratch` （Scratchプロジェクト）

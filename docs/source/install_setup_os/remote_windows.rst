@@ -1,3 +1,6 @@
+
+.. _remote_windows:
+
 Windowsユーザー
 =======================
 
@@ -49,7 +52,9 @@ Windowsユーザーであれば、Windows PowerShellを使ってRaspberry Piに�
         :width: 550
         :align: center
 
-.. _remote_desktop_1:
+
+.. _windows_remote_desktop:
+
 
 リモートデスクトップ
 ----------------------

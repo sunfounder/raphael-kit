@@ -1,0 +1,192 @@
+.. _2.2.6_py_pi5:
+
+2.2.5 スピードセンサーモジュール
+=========================================
+
+はじめに
+------------------
+
+このプロジェクトでは、スピードセンサーモジュールの使用方法について学びます。スピードセンサーモジュールはタコメーターの一種で、モーターなどの回転する物体の速度を測定するために使用されます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_list.png
+    :width: 700
+    :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`speed_sensor`
+..         - \-
+
+回路図
+-----------------------
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_schematic.png
+    :width: 400
+    :align: center
+
+実験手順
+------------------------------
+
+**ステップ 1:** 回路を組み立てる。
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_circuit.png
+    :width: 700
+    :align: center
+
+
+**ステップ 2:** ディレクトリを変更する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+    
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 3:** 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.6_speed_sensor_module_zero.py
+
+コードを実行した後、緑色のLEDが点灯します。スピードセンサーモジュールの隙間に障害物を置くと、「Light was blocked」と画面に表示され、赤色のLEDが点灯します。障害物を取り除くと、緑色のLEDが再び点灯します。
+
+**コード**
+
+.. note::
+
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button
+   from signal import pause
+
+   # GPIO Zeroライブラリを使用してスピードセンサーとLEDのGPIOピンを初期化
+   speed_sensor = Button(17, pull_up=False)  # プルアップ抵抗なしでGPIOピン17に接続されたスピードセンサー
+   green_led = LED(27)                      # GPIOピン27に接続された緑色LED
+   red_led = LED(22)                        # GPIOピン22に接続された赤色LED
+
+   def update_leds():
+       """
+       スピードセンサーに基づいてLEDの状態を更新します。
+       - センサーが押された（トリガーされた）場合、赤色LEDが点灯し、メッセージが表示されます。
+       - センサーが解放された（トリガーされない）場合、緑色LEDが点灯します。
+       """
+       if speed_sensor.is_pressed:
+           green_led.off()  # 緑色LEDを消灯
+           red_led.on()     # 赤色LEDを点灯
+           print('Light was blocked')  # センサーがトリガーされたことを示すメッセージを表示
+       else:
+           green_led.on()   # 緑色LEDを点灯
+           red_led.off()    # 赤色LEDを消灯
+
+   try:
+       # センサーの状態を連続的にチェックするメインループ
+       while True:
+           # センサーの状態変化に基づいてLEDを更新
+           speed_sensor.when_pressed = update_leds   # センサーが押された時にLEDを更新
+           speed_sensor.when_released = update_leds  # センサーが解放された時にLEDを更新
+
+   except KeyboardInterrupt:
+       # Ctrl+Cでスクリプトの優雅な終了を処理
+       pass
+
+
+**コード説明**
+
+#. ``gpiozero`` ライブラリをインポートして、GPIOピンとのやり取りに ``LED`` と ``Button`` クラスを使用します。 ``signal`` ライブラリから ``pause`` 関数をインポートし、スクリプトが実行され続けるようにします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button
+       from signal import pause
+
+#. スピードセンサーをGPIOピン17に ``Button`` として設定します。 ``pull_up=False`` パラメーターは内部プルアップ抵抗が使用されないことを示します。 ``green_led`` と ``red_led`` はそれぞれGPIOピン27と22に接続された ``LED`` オブジェクトとして初期化されます。
+
+   .. code-block:: python
+
+       # GPIO Zeroライブラリを使用してスピードセンサーとLEDのGPIOピンを初期化
+       speed_sensor = Button(17, pull_up=False)  # プルアップ抵抗なしでGPIOピン17に接続されたスピードセンサー
+       green_led = LED(27)                      # GPIOピン27に接続された緑色LED
+       red_led = LED(22)                        # GPIOピン22に接続された赤色LED
+
+#. スピードセンサーの状態をチェックする ``update_leds`` 関数を定義します。センサーが押される（活性化する）と、緑色LEDを消し、赤色LEDを点け、メッセージを表示します。センサーが解放されると、逆の動作をします。
+
+   .. code-block:: python
+
+       def update_leds():
+           """
+           スピードセンサーに基づいてLEDの状態を更新します。
+           - センサーが押された（トリガーされた）場合、赤色LEDが点灯し、メッセージが表示されます。
+           - センサーが解放された（トリガーされない）場合、緑色LEDが点灯します。
+           """
+           if speed_sensor.is_pressed:
+               green_led.off()  # 緑色LEDを消灯
+               red_led.on()     # 赤色LEDを点灯
+               print('Light was blocked')  # センサーがトリガーされたことを示すメッセージを表示
+           else:
+               green_led.on()   # 緑色LEDを点灯
+               red_led.off()    # 赤色LEDを消灯
+
+#. メインループはスピードセンサーの状態を連続的にチェックします。 ``when_pressed`` と ``when_released`` 属性は、センサーの状態が変化したときに ``update_leds`` 関数を呼び出すイベントハンドラです。try-exceptブロックは、Ctrl+Cでの優雅な終了を処理するために使用されます。
+
+   .. code-block:: python
+
+       try:
+           # センサーの状態を連続的にチェックするメインループ
+           while True:
+               # センサーの状態変化に基づいてLEDを更新
+               speed_sensor.when_pressed = update_leds   # センサーが押された時にLEDを更新
+               speed_sensor.when_released = update_leds  # センサーが解放された時にLEDを更新
+
+       except KeyboardInterrupt:
+           # Ctrl+Cでスクリプトの優雅な終了を処理
+           pass

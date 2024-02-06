@@ -1,0 +1,233 @@
+.. _4.1.4_py_pi5:
+
+4.1.2 自動撮影カメラ
+===================================
+
+はじめに
+-----------------
+
+外出中に、小さなリスたちがあなたの窓辺を訪れるかもしれません。これらの小さなかわいい生き物たちの写真を残すための自動撮影カメラを作ってみましょう！
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_list.png
+  :width: 800
+  :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`camera_module`
+..         - |link_camera_buy|
+..     *   - :ref:`pir`
+..         - \-
+
+
+回路図
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_schematic.png
+   :width: 400
+   :align: center
+
+実験手順
+------------------------------
+
+このプロジェクトを始める前に、 :ref:`3.1.1_py_pi5` を完了しておく必要があります。
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_circuit.png
+  :width: 800
+  :align: center
+
+**ステップ 2:** カメラモジュールを接続し、設定を完了してください。詳細は、 :ref:`camera_module` を参照してください。
+
+**ステップ 3:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`windows_remote_desktop` の詳細なチュートリアルを参照してください。
+
+**ステップ 4:** ターミナルを開き、コードのフォルダに入ります。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 5:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.4_AutomaticCaptureCamera_zero.py
+
+コードを実行した後、PIRは周囲の環境を検知し、リスなどが通りかかると、カメラが写真を撮ります。
+写真の間隔は3秒で、撮影された写真の総数はプリントウィンドウを通じて表示されます。
+
+PIRモジュールには2つのポテンショメータがあります：1つは感度を、もう1つは検出距離を調整するためのものです。PIRモジュールをより良く機能させるために、それらを両方とも反時計回りに最後まで回してください。
+
+.. image:: ../python_pi5/img/4.1.4_PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+   ``~/raphael-kit/python-pi5/`` パスの ``4.1.4_AutomaticCaptureCamera_zero.py`` をPython IDEで開き、実行ボタンをクリックしてコードを実行し、停止ボタンでコードを停止することもできます。
+
+**コード**
+
+.. note::
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3  
+    from picamera2 import Picamera2, Preview
+    from gpiozero import MotionSensor
+    import time
+    import os
+
+    # 現在のユーザーのログイン名とホームディレクトリを取得
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
+
+    # カメラを初期化
+    camera = Picamera2()
+    camera.start()
+
+    # GPIOピン17に接続された動作センサーを初期化
+    pir = MotionSensor(17)
+
+    try:
+        i = 1  # 画像カウントを初期化
+        while True:
+            if pir.motion_detected:
+                # 動きが検出されたときに画像をキャプチャして、一意の番号で保存
+                camera.capture_file(f'{user_home}/capture%s.jpg' % i)
+                print('撮影数は %s です' % i)  # 画像カウントを表示
+                time.sleep(3)  # 次の検出まで3秒待つ
+                i += 1  # 画像カウントをインクリメント
+            else:
+                print('待機中')  # 動きが検出されないときに「待機中」を表示
+                time.sleep(0.5)  # 0.5秒ごとに動きをチェック
+
+    except KeyboardInterrupt:
+        # KeyboardInterruptが発生した場合、カメラのプレビューを停止して終了
+        camera.stop_preview()
+        pass
+
+**コード説明**
+
+#. カメラ制御用の `Picamera2` と `Preview` クラス、動き検出用の `MotionSensor` クラス、標準ライブラリの `time` と `os` をインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3  
+       from picamera2 import Picamera2, Preview
+       from gpiozero import MotionSensor
+       import time
+       import os
+
+#. 撮影された画像を保存するために、現在のユーザーのログイン名とホームディレクトリを取得します。
+
+   .. code-block:: python
+
+       # 現在のユーザーのログイン名とホームディレクトリを取得
+       user = os.getlogin()
+       user_home = os.path.expanduser(f'~{user}')
+
+#. カメラを初期化し、開始します。
+
+   .. code-block:: python
+
+       # カメラを初期化
+       camera = Picamera2()
+       camera.start()
+
+#. GPIOピン17に接続されたPIR動作センサーを初期化します。
+
+   .. code-block:: python
+
+       # GPIOピン17に接続された動作センサーを初期化
+       pir = MotionSensor(17)
+
+#. カウンター ``i`` を初期化して、撮影された画像の数を追跡します。無限ループ内で、動きが検出されるかどうかをチェックします。動きが検出された場合、カウンター ``i`` に基づいて一意の名前で画像をキャプチャし、画像番号を印刷し、次の動き検出前に3秒間待ち、カウンター ``i`` をインクリメントします。
+
+   .. code-block:: python
+
+       try:
+           i = 1  # 画像カウントを初期化
+           while True:
+               if pir.motion_detected:
+                   # 動きが検出されたときに画像をキャプチャして、一意の番号で保存
+                   camera.capture_file(f'{user_home}/capture%s.jpg' % i)
+                   print('The number is %s です' % i)  # 画像カウントを表示
+                   time.sleep(3)  # 次の検出まで3秒待つ
+                   i += 1  # 画像カウントをインクリメント
+
+#. 動きが検出されない場合は、「待機中」と表示し、0.5秒ごとに動きをチェックします。
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           while True:           
+               ...
+               
+               else:
+                   print('waiting')  # 動きが検出されないときに「待機中」を表示
+                   time.sleep(0.5)  # 0.5秒ごとに動きをチェック
+
+#. Ctrl+CのようなKeyboardInterruptをキャッチして、カメラのプレビューを停止し、スクリプトを優雅に終了させます。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # KeyboardInterruptが発生した場合、カメラのプレビューを停止して終了
+           camera.stop_preview()
+           pass
+

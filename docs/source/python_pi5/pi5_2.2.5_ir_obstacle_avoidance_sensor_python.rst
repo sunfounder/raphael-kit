@@ -1,0 +1,153 @@
+.. _2.2.5_py_pi5:
+
+2.2.4 赤外線障害物回避センサー
+===================================
+
+はじめに
+-----------------
+
+このプロジェクトでは、赤外線障害物回避モジュールについて学びます。これは、短距離で障害物を検出できるセンサーモジュールで、干渉が少なく、組み立てやすく、使用しやすいなどの特徴があります。ロボットの障害物回避、障害物回避カート、アセンブリラインのカウントなど、幅広く使用されます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.2.5_ir_obstacle_list.png
+   :width: 700
+   :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`infrared_avoidance`
+..         - |link_obstacle_avoidance_buy|
+
+回路図
+-----------------------
+
+.. image:: ../python_pi5/img/2.2.5_ir_obstacle_list_schematic.png
+   :width: 500
+   :align: center
+
+実験手順
+-------------------------
+
+**ステップ 1:** 回路を組み立てる
+
+.. image:: ../python_pi5/img/2.2.5_ir_obstacle_circuit.png
+   :width: 700
+   :align: center
+
+**ステップ 2:** ディレクトリを変更する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+   
+   cd ~/raphael-kit/python-pi5
+
+**ステップ 3:** 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo python3 2.2.5_IrObstacle_zero.py
+
+コードを実行した後、モジュールのプローブの前に手を置くと、モジュール上の出力インジケーターが点灯し、「Detected Barrier!」が画面に繰り返し表示されます。手を離すと停止します。
+
+**コード**
+
+.. note::
+
+   下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Button
+   import time
+
+   # GPIOピン17に接続された障害物センサーを初期化
+   # センサーは内部プルアップ抵抗で設定されています
+   obstacle_sensor = Button(17, pull_up=True)  
+
+   try:
+      # 障害物の監視を続ける
+      while True:
+         if obstacle_sensor.is_pressed:  # センサーが作動したか確認
+               print("Detected Barrier!")  # 障害物を検出した時のメッセージを表示
+               time.sleep(1)  # 繰り返しメッセージを避けるために1秒遅延
+
+   except KeyboardInterrupt:
+      # Ctrl+Cで安全に終了するための処理
+      pass
+
+
+**コード説明**
+
+#. この行は、スクリプトがPython 3を使用して実行されることを指定します。gpiozeroライブラリから ``Button`` クラス（障害物センサー用）と ``time`` モジュール（遅延用）をインポートします。
+
+   .. code-block:: python
+
+      #!/usr/bin/env python3
+      from gpiozero import Button
+      import time
+
+#. GPIOピン17に内部プルアップ抵抗を使用して障害物センサーを初期化します。
+
+   .. code-block:: python
+
+      # GPIOピン17に接続された障害物センサーを初期化
+      # センサーは内部プルアップ抵抗で設定されています
+      obstacle_sensor = Button(17, pull_up=True)  
+
+#. 継続的なループで、プログラムは障害物センサーがアクティブになったかどうか（ ``is_pressed`` ）をチェックします。障害物が検出されると、「Detected Barrier!」と表示し、1秒間待機します（繰り返しメッセージを防ぐため）。 ``try-except`` 構造を使用して、Ctrl+Cでクリーンに終了できます。
+
+   .. code-block:: python
+
+      try:
+         # 障害物の監視を続ける
+         while True:
+            if obstacle_sensor.is_pressed:  # センサーが作動したか確認
+                  print("Detected Barrier!")  # 障害物を検出した時のメッセージを表示
+                  time.sleep(1)  # 繰り返しメッセージを避けるために1秒遅延
+
+      except KeyboardInterrupt:
+         # Ctrl+Cで安全に終了するための処理
+         pass

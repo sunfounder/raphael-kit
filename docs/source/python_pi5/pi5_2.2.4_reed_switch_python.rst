@@ -1,0 +1,195 @@
+.. _2.2.4_py_pi5:
+
+2.2.3 リードスイッチモジュール
+=====================================
+
+はじめに
+-------------------
+
+このプロジェクトでは、磁場を適用することで動作する電気スイッチであるリードスイッチについて学びます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_list.png
+    :width: 700
+    :align: center
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`reed_switch`
+..         - |link_reed_switch_buy|
+
+回路図
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_schematic_1.png
+    :width: 400
+    :align: center
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_schematic_2.png
+    :width: 400
+    :align: center
+
+実験手順
+-------------------------------
+
+**ステップ 1:** 回路を組み立てる。
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_circuit.png
+    :width: 700
+    :align: center
+
+**ステップ 2:** ディレクトリを変更する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 3:** 実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.4_ReedSwitch_zero.py
+
+コードを実行すると、緑色のLEDが点灯します。リードスイッチモジュールに磁石を近づけると、赤色のLEDが点灯し、磁石を離すと再び緑色のLEDが点灯します。
+
+**コード**
+
+.. note::
+
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。しかし、その前に ``raphael-kit/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を見ることができます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button
+
+   # GPIO Zeroを使用してリードスイッチとLEDを初期化
+   reed_switch = Button(17, pull_up=True)  # 内部プルアップ抵抗を使用してGPIO 17にリードスイッチ
+   green_led = LED(27)                     # GPIOピン27に接続された緑色LED
+   red_led = LED(22)                       # GPIOピン22に接続された赤色LED
+
+   def update_leds():
+       """
+       リードスイッチの状態に基づいてLEDの状態を更新します。
+       リードスイッチが押された時は赤色LEDを点灯し、緑色LEDを消灯し、反対の状態で逆にします。
+       """
+       if reed_switch.is_pressed:
+           green_led.off()          # 緑色LEDを消灯
+           red_led.on()             # 赤色LEDを点灯
+       else:
+           green_led.on()           # 緑色LEDを点灯
+           red_led.off()            # 赤色LEDを消灯
+
+   try:
+       green_led.on()               # 開始時に緑色LEDを点灯
+       while True:
+           # リードスイッチの状態変化に対するコールバック関数を設定
+           reed_switch.when_pressed = update_leds   # スイッチが押された時のコールバック
+           reed_switch.when_released = update_leds  # スイッチが離された時のコールバック
+
+   except KeyboardInterrupt:
+       # Ctrl+Cでリソースをクリーンアップして終了
+       green_led.off()
+       red_led.off()
+       pass
+
+**コード説明**
+
+#. この行は、スクリプトがPython 3を使用して実行されることを指定します。gpiozeroライブラリから ``LED`` と ``Button`` （リードスイッチ用）をインポートします。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button
+
+#. GPIOピン17に内部プルアップ抵抗を使用してリードスイッチを、GPIOピン27と22に二つのLEDを初期化します。
+
+   .. code-block:: python
+       
+       # GPIO Zeroを使用してリードスイッチとLEDを初期化
+       reed_switch = Button(17, pull_up=True)  # 内部プルアップ抵抗を使用してGPIO 17にリードスイッチ
+       green_led = LED(27)                     # GPIOピン27に接続された緑色LED
+       red_led = LED(22)                       # GPIOピン22に接続された赤色LED
+
+#. リードスイッチの状態に基づいてLEDの状態を更新する ``update_leds`` 関数を定義します。スイッチが押された時は赤色LEDを点灯し緑色LEDを消灯し、その逆の状態で逆にします。
+
+   .. code-block:: python
+
+       def update_leds():
+           if reed_switch.is_pressed:
+               green_led.off()          # 緑色LEDを消灯
+               red_led.on()             # 赤色LEDを点灯
+           else:
+               green_led.on()           # 緑色LEDを点灯
+               red_led.off()            # 赤色LEDを消灯
+
+#. 開始時に緑色LEDを点灯状態にします。メインループではリードスイッチの ``when_pressed`` および ``when_released`` イベントに ``update_leds`` 関数をコールバックとして割り当てます。KeyboardInterruptの例外処理を含み、プログラムを優雅に終了させます。
+
+   .. code-block:: python
+
+       try:
+           green_led.on()               # 開始時に緑色LEDを点灯
+           while True:
+               # リードスイッチの状態変化に対するコールバック関数を設定
+               reed_switch.when_pressed = update_leds   # スイッチが押された時のコールバック
+               reed_switch.when_released = update_leds  # スイッチが離された時のコールバック
+
+       except KeyboardInterrupt:
+           # Ctrl+Cでリソースをクリーンアップして終了
+           green_led.off()
+           red_led.off()
+           pass

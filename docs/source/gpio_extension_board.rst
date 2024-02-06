@@ -1,3 +1,6 @@
+.. _gpio_extension_board:
+
+
 GPIO拡張ボード
 =====================
 
