@@ -1,0 +1,394 @@
+.. _4.1.12_py_pi5:
+
+4.1.9 Ampel
+========================
+
+Einführung
+---------------
+
+In diesem Projekt werden wir LED-Lampen in drei Farben verwenden, um den Wechsel von Ampellichtern zu realisieren, und ein vierstelliges 7-Segment-Display wird verwendet, um die Zeit für jeden Ampelzustand anzuzeigen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/4.1.12_traffic_light_list.png
+    :width: 800
+    :align: center
+
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`4_digit`
+        - \-
+    *   - :ref:`74hc595`
+        - |link_74hc595_buy|
+
+
+Schaltplan
+--------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPICE0       Pin 24   10       8
+SPICE1       Pin 26   11       7
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.12_traffic_light_schematic.png
+   :align: center
+
+Experimentelle Verfahren
+------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/4.1.12_traffic_light_circuit.png
+
+**Schritt 2:** Wechseln Sie das Verzeichnis.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.12_TrafficLight_zero.py
+
+Während der Code ausgeführt wird, simulieren die LEDs den Farbwechsel der Ampellichter. Zuerst leuchtet die rote LED für 60 Sekunden, dann leuchtet die grüne LED für 30 Sekunden; danach leuchtet die gelbe LED für 5 Sekunden. Anschließend leuchtet die rote LED erneut für 60 Sekunden. Auf diese Weise wird diese Serie von Aktionen wiederholt ausgeführt. Gleichzeitig zeigt das vierstellige 7-Segment-Display kontinuierlich die Countdown-Zeit an.
+
+Code
+----------
+
+.. note::
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuerst müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nach der Modifikation des Codes können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import OutputDevice, LED
+   import threading
+
+   # GPIO-Pins für das 74HC595 Schieberegister einrichten
+   SDI = OutputDevice(24)   # Serieller Dateneingang
+   RCLK = OutputDevice(23)  # Register Clock
+   SRCLK = OutputDevice(18) # Schieberegister Clock
+
+   # GPIO-Pins für die Auswahl der Ziffern auf dem 7-Segment-Display einrichten
+   placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+   # Segmentcodes für die Zahlen 0-9 auf dem 7-Segment-Display
+   number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+   # GPIO-Pins für die LEDs der Ampel einrichten
+   ledPinR = LED(25) # Rote LED
+   ledPinG = LED(8)  # Grüne LED
+   ledPinY = LED(7)  # Gelbe LED
+
+   # Zeiteinstellungen für die Ampelphasen
+   greenLight = 30
+   yellowLight = 5
+   redLight = 60
+
+   # Namen der Ampelfarben
+   lightColor = ("Rot", "Grün", "Gelb")
+
+   # Zustandsvariablen initialisieren
+   colorState = 0
+   counter = 60
+   timer1 = None
+
+   def setup():
+       """ Initialisiert das Ampelsystem und startet den Timer. """
+       global timer1
+       timer1 = threading.Timer(1.0, timer)
+       timer1.start()
+
+   def clearDisplay():
+       """ Löscht das 7-Segment-Display. """
+       for _ in range(8):
+           SDI.on()
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def hc595_shift(data):
+       """ Überträgt Daten in das 74HC595 Schieberegister für die Anzeige. """
+       for i in range(8):
+           SDI.value = 0x80 & (data << i)
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def pickDigit(digit):
+       """ Wählt eine spezifische Ziffer zur Anzeige auf dem 7-Segment-Display aus. """
+       for pin in placePin:
+           pin.off()
+       placePin[digit].on()
+
+   def timer():
+       """ Verwaltet die Zeit für den Wechsel der Ampellichter. """
+       global counter, colorState, timer1
+       timer1 = threading.Timer(1.0, timer)
+       timer1.start()
+       counter -= 1
+       if counter == 0:
+           counter = [greenLight, yellowLight, redLight][colorState]
+           colorState = (colorState + 1) % 3
+       print(f"counter : {counter}    color: {lightColor[colorState]}")
+
+   def lightup():
+       """ Aktualisiert das Ampellicht basierend auf dem aktuellen Zustand. """
+       global colorState
+       ledPinR.off()
+       ledPinG.off()
+       ledPinY.off()
+       [ledPinR, ledPinG, ledPinY][colorState].on()
+
+   def display():
+       """ Zeigt den aktuellen Zählerwert auf dem 7-Segment-Display an. """
+       global counter
+
+       for i in range(4):
+           digit = counter // (10 ** (3 - i)) % 10
+           if i == 0 and digit == 0:
+               continue
+           clearDisplay()
+           pickDigit(3 - i)
+           hc595_shift(number[digit])
+
+   def loop():
+       """ Hauptloop zur kontinuierlichen Aktualisierung der Anzeige und der Lichter. """
+       while True:
+           display()
+           lightup()
+
+   def destroy():
+       """ Räumt Ressourcen auf, wenn das Skript beendet wird. """
+       global timer1
+       timer1.cancel()
+       ledPinR.off()
+       ledPinG.off()
+       ledPinY.off()
+
+   try:
+       setup()
+       loop()
+   except KeyboardInterrupt:
+       destroy()
+
+
+
+Code-Erklärung
+--------------------
+
+#. Importiert die Klassen ``OutputDevice`` und ``LED`` aus der gpiozero-Bibliothek, die die Steuerung von allgemeinen Ausgabegeräten und speziell von LEDs ermöglichen. Importiert das Python-Modul threading, das für das Erstellen und Verwalten von Threads für die parallele Ausführung verwendet wird.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice, LED
+       import threading
+
+#. Initialisiert die GPIO-Pins, die mit dem Schieberegister's Serial Data Input (SDI), Register Clock Input (RCLK) und Shift Register Clock Input (SRCLK) verbunden sind.
+
+   .. code-block:: python
+
+       # Setup GPIO pins for 74HC595 shift register
+       SDI = OutputDevice(24)   # Serial Data Input
+       RCLK = OutputDevice(23)  # Register Clock
+       SRCLK = OutputDevice(18) # Shift Register Clock
+
+#. Initialisiert die Pins für jede Ziffer des 7-Segment-Displays und definiert die Binärcodes für die Anzeige der Zahlen 0-9.
+
+   .. code-block:: python
+
+       # Setup GPIO pins for digit selection on 7-segment display
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+       # Segment codes for numbers 0-9 on 7-segment display
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Initialisiert die GPIO-Pins für die Rot-, Grün- und Gelb-LEDs, die in der Ampelsimulation verwendet werden. Legt die Dauer (in Sekunden) für jeden Farbzustand im Ampelsystem fest. Definiert die Namen der Ampelfarben zum Nachschlagen.
+
+   .. code-block:: python
+
+       # Setup GPIO pins for traffic light LEDs
+       ledPinR = LED(25) # Red LED
+       ledPinG = LED(8)  # Green LED
+       ledPinY = LED(7)  # Yellow LED
+
+       # Duration settings for traffic lights
+       greenLight = 30
+       yellowLight = 5
+       redLight = 60
+
+       # Traffic light color names
+       lightColor = ("Red", "Green", "Yellow")       
+
+#. Initialisiert Variablen zur Verfolgung des aktuellen Farbzustands, eines Zählers für die Zeitmessung und eines Platzhalters für ein Timer-Objekt.
+
+   .. code-block:: python
+
+       # Initialize state variables
+       colorState = 0
+       counter = 60
+       timer1 = None
+
+#. Initialisiert das Ampelsystem und startet den Timer-Thread.
+
+   .. code-block:: python
+
+       def setup():
+           """ Initialize the traffic light system and start the timer. """
+           global timer1
+           timer1 = threading.Timer(1.0, timer)
+           timer1.start()
+
+#. Funktionen zur Steuerung des 7-Segment-Displays. ``clearDisplay`` schaltet alle Segmente aus, ``hc595_shift`` überträgt Daten in das Schieberegister, und ``pickDigit`` aktiviert eine bestimmte Ziffer auf dem Display.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Clear the 7-segment display. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def hc595_shift(data):
+           """ Shift data to the 74HC595 shift register for digit display. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def pickDigit(digit):
+           """ Select a specific digit to display on the 7-segment display. """
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. Verwaltet die Zeit für Ampellichtwechsel und aktualisiert den Zähler und den Farbzustand.
+
+   .. code-block:: python
+
+       def timer():
+           """ Handle the timing for traffic light changes. """
+           global counter, colorState, timer1
+           timer1 = threading.Timer(1.0, timer)
+           timer1.start()
+           counter -= 1
+           if counter == 0:
+               counter = [greenLight, yellowLight, redLight][colorState]
+               colorState = (colorState + 1) % 3
+           print(f"counter : {counter}    color: {lightColor[colorState]}")
+
+#. Aktualisiert den Zustand der Ampel-LEDs basierend auf dem aktuellen Farbzustand.
+
+   .. code-block:: python
+
+       def lightup():
+           """ Update the traffic light LED based on the current state. """
+           global colorState
+           ledPinR.off()
+           ledPinG.off()
+           ledPinY.off()
+           [ledPinR, ledPinG, ledPinY][colorState].on()
+
+#. Berechnet die anzuzeigende Ziffer für jedes Segment des 7-Segment-Displays und aktualisiert es entsprechend.
+
+   .. code-block:: python
+
+       def display():
+           """ Display the current counter value on the 7-segment display. """
+           global counter
+
+           for i in range(4):
+               digit = counter // (10 ** (3 - i)) % 10
+               if i == 0 and digit == 0:
+                   continue
+               clearDisplay()
+               pickDigit(3 - i)
+               hc595_shift(number[digit])
+
+#. Die Hauptschleife, die kontinuierlich die Anzeige und die Ampel-LEDs aktualisiert.
+
+   .. code-block:: python
+
+       def loop():
+           """ Main loop to continuously update display and lights. """
+           while True:
+               display()
+               lightup()
+
+#. Räumt Ressourcen auf, wenn das Skript beendet wird, wie das Ausschalten der LEDs und das Stoppen des Timer-Threads.
+
+   .. code-block:: python
+
+       def destroy():
+           """ Clean up resources when the script is terminated. """
+           global timer1
+           timer1.cancel()
+           ledPinR.off()
+           ledPinG.off()
+           ledPinY.off()
+

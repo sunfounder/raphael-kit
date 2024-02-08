@@ -1,0 +1,190 @@
+.. _2.1.5_py_pi5:
+
+2.1.5 Neigungsschalter
+==================================
+
+Einleitung
+------------------
+
+Dies ist ein Kugel-Neigungsschalter mit einer Metallkugel im Inneren. Er wird verwendet, um Neigungen eines kleinen Winkels zu erkennen.
+
+Benötigte Komponenten
+-------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.1.5_tilt_switch_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`tilt_switch`
+        - \-
+
+Schaltplan
+------------------
+
+.. image:: ../python_pi5/img/2.1.5_tilt_switch_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.5_tilt_switch_schematic_2.png
+
+
+Experimentelle Verfahren
+--------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.1.5_tilt_switch_circuit.png
+
+**Schritt 2:** Wechseln Sie ins Verzeichnis.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.1.5_Tilt_zero.py
+
+Stellen Sie den Neigungsschalter vertikal auf, und die grüne LED leuchtet auf. Wenn Sie ihn neigen, wird "Tilt!" auf dem Bildschirm angezeigt und die rote LED leuchtet auf. Stellen Sie ihn wieder vertikal auf, und die grüne LED leuchtet wieder auf.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Import der Klassen LED und Button zur GPIO-Steuerung
+
+   # Initialisierung des Buttons für den Neigungssensor und LEDs mit GPIO Zero
+   TiltPin = Button(17, pull_up=False)  # Neigungssensor verbunden mit GPIO-Pin 17, Pull-Up-Widerstand deaktiviert
+   green_led = LED(27)  # Grüne LED verbunden mit GPIO-Pin 27
+   red_led = LED(22)   # Rote LED verbunden mit GPIO-Pin 22
+
+   def detect():
+       """
+       Erkennt den Zustand des Neigungssensors und steuert die LEDs.
+       Schaltet die rote LED ein und die grüne LED aus, wenn geneigt.
+       Schaltet die rote LED aus und die grüne LED ein, wenn nicht geneigt.
+       """
+       if TiltPin.is_pressed:  # Überprüfen, ob der Sensor geneigt ist
+           print('    *************')
+           print('    *   Tilt!   *')
+           print('    *************')
+           red_led.on()   # Rote LED einschalten
+           green_led.off()  # Grüne LED ausschalten
+       else:  # Wenn der Sensor nicht geneigt ist
+           red_led.off()  # Rote LED ausschalten
+           green_led.on()  # Grüne LED einschalten
+
+   try:
+       while True:
+           # Kontinuierliche Überprüfung des Zustands des Neigungssensors und Aktualisierung der LEDs
+           TiltPin.when_pressed = detect
+           TiltPin.when_released = detect
+
+   except KeyboardInterrupt:
+       # Sauberes Beenden des Skripts bei einer Tastaturunterbrechung (Strg+C)
+       pass
+
+
+**Code-Erklärung**
+
+#. Diese Zeile legt fest, dass das Skript mit Python 3 ausgeführt wird und importiert ``LED`` und ``Button`` aus ``gpiozero`` zur Steuerung von GPIO-Geräten.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Import der Klassen LED und Button zur GPIO-Steuerung
+
+#. Initialisiert den Neigungssensor, der mit dem GPIO-Pin 17 verbunden ist (mit deaktiviertem Pull-Up-Widerstand), und zwei LEDs, die mit den GPIO-Pins 27 und 22 verbunden sind.
+
+   .. code-block:: python
+
+       # Initialisierung des Buttons für den Neigungssensor und LEDs mit GPIO Zero
+       TiltPin = Button(17, pull_up=False)  # Neigungssensor verbunden mit GPIO-Pin 17, Pull-Up-Widerstand deaktiviert
+       green_led = LED(27)  # Grüne LED verbunden mit GPIO-Pin 27
+       red_led = LED(22)   # Rote LED verbunden mit GPIO-Pin 22
+
+#. Definiert die Funktion ``detect``, welche den Zustand des Neigungssensors überprüft. Bei Neigung schaltet sie die rote LED ein und die grüne LED aus. Bei keiner Neigung erfolgt das Gegenteil.
+
+   .. code-block:: python
+
+       def detect():
+           """
+           Erkennt den Zustand des Neigungssensors und steuert die LEDs.
+           Schaltet die rote LED ein und die grüne LED aus, wenn geneigt.
+           Schaltet die rote LED aus und die grüne LED ein, wenn nicht geneigt.
+           """
+           if TiltPin.is_pressed:  # Überprüfen, ob der Sensor geneigt ist
+               print('    *************')
+               print('    *   Tilt!   *')
+               print('    *************')
+               red_led.on()   # Rote LED einschalten
+               green_led.off()  # Grüne LED ausschalten
+           else:  # Wenn der Sensor nicht geneigt ist
+               red_led.off()  # Rote LED ausschalten
+               green_led.on()  # Grüne LED einschalten
+
+#. Die Hauptschleife weist die Funktion ``detect`` den Ereignissen ``when_pressed`` und ``when_released`` des Neigungssensors zu. Der ``try-except``-Block behandelt eine Tastaturunterbrechung für einen anmutigen Abbruch.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Kontinuierliche Überprüfung des Zustands des Neigungssensors und Aktualisierung der LEDs
+               TiltPin.when_pressed = detect
+               TiltPin.when_released = detect
+
+       except KeyboardInterrupt:
+           # Sauberes Beenden des Skripts bei einer Tastaturunterbrechung (Strg+C)
+           pass
+

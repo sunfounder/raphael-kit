@@ -1,0 +1,197 @@
+.. _2.2.4_py_pi5:
+
+2.2.3 Reed-Schalter-Modul
+========================================
+
+Einführung
+-------------------
+
+In diesem Projekt lernen wir den Reed-Schalter kennen, einen elektrischen Schalter, der durch ein angelegtes Magnetfeld betätigt wird.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_list.png
+    :width: 700
+    :align: center
+
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM SET
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`reed_switch`
+        - |link_reed_switch_buy|
+
+Schaltplan
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physisch wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_schematic_1.png
+    :width: 400
+    :align: center
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_schematic_2.png
+    :width: 400
+    :align: center
+
+Experimentelle Verfahren
+-------------------------------
+
+**Schritt 1:** Baue die Schaltung.
+
+.. image:: ../python_pi5/img/2.2.4_reed_switch_circuit.png
+    :width: 700
+    :align: center
+
+**Schritt 2:** Wechsle das Verzeichnis.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.4_ReedSwitch_zero.py
+
+Die grüne LED leuchtet, wenn der Code ausgeführt wird. Wenn ein Magnet nahe an das Reed-Schalter-Modul gebracht wird, leuchtet die rote LED auf; entfernt man den Magnet, leuchtet wieder die grüne LED.
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python-pi5`` wechseln. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button
+
+   # Initialisiere den Reed-Schalter und LEDs mit GPIO Zero
+   reed_switch = Button(17, pull_up=True)  # Reed-Schalter an GPIO 17, mit internem Pull-up-Widerstand
+   green_led = LED(27)                     # Grüne LED verbunden mit GPIO-Pin 27
+   red_led = LED(22)                       # Rote LED verbunden mit GPIO-Pin 22
+
+   def update_leds():
+       """
+       Aktualisiere den Zustand der LEDs basierend auf dem Zustand des Reed-Schalters.
+       Schaltet die rote LED ein und die grüne LED aus, wenn der Reed-Schalter betätigt wird, und umgekehrt.
+       """
+       if reed_switch.is_pressed:
+           green_led.off()          # Grüne LED ausschalten
+           red_led.on()             # Rote LED einschalten
+       else:
+           green_led.on()           # Grüne LED einschalten
+           red_led.off()            # Rote LED ausschalten
+
+   try:
+       green_led.on()               # Grüne LED beim Start einschalten
+       while True:
+           # Setze die Callback-Funktionen für Zustandsänderungen des Reed-Schalters
+           reed_switch.when_pressed = update_leds   # Callback, wenn der Schalter gedrückt wird
+           reed_switch.when_released = update_leds  # Callback, wenn der Schalter losgelassen wird
+
+   except KeyboardInterrupt:
+       # Ressourcen aufräumen und bei Strg+C beenden
+       green_led.off()
+       red_led.off()
+       pass
+
+**Code-Erklärung**
+
+#. Diese Zeile gibt an, dass das Skript mit Python 3 ausgeführt werden soll. Es werden ``LED`` und ``Button`` (für den Reed-Schalter) aus der gpiozero-Bibliothek importiert.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button
+
+#. Initialisiert den Reed-Schalter an GPIO-Pin 17 mit einem internen Pull-up-Widerstand. Initialisiert außerdem zwei LEDs, die mit den GPIO-Pins 27 und 22 verbunden sind.
+
+   .. code-block:: python
+       
+       # Initialisiere den Reed-Schalter und LEDs mit GPIO Zero
+       reed_switch = Button(17, pull_up=True)  # Reed-Schalter an GPIO 17, mit internem Pull-up-Widerstand
+       green_led = LED(27)                     # Grüne LED verbunden mit GPIO-Pin 27
+       red_led = LED(22)                       # Rote LED verbunden mit GPIO-Pin 22
+
+#. Definiert die Funktion ``update_leds``, die den Zustand der LEDs basierend auf dem Zustand des Reed-Schalters aktualisiert. Die rote LED wird eingeschaltet und die grüne LED wird ausgeschaltet, wenn der Schalter gedrückt wird, und umgekehrt, wenn er losgelassen wird.
+
+   .. code-block:: python
+
+       def update_leds():
+           if reed_switch.is_pressed:
+               green_led.off()          # Grüne LED ausschalten
+               red_led.on()             # Rote LED einschalten
+           else:
+               green_led.on()           # Grüne LED einschalten
+               red_led.off()            # Rote LED ausschalten
+
+#. Setzt den anfänglichen Zustand der grünen LED auf Ein. Die Hauptschleife weist der Funktion ``update_leds`` als Callbacks für die Ereignisse ``when_pressed`` und ``when_released`` des Reed-Schalters zu. Beinhaltet die Behandlung von Ausnahmen für KeyboardInterrupt, um die Ressourcen aufzuräumen und das Programm sanft zu beenden.
+
+   .. code-block:: python
+
+       try:
+           green_led.on()               # Grüne LED beim Start einschalten
+           while True:
+               # Setze die Callback-Funktionen für Zustandsänderungen des Reed-Schalters
+               reed_switch.when_pressed = update_leds   # Callback, wenn der Schalter gedrückt wird
+               reed_switch.when_released = update_leds  # Callback, wenn der Schalter losgelassen wird
+
+       except KeyboardInterrupt:
+           # Ressourcen aufräumen und bei Strg+C beenden
+           green_led.off()
+           red_led.off()
+           pass
+       
+

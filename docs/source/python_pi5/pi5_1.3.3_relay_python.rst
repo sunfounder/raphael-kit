@@ -1,0 +1,169 @@
+.. _1.3.3_py_pi5:
+
+1.3.3 Relais
+=====================
+
+Einleitung
+------------------
+
+In diesem Projekt lernen wir den Einsatz eines Relais kennen. Es ist eine der häufig verwendeten Komponenten in automatischen Steuerungssystemen. Wenn Spannung, Strom, Temperatur, Druck usw. einen vorbestimmten Wert erreichen, überschreiten oder unterschreiten, wird das Relais den Stromkreis schließen oder unterbrechen, um die Ausrüstung zu steuern und zu schützen.
+
+Benötigte Komponenten
+---------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.3.3_relay_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`transistor`
+        - |link_transistor_buy|
+    *   - :ref:`relay`
+        - |link_relay_buy|
+    *   - :ref:`diode`
+        - |link_diode_buy|
+
+Schaltplan
+-----------------
+
+.. image:: ../python_pi5/img/1.3.3_relay_schematic.png
+
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/1.3.3_relay_circuit.png
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.3_Relay_zero.py
+
+Während der Code läuft, leuchtet die LED auf. Zusätzlich kann man ein Klicken hören, verursacht durch das Öffnen des normalerweise geschlossenen Kontakts und das Schließen des normalerweise offenen Kontakts.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice  # Import der Klasse zur Steuerung von GPIO-Pins
+   from time import sleep  # Import der Sleep-Funktion für Verzögerungen
+
+   # Initialisierung des Relais, verbunden mit GPIO-Pin 17, beginnend im 'aus'-Zustand
+   relay = OutputDevice(17, initial_value=False)
+
+   try:
+       # Schleife, um den Zustand des Relais jede Sekunde umzuschalten
+       while True:
+           print('Relais öffnet...')  # Information, dass das Relais aktiviert wird
+           relay.on()  # Einschalten des Relais (Annahme einer aktiven Low-Konfiguration)
+           sleep(1)   # Das Relais bleibt 1 Sekunde im Einschaltzustand
+
+           print('...Relais schließt')  # Information, dass das Relais deaktiviert wird
+           relay.off()  # Ausschalten des Relais
+           sleep(1)   # Das Relais bleibt 1 Sekunde im Ausschaltzustand
+
+   except KeyboardInterrupt:
+       # Sauberes Beenden des Skripts bei Tastaturunterbrechung (Strg+C)
+       relay.off()  # Stellen Sie sicher, dass das Relais vor dem Beenden ausgeschaltet ist
+       pass
+
+
+**Code-Erklärung**
+
+#. Es importiert ``OutputDevice`` aus ``gpiozero`` zur Steuerung von GPIO-Pins und ``sleep`` aus ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice  # Import der Klasse zur Steuerung von GPIO-Pins
+       from time import sleep  # Import der Sleep-Funktion für Verzögerungen
+
+#. Initialisiert ein ``OutputDevice``-Objekt für das Relais, verbunden mit GPIO-Pin 17. ``initial_value=False`` setzt das Relais anfänglich in den Zustand „aus“ (unter der Annahme einer aktiven Low-Konfiguration).
+
+   .. code-block:: python
+
+       # Initialisierung des Relais, verbunden mit GPIO-Pin 17, beginnend im 'aus'-Zustand
+       relay = OutputDevice(17, initial_value=False)
+
+#. Im ``try``-Block befindet sich eine ``while True``-Schleife, die den Zustand des Relais kontinuierlich umschaltet. Das Relais wird ein- und ausgeschaltet, jeweils mit einer 1-Sekunden-Verzögerung zwischen den Zuständen, begleitet von Konsolenausgaben.
+
+   .. code-block:: python
+
+       try:
+           # Schleife, um den Zustand des Relais jede Sekunde umzuschalten
+           while True:
+               print('Relais öffnet...')  # Information, dass das Relais aktiviert wird
+               relay.on()  # Einschalten des Relais (Annahme einer aktiven Low-Konfiguration)
+               sleep(1)   # Das Relais bleibt 1 Sekunde im Einschaltzustand
+
+               print('...Relais schließt')  # Information, dass das Relais deaktiviert wird
+               relay.off()  # Ausschalten des Relais
+               sleep(1)   # Das Relais bleibt 1 Sekunde im Ausschaltzustand
+
+#. Fängt eine Tastaturunterbrechung (wie Strg+C) ab, um das Skript anmutig zu beenden. Das Relais wird vor dem Beenden des Skripts ausgeschaltet.
+
+   .. code-block:: python
+      
+      except KeyboardInterrupt:
+        # Sauberes Beenden des Skripts bei Tastaturunterbrechung (Strg+C)
+        relay.off()  # Stellen Sie sicher, dass das Relais vor dem Beenden ausgeschaltet ist
+        pass
+

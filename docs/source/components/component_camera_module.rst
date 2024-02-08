@@ -28,7 +28,9 @@ Die Platine ist klein, etwa 25mm x 23mm x 9mm, und wiegt 3g. Das macht sie ideal
 * **Schnittstelle**: CSI Anschluss 
 * **Unterstütztes Betriebssystem**: Raspberry Pi OS(neueste Version empfohlen) 
 
-**Montage des Kameramoduls**
+Montage des Kameramoduls
+---------------------------------------
+
 
 Am Kameramodul oder Raspberry Pi finden Sie einen flachen Kunststoffanschluss. Ziehen Sie vorsichtig den schwarzen Befestigungsschalter heraus, bis er teilweise herausgezogen ist. Führen Sie das FFC-Kabel in die gezeigte Richtung in den Kunststoffanschluss ein und schieben Sie den Befestigungsschalter wieder zurück.
 
@@ -42,7 +44,12 @@ Wenn das FFC-Kabel korrekt installiert ist, wird es gerade sein und sich nicht h
 
    Schließen Sie die Kamera nicht an, wenn die Stromversorgung eingeschaltet ist. Dies kann Ihre Kamera beschädigen.
 
-**Kamera-Schnittstelle aktivieren**
+
+.. _enable_camera:
+
+Kamera-Schnittstelle aktivieren
+-------------------------------------------
+
 
 Führen Sie den folgenden Befehl aus, um die Kamera-Schnittstelle Ihres Raspberry Pi zu aktivieren. Wenn Sie dies bereits getan haben, überspringen Sie diesen Schritt. Wenn Sie nicht sicher sind, ob Sie dies getan haben, fahren Sie bitte fort.
 

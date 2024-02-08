@@ -1,0 +1,238 @@
+.. _1.1.4_py_pi5:
+
+1.1.4 7-Segment-Anzeige
+=============================
+
+Einführung
+-----------------
+
+Lassen Sie uns versuchen, eine 7-Segment-Anzeige zu steuern, um Ziffern von 0 bis 9 und Buchstaben von A bis F anzuzeigen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.1.4_7_segment_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - INHALT DES KITS
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`7_segment`
+        - |link_7segment_buy|
+    *   - :ref:`74hc595`
+        - |link_74hc595_buy|
+
+Schaltplan
+---------------------
+
+Verbinden Sie den Pin ST_CP des 74HC595 mit GPIO18 des Raspberry Pi, SH_CP mit GPIO27 und DS
+mit GPIO17, parallele Ausgangsports mit den 8 Segmenten der LED-Segmentanzeige.
+
+Daten werden in den DS-Pin eingegeben, um in das Schieberegister zu gelangen, wenn SH_CP (der Takteingang des Schieberegisters) an der steigenden Flanke ist, und in das Speicherregister, wenn ST_CP (der Takteingang des Speichers) an der steigenden Flanke ist.
+
+Dann können Sie die Zustände von SH_CP und ST_CP über die GPIOs des Raspberry Pi steuern, um serielle Dateneingaben in parallele Datenausgaben umzuwandeln, um so GPIOs des Raspberry Pi zu sparen und die Anzeige zu steuern.
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO18       Pin 12   18
+GPIO27       Pin 13   27
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.4_7_segment_schematic.png
+
+Experimentelle Verfahren
+------------------------------
+
+**Schritt 1:** Baue den Schaltkreis.
+
+.. image:: ../python_pi5/img/1.1.4_7-Segment_circuit.png
+
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.4_7-Segment_zero.py
+
+Nachdem der Code ausgeführt wurde, sehen Sie, dass die 7-Segment-Anzeige 0-9, A-F anzeigt.
+
+**Code**
+
+.. note::
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen. Nach der Bestätigung, dass keine Probleme vorhanden sind, können Sie den modifizierten Code mit dem Kopieren-Button kopieren, dann den Quellcode im Terminal über den Befehl ``nano`` öffnen und einfügen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   from time import sleep
+
+   # GPIO-Pins, die mit dem 74HC595-Schieberegister verbunden sind
+   SDI = OutputDevice(17)   # Serieller Dateneingang
+   RCLK = OutputDevice(18)  # Speichertakt Eingang (Register Clock)
+   SRCLK = OutputDevice(27) # Schieberegistertakt
+
+   # Hexadezimale Zifferncodes für eine gemeinsame Kathoden-7-Segment-Anzeige
+   segCode = [
+       0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
+       0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+   ]
+
+   def hc595_shift(data):
+       # Verschiebe 8 Bit Daten in den 74HC595
+       for bit in range(8):
+           # Setze SDI auf High oder Low basierend auf dem Datenbit
+           SDI.value = 0x80 & (data << bit)
+           # Auslösen des Schieberegistertakts
+           SRCLK.on()
+           sleep(0.001)
+           SRCLK.off()
+       # Daten durch Auslösen des Speichertakts auf Ausgang übertragen
+       RCLK.on()
+       sleep(0.001)
+       RCLK.off()
+
+   def display_all_on():
+       # Funktion, um alle Segmente einzuschalten (für gemeinsame Kathoden-7-Segment-Anzeige)
+       all_on_code = 0x3f
+       hc595_shift(all_on_code)
+       print("Alle Segmente eingeschaltet")
+
+   try:
+       while True:
+           # Zeige jede hexadezimale Ziffer auf der 7-Segment-Anzeige an
+           for code in segCode:
+               hc595_shift(code)  # Code in den 74HC595 verschieben
+               # Angezeigten Segmentcode drucken
+               print(f"Anzeige segCode[{segCode.index(code)}]: 0x{code:02X}")
+               sleep(0.5)  # Pause zwischen der Anzeige jeder Ziffer
+
+   except KeyboardInterrupt:
+       # Elegante Behandlung der Skriptunterbrechung (z.B. Ctrl+C)
+       pass
+
+
+**Code-Erklärung**
+
+#. Dieser Schnipsel importiert die notwendigen Klassen für das Projekt. ``OutputDevice`` von ``gpiozero`` wird verwendet, um Hardwarekomponenten, die mit GPIO-Pins verbunden sind, zu steuern, und ``sleep`` von ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       from time import sleep
+
+#. SDI, RCLK und SRCLK entsprechen den Pins Serial Data Input, Memory Clock Input (Register Clock) und Shift Register Clock des 74HC595.
+
+   .. code-block:: python
+
+       # GPIO-Pins, die mit dem 74HC595-Schieberegister verbunden sind
+       SDI = OutputDevice(17)   # Serieller Dateneingang
+       RCLK = OutputDevice(18)  # Speichertakt Eingang (Register Clock)
+       SRCLK = OutputDevice(27) # Schieberegistertakt
+
+#. ``segCode`` ist ein Array, das hexadezimale Codes für jede anzuzeigende Ziffer auf der 7-Segment-Anzeige enthält.
+
+   .. code-block:: python
+
+       # Hexadezimale Zifferncodes für eine gemeinsame Kathoden-7-Segment-Anzeige
+       segCode = [
+           0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
+           0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+       ]
+
+#. Diese Funktion verschiebt 8 Bit Daten in den 74HC595. Sie gibt jedes Bit seriell in ``SDI`` ein, löst ``SRCLK`` aus, um das Bit zu verschieben, und verwendet ``RCLK``, um die Daten auf den Ausgang zu übertragen.
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           # Verschiebe 8 Bit Daten in den 74HC595
+           for bit in range(8):
+               # Setze SDI auf High oder Low basierend auf dem Datenbit
+               SDI.value = 0x80 & (data << bit)
+               # Auslösen des Schieberegistertakts
+               SRCLK.on()
+               sleep(0.001)
+               SRCLK.off()
+           # Daten durch Auslösen des Speichertakts auf Ausgang übertragen
+           RCLK.on()
+           sleep(0.001)
+           RCLK.off()
+
+#. Diese Funktion schaltet alle Segmente der Anzeige ein, indem sie einen spezifischen Code an ``hc595_shift`` sendet.
+
+   .. code-block:: python
+
+       def display_all_on():
+           # Funktion, um alle Segmente einzuschalten (für gemeinsame Kathoden-7-Segment-Anzeige)
+           all_on_code = 0x3f
+           hc595_shift(all_on_code)
+           print("Alle Segmente eingeschaltet")
+
+#. In der Hauptschleife wird jeder Code in ``segCode`` in Sequenz an die Anzeige gesendet, mit einer Verzögerung zwischen jedem.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Zeige jede hexadezimale Ziffer auf der 7-Segment-Anzeige an
+               for code in segCode:
+                   hc595_shift(code)  # Code in den 74HC595 verschieben
+                   # Angezeigten Segmentcode drucken
+                   print(f"Anzeige segCode[{segCode.index(code)}]: 0x{code:02X}")
+                   sleep(0.5)  # Pause zwischen der Anzeige jeder Ziffer
+
+#. Dieser Teil des Codes behandelt die Skriptunterbrechung (wie Ctrl+C) auf elegante Weise.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Elegante Behandlung der Skriptunterbrechung (z.B. Ctrl+C)
+           pass
+

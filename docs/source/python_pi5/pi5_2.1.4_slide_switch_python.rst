@@ -1,0 +1,181 @@
+.. _2.1.4_py_pi5:
+
+2.1.4 Schiebeschalter
+===========================
+
+Einleitung
+----------------
+
+In diesem Projekt lernen wir, wie man einen Schiebeschalter verwendet. Normalerweise wird der Schiebeschalter auf der PCB als Ein-/Ausschalter gelötet, aber hier müssen wir ihn in das Steckbrett einsetzen, sodass er möglicherweise nicht fest sitzt. Wir verwenden ihn auf dem Steckbrett, um seine Funktion zu demonstrieren.
+
+Benötigte Komponenten
+----------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`capacitor`
+        - |link_capacitor_buy|
+
+Schaltplan
+---------------------
+
+Verbinden Sie den mittleren Pin des Schiebeschalters mit GPIO17 und zwei LEDs jeweils mit den Pins GPIO22 und GPIO27. Wenn Sie den Schieber betätigen, können Sie sehen, wie die beiden LEDs abwechselnd aufleuchten.
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_schematic_2.png
+
+
+Experimentelle Verfahren
+-------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.1.4_slide_switch_circuit.png
+
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.4_Slider_zero.py
+
+Während der Code läuft, verbinden Sie den Schalter mit der linken Seite, dann leuchtet die gelbe LED auf; nach rechts, schaltet sich die rote LED ein.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Import der Klassen LED und Button für die GPIO-Steuerung
+   from time import sleep  # Import der Funktion sleep für Verzögerungen
+
+   # Initialisierung des Mikroschalters am GPIO-Pin 17 mit deaktiviertem Pull-Up-Widerstand
+   micro_switch = Button(17, pull_up=False)
+   # Initialisierung von LED1 am GPIO-Pin 22
+   led1 = LED(22)
+   # Initialisierung von LED2 am GPIO-Pin 27
+   led2 = LED(27)
+
+   try:
+       # Hauptloop zur Steuerung der LED-Zustände basierend auf dem Zustand des Mikroschalters
+       while True:
+           if micro_switch.is_pressed:  # Überprüfen, ob der Mikroschalter gedrückt ist
+               print('    LED1 EIN    ')  # Statusmeldung ausgeben
+               led1.on()   # LED1 einschalten
+               led2.off()  # LED2 ausschalten
+           else:  # Wenn der Mikroschalter nicht gedrückt ist
+               print('    LED2 EIN    ')  # Statusmeldung ausgeben
+               led1.off()  # LED1 ausschalten
+               led2.on()   # LED2 einschalten
+
+           sleep(0.5)  # 0,5 Sekunden warten, bevor der Schalterzustand erneut geprüft wird
+
+   except KeyboardInterrupt:
+       # Sauberes Beenden des Skripts bei einer Tastaturunterbrechung (Strg+C)
+       pass
+ 
+
+**Code-Erklärung**
+
+#. Diese Zeile legt fest, dass das Skript mit Python 3 ausgeführt wird. Sie importiert ``LED`` und ``Button`` aus ``gpiozero`` zur Steuerung von GPIO-Geräten und ``sleep`` aus ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Import der Klassen LED und Button für die GPIO-Steuerung
+       from time import sleep  # Import der Funktion sleep für Verzögerungen
+
+#. Initialisiert einen Mikroschalter, der mit dem GPIO-Pin 17 verbunden ist, mit deaktiviertem Pull-Up-Widerstand und zwei LEDs, die mit den GPIO-Pins 22 und 27 verbunden sind.
+
+   .. code-block:: python
+
+       # Initialisierung des Mikroschalters am GPIO-Pin 17 mit deaktiviertem Pull-Up-Widerstand
+       micro_switch = Button(17, pull_up=False)
+       # Initialisierung von LED1 am GPIO-Pin 22
+       led1 = LED(22)
+       # Initialisierung von LED2 am GPIO-Pin 27
+       led2 = LED(27)
+
+#. Die Hauptschleife überprüft den Zustand des Mikroschalters. Wenn gedrückt, leuchtet LED1 und LED2 geht aus; wenn nicht gedrückt, geht LED1 aus und LED2 leuchtet. Die Schleife wiederholt sich alle 0,5 Sekunden. Fängt eine Tastaturunterbrechung (wie Strg+C) ab, um das Skript anmutig zu beenden.
+
+   .. code-block:: python
+
+       try:
+       # Hauptloop zur Steuerung der LED-Zustände basierend auf dem Zustand des Mikroschalters
+       while True:
+           if micro_switch.is_pressed:  # Überprüfen, ob der Mikroschalter gedrückt ist
+               print('    LED1 EIN    ')  # Statusmeldung ausgeben
+               led1.on()   # LED1 einschalten
+               led2.off()  # LED2 ausschalten
+           else:  # Wenn der Mikroschalter nicht gedrückt ist
+               print('    LED2 EIN    ')  # Statusmeldung ausgeben
+               led1.off()  # LED1 ausschalten
+               led2.on()   # LED2 einschalten
+
+           sleep(0.5)  # 0,5 Sekunden warten, bevor der Schalterzustand erneut geprüft wird
+
+       except KeyboardInterrupt:
+           # Sauberes Beenden des Skripts bei einer Tastaturunterbrechung (Strg+C)
+           pass
+       
+

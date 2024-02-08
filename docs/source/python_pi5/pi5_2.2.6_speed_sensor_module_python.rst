@@ -1,0 +1,197 @@
+.. _2.2.6_py_pi5:
+
+2.2.5 Geschwindigkeitssensormodul
+===================================================
+
+Einführung
+------------------
+
+In diesem Projekt werden wir den Einsatz des Geschwindigkeitssensormoduls kennenlernen. Ein Geschwindigkeitssensormodul ist eine Art Tachometer, der zur Messung der Geschwindigkeit eines rotierenden Objekts wie eines Motors verwendet wird.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_list.png
+    :width: 700
+    :align: center
+
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM SET
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`speed_sensor`
+        - \-
+
+Schaltplan
+-----------------------
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_schematic.png
+    :width: 400
+    :align: center
+
+Experimentelle Verfahren
+------------------------------
+
+**Schritt 1:** Baue die Schaltung.
+
+.. image:: ../python_pi5/img/2.2.6_photo_interrrupter_circuit.png
+    :width: 700
+    :align: center
+
+
+**Schritt 2:** Wechsle das Verzeichnis.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+    
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.6_speed_sensor_module_zero.py
+
+Nachdem der Code ausgeführt wurde, leuchtet die grüne LED. Wenn Sie ein Hindernis in die Lücke des Geschwindigkeitssensormoduls platzieren, wird "Light was blocked" auf dem Bildschirm gedruckt und die rote LED leuchtet auf.
+Entfernen Sie das Hindernis und die grüne LED leuchtet wieder auf.
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python-pi5`` wechseln. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button
+   from signal import pause
+
+   # Initialisiere GPIO-Pins für den Geschwindigkeitssensor und LEDs mit der GPIO Zero Bibliothek
+   speed_sensor = Button(17, pull_up=False)  # Geschwindigkeitssensor verbunden mit GPIO Pin 17 ohne Pull-up
+   green_led = LED(27)                      # Grüne LED verbunden mit GPIO Pin 27
+   red_led = LED(22)                        # Rote LED verbunden mit GPIO Pin 22
+
+   def update_leds():
+       """
+       Aktualisiere den Zustand der LEDs basierend auf dem Geschwindigkeitssensor.
+       - Wenn der Sensor ausgelöst wird (gedrückt), wird die rote LED eingeschaltet und eine Nachricht ausgegeben.
+       - Wenn der Sensor freigegeben wird (nicht ausgelöst), wird die grüne LED eingeschaltet.
+       """
+       if speed_sensor.is_pressed:
+           green_led.off()  # Grüne LED ausschalten
+           red_led.on()     # Rote LED einschalten
+           print('Light was blocked')  # Nachricht ausgeben, dass der Sensor ausgelöst wurde
+       else:
+           green_led.on()   # Grüne LED einschalten
+           red_led.off()    # Rote LED ausschalten
+
+   try:
+       # Hauptloop zur kontinuierlichen Überprüfung des Sensorzustands
+       while True:
+           # LEDs basierend auf Sensorzustandsänderungen aktualisieren
+           speed_sensor.when_pressed = update_leds   # LEDs aktualisieren, wenn der Sensor ausgelöst wird
+           speed_sensor.when_released = update_leds  # LEDs aktualisieren, wenn der Sensor freigegeben wird
+
+   except KeyboardInterrupt:
+       # Behandlung von KeyboardInterrupt (Strg+C) für einen eleganten Skriptabbruch
+       pass
+
+
+**Code-Erklärung**
+
+#. Die ``gpiozero`` Bibliothek wird importiert, um ihre ``LED`` und ``Button`` Klassen für die Interaktion mit den GPIO-Pins zu nutzen. Die ``signal`` Bibliothek wird für die ``pause`` Funktion importiert, die verwendet wird, um das Skript am Laufen zu halten.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button
+       from signal import pause
+
+#. speed_sensor wird als ``Button`` an GPIO Pin 17 gesetzt. Der Parameter ``pull_up=False`` gibt an, dass der interne Pull-up-Widerstand nicht verwendet wird. ``green_led`` und ``red_led`` werden als ``LED`` Objekte initialisiert, die mit den GPIO Pins 27 und 22 verbunden sind.
+
+   .. code-block:: python
+
+       # Initialisiere GPIO-Pins für den Geschwindigkeitssensor und LEDs mit der GPIO Zero Bibliothek
+       speed_sensor = Button(17, pull_up=False)  # Geschwindigkeitssensor verbunden mit GPIO Pin 17 ohne Pull-up
+       green_led = LED(27)                      # Grüne LED verbunden mit GPIO Pin 27
+       red_led = LED(22)                        # Rote LED verbunden mit GPIO Pin 22
+
+#. Die Funktion ``update_leds`` überprüft den Zustand des Geschwindigkeitssensors. Wenn der Sensor ausgelöst wird (aktiviert), schaltet sie die grüne LED aus, die rote LED ein und gibt eine Nachricht aus. Wenn der Sensor freigegeben wird, macht sie das Gegenteil.
+
+   .. code-block:: python
+
+       def update_leds():
+           """
+           Aktualisiere den Zustand der LEDs basierend auf dem Geschwindigkeitssensor.
+           - Wenn der Sensor ausgelöst wird (gedrückt), wird die rote LED eingeschaltet und eine Nachricht ausgegeben.
+           - Wenn der Sensor freigegeben wird (nicht ausgelöst), wird die grüne LED eingeschaltet.
+           """
+           if speed_sensor.is_pressed:
+               green_led.off()  # Grüne LED ausschalten
+               red_led.on()     # Rote LED einschalten
+               print('Light was blocked')  # Nachricht ausgeben, dass der Sensor ausgelöst wurde
+           else:
+               green_led.on()   # Grüne LED einschalten
+               red_led.off()    # Rote LED ausschalten
+
+#. Die Hauptschleife überprüft kontinuierlich den Zustand des Geschwindigkeitssensors. Die Attribute ``when_pressed`` und ``when_released`` sind Ereignishandler, die die Funktion ``update_leds`` aufrufen, wenn sich der Sensorzustand ändert. Der try-except-Block dient zur Behandlung eines KeyboardInterrupt für einen eleganten Ausstieg.
+
+   .. code-block:: python
+
+       try:
+           # Hauptloop zur kontinuierlichen Überprüfung des Sensorzustands
+           while True:
+               # LEDs basierend auf Sensorzustandsänderungen aktualisieren
+               speed_sensor.when_pressed = update_leds   # LEDs aktualisieren, wenn der Sensor ausgelöst wird
+               speed_sensor.when_released = update_leds  # LEDs aktualisieren, wenn der Sensor freigegeben wird
+
+       except KeyboardInterrupt:
+           # Behandlung von KeyboardInterrupt (Strg+C) für einen eleganten Skriptabbruch
+           pass
+
+
+
+

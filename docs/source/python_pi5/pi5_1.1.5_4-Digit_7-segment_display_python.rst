@@ -1,0 +1,294 @@
+.. _1.1.5_py_pi5:
+
+1.1.5 4-stellige 7-Segment-Anzeige
+====================================
+
+Einführung
+-----------------
+
+Kommen Sie und versuchen Sie mit mir, die 4-stellige 7-Segment-Anzeige zu steuern.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.1.5_4_digit_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - INHALT DES KITS
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`4_digit`
+        - \-
+    *   - :ref:`74hc595`
+        - |link_74hc595_buy|
+
+Schaltplan
+--------------------------
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO27       Pin 13   27
+GPIO22       Pin 15   22
+SPIMOSI      Pin 19   10
+GPIO18       Pin 12   18
+GPIO23       Pin 16   23
+GPIO24       Pin 18   24
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.5_4_digit_schmatic.png
+
+Experimentelle Verfahren
+-----------------------------------
+
+**Schritt 1**: Baue den Schaltkreis.
+
+.. image:: ../python_pi5/img/1.1.5_4-Digit_circuit.png
+
+**Schritt 2:** Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.5_4-Digit_zero.py
+
+Nachdem der Code ausgeführt wurde, nimmt das Programm eine Zählung vor, die jede Sekunde um 1 erhöht, und die 4-stellige Anzeige zeigt die Zählung an.
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   import time
+   import threading
+
+   # GPIO-Pins für das 74HC595-Schieberegister definieren
+   SDI = OutputDevice(24)   # Serieller Dateneingang
+   RCLK = OutputDevice(23)  # Register Clock
+   SRCLK = OutputDevice(18) # Schieberegistertakt
+
+   # GPIO-Pins zur Auswahl der Ziffern auf der 7-Segment-Anzeige definieren
+   placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+   # Segmentcodes für die Zahlen 0-9 für die 7-Segment-Anzeige definieren
+   number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+   counter = 0  # Zähler für die Anzeige initialisieren
+   timer1 = 0   # Timer für die Zählererhöhung initialisieren
+
+   def clearDisplay():
+       """ Die 7-Segment-Anzeige löschen. """
+       for _ in range(8):
+           SDI.on()
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def hc595_shift(data):
+       """ Ein Byte Daten in das 74HC595-Schieberegister verschieben. """
+       for i in range(8):
+           SDI.value = 0x80 & (data << i)  # SDI auf High/Low basierend auf Datenbit setzen
+           SRCLK.on()  # Schieberegistertakt auslösen
+           SRCLK.off()
+       RCLK.on()  # Daten am Ausgang durch Auslösen des Register Clocks übernehmen
+       RCLK.off()
+
+   def pickDigit(digit):
+       """ Eine Ziffer für die Anzeige auf der 7-Segment-Anzeige auswählen. """
+       for pin in placePin:
+           pin.off()  # Alle Ziffernauswahl-Pins ausschalten
+       placePin[digit].on()  # Die ausgewählte Ziffer einschalten
+
+   def timer():
+       """ Timer-Funktion, um den Zähler jede Sekunde zu erhöhen. """
+       global counter, timer1
+       timer1 = threading.Timer(1.0, timer)  # Timer für die nächste Erhöhung zurücksetzen
+       timer1.start()
+       counter += 1  # Zähler erhöhen
+       print("%d" % counter)  # Aktuellen Zählerwert drucken
+
+   def setup():
+       """ Anfangszustand einrichten und den Timer starten. """
+       global timer1
+       timer1 = threading.Timer(1.0, timer)  # Timer initialisieren und starten
+       timer1.start()
+
+   def loop():
+       """ Hauptloop zur Aktualisierung der 7-Segment-Anzeige mit dem Zählerwert. """
+       global counter
+       while True:
+           for i in range(4):  # Jede Ziffer durchlaufen
+               clearDisplay()  # Anzeige vor dem Setzen der neuen Ziffer löschen
+               pickDigit(i)    # Ziffer für die Anzeige auswählen
+
+               # Die Ziffer des Zählers zur Anzeige auswählen
+               digit = (counter // (10 ** i)) % 10
+
+               hc595_shift(number[digit])  # Zifferwert in 74HC595 verschieben
+               time.sleep(0.001)  # Kurze Verzögerung für die Anzeigestabilität
+
+   def destroy():
+       """ GPIO-Ressourcen freigeben und Timer bei Unterbrechung stoppen. """
+       global timer1
+       timer1.cancel()  # Den Timer stoppen
+       for device in [SDI, RCLK, SRCLK] + placePin:
+           device.close()  # GPIO-Geräte schließen
+
+   try:
+       setup()  # Setup initialisieren
+       while True:
+           loop()  # Hauptloop starten
+           
+   except KeyboardInterrupt:
+       # Skriptunterbrechung (z. B. Ctrl+C) behandeln
+       destroy()  # Ressourcen bei Beendigung freigeben
+
+
+**Code-Erklärung**
+
+#. Diese vier Pins steuern die gemeinsamen Anodenpins der vierstelligen 7-Segment-Anzeigen.
+
+   .. code-block:: python
+
+       # GPIO-Pins zur Auswahl der Ziffern auf der 7-Segment-Anzeige definieren
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+#. Ein Segmentcode-Array von 0 bis 9 in Hexadezimal (gemeinsame Anode).
+
+   .. code-block:: python
+
+       # Segmentcodes für die Zahlen 0-9 für die 7-Segment-Anzeige definieren
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Initialisiert einen Timer, der jede Sekunde die Funktion `timer` auslöst. Dies richtet die wiederkehrende Zählererhöhung ein.
+
+   .. code-block:: python
+
+       def setup():
+           """ Anfangszustand einrichten und den Timer starten. """
+           global timer1
+           timer1 = threading.Timer(1.0, timer)  # Timer initialisieren und starten
+           timer1.start()
+
+#. Nachdem der Timer 1,0 s erreicht hat, wird die Timer-Funktion aufgerufen; 1 zum Zähler addieren, und der Timer wird erneut verwendet, um sich selbst jede Sekunde wiederholt auszuführen.
+
+   .. code-block:: python
+
+       def timer():
+           """ Timer-Funktion, um den Zähler jede Sekunde zu erhöhen. """
+           global counter, timer1
+           timer1 = threading.Timer(1.0, timer)  # Timer für die nächste Erhöhung zurücksetzen
+           timer1.start()
+           counter += 1  # Zähler erhöhen
+           print("%d" % counter)  # Aktuellen Zählerwert drucken
+
+#. Verschiebt ein Byte Daten in das 74HC595-Schieberegister, um die Anzeigesegmente zu steuern.
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           """ Ein Byte Daten in das 74HC595-Schieberegister verschieben. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)  # SDI auf High/Low basierend auf Datenbit setzen
+               SRCLK.on()  # Schieberegistertakt auslösen
+               SRCLK.off()
+           RCLK.on()  # Daten am Ausgang durch Auslösen des Register Clocks übernehmen
+           RCLK.off()
+
+#. Aktualisiert kontinuierlich die Anzeige mit dem aktuellen Zählerwert, indem jede Ziffer sequenziell angezeigt wird.
+
+   .. code-block:: python
+
+       def loop():
+           """ Hauptloop zur Aktualisierung der 7-Segment-Anzeige mit dem Zählerwert. """
+           global counter
+           while True:
+               for i in range(4):  # Jede Ziffer durchlaufen
+                   clearDisplay()  # Anzeige vor dem Setzen der neuen Ziffer löschen
+                   pickDigit(i)    # Ziffer für die Anzeige auswählen
+                   digit = (counter // (10 ** i)) % 10
+                   hc595_shift(number[digit])  # Zifferwert in 74HC595 verschieben
+                   time.sleep(0.001)  # Kurze Verzögerung für die Anzeigestabilität
+
+#. Löscht die 7-Segment-Anzeige, indem alle Segmente ausgeschaltet werden, bevor die nächste Ziffer angezeigt wird.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Die 7-Segment-Anzeige löschen. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+#. Wählt aus, welche Ziffer der 7-Segment-Anzeige aktiviert werden soll. Jede Ziffer wird von einem separaten GPIO-Pin gesteuert.
+
+   .. code-block:: python
+
+       def pickDigit(digit):
+           """ Eine Ziffer für die Anzeige auf der 7-Segment-Anzeige auswählen. """
+           for pin in placePin:
+               pin.off()  # Alle Ziffernauswahl-Pins ausschalten
+           placePin[digit].on()  # Die ausgewählte Ziffer einschalten
+
+#. Gibt die GPIO-Ressourcen ordnungsgemäß frei und stoppt den Timer, wenn das Programm unterbrochen wird.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Skriptunterbrechung (z. B. Ctrl+C) behandeln
+           destroy()  # Ressourcen bei Beendigung freigeben
+

@@ -1,0 +1,375 @@
+.. _4.1.13_py_pi5:
+
+4.1.10 Überhitzungsüberwachung
+===================================
+
+Einführung
+-------------------
+
+Möglicherweise möchten Sie ein Gerät zur Überhitzungsüberwachung bauen, das in verschiedenen Situationen Anwendung findet, z.B. in der Fabrik, wenn wir bei einer Schaltkreisüberhitzung einen Alarm und das zeitnahe automatische Abschalten der Maschine wünschen. In diesem Projekt werden wir einen Thermistor, einen Joystick, einen Summer, eine LED und ein LCD verwenden, um ein intelligentes Temperaturüberwachungsgerät zu erstellen, dessen Schwellenwert einstellbar ist.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/4.1.13_overheat_monitor_list.png
+    :width: 800
+    :align: center
+
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`joystick`
+        - \-
+    *   - :ref:`adc0834`
+        - \-
+    *   - :ref:`transistor`
+        - |link_transistor_buy|
+    *   - :ref:`i2c_lcd1602`
+        - |link_i2clcd1602_buy|
+    *   - :ref:`thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`buzzer`
+        - \-
+
+Schaltplan
+--------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.13_overheat_monitor_schematic.png
+   :align: center
+
+Experimentelle Verfahren
+-----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/4.1.13_overheat_monitor_circuit.png
+
+
+**Schritt 2**: Wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3**: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 4.1.13_OverheatMonitor_zero.py
+
+Während der Code ausgeführt wird, werden die aktuelle Temperatur und der hohe Temperaturschwellenwert **40** auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur den Schwellenwert überschreitet, werden der Summer und die LED aktiviert, um Sie zu alarmieren.
+
+Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. Durch Bewegen des **Joysticks** in X- und Y-Achsenrichtung kann der aktuelle hohe Temperaturschwellenwert erhöht oder verringert werden. Ein erneutes Drücken des **Joysticks** setzt den Schwellenwert auf den Anfangswert zurück.
+
+.. note::
+
+    * Wenn Sie den Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` erhalten, müssen Sie :ref:`i2c_config` konsultieren, um den I2C zu aktivieren.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führen Sie bitte ``sudo pip3 install smbus2`` aus.
+    * Erscheint der Fehler ``OSError: [Errno 121] Remote I/O error``, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
+    * Wenn der Code und die Verdrahtung korrekt sind, das LCD aber immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
+
+
+**Code**
+
+.. note::
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuerst müssen Sie zum Quellcodepfad wie ``raphael-kit/python`` gehen. Nach der Modifikation des Codes können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   import LCD1602
+   from gpiozero import LED, Buzzer, Button
+   import ADC0834
+   import time
+   import math
+
+   # Initialisierung des Joystick-Knopfes, des Buzzers und der LED
+   Joy_BtnPin = Button(22)
+   buzzPin = Buzzer(23)
+   ledPin = LED(24)
+
+   # Festlegen der anfänglichen oberen Temperaturgrenze
+   upperTem = 40
+
+   # Einrichtung der ADC- und LCD-Module
+   ADC0834.setup()
+   LCD1602.init(0x27, 1)
+
+   def get_joystick_value():
+       """
+       Liest die Joystick-Werte und gibt einen Änderungswert basierend auf der Position des Joysticks zurück.
+       """
+       x_val = ADC0834.getResult(1)
+       y_val = ADC0834.getResult(2)
+       if x_val > 200:
+           return 1
+       elif x_val < 50:
+           return -1
+       elif y_val > 200:
+           return -10
+       elif y_val < 50:
+           return 10
+       else:
+           return 0
+
+   def upper_tem_setting():
+       """
+       Passt und zeigt die obere Temperaturgrenze auf dem LCD an.
+       """
+       global upperTem
+       LCD1602.write(0, 0, 'Obergrenze anpassen: ')
+       change = int(get_joystick_value())
+       upperTem += change
+       strUpperTem = str(upperTem)
+       LCD1602.write(0, 1, strUpperTem)
+       LCD1602.write(len(strUpperTem), 1, '              ')
+       time.sleep(0.1)
+
+   def temperature():
+       """
+       Liest die aktuelle Temperatur vom Sensor und gibt sie in Celsius zurück.
+       """
+       analogVal = ADC0834.getResult()
+       Vr = 5 * float(analogVal) / 255
+       Rt = 10000 * Vr / (5 - Vr)
+       temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+       Cel = temp - 273.15
+       return round(Cel, 2)
+
+   def monitoring_temp():
+       """
+       Überwacht und zeigt die aktuelle Temperatur und die obere Temperaturgrenze an. 
+       Aktiviert den Summer und die LED, wenn die Temperatur die obere Grenze überschreitet.
+       """
+       global upperTem
+       Cel = temperature()
+       LCD1602.write(0, 0, 'Temp: ')
+       LCD1602.write(0, 1, 'Obergrenze: ')
+       LCD1602.write(6, 0, str(Cel))
+       LCD1602.write(7, 1, str(upperTem))
+       time.sleep(0.1)
+       if Cel >= upperTem:
+           buzzPin.on()
+           ledPin.on()
+       else:
+           buzzPin.off()
+           ledPin.off()
+
+   # Hauptausführungsschleife
+   try:
+       lastState = 1
+       stage = 0
+       while True:
+           currentState = Joy_BtnPin.value
+           # Umschalten zwischen Einstellungs- und Überwachungsmodus
+           if currentState == 1 and lastState == 0:
+               stage = (stage + 1) % 2
+               time.sleep(0.1)
+               LCD1602.clear()
+           lastState = currentState
+           if stage == 1:
+               upper_tem_setting()
+           else:
+               monitoring_temp()
+   except KeyboardInterrupt:
+       # Aufräumen und Beenden
+       LCD1602.clear()
+       ADC0834.destroy()
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert die notwendigen Bibliotheken für das Projekt. ``LCD1602`` wird für das LCD-Display verwendet, ``gpiozero`` stellt Klassen für LED, Buzzer und Button bereit, ``ADC0834`` dient der Analog-Digital-Umwandlung, und ``time`` sowie ``math`` sind Python-Standardbibliotheken für zeitbezogene Funktionen und mathematische Operationen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import LCD1602
+       from gpiozero import LED, Buzzer, Button
+       import ADC0834
+       import time
+       import math
+
+#. Hier werden der Joystick-Knopf, der Buzzer und die LED initialisiert. ``Button(22)`` erstellt ein Button-Objekt, das mit dem GPIO-Pin 22 verbunden ist. ``Buzzer(23)`` und ``LED(24)`` initialisieren den Buzzer und die LED an den GPIO-Pins 23 und 24.
+
+   .. code-block:: python
+
+       # Initialisierung des Joystick-Knopfes, des Buzzers und der LED
+       Joy_BtnPin = Button(22)
+       buzzPin = Buzzer(23)
+       ledPin = LED(24)
+
+#. Legt die anfängliche obere Temperaturgrenze fest und initialisiert die ADC- und LCD-Module. Das LCD wird mit einer Adresse (``0x27``) und einem Modus (``1``) initialisiert.
+
+   .. code-block:: python
+
+       # Festlegung der anfänglichen oberen Temperaturgrenze
+       upperTem = 40
+
+       # Einrichtung der ADC- und LCD-Module
+       ADC0834.setup()
+       LCD1602.init(0x27, 1)
+
+#. Diese Funktion liest die X- und Y-Werte des Joysticks unter Verwendung von ADC0834. Sie gibt einen Änderungswert basierend auf der Position des Joysticks zurück, der zur Anpassung der Temperaturschwelle verwendet wird.
+
+   .. code-block:: python
+
+       def get_joystick_value():
+           """
+           Liest die Joystick-Werte und gibt einen Änderungswert basierend auf der Position des Joysticks zurück.
+           """
+           x_val = ADC0834.getResult(1)
+           y_val = ADC0834.getResult(2)
+           if x_val > 200:
+               return 1
+           elif x_val < 50:
+               return -1
+           elif y_val > 200:
+               return -10
+           elif y_val < 50:
+               return 10
+           else:
+               return 0
+
+#. Passt die obere Temperaturgrenze unter Verwendung des Joystick-Eingangs an. Die neue Grenze wird auf dem LCD angezeigt.
+
+   .. code-block:: python
+
+       def upper_tem_setting():
+           """
+           Passt und zeigt die obere Temperaturschwelle auf dem LCD an.
+           """
+           global upperTem
+           LCD1602.write(0, 0, 'Obergrenze einstellen: ')
+           change = int(get_joystick_value())
+           upperTem += change
+           strUpperTem = str(upperTem)
+           LCD1602.write(0, 1, strUpperTem)
+           LCD1602.write(len(strUpperTem), 1, '              ')
+           time.sleep(0.1)
+
+#. Liest die aktuelle Temperatur vom Sensor mit ADC0834 und konvertiert sie in Celsius.
+
+   .. code-block:: python
+
+       def temperature():
+           """
+           Liest die aktuelle Temperatur vom Sensor und gibt sie in Celsius zurück.
+           """
+           analogVal = ADC0834.getResult()
+           Vr = 5 * float(analogVal) / 255
+           Rt = 10000 * Vr / (5 - Vr)
+           temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+           Cel = temp - 273.15
+           return round(Cel, 2)
+
+#. Überwacht und zeigt die aktuelle Temperatur und die obere Grenze an. Wenn die Temperatur die obere Grenze überschreitet, werden der Buzzer und die LED aktiviert.
+
+   .. code-block:: python
+
+       def monitoring_temp():
+           """
+           Überwacht und zeigt die aktuelle Temperatur und die obere Temperaturschwelle an. 
+           Aktiviert den Buzzer und die LED, wenn die Temperatur die obere Grenze überschreitet.
+           """
+           global upperTem
+           Cel = temperature()
+           LCD1602.write(0, 0, 'Temp: ')
+           LCD1602.write(0, 1, 'Obergrenze: ')
+           LCD1602.write(6, 0, str(Cel))
+           LCD1602.write(7, 1, str(upperTem))
+           time.sleep(0.1)
+           if Cel >= upperTem:
+               buzzPin.on()
+               ledPin.on()
+           else:
+               buzzPin.off()
+               ledPin.off()
+
+#. Die Hauptausführungsschleife wechselt basierend auf Joystick-Knopfdrücken zwischen Einstellungs- und Überwachungsmodi. Sie aktualisiert kontinuierlich entweder die Temperatureinstellung oder überwacht die aktuelle Temperatur.
+
+   .. code-block:: python
+
+       # Hauptausführungsschleife
+       try:
+           lastState = 1
+           stage = 0
+           while True:
+               currentState = Joy_BtnPin.value
+               # Wechsel zwischen Einstellungs- und Überwachungsmodus
+               if currentState == 1 and lastState == 0:
+                   stage = (stage + 1) % 2
+                   time.sleep(0.1)
+                   LCD1602.clear()
+               lastState = currentState
+               if stage == 1:
+                   upper_tem_setting()
+               else:
+                   monitoring_temp()
+
+#. Dieser Abschnitt stellt eine ordnungsgemäße Bereinigung und Ressourcenfreigabe sicher, wenn das Programm unterbrochen wird.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Bereinigen und beenden
+           LCD1602.clear()
+           ADC0834.destroy()
+

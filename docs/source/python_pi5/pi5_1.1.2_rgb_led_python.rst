@@ -1,0 +1,179 @@
+.. _1.1.2_py_pi5:
+
+1.1.2 RGB-LED
+====================
+
+Einführung
+--------------
+
+In diesem Projekt werden wir eine RGB-LED steuern, um verschiedene Farben blinken zu lassen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.1.2_rgb_led_list.png
+    :align: center
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - INHALT DES KITS
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können auch separat über die untenstehenden Links gekauft werden.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`rgb_led`
+        - |link_rgb_led_buy|
+
+
+Schaltplan
+-----------------------
+
+Nachdem die Pins von R, G und B mit einem Strombegrenzungswiderstand verbunden wurden, schließen Sie sie jeweils an GPIO17, GPIO18 und GPIO27 an. Der längste Pin (GND) der LED verbindet sich mit dem GND des Raspberry Pi. Wenn den drei Pins unterschiedliche PWM-Werte gegeben werden, zeigt die RGB-LED verschiedene Farben an.
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO18       Pin 12   18
+GPIO27       Pin 13   27
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.2_rgb_led_schematic.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Baue den Schaltkreis.
+
+.. image:: ../python_pi5/img/1.1.2_rgbLed_circuit.png
+
+**Schritt 2:** Öffne die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.2_rgbLed_zero.py
+
+Nachdem der Code ausgeführt wurde, sehen Sie, dass RGB Rot, Grün, Blau,
+Gelb, Rosa und Cyan anzeigt.
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RGBLED
+   from time import sleep
+
+   # Definiere eine Liste von Farben für die RGB-LED im RGB-Format (Rot, Grün, Blau).
+   # Jede Farbkomponente reicht von 0 (aus) bis 1 (volle Intensität).
+   FARBEN = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+
+   # Initialisiere eine RGB-LED. Verbinde die rote Komponente mit GPIO 17, grün mit GPIO 18 und blau mit GPIO 27.
+   rgb_led = RGBLED(red=17, green=18, blue=27)
+
+   try:
+       # Durchlaufe kontinuierlich die definierten Farben.
+       while True:
+           for farbe in FARBEN:
+               # Stelle die RGB-LED auf die aktuelle Farbe ein.
+               rgb_led.color = farbe
+               # Ausgabe der aktuellen Farbe auf der Konsole.
+               print(f"Farbe eingestellt auf: {farbe}")
+               # Warte 1 Sekunde, bevor zur nächsten Farbe gewechselt wird.
+               sleep(1)
+
+   except KeyboardInterrupt:
+       # Behandle ein Tastaturunterbrechungssignal (Ctrl+C) um die Schleife elegant zu beenden.
+       # Die Bereinigung der GPIO wird automatisch von GPIO Zero bei der Skriptbeendigung verwaltet.
+       pass
+
+**Code-Erklärung**
+
+#. Dies importiert die Klasse ``RGBLED`` aus der Bibliothek ``gpiozero`` zur Steuerung einer RGB-LED und die Bibliothek ``time`` für Verzögerungen im Code.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import RGBLED
+       from time import sleep
+
+       # Definiere eine Liste von Farben für die RGB-LED im RGB-Format (Rot, Grün, Blau).
+       # Jede Farbkomponente reicht von 0 (aus) bis 1 (volle Intensität).
+    
+#. Die Liste ``FARBEN`` enthält Tupel, die verschiedene Farben im RGB-Format darstellen. Indem man den R, G und B Pins durch das Attribut ``rgb_led.color`` unterschiedliche Pulsweitenmodulation (PWM) Werte zuweist, kann die LED eine Vielzahl von Farben produzieren. Die PWM-Werte reichen von 0 bis 1, wobei 0 keine Intensität (aus) und 1 volle Intensität für jede Farbkomponente darstellt.
+#. Eine RGB-LED wird initialisiert, indem ihre roten, grünen und blauen Komponenten jeweils mit den GPIO-Pins 17, 18 und 27 verbunden werden.
+
+   .. code-block:: python
+
+       # Initialisiere eine RGB-LED. Verbinde die rote Komponente mit GPIO 17, grün mit GPIO 18 und blau mit GPIO 27.
+       rgb_led = RGBLED(red=17, green=18, blue=27)
+
+#. Die Schleife ``while True:`` durchläuft kontinuierlich die in ``FARBEN`` definierten Farben. Für jede Farbe stellt ``rgb_led.color = farbe`` die LED auf diese Farbe ein, und ``sleep(1)`` pausiert für 1 Sekunde.
+
+   .. code-block:: python
+
+       try:
+           # Durchlaufe kontinuierlich die definierten Farben.
+           while True:
+               for farbe in FARBEN:
+                   # Stelle die RGB-LED auf die aktuelle Farbe ein.
+                   rgb_led.color = farbe
+                   # Ausgabe der aktuellen Farbe auf der Konsole.
+                   print(f"Farbe eingestellt auf: {farbe}")
+                   # Warte 1 Sekunde, bevor zur nächsten Farbe gewechselt wird.
+                   sleep(1)
+
+#. Dieser Abschnitt behandelt ein ``KeyboardInterrupt`` (wie das Drücken von Ctrl+C) auf elegante Weise. Das ``pass``-Statement wird als Platzhalter verwendet, um anzugeben, dass keine spezifische Aktion bei Unterbrechung durchgeführt wird, da GPIO Zero die GPIO-Bereinigung automatisch handhabt.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Behandle ein Tastaturunterbrechungssignal (Ctrl+C) um die Schleife elegant zu beenden.
+           # Die Bereinigung der GPIO wird automatisch von GPIO Zero bei der Skriptbeendigung verwaltet.
+           pass

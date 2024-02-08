@@ -1,0 +1,155 @@
+.. _2.2.5_py_pi5:
+
+2.2.4 IR-Hindernisvermeidungssensor
+========================================
+
+Einführung
+-----------------
+
+In diesem Projekt werden wir den IR-Hindernisvermeidungssensor kennenlernen, ein Sensormodul, das zur Erkennung von Hindernissen auf kurze Distanzen verwendet werden kann. Es zeichnet sich durch geringe Störungen, einfache Montage und Benutzerfreundlichkeit aus und findet breite Anwendung in der Roboter-Hindernisvermeidung, Hindernisvermeidungswagen, Montagelinienzählung usw.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/2.2.5_ir_obstacle_list.png
+   :width: 700
+   :align: center
+
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM SET
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`infrared_avoidance`
+        - |link_obstacle_avoidance_buy|
+
+Schaltplan
+-----------------------
+
+.. image:: ../python_pi5/img/2.2.5_ir_obstacle_list_schematic.png
+   :width: 500
+   :align: center
+
+Experimentelle Verfahren
+-------------------------
+
+**Schritt 1:** Baue die Schaltung
+
+.. image:: ../python_pi5/img/2.2.5_ir_obstacle_circuit.png
+   :width: 700
+   :align: center
+
+**Schritt 2:** Wechsle das Verzeichnis.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+   
+   cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo python3 2.2.5_IrObstacle_zero.py
+
+Nachdem der Code ausgeführt wurde, leuchtet die Ausgangsanzeige auf dem Modul auf, und "Detected Barrier!" wird wiederholt auf dem Bildschirm gedruckt, solange Ihre Hand vor dem Sensor des Moduls ist.
+
+**Code**
+
+.. note::
+
+   Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python-pi5`` wechseln. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Button
+   import time
+
+   # Initialisiere den Hindernissensor, verbunden mit GPIO Pin 17
+   # Der Sensor ist mit einem Pull-up-Widerstand konfiguriert
+   obstacle_sensor = Button(17, pull_up=True)  
+
+   try:
+      # Kontinuierliches Überwachen auf Hindernisse
+      while True:
+         if obstacle_sensor.is_pressed:  # Prüfe, ob der Sensor ausgelöst ist
+               print("Detected Barrier!")  # Nachricht ausgeben, wenn ein Hindernis erkannt wird
+               time.sleep(1)  # Verzögerung von 1 Sekunde, um wiederholte Nachrichten zu vermeiden
+
+   except KeyboardInterrupt:
+      # Behandlung von KeyboardInterrupt (Strg+C) für einen sauberen und sicheren Ausstieg
+      pass
+
+
+**Code-Erklärung**
+
+#. Diese Zeile legt fest, dass das Skript mit Python 3 ausgeführt wird. Sie importiert die Klasse ``Button`` von gpiozero (verwendet für den Hindernissensor) und das Modul ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+      #!/usr/bin/env python3
+      from gpiozero import Button
+      import time
+
+#. Initialisiert einen Hindernissensor, verbunden mit GPIO Pin 17 mit einem internen Pull-up-Widerstand.
+
+   .. code-block:: python
+
+      # Initialisiere den Hindernissensor, verbunden mit GPIO Pin 17
+      # Der Sensor ist mit einem Pull-up-Widerstand konfiguriert
+      obstacle_sensor = Button(17, pull_up=True)  
+
+#. In einer fortlaufenden Schleife überprüft das Programm, ob der Hindernissensor aktiviert ist (``is_pressed``). Wenn ein Hindernis erkannt wird, druckt es "Detected Barrier!" und wartet dann eine Sekunde (um wiederholte Nachrichten zu vermeiden). Die ``try-except``-Struktur wird verwendet, um eine KeyboardInterrupt für einen sauberen Ausstieg zu behandeln.
+
+   .. code-block:: python
+
+      try:
+         # Kontinuierliches Überwachen auf Hindernisse
+         while True:
+            if obstacle_sensor.is_pressed:  # Prüfe, ob der Sensor ausgelöst ist
+                  print("Detected Barrier!")  # Nachricht ausgeben, wenn ein Hindernis erkannt wird
+                  time.sleep(1)  # Verzögerung von 1 Sekunde, um wiederholte Nachrichten zu vermeiden
+
+      except KeyboardInterrupt:
+         # Behandlung von KeyboardInterrupt (Strg+C) für einen sauberen und sicheren Ausstieg
+         pass
+
+

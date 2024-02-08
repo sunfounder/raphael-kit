@@ -1,0 +1,287 @@
+.. _4.1.9_py_pi5:
+
+4.1.6 Einparkhilfe
+======================================
+
+Einführung
+-------------
+
+In diesem Projekt verwenden wir ein LCD, einen Summer und Ultraschallsensoren, um ein Rückfahrassistenzsystem zu erstellen. Wir können es auf ein ferngesteuertes Fahrzeug setzen, um den tatsächlichen Prozess des Einparkens in eine Garage zu simulieren.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/4.1.9_reversing_alarm_list.png
+    :width: 800
+    :align: center
+
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`buzzer`
+        - \-
+    *   - :ref:`transistor`
+        - |link_transistor_buy|
+    *   - :ref:`ultrasonic_sensor`
+        - |link_ultrasonic_buy|
+    *   - :ref:`i2c_lcd1602`
+        - |link_i2clcd1602_buy|
+
+Schaltplan
+--------------------
+
+Der Ultraschallsensor erfasst den Abstand zwischen sich und dem Hindernis, der in Form von Code auf dem LCD angezeigt wird. Gleichzeitig lässt der Ultraschallsensor den Summer Warnsignale unterschiedlicher Frequenz abgeben, je nach Abstandswert.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO17       Pin 11   0        17
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.9_reversing_alarm_schematic.png
+   :align: center
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/4.1.9_reversing_alarm_circuit.png
+    :align: center
+
+**Schritt 2:** Verzeichnis wechseln.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.9_ReversingAlarm_zero.py
+
+Während der Code ausgeführt wird, erfasst das Ultraschallmodul den Abstand zum Hindernis und zeigt die Informationen über den Abstand auf dem LCD1602 an; außerdem gibt der Summer einen Warnton ab, dessen Frequenz sich mit dem Abstand ändert.
+
+.. note::
+
+    * Wenn Sie den Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` erhalten, müssen Sie :ref:`i2c_config` konsultieren, um den I2C zu aktivieren.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führen Sie bitte ``sudo pip3 install smbus2`` aus.
+    * Erscheint der Fehler ``OSError: [Errno 121] Remote I/O error``, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
+    * Wenn der Code und die Verdrahtung korrekt sind, das LCD aber immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
+
+
+**Code**
+
+.. note::
+    Sie können den untenstehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber zuerst müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nach der Modifikation des Codes können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+    import LCD1602
+    import time
+    from gpiozero import DistanceSensor, Buzzer
+
+    # Initialisieren des Ultraschallsensors mit GPIO-Pins
+    sensor = DistanceSensor(echo=24, trigger=23)  # Echo-Pin ist GPIO 24, Trigger-Pin ist GPIO 23
+
+    # Initialisieren des Buzzers an GPIO-Pin 17
+    buzzer = Buzzer(17)
+
+    def lcdsetup():
+        # Initialisieren des LCDs mit I2C-Adresse und Aktivieren der Hintergrundbeleuchtung
+        LCD1602.init(0x27, 1)  # 0x27 ist die I2C-Adresse des LCDs
+        LCD1602.clear()  # Das LCD-Display löschen
+        # Anzeigen von Startnachrichten auf dem LCD
+        LCD1602.write(0, 0, 'Ultraschall startet')
+        LCD1602.write(1, 1, 'Von SunFounder')
+        time.sleep(2)  # 2 Sekunden warten
+
+    def distance():
+        # Berechnen und Rückgabe des vom Sensor gemessenen Abstands
+        dis = sensor.distance * 100  # Umrechnung des Abstands in Zentimeter
+        print('Abstand: {:.2f} cm'.format(dis))  # Ausgabe des Abstands mit zwei Dezimalstellen
+        time.sleep(0.3)  # 0,3 Sekunden warten vor der nächsten Messung
+        return dis
+
+    def loop():
+        # Kontinuierliche Messung des Abstands und Aktualisierung von LCD und Summer
+        while True:
+            dis = distance()  # Den aktuellen Abstand erhalten
+            # Abstand anzeigen und Warnungen basierend auf dem Abstand behandeln
+            if dis > 400:  # Überprüfen, ob der Abstand außerhalb des Bereichs liegt
+                LCD1602.clear()
+                LCD1602.write(0, 0, 'Fehler')
+                LCD1602.write(3, 1, 'Außer Reichweite')
+                time.sleep(0.5)
+            else:
+                # Den aktuellen Abstand auf dem LCD anzeigen
+                LCD1602.clear()
+                LCD1602.write(0, 0, 'Abstand ist')
+                LCD1602.write(5, 1, str(round(dis, 2)) + ' cm')
+                # Anpassen der Summerfrequenz basierend auf dem Abstand
+                if dis >= 50:
+                    time.sleep(0.5)
+                elif 20 < dis < 50:
+                    # Mittlerer Abstand: mittlere Summerfrequenz
+                    for _ in range(2):
+                        buzzer.on()
+                        time.sleep(0.05)
+                        buzzer.off()
+                        time.sleep(0.2)
+                elif dis <= 20:
+                    # Geringer Abstand: hohe Summerfrequenz
+                    for _ in range(5):
+                        buzzer.on()
+                        time.sleep(0.05)
+                        buzzer.off()
+                        time.sleep(0.05)
+
+    try:
+        lcdsetup()  # Das LCD-Display einrichten
+        loop()      # Den Messzyklus starten
+    except KeyboardInterrupt:
+        # Summer ausschalten und LCD löschen bei Benutzerunterbrechung (z.B. Ctrl+C)
+        buzzer.off()
+        LCD1602.clear()
+
+
+
+**Code-Erklärung**
+
+#. Dieses Skript verwendet mehrere Bibliotheken für seine Funktionalität. Die ``LCD1602``-Bibliothek verwaltet das LCD-Display, während ``time`` zeitbezogene Funktionen bereitstellt. Die ``gpiozero``-Bibliothek ist wesentlich für die Interaktion mit den GPIO-Pins des Raspberry Pi, insbesondere für den Betrieb des DistanceSensor und Buzzer.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       import LCD1602
+       import time
+       from gpiozero import DistanceSensor, Buzzer
+
+#. Der Ultraschallsensor wird mit seinen Echo- und Trigger-Pins an die GPIO-Pins 24 bzw. 23 angeschlossen. Zusätzlich ist ein Summer an den GPIO-Pin 17 angeschlossen.
+
+   .. code-block:: python
+
+       # Initialize the ultrasonic sensor with GPIO pins
+       sensor = DistanceSensor(echo=24, trigger=23)  # Echo pin is GPIO 24, Trigger pin is GPIO 23
+
+       # Initialize the buzzer connected to GPIO pin 17
+       buzzer = Buzzer(17)
+
+#. Die Initialisierung des LCD-Displays beinhaltet das Löschen desselben und das Anzeigen einer Startnachricht.
+
+   .. code-block:: python
+
+       def lcdsetup():
+           # Initialize the LCD with I2C address and enable backlight
+           LCD1602.init(0x27, 1)  # 0x27 is the I2C address of the LCD
+           LCD1602.clear()  # Clear the LCD display
+           # Display startup messages on LCD
+           LCD1602.write(0, 0, 'Ultrasonic Starting')
+           LCD1602.write(1, 1, 'By SunFounder')
+           time.sleep(2)  # Wait for 2 seconds
+
+#. Die Funktion ``distance`` berechnet den vom Ultraschallsensor gemessenen Abstand und gibt diesen Wert in Zentimetern zurück.
+
+   .. code-block:: python
+
+       def distance():
+           # Calculate and return the distance measured by the sensor
+           dis = sensor.distance * 100  # Convert distance to centimeters
+           print('Distance: {:.2f} cm'.format(dis))  # Print distance with two decimal places
+           time.sleep(0.3)  # Wait for 0.3 seconds before next measurement
+           return dis
+
+#. Die Hauptschleife misst kontinuierlich den Abstand, aktualisiert sowohl das LCD als auch den Summer. Sie behandelt verschiedene Abstandsbereiche mit spezifischen Aktionen, wie das Anzeigen von Fehlermeldungen oder das Variieren der Summerfrequenzen basierend auf dem gemessenen Abstand.
+
+   .. code-block:: python
+
+       def loop():
+           # Continuously measure distance and update LCD and buzzer
+           while True:
+               dis = distance()  # Get the current distance
+               # Display distance and handle alerts based on distance
+               if dis > 400:  # Check if distance is out of range
+                   LCD1602.clear()
+                   LCD1602.write(0, 0, 'Error')
+                   LCD1602.write(3, 1, 'Out of range')
+                   time.sleep(0.5)
+               else:
+                   # Display current distance on LCD
+                   LCD1602.clear()
+                   LCD1602.write(0, 0, 'Distance is')
+                   LCD1602.write(5, 1, str(round(dis, 2)) + ' cm')
+                   # Adjust buzzer frequency based on distance
+                   if dis >= 50:
+                       time.sleep(0.5)
+                   elif 20 < dis < 50:
+                       # Medium distance: medium buzzer frequency
+                       for _ in range(2):
+                           buzzer.on()
+                           time.sleep(0.05)
+                           buzzer.off()
+                           time.sleep(0.2)
+                   elif dis <= 20:
+                       # Close distance: high buzzer frequency
+                       for _ in range(5):
+                           buzzer.on()
+                           time.sleep(0.05)
+                           buzzer.off()
+                           time.sleep(0.05)
+
+#. Bei Ausführung richtet das Skript das LCD ein und tritt in die Hauptschleife ein. Es kann mit einem Tastaturbefehl (Ctrl+C) unterbrochen werden, wodurch der Summer ausgeschaltet und das LCD gelöscht wird.
+
+   .. code-block:: python
+
+       try:
+           lcdsetup()  # Setup the LCD display
+           loop()      # Start the measurement loop
+       except KeyboardInterrupt:
+           # Turn off buzzer and clear LCD on user interrupt (e.g., Ctrl+C)
+           buzzer.off()
+           LCD1602.clear()

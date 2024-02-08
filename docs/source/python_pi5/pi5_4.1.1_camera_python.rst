@@ -1,0 +1,282 @@
+.. _4.1.1_py_pi5:
+
+4.1.1 Kamera
+~~~~~~~~~~~~~~~~
+
+Einführung
+-----------------
+
+Hier werden wir eine Kamera mit einem Auslöser bauen, bei deren Betätigung die Kamera ein Foto macht, während die LED blinkt.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/4.1.1_camera_list.png
+  :width: 800
+  :align: center
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`button`
+        - |link_button_buy|
+    *   - :ref:`camera_module`
+        - |link_camera_buy|
+
+Schaltplan
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.1_camera_schematic.png
+   :align: center
+
+Experimentelle Verfahren
+------------------------------
+
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../python_pi5/img/4.1.1_camera_circuit.png
+  :width: 800
+  :align: center
+
+**Schritt 2:** Um das Kameramodul anzuschließen und die Konfiguration abzuschließen, siehe: :ref:`camera_module`.
+
+**Schritt 3:** Gehen Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`windows_remote_desktop`.
+
+**Schritt 4:** Öffnen Sie ein Terminal und wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 5:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.1_Camera_zero.py
+
+Nachdem der Code ausgeführt wurde, drücken Sie den Knopf, der Raspberry Pi wird die LED blinken lassen und ein Foto machen. Das Foto wird ``my_photo.jpg`` genannt und im Verzeichnis ``~`` gespeichert.
+
+.. note::
+
+    Sie können auch ``4.1.1_Camera_zero.py`` im Pfad ``~/raphael-kit/python/`` mit einer Python-IDE öffnen, den Ausführen-Button klicken, um es zu starten, und den Code mit dem Stop-Button beenden.
+
+Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
+
+**Code**
+
+.. note::
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie dies tun, müssen Sie zum Quellcodepfad wie ``raphael-kit/python`` gehen. Nach der Änderung des Codes können Sie ihn direkt ausführen, um die Auswirkung zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   von picamera2 import Picamera2, Preview
+   von gpiozero import LED, Button
+   import time
+   import os
+
+   # Den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers abrufen
+   user = os.getlogin()
+   user_home = os.path.expanduser(f'~{user}')
+
+   # Die Kamera initialisieren
+   camera = Picamera2()
+   camera.start()
+
+   # Eine Variable initialisieren, um den Status der Kamera zu verfolgen
+   global status
+   status = False
+
+   # LED und Knopf mit ihren GPIO-Pinnummern einrichten
+   led = LED(17)
+   button = Button(18)
+
+   def takePhotos(pin):
+       """Funktion, um den Kamerastatus auf True zu setzen, wenn der Knopf gedrückt wird."""
+       global status
+       status = True
+
+   try:
+       # Die Funktion zuweisen, die aufgerufen werden soll, wenn der Knopf gedrückt wird
+       button.when_pressed = takePhotos
+       
+       # Hauptschleife
+       while True:
+           # Überprüfen, ob der Knopf gedrückt wurde
+           if status:
+               # Die LED fünfmal blinken lassen
+               for i in range(5):
+                   led.on()
+                   time.sleep(0.1)
+                   led.off()
+                   time.sleep(0.1)
+               # Ein Foto aufnehmen und speichern
+               camera.capture_file(f'{user_home}/my_photo.jpg')
+               print('Foto aufgenommen!')          
+               # Den Status zurücksetzen
+               status = False
+           else:
+               # Die LED ausschalten, wenn nicht aufgenommen wird
+               led.off()
+           
+           # Kurz warten, bevor der Knopfstatus erneut überprüft wird
+           time.sleep(1)
+
+   except KeyboardInterrupt:
+       # Die Kamera stoppen und die LED ausschalten, wenn ein KeyboardInterrupt auftritt
+       camera.stop_preview()
+       led.off()
+       pass
+
+**Code-Erklärung**
+
+#. Importiert die notwendigen Bibliotheken für Zeitsteuerung, Kamerasteuerung und GPIO-Komponentensteuerung.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       von picamera2 import Picamera2, Preview
+       von gpiozero import LED, Button
+       import time
+       import os
+
+#. Ruft den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers ab, um Fotos zu speichern.
+
+   .. code-block:: python
+
+       # Den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers abrufen
+       user = os.getlogin()
+       user_home = os.path.expanduser(f'~{user}')
+
+#. Initialisiert die Kamera und startet sie.
+
+   .. code-block:: python
+
+       # Die Kamera initialisieren
+       camera = Picamera2()
+       camera.start()
+
+#. Deklariert ``status`` als globale Variable und initialisiert sie mit ``False``.
+
+   .. code-block:: python
+
+       # Eine Variable initialisieren, um den Status der Kamera zu verfolgen
+       global status
+       status = False
+
+#. Initialisiert eine LED, die mit dem GPIO-Pin 17 verbunden ist, und einen Knopf, der mit dem GPIO-Pin 18 verbunden ist.
+
+   .. code-block:: python
+
+       # LED und Knopf mit ihren GPIO-Pinnummern einrichten
+       led = LED(17)
+       button = Button(18)
+
+#. Definiert eine Funktion ``takePhotos``, die die globale Variable ``status`` auf ``True`` setzt, wenn der Knopf gedrückt wird.
+
+   .. code-block:: python
+
+       def takePhotos(pin):
+           """Funktion, um den Kamerastatus auf True zu setzen, wenn der Knopf gedrückt wird."""
+           global status
+           status = True
+
+#. Weist die Funktion ``takePhotos`` zu, die aufgerufen werden soll, wenn der Knopf gedrückt wird.
+
+   .. code-block:: python
+
+       try:
+           # Die Funktion zuweisen, die aufgerufen werden soll, wenn der Knopf gedrückt wird
+           button.when_pressed = takePhotos
+           
+           ...
+#. Überprüft kontinuierlich, ob der ``status`` ``True`` ist. Wenn ja, lässt es die LED fünfmal blinken, macht ein Foto und setzt ``status`` zurück. Wenn nicht, bleibt die LED aus. Es gibt eine 1-Sekunden-Verzögerung zwischen den Iterationen der Schleife.
+
+   .. code-block:: python
+
+       try:        
+           ...
+           
+           # Hauptschleife
+           while True:
+               # Überprüfen, ob der Knopf gedrückt wurde
+               if status:
+                   # Die LED fünfmal blinken lassen
+                   for i in range(5):
+                       led.on()
+                       time.sleep(0.1)
+                       led.off()
+                       time.sleep(0.1)
+                   # Ein Foto aufnehmen und speichern
+                   camera.capture_file(f'{user_home}/my_photo.jpg')
+                   print('Foto aufgenommen!')          
+                   # Den Status zurücksetzen
+                   status = False
+               else:
+                   # Die LED ausschalten, wenn nicht aufgenommen wird
+                   led.off()
+               
+               # Kurz warten, bevor der Knopfstatus erneut überprüft wird
+               time.sleep(1)
+
+#. Fängt ein KeyboardInterrupt (wie Ctrl+C) ab und stoppt die Kameravorschau und schaltet die LED aus, bevor das Programm beendet wird.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Die Kamera stoppen und die LED ausschalten, wenn ein KeyboardInterrupt auftritt
+           camera.stop_preview()
+           led.off()
+           pass
+
+

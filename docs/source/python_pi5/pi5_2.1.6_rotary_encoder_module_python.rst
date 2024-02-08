@@ -1,0 +1,201 @@
+.. _2.1.6_py_pi5:
+
+2.1.6 Drehencoder-Modul
+=================================
+
+Einleitung
+-------------------
+
+In diesem Projekt werden Sie den Drehencoder kennenlernen. Ein Drehencoder ist ein elektronischer Schalter mit einer Reihe von regelmäßigen Impulsen in streng zeitlicher Reihenfolge. In Verbindung mit einem IC kann er zur Erhöhung, Verringerung, zum Umblättern und für andere Operationen wie Maus-Scrolling, Menüauswahl usw. verwendet werden.
+
+Benötigte Komponenten
+-------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`rotary_encoder`
+        - |link_rotary_encoder_buy|
+
+Schaltplan
+------------------
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_schematic.png
+   :align: center
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.1.6_rotary_encoder_circuit.png
+
+In diesem Beispiel können wir den Drehencoder direkt mit dem Raspberry Pi über ein Steckbrett und ein 40-Pin-Kabel verbinden, den GND des Drehencoders mit GND, 「+」mit 5V, SW mit digitalem GPIO27, DT mit digitalem GPIO18 und CLK mit digitalem GPIO 17 verbinden.
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.6_RotaryEncoder_zero.py
+
+Sie werden den Zählerstand in der Shell sehen. Wenn Sie den Drehencoder im Uhrzeigersinn drehen, wird der Zähler erhöht; wenn Sie ihn gegen den Uhrzeigersinn drehen, wird der Zähler verringert. Wenn Sie den Schalter am Drehencoder drücken, werden die Messwerte auf null zurückgesetzt.
+
+**Code**
+
+.. note::
+
+   Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RotaryEncoder, Button
+   from time import sleep
+
+   # Initialisierung des Drehencoders und des Knopfes
+   encoder = RotaryEncoder(a=17, b=18)  # Drehencoder verbunden mit den GPIO-Pins 17 (CLK) und 18 (DT)
+   button = Button(27)                  # Knopf verbunden mit dem GPIO-Pin 27
+
+   global_counter = 0  # Verfolgt die Position des Drehencoders
+
+   def rotary_change():
+      """ Aktualisiert den globalen Zähler basierend auf der Drehung des Drehencoders. """
+      global global_counter
+      global_counter += encoder.steps  # Zähler basierend auf den Schritten des Encoders anpassen
+      encoder.steps = 0  # Encoder-Schritte nach der Aktualisierung des Zählers zurücksetzen
+      print('Globaler Zähler =', global_counter)  # Aktuellen Zählerwert anzeigen
+
+   def reset_counter():
+      """ Setzt den globalen Zähler auf null zurück, wenn der Knopf gedrückt wird. """
+      global global_counter
+      global_counter = 0  # Zähler zurücksetzen
+      print('Zähler zurückgesetzt')  # Hinweis auf Zähler-Rücksetzung
+
+   # Zuweisen der Funktion reset_counter zum Ereignis des Knopfdrucks
+   button.when_pressed = reset_counter
+
+   try:
+      # Kontinuierliche Überwachung des Drehencoders und Bearbeitung von Änderungen
+      while True:
+         rotary_change()  # Änderungen am Drehencoder bearbeiten
+         sleep(0.1)  # Kurze Verzögerung, um die CPU-Last zu reduzieren
+
+   except KeyboardInterrupt:
+      # Elegante Behandlung einer Tastaturunterbrechung (Strg+C)
+      pass
+
+
+**Code-Analyse**
+
+#. Importiert die Klassen ``RotaryEncoder`` und ``Button`` aus der Bibliothek ``gpiozero`` und die Funktion ``sleep`` für Verzögerungen.
+
+   .. code-block:: python
+
+      #!/usr/bin/env python3
+      from gpiozero import RotaryEncoder, Button
+      from time import sleep
+
+#. Initialisiert den Drehencoder mit den GPIO-Pins 17 und 18 und einen Knopf am GPIO-Pin 27.
+
+   .. code-block:: python
+
+      # Initialisierung des Drehencoders und des Knopfes
+      encoder = RotaryEncoder(a=17, b=18)  # Drehencoder verbunden mit den GPIO-Pins 17 (CLK) und 18 (DT)
+      button = Button(27)                  # Knopf verbunden mit dem GPIO-Pin 27
+
+#. Deklariert eine globale Variable ``global_counter``, um die Position des Drehencoders zu verfolgen.
+
+   .. code-block:: python
+
+      global_counter = 0  # Verfolgt die Position des Drehencoders
+
+#. Definiert eine Funktion ``rotary_change``, um den globalen Zähler basierend auf der Drehung des Drehencoders zu aktualisieren.
+
+   .. code-block:: python
+
+      def rotary_change():
+         """ Aktualisiert den globalen Zähler basierend auf der Drehung des Drehencoders. """
+         global global_counter
+         global_counter += encoder.steps  # Zähler basierend auf den Schritten des Encoders anpassen
+         encoder.steps = 0  # Encoder-Schritte nach der Aktualisierung des Zählers zurücksetzen
+         print('Globaler Zähler =', global_counter)  # Aktuellen Zählerwert anzeigen
+
+#. Definiert eine Funktion ``reset_counter``, um den globalen Zähler auf null zurückzusetzen, wenn der Knopf gedrückt wird.
+
+   .. code-block:: python
+
+      def reset_counter():
+         """ Setzt den globalen Zähler auf null zurück, wenn der Knopf gedrückt wird. """
+         global global_counter
+         global_counter = 0  # Zähler zurücksetzen
+         print('Zähler zurückgesetzt')  # Hinweis auf Zähler-Rücksetzung
+
+#. Weist die Funktion ``reset_counter`` dem Druckereignis des Knopfes zu.
+
+   .. code-block:: python
+
+      # Zuweisen der Funktion reset_counter zum Ereignis des Knopfdrucks
+      button.when_pressed = reset_counter
+
+#. In einer kontinuierlichen Schleife ruft das Skript ``rotary_change`` auf, um Änderungen am Drehencoder zu bearbeiten, und führt eine kurze Verzögerung ein, um die CPU-Last zu verringern. Verwendet einen try-except-Block, um KeyboardInterrupts anmutig zu behandeln.
+
+   .. code-block:: python
+
+      try:
+         # Kontinuierliche Überwachung des Drehencoders und Bearbeitung von Änderungen
+         while True:
+            rotary_change()  # Änderungen am Drehencoder bearbeiten
+            sleep(0.1)  # Kurze Verzögerung, um die CPU-Last zu reduzieren
+
+      except KeyboardInterrupt:
+         # Elegante Behandlung einer Tastaturunterbrechung (Strg+C)
+         pass
+

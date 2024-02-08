@@ -1,0 +1,177 @@
+.. _1.2.1_py_pi5:
+
+1.2.1 Aktiver Summer
+==================================
+
+Einleitung
+--------------------
+
+In diesem Projekt lernen wir, wie man einen aktiven Summer mit einem PNP-Transistor zum Piepen bringt.
+
+Benötigte Komponenten
+-----------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`buzzer`
+        - \-
+    *   - :ref:`transistor`
+        - |link_transistor_buy|
+
+
+Schaltplan
+------------------------
+
+In diesem Experiment werden ein aktiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet, der zwischen der Basis des Transistors und GPIO liegt, um den Transistor zu schützen. Wenn der GPIO17 des Raspberry Pi durch Programmierung mit einem hohen Pegel (3,3V) versorgt wird, leitet der Transistor aufgrund der Stromsättigung, und der Summer gibt Töne ab. Wird jedoch ein niedriger Pegel an den IO des Raspberry Pi geliefert, wird der Transistor abgeschaltet, und der Summer gibt keine Töne ab.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_schematic.png
+
+
+Experimentelle Verfahren
+-----------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf. (Der aktive Summer hat einen weißen Tischaufkleber auf der Oberfläche und eine schwarze Rückseite.)
+
+.. image:: ../python_pi5/img/1.2.1_ActiveBuzzer_circuit.png
+
+**Schritt 2**: Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3**: Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.1_ActiveBuzzer_zero.py
+
+Der Code wird ausgeführt, der Summer piept.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Buzzer
+   from time import sleep
+
+   # Initialisieren eines Buzzer-Objekts am GPIO-Pin 17
+   buzzer = Buzzer(17)
+
+   try:
+       while True:
+           # Den Summer einschalten
+           print('Summer An')
+           buzzer.on()
+           sleep(0.1)  # Den Summer für 0.1 Sekunden eingeschaltet lassen
+
+           # Den Summer ausschalten
+           print('Summer Aus')
+           buzzer.off()
+           sleep(0.1)  # Den Summer für 0.1 Sekunden ausgeschaltet lassen
+
+   except KeyboardInterrupt:
+       # KeyboardInterrupt (Strg+C) für einen sauberen Skriptabbruch behandeln
+       pass
+
+
+**Code-Erklärung**
+
+#. Diese Anweisungen importieren die Klasse ``Buzzer`` aus der Bibliothek ``gpiozero`` und die Funktion ``sleep`` aus dem Modul ``time``.
+
+   .. code-block:: python
+       
+       #!/usr/bin/env python3
+       from gpiozero import Buzzer
+       from time import sleep
+
+
+#. Diese Zeile erstellt ein ``Buzzer``-Objekt, das mit dem GPIO-Pin 17 am Raspberry Pi verbunden ist.
+    
+   .. code-block:: python
+       
+       # Initialisieren eines Buzzer-Objekts am GPIO-Pin 17
+       buzzer = Buzzer(17)
+        
+      
+
+#. In einer Endlosschleife (``while True``) wird der Summer alle 0,1 Sekunden ein- und ausgeschaltet. ``print``-Anweisungen liefern eine Konsolenausgabe für jede Aktion.
+      
+   .. code-block:: python
+       
+       try:
+           while True:
+               # Den Summer einschalten
+               print('Summer An')
+               buzzer.on()
+               sleep(0.1)  # Den Summer für 0.1 Sekunden eingeschaltet lassen
+
+               # Den Summer ausschalten
+               print('Summer Aus')
+               buzzer.off()
+               sleep(0.1)  # Den Summer für 0.1 Sekunden ausgeschaltet lassen
+
+#. Dieser Abschnitt stellt sicher, dass das Programm sicher mit einer Tastaturunterbrechung (Strg+C) beendet werden kann, ohne einen Fehler auszulösen.
+      
+   .. code-block:: python
+       
+       except KeyboardInterrupt:
+       # KeyboardInterrupt (Strg+C) für einen sauberen Skriptabbruch behandeln
+       pass
+      
+

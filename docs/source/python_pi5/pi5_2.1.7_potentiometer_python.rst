@@ -1,0 +1,199 @@
+.. _2.1.7_py_pi5:
+
+2.1.7 Potenziometer
+=============================
+
+Einleitung
+-------------------
+
+Die ADC-Funktion kann verwendet werden, um analoge Signale in digitale Signale umzuwandeln. In diesem Experiment wird ADC0834 verwendet, um die Funktion mit ADC einzubeziehen. Hier implementieren wir diesen Prozess mit einem Potenziometer. Ein Potenziometer ändert die physikalische Größe -- Spannung, die durch die ADC-Funktion umgewandelt wird.
+
+Benötigte Komponenten
+-----------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`adc0834`
+        - \-
+
+Schaltplan
+--------------------
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_1.png
+
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_2.png
+
+Experimentelle Verfahren
+--------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.1.7_Potentiometer_circuit.png
+
+.. note::
+    Bitte platzieren Sie den Chip entsprechend der Abbildung im Bild. Beachten Sie, dass die Kerben auf dem Chip links sein sollten, wenn er platziert wird.
+
+**Schritt 2:** Öffnen Sie die Code-Datei
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.7_Potentiometer_zero.py
+
+Nachdem der Code ausgeführt wurde, drehen Sie den Knopf am Potenziometer, die Intensität der LED ändert sich entsprechend.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import PWMLED
+   import ADC0834
+   import time
+
+   # Initialisierung einer PWM-LED am GPIO-Pin 22
+   led = PWMLED(22)
+
+   # Einrichtung des ADC0834-Moduls
+   ADC0834.setup()
+
+   def MAP(x, in_min, in_max, out_min, out_max):
+       """
+       Ordnet einen Wert einem neuen Bereich zu.
+       :param x: Der umzuordnende Wert.
+       :param in_min: Die untere Grenze des aktuellen Bereichs des Werts.
+       :param in_max: Die obere Grenze des aktuellen Bereichs des Werts.
+       :param out_min: Die untere Grenze des Zielbereichs des Werts.
+       :param out_max: Die obere Grenze des Zielbereichs des Werts.
+       :return: Der neu zugeordnete Wert.
+       """
+       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+   try:
+       while True:
+           # Aktuelle Messung vom ADC0834-Modul abrufen
+           res = ADC0834.getResult()
+           print('res = %d' % res)
+
+           # ADC-Wert einem Bereich zuordnen, der für die Einstellung der LED-Helligkeit geeignet ist
+           R_val = MAP(res, 0, 255, 0, 100)
+
+           # LED-Helligkeit einstellen
+           led.value = float(R_val / 100)
+
+           # 0.2 Sekunden warten, bevor erneut gemessen wird
+           time.sleep(0.2)
+
+   # Elegantes Beenden bei 'Strg+C'
+   except KeyboardInterrupt: 
+       led.value = 0  # LED ausschalten
+
+
+**Code-Erklärung**
+
+#. Importiert ``PWMLED`` aus ``gpiozero`` für die PWM LED-Steuerung, ``ADC0834`` für die Analog-Digital-Umwandlung und ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import PWMLED
+       import ADC0834
+       import time
+
+#. Initialisiert ein PWMLED-Objekt verbunden mit GPIO-Pin 22 und richtet den ADC0834-Wandler ein.
+
+   .. code-block:: python
+
+       # Initialisierung einer PWM-LED am GPIO-Pin 22
+       led = PWMLED(22)
+
+       # Einrichtung des ADC0834-Moduls
+       ADC0834.setup()
+
+#. Definiert eine Funktion mit dem Namen ``MAP``, um einen Wertebereich in einen anderen zu konvertieren, nützlich für die Zuordnung von ADC-Werten zu angemessenen LED-Helligkeitsstufen.
+
+   .. code-block:: python
+
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. Liest kontinuierlich den ADC-Wert in einer Schleife, ordnet den ADC-Wert (0-255) einer Helligkeitsstufe (0-100) für die LED zu. Stellt die LED-Helligkeit basierend auf diesem zugeordneten Wert ein. Führt eine Verzögerung von 0,2 Sekunden für eine bessere Lesbarkeit und Stabilität ein.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Aktuelle Messung vom ADC0834-Modul abrufen
+               res = ADC0834.getResult()
+               print('res = %d' % res)
+
+               # ADC-Wert einem Bereich zuordnen, der für die Einstellung der LED-Helligkeit geeignet ist
+               R_val = MAP(res, 0, 255, 0, 100)
+
+               # LED-Helligkeit einstellen
+               led.value = float(R_val / 100)
+
+               # 0.2 Sekunden warten, bevor erneut gemessen wird
+               time.sleep(0.2)
+
+       # Elegantes Beenden bei 'Strg+C'
+       except KeyboardInterrupt: 
+           led.value = 0  # LED ausschalten
+

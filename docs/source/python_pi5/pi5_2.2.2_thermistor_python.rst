@@ -1,0 +1,205 @@
+.. _2.2.2_py_pi5:
+
+2.2.2 Thermistor
+=========================
+
+Einleitung
+-----------------
+
+Ein Thermistor ist ein temperaturabhängiges elektronisches Bauelement, ähnlich wie ein Fotowiderstand Licht erfassen kann. Er kann für Temperatursteuerungsfunktionen verwendet werden, wie zum Beispiel einen Wärmemelder zu realisieren.
+
+Benötigte Komponenten
+----------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - TEILE IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`adc0834`
+        - \-
+
+Schaltplan
+------------------
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_2.png
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_circuit.png
+
+**Schritt 2:** Wechseln Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.2_Thermistor_zero.py
+
+Wenn der Code läuft, erkennt der Thermistor die Umgebungstemperatur, die auf dem Bildschirm angezeigt wird, sobald das Programm die Berechnung abgeschlossen hat.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   # -*- coding: utf-8 -*-
+
+   import ADC0834
+   import time
+   import math
+
+   # Initialisierung des ADC0834-Moduls
+   ADC0834.setup()
+
+   # Ausführen des Prozesses in einem try-except-Block
+   try:
+       while True:
+           # Lesen des analogen Werts vom Sensor
+           analogVal = ADC0834.getResult()
+
+           # Umwandeln des analogen Werts in eine Spannung
+           Vr = 5 * float(analogVal) / 255
+
+           # Berechnen des Widerstands des Thermistors
+           Rt = 10000 * Vr / (5 - Vr)
+
+           # Berechnen der Temperatur in Kelvin
+           temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+           # Umrechnen von Kelvin in Celsius
+           Cel = temp - 273.15
+
+           # Umrechnen von Celsius in Fahrenheit
+           Fah = Cel * 1.8 + 32
+
+           # Ausgeben der Temperatur in Celsius und Fahrenheit
+           print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+           # Warten von 0.2 Sekunden vor der nächsten Messung
+           time.sleep(0.2)
+
+   # Behandeln von KeyboardInterrupt für einen anmutigen Abbruch
+   except KeyboardInterrupt:
+       # Ressourcen des ADC0834 aufräumen
+       ADC0834.destroy()
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert die ADC0834-Bibliothek für die Analog-Digital-Umwandlung, die time-Bibliothek zur Implementierung von Verzögerungen und die math-Bibliothek zur Durchführung mathematischer Operationen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       # -*- coding: utf-8 -*-
+
+       import ADC0834
+       import time
+       import math
+
+#. Initialisiert das ADC0834-Modul, um das Lesen von analogen Werten zu ermöglichen.
+
+   .. code-block:: python
+
+       # Initialisiere das ADC0834-Modul
+       ADC0834.setup()
+
+#. Implementiert eine Endlosschleife für kontinuierliches Datenlesen. Die Schleife liest den analogen Wert von einem Thermistor, wandelt diesen Wert in eine Spannung um, berechnet den Widerstand des Thermistors und übersetzt diesen Widerstand dann in Temperaturmessungen in Kelvin, Celsius und Fahrenheit. Zudem werden die Temperaturmessungen in Celsius und Fahrenheit ausgegeben, mit einer Pause von 0,2 Sekunden zwischen jeder Messung.
+
+   .. code-block:: python
+
+       # Führe den Prozess in einem try-except-Block durch
+       try:
+           while True:
+               # Lies den analogen Wert vom Sensor
+               analogVal = ADC0834.getResult()
+
+               # Wandle den analogen Wert in eine Spannung um
+               Vr = 5 * float(analogVal) / 255
+
+               # Berechne den Widerstand des Thermistors
+               Rt = 10000 * Vr / (5 - Vr)
+
+               # Berechne die Temperatur in Kelvin
+               temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+               # Wandle Kelvin in Celsius um
+               Cel = temp - 273.15
+
+               # Wandle Celsius in Fahrenheit um
+               Fah = Cel * 1.8 + 32
+
+               # Gib die Temperatur sowohl in Celsius als auch in Fahrenheit aus
+               print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+               # Warte 0,2 Sekunden vor der nächsten Ablesung
+               time.sleep(0.2)
+
+#. Fängt eine KeyboardInterrupt-Ausnahme ab, um das Programm sanft zu beenden und beinhaltet Aufräum-Anweisungen für die ADC0834-Ressourcen bei Beendigung.
+
+   .. code-block:: python
+
+       # Behandle KeyboardInterrupt für einen sanften Abbruch
+       except KeyboardInterrupt:
+           # Räume ADC0834-Ressourcen auf
+           ADC0834.destroy()
+

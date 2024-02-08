@@ -1,0 +1,209 @@
+.. _1.2.2_py_pi5:
+
+1.2.2 Passiver Summer
+=================================
+
+Einleitung
+-----------------
+
+In diesem Projekt lernen wir, wie man einen passiven Summer dazu bringt, Musik zu spielen.
+
+Benötigte Komponenten
+-----------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.2.2_passive_buzzer_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`Buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`transistor`
+        - |link_transistor_buy|
+
+Schaltplan
+--------------------
+
+In diesem Experiment werden ein passiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet, die zwischen der Basis des Transistors und GPIO geschaltet sind, um den Transistor zu schützen.
+
+Wenn GPIO17 verschiedene Frequenzen erhält, gibt der passive Summer unterschiedliche Töne von sich; auf diese Weise spielt der Summer Musik.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/1.2.2_passive_buzzer_schematic.png
+
+
+Experimentelle Verfahren
+-----------------------------------
+
+**Schritt 1**: Bauen Sie den Schaltkreis auf. (Der passive Summer mit grüner Platine auf der Rückseite.)
+
+.. image:: ../python_pi5/img/1.2.2_PassiveBuzzer_circuit.png
+
+**Schritt 2: Verzeichnis wechseln.**
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3: Ausführen.**
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.2_PassiveBuzzer_zero.py
+
+Der Code wird ausgeführt, der Summer spielt ein Musikstück.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import TonalBuzzer
+   from time import sleep
+
+   # Initialisieren eines TonalBuzzer, verbunden mit GPIO Pin 17
+   tb = TonalBuzzer(17)  # Aktualisieren Sie diese Pin-Nummer entsprechend Ihrer Konfiguration
+
+   def play(tune):
+       """
+       Spielen Sie eine musikalische Melodie mit dem Summer.
+       :param tune: Liste von Tupeln (Note, Dauer), wobei jedes Tupel eine Note und ihre Dauer repräsentiert.
+       """
+       for note, duration in tune:
+           print(note)  # Ausgabe der aktuell gespielten Note
+           tb.play(note)  # Spielen der Note auf dem Summer
+           sleep(float(duration))  # Verzögerung für die Dauer der Note
+       tb.stop()  # Stoppen des Spielens nach Vollendung der Melodie
+
+   # Definieren einer musikalischen Melodie als eine Sequenz von Noten und Dauern
+   tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
+       ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
+       ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
+       ('Eb4', 0.2), ('E4', 0.2), (None, 0.2),
+       ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+       ('C4', 0.2), ('B4', 0.2), (None, 0.2),
+       ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+       ('B4', 0.2), ('Bb4', 0.5), (None, 0.6),
+       ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
+       ('D4', 0.2), ('E4', 0.2)]
+
+   try:
+       play(tune)  # Ausführen der Funktion play, um die Melodie zu spielen
+
+   except KeyboardInterrupt:
+       # Behandlung von KeyboardInterrupt für einen gnädigen Abbruch
+       pass
+
+
+
+**Code-Erklärung**
+
+#. Diese Zeilen importieren die Klasse ``TonalBuzzer`` aus der Bibliothek ``gpiozero`` für die Summersteuerung und die Funktion ``sleep`` aus dem Modul ``time`` für das Erstellen von Verzögerungen.
+    
+   .. code-block:: python  
+
+       #!/usr/bin/env python3
+       from gpiozero import TonalBuzzer
+       from time import sleep
+      
+
+#. Diese Zeile initialisiert ein ``TonalBuzzer``-Objekt am GPIO-Pin 17.
+    
+   .. code-block:: python
+       
+       # Initialisieren eines TonalBuzzer, verbunden mit GPIO Pin 17
+       tb = TonalBuzzer(17)  # Aktualisieren Sie diese Pin-Nummer entsprechend Ihrer Konfiguration
+      
+
+#. Die Funktion ``play`` iteriert über eine Liste von Tupeln, die musikalische Noten und ihre Dauern darstellen. Jede Note wird für ihre spezifizierte Dauer gespielt, und der Summer stoppt nach Abschluss der Melodie.
+    
+   .. code-block:: python  
+
+       def play(tune):
+           """
+           Spielen Sie eine musikalische Melodie mit dem Summer.
+           :param tune: Liste von Tupeln (Note, Dauer), wobei jedes Tupel eine Note und ihre Dauer repräsentiert.
+           """
+           for note, duration in tune:
+               print(note)  # Ausgabe der aktuell gespielten Note
+               tb.play(note)  # Spielen der Note auf dem Summer
+               sleep(float(duration))  # Verzögerung für die Dauer der Note
+           tb.stop()  # Stoppen des Spielens nach Vollendung der Melodie
+
+#. Die Melodie wird als eine Sequenz von Noten (Frequenz) und Dauern (Sekunden) definiert.
+    
+   .. code-block:: python
+
+       # Definieren einer musikalischen Melodie als eine Sequenz von Noten und Dauern
+       tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
+           ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
+           ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
+           ('Eb4', 0.2), ('E4', 0.2), (None, 0.2),
+           ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+           ('C4', 0.2), ('B4', 0.2), (None, 0.2),
+           ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
+           ('B4', 0.2), ('Bb4', 0.5), (None, 0.6),
+           ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
+           ('D4', 0.2), ('E4', 0.2)]  
+
+#. Die Funktion ``play(tune)`` wird innerhalb eines ``try``-Blocks aufgerufen. Ein ``KeyboardInterrupt`` (wie Strg+C) wird das Programm gnädig stoppen.
+    
+   .. code-block:: python  
+       
+       try:
+           play(tune)  # Ausführen der Funktion play, um die Melodie zu spielen
+
+       except KeyboardInterrupt:
+           # Behandlung von KeyboardInterrupt für einen gnädigen Abbruch
+           pass
+

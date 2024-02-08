@@ -45,6 +45,7 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
     :maxdepth: 3
 
     python/play_with_python
+    python_pi5/play_with_python_pi5
 
 .. toctree::
     :maxdepth: 3

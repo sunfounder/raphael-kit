@@ -1,0 +1,236 @@
+.. _4.1.4_py_pi5:
+
+4.1.2 Automatische Erfassungskamera
+=======================================
+
+Einführung
+-----------------
+
+Wenn Sie unterwegs sind, könnten die kleinen Eichhörnchen im Wald Ihren Fenstersims besuchen. Lassen Sie uns eine automatische Erfassungskamera bauen, um Bilder dieser kleinen Süßen festzuhalten!
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_list.png
+  :width: 800
+  :align: center
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`camera_module`
+        - |link_camera_buy|
+    *   - :ref:`pir`
+        - \-
+
+
+Schaltplan
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_schematic.png
+   :width: 400
+   :align: center
+
+Experimentelle Verfahren
+------------------------------
+
+Vor diesem Projekt sollten Sie sicherstellen, dass Sie :ref:`3.1.1_py_pi5` abgeschlossen haben.
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../python_pi5/img/4.1.4_automatic_capture_circuit.png
+  :width: 800
+  :align: center
+
+**Schritt 2:** Um das Kameramodul anzuschließen und die Konfiguration abzuschließen, siehe: :ref:`camera_module`.
+
+**Schritt 3:** Gehen Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`windows_remote_desktop`.
+
+**Schritt 4:** Öffnen Sie ein Terminal und wechseln Sie in den Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 5:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.4_AutomaticCaptureCamera_zero.py
+
+Nachdem der Code ausgeführt wurde, wird der PIR die Umgebung erkennen, und wenn er das kleine Eichhörnchen vorbeikommen spürt, wird die Kamera ein Foto machen.
+Das Foto-Intervall beträgt 3 Sekunden, und die Gesamtzahl der aufgenommenen Fotos wird durch das Druckfenster angezeigt.
+
+Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichkeit und das andere zur Einstellung der Erkennungsdistanz. Um das PIR-Modul besser zu nutzen, sollten Sie beide gegen den Uhrzeigersinn bis zum Anschlag drehen.
+
+.. image:: ../python_pi5/img/4.1.4_PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+   Sie können auch ``4.1.4_AutomaticCaptureCamera_zero.py`` im Pfad ``~/raphael-kit/python-pi5/`` mit einer Python-IDE öffnen, den Ausführen-Button klicken, um es zu starten, und den Code mit dem Stop-Button beenden.
+
+
+**Code**
+
+.. note::
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie dies tun, müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nach der Änderung des Codes können Sie ihn direkt ausführen, um die Auswirkung zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3  
+    von picamera2 import Picamera2, Preview
+    von gpiozero import MotionSensor
+    import time
+    import os
+
+    # Den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers abrufen
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
+
+    # Die Kamera initialisieren
+    camera = Picamera2()
+    camera.start()
+
+    # Den Bewegungssensor am GPIO-Pin 17 initialisieren
+    pir = MotionSensor(17)
+
+    try:
+        i = 1  # Die Bildanzahl initialisieren
+        while True:
+            if pir.motion_detected:
+                # Ein Bild aufnehmen, wenn Bewegung erkannt wird, und es mit einer einzigartigen Nummer speichern
+                camera.capture_file(f'{user_home}/capture%s.jpg' % i)
+                print('Die Nummer ist %s' % i)  # Die Bildanzahl ausdrucken
+                time.sleep(3)  # 3 Sekunden warten, bevor die nächste Erkennung stattfindet
+                i += 1  # Die Bildanzahl erhöhen
+            else:
+                print('warte')  # 'warte' ausdrucken, wenn keine Bewegung erkannt wird
+                time.sleep(0.5)  # Alle 0.5 Sekunden auf Bewegung prüfen
+
+    except KeyboardInterrupt:
+        # Die Kamera stoppen und die LED ausschalten, wenn ein KeyboardInterrupt auftritt
+        camera.stop_preview()
+        pass
+
+**Code-Erklärung**
+
+#. Importiert die Klassen `Picamera2` und `Preview` für die Kamerasteuerung, die Klasse `MotionSensor` für die Bewegungserkennung und die Standardbibliotheken `time` und `os` für die Zeitsteuerung und Interaktionen mit dem Betriebssystem.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3  
+       von picamera2 import Picamera2, Preview
+       von gpiozero import MotionSensor
+       import time
+       import os
+
+#. Ruft den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers ab, um die aufgenommenen Bilder zu speichern.
+
+   .. code-block:: python
+
+       # Den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers abrufen
+       user = os.getlogin()
+       user_home = os.path.expanduser(f'~{user}')
+
+#. Initialisiert die Kamera und startet sie.
+
+   .. code-block:: python
+
+       # Die Kamera initialisieren
+       camera = Picamera2()
+       camera.start()
+
+#. Initialisiert einen PIR-Bewegungssensor, der mit dem GPIO-Pin 17 verbunden ist.
+
+   .. code-block:: python
+
+       # Den Bewegungssensor am GPIO-Pin 17 initialisieren
+       pir = MotionSensor(17)
+
+#. Initialisiert einen Zähler ``i``, um die Anzahl der aufgenommenen Bilder zu verfolgen. In einer Endlosschleife wird überprüft, ob eine Bewegung erkannt wurde. Wenn eine Bewegung erkannt wird, wird ein Bild aufgenommen, dieses mit einem einzigartigen Namen basierend auf dem Zähler ``i`` gespeichert, die Bildnummer ausgedruckt und 3 Sekunden gewartet, bevor erneut auf Bewegung geprüft wird. Der Zähler ``i`` wird nach jeder Aufnahme erhöht.
+
+   .. code-block:: python
+
+       try:
+           i = 1  # Die Bildanzahl initialisieren
+           while True:
+               if pir.motion_detected:
+                   # Ein Bild aufnehmen, wenn Bewegung erkannt wird, und es mit einer einzigartigen Nummer speichern
+                   camera.capture_file(f'{user_home}/capture%s.jpg' % i)
+                   print('Die Nummer ist %s' % i)  # Die Bildanzahl ausdrucken
+                   time.sleep(3)  # 3 Sekunden warten, bevor die nächste Erkennung stattfindet
+                   i += 1  # Die Bildanzahl erhöhen
+
+#. Wenn keine Bewegung erkannt wird, wird ``warte`` ausgedruckt und alle 0,5 Sekunden erneut auf Bewegung geprüft.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           while True:           
+               ...
+               
+               else:
+                   print('warte')  # 'warte' ausdrucken, wenn keine Bewegung erkannt wird
+                   time.sleep(0.5)  # Alle 0.5 Sekunden auf Bewegung prüfen
+
+#. Fängt ein KeyboardInterrupt (wie Ctrl+C) ab, um die Kameravorschau zu stoppen und das Skript ordentlich zu beenden.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Die Kamera stoppen und die LED ausschalten, wenn ein KeyboardInterrupt auftritt
+           camera.stop_preview()
+           pass
+
+
+

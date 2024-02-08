@@ -1,0 +1,167 @@
+.. _2.2.7_py_pi5:
+
+2.2.6 PIR
+============
+
+Einführung
+------------
+
+In diesem Projekt werden wir ein Gerät unter Verwendung von pyroelektrischen Infrarotsensoren für den menschlichen Körper herstellen. Wenn sich jemand dem LED nähert, wird das LED automatisch eingeschaltet. Andernfalls wird das Licht ausgeschaltet. Dieser Infrarot-Bewegungssensor ist eine Art Sensor, der die von Menschen und Tieren ausgestrahlte Infrarotstrahlung erkennen kann.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/2.2.7_pir_list.png
+
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM SET
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`rgb_led`
+        - |link_rgb_led_buy|
+    *   - :ref:`pir`
+        - \-
+
+
+Schaltplan
+-----------------
+
+.. image:: ../python_pi5/img/2.2.7_pir_schematic.png
+
+
+Experimentelle Verfahren
+------------------------------------
+
+**Schritt 1:** Baue die Schaltung.
+
+.. image:: ../python_pi5/img/2.2.7_pir_circuit.png
+
+**Schritt 2:** Gehe zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führe die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.7_PIR_zero.py
+
+Nachdem der Code ausgeführt wurde, erkennt der PIR die Umgebung und lässt die RGB-LED gelb leuchten, wenn er jemanden vorbeigehen spürt.
+
+Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichkeit und das andere zur Einstellung der Erkennungsdistanz. Um das PIR-Modul besser zu nutzen, müssen Sie beide im Uhrzeigersinn bis zum Anschlag drehen.
+
+.. image:: ../python_pi5/img/2.2.7_PIR_TTE.png
+    :width: 400
+    :align: center
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python-pi5`` wechseln. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RGBLED, MotionSensor
+   from time import sleep
+
+   # Initialisiere RGB-LED und PIR-Bewegungssensor mit der GPIO Zero Bibliothek
+   led = RGBLED(red=18, green=27, blue=22)  # RGB-LED verbunden mit den GPIO-Pins 18 (Rot), 27 (Grün), 22 (Blau)
+   pir = MotionSensor(17)  # PIR-Sensor verbunden mit GPIO-Pin 17
+
+   try:
+       # Kontinuierlich auf Bewegung überwachen und LED-Farbe aktualisieren
+       while True:
+           if pir.motion_detected:  # Überprüfen, ob Bewegung durch den PIR-Sensor erkannt wurde
+               led.color = (1, 1, 0)  # LED-Farbe auf Gelb setzen (Rot + Grün)
+           else:
+               led.color = (0, 0, 1)  # LED-Farbe auf Blau setzen (nur Blau)
+           sleep(0.1)  # Kurze Verzögerung, um die CPU-Belastung zu reduzieren
+
+   except KeyboardInterrupt:
+       # KeyboardInterrupt (Strg+C) abfangen, um die Schleife elegant zu beenden
+       pass
+
+
+**Code-Erklärung**
+
+#. Importiert die Klasse ``RGBLED`` für die Steuerung einer RGB-LED und die Klasse ``MotionSensor`` für die Bewegungserkennung aus der GPIO Zero Bibliothek. Außerdem wird die Funktion ``sleep`` für Verzögerungen importiert.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import RGBLED, MotionSensor
+       from time import sleep
+
+#. Initialisiert eine RGB-LED mit den Komponenten Rot, Grün und Blau, die jeweils mit den GPIO-Pins 18, 27 und 22 verbunden sind. Ebenfalls wird ein PIR-Sensor am GPIO-Pin 17 initialisiert.
+
+   .. code-block:: python
+
+       # Initialisiere RGB-LED und PIR-Bewegungssensor mit der GPIO Zero Bibliothek
+       led = RGBLED(red=18, green=27, blue=22)  # RGB-LED verbunden mit den GPIO-Pins 18 (Rot), 27 (Grün), 22 (Blau)
+       pir = MotionSensor(17)  # PIR-Sensor verbunden mit GPIO-Pin 17
+
+#. Das Programm tritt in eine unendliche Schleife ein und überwacht kontinuierlich die Bewegung mit dem PIR-Sensor. Wird eine Bewegung erkannt, wird die LED gelb (Mischung aus Rot und Grün) eingestellt. Wird keine Bewegung erkannt, wird die LED blau. Eine kurze Schlafzeit von 0,1 Sekunden verringert die CPU-Last.
+
+   .. code-block:: python
+
+       try:
+           # Kontinuierlich auf Bewegung überwachen und LED-Farbe aktualisieren
+           while True:
+               if pir.motion_detected:  # Überprüfen, ob Bewegung durch den PIR-Sensor erkannt wurde
+                   led.color = (1, 1, 0)  # LED-Farbe auf Gelb setzen (Rot + Grün)
+               else:
+                   led.color = (0, 0, 1)  # LED-Farbe auf Blau setzen (nur Blau)
+               sleep(0.1)  # Kurze Verzögerung, um die CPU-Belastung zu reduzieren
+
+       except KeyboardInterrupt:
+           # KeyboardInterrupt (Strg+C) abfangen, um die Schleife elegant zu beenden
+           pass
+
+
+
+

@@ -1,0 +1,164 @@
+.. _2.1.1_py_pi5:
+
+2.1.1 Taster
+========================
+
+Einleitung
+--------------
+
+In diesem Projekt lernen wir, wie man eine LED mit einem Taster ein- oder ausschaltet.
+
+Benötigte Komponenten
+-----------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.1.1_Button_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`button`
+        - |link_button_buy|
+
+Schaltplan
+------------------
+
+Wir verwenden einen normalerweise offenen Taster als Eingang des Raspberry Pi. Die Verbindung ist im folgenden Schaltplan dargestellt. Wenn der Taster gedrückt wird, wechselt GPIO18 auf High-Level (3,3V). Wir können den Zustand von GPIO18 durch Programmierung erkennen. Das heißt, wenn GPIO18 auf High-Level wechselt, bedeutet dies, dass der Taster gedrückt wurde. Sie können den entsprechenden Code ausführen, wenn der Taster gedrückt wird, und dann leuchtet die LED auf.
+
+.. note::
+    Der längere Pin der LED ist die Anode und der kürzere ist
+    die Kathode.
+
+.. image:: ../python_pi5/img/2.1.1_Button_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.1_Button_schematic_2.png
+
+
+Experimentelle Verfahren
+--------------------------------
+
+**Schritt 1**: Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.1.1_Button_circuit.png
+
+**Schritt 2**: Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3**: Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.1.1_Button_zero.py
+
+Jetzt, wenn Sie den Taster drücken, leuchtet die LED auf; wenn Sie den Taster loslassen, geht die LED aus.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Import der Klassen LED und Button aus gpiozero
+   from signal import pause  # Import der Funktion pause aus dem signal-Modul
+
+   # Initialisierung eines LED-Objekts am GPIO-Pin 17
+   led = LED(17)
+   # Initialisierung eines Button-Objekts am GPIO-Pin 18
+   button = Button(18)
+
+   # Verknüpfung des "when_pressed"-Ereignisses des Buttons mit der on()-Methode der LED
+   button.when_pressed = led.on
+   # Verknüpfung des "when_released"-Ereignisses des Buttons mit der off()-Methode der LED
+   button.when_released = led.off
+
+   # Ausführung einer Ereignisschleife, die auf Button-Ereignisse wartet und das Skript am Laufen hält
+   pause()
+
+
+**Code-Erklärung**
+
+#. Das Skript ist in Python3 geschrieben und importiert die Klassen ``LED`` und ``Button`` aus der Bibliothek ``gpiozero`` sowie ``pause`` aus dem ``signal``-Modul.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Import der Klassen LED und Button aus gpiozero
+       from signal import pause  # Import der Funktion pause aus dem signal-Modul
+
+#. Initialisiert ein ``LED``-Objekt am GPIO-Pin 17 und ein ``Button``-Objekt am GPIO-Pin 18.
+
+   .. code-block:: python
+
+       # Initialisierung eines LED-Objekts am GPIO-Pin 17
+       led = LED(17)
+       # Initialisierung eines Button-Objekts am GPIO-Pin 18
+       button = Button(18)
+
+#. Richtet Ereignisbehandler ein, sodass die LED einschaltet, wenn der Taster gedrückt wird, und ausschaltet, wenn der Taster losgelassen wird.
+
+   .. code-block:: python
+
+       # Verknüpfung des "when_pressed"-Ereignisses des Buttons mit der on()-Methode der LED
+       button.when_pressed = led.on
+       # Verknüpfung des "when_released"-Ereignisses des Buttons mit der off()-Methode der LED
+       button.when_released = led.off
+
+#. Dies hält das Skript in einer Ereignisschleife am Laufen, die auf die Tastendruck- und Loslassereignisse wartet.
+
+   .. code-block:: python
+       
+       # Ausführung einer Ereignisschleife, die auf Button-Ereignisse wartet und das Skript am Laufen hält
+       pause()
+
+
+

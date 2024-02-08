@@ -1,0 +1,197 @@
+.. _2.2.1_py_pi5:
+
+2.2.1 Fotowiderstand
+=========================
+
+Einleitung
+-----------------
+
+Ein Fotowiderstand ist eine häufig verwendete Komponente zur Messung der Lichtintensität im Alltag. Er hilft dem Controller, Tag und Nacht zu erkennen und Lichtsteuerungsfunktionen wie Nachtlicht zu realisieren. Dieses Projekt ähnelt sehr einem Potentiometer, und man könnte meinen, es ändert die Spannung, um Licht zu erfassen.
+
+Benötigte Komponenten
+-------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_list.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - IN DIESEM KIT ENTHALTENE TEILE
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+    *   - :ref:`adc0834`
+        - \-
+    *   - :ref:`photoresistor`
+        - |link_photoresistor_buy|
+
+Schaltplan
+--------------------
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_2.png
+
+Experimentelle Verfahren
+----------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_circuit.png
+
+**Schritt 2:** Wechseln Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.1_Photoresistor_zero.py
+
+Wenn der Code läuft, ändert sich die Helligkeit der LED entsprechend der vom Fotowiderstand erfassten Lichtintensität.
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber zuvor müssen Sie zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import PWMLED
+   import ADC0834
+   import time
+
+   # Initialisiert eine PWM-LED am GPIO-Pin 22
+   led = PWMLED(22)
+
+   # Einrichtung des ADC0834-Moduls
+   ADC0834.setup()
+
+   # Definiert eine Funktion zum Umrechnen von Werten von einem Bereich in einen anderen
+   def MAP(x, in_min, in_max, out_min, out_max):
+       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+   # Hauptschleife zum Lesen des ADC-Wertes und Steuern der LED-Helligkeit
+   def loop():
+       while True:
+           # Liest den analogen Wert vom ADC
+           analogVal = ADC0834.getResult()
+           print('Wert = %d' % analogVal)
+
+           # Setzt den ADC-Wert in einen PWM-Wert um und stellt die LED-Helligkeit ein
+           led.value = float(analogVal/255)
+
+           # Wartet 0,2 Sekunden
+           time.sleep(0.2)
+
+   # Führt die Hauptschleife aus und behandelt KeyboardInterrupt für einen anmutigen Abschluss
+   try:
+       loop()
+   except KeyboardInterrupt: 
+       # Schaltet die LED aus, bevor das Programm beendet wird
+       led.value = 0
+
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert die Klasse PWMLED aus der gpiozero-Bibliothek, die für die Steuerung von PWM-LEDs erforderlich ist. Es werden auch das ADC0834-Modul für die Schnittstelle mit dem Analog-Digital-Wandler und das time-Modul für zeitbasierte Funktionen wie sleep importiert.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import PWMLED
+       import ADC0834
+       import time
+
+#. Initialisiert eine PWM-LED, die mit dem GPIO-Pin 22 verbunden ist, und richtet das ADC0834-Modul ein, um es im Projekt zu verwenden.
+
+   .. code-block:: python
+
+       # Initialisiert eine PWM-LED am GPIO-Pin 22
+       led = PWMLED(22)
+
+       # Einrichtung des ADC0834-Moduls
+       ADC0834.setup()
+
+#. Definiert eine Funktion zur Umrechnung eines Eingabewertes von einem Bereich in einen anderen. Diese Funktion ist entscheidend für die Übersetzung der ADC-Lesungen in einen geeigneten Bereich für die PWM-Steuerung.
+
+   .. code-block:: python
+
+       # Definiert eine Funktion zum Umrechnen von Werten von einem Bereich in einen anderen
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. Dieser Abschnitt enthält eine Schleife, die kontinuierlich den analogen Wert vom ADC0834 liest, ihn in einen entsprechenden PWM-Wert umrechnet und die LED-Helligkeit anpasst. Eine kurze Verzögerung (`time.sleep(0.2)`) ist enthalten, um die Änderungen sichtbar zu machen und eine Überlastung der CPU zu vermeiden.
+
+   .. code-block:: python
+
+       # Hauptschleife zum Lesen des ADC-Wertes und Steuern der LED-Helligkeit
+       def loop():
+           while True:
+               # Liest den analogen Wert vom ADC
+               analogVal = ADC0834.getResult()
+               print('Wert = %d' % analogVal)
+
+               # Setzt den ADC-Wert in einen PWM-Wert um und stellt die LED-Helligkeit ein
+               led.value = float(analogVal/255)
+
+               # Wartet 0,2 Sekunden
+               time.sleep(0.2)
+
+#. Führt die Funktion loop aus und beinhaltet Fehlerbehandlung für einen anmutigen Abbruch bei KeyboardInterrupt. Es wird sichergestellt, dass die LED ausgeschaltet ist, wenn das Programm gestoppt wird.
+
+   .. code-block:: python
+
+       # Führt die Hauptschleife aus und behandelt KeyboardInterrupt für einen anmutigen Abschluss
+       try:
+           loop()
+       except KeyboardInterrupt: 
+           # Schaltet die LED aus, bevor das Programm beendet wird
+           led.value = 0
+

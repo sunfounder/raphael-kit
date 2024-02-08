@@ -1,0 +1,152 @@
+.. _2.2.8_py_pi5:
+
+2.2.7 Ultraschallsensormodul
+==============================
+
+Einführung
+--------------
+
+Das Ultraschallsensormodul verwendet Ultraschallwellen, um Objekte genau zu erkennen und Distanzen zu messen. Es sendet Ultraschallwellen aus und wandelt diese in elektronische Signale um.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../python_pi5/img/2.2.8_ultrasonic_list.png
+
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM SET
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`ultrasonic_sensor`
+        - |link_ultrasonic_buy|
+
+Schaltplan
+-----------------
+
+.. image:: ../python_pi5/img/2.2.8_ultrasonic_schematic.png
+
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1:** Baue die Schaltung.
+
+.. image:: ../python_pi5/img/2.2.8_ultrasonic_circuit.png
+
+**Schritt 2:** Gehe zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 3:** Führe die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.8_Ultrasonic_zero.py
+
+Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensormodul die Distanz zwischen dem Hindernis vor dem Modul und dem Modul selbst, dann wird der Distanzwert auf dem Bildschirm angezeigt.
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python-pi5`` wechseln. Nachdem Sie den Code modifiziert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import DistanceSensor
+   from time import sleep
+
+   # Initialisiere den Ultraschallsensor mit der GPIO Zero Bibliothek
+   # Trigger-Pin ist mit GPIO 23 verbunden, Echo-Pin mit GPIO 24
+   sensor = DistanceSensor(echo=24, trigger=23)
+
+   try:
+       # Hauptschleife zur kontinuierlichen Messung und Berichterstattung der Distanz
+       while True:
+           dis = sensor.distance * 100  # Distanz messen und von Metern in Zentimeter umrechnen
+           print('Distanz: {:.2f} cm'.format(dis))  # Distanz mit zwei Dezimalstellen ausgeben
+           sleep(0.3)  # 0.3 Sekunden warten vor der nächsten Messung
+
+   except KeyboardInterrupt:
+       # KeyboardInterrupt (Strg+C) abfangen für einen sanften Ausstieg aus der Schleife
+       pass
+
+
+**Code-Erklärung**
+
+#. Importiert die Klasse ``DistanceSensor`` aus der ``gpiozero`` Bibliothek zur Distanzmessung und die Funktion ``sleep`` aus dem Modul ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import DistanceSensor
+       from time import sleep
+
+#. Initialisiert den Ultraschallsensor mit dem Echo-Pin an GPIO 24 und dem Trigger-Pin an GPIO 23.
+
+   .. code-block:: python
+
+       # Initialisiere den Ultraschallsensor mit der GPIO Zero Bibliothek
+       # Trigger-Pin ist mit GPIO 23 verbunden, Echo-Pin mit GPIO 24
+       sensor = DistanceSensor(echo=24, trigger=23)
+
+#. Die Hauptschleife misst kontinuierlich die Distanz, wandelt sie von Metern in Zentimeter um und gibt sie mit zwei Dezimalstellen an. Dann wartet sie 0.3 Sekunden und misst die Distanz erneut. Fängt ein KeyboardInterrupt (wie Strg+C) ab, um einen sanften Ausstieg aus dem Skript zu ermöglichen.
+
+   .. code-block:: python
+
+       try:
+           # Hauptschleife zur kontinuierlichen Messung und Berichterstattung der Distanz
+           while True:
+               dis = sensor.distance * 100  # Distanz messen und von Metern in Zentimeter umrechnen
+               print('Distanz: {:.2f} cm'.format(dis))  # Distanz mit zwei Dezimalstellen ausgeben
+               sleep(0.3)  # 0.3 Sekunden warten vor der nächsten Messung
+
+       except KeyboardInterrupt:
+           # KeyboardInterrupt (Strg+C) abfangen für einen sanften Ausstieg aus der Schleife
+           pass
+
+
+
+

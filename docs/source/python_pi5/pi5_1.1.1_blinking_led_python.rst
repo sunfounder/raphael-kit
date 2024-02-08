@@ -1,0 +1,194 @@
+.. _1.1.1_py_pi5:
+
+1.1.1 Blinkende LED
+=========================
+
+Einführung
+-----------------
+
+In diesem Projekt lernen wir, wie man eine LED zum Blinken bringt, indem wir sie programmieren.
+Durch deine Einstellungen kann deine LED eine Reihe von interessanten
+Phänomenen erzeugen. Jetzt leg los.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/1.1.1_blinking_led_list.png
+    :width: 800
+    :align: center
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - INHALT DES KITS
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Du kannst sie auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`wires`
+        - |link_wires_buy|
+    *   - :ref:`resistor`
+        - |link_resistor_buy|
+    *   - :ref:`led`
+        - |link_led_buy|
+
+
+Schaltplan
+---------------------
+
+In diesem Experiment verbinden wir den GPIO-Pin 17 des Raspberry Pi mit der Anode (langes Bein) der LED, dann die Kathode (kurzes Bein) der LED mit einem Widerstand und verbinden das andere Ende des Widerstands mit dem GND-Pin auf dem Raspberry Pi. Um die LED einzuschalten, müssen wir GPIO17 auf high (3,3V) setzen. Dieses Phänomen können wir durch Programmierung erreichen.
+
+.. note::
+
+    **Pin11** bezieht sich auf den 11. Pin des Raspberry Pi von links nach rechts, und seine entsprechenden **BCM**-Pinnummern werden in der folgenden Tabelle angezeigt.
+
+Unter den Python-Sprachinhalten ist BCM 17 in der
+BCM-Spalte der folgenden Tabelle 17. Gleichzeitig sind sie die gleichen
+wie der 11. Pin am Raspberry Pi, Pin 11.
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.1_blinking_led_schematic.png
+    :width: 800
+    :align: center
+
+Experimentelle Verfahren
+-----------------------------
+
+**Schritt 1:** Baue den Schaltkreis.
+
+.. image:: ../python_pi5/img/1.1.1_blinking_led_circuit.png
+    :width: 800
+    :align: center
+
+**Schritt 2:** Gehe zum Ordner des Codes und führe ihn aus.
+
+1. Wenn du einen Bildschirm verwendest, empfehlen wir dir, die folgenden Schritte zu befolgen.
+
+Finde `1.1.1_BlinkingLed_zero.py` und doppelklicke darauf, um es zu öffnen. Jetzt bist du in der
+Datei.
+
+Klicke auf **Ausführen** ->\ **Modul ausführen** im Fenster und die folgenden
+Inhalte werden erscheinen.
+
+Um das Ausführen zu stoppen, klicke einfach auf das X-Symbol oben rechts, um es zu
+schließen, und dann kommst du zurück zum Code. Wenn du den Code änderst,
+muss er vor dem Klicken auf **Modul ausführen (F5)** zuerst gespeichert werden. Dann
+kannst du die Ergebnisse sehen.
+
+2. Wenn du dich remote in den Raspberry Pi einloggst, gib den Befehl ein:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd ~/raphael-kit/python-pi5
+
+.. note::
+    Wechsle über ``cd`` in das Verzeichnis des Codes für dieses Experiment.
+
+**Schritt 3:** Führe den Code aus
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo python3 1.1.1_BlinkingLed_zero.py
+
+.. note::
+    Hier bedeutet sudo - Superuser do, und python steht für die Ausführung der Datei mit Python.
+
+Nachdem der Code ausgeführt wurde, wirst du sehen, dass die LED blinkt.
+
+**Schritt 4:** Wenn du die Code-Datei `1.1.1_BlinkingLed_zero.py` bearbeiten möchtest,
+drücke ``Ctrl + C``, um die Ausführung des Codes zu stoppen. Gib dann den folgenden
+Befehl ein, um `1.1.1_BlinkingLed_zero.py` zu öffnen:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano 1.1.1_BlinkingLed_zero.py
+
+.. note::
+    nano ist ein Texteditor-Tool. Der Befehl wird verwendet, um die
+    Code-Datei `1.1.1_BlinkingLed_zero.py` mit diesem Tool zu öffnen.
+
+Drücke ``Ctrl+X``, um zu beenden. Wenn du den Code geändert hast, wird eine
+Aufforderung erscheinen, ob die Änderungen gespeichert werden sollen oder nicht. Gib ``Y`` (speichern)
+oder ``N`` (nicht speichern) ein.
+
+Dann drücke ``Enter``, um zu beenden. Gib nano `1.1.1_BlinkingLed_zero.py` erneut ein, um
+den Effekt nach der Änderung zu sehen.
+
+**Code**
+
+Das Folgende ist der Programmcode:
+
+.. note::
+
+   Du kannst den Code unten **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber bevor du das tust, musst du zum Quellcodepfad wie ``raphael-kit/python-pi5`` gehen. Nachdem du den Code geändert hast, kannst du ihn direkt ausführen, um den Effekt zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED
+   from time import sleep
+
+   # Initialisiere eine LED, die mit dem GPIO-Pin 17 verbunden ist, mit der GPIO Zero-Bibliothek.
+   led = LED(17)
+
+   try:
+      # Starte eine unendliche Schleife, um den Zustand der LED umzuschalten.
+      while True:
+         # Schalte die LED ein und gib eine Nachricht auf der Konsole aus.
+         led.on()
+         print('...LED EIN')
+
+         # Warte 0,5 Sekunden, während die LED eingeschaltet ist.
+         sleep(0.5)
+
+         # Schalte die LED aus und gib eine Nachricht auf der Konsole aus.
+         led.off()
+         print('LED AUS...')
+
+         # Warte 0,5 Sekunden, während die LED ausgeschaltet ist.
+         sleep(0.5)
+
+   except KeyboardInterrupt:
+      # Behandle ein Tastaturunterbrechungssignal (Ctrl+C) elegant, indem die Schleife beendet wird.
+      # GPIO Zero kümmert sich automatisch um das Aufräumen der GPIO-Einstellungen beim Beenden.
+      pass
