@@ -50,6 +50,7 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
     python/play_with_python
     python_pi5/play_with_python_pi5
+    python_video/python_video
 
 .. toctree::
     :maxdepth: 3
