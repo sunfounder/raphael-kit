@@ -4,8 +4,6 @@ Extension
 .. toctree::
     :maxdepth: 1
 
-    pi5_4.1.1_camera_python
-    pi5_4.1.4_automatic_capture_camera_python
     pi5_4.1.6_magneticalarmsystem_pyhton
     pi5_4.1.7_counting_device_python
     pi5_4.1.8_welcome_python
