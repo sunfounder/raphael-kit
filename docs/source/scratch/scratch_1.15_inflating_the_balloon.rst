@@ -38,17 +38,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`slide_switch`
+    *   - :ref:`cpn_slide_switch`
         - |link_slide_switch_buy|
-    *   - :ref:`capacitor`
+    *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
 Build the Circuit

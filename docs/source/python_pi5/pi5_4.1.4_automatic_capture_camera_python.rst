@@ -39,17 +39,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
-    *   - :ref:`pir`
+    *   - :ref:`cpn_pir`
         - \-
 
 
@@ -76,9 +76,9 @@ Before this project, you need to make sure you complete :ref:`3.1.1_py_pi5` .
   :width: 800
   :align: center
 
-**Step 2:** To connect the camera module and complete the configuration, please refer to: :ref:`camera_module`.
+**Step 2:** To connect the camera module and complete the configuration, please refer to: :ref:`cpn_camera_module`.
 
-**Step 3:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+**Step 3:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
 
 **Step 4:** Open a Terminal and get into the folder of the code.
 
@@ -164,7 +164,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 **Code Explanation**
 
-#. Imports the `Picamera2` and `Preview` classes for camera control, the `MotionSensor` class for motion detection, and standard libraries `time` and `os` for time handling and operating system interactions.
+#. Imports the ``Picamera2`` and ``Preview`` classes for camera control, the ``MotionSensor`` class for motion detection, and standard libraries ``time`` and ``os`` for time handling and operating system interactions.
 
    .. code-block:: python
 

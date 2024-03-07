@@ -1,5 +1,3 @@
-.. _remote_linux:
-
 For Linux/Unix Users
 ==========================
 

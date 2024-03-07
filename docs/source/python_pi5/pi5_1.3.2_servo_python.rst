@@ -37,13 +37,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`servo`
+    *   - :ref:`cpn_servo`
         - |link_servo_buy|
 
 Schematic Diagram
@@ -169,7 +169,7 @@ After the program is executed, the servo will rotate from 0 degrees to 90 to 180
        # Initialize the Servo object with custom pulse widths
        servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
 
-#. The `try` block contains a `while True` loop to continuously move the servo. The servo is positioned at mid, min, and max points, with each position printed and held for a specified duration.
+#. The ``try`` block contains a ``while True`` loop to continuously move the servo. The servo is positioned at mid, min, and max points, with each position printed and held for a specified duration.
 
    .. code-block:: python
 

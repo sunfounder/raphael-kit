@@ -1,75 +1,54 @@
-.. _set_up_your_raspberry_pi:
+Setting Up Your Raspberry Pi
+=====================================
 
-Set up Your Raspberry Pi
-============================
+Setting Up with a Screen
+---------------------------
 
-If You Have a Screen
--------------------------
+Having a screen simplifies the process of working with your Raspberry Pi.
 
-If you have a screen, it will be easy for you to operate on the Raspberry Pi.
+**Required Components**
 
-**Required Components**
+* Raspberry Pi
+* Power Adapter
+* Micro SD card
+* Screen Power Adapter
+* HDMI cable
+* Screen
+* Mouse
+* Keyboard
 
-* Any Raspberry Pi   
-* 1 * Power Adapter
-* 1 * Micro SD card
-* 1 * Screen Power Adapter
-* 1 * HDMI cable
-* 1 * Screen
-* 1 * Mouse
-* 1 * Keyboard
+**Steps**:
 
-#. Insert the SD card you’ve set up with Raspberry Pi OS into the micro SD card slot on the underside of your Raspberry Pi.
+#. Connect the Mouse and Keyboard to the Raspberry Pi.
 
-#. Plug in the Mouse and Keyboard.
+#. Use the HDMI cable to connect the screen to the Raspberry Pi's HDMI port. Ensure the screen is plugged into a power source and turned on.
 
-#. Connect the screen to Raspberry Pi’s HDMI port and make sure your screen is plugged into a wall socket and switched on.
+#. Power the Raspberry Pi using the power adapter. The Raspberry Pi OS desktop should appear on the screen after a few seconds.
 
-   .. note::
-   
-      If you use a Raspberry Pi 4, you need to connect the screen to the HDMI0 (nearest the power in port).
+    .. image:: img/bullseye_desktop.png
+        :align: center
 
-#. Use the power adapter to power the Raspberry Pi. After a few seconds, the Raspberry Pi OS desktop will be displayed.
+Setting Up Without a Screen
+------------------------------
 
-   .. image:: img/login1.png
-       :align: center
-   
-   .. raw:: html
-   
-       <br/>
+If you don't have a monitor, remote login is a viable option.
 
-#. You can launch a web browser on your Raspberry Pi system and access this tutorial page. This makes it convenient to copy instructions and execute them in the Terminal.
+**Required Components**
 
-   .. image:: img/login2.png
-       :align: center
-   
-.. raw:: html
-   
-   <br/>
+* Raspberry Pi
+* Power Adapter
+* Micro SD card
 
-.. _no_screen:
+Using SSH, you can access the Raspberry Pi's Bash shell, which is the default Linux shell. Bash offers a command-line interface for performing various tasks.
 
-If You Have No Screen
---------------------------
+For those preferring a graphical user interface (GUI), the remote desktop feature is a convenient alternative for managing files and operations.
 
-If you don't have a monitor, you can remotely log into your Raspberry Pi.
-
-**Required Components**
-
-* Any Raspberry Pi   
-* 1 * Power Adapter
-* 1 * Micro SD card
-
-You can apply the SSH command to open the Raspberry Pi's Bash shell. Bash is the standard default shell for Linux. The shell itself is a command (instruction) when the user uses Unix/Linux. Most of what you need to do can be done through the shell.
-
-If you're not satisfied with using the command window to access your Raspberry Pi, you can also use the remote desktop feature to easily manage files on your Raspberry Pi using a GUI.
-
-See below for detailed tutorials for each system.
-
+For detailed setup tutorials based on your operating system, refer to the following sections:
 
 .. toctree::
 
     remote_macosx
     remote_windows
     remote_linux
+    remote_desktop
 

@@ -37,15 +37,15 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`audio_speaker`
+    *   - :ref:`cpn_audio_speaker`
         - \-
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 Build the Circuit
@@ -57,7 +57,7 @@ Build the Circuit
 
 .. note::
   
-  You need to refer to :ref:`camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
+  You need to refer to :ref:`cpn_camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
 
 
 Load the Code and See What Happens

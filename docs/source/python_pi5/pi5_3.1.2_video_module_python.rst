@@ -38,13 +38,13 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 Experimental Procedures
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`windows_remote_desktop`.
+**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
 
 **Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
 
@@ -218,7 +218,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
            # Stop the recording
            camera.stop_recording()
 
-#. This block of code handles a KeyboardInterrupt (such as Ctrl+C) by stopping the camera preview. The `pass` statement is used to  handle the exception without doing anything else.
+#. This block of code handles a KeyboardInterrupt (such as Ctrl+C) by stopping the camera preview. The ``pass`` statement is used to  handle the exception without doing anything else.
 
    .. code-block:: python
 

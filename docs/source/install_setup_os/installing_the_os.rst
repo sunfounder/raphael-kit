@@ -1,173 +1,87 @@
 .. _install_os:
 
-Installing the OS (Common)
-========================================
+Installing the OS
+=======================
 
-**Step 1**
+**Required Components**
 
-The Raspberry Pi team offers a user-friendly graphical SD card writing tool compatible with Mac OS, Ubuntu 18.04, and Windows. This is the most convenient option for most users, as it automatically downloads and installs the OS image to the SD card.
+* Raspberry Pi 5B
+* A Personal Computer
+* A Micro SD card 
 
-Visit the download page: https://www.raspberrypi.org/software/. Choose the **Raspberry Pi Imager** for your operating system. Once downloaded, open it to begin the installation.
+**Installation Steps**
 
-.. image:: img/image2.png
-    :align: center
+#. Visit the Raspberry Pi software download page at `Raspberry Pi Imager <https://www.raspberrypi.org/software/>`_. Choose the Imager version compatible with your operating system. Download and open the file to initiate installation.
 
-.. raw:: html
+    .. image:: img/os_install_imager.png
 
-    <br/>
+#. A security prompt may appear during installation, depending on your operating system. For example, Windows might display a warning message. In such cases, select **More info** and then **Run anyway**. Follow the on-screen guidance to complete the installation of the Raspberry Pi Imager.
 
-**Step 2**
+    .. image:: img/os_info.png
 
-Upon launching the installer, your OS might prompt a security warning. For instance, Windows may show this message:
+#. Insert your SD card into your computer or laptop's SD card slot.
 
-If you encounter this, select **More info** and then **Run anyway**. Follow the on-screen instructions to install the Raspberry Pi Imager.
+#. Launch the Raspberry Pi Imager application by clicking its icon or typing ``rpi-imager`` in your terminal.
 
-.. image:: img/image3.png
-    :align: center
+    .. image:: img/os_open_imager.png
 
-.. raw:: html
+#. Click **CHOOSE DEVICE** and select your specific Raspberry Pi model from the list.
 
-    <br/>
+    .. image:: img/os_choose_device.png
 
-**Step 3**
+#. Select **CHOOSE OS**.
 
-After installing the Imager, open the application by clicking the **Raspberry Pi Imager** icon or executing `rpi-imager`.
+    .. image:: img/os_choose_os.png
 
-.. image:: img/image4.png
-    :align: center
+#. Click **Choose Storage** and select the appropriate storage device for the installation.
 
-.. raw:: html
+    .. note::
 
-    <br/>
+        Ensure you select the correct storage device. To avoid confusion, disconnect any additional storage devices if multiple ones are connected.
 
-**Step 4**
+    .. image:: img/os_choose_sd.png
 
-Click **Choose device** and select your Raspberry Pi model from the list.
+#. Click **NEXT** and then **EDIT SETTINGS** to tailor your OS settings. If you have a monitor for your Raspberry Pi, you can skip the next steps and click 'Yes' to begin the installation. Adjust other settings later on the monitor.
 
-.. image:: img/image5.png
-    :align: center
+    .. image:: img/os_enter_setting.png
 
-.. raw:: html
+#. Define a **hostname** for your Raspberry Pi.
 
-    <br/>
+    .. note::
 
-**Step 5**
+        The hostname is your Raspberry Pi's network identifier. You can access your Pi using ``<hostname>.local`` or ``<hostname>.lan``.
 
-Next, click **Choose OS** and pick an operating system to install. 
+    .. image:: img/os_set_hostname.png
 
-.. image:: img/image6.png
-    :align: center
+#. Create a **Username** and **Password** for the Raspberry Pi's administrator account.
 
-.. raw:: html
+    .. note::
 
-    <br/>
+        Establishing a unique username and password is vital for securing your Raspberry Pi, which lacks a default password.
 
-**Step 6**
+    .. image:: img/os_set_username.png
 
-Connect your preferred storage medium, like a microSD card, using an external or built-in SD card reader. Then, click Choose storage and select your storage device.
+#. Configure the wireless LAN by providing your network's **SSID** and **Password**.
 
-.. note:: 
+    .. note::
 
-    * Ensure to select the correct storage device if multiple are connected. Devices can often be identified by their size. Disconnect others if uncertain.
+        Set the ``Wireless LAN country`` to the two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ corresponding to your location.
 
-.. image:: img/image7.png
-    :align: center
+    .. image:: img/os_set_wifi.png
 
-.. raw:: html
+#. Click **SERVICES** and activate **SSH** for secure, password-based remote access. Remember to save your settings.
 
-    <br/>
+    .. image:: img/os_enable_ssh.png
 
-**Step 7**
+#. Confirm your selected settings by clicking **Yes**.
 
-Press the **NEXT** button and choose **EDIT SETTINGS** to access the OS Customization page.
+    .. image:: img/os_click_yes.png
 
-.. image:: img/image8.png
-    :align: center
+#. If the SD card contains existing data, ensure you back it up to prevent data loss. Proceed by clicking **Yes** if no backup is needed.
 
-.. raw:: html
+    .. image:: img/os_continue.png
 
-    <br/>
+#. The OS installation process will commence on the SD card. A confirmation dialog will appear upon completion.
 
-**Step 8**
-
-Set the **hostname**.
-
-.. note::
-        * The hostname option defines the hostname your Raspberry Pi broadcasts to the network using mDNS. When you connect your Raspberry Pi to your network, other devices on the network can communicate with your computer using ``<hostname>.local`` or ``<hostname>.lan``.
-
-.. image:: img/image9.png
-    :align: center
-
-.. raw:: html
-
-    <br/>
-
-Set the **username** and **password** for the Raspberry Pi's administrator account.
-
-.. note::
-        * With no default password on the Raspberry Pi, it's essential to create your own. The username is also customizable.
-
-.. image:: img/image10.png
-    :align: center
-
-.. raw:: html
-
-    <br/>
-
-Configure wireless LAN by entering your network's **SSID** and **password**.
-
-.. note::
-
-    Set the ``Wireless LAN country`` to your country's two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_.
-
-.. image:: img/image11.png
-    :align: center
-
-.. raw:: html
-
-    <br/>
-
-**Step 9**
-
-Click **SERVICES** to enable SSH and opt for password-based login. Then click **Save**.
-
-.. image:: img/image12.png
-    :align: center
-
-.. raw:: html
-
-    <br/>
-
-**Step 10**
-
-Click the **Yes** button.
-
-.. image:: img/image13.png
-    :align: center
-
-.. raw:: html
-
-    <br/>
-
-**Step 11**
-
-If your SD card contains files, consider backing them up to avoid permanent loss. If no backup is needed, click **Yes**.
-
-.. image:: img/image14.png
-    :align: center
-
-.. raw:: html
-
-    <br/>
-
-**Step 12**
-
-The completion of the writing process will be indicated by the following window after a wait.
-
-.. image:: img/image15.png
-    :align: center
-
-.. raw:: html
-
-    <br/>
-
+    .. image:: img/os_finish.png
+        :align: center

@@ -47,17 +47,17 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`keypad`
+    *   - :ref:`cpn_keypad`
         - \-
-    *   - :ref:`i2c_lcd1602`
+    *   - :ref:`cpn_i2c_lcd`
         - |link_i2clcd1602_buy|
 
 
@@ -115,7 +115,7 @@ After the program runs, there displays the initial page on the LCD:
 .. code-block:: 
 
    Welcome!
-   Press A to go!
+   Press A to go!
 
 Press ‘A’, and the game will start and the game page will appear on the
 LCD.
@@ -123,7 +123,7 @@ LCD.
 .. code-block:: 
 
    Enter number:
-   0 ‹point‹ 99
+   0 < point < 99
 
 A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
 when the game starts, and what you need to do is to guess it. The number

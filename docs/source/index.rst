@@ -39,10 +39,8 @@ If you have any questions, please send an email to service@sunfounder.com and we
     :maxdepth: 2
 
     About This Kit <self>
-    about_video_course
-    component_list
-    install_setup_os/preparation
-    gpio_extension_board 
+    install_setup_os/install_setup_os
+
     download_the_code
 
 .. toctree::
@@ -80,6 +78,7 @@ If you have any questions, please send an email to service@sunfounder.com and we
     :maxdepth: 2
 
     pi5_other_languages
+    component/component_list
     appendix/appendix
     thank-learning
 

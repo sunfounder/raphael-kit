@@ -1,7 +1,5 @@
-.. _what_do_we_need:
-
 What Do We Need?
-================
+========================
 
 Required Components
 -----------------------
@@ -14,8 +12,8 @@ It is a capable little device that enables people of all ages to explore
 computing, and to learn how to program in languages like Scratch and
 Python.
 
-.. image:: img/image1.jpeg
-
+.. image:: img/compitable_pi.jpg
+   :align: center
 
 **Power Adapter**
 
@@ -27,7 +25,7 @@ provides at least 2.5 amps.
 
 Your Raspberry Pi needs an Micro SD card to store all its files and the
 Raspberry Pi OS. You will need a micro SD card with a capacity of at
-least 8 GB
+least 8 GB.
 
 Optional Components
 -------------------------
@@ -53,8 +51,3 @@ DVI or VGA ports, you will need to use the appropriate conversion line.
 You can put the Raspberry Pi in a case; by this means, you can protect
 your device.
 
-**Sound or Earphone**
-
-The Raspberry Pi is equipped with an audio port about 3.5 mm that can be
-used when your screen has no built-in speakers or when there is no
-screen operation.

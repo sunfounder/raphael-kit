@@ -43,7 +43,7 @@ You can also buy them separately from the links below.
     *   - COMPONENT INTRODUCTION
         - PURCHASE LINK
 
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 
@@ -54,7 +54,7 @@ Build the Circuit
 
 .. note::
 
-    You need to refer to :ref:`camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
+    You need to refer to :ref:`cpn_camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
 
 Load the Code and See What Happens
 ---------------------------------------
