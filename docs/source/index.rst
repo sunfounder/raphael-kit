@@ -43,10 +43,7 @@ SunFounder Ulimate Raphael Kit for Raspberry Pi
     :maxdepth: 2
 
     このキットについて <self>
-    about_video_course
-    component_list
-    install_setup_os/preparation
-    gpio_extension_board 
+    install_setup_os/install_setup_os 
     download_the_code
 
 .. toctree::
@@ -54,6 +51,7 @@ SunFounder Ulimate Raphael Kit for Raspberry Pi
 
     python/play_with_python
     python_pi5/play_with_python_pi5
+    python_video/python_video
 
 .. toctree::
     :maxdepth: 3
@@ -77,7 +75,8 @@ SunFounder Ulimate Raphael Kit for Raspberry Pi
 
 .. toctree::
     :maxdepth: 2
-
+    
+    component/component_list
     appendix/appendix
     thank-learning
 

@@ -5,7 +5,7 @@ Scratchのクイックガイド
 
 .. note::
 
-    Scratch 3を使用してプログラムする際には、より良い体験のためにスクリーンが必要かもしれません。参考: `Raspberry Piへの接続 <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_。もちろん、スクリーンを持っていない場合、Raspberry Piのデスクトップにリモートでアクセスすることもできます。詳しいチュートリアルは :ref:`リモートデスクトップ` を参照してください。
+    Scratch 3を使用してプログラムする際には、より良い体験のためにスクリーンが必要かもしれません。参考: `Raspberry Piへの接続 <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_。もちろん、スクリーンを持っていない場合、Raspberry Piのデスクトップにリモートでアクセスすることもできます。詳しいチュートリアルは :ref:`remote_desktop` を参照してください。
 
 さらに、Scratch 3を実行するには少なくとも1GBのRAMが必要です。私たちは、少なくとも2GBのRAMを搭載したRaspberry Pi 4を推奨します。Raspberry Pi 2、3、3B+、または1GB RAMのRaspberry 4でScratch 3を実行することができますが、これらのモデルのパフォーマンスは低下します。また、同時に実行する他のソフトウェアによっては、メモリ不足のためにScratch 3が起動できないことがあります。
 

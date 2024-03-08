@@ -53,7 +53,7 @@ Windowsユーザーであれば、Windows PowerShellを使ってRaspberry Piに�
         :align: center
 
 
-.. _windows_remote_desktop:
+.. _remote_desktop:
 
 
 リモートデスクトップ

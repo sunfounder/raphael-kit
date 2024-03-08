@@ -1,7 +1,7 @@
 .. _4.1.15_py_pi5:
 
-4.1.12 アラームベル
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1.10 アラームベル
+=======================
 
 
 概要
@@ -9,55 +9,55 @@
 
 このプロジェクトでは、手動アラームデバイスを作成します。トグルスイッチをサーミスタまたは光感知センサーに置き換えて、温度アラームまたは光アラームを作成できます。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.15_alarm_bell_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`Buzzer`
-..         - |link_passive_buzzer_buy|
-..     *   - :ref:`slide_switch`
-..         - |link_slide_switch_buy|
-..     *   - :ref:`transistor`
-..         - |link_transistor_buy|
-..     *   - :ref:`capacitor`
-..         - |link_capacitor_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
 
 回路図
 -------------------------
@@ -122,28 +122,27 @@ GPIO22       Pin 15   3        22
     import time
     import threading
 
-    # GPIOピン22にTonalBuzzerを初期化
+    # Initialize TonalBuzzer on GPIO pin 22
     BeepPin = TonalBuzzer(22)
 
-    # GPIOピン17と27にLEDを初期化
+    # Initialize LEDs on GPIO pins 17 and 27
     ALedPin = LED(17)
     BLedPin = LED(27)
 
-    # GPIOピン18にボタンを初期化
+    # Initialize Button on GPIO pin 18
     switchPin = Button(18)
 
-    # ブザーとLEDの状態を管理するためのグローバルフラグ
+    # Global flag to control the buzzer and LED states
     flag = 0
 
     def ledWork():
         """
-        フラグの状態に基づいてLEDの点滅パターンを制御します。
-        フラグがセットされている場合、ALedPinとBLedPinを交互に点滅させます。
-        フラグがセットされていない場合、両方のLEDをオフにします。
+        Control LED blinking pattern based on the flag state.
+        When flag is set, alternately blink ALedPin and BLedPin.
         """
         while True:
             if flag:
-                # LEDを交互に点滅
+                # Alternate blinking of LEDs
                 ALedPin.on()
                 time.sleep(0.5)
                 ALedPin.off()
@@ -151,11 +150,11 @@ GPIO22       Pin 15   3        22
                 time.sleep(0.5)
                 BLedPin.off()
             else:
-                # フラグがセットされていない場合、両方のLEDをオフにする
+                # Turn off both LEDs if flag is not set
                 ALedPin.off()
                 BLedPin.off()
 
-    # 音楽の音符とその持続時間のリストとしてチューンを定義します
+    # Define the musical tune as a list of notes and their durations
     tune = [
         ('C4', 0.1), ('E4', 0.1), ('G4', 0.1), 
         (None, 0.1), 
@@ -169,30 +168,29 @@ GPIO22       Pin 15   3        22
 
     def buzzerWork():
         """
-        フラグの状態に基づいてブザーを使って曲を演奏します。
-        フラグがセットされている場合のみ曲が演奏されます。
-        曲が演奏中にフラグが解除されると、曲が停止します。
+        Play a tune using the buzzer based on the flag state.
+        The tune is played only when the flag is set.
         """
         while True:
             for note, duration in tune:
                 if flag == 0:
                     break
-                print(note)  # 現在の音符をコンソールに出力
-                BeepPin.play(note)  # 現在の音符を演奏
-                time.sleep(duration)  # 音符の持続時間だけ一時停止
-            BeepPin.stop()  # 曲の演奏後にブザーを停止
+                print(note)  # Output the current note to the console
+                BeepPin.play(note)  # Play the current note
+                time.sleep(duration)  # Pause for the duration of the note
+            BeepPin.stop()  # Stop the buzzer after playing the tune
 
     def main():
         """
-        ボタンの押下を監視してフラグの状態を更新します。
-        ボタンが押されるとフラグがセットされます。
+        Monitor button press to update the flag state.
+        Sets the flag when the button is pressed.
         """
         global flag
         while True:
             flag = 1 if switchPin.is_pressed else 0
 
     try:
-        # ブザーとLED制御のスレッドを初期化して開始します
+        # Initialize and start threads for buzzer and LED control
         tBuzz = threading.Thread(target=buzzerWork)
         tBuzz.start()
         tLed = threading.Thread(target=ledWork)
@@ -200,11 +198,10 @@ GPIO22       Pin 15   3        22
         main()
 
     except KeyboardInterrupt:
-        # プログラムが中断されたときにブザーを停止し、LEDをオフにします
+        # Stop the buzzer and turn off LEDs on program interruption
         BeepPin.stop()
         ALedPin.off()    
         BLedPin.off()
-
 
 
 **コードの説明**
@@ -223,18 +220,19 @@ GPIO22       Pin 15   3        22
 
    .. code-block:: python
 
-       # GPIOピン22にTonalBuzzerを初期化
+       # Initialize TonalBuzzer on GPIO pin 22
        BeepPin = TonalBuzzer(22)
 
-       # GPIOピン17と27にLEDを初期化
+       # Initialize LEDs on GPIO pins 17 and 27
        ALedPin = LED(17)
        BLedPin = LED(27)
 
-       # GPIOピン18にボタンを初期化
+       # Initialize Button on GPIO pin 18
        switchPin = Button(18)
 
-       # ブザーとLEDの状態を管理するためのグローバルフラグ
+       # Global flag to control the buzzer and LED states
        flag = 0
+
 
 3. この関数は、フラグの状態に応じてLEDの点滅を制御します。フラグが設定されている（1）場合、各LEDをオンとオフに交互に切り替えます。フラグが設定されていない（0）場合、両方のLEDをオフにします。
 
@@ -242,13 +240,12 @@ GPIO22       Pin 15   3        22
 
        def ledWork():
            """
-           フラグの状態に基づいてLEDの点滅パターンを制御します。
-           フラグがセットされている場合、ALedPinとBLedPinを交互に点滅させます。
-           フラグがセットされていない場合、両方のLEDをオフにします。
+           Control LED blinking pattern based on the flag state.
+           When flag is set, alternately blink ALedPin and BLedPin.
            """
            while True:
                if flag:
-                   # LEDを交互に点滅
+                   # Alternate blinking of LEDs
                    ALedPin.on()
                    time.sleep(0.5)
                    ALedPin.off()
@@ -256,7 +253,7 @@ GPIO22       Pin 15   3        22
                    time.sleep(0.5)
                    BLedPin.off()
                else:
-                   # フラグがセットされていない場合、両方のLEDをオフにする
+                   # Turn off both LEDs if flag is not set
                    ALedPin.off()
                    BLedPin.off()
 
@@ -264,7 +261,7 @@ GPIO22       Pin 15   3        22
 
    .. code-block:: python
 
-       # 音楽の音符とその持続時間のリストとしてチューンを定義
+       # Define the musical tune as a list of notes and their durations
        tune = [
            ('C4', 0.1), ('E4', 0.1), ('G4', 0.1), 
            (None, 0.1), 
@@ -282,18 +279,17 @@ GPIO22       Pin 15   3        22
 
        def buzzerWork():
            """
-           フラグの状態に基づいてブザーを使って曲を演奏します。
-           フラグがセットされている場合のみ曲が演奏されます。
-           曲が演奏中にフラグが解除されると、曲が停止します。
+           Play a tune using the buzzer based on the flag state.
+           The tune is played only when the flag is set.
            """
            while True:
                for note, duration in tune:
                    if flag == 0:
                        break
-                   print(note)  # 現在の音符をコンソールに出力
-                   BeepPin.play(note)  # 現在の音符を演奏
-                   time.sleep(duration)  # 音符の持続時間だけ一時停止
-               BeepPin.stop()  # 曲の演奏後にブザーを停止
+                   print(note)  # Output the current note to the console
+                   BeepPin.play(note)  # Play the current note
+                   time.sleep(duration)  # Pause for the duration of the note
+               BeepPin.stop()  # Stop the buzzer after playing the tune
 
 6. ボタンの状態を確認し、フラグを設定または解除します。
 
@@ -301,8 +297,8 @@ GPIO22       Pin 15   3        22
 
        def main():
            """
-           ボタンの押下を監視してフラグの状態を更新します。
-           ボタンが押されるとフラグがセットされます。
+           Monitor button press to update the flag state.
+           Sets the flag when the button is pressed.
            """
            global flag
            while True:
@@ -313,19 +309,20 @@ GPIO22       Pin 15   3        22
    .. code-block:: python
 
        try:
-           # ブザーとLED制御のスレッドを初期化して開始します
+           # Initialize and start threads for buzzer and LED control
            tBuzz = threading.Thread(target=buzzerWork)
            tBuzz.start()
            tLed = threading.Thread(target=ledWork)
            tLed.start()
            main()
 
+
 8. プログラムが中断されたときに、きれいに終了するように、ブザーを停止し、LEDをオフにします。
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # プログラムが中断されたときにブザーを停止し、LEDをオフにします
+           # Stop the buzzer and turn off LEDs on program interruption
            BeepPin.stop()
            ALedPin.off()    
            BLedPin.off()

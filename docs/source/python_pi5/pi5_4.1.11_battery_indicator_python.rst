@@ -1,6 +1,6 @@
 .. _4.1.11_py_pi5:
 
-4.1.8 バッテリーインジケータ
+4.1.6 バッテリーインジケータ
 ===================================
 
 はじめに
@@ -8,48 +8,48 @@
 
 このプロジェクトでは、LED バーグラフ上にバッテリーの電力レベルを視覚的に表示できるバッテリーインジケータデバイスを作成します。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトには、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.11_battery_indicator_list.png
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`bar_graph`
-..         - \-
-..     *   - :ref:`adc0834`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
+    *   - :ref:`cpn_adc0834`
+        - \-
 
 回路図
 -------------------
@@ -119,31 +119,31 @@ GPIO26       Pin 37   25       26
    import ADC0834
    import time
 
-   # LEDが接続されたGPIOピンのリスト
+   # List of GPIO pins to which LEDs are connected
    ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
-   # リスト内の各ピンに対してLEDオブジェクトを初期化
+   # Initialize LED objects for each pin in the list
    leds = [LED(pin) for pin in ledPins]
 
-   # ADC0834モジュールのセットアップ
+   # Setup ADC0834 module
    ADC0834.setup()
 
    def LedBarGraph(value):
-       # すべてのLEDをオフにする
+       # Turn off all LEDs
        for i in range(10):
            leds[i].off()
-       # 指定された値までLEDを点灯させる
+       # Turn on LEDs up to the specified value
        for i in range(value):
            leds[i].on()
 
    try:
-       # LEDバーグラフを連続的に更新するためのメインループ
+       # Main loop to continuously update LED bar graph
        while True:
-           # ADC0834からアナログ値を読み取る
+           # Read analog value from ADC0834
            analogVal = ADC0834.getResult()
-           # アナログ値をLEDバーグラフのレベルに変換
+           # Convert analog value to LED bar graph level
            LedBarGraph(int(analogVal/25))
    except KeyboardInterrupt: 
-       # プログラムが中断されたときにすべてのLEDをオフにする
+       # Turn off all LEDs when program is interrupted
        for i in range(10):
            leds[i].off()
 
@@ -162,16 +162,16 @@ GPIO26       Pin 37   25       26
 
    .. code-block:: python
 
-       # LEDが接続されたGPIOピンのリスト
+       # List of GPIO pins to which LEDs are connected
        ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
-       # リスト内の各ピンに対してLEDオブジェクトを初期化
+       # Initialize LED objects for each pin in the list
        leds = [LED(pin) for pin in ledPins]
 
 #. アナログからデジタルへの変換のためにADC0834モジュールを初期化します。
 
    .. code-block:: python
 
-       # ADC0834モジュールのセットアップ
+       # Setup ADC0834 module
        ADC0834.setup()
 
 #. この関数はすべてのLEDをオフにし、指定された値に基づいてLEDをオンにして、バーグラフの表現を作成します。
@@ -179,10 +179,10 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        def LedBarGraph(value):
-           # すべてのLEDをオフにする
+           # Turn off all LEDs
            for i in range(10):
                leds[i].off()
-           # 指定された値までLEDを点灯させる
+           # Turn on LEDs up to the specified value
            for i in range(value):
                leds[i].on()
 
@@ -191,11 +191,11 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        try:
-           # LEDバーグラフを連続的に更新するためのメインループ
+           # Main loop to continuously update LED bar graph
            while True:
-               # ADC0834からアナログ値を読み取る
+               # Read analog value from ADC0834
                analogVal = ADC0834.getResult()
-               # アナログ値をLEDバーグラフのレベルに変換
+               # Convert analog value to LED bar graph level
                LedBarGraph(int(analogVal/25))
 
 #. プログラムが中断された場合（たとえば、Ctrl+Cを押した場合）、すべてのLEDがオフになるようにします。
@@ -203,6 +203,6 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        except KeyboardInterrupt: 
-           # プログラムが中断されたときにすべてのLEDをオフにする
+           # Turn off all LEDs when program is interrupted
            for i in range(10):
                leds[i].off()

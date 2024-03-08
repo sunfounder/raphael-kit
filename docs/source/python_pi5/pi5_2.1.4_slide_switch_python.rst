@@ -11,46 +11,46 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.4_slide_switch_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`slide_switch`
-..         - |link_slide_switch_buy|
-..     *   - :ref:`capacitor`
-..         - |link_capacitor_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
 
 回路図
 -----------------
@@ -110,32 +110,32 @@
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # GPIO制御のためのLEDとButtonクラスをインポート
-   from time import sleep  # 遅延を追加するためにsleep関数をインポート
+   from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
+   from time import sleep  # Import sleep function for adding delays
 
-   # プルアップ抵抗を無効にしてGPIOピン17にマイクロスイッチを初期化
+   # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
    micro_switch = Button(17, pull_up=False)
-   # GPIOピン22にLED1を初期化
+   # Initialize LED1 on GPIO pin 22
    led1 = LED(22)
-   # GPIOピン27にLED2を初期化
+   # Initialize LED2 on GPIO pin 27
    led2 = LED(27)
 
    try:
-       # マイクロスイッチの状態に基づいてLEDの状態を制御するメインループ
+       # Main loop to control LED states based on the micro switch's state
        while True:
-           if micro_switch.is_pressed:  # マイクロスイッチが押されているかチェック
-               print('    LED1 ON    ')  # 状態メッセージを表示
-               led1.on()   # LED1を点灯
-               led2.off()  # LED2を消灯
-           else:  # マイクロスイッチが押されていない場合
-               print('    LED2 ON    ')  # 状態メッセージを表示
-               led1.off()  # LED1を消灯
-               led2.on()   # LED2を点灯
+           if micro_switch.is_pressed:  # Check if the micro switch is pressed
+               print('    LED1 ON    ')  # Print status message
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
+           else:  # If the micro switch is not pressed
+               print('    LED2 ON    ')  # Print status message
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
 
-           sleep(0.5)  # スイッチの状態を再チェックする前に0.5秒待つ
+           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
 
    except KeyboardInterrupt:
-       # キーボード割り込み（Ctrl+C）によるループからの清潔な退出を処理
+       # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
        pass
  
 
@@ -146,18 +146,18 @@
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # GPIO制御のためのLEDとButtonクラスをインポート
-       from time import sleep  # 遅延を追加するためにsleep関数をインポート
+       from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
+       from time import sleep  # Import sleep function for adding delays
 
 #. プルアップ抵抗を無効にしてGPIOピン17に接続されたマイクロスイッチ、およびGPIOピン22と27に接続された二つのLEDを初期化します。
 
    .. code-block:: python
 
-       # プルアップ抵抗を無効にしてGPIOピン17にマイクロスイッチを初期化
+       # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
        micro_switch = Button(17, pull_up=False)
-       # GPIOピン22にLED1を初期化
+       # Initialize LED1 on GPIO pin 22
        led1 = LED(22)
-       # GPIOピン27にLED2を初期化
+       # Initialize LED2 on GPIO pin 27
        led2 = LED(27)
 
 #. メインループでは、マイクロスイッチの状態をチェックします。押された場合、LED1が点灯しLED2が消灯します；押されていない場合、LED1が消灯しLED2が点灯します。このループは0.5秒ごとに繰り返されます。Ctrl+C（KeyboardInterrupt）を捕捉して、スクリプトを優雅に終了させることができます。
@@ -165,19 +165,19 @@
    .. code-block:: python
 
        try:
-       # マイクロスイッチの状態に基づいてLEDの状態を制御するメインループ
+       # Main loop to control LED states based on the micro switch's state
        while True:
-           if micro_switch.is_pressed:  # マイクロスイッチが押されているかチェック
-               print('    LED1 ON    ')  # 状態メッセージを表示
-               led1.on()   # LED1を点灯
-               led2.off()  # LED2を消灯
-           else:  # マイクロスイッチが押されていない場合
-               print('    LED2 ON    ')  # 状態メッセージを表示
-               led1.off()  # LED1を消灯
-               led2.on()   # LED2を点灯
+           if micro_switch.is_pressed:  # Check if the micro switch is pressed
+               print('    LED1 ON    ')  # Print status message
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
+           else:  # If the micro switch is not pressed
+               print('    LED2 ON    ')  # Print status message
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
 
-           sleep(0.5)  # スイッチの状態を再チェックする前に0.5秒待つ
+           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
 
        except KeyboardInterrupt:
-           # キーボード割り込み（Ctrl+C）によるループからの清潔な退出を処理
+           # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
            pass

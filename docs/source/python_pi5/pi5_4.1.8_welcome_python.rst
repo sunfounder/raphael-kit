@@ -1,6 +1,6 @@
 .. _4.1.8_py_pi5:
 
-4.1.5 ようこそ
+4.1.3 ようこそ
 =====================================
 
 はじめに
@@ -9,55 +9,55 @@
 このプロジェクトでは、歩行者の動きを検出するためにPIRを使用し、
 センサー付きコンビニエンスストアの扉の動作を模倣するためにサーボ、LED、ブザーを使用します。歩行者がPIRの感知範囲内に現れると、インジケーターライトが点灯し、扉が開き、ブザーが開店ベルを演奏します。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.8_welcome_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`pir`
-..         - \-
-..     *   - :ref:`servo`
-..         - |link_servo_buy|
-..     *   - :ref:`Buzzer`
-..         - |link_passive_buzzer_buy|
-..     *   - :ref:`transistor`
-..         - |link_transistor_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_pir`
+        - \-
+    *   - :ref:`cpn_servo`
+        - |link_servo_buy|
+    *   - :ref:`cpn_buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
 
 
 回路図
@@ -126,20 +126,20 @@ PIRモジュールには2つのポテンショメータがあります。1つは
    from gpiozero import LED, MotionSensor, Servo, TonalBuzzer
    import time
 
-   # LED、モーションセンサー（PIR）、ブザーのためのGPIOピン設定
+   # GPIO pin setup for LED, motion sensor (PIR), and buzzer
    ledPin = LED(6)
    pirPin = MotionSensor(21)
    buzPin = TonalBuzzer(27)
 
-   # サーボモーターパルス幅補正ファクターと計算
+   # Servo motor pulse width correction factor and calculation
    myCorrection = 0.45
-   maxPW = (2.0 + myCorrection) / 1000  # 最大パルス幅
-   minPW = (1.0 - myCorrection) / 1000  # 最小パルス幅
+   maxPW = (2.0 + myCorrection) / 1000  # Maximum pulse width
+   minPW = (1.0 - myCorrection) / 1000  # Minimum pulse width
 
-   # サーボをカスタムパルス幅で初期化
+   # Initialize servo with custom pulse widths
    servoPin = Servo(25, min_pulse_width=minPW, max_pulse_width=maxPW)
 
-   # ブザーの音楽のチューン、音符と持続時間が含まれています
+   # Musical tune for buzzer, with notes and durations
    tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
            ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
            ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -153,53 +153,54 @@ PIRモジュールには2つのポテンショメータがあります。1つは
 
    def setAngle(angle):
        """
-       サーボを指定した角度に移動します。
-       :param angle: 角度（0-180）。
+       Move the servo to a specified angle.
+       :param angle: Angle in degrees (0-180).
        """
-       value = float(angle / 180)  # 角度をサーボの値に変換
-       servoPin.value = value      # サーボの位置を設定
-       time.sleep(0.001)           # サーボの動作のための短い遅延
+       value = float(angle / 180)  # Convert angle to servo value
+       servoPin.value = value      # Set servo position
+       time.sleep(0.001)           # Short delay for servo movement
 
    def doorbell():
        """
-       ブザーを使用して音楽を演奏します。
+       Play a musical tune using the buzzer.
        """
        for note, duration in tune:
-           buzPin.play(note)       # 音符を演奏
-           time.sleep(float(duration))  # 音符の持続時間
-       buzPin.stop()               # チューン再生後にブザーを停止
+           buzPin.play(note)       # Play the note
+           time.sleep(float(duration))  # Duration of the note
+       buzPin.stop()               # Stop buzzer after playing the tune
 
    def closedoor():
-       # LEDをオフにし、サーボを使ってドアを閉めます
+       # Turn off LED and move servo to close door
        ledPin.off()
        for i in range(180, -1, -1):
-           setAngle(i)             # サーボを180度から0度まで移動
-           time.sleep(0.001)       # スムーズな動作のための短い遅延
-       time.sleep(1)               # ドアを閉めた後の待機
+           setAngle(i)             # Move servo from 180 to 0 degrees
+           time.sleep(0.001)       # Short delay for smooth movement
+       time.sleep(1)               # Wait after closing door
 
    def opendoor():
-       # LEDをオンにし、ドアを開ける（サーボを移動）、チューンを演奏し、ドアを閉じる
+       # Turn on LED, open door (move servo), play tune, close door
        ledPin.on()
        for i in range(0, 181):
-           setAngle(i)             # サーボを0から180度まで移動
-           time.sleep(0.001)       # スムーズな動作のための短い遅延
-       time.sleep(1)               # チューンを演奏する前の待機
-       doorbell()                  # ドアベルのチューンを演奏
-       closedoor()                 # チューン演奏後にドアを閉じる
+           setAngle(i)             # Move servo from 0 to 180 degrees
+           time.sleep(0.001)       # Short delay for smooth movement
+       time.sleep(1)               # Wait before playing the tune
+       doorbell()                  # Play the doorbell tune
+       closedoor()                 # Close the door after the tune
 
    def loop():
-       # モーションを確認し、ドアを操作するためのメインループ
+       # Main loop to check for motion and operate door
        while True:
            if pirPin.motion_detected:
-               opendoor()               # モーションが検出された場合はドアを開く
-           time.sleep(0.1)              # ループ内の短い遅延
+               opendoor()               # Open door if motion detected
+           time.sleep(0.1)              # Short delay in loop
 
    try:
        loop()
    except KeyboardInterrupt:
-       # ユーザーの割り込み（たとえば、Ctrl+C）でGPIOをクリーンアップ
+       # Clean up GPIO on user interrupt (e.g., Ctrl+C)
        buzPin.stop()
        ledPin.off()
+
 
 
 
@@ -217,7 +218,7 @@ PIRモジュールには2つのポテンショメータがあります。1つは
 
    .. code-block:: python
 
-       # LED、モーションセンサー（PIR）、ブザーのためのGPIOピン設定
+       # GPIO pin setup for LED, motion sensor (PIR), and buzzer
        ledPin = LED(6)
        pirPin = MotionSensor(21)
        buzPin = TonalBuzzer(27)
@@ -226,23 +227,23 @@ PIRモジュールには2つのポテンショメータがあります。1つは
 
    .. code-block:: python
 
-       # サーボモーターパルス幅補正ファクターと計算
+       # Servo motor pulse width correction factor and calculation
        myCorrection = 0.45
-       maxPW = (2.0 + myCorrection) / 1000  # 最大パルス幅
-       minPW = (1.0 - myCorrection) / 1000  # 最小パルス幅
+       maxPW = (2.0 + myCorrection) / 1000  # Maximum pulse width
+       minPW = (1.0 - myCorrection) / 1000  # Minimum pulse width
 
 #. サーボモーターを正確な位置に配置するためにカスタムパルス幅を使用してGPIOピン25上で初期化します。
 
    .. code-block:: python
 
-       # サーボをカスタムパルス幅で初期化
+       # Initialize servo with custom pulse widths
        servoPin = Servo(25, min_pulse_width=minPW, max_pulse_width=maxPW)
 
 #. ブザーで演奏するための音楽チューンを、音符（周波数）と持続時間（秒）のシーケンスとして定義します。
 
    .. code-block:: python
 
-       # ブザーの音楽のチューン、音符と持続時間が含まれています
+       # Musical tune for buzzer, with notes and durations
        tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
                ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
                ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -260,12 +261,12 @@ PIRモジュールには2つのポテンショメータがあります。1つは
 
        def setAngle(angle):
            """
-           サーボを指定した角度に移動します。
-           :param angle: 角度（0-180）。
+           Move the servo to a specified angle.
+           :param angle: Angle in degrees (0-180).
            """
-           value = float(angle / 180)  # 角度をサーボの値に変換
-           servoPin.value = value      # サーボの位置を設定
-           time.sleep(0.001)           # サーボの動作のための短い遅延
+           value = float(angle / 180)  # Convert angle to servo value
+           servoPin.value = value      # Set servo position
+           time.sleep(0.001)           # Short delay for servo movement
 
 #. ブザーを使用して音楽を演奏するための関数。 ``tune`` リスト内を繰り返し、各音符を指定された持続時間で演奏します。
 
@@ -273,45 +274,45 @@ PIRモジュールには2つのポテンショメータがあります。1つは
 
        def doorbell():
            """
-           ブザーを使用して音楽を演奏します。
+           Play a musical tune using the buzzer.
            """
            for note, duration in tune:
-               buzPin.play(note)       # 音符を演奏
-               time.sleep(float(duration))  # 音符の持続時間
-           buzPin.stop()               # チューン再生後にブザーを停止
+               buzPin.play(note)       # Play the note
+               time.sleep(float(duration))  # Duration of the note
+           buzPin.stop()               # Stop buzzer after playing the tune
 
 #. サーボモーターを使用してドアを開閉するための関数。 ``opendoor`` 関数はLEDを点灯させ、ドアを開け、音楽を演奏し、その後ドアを閉じます。
 
    .. code-block:: python
 
        def closedoor():
-           # LEDをオフにし、サーボを使ってドアを閉めます
+           # Turn off LED and move servo to close door
            ledPin.off()
            for i in range(180, -1, -1):
-               setAngle(i)             # サーボを180度から0度まで移動
-               time.sleep(0.001)       # スムーズな動作のための短い遅延
-           time.sleep(1)               # ドアを閉めた後の待機
+               setAngle(i)             # Move servo from 180 to 0 degrees
+               time.sleep(0.001)       # Short delay for smooth movement
+           time.sleep(1)               # Wait after closing door
 
        def opendoor():
-           # LEDをオンにし、ドアを開ける（サーボを移動）、チューンを演奏し、ドアを閉じる
+           # Turn on LED, open door (move servo), play tune, close door
            ledPin.on()
            for i in range(0, 181):
-               setAngle(i)             # サーボを0から180度まで移動
-               time.sleep(0.001)       # スムーズな動作のための短い遅延
-           time.sleep(1)               # チューンを演奏する前の待機
-           doorbell()                  # ドアベルのチューンを演奏
-           closedoor()                 # チューン演奏後にドアを閉じる
+               setAngle(i)             # Move servo from 0 to 180 degrees
+               time.sleep(0.001)       # Short delay for smooth movement
+           time.sleep(1)               # Wait before playing the tune
+           doorbell()                  # Play the doorbell tune
+           closedoor()                 # Close the door after the tune
 
 #. モーション検出を常にチェックするメインループ。モーションが検出された場合、 ``opendoor`` 関数がトリガーされます。
 
    .. code-block:: python
 
        def loop():
-           # モーションを確認し、ドアを操作するためのメインループ
+           # Main loop to check for motion and operate door
            while True:
                if pirPin.motion_detected:
-                   opendoor()               # モーションが検出された場合はドアを開く
-               time.sleep(0.1)              # ループ内の短い遅延
+                   opendoor()               # Open door if motion detected
+               time.sleep(0.1)              # Short delay in loop
 
 #. メインループを実行し、スクリプトをキーボードコマンド（Ctrl+C）で停止できるようにし、クリーンな終了のためにブザーとLEDをオフにします。
 
@@ -320,6 +321,6 @@ PIRモジュールには2つのポテンショメータがあります。1つは
        try:
            loop()
        except KeyboardInterrupt:
-           # ユーザーの割り込み（たとえば、Ctrl+C）でGPIOをクリーンアップ
+           # Clean up GPIO on user interrupt (e.g., Ctrl+C)
            buzPin.stop()
            ledPin.off()

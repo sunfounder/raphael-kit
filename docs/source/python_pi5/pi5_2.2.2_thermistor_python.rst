@@ -8,47 +8,48 @@
 
 フォトレジスタが光を感知するように、サーミスタは温度に感応する電子デバイスで、温度制御などの機能を実現するために使用できます。たとえば、ヒートアラームを作成することができます。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.2.2_thermistor_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`thermistor`
-..         - |link_thermistor_buy|
-..     *   - :ref:`adc0834`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_adc0834`
+        - \-
+
 
 回路図
 -----------------
@@ -108,39 +109,39 @@
    import time
    import math
 
-   # ADC0834モジュールを初期化
+   # Initialize the ADC0834 module
    ADC0834.setup()
 
-   # try-exceptブロック内でプロセスを実行
+   # Run the process in a try-except block
    try:
        while True:
-           # センサーからアナログ値を読み取る
+           # Read the analog value from the sensor
            analogVal = ADC0834.getResult()
 
-           # アナログ値を電圧に変換
+           # Convert the analog value to a voltage
            Vr = 5 * float(analogVal) / 255
 
-           # サーミスタの抵抗を計算
+           # Calculate the resistance of the thermistor
            Rt = 10000 * Vr / (5 - Vr)
 
-           # ケルビンで温度を計算
+           # Calculate the temperature in Kelvin
            temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
 
-           # ケルビンを摂氏に変換
+           # Convert Kelvin to Celsius
            Cel = temp - 273.15
 
-           # 摂氏を華氏に変換
+           # Convert Celsius to Fahrenheit
            Fah = Cel * 1.8 + 32
 
-           # 摂氏と華氏の両方で温度を表示
+           # Print the temperature in both Celsius and Fahrenheit
            print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
 
-           # 次の読み取り前に0.2秒待つ
+           # Wait for 0.2 seconds before the next read
            time.sleep(0.2)
 
-   # graceful terminationのためにKeyboardInterruptを処理
+   # Handle KeyboardInterrupt for graceful termination
    except KeyboardInterrupt:
-       # ADC0834のリソースをクリーンアップ
+       # Clean up ADC0834 resources
        ADC0834.destroy()
 
 
@@ -161,45 +162,46 @@
 
    .. code-block:: python
 
-       # ADC0834モジュールを初期化
+       # Initialize the ADC0834 module
        ADC0834.setup()
 
 3. 無限ループを実装してデータの連続読み取りを行います。ループはサーミスタからアナログ値を読み取り、この値を電圧に変換し、サーミスタの抵抗を計算し、その抵抗をケルビン、摂氏、華氏の温度測定に変換します。温度の読み取りを摂氏と華氏の両方で出力し、各読み取りの間に0.2秒の待機を挿入します。
 
    .. code-block:: python
 
-       # try-exceptブロック内でプロセスを実行
+       # Run the process in a try-except block
        try:
            while True:
-               # センサーからアナログ値を読み取る
+               # Read the analog value from the sensor
                analogVal = ADC0834.getResult()
 
-               # アナログ値を電圧に変換
+               # Convert the analog value to a voltage
                Vr = 5 * float(analogVal) / 255
 
-               # サーミスタの抵抗を計算
+               # Calculate the resistance of the thermistor
                Rt = 10000 * Vr / (5 - Vr)
 
-               # ケルビンで温度を計算
+               # Calculate the temperature in Kelvin
                temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
 
-               # ケルビンを摂氏に変換
+               # Convert Kelvin to Celsius
                Cel = temp - 273.15
 
-               # 摂氏を華氏に変換
+               # Convert Celsius to Fahrenheit
                Fah = Cel * 1.8 + 32
 
-               # 摂氏と華氏の両方で温度を表示
+               # Print the temperature in both Celsius and Fahrenheit
                print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
 
-               # 次の読み取り前に0.2秒待つ
+               # Wait for 0.2 seconds before the next read
                time.sleep(0.2)
+
 
 4. プログラムを正常に終了するためのKeyboardInterrupt例外をキャッチし、終了時にADC0834のリソースをクリーンアップする命令を含めています。
 
    .. code-block:: python
 
-       # graceful terminationのためにKeyboardInterruptを処理
+       # Handle KeyboardInterrupt for graceful termination
        except KeyboardInterrupt:
-           # ADC0834のリソースをクリーンアップ
+           # Clean up ADC0834 resources
            ADC0834.destroy()

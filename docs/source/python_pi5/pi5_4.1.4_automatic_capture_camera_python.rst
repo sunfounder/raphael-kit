@@ -11,47 +11,46 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.4_automatic_capture_list.png
   :width: 800
   :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`camera_module`
-..         - |link_camera_buy|
-..     *   - :ref:`pir`
-..         - \-
-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_camera_module`
+        - |link_camera_buy|
+    *   - :ref:`cpn_pir`
+        - \-
 
 回路図
 -----------------------
@@ -76,9 +75,9 @@ GPIO17       Pin 11   0        17
   :width: 800
   :align: center
 
-**ステップ 2:** カメラモジュールを接続し、設定を完了してください。詳細は、 :ref:`camera_module` を参照してください。
+**ステップ 2:** カメラモジュールを接続し、設定を完了してください。詳細は、 :ref:`cpn_camera_module` を参照してください。
 
-**ステップ 3:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`windows_remote_desktop` の詳細なチュートリアルを参照してください。
+**ステップ 3:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`remote_desktop` の詳細なチュートリアルを参照してください。
 
 **ステップ 4:** ターミナルを開き、コードのフォルダに入ります。
 
@@ -130,38 +129,42 @@ PIRモジュールには2つのポテンショメータがあります：1つは
     import time
     import os
 
-    # 現在のユーザーのログイン名とホームディレクトリを取得
+    # Retrieve the current user's login name and home directory
     user = os.getlogin()
     user_home = os.path.expanduser(f'~{user}')
 
-    # カメラを初期化
+    # Initialize the camera
     camera = Picamera2()
     camera.start()
 
-    # GPIOピン17に接続された動作センサーを初期化
+    # Initialize the motion sensor on GPIO pin 17
     pir = MotionSensor(17)
 
     try:
-        i = 1  # 画像カウントを初期化
+        i = 1  # Initialize the image count
         while True:
             if pir.motion_detected:
-                # 動きが検出されたときに画像をキャプチャして、一意の番号で保存
+                # Capture an image when motion is detected and save it with a unique number
                 camera.capture_file(f'{user_home}/capture%s.jpg' % i)
-                print('撮影数は %s です' % i)  # 画像カウントを表示
-                time.sleep(3)  # 次の検出まで3秒待つ
-                i += 1  # 画像カウントをインクリメント
+                print('The number is %s' % i)  # Print the image count
+                time.sleep(3)  # Wait for 3 seconds before next detection
+                i += 1  # Increment the image count
             else:
-                print('待機中')  # 動きが検出されないときに「待機中」を表示
-                time.sleep(0.5)  # 0.5秒ごとに動きをチェック
+                print('waiting')  # Print 'waiting' when no motion is detected
+                time.sleep(0.5)  # Check for motion every 0.5 seconds
 
     except KeyboardInterrupt:
-        # KeyboardInterruptが発生した場合、カメラのプレビューを停止して終了
+        # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
+
+
+        
         camera.stop_preview()
         pass
 
+
 **コード説明**
 
-#. カメラ制御用の `Picamera2` と `Preview` クラス、動き検出用の `MotionSensor` クラス、標準ライブラリの `time` と `os` をインポートします。
+#. カメラ制御用の ``Picamera2`` と ``Preview`` クラス、動き検出用の ``MotionSensor`` クラス、標準ライブラリの ``time`` と ``os`` をインポートします。
 
    .. code-block:: python
 
@@ -175,7 +178,7 @@ PIRモジュールには2つのポテンショメータがあります：1つは
 
    .. code-block:: python
 
-       # 現在のユーザーのログイン名とホームディレクトリを取得
+       # Retrieve the current user's login name and home directory
        user = os.getlogin()
        user_home = os.path.expanduser(f'~{user}')
 
@@ -183,7 +186,7 @@ PIRモジュールには2つのポテンショメータがあります：1つは
 
    .. code-block:: python
 
-       # カメラを初期化
+       # Initialize the camera
        camera = Picamera2()
        camera.start()
 
@@ -191,7 +194,7 @@ PIRモジュールには2つのポテンショメータがあります：1つは
 
    .. code-block:: python
 
-       # GPIOピン17に接続された動作センサーを初期化
+       # Initialize the motion sensor on GPIO pin 17
        pir = MotionSensor(17)
 
 #. カウンター ``i`` を初期化して、撮影された画像の数を追跡します。無限ループ内で、動きが検出されるかどうかをチェックします。動きが検出された場合、カウンター ``i`` に基づいて一意の名前で画像をキャプチャし、画像番号を印刷し、次の動き検出前に3秒間待ち、カウンター ``i`` をインクリメントします。
@@ -199,14 +202,14 @@ PIRモジュールには2つのポテンショメータがあります：1つは
    .. code-block:: python
 
        try:
-           i = 1  # 画像カウントを初期化
+           i = 1  # Initialize the image count
            while True:
                if pir.motion_detected:
-                   # 動きが検出されたときに画像をキャプチャして、一意の番号で保存
+                   # Capture an image when motion is detected and save it with a unique number
                    camera.capture_file(f'{user_home}/capture%s.jpg' % i)
-                   print('The number is %s です' % i)  # 画像カウントを表示
-                   time.sleep(3)  # 次の検出まで3秒待つ
-                   i += 1  # 画像カウントをインクリメント
+                   print('The number is %s' % i)  # Print the image count
+                   time.sleep(3)  # Wait for 3 seconds before next detection
+                   i += 1  # Increment the image count
 
 #. 動きが検出されない場合は、「待機中」と表示し、0.5秒ごとに動きをチェックします。
 
@@ -219,15 +222,16 @@ PIRモジュールには2つのポテンショメータがあります：1つは
                ...
                
                else:
-                   print('waiting')  # 動きが検出されないときに「待機中」を表示
-                   time.sleep(0.5)  # 0.5秒ごとに動きをチェック
+                   print('waiting')  # Print 'waiting' when no motion is detected
+                   time.sleep(0.5)  # Check for motion every 0.5 seconds
 
 #. Ctrl+CのようなKeyboardInterruptをキャッチして、カメラのプレビューを停止し、スクリプトを優雅に終了させます。
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # KeyboardInterruptが発生した場合、カメラのプレビューを停止して終了
+           # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
            camera.stop_preview()
            pass
+
 

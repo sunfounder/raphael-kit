@@ -8,16 +8,48 @@
 
 次に、4桁の7セグメントディスプレイを制御してみましょう。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
 このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/1.1.5_4_digit_list.png
 
-.. raw:: html
+一式を購入するのが便利です、こちらがリンクです： 
 
-   <br/>
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
 
 回路図
 --------------------------
@@ -81,22 +113,22 @@ GPIO24       Pin 18   24
    import time
    import threading
 
-   # 74HC595シフトレジスタ用のGPIOピンを定義
-   SDI = OutputDevice(24)   # シリアルデータ入力
-   RCLK = OutputDevice(23)  # レジスタクロック
-   SRCLK = OutputDevice(18) # シフトレジスタクロック
+   # Define GPIO pins for the 74HC595 shift register
+   SDI = OutputDevice(24)   # Serial Data Input
+   RCLK = OutputDevice(23)  # Register Clock
+   SRCLK = OutputDevice(18) # Shift Register Clock
 
-   # 7セグメントディスプレイの数字を選択するためのGPIOピンを定義
+   # Define GPIO pins for digit selection on the 7-segment display
    placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-   # 7セグメントディスプレイに表示する0から9までの数字のセグメントコードを定義
+   # Define segment codes for numbers 0-9 for the 7-segment display
    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-   counter = 0  # 表示用のカウンターを初期化
-   timer1 = 0   # カウンターの増分用のタイマーを初期化
+   counter = 0  # Initialize counter for display
+   timer1 = 0   # Initialize timer for counter increment
 
    def clearDisplay():
-       """ 7セグメントディスプレイをクリアします。 """
+       """ Clear the 7-segment display. """
        for _ in range(8):
            SDI.on()
            SRCLK.on()
@@ -105,77 +137,162 @@ GPIO24       Pin 18   24
        RCLK.off()
 
    def hc595_shift(data):
-       """ 1バイトのデータを74HC595シフトレジスタにシフトします。 """
+       """ Shift a byte of data to the 74HC595 shift register. """
        for i in range(8):
-           SDI.value = 0x80 & (data << i)  # データビットに基づいてSDIを高/低に設定
-           SRCLK.on()  # シフトレジスタクロックをパルス
+           SDI.value = 0x80 & (data << i)  # Set SDI high/low based on data bit
+           SRCLK.on()  # Pulse the Shift Register Clock
            SRCLK.off()
-       RCLK.on()  # レジスタクロックをパルスしてデータを出力にラッチ
+       RCLK.on()  # Latch data on the output by pulsing Register Clock
        RCLK.off()
 
    def pickDigit(digit):
-       """ 7セグメントディスプレイに表示する数字を選択します。 """
+       """ Select a digit for display on the 7-segment display. """
        for pin in placePin:
-           pin.off()  # すべての数字選択ピンをオフにする
-       placePin[digit].on()  # 選択された数字をオンにする
+           pin.off()  # Turn off all digit selection pins
+       placePin[digit].on()  # Turn on the selected digit
 
    def timer():
-       """ カウンターを1秒ごとに増分するタイマー関数です。 """
+       """ Timer function to increment the counter every second. """
        global counter, timer1
-       timer1 = threading.Timer(1.0, timer)  # 次の増分のためにタイマーをリセット
+       timer1 = threading.Timer(1.0, timer)  # Reset timer for next increment
        timer1.start()
-       counter += 1  # カウンターを増分
-       print("%d" % counter)  # 現在のカウンターの値を表示
+       counter += 1  # Increment counter
+       print("%d" % counter)  # Print current counter value
 
    def setup():
-       """ 初期状態を設定し、タイマーを開始します。 """
+       """ Setup initial state and start the timer. """
        global timer1
-       timer1 = threading.Timer(1.0, timer)  # タイマーの初期化と開始
+       timer1 = threading.Timer(1.0, timer)  # Initialize and start the timer
        timer1.start()
 
    def loop():
-       """ カウンターの値で7セグメントディスプレイを更新するメインループです。 """
+       """ Main loop to update the 7-segment display with counter value. """
        global counter
        while True:
-           for i in range(4):  # 各数字をループ
-               clearDisplay()  # 新しい数字を設定する前にディスプレイをクリア
-               pickDigit(i)    # 表示する数字を選択
+           for i in range(4):  # Loop through each digit
+               clearDisplay()  # Clear display before setting new digit
+               pickDigit(i)    # Select digit for display
+
+               # Choose the digit of counter to display
                digit = (counter // (10 ** i)) % 10
-               hc595_shift(number[digit])  # 数字の値を74HC595にシフト
-               time.sleep(0.001)  # ディスプレイの安定性のための短い遅延
+
+               hc595_shift(number[digit])  # Shift digit value to 74HC595
+               time.sleep(0.001)  # Short delay for display stability
 
    def destroy():
-       """ 終了時にGPIOリソースをクリーンアップし、タイマーを停止します。 """
+       """ Cleanup GPIO resources and stop timer on exit. """
        global timer1
-       timer1.cancel()  # タイマーを停止
+       timer1.cancel()  # Stop the timer
        for device in [SDI, RCLK, SRCLK] + placePin:
-           device.close()  # GPIOデバイスをクローズ
+           device.close()  # Close GPIO devices
 
    try:
-       setup()  # 初期セットアップを実行
+       setup()  # Initialize the setup
        while True:
-           loop()  # メインループを開始
+           loop()  # Start the main loop
            
    except KeyboardInterrupt:
-       # スクリプトの中断（例：Ctrl+C）
-       destroy()  # 終了時にリソースをクリーンアップ
+       # Handle script interruption (e.g., Ctrl+C)
+       destroy()  # Cleanup resources on exit
 
 **コードの説明**
 
-#. ``placePin`` リストは、4桁の7セグメントディスプレイの各桁を制御するための共通アノードピンを制御します。
+#. これら4つのピンは、4桁7セグメント表示器の共通アノードピンを制御します。
 
-#. 16進数で0から9までのセグメントコード（共通アノード）を含む ``number`` 配列を定義します。
+   .. code-block:: python
 
-#. ``setup`` 関数は、カウンタ増加用のタイマーを1秒ごとにトリガするためのセットアップを行います。
+       # Define GPIO pins for digit selection on the 7-segment display
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-#. タイマーが1.0秒に達すると、タイマー関数が呼び出され、カウンタに1を追加し、次にタイマー自体が1秒ごとに繰り返し実行されます。
+#. 0から9までのセグメントコード配列（共通アノード）を16進数で。
 
-#. ``hc595_shift`` 関数は、74HC595シフトレジスタに1バイトのデータをシフトし、ディスプレイセグメントを制御します。
+   .. code-block:: python
 
-#. メインループ ``loop`` では、現在のカウンタ値を表示し、各桁を順番に表示します。各桁を表示する前にディスプレイをクリアします。
+       # Define segment codes for numbers 0-9 for the 7-segment display
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-#. ``clearDisplay`` 関数は、次の桁を表示する前にすべてのセグメントをオフに設定してディスプレイをクリアします。
+#. 毎秒`timer`関数をトリガーするタイマーを初期化します。これにより、繰り返しカウンターの増分が設定されます。
 
-#. ``pickDigit`` 関数は、アクティブ化する7セグメントディスプレイの桁を選択します。各桁は個別のGPIOピンで制御されます。
+   .. code-block:: python
 
-#. プログラムが中断された場合、GPIOリソースを適切に解放し、タイマーを停止します。
+       def setup():
+           """ Setup initial state and start the timer. """
+           global timer1
+           timer1 = threading.Timer(1.0, timer)  # Initialize and start the timer
+           timer1.start()
+
+#. タイマーが1.0秒に達すると、タイマー関数が呼び出されます。カウンターに1を加え、タイマーは自身を再度毎秒実行するために使用されます。
+
+   .. code-block:: python
+
+       def timer():
+           """ Timer function to increment the counter every second. """
+           global counter, timer1
+           timer1 = threading.Timer(1.0, timer)  # Reset timer for next increment
+           timer1.start()
+           counter += 1  # Increment counter
+           print("%d" % counter)  # Print current counter value
+
+#. 74HC595シフトレジスタに1バイトのデータをシフトし、表示セグメントを制御します。
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           """ Shift a byte of data to the 74HC595 shift register. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)  # Set SDI high/low based on data bit
+               SRCLK.on()  # Pulse the Shift Register Clock
+               SRCLK.off()
+           RCLK.on()  # Latch data on the output by pulsing Register Clock
+           RCLK.off()
+
+#. 現在のカウンター値を表示し、各桁を順番に表示することでディスプレイを連続的に更新します。
+
+   .. code-block:: python
+
+       def loop():
+           """ Main loop to update the 7-segment display with counter value. """
+           global counter
+           while True:
+               for i in range(4):  # Loop through each digit
+                   clearDisplay()  # Clear display before setting new digit
+                   pickDigit(i)    # Select digit for display
+                   digit = (counter // (10 ** i)) % 10
+                   hc595_shift(number[digit])  # Shift digit value to 74HC595
+                   time.sleep(0.001)  # Short delay for display stability
+
+
+#. 次の桁を表示する前に、すべてのセグメントをオフにして7セグメント表示をクリアします。
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Clear the 7-segment display. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+
+#. 7セグメント表示のどの桁をアクティブにするかを選択します。各桁は別々のGPIOピンによって制御されます。
+
+   .. code-block:: python
+
+       def pickDigit(digit):
+           """ Select a digit for display on the 7-segment display. """
+           for pin in placePin:
+               pin.off()  # Turn off all digit selection pins
+           placePin[digit].on()  # Turn on the selected digit
+
+
+
+
+#. プログラムが中断されたときに、GPIOリソースを適切に解放し、タイマーを停止します。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Handle script interruption (e.g., Ctrl+C)
+           destroy()  # Cleanup resources on exit

@@ -8,51 +8,49 @@
 
 フォトレジスタは、日常生活で環境光の強度を測定するためによく使用されるコンポーネントです。これにより、コントローラは昼と夜を認識し、ナイトランプなどの光制御機能を実現します。このプロジェクトはポテンショメーターに非常に似ており、電圧を変化させて光を検出します。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.2.1_photoresistor_list.png
 
+一式を購入するのが便利です、こちらがリンクです： 
 
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+以下のリンクから別々に購入することもできます。
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-.. You can also buy them separately from the links below.
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
-
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
-
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`adc0834`
-..         - \-
-..     *   - :ref:`photoresistor`
-..         - |link_photoresistor_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_adc0834`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
 
 回路図
 --------------------
@@ -110,34 +108,34 @@
    import ADC0834
    import time
 
-   # GPIOピン22に接続されたPWM LEDを初期化
+   # Initialize a PWM LED on GPIO pin 22
    led = PWMLED(22)
 
-   # ADC0834モジュールをセットアップ
+   # Set up the ADC0834 module
    ADC0834.setup()
 
-   # 値を別の範囲にマップするための関数を定義
+   # Define a function for mapping values from one range to another
    def MAP(x, in_min, in_max, out_min, out_max):
        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-   # ADC値を読み取り、LEDの明るさを制御するメインループ
+   # Main loop for reading ADC value and controlling LED brightness
    def loop():
        while True:
-           # ADCからアナログ値を読み取る
+           # Read analog value from ADC
            analogVal = ADC0834.getResult()
            print('value = %d' % analogVal)
 
-           # ADCの値をPWM値にマップしてLEDの明るさを設定
+           # Map the ADC value to a PWM value and set LED brightness
            led.value = float(analogVal/255)
 
-           # 0.2秒待つ
+           # Wait for 0.2 seconds
            time.sleep(0.2)
 
-   # メインループを実行し、KeyboardInterruptに対応して正常なシャットダウンを処理
+   # Run the main loop and handle KeyboardInterrupt for graceful shutdown
    try:
        loop()
    except KeyboardInterrupt: 
-       # プログラムが停止したときにLEDをオフにする
+       # Turn off LED before exiting
        led.value = 0
 
 
@@ -154,19 +152,19 @@
 
 2. GPIOピン22に接続されたPWM LEDを初期化し、ADC0834モジュールをセットアップしてプロジェクトで使用する準備を行います。
 
-   .. code-block:: python
+    .. code-block:: python
 
-       # GPIOピン22に接続されたPWM LEDを初期化
-       led = PWMLED(22)
+        # Initialize a PWM LED on GPIO pin 22
+        led = PWMLED(22)
 
-       # ADC0834モジュールをセットアップ
-       ADC0834.setup()
+        # Set up the ADC0834 module
+        ADC0834.setup()
 
 3. 1つの範囲から別の範囲への値をマップするための関数を定義します。この関数は、ADCの読み取りをPWM制御に適した範囲に変換するために重要です。
 
    .. code-block:: python
 
-       # 値を別の範囲にマップするための関数を定義
+       # Define a function for mapping values from one range to another
        def MAP(x, in_min, in_max, out_min, out_max):
            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
@@ -174,27 +172,27 @@
 
    .. code-block:: python
 
-       # ADC値を読み取り、LEDの明るさを制御するメインループ
+       # Main loop for reading ADC value and controlling LED brightness
        def loop():
            while True:
-               # ADCからアナログ値を読み取る
+               # Read analog value from ADC
                analogVal = ADC0834.getResult()
                print('value = %d' % analogVal)
 
-               # ADCの値をPWM値にマップしてLEDの明るさを設定
+               # Map the ADC value to a PWM value and set LED brightness
                led.value = float(analogVal/255)
 
-               # 0.2秒待つ
+               # Wait for 0.2 seconds
                time.sleep(0.2)
 
 5. loop 関数を実行し、KeyboardInterrupt に対応して正常なシャットダウンを行います。プログラムが停止すると、LEDがオフになるようにします。
 
    .. code-block:: python
 
-       # メインループを実行し、KeyboardInterruptに対応して正常なシャットダウンを処理
+       # Run the main loop and handle KeyboardInterrupt for graceful shutdown
        try:
            loop()
        except KeyboardInterrupt: 
-           # プログラムが停止したときにLEDをオフにする
+           # Turn off LED before exiting
            led.value = 0
 

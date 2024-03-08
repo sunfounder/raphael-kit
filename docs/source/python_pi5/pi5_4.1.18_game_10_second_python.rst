@@ -1,7 +1,7 @@
 .. _4.1.18_py_pi5:
 
-4.1.15 GAME - 10秒間
-~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1.13 GAME - 10秒間
+=======================
 
 はじめに
 -------------------
@@ -12,51 +12,51 @@
 **10.00** で停止させることができれば、あなたの勝利です。友達とこのゲームをして、
 誰が時間の魔法使いかを競い合うことができます。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトには以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.18_game_10_second_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`4_digit`
-..         - \-
-..     *   - :ref:`74hc595`
-..         - |link_74hc595_buy|
-..     *   - :ref:`tilt_switch`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+    *   - :ref:`cpn_tilt_switch`
+        - \-
 
 回路図
 ------------------------
@@ -124,27 +124,27 @@ GPIO26       Pin 37   25       26
     import time
     import threading
 
-    # GPIO 26に接続されたボタンを初期化
+    # Initialize the button connected to GPIO 26
     sensorPin = Button(26)
 
-    # 74HC595シフトレジスタに接続されたGPIOピンを定義
-    SDI = OutputDevice(24)   # シリアルデータ入力
-    RCLK = OutputDevice(23)  # レジスタクロック
-    SRCLK = OutputDevice(18) # シフトレジスタクロック
+    # Define GPIO pins connected to the 74HC595 shift register
+    SDI = OutputDevice(24)   # Serial Data Input
+    RCLK = OutputDevice(23)  # Register Clock
+    SRCLK = OutputDevice(18) # Shift Register Clock
 
-    # 7セグメント表示の各桁の選択用のGPIOピンを定義
+    # Define GPIO pins for digit selection on the 7-segment display
     placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-    # 7セグメント表示で0〜9の数字を表示するためのセグメントコードを定義
+    # Define segment codes for numbers 0 to 9 on the 7-segment display
     number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-    # カウンターとタイマー変数
+    # Counter and timer variables
     counter = 0
     timer1 = None
     gameState = 0
 
     def clearDisplay():
-        """ 7セグメント表示の全セグメントを消去します。 """
+        """ Clear all segments on the 7-segment display. """
         for _ in range(8):
             SDI.on()
             SRCLK.on()
@@ -153,7 +153,7 @@ GPIO26       Pin 37   25       26
         RCLK.off()
 
     def hc595_shift(data):
-        """ デジットを表示するために74HC595シフトレジスタにデータをシフトします。 """
+        """ Shift data to the 74HC595 shift register to display a digit. """
         for i in range(8):
             SDI.value = 0x80 & (data << i)
             SRCLK.on()
@@ -162,13 +162,13 @@ GPIO26       Pin 37   25       26
         RCLK.off()
 
     def pickDigit(digit):
-        """ 7セグメント表示でどの桁を表示するかを選択します。 """
+        """ Select which digit to display on the 7-segment display. """
         for pin in placePin:
             pin.off()
         placePin[digit].on()
 
     def display():
-        """ 現在のカウンター値を7セグメント表示に表示します。 """
+        """ Display the current counter value on the 7-segment display. """
         global counter
         clearDisplay()
         pickDigit(0)
@@ -187,7 +187,7 @@ GPIO26       Pin 37   25       26
         hc595_shift(number[counter % 10000 // 1000])
 
     def stateChange():
-        """ ボタン押下に基づいてカウンターの状態を変更します。 """
+        """ Handle state changes for the counter based on button presses. """
         global gameState, counter, timer1
         if gameState == 0:
             counter = 0
@@ -199,7 +199,7 @@ GPIO26       Pin 37   25       26
         gameState = (gameState + 1) % 2
 
     def loop():
-        """ ボタンの状態をチェックし、表示を更新するメインループです。 """
+        """ Main loop to check for button presses and update the display. """
         global counter
         currentState = 0
         lastState = 0
@@ -211,7 +211,7 @@ GPIO26       Pin 37   25       26
             lastState = currentState
 
     def timer():
-        """ 0.01秒ごとにカウンターを増加させるタイマー関数です。 """
+        """ Timer function that increments the counter every 0.01 second. """
         global counter, timer1
         timer1 = threading.Timer(0.01, timer)
         timer1.start()
@@ -222,6 +222,7 @@ GPIO26       Pin 37   25       26
     except KeyboardInterrupt:
         if timer1:
             timer1.cancel()
+
 
 **コードの説明**
 
@@ -239,26 +240,26 @@ GPIO26       Pin 37   25       26
 
    .. code-block:: python
 
-       # GPIO 26に接続されたボタンを初期化
+       # Initialize the button connected to GPIO 26
        sensorPin = Button(26)
 
 #. シフトレジスタのシリアルデータ入力（SDI）、レジスタクロック入力（RCLK）、シフトレジスタクロック入力（SRCLK）に接続されたGPIOピンを初期化します。
 
    .. code-block:: python
 
-       # 74HC595シフトレジスタに接続されたGPIOピンを定義
-       SDI = OutputDevice(24)   # シリアルデータ入力
-       RCLK = OutputDevice(23)  # レジスタクロック
-       SRCLK = OutputDevice(18) # シフトレジスタクロック
+       # Define GPIO pins connected to the 74HC595 shift register
+       SDI = OutputDevice(24)   # Serial Data Input
+       RCLK = OutputDevice(23)  # Register Clock
+       SRCLK = OutputDevice(18) # Shift Register Clock
 
 #. 7セグメント表示の各桁の選択用のピンを初期化し、0〜9の数字を表示するためのバイナリコードを定義します。
 
    .. code-block:: python
 
-       # 7セグメント表示の各桁の選択用のGPIOピンを定義
+       # Define GPIO pins for digit selection on the 7-segment display
        placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-       # 7セグメント表示で0〜9の数字を表示するためのセグメントコードを定義
+       # Define segment codes for numbers 0 to 9 on the 7-segment display
        number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
 #. 7セグメント表示を制御するための関数です。 ``clearDisplay`` はすべてのセグメントをオフにし、 ``hc595_shift`` はシフトレジスタにデータをシフトし、 ``pickDigit`` は表示上の特定の桁をアクティブにします。
@@ -266,7 +267,7 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        def clearDisplay():
-           """ 7セグメント表示の全セグメントを消去します。 """
+           """ Clear all segments on the 7-segment display. """
            for _ in range(8):
                SDI.on()
                SRCLK.on()
@@ -275,7 +276,7 @@ GPIO26       Pin 37   25       26
            RCLK.off()
 
        def hc595_shift(data):
-           """ デジットを表示するために74HC595シフトレジスタにデータをシフトします。 """
+           """ Shift data to the 74HC595 shift register to display a digit. """
            for i in range(8):
                SDI.value = 0x80 & (data << i)
                SRCLK.on()
@@ -284,7 +285,7 @@ GPIO26       Pin 37   25       26
            RCLK.off()
 
        def pickDigit(digit):
-           """ 7セグメント表示でどの桁を表示するかを選択します。 """
+           """ Select which digit to display on the 7-segment display. """
            for pin in placePin:
                pin.off()
            placePin[digit].on()
@@ -294,7 +295,7 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        def display():
-           """ 現在のカウンター値を7セグメント表示に表示します。 """
+           """ Display the current counter value on the 7-segment display. """
            global counter
            clearDisplay()
            pickDigit(0)
@@ -317,7 +318,7 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        def stateChange():
-           """ ボタン押下に基づいてカウンターの状態を変更します。 """
+           """ Handle state changes for the counter based on button presses. """
            global gameState, counter, timer1
            if gameState == 0:
                counter = 0
@@ -333,7 +334,7 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        def loop():
-           """ ボタンの状態をチェックし、表示を更新するメインループです。 """
+           """ Main loop to check for button presses and update the display. """
            global counter
            currentState = 0
            lastState = 0
@@ -349,7 +350,7 @@ GPIO26       Pin 37   25       26
    .. code-block:: python
 
        def timer():
-           """ 0.01秒ごとにカウンターを増加させるタイマー関数です。 """
+           """ Timer function that increments the counter every 0.01 second. """
            global counter, timer1
            timer1 = threading.Timer(0.01, timer)
            timer1.start()

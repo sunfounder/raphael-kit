@@ -8,43 +8,43 @@
 
 超音波センサーは、物体を正確に検出し、距離を測定するために超音波を使用します。それは超音波を発信し、それらを電子信号に変換します。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。 
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.2.8_ultrasonic_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`ultrasonic_sensor`
-..         - |link_ultrasonic_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_ultrasonic_sensor`
+        - |link_ultrasonic_buy|
 
 回路図
 -----------------
@@ -98,19 +98,19 @@
    from gpiozero import DistanceSensor
    from time import sleep
 
-   # GPIO Zeroライブラリを使用してDistanceSensorを初期化
-   # トリガーピンはGPIO 23に接続、エコーピンはGPIO 24に接続
+   # Initialize the DistanceSensor using GPIO Zero library
+   # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
    sensor = DistanceSensor(echo=24, trigger=23)
 
    try:
-       # 距離を連続的に測定および報告するためのメインループ
+       # Main loop to continuously measure and report distance
        while True:
-           dis = sensor.distance * 100  # 距離を測定し、メートルからセンチメートルに変換
-           print('Distance: {:.2f} cm'.format(dis)) # 距離を小数点以下2桁の精度で表示
-           sleep(0.3)  # 次の測定前に0.3秒待機
+           dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
+           print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
+           sleep(0.3)  # Wait for 0.3 seconds before the next measurement
 
    except KeyboardInterrupt:
-       # KeyboardInterrupt（Ctrl+C）を処理してループを gracefully に終了します
+       # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
        pass
 
 
@@ -128,8 +128,8 @@
 
    .. code-block:: python
 
-       # GPIO Zeroライブラリを使用してDistanceSensorを初期化
-       # トリガーピンはGPIO 23に接続、エコーピンはGPIO 24に接続
+       # Initialize the DistanceSensor using GPIO Zero library
+       # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
        sensor = DistanceSensor(echo=24, trigger=23)
 
 3. メインループは距離を連続して測定し、メートルからセンチメートルに変換し、小数点以下2桁の精度で表示します。その後、0.3秒待ってから距離を再測定します。 ``KeyboardInterrupt`` （Ctrl+Cのような）をキャッチしてスクリプトから gracefully に終了できるようにします。
@@ -137,12 +137,13 @@
    .. code-block:: python
 
        try:
-           # 距離を連続的に測定および報告するためのメインループ
+           # Main loop to continuously measure and report distance
            while True:
-               dis = sensor.distance * 100  # 距離を測定し、メートルからセンチメートルに変換
-               print('Distance: {:.2f} cm'.format(dis))   # 距離を小数点以下2桁の精度で表示
-               sleep(0.3)  # 次の測定前に0.3秒待機
+               dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
+               print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
+               sleep(0.3)  # Wait for 0.3 seconds before the next measurement
 
        except KeyboardInterrupt:
-           # KeyboardInterrupt（Ctrl+C）を処理してループを gracefully に終了します
+           # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
            pass
+

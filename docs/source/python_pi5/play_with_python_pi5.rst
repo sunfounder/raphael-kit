@@ -9,10 +9,10 @@ Pythonで遊ぼう (Pi 5)
     pi5_input_python
 
 
-.. toctree::
-    :maxdepth: 2
+.. .. toctree::
+..     :maxdepth: 2
 
-    pi5_audiovisual_python
+..     pi5_audiovisual_python
 
 
 .. toctree::

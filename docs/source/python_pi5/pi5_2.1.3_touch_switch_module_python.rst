@@ -11,46 +11,46 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.3_touch_switch_list.png
     :width: 700
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`touch_switch`
-..         - |link_touch_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_touch_switch`
+        - |link_touch_buy|
 
 回路図
 -----------------
@@ -104,31 +104,31 @@
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
-   from time import sleep  # 遅延のためにtimeからsleepをインポート
+   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+   from time import sleep  # Import sleep for delay
 
-   # プルアップ抵抗を無効にしてGPIOピン17にタッチセンサー（Button）を初期化
-   touch_sensor = Button(17, pull_up=False)  # センサーが押されたときにピンをローに引くタイプに適しています
+   # Initialize touch sensor (Button) on GPIO pin 17, pull-up resistor disabled
+   touch_sensor = Button(17, pull_up=False)  # Suitable for sensors that pull the pin low when pressed
 
-   # GPIOピン22と27にそれぞれ接続されたLED1とLED2を初期化
-   led1 = LED(22)  # LED1はGPIOピン22に接続
-   led2 = LED(27)  # LED2はGPIOピン27に接続
+   # Initialize LED1 and LED2 connected to GPIO pins 22 and 27 respectively
+   led1 = LED(22)  # LED1 connected to GPIO pin 22
+   led2 = LED(27)  # LED2 connected to GPIO pin 27
 
    try:
-       # タッチセンサーの状態を継続的に監視し、それに応じてLEDを制御
+       # Continuously monitor the state of the touch sensor and control LEDs accordingly
        while True:
-           if touch_sensor.is_pressed:  # タッチセンサーが押されているかチェック
-               print('触れました！')  # センサーが作動したことを示すメッセージを出力
-               led1.off()  # LED1を消灯
-               led2.on()   # LED2を点灯
-           else:  # センサーが押されていない場合
-               led1.on()   # LED1を点灯
-               led2.off()  # LED2を消灯
+           if touch_sensor.is_pressed:  # Check if the touch sensor is pressed
+               print('You touch it!')  # Output message indicating sensor activation
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
+           else:  # If the sensor is not pressed
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
 
-           sleep(0.5)  # センサーの状態を再チェックする前に0.5秒間待機
+           sleep(0.5)  # Pause for 0.5 seconds before rechecking the sensor state
 
    except KeyboardInterrupt:
-       # キーボード割り込み（Ctrl+C）を処理し、ループから清潔に退出
+       # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
        pass
 	
 
@@ -139,37 +139,37 @@
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
-       from time import sleep  # 遅延のためにtimeからsleepをインポート
+       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+       from time import sleep  # Import sleep for delay
 
 #. プルアップ抵抗を無効にしてGPIOピン17にタッチセンサー（Buttonとして）を初期化し、GPIOピン22と27に二つのLEDを初期化します。
 
    .. code-block:: python
 
-       # プルアップ抵抗を無効にしてGPIOピン17にタッチセンサー（Button）を初期化
-       touch_sensor = Button(17, pull_up=False)  # センサーが押されたときにピンをローに引くタイプに適しています
+       # Initialize touch sensor (Button) on GPIO pin 17, pull-up resistor disabled
+       touch_sensor = Button(17, pull_up=False)  # Suitable for sensors that pull the pin low when pressed
 
-       # GPIOピン22と27にそれぞれ接続されたLED1とLED2を初期化
-       led1 = LED(22)  # LED1はGPIOピン22に接続
-       led2 = LED(27)  # LED2はGPIOピン27に接続
+       # Initialize LED1 and LED2 connected to GPIO pins 22 and 27 respectively
+       led1 = LED(22)  # LED1 connected to GPIO pin 22
+       led2 = LED(27)  # LED2 connected to GPIO pin 27
 
 #. メインループでは、タッチセンサーの状態をチェックします。触れられたとき、LED2が点灯しLED1が消灯します；触れられていないとき、LED1が点灯しLED2が消灯します。このループは0.5秒ごとに繰り返されます。Ctrl+C（KeyboardInterrupt）を捕捉して、スクリプトを優雅に終了させることができます。
 
    .. code-block:: python
 
        try:
-           # タッチセンサーの状態を継続的に監視し、それに応じてLEDを制御
+           # Continuously monitor the state of the touch sensor and control LEDs accordingly
            while True:
-               if touch_sensor.is_pressed:  # タッチセンサーが押されているかチェック
-                   print('触れました！')  # センサーが作動したことを示すメッセージを出力
-                   led1.off()  # LED1を消灯
-                   led2.on()   # LED2を点灯
-               else:  # センサーが押されていない場合
-                   led1.on()   # LED1を点灯
-                   led2.off()  # LED2を消灯
+               if touch_sensor.is_pressed:  # Check if the touch sensor is pressed
+                   print('You touch it!')  # Output message indicating sensor activation
+                   led1.off()  # Turn off LED1
+                   led2.on()   # Turn on LED2
+               else:  # If the sensor is not pressed
+                   led1.on()   # Turn on LED1
+                   led2.off()  # Turn off LED2
 
-               sleep(0.5)  # センサーの状態を再チェックする前に0.5秒間待機
+               sleep(0.5)  # Pause for 0.5 seconds before rechecking the sensor state
 
        except KeyboardInterrupt:
-           # キーボード割り込み（Ctrl+C）を処理し、ループから清潔に退出
+           # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
            pass

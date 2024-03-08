@@ -12,15 +12,44 @@
 必要なコンポーネント
 ------------------------------
 
-このプロジェクトには、次のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/1.1.1_blinking_led_list.png
     :width: 800
     :align: center
 
-.. raw:: html
+一式を購入するのが便利です、こちらがリンクです： 
 
-   <br/>
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
 
 回路図
 ---------------------
@@ -90,7 +119,7 @@ GPIO17       Pin 11   17
 
 コードを実行した後、LEDが点滅するのを見ることができます。
 
-**ステップ4:** コードファイル「1.1.1_BlinkingLed_zero.py」を編集したい場合、「Ctrl + C」を押してコードの実行を停止します。その後、次のコマンドを入力して「1.1.1_BlinkingLed_zero.py」を開きます：
+**ステップ4:** コードファイル ``1.1.1_BlinkingLed_zero.py`` を編集したい場合、「Ctrl + C」を押してコードの実行を停止します。その後、次のコマンドを入力して「1.1.1_BlinkingLed_zero.py」を開きます：
 
 .. raw:: html
 
@@ -101,11 +130,11 @@ GPIO17       Pin 11   17
    nano 1.1.1_BlinkingLed_zero.py
 
 .. note::
-    nanoはテキストエディタツールです。このツールを使用してコードファイル「1.1.1_BlinkingLed_zero.py」を開くためにこのコマンドが使用されます。
+   nanoはテキストエディタツールです。このツールを使用してコードファイル ``1.1.1_BlinkingLed_zero.py`` を開くためにこのコマンドが使用されます。
 
 「Ctrl+X」を押して終了します。コードを変更した場合、変更を保存するかどうかを確認するプロンプトが表示されます。保存する場合は「Y」（保存）、保存しない場合は「N」（保存しない）を入力します。
 
-その後、効果を確認するために再度「nano 1.1.1_BlinkingLed_zero.py」を入力します。
+その後、効果を確認するために再度 ``nano 1.1.1_BlinkingLed_zero.py`` を入力します。
 
 **コード**
 
@@ -125,31 +154,30 @@ GPIO17       Pin 11   17
    from gpiozero import LED
    from time import sleep
 
-   # GPIO Zeroライブラリを使用してGPIOピン17に接続されたLEDを初期化します。
+   # Initialize an LED connected to GPIO pin 17 using the GPIO Zero library.
    led = LED(17)
 
    try:
-      # LEDの状態を切り替えるための無限ループを開始します。
+      # Start an infinite loop to toggle the LED state.
       while True:
-         # LEDをオンにしてコンソールにメッセージを表示します
+         # Turn on the LED and print a message to the console.
          led.on()
          print('...LED ON')
 
-         # LEDを0.5秒間オンにしたまま待機します。
+         # Wait for 0.5 seconds with the LED on.
          sleep(0.5)
 
-         # LEDをオフにしてコンソールにメッセージを表示します
+         # Turn off the LED and print a message to the console.
          led.off()
          print('LED OFF...')
 
-         # LEDを0.5秒間オフにしたまま待機します。
+         # Wait for 0.5 seconds with the LED off.
          sleep(0.5)
 
    except KeyboardInterrupt:
-      # キーボードインタラプト（Ctrl+Cを押すなど）を優雅に処理してループを終了します。
-      # GPIO Zeroは終了時にGPIO設定のクリーンアップを自動的に処理します。
+      # Gracefully handle a keyboard interrupt (Ctrl+C) by breaking the loop.
+      # GPIO Zero handles cleanup of GPIO settings automatically on exit.
       pass
-
 
 **コードの説明**
 
@@ -170,35 +198,35 @@ GPIO17       Pin 11   17
 
    .. code-block:: python
 
-       # GPIO Zeroライブラリを使用してGPIOピン17に接続されたLEDを初期化します。
+       # Initialize an LED connected to GPIO pin 17 using the GPIO Zero library.
        led = LED(17)
 
 #. ``while True:`` を使用して無限ループを開始します。ループ内では、LEDがオンになり（ ``led.on()`` ）、メッセージが表示されます。プログラムは0.5秒間一時停止します（ ``sleep(0.5)`` ）。その後、LEDがオフになり（ ``led.off()`` ）、別のメッセージが表示され、プログラムは再び0.5秒間一時停止します。
 
    .. code-block:: python
 
-       try:
-           # LEDの状態を切り替える無限ループを開始します。
-           while True:
-               # LEDをオンにしてコンソールにメッセージを表示します。
-               led.on()
-               print('...LED ON')
+      try:
+         # Start an infinite loop to toggle the LED state.
+         while True:
+            # Turn on the LED and print a message to the console.
+            led.on()
+            print('...LED ON')
 
-               # LEDがオンの状態で0.5秒間待ちます。
-               sleep(0.5)
+            # Wait for 0.5 seconds with the LED on.
+            sleep(0.5)
 
-               # LEDをオフにしてコンソールにメッセージを表示します。
-               led.off()
-               print('LED OFF...')
+            # Turn off the LED and print a message to the console.
+            led.off()
+            print('LED OFF...')
 
-               # LEDがオフの状態で0.5秒間待ちます。
-               sleep(0.5)
+            # Wait for 0.5 seconds with the LED off.
+            sleep(0.5)
 
-#. ``except`` ブロックは ``KeyboardInterrupt``（Ctrl+Cを押すなど）をキャッチし、ループを安全に終了します。ここで ``pass`` ステートメントは、割り込み時に特定のアクションを実行しないことを示すプレースホルダーとして使用されます。
+#. ``except`` ブロックは ``KeyboardInterrupt`` （Ctrl+Cを押すなど）をキャッチし、ループを安全に終了します。ここで ``pass`` ステートメントは、割り込み時に特定のアクションを実行しないことを示すプレースホルダーとして使用されます。
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # キーボードの割り込み（Ctrl+C）を安全に処理し、ループを中断します。
-           # 終了時にはGPIO Zeroが自動的にGPIOの設定をクリーンアップします。
+           # Gracefully handle a keyboard interrupt (Ctrl+C) by breaking the loop.
+           # GPIO Zero handles cleanup of GPIO settings automatically on exit.
            pass

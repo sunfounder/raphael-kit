@@ -12,9 +12,6 @@ Linux/Unixユーザー
 
         ping raspberrypi.local
 
-    .. image:: img/mac-ping.png
-        :width: 550
-        :align: center
 
     * ターミナルが ``ping: cannot resolve <hostname>.local`` と表示した場合、Raspberry Piがネットワークに接続できていない可能性があります。ネットワーク設定を確認してください。
     * ``<hostname>.local`` にpingが通らない場合は、代わりに :ref:`get_ip` を取得して ``ping <IPアドレス>`` としてみてください。（例： ``ping 192.168.6.116``）
@@ -36,14 +33,6 @@ Linux/Unixユーザー
 
     \"はい\"と入力します。
 
-    .. image:: img/mac-ssh-login.png
-        :width: 550
-        :align: center
-
 #. 事前に設定したパスワードを入力します。（私の場合は ``raspberry`` です。）
 
 #. Raspberry Piに接続できたので、次の手順に進むことができます。
-
-    .. image:: img/mac-ssh-terminal.png
-        :width: 550
-        :align: center

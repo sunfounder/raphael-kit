@@ -11,47 +11,46 @@ ADC（アナログデジタルコンバータ）機能は、アナログ信号�
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.7_potentiometer_list.png
 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+以下のリンクから別々に購入することもできます。
 
-.. You can also buy them separately from the links below.
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
-
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`potentiometer`
-..         - |link_potentiometer_buy|
-..     *   - :ref:`adc0834`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_adc0834`
+        - \-
 
 
 回路図
@@ -167,10 +166,10 @@ ADC（アナログデジタルコンバータ）機能は、アナログ信号�
 
    .. code-block:: python
 
-       # GPIOピン22にPWM LEDを初期化します
+       # Initialize a PWM LED on GPIO pin 22
        led = PWMLED(22)
 
-       # ADC0834モジュールをセットアップします
+       # Set up the ADC0834 module
        ADC0834.setup()
 
 #. 1つの範囲の値を別の範囲に変換するための「MAP」という名前の関数を定義し、ADCの値を適切なLEDの明るさにマッピングするのに役立ちます。
@@ -186,19 +185,19 @@ ADC（アナログデジタルコンバータ）機能は、アナログ信号�
 
        try:
            while True:
-               # ADC0834モジュールから現在の読み取り値を取得します
+               # Get the current reading from the ADC0834 module
                res = ADC0834.getResult()
                print('res = %d' % res)
 
-               # ADCの値をLEDの明るさを設定するための適切な範囲にマップします
+               # Map the ADC value to a range suitable for setting LED brightness
                R_val = MAP(res, 0, 255, 0, 100)
 
-               # LEDの明るさを設定します
+               # Set the LED brightness
                led.value = float(R_val / 100)
 
-               # 再度読み取る前に0.2秒待機します
+               # Wait for 0.2 seconds before reading again
                time.sleep(0.2)
 
-       # 'Ctrl+C'が押されたときの優雅な終了
+       # Graceful exit when 'Ctrl+C' is pressed
        except KeyboardInterrupt: 
-           led.value = 0  # LEDをオフにする
+           led.value = 0  # Turn off the LED

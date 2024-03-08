@@ -9,48 +9,47 @@
 
 このプロジェクトでは、パッシブブザーを使用して音楽を演奏する方法を学びます。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_list.png
 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+以下のリンクから別々に購入することもできます。
 
-.. You can also buy them separately from the links below.
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
-
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`Buzzer`
-..         - |link_passive_buzzer_buy|
-..     *   - :ref:`transistor`
-..         - |link_transistor_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
 
 回路図
 -----------------
@@ -113,21 +112,21 @@ GPIO17       Pin 11   17
    from gpiozero import TonalBuzzer
    from time import sleep
 
-   # GPIOピン17に接続されたTonalBuzzerオブジェクトを初期化します
-   tb = TonalBuzzer(17)  # ご使用のセットアップに基づいてこのピン番号を更新します
+   # Initialize a TonalBuzzer connected to GPIO pin 17
+   tb = TonalBuzzer(17)  # Update this pin number based on your setup
 
    def play(tune):
        """
-       ブザーを使用して音楽を演奏します。
-       :param tune: ノートとその持続時間を表すタプル（ノート、持続時間）のリスト
+       Play a musical tune using the buzzer.
+       :param tune: List of tuples (note, duration), where each tuple represents a note and its duration.
        """
        for note, duration in tune:
-           print(note)  # 現在再生中の音符を出力
-           tb.play(note)  # ブザーで音符を演奏
-           sleep(float(duration))  # 音符の持続時間待ち
-       tb.stop()  # 曲が終わった後に演奏を停止します
+           print(note)  # Output the current note being played
+           tb.play(note)  # Play the note on the buzzer
+           sleep(float(duration))  # Delay for the duration of the note
+       tb.stop()  # Stop playing after the tune is complete
 
-   # 音楽チューンをノートと持続時間のシーケンスとして定義します
+   # Define a musical tune as a sequence of notes and durations
    tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
        ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
        ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -137,14 +136,15 @@ GPIO17       Pin 11   17
        ('F#4', 0.2), ('G4', 0.2), (None, 0.2),
        ('B4', 0.2), ('Bb4', 0.5), (None, 0.6),
        ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
-       ('D4', 0.2), ('E4', 0.2)]  
+       ('D4', 0.2), ('E4', 0.2)]
 
    try:
-       play(tune)  # 演奏を開始するためにplay関数を実行します
+       play(tune)  # Execute the play function to start playing the tune
 
    except KeyboardInterrupt:
-       # キーボード割り込みをスムーズに処理
+       # Handle KeyboardInterrupt for graceful termination
        pass
+
 
 
 **コードの説明**
@@ -162,8 +162,8 @@ GPIO17       Pin 11   17
     
    .. code-block:: python
        
-       # GPIOピン17に接続されたTonalBuzzerオブジェクトを初期化します
-       tb = TonalBuzzer(17)  # お使いのセットアップに基づいてこのピン番号を更新してください
+       # Initialize a TonalBuzzer connected to GPIO pin 17
+       tb = TonalBuzzer(17)  # Update this pin number based on your setup
         
 
 3. ``play`` 関数は、音楽のノートとその持続時間を表すタプルのリストを繰り返し処理します。各ノートは指定された持続時間だけ演奏され、曲が終了するとブザーが停止します。
@@ -172,20 +172,20 @@ GPIO17       Pin 11   17
 
        def play(tune):
            """
-           ブザーを使って音楽を演奏します。
-           :param tune: ノートとその持続時間を表すタプル（ノート、持続時間）のリスト。
+           Play a musical tune using the buzzer.
+           :param tune: List of tuples (note, duration), where each tuple represents a note and its duration.
            """
            for note, duration in tune:
-               print(note)  # 現在演奏されているノートを出力
-               tb.play(note)  # ブザーでノートを演奏
-               sleep(float(duration))  # ノートの持続時間分遅延
-           tb.stop()  # 曲が完了した後に演奏を停止
+               print(note)  # Output the current note being played
+               tb.play(note)  # Play the note on the buzzer
+               sleep(float(duration))  # Delay for the duration of the note
+           tb.stop()  # Stop playing after the tune is complete
 
 4. メロディは音符（周波数）と持続時間（秒）のシーケンスとして定義されています。
     
    .. code-block:: python
 
-       # ノートと持続時間（秒）のシーケンスとして音楽のメロディを定義します
+       # Define a musical tune as a sequence of notes and durations
        tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
            ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
            ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -202,8 +202,8 @@ GPIO17       Pin 11   17
    .. code-block:: python  
        
        try:
-           play(tune)  # 曲を演奏を開始するためにplay関数を実行します
+           play(tune)  # Execute the play function to start playing the tune
 
        except KeyboardInterrupt:
-           # Ctrl+Cのようなキーボード割り込みを処理してプログラムをきれいに終了します
+           # Handle KeyboardInterrupt for graceful termination
            pass

@@ -36,13 +36,13 @@
     *   - コンポーネントの紹介
         - 購入リンク
 
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`リードスイッチモジュール`
+    *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
 回路を組む

@@ -3,7 +3,7 @@
 
 .. note::
 
-    カメラモジュールを使用する際には、より良い体験のためにディスプレイが必要かもしれません。詳細は、 `Raspberry Piの接続 <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。もちろん、ディスプレイがない場合でも、Raspberry Piのデスクトップにリモートでアクセスすることができます。詳しいチュートリアルは、 :ref:`リモートデスクトップ` を参照してください。
+    カメラモジュールを使用する際には、より良い体験のためにディスプレイが必要かもしれません。詳細は、 `Raspberry Piの接続 <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。もちろん、ディスプレイがない場合でも、Raspberry Piのデスクトップにリモートでアクセスすることができます。詳しいチュートリアルは、 :ref:`remote_desktop` を参照してください。
 
 .. toctree::
     :maxdepth: 1

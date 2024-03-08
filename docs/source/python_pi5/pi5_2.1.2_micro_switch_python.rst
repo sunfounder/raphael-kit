@@ -13,47 +13,46 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.2_micro_switch_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`micro_switch`
-..         - \-
-..     *   - :ref:`capacitor`
-..         - |link_capacitor_buy|
-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_micro_switch`
+        - \-
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
 
 回路図
 -----------------
@@ -113,32 +112,32 @@ GPIO22とGPIO27にそれぞれLEDを二つ接続します。
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
-   from time import sleep  # 遅延のためにtimeからsleep関数をインポート
+   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+   from time import sleep  # Import sleep function for delays
 
-   # プルアップ抵抗を無効にしてGPIOピン17にマイクロスイッチを初期化
+   # Initialize micro switch on GPIO pin 17 with the pull-up resistor disabled
    micro_switch = Button(17, pull_up=False)
-   # GPIOピン22に接続されたLED1を初期化
+   # Initialize LED1 connected to GPIO pin 22
    led1 = LED(22)
-   # GPIOピン27に接続されたLED2を初期化
+   # Initialize LED2 connected to GPIO pin 27
    led2 = LED(27)
 
    try:
-       # マイクロスイッチの状態を継続的にチェックし、それに応じてLEDを制御
+       # Continuously check the state of the micro switch and control LEDs accordingly
        while True:
-           if micro_switch.is_pressed:  # マイクロスイッチが押されている場合
-               print('LED1 ON')  # コンソールにメッセージを表示
-               led1.on()       # LED1を点灯
-               led2.off()      # LED2を消灯
-           else:  # マイクロスイッチが押されていない場合
-               print('    LED2 ON')  # コンソールにメッセージを表示
-               led1.off()      # LED1を消灯
-               led2.on()       # LED2を点灯
+           if micro_switch.is_pressed:  # If the micro switch is pressed
+               print('LED1 ON')  # Print a message to the console
+               led1.on()       # Turn on LED1
+               led2.off()      # Turn off LED2
+           else:  # If the micro switch is not pressed
+               print('    LED2 ON')  # Print a message to the console
+               led1.off()      # Turn off LED1
+               led2.on()       # Turn on LED2
 
-           sleep(0.5)  # スイッチを再度チェックする前に0.5秒間待機
+           sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
 
    except KeyboardInterrupt:
-       # Ctrl+C (KeyboardInterrupt) を捕捉してループを優雅に終了
+       # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
        pass
 	
 
@@ -149,18 +148,18 @@ GPIO22とGPIO27にそれぞれLEDを二つ接続します。
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
-       from time import sleep  # 遅延のためにtimeからsleep関数をインポート
+       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+       from time import sleep  # Import sleep function for delays
 
 #. プルアップ抵抗を無効にしてGPIOピン17に接続されたマイクロスイッチ、そしてGPIOピン22と27に接続された二つのLEDを初期化します。
 
    .. code-block:: python
 
-       # プルアップ抵抗を無効にしてGPIOピン17にマイクロスイッチを初期化
+       # Initialize micro switch on GPIO pin 17 with the pull-up resistor disabled
        micro_switch = Button(17, pull_up=False)
-       # GPIOピン22に接続されたLED1を初期化
+       # Initialize LED1 connected to GPIO pin 22
        led1 = LED(22)
-       # GPIOピン27に接続されたLED2を初期化
+       # Initialize LED2 connected to GPIO pin 27
        led2 = LED(27)
 
 #. メインループでは、マイクロスイッチの状態をチェックします。押されていれば、LED1が点灯し、LED2が消灯します。押されていなければ、LED1が消灯し、LED2が点灯します。このループは0.5秒ごとに繰り返されます。Ctrl+C（KeyboardInterrupt）を捕捉して、スクリプトを優雅に終了させることができます。
@@ -168,19 +167,19 @@ GPIO22とGPIO27にそれぞれLEDを二つ接続します。
    .. code-block:: python
 
        try:
-           # マイクロスイッチの状態を継続的にチェックし、それに応じてLEDを制御
+           # Continuously check the state of the micro switch and control LEDs accordingly
            while True:
-               if micro_switch.is_pressed:  # マイクロスイッチが押されている場合
-                   print('LED1 ON')  # コンソールにメッセージを表示
-                   led1.on()       # LED1を点灯
-                   led2.off()      # LED2を消灯
-               else:  # マイクロスイッチが押されていない場合
-                   print('    LED2 ON')  # コンソールにメッセージを表示
-                   led1.off()      # LED1を消灯
-                   led2.on()       # LED2を点灯
+               if micro_switch.is_pressed:  # If the micro switch is pressed
+                   print('LED1 ON')  # Print a message to the console
+                   led1.on()       # Turn on LED1
+                   led2.off()      # Turn off LED2
+               else:  # If the micro switch is not pressed
+                   print('    LED2 ON')  # Print a message to the console
+                   led1.off()      # Turn off LED1
+                   led2.on()       # Turn on LED2
 
-               sleep(0.5)  # スイッチを再度チェックする前に0.5秒間待機
+               sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
 
        except KeyboardInterrupt:
-           # Ctrl+C (KeyboardInterrupt) を捕捉してループを優雅に終了
+           # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
            pass

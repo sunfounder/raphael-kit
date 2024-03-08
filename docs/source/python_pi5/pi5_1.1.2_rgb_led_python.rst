@@ -8,7 +8,7 @@
 
 このプロジェクトでは、RGB LEDを制御してさまざまな色を点滅させます。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
 このプロジェクトには、次のコンポーネントが必要です。 
@@ -16,9 +16,39 @@
 .. image:: ../python_pi5/img/1.1.2_rgb_led_list.png
     :align: center
 
-.. raw:: html
+一式を購入するのが便利です、こちらがリンクです： 
 
-   <br/>
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_rgb_led`
+        - |link_rgb_led_buy|
+
 
 回路図
 -----------------------
@@ -81,27 +111,27 @@ GPIO27       Pin 13   27
    from gpiozero import RGBLED
    from time import sleep
 
-   # RGB形式（赤、緑、青）でRGB LEDの色のリストを定義します。
-   # 各色成分は0（オフ）から1（フル強度）までの範囲です。
-   COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+   # Define a list of colors for the RGB LED in RGB format (Red, Green, Blue).
+   # Each color component ranges from 0 (off) to 1 (full intensity).
+   COLORS = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
 
-   # RGB LEDを初期化します。赤の成分をGPIO 17に、緑をGPIO 18に、青をGPIO 27に接続します。
+   # Initialize an RGB LED. Connect the red component to GPIO 17, green to GPIO 18, and blue to GPIO 27.
    rgb_led = RGBLED(red=17, green=18, blue=27)
 
    try:
-       # 定義した色を連続してサイクルします。
+       # Continuously cycle through the defined colors.
        while True:
            for color in COLORS:
-               # RGB LEDを現在の色に設定します。
+               # Set the RGB LED to the current color.
                rgb_led.color = color
-               # 現在の色をコンソールに出力します。
+               # Output the current color to the console.
                print(f"Color set to: {color}")
-               # 次の色に切り替える前に1秒待ちます。
+               # Wait for 1 second before switching to the next color.
                sleep(1)
 
    except KeyboardInterrupt:
-       # キーボードインタラプト（Ctrl+Cを押すなど）を優雅に処理してループを終了します。
-       # GPIOのクリーンアップは、スクリプトの終了時にGPIO Zeroによって自動的に管理されます。
+       # Handle a KeyboardInterrupt (Ctrl+C) to exit the loop gracefully.
+       # GPIO cleanup will be managed automatically by GPIO Zero on script termination.
        pass
 
 **コードの説明**
@@ -114,21 +144,21 @@ GPIO27       Pin 13   27
        from gpiozero import RGBLED
        from time import sleep
 
-       # RGB LEDのRGB形式で異なる色を表すタプルを含むCOLORSリストを定義します。
-       # 各色成分は0から1までの範囲で、0はオフ、1は各色成分のフル強度を表します。
+       # Define a list of colors for the RGB LED in RGB format (Red, Green, Blue).
+       # Each color component ranges from 0 (off) to 1 (full intensity).
     
 #. ``COLORS`` リストにはRGB形式で異なる色を表すタプルが含まれています。R、G、Bピンに異なるパルス幅変調（PWM）値を ``rgb_led.color`` 属性を介して割り当てることにより、LEDはさまざまな色を生成できます。PWM値は0から1までの範囲で、0は無強度（オフ）を表し、各色成分のフル強度を表すのは1です。
 #. 例えば、 ``rgb_led.color = (1, 0, 0)`` を設定すると、LEDは赤に点灯します。これは赤成分にフル強度を設定し、緑と青をオフにしています。同様に、これらの値の異なる組み合わせによって異なる色が表示されます。PWMを介した色の混合は、RGB LEDで幅広い色の範囲を作成するための技術です。
 
    .. code-block:: python    
        
-       COLORS = [(1, 0, 0), (0, 1, 0), (0.2, 0.1, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
+       COLORS = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
 
 #. RGB LEDは、その赤、緑、青の成分をそれぞれGPIOピン17、18、27に接続して初期化されます。
 
    .. code-block:: python
 
-       # RGB LEDを初期化します。赤の成分をGPIO 17に、緑をGPIO 18に、青をGPIO 27に接続します。
+       # Initialize an RGB LED. Connect the red component to GPIO 17, green to GPIO 18, and blue to GPIO 27.
        rgb_led = RGBLED(red=17, green=18, blue=27)
 
 #. ``while True:`` ループは ``COLORS`` で定義された色を連続してサイクルします。各色に対して、``rgb_led.color = color`` はLEDをその色に設定し、``sleep(1)`` は1秒間の一時停止を行います。
@@ -136,14 +166,14 @@ GPIO27       Pin 13   27
    .. code-block:: python
 
        try:
-           # 定義した色を連続してサイクルします。
+           # Continuously cycle through the defined colors.
            while True:
                for color in COLORS:
-                   # RGB LEDを現在の色に設定します。
+                   # Set the RGB LED to the current color.
                    rgb_led.color = color
-                   # 現在の色をコンソールに出力します。
+                   # Output the current color to the console.
                    print(f"Color set to: {color}")
-                   # 次の色に切り替える前に1秒待ちます。
+                   # Wait for 1 second before switching to the next color.
                    sleep(1)
 
 #. このセクションは ``KeyboardInterrupt`` （Ctrl+Cを押すなど）を優雅に処理します。 ``pass`` ステートメントは、中断時に特定のアクションを指定しないことを示すプレースホルダとして使用され、GPIO ZeroはGPIOのクリーンアップを自動的に処理します。
@@ -151,7 +181,7 @@ GPIO27       Pin 13   27
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # キーボードインタラプト（Ctrl+Cを押すなど）を優雅に処理してループを終了します。
-           # GPIOのクリーンアップは、スクリプトの終了時にGPIO Zeroによって自動的に管理されます。
+           # Handle a KeyboardInterrupt (Ctrl+C) to exit the loop gracefully.
+           # GPIO cleanup will be managed automatically by GPIO Zero on script termination.
            pass
 

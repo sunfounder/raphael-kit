@@ -36,15 +36,15 @@
     *   - コンポーネントの紹介
         - 購入リンク
 
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`タッチスイッチモジュール`
+    *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
-    *   - :ref:`オーディオモジュールとスピーカー`
+    *   - :ref:`cpn_audio_speaker`
         - \-
 
 回路を組む

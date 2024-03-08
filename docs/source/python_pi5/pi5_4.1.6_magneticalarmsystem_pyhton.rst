@@ -1,6 +1,6 @@
 .. _4.1.6_py_pi5:
 
-4.1.3 磁気誘導アラームシステム
+4.1.1 磁気誘導アラームシステム
 ============================================
 
 はじめに
@@ -11,49 +11,48 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_list.png
   :width: 800
   :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`Buzzer`
-..         - |link_passive_buzzer_buy|
-..     *   - :ref:`transistor`
-..         - |link_transistor_buy|
-..     *   - :ref:`reed_switch`
-..         - |link_reed_switch_buy|
-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_reed_switch`
+        - |link_reed_switch_buy|
 
 回路図
 ----------------------
@@ -114,26 +113,26 @@ GPIO27       Pin 13   2        27
    from gpiozero import Buzzer, Button
    import time
 
-   # GPIOピン27にブザーを初期化
+   # Initialize the buzzer on GPIO pin 27
    buzzer = Buzzer(27)
-   # プルアップ抵抗を有効にしてGPIOピン17にリードスイッチを初期化
+   # Initialize the reed switch on GPIO pin 17 with pull-up resistor enabled
    reed_switch = Button(17, pull_up=True)
 
    try:
        while True:
-           # リードスイッチが押されているかチェック
+           # Check if the reed switch is pressed
            if reed_switch.is_pressed:
-               # リードスイッチが押されている場合、ブザーをオフにする
+               # Turn off the buzzer if reed switch is pressed
                buzzer.off()
            else:
-               # リードスイッチが押されていない場合、ブザーを鳴らす
+               # If reed switch is not pressed, beep the buzzer
                buzzer.on()
-               time.sleep(0.1)  # 0.1秒間ブザーをオン
+               time.sleep(0.1)  # Buzzer on for 0.1 seconds
                buzzer.off()
-               time.sleep(0.1)  # 0.1秒間ブザーをオフ
+               time.sleep(0.1)  # Buzzer off for 0.1 seconds
 
    except KeyboardInterrupt:
-       # プログラムが中断された場合（例：キーボード割り込み）、ブザーをオフにする
+       # Turn off the buzzer when the program is interrupted (e.g., keyboard interrupt)
        buzzer.off()
        pass
 
@@ -152,9 +151,9 @@ GPIO27       Pin 13   2        27
 
    .. code-block:: python
 
-       # GPIOピン27にブザーを初期化
+       # Initialize the buzzer on GPIO pin 27
        buzzer = Buzzer(27)
-       # プルアップ抵抗を有効にしてGPIOピン17にリードスイッチを初期化
+       # Initialize the reed switch on GPIO pin 17 with pull-up resistor enabled
        reed_switch = Button(17, pull_up=True)
 
 #. ``try`` ブロックには無限ループ( ``while True`` )が含まれ、リードスイッチの状態をチェックします。押されている場合（ ``is_pressed`` ）、ブザーはオフになります。そうでない場合、ブザーはビープ音を出します（0.1秒オン、0.1秒オフ）。
@@ -163,22 +162,22 @@ GPIO27       Pin 13   2        27
 
        try:
            while True:
-               # リードスイッチが押されているかチェック
+               # Check if the reed switch is pressed
                if reed_switch.is_pressed:
-                   # リードスイッチが押されている場合、ブザーをオフにする
+                   # Turn off the buzzer if reed switch is pressed
                    buzzer.off()
                else:
-                   # リードスイッチが押されていない場合、ブザーを鳴らす
+                   # If reed switch is not pressed, beep the buzzer
                    buzzer.on()
-                   time.sleep(0.1)  # 0.1秒間ブザーをオン
+                   time.sleep(0.1)  # Buzzer on for 0.1 seconds
                    buzzer.off()
-                   time.sleep(0.1)  # 0.1秒間ブザーをオフ
+                   time.sleep(0.1)  # Buzzer off for 0.1 seconds
 
 #. ``except`` ブロックは、ターミナルでCtrl+CのようなKeyboardInterruptを捕捉し、安全にブザーをオフにします。
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # プログラムが中断された場合（例：キーボード割り込み）、ブザーをオフにする
-           buzzer.off
+           # Turn off the buzzer when the program is interrupted (e.g., keyboard interrupt)
+           buzzer.off()
            pass

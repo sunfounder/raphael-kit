@@ -40,15 +40,15 @@
     *   - コンポーネントの紹介
         - 購入リンク
 
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`抵抗器`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`LED`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
 
 
@@ -85,7 +85,7 @@ GPIO17       Pin 11   0        17
 
 1) スクリーンを使用する場合は、以下の手順をおすすめします。
 
-**~/** に移動し、 **raphael-kit** フォルダを見つけます。
+``~/`` に移動し、 ``raphael-kit`` フォルダを見つけます。
 
 フォルダ内の **C** を右クリックし、 **Open in Terminal** を選択します。
 
@@ -93,7 +93,7 @@ GPIO17       Pin 11   0        17
     :width: 800
     :align: center
 
-すると、以下のようなウィンドウが表示されます。これで、コード **1.1.1_BlinkingLed.c** のパスに入りました。
+すると、以下のようなウィンドウが表示されます。これで、コード ``1.1.1_BlinkingLed.c`` のパスに入りました。
 
 .. image:: ../img/image51.png
     :width: 800
@@ -145,7 +145,7 @@ GPIO17       Pin 11   0        17
 
 .. note::
 
-   実行後に動作しない、またはエラープロンプトが表示される場合:「wiringPi.h: No such file or directory」、 :ref:`install_wiringpi` を参照してください。
+   実行後に動作しない、またはエラープロンプトが表示される場合: ``wiringPi.h\: No such file or directory``、 :ref:`install_wiringpi` を参照してください。
 
 GPIOを制御するには、 ``sudo`` コマンド（スーパーユーザー実行）でプログラムを実行する必要があります。 ``./`` コマンドは現在のディレクトリを示しています。全体のコマンドは、現在のディレクトリの ``BlinkingLed`` を実行するものです。
 

@@ -33,15 +33,15 @@
     *   - コンポーネントの紹介
         - 購入リンク
 
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`ブザー`
+    *   - :ref:`cpn_buzzer`
         - |link_passive_buzzer_buy|
-    *   - :ref:`トランジスタ`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
 **配線図**

@@ -12,44 +12,44 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.5_tilt_switch_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`tilt_switch`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_tilt_switch`
+        - \-
 
 回路図
 -----------------
@@ -104,35 +104,35 @@
    #!/usr/bin/env python3
    from gpiozero import LED, Button
 
-   # GPIO Zeroを使用して傾斜センサーとLEDを初期化します
-   TiltPin = Button(17, pull_up=False)  # プルアップ抵抗が無効化されたGPIOピン17に接続された傾斜センサーを初期化
-   green_led = LED(27)  # GPIOピン27に接続された緑色のLEDを初期化
-   red_led = LED(22)   # GPIOピン22に接続された赤色のLEDを初期化
+   # Initialize the Button for the tilt sensor and LEDs using GPIO Zero
+   TiltPin = Button(17, pull_up=False)  # Tilt sensor connected to GPIO pin 17, pull-up resistor disabled
+   green_led = LED(27)  # Green LED connected to GPIO pin 27
+   red_led = LED(22)   # Red LED connected to GPIO pin 22
 
    def detect():
        """
-       傾斜センサーの状態を検出し、LEDを制御します。
-       傾けた場合、赤いLEDを点灯し、緑のLEDを消灯します。
-       傾けていない場合、その逆を行います。
+       Detect the tilt sensor state and control the LEDs.
+       Turns on the red LED and turns off the green LED when tilted.
+       Turns off the red LED and turns on the green LED when not tilted.
        """
-       if TiltPin.is_pressed:  # センサーが傾いているかどうかを確認
+       if TiltPin.is_pressed:  # Check if the sensor is tilted
            print('    *************')
-           print('    *   傾けました！   *')
+           print('    *   Tilt!   *')
            print('    *************')
-           red_led.on()   # 赤いLEDを点灯
-           green_led.off()  # 緑のLEDを消灯
-       else:  # センサーが傾いていない場合
-           red_led.off()  # 赤いLEDを消灯
-           green_led.on()  # 緑のLEDを点灯
+           red_led.on()   # Turn on red LED
+           green_led.off()  # Turn off green LED
+       else:  # If the sensor is not tilted
+           red_led.off()  # Turn off red LED
+           green_led.on()  # Turn on green LED
 
    try:
        while True:
-           # 傾斜センサーの状態を継続的に確認し、LEDを更新します
+           # Continuously check the tilt sensor state and update LEDs
            TiltPin.when_pressed = detect
            TiltPin.when_released = detect
 
    except KeyboardInterrupt:
-       # キーボード割り込み（Ctrl+C）を処理してループをきれいに終了します
+       # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
        pass
 
 
@@ -149,10 +149,10 @@
 
    .. code-block:: python
 
-       # GPIO Zeroを使用して傾斜センサーとLEDを初期化します
-       TiltPin = Button(17, pull_up=False)  # プルアップ抵抗が無効化されたGPIOピン17に接続された傾斜センサーを初期化
-       green_led = LED(27)  # GPIOピン27に接続された緑色のLEDを初期化
-       red_led = LED(22)   # GPIOピン22に接続された赤色のLEDを初期化
+       # Initialize the Button for the tilt sensor and LEDs using GPIO Zero
+       TiltPin = Button(17, pull_up=False)  # Tilt sensor connected to GPIO pin 17, pull-up resistor disabled
+       green_led = LED(27)  # Green LED connected to GPIO pin 27
+       red_led = LED(22)   # Red LED connected to GPIO pin 22
 
 #. ``detect`` 関数を定義し、傾斜センサーの状態をチェックします。傾けた場合、赤いLEDを点灯し、緑のLEDを消灯します。傾けていない場合、その逆を行います。
 
@@ -160,19 +160,19 @@
 
        def detect():
            """
-           傾斜センサーの状態を検出し、LEDを制御します。
-           傾けた場合、赤いLEDを点灯し、緑のLEDを消灯します。
-           傾けていない場合、その逆を行います。
+           Detect the tilt sensor state and control the LEDs.
+           Turns on the red LED and turns off the green LED when tilted.
+           Turns off the red LED and turns on the green LED when not tilted.
            """
-           if TiltPin.is_pressed:  # センサーが傾いているかどうかを確認
+           if TiltPin.is_pressed:  # Check if the sensor is tilted
                print('    *************')
-               print('    *   傾けました！   *')
+               print('    *   Tilt!   *')
                print('    *************')
-               red_led.on()   # 赤いLEDを点灯
-               green_led.off()  # 緑のLEDを消灯
-           else:  # センサーが傾いていない場合
-               red_led.off()  # 赤いLEDを消灯
-               green_led.on()  # 緑のLEDを点灯
+               red_led.on()   # Turn on red LED
+               green_led.off()  # Turn off green LED
+           else:  # If the sensor is not tilted
+               red_led.off()  # Turn off red LED
+               green_led.on()  # Turn on green LED
 
 #. メインループは傾斜センサーの ``when_pressed`` と ``when_released`` イベントに ``detect`` 関数を割り当てます。 ``try-except`` ブロックは優雅な終了のためにキーボード割り込みを処理します。
 
@@ -180,10 +180,10 @@
 
        try:
            while True:
-               # 傾斜センサーの状態を継続的に確認し、LEDを更新します
+               # Continuously check the tilt sensor state and update LEDs
                TiltPin.when_pressed = detect
                TiltPin.when_released = detect
 
        except KeyboardInterrupt:
-           # キーボード割り込み（Ctrl+C）を処理してループをきれいに終了します
+           # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
            pass

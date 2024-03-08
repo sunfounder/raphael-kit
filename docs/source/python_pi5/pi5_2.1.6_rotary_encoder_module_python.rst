@@ -11,40 +11,40 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.6_rotary_encoder_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`rotary_encoder`
-..         - |link_rotary_encoder_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_rotary_encoder`
+        - |link_rotary_encoder_buy|
 
 回路図
 ------------------------
@@ -101,38 +101,37 @@
    from gpiozero import RotaryEncoder, Button
    from time import sleep
 
-   # ロータリーエンコーダーとボタンを初期化
-   encoder = RotaryEncoder(a=17, b=18)  # GPIOピン17（CLK）、18（DT）に接続されたロータリーエンコーダー
-   button = Button(27)                  # GPIOピン27に接続されたボタン
+   # Initialize the rotary encoder and button
+   encoder = RotaryEncoder(a=17, b=18)  # Rotary Encoder connected to GPIO pins 17 (CLK) and 18 (DT)
+   button = Button(27)                  # Button connected to GPIO pin 27
 
-   global_counter = 0  # ロータリーエンコーダーの位置を追跡
+   global_counter = 0  # Track the rotary encoder's position
 
    def rotary_change():
-      """ ロータリーエンコーダーの回転に基づいてグローバルカウンターを更新。 """
+      """ Update the global counter based on the rotary encoder's rotation. """
       global global_counter
-      global_counter += encoder.steps  # エンコーダーステップに基づいてカウンター調整
-      encoder.steps = 0  # カウンター更新後にエンコーダーステップをリセット
-      print('Global Counter =', global_counter)  # 現在のカウンター値を表示
+      global_counter += encoder.steps  # Adjust counter based on encoder steps
+      encoder.steps = 0  # Reset encoder steps after updating counter
+      print('Global Counter =', global_counter)  # Display current counter value
 
    def reset_counter():
-      """ ボタンが押された時にグローバルカウンターをゼロにリセット。 """
+      """ Reset the global counter to zero when the button is pressed. """
       global global_counter
-      global_counter = 0  # カウンターをリセット
-      print('Counter reset')  # カウンターリセットを示す
+      global_counter = 0  # Reset the counter
+      print('Counter reset')  # Indicate counter reset
 
-   # ボタン押下イベントにreset_counter関数を割り当て
+   # Assign the reset_counter function to button press event
    button.when_pressed = reset_counter
 
    try:
-      # ロータリーエンコーダーを継続的に監視し、変更を処理
+      # Monitor rotary encoder continuously and process changes
       while True:
-         rotary_change()  # ロータリーエンコーダーの変更を処理
-         sleep(0.1)  # CPU負荷を減らすために短い遅延
+         rotary_change()  # Handle rotary encoder changes
+         sleep(0.1)  # Short delay to reduce CPU load
 
    except KeyboardInterrupt:
-      # Ctrl+C（キーボード割り込み）を優雅に処理
+      # Gracefully handle a keyboard interrupt (Ctrl+C)
       pass
-
 
 **コード解析**
 
@@ -148,42 +147,42 @@
 
    .. code-block:: python
 
-      # ロータリーエンコーダーとボタンを初期化
-      encoder = RotaryEncoder(a=17, b=18)  # GPIOピン17（CLK）と18（DT）に接続されたロータリーエンコーダー
-      button = Button(27)                  # GPIOピン27に接続されたボタン
+      # Initialize the rotary encoder and button
+      encoder = RotaryEncoder(a=17, b=18)  # Rotary Encoder connected to GPIO pins 17 (CLK) and 18 (DT)
+      button = Button(27)                  # Button connected to GPIO pin 27
 
 #. ロータリーエンコーダーの位置を追跡するために ``global_counter`` グローバル変数を宣言します。
 
    .. code-block:: python
 
-      global_counter = 0  # ロータリーエンコーダーの位置を追跡
+      global_counter = 0  # Track the rotary encoder's position
 
 #. ロータリーエンコーダーの回転に基づいてグローバルカウンターを更新する ``rotary_change`` 関数を定義します。
 
    .. code-block:: python
 
       def rotary_change():
-         """ ロータリーエンコーダーの回転に基づいてグローバルカウンターを更新します。 """
+         """ Update the global counter based on the rotary encoder's rotation. """
          global global_counter
-         global_counter += encoder.steps  # エンコーダーのステップに基づいてカウンターを調整
-         encoder.steps = 0  # カウンターを更新後にエンコーダーのステップをリセット
-         print('Global Counter =', global_counter)  # 現在のカウンター値を表示
+         global_counter += encoder.steps  # Adjust counter based on encoder steps
+         encoder.steps = 0  # Reset encoder steps after updating counter
+         print('Global Counter =', global_counter)  # Display current counter value
 
 #. ボタンが押されたときにグローバルカウンターをゼロにリセットする ``reset_counter`` 関数を定義します。
 
    .. code-block:: python
 
       def reset_counter():
-         """ ボタンが押されたときにグローバルカウンターをゼロにリセットします。 """
+         """ Reset the global counter to zero when the button is pressed. """
          global global_counter
-         global_counter = 0  # カウンターをリセット
-         print('Counter reset')  # カウンターリセットを示す
+         global_counter = 0  # Reset the counter
+         print('Counter reset')  # Indicate counter reset
 
 #. ボタンが押されたときに呼び出されるように ``reset_counter`` 関数を割り当てます。
 
    .. code-block:: python
 
-      # ボタン押下イベントにreset_counter関数を割り当て
+      # Assign the reset_counter function to button press event
       button.when_pressed = reset_counter
 
 #. 継続的なループ内でスクリプトは ``rotary_change`` を呼び出してロータリーエンコーダーの変更を処理し、CPU負荷を減らすために短い遅延を導入します。KeyboardInterruptsを優雅に処理するためにtry-exceptブロックを使用します。
@@ -191,12 +190,13 @@
    .. code-block:: python
 
       try:
-         # ロータリーエンコーダーを継続的に監視し、変更を処理
+         # Monitor rotary encoder continuously and process changes
          while True:
-            rotary_change()  # ロータリーエンコーダーの変更を処理
-            sleep(0.1)  # CPU負荷を減らすための短い遅延
+            rotary_change()  # Handle rotary encoder changes
+            sleep(0.1)  # Short delay to reduce CPU load
 
       except KeyboardInterrupt:
-         # キーボード割り込み（Ctrl+C）を優雅に処理
+         # Gracefully handle a keyboard interrupt (Ctrl+C)
          pass
+
 

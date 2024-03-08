@@ -36,15 +36,15 @@
     *   - コンポーネントの紹介
         - 購入リンク
 
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`オーディオモジュールとスピーカー`
+    *   - :ref:`cpn_audio_speaker`
         - \-
-    *   - :ref:`カメラモジュール`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 回路を組む
@@ -56,7 +56,7 @@
 
 .. note::
   
-  カメラモジュールを接続し、Raspberry Piのカメラインターフェースを有効にするには、 :ref:`カメラモジュール` を参照してください。
+  カメラモジュールを接続し、Raspberry Piのカメラインターフェースを有効にするには、 :ref:`cpn_camera_module` を参照してください。
 
 コードをロードして動作を確認する
 ----------------------------------------

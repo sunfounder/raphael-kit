@@ -30,15 +30,15 @@
 
     *   - 部品説明
         - 購入リンク
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`抵抗器`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`湿温センサモジュール`
+    *   - :ref:`cpn_humiture_sensor`
         - |link_humiture_buy|
 
 

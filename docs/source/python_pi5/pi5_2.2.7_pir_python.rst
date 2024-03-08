@@ -8,47 +8,47 @@
 
 このプロジェクトでは、人体赤外線センサーを使用してデバイスを作成します。誰かがLEDに近づくと、LEDが自動で点灯します。そうでない場合、光は消えます。この赤外線モーションセンサーは、人間や動物から放射される赤外線を検出できるセンサーの一種です。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。 
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.2.7_pir_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`rgb_led`
-..         - |link_rgb_led_buy|
-..     *   - :ref:`pir`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_rgb_led`
+        - |link_rgb_led_buy|
+    *   - :ref:`cpn_pir`
+        - \-
 
 
 回路図
@@ -109,22 +109,23 @@ PIRモジュールには2つのポテンショメーターがあります：感�
    from gpiozero import RGBLED, MotionSensor
    from time import sleep
 
-   # GPIO Zeroライブラリを使用してRGB LEDとPIRモーションセンサーを初期化
-   led = RGBLED(red=18, green=27, blue=22)  # RGB LEDはGPIOピン18（赤）、27（緑）、22（青）に接続されています
-   pir = MotionSensor(17)  # PIRセンサーはGPIOピン17に接続されています
+   # Initialize RGB LED and PIR motion sensor using GPIO Zero library
+   led = RGBLED(red=18, green=27, blue=22)  # RGB LED connected to GPIO pins 18 (Red), 27 (Green), 22 (Blue)
+   pir = MotionSensor(17)  # PIR sensor connected to GPIO pin 17
 
    try:
-       # モーションを監視し、LEDの色を更新し続けます
+       # Continuously monitor for motion and update LED color
        while True:
-           if pir.motion_detected:  # PIRセンサーによるモーションの検出を確認
-               led.color = (1, 1, 0)  # LEDの色を黄色に設定します（赤 + 緑）
+           if pir.motion_detected:  # Check for motion detected by PIR sensor
+               led.color = (1, 1, 0)  # Set LED color to yellow (Red + Green)
            else:
-               led.color = (0, 0, 1)  # LEDの色を青に設定します（青のみ）
-           sleep(0.1)  # CPU負荷を軽減するための短い遅延
+               led.color = (0, 0, 1)  # Set LED color to blue (only Blue)
+           sleep(0.1)  # Short delay to reduce CPU load
 
    except KeyboardInterrupt:
-       # KeyboardInterrupt（Ctrl+C）を処理してループを gracefully に終了します
+       # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
        pass
+
 
 
 **コードの説明**
@@ -141,24 +142,24 @@ PIRモジュールには2つのポテンショメーターがあります：感�
 
    .. code-block:: python
 
-       # GPIO Zeroライブラリを使用してRGB LEDとPIRモーションセンサーを初期化
-       led = RGBLED(red=18, green=27, blue=22)  # RGB LEDはGPIOピン18（赤）、27（緑）、22（青）に接続されています
-       pir = MotionSensor(17)  # PIRセンサーはGPIOピン17に接続されています
+       # Initialize RGB LED and PIR motion sensor using GPIO Zero library
+       led = RGBLED(red=18, green=27, blue=22)  # RGB LED connected to GPIO pins 18 (Red), 27 (Green), 22 (Blue)
+       pir = MotionSensor(17)  # PIR sensor connected to GPIO pin 17
 
 3. プログラムは無限ループに入り、PIRセンサーを使用してモーションを連続的に確認します。モーションが検出された場合、LEDは黄色に設定されます（赤と緑の組み合わせ）。モーションが検出されない場合、LEDは青に変わります。短い0.1秒の遅延がCPU負荷を軽減します。
 
    .. code-block:: python
 
        try:
-           # モーションを監視し、LEDの色を更新し続けます
+           # Continuously monitor for motion and update LED color
            while True:
-               if pir.motion_detected:  # PIRセンサーによるモーションの検出を確認
-                   led.color = (1, 1, 0)  # LEDの色を黄色に設定します（赤 + 緑）
+               if pir.motion_detected:  # Check for motion detected by PIR sensor
+                   led.color = (1, 1, 0)  # Set LED color to yellow (Red + Green)
                else:
-                   led.color = (0, 0, 1)  # LEDの色を青に設定します（青のみ）
-               sleep(0.1)  # CPU負荷を軽減するための短い遅延
+                   led.color = (0, 0, 1)  # Set LED color to blue (only Blue)
+               sleep(0.1)  # Short delay to reduce CPU load
 
        except KeyboardInterrupt:
-           # KeyboardInterrupt（Ctrl+C）を処理してループを gracefully に終了します
+           # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
            pass
 

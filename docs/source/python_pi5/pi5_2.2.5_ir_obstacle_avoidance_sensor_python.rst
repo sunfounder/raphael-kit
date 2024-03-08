@@ -11,42 +11,42 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.2.5_ir_obstacle_list.png
    :width: 700
    :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`infrared_avoidance`
-..         - |link_obstacle_avoidance_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_avoid_module`
+        - |link_obstacle_avoidance_buy|
 
 回路図
 -----------------------
@@ -103,21 +103,20 @@
    from gpiozero import Button
    import time
 
-   # GPIOピン17に接続された障害物センサーを初期化
-   # センサーは内部プルアップ抵抗で設定されています
+   # Initialize the obstacle sensor connected to GPIO pin 17
+   # The sensor is configured with a pull-up resistor
    obstacle_sensor = Button(17, pull_up=True)  
 
    try:
-      # 障害物の監視を続ける
+      # Continuously monitor for obstacles
       while True:
-         if obstacle_sensor.is_pressed:  # センサーが作動したか確認
-               print("Detected Barrier!")  # 障害物を検出した時のメッセージを表示
-               time.sleep(1)  # 繰り返しメッセージを避けるために1秒遅延
+         if obstacle_sensor.is_pressed:  # Check if the sensor is triggered
+               print("Detected Barrier!")  # Print a message when an obstacle is detected
+               time.sleep(1)  # Delay for 1 second to avoid repetitive messages
 
    except KeyboardInterrupt:
-      # Ctrl+Cで安全に終了するための処理
+      # Handle KeyboardInterrupt (Ctrl+C) for a clean and safe exit
       pass
-
 
 **コード説明**
 
@@ -133,8 +132,8 @@
 
    .. code-block:: python
 
-      # GPIOピン17に接続された障害物センサーを初期化
-      # センサーは内部プルアップ抵抗で設定されています
+      # Initialize the obstacle sensor connected to GPIO pin 17
+      # The sensor is configured with a pull-up resistor
       obstacle_sensor = Button(17, pull_up=True)  
 
 #. 継続的なループで、プログラムは障害物センサーがアクティブになったかどうか（ ``is_pressed`` ）をチェックします。障害物が検出されると、「Detected Barrier!」と表示し、1秒間待機します（繰り返しメッセージを防ぐため）。 ``try-except`` 構造を使用して、Ctrl+Cでクリーンに終了できます。
@@ -142,12 +141,12 @@
    .. code-block:: python
 
       try:
-         # 障害物の監視を続ける
+         # Continuously monitor for obstacles
          while True:
-            if obstacle_sensor.is_pressed:  # センサーが作動したか確認
-                  print("Detected Barrier!")  # 障害物を検出した時のメッセージを表示
-                  time.sleep(1)  # 繰り返しメッセージを避けるために1秒遅延
+            if obstacle_sensor.is_pressed:  # Check if the sensor is triggered
+                  print("Detected Barrier!")  # Print a message when an obstacle is detected
+                  time.sleep(1)  # Delay for 1 second to avoid repetitive messages
 
       except KeyboardInterrupt:
-         # Ctrl+Cで安全に終了するための処理
+         # Handle KeyboardInterrupt (Ctrl+C) for a clean and safe exit
          pass

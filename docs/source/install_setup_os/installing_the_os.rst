@@ -31,7 +31,7 @@ Raspberry Piチームは、Mac OS、Ubuntu 18.04、Windowsと互換性のある�
 
 **ステップ 3**
 
-Imagerをインストールした後、 **Raspberry Pi Imager** のアイコンをクリックするか、 `rpi-imager` を実行してアプリケーションを開きます。
+Imagerをインストールした後、 **Raspberry Pi Imager** のアイコンをクリックするか、 ``rpi-imager`` を実行してアプリケーションを開きます。
 
 .. image:: img/image4.png
     :align: center

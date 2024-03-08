@@ -20,6 +20,10 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
+2024-03-08:
+    - Optimize the code section of the Pi5 project
+    - Add video tutorials.
+
 2023-11-30:
     - Updated "Install and Setup Raspberry Pi OS" documentation.
 

@@ -1,6 +1,6 @@
 .. _4.1.13_py_pi5:
 
-4.1.10 過熱モニター
+4.1.8 過熱モニター
 ================================
 
 概要
@@ -8,59 +8,59 @@
 
 あなたは過熱監視デバイスを作成したいかもしれません。例えば、工場内で回路の過熱がある場合にアラームと機械の自動シャットダウンをしたい場合です。このプロジェクトでは、サーミスタ、ジョイスティック、ブザー、LED、およびLCDを使用して、しきい値が調整可能なスマートな温度監視デバイスを作成します。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトには、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.13_overheat_monitor_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`joystick`
-..         - \-
-..     *   - :ref:`adc0834`
-..         - \-
-..     *   - :ref:`transistor`
-..         - |link_transistor_buy|
-..     *   - :ref:`i2c_lcd1602`
-..         - |link_i2clcd1602_buy|
-..     *   - :ref:`thermistor`
-..         - |link_thermistor_buy|
-..     *   - :ref:`buzzer`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_adc0834`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
 
 回路図
 --------------------------
@@ -138,21 +138,21 @@ SCL1         Pin 5
    import time
    import math
 
-   # ジョイスティックボタン、ブザー、LEDの初期化
+   # Initialize joystick button, buzzer, and LED
    Joy_BtnPin = Button(22)
    buzzPin = Buzzer(23)
    ledPin = LED(24)
 
-   # 初期の高温閾値を設定
+   # Set initial upper temperature threshold
    upperTem = 40
 
-   # ADCとLCDモジュールのセットアップ
+   # Setup ADC and LCD modules
    ADC0834.setup()
    LCD1602.init(0x27, 1)
 
    def get_joystick_value():
        """
-       ジョイスティックの値を読み取り、ジョイスティックの位置に基づいて変更値を返します。
+       Reads the joystick values and returns a change value based on the joystick's position.
        """
        x_val = ADC0834.getResult(1)
        y_val = ADC0834.getResult(2)
@@ -169,10 +169,10 @@ SCL1         Pin 5
 
    def upper_tem_setting():
        """
-       ジョイスティックの入力を使用して高温閾値を調整し、LCDに表示します。
+       Adjusts and displays the upper temperature threshold on the LCD.
        """
        global upperTem
-       LCD1602.write(0, 0, '上限調整: ')
+       LCD1602.write(0, 0, 'Upper Adjust: ')
        change = int(get_joystick_value())
        upperTem += change
        strUpperTem = str(upperTem)
@@ -182,7 +182,7 @@ SCL1         Pin 5
 
    def temperature():
        """
-       センサーから現在の温度を読み取り、摂氏で返します。
+       Reads the current temperature from the sensor and returns it in Celsius.
        """
        analogVal = ADC0834.getResult()
        Vr = 5 * float(analogVal) / 255
@@ -193,12 +193,13 @@ SCL1         Pin 5
 
    def monitoring_temp():
        """
-       現在の温度と上限温度閾値を監視および表示します。温度が上限を超える場合、ブザーとLEDが作動します。
+       Monitors and displays the current temperature and upper temperature threshold. 
+       Activates buzzer and LED if the temperature exceeds the upper limit.
        """
        global upperTem
        Cel = temperature()
-       LCD1602.write(0, 0, '温度: ')
-       LCD1602.write(0, 1, '上限: ')
+       LCD1602.write(0, 0, 'Temp: ')
+       LCD1602.write(0, 1, 'Upper: ')
        LCD1602.write(6, 0, str(Cel))
        LCD1602.write(7, 1, str(upperTem))
        time.sleep(0.1)
@@ -209,13 +210,13 @@ SCL1         Pin 5
            buzzPin.off()
            ledPin.off()
 
-   # メイン実行ループ
+   # Main execution loop
    try:
        lastState = 1
        stage = 0
        while True:
            currentState = Joy_BtnPin.value
-           # 設定モードと監視モードを切り替えます
+           # Toggle between settings and monitoring mode
            if currentState == 1 and lastState == 0:
                stage = (stage + 1) % 2
                time.sleep(0.1)
@@ -226,9 +227,10 @@ SCL1         Pin 5
            else:
                monitoring_temp()
    except KeyboardInterrupt:
-       # クリーンアップして終了
+       # Clean up and exit
        LCD1602.clear()
        ADC0834.destroy()
+
 
 **代码解释**
 
@@ -248,19 +250,20 @@ SCL1         Pin 5
 
    .. code-block:: python
 
-       # ジョイスティックボタン、ブザー、LEDの初期化
+       # Initialize joystick button, buzzer, and LED
        Joy_BtnPin = Button(22)
        buzzPin = Buzzer(23)
        ledPin = LED(24)
+
 
 #. 初期の上限温度を設定し、ADCとLCDモジュールを初期化します。LCDはアドレス（ ``0x27`` ）とモード（ ``1`` ）で初期化されます。
 
    .. code-block:: python
 
-       # 初期の上限温度閾値を設定
+       # Set initial upper temperature threshold
        upperTem = 40
 
-       # ADCとLCDモジュールのセットアップ
+       # Setup ADC and LCD modules
        ADC0834.setup()
        LCD1602.init(0x27, 1)
 
@@ -270,7 +273,7 @@ SCL1         Pin 5
 
        def get_joystick_value():
            """
-           ジョイスティックの値を読み取り、ジョイスティックの位置に基づいて変更値を返します。
+           Reads the joystick values and returns a change value based on the joystick's position.
            """
            x_val = ADC0834.getResult(1)
            y_val = ADC0834.getResult(2)
@@ -291,10 +294,10 @@ SCL1         Pin 5
 
        def upper_tem_setting():
            """
-           ジョイスティックの入力を使用して上限温度閾値を調整し、LCDに表示します。
+           Adjusts and displays the upper temperature threshold on the LCD.
            """
            global upperTem
-           LCD1602.write(0, 0, '上限調整: ')
+           LCD1602.write(0, 0, 'Upper Adjust: ')
            change = int(get_joystick_value())
            upperTem += change
            strUpperTem = str(upperTem)
@@ -308,7 +311,7 @@ SCL1         Pin 5
 
        def temperature():
            """
-           センサーから現在の温度を読み取り、摂氏で返します。
+           Reads the current temperature from the sensor and returns it in Celsius.
            """
            analogVal = ADC0834.getResult()
            Vr = 5 * float(analogVal) / 255
@@ -323,12 +326,13 @@ SCL1         Pin 5
 
        def monitoring_temp():
            """
-           現在の温度と上限温度閾値を監視し、LCDに表示します。温度が上限を超える場合、ブザーとLEDが作動します。
+           Monitors and displays the current temperature and upper temperature threshold. 
+           Activates buzzer and LED if the temperature exceeds the upper limit.
            """
            global upperTem
            Cel = temperature()
-           LCD1602.write(0, 0, '温度: ')
-           LCD1602.write(0, 1, '上限: ')
+           LCD1602.write(0, 0, 'Temp: ')
+           LCD1602.write(0, 1, 'Upper: ')
            LCD1602.write(6, 0, str(Cel))
            LCD1602.write(7, 1, str(upperTem))
            time.sleep(0.1)
@@ -343,13 +347,13 @@ SCL1         Pin 5
 
    .. code-block:: python
 
-       # メイン実行ループ
+       # Main execution loop
        try:
            lastState = 1
            stage = 0
            while True:
                currentState = Joy_BtnPin.value
-               # 設定モードと監視モードを切り替える
+               # Toggle between settings and monitoring mode
                if currentState == 1 and lastState == 0:
                    stage = (stage + 1) % 2
                    time.sleep(0.1)
@@ -359,7 +363,12 @@ SCL1         Pin 5
                    upper_tem_setting()
                else:
                    monitoring_temp()
+
+#. このセクションは、プログラムが中断された場合に適切なクリーンアップとリソースの解放を保証します。
+
+   .. code-block:: python
+
        except KeyboardInterrupt:
-           # クリーンアップして終了
+           # Clean up and exit
            LCD1602.clear()
            ADC0834.destroy()

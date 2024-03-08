@@ -1,6 +1,6 @@
 .. _4.1.10_py_pi5:
 
-4.1.7 スマートファン
+4.1.5 スマートファン
 =========================
 
 はじめに
@@ -11,57 +11,55 @@
 必要な部品
 ------------------------------
 
-このプロジェクトで必要な部品は次のとおりです。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`power_module`
-..         - \-
-..     *   - :ref:`thermistor`
-..         - |link_thermistor_buy|
-..     *   - :ref:`l293d`
-..         - \-
-..     *   - :ref:`adc0834`
-..         - \-
-..     *   - :ref:`button`
-..         - |link_button_buy|
-..     *   - :ref:`motor`
-..         - |link_motor_buy|
-
-
-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_power_module`
+        - \-
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_l293d`
+        - \-
+    *   - :ref:`cpn_adc0834`
+        - \-
+    *   - :ref:`cpn_button`
+        - |link_button_buy|
+    *   - :ref:`cpn_motor`
+        - |link_motor_buy|
+        
 回路図
 ------------------------
 
@@ -135,78 +133,78 @@ GPIO13       Pin 33   23       13
    import ADC0834
    import math
 
-   # ボタンとモーター制御のためのGPIOピンを初期化します
+   # Initialize GPIO pins for the button and motor control
    BtnPin = Button(22)
    motor = Motor(forward=5, backward=6, enable=13)
 
-   # 温度センシング用にADC0834モジュールを初期化します
+   # Initialize the ADC0834 module for temperature sensing
    ADC0834.setup()
 
-   # モーター速度レベルと温度を追跡するための変数を初期化します
+   # Initialize variables to track the motor speed level and temperatures
    level = 0
    currentTemp = 0
    markTemp = 0
 
    def temperature():
        """
-       センサーから現在の温度を読み取り、計算します。
-       戻り値:
-           float: 摂氏での現在の温度。
+       Reads and calculates the current temperature from the sensor.
+       Returns:
+           float: The current temperature in Celsius.
        """
-       # ADC0834モジュールからアナログ値を読み取ります
+       # Read analog value from the ADC0834 module
        analogVal = ADC0834.getResult()
-       # アナログ値を電圧に変換し、抵抗に変換します
+       # Convert analog value to voltage and then to resistance
        Vr = 5 * float(analogVal) / 255
        Rt = 10000 * Vr / (5 - Vr)
-       # 摂氏での温度を計算します
+       # Calculate temperature in Celsius
        temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
        Cel = temp - 273.15
        return Cel
 
    def motor_run(level):
        """
-       指定されたレベルに基づいてモーターの速度を調整します。
-       引数:
-           level (int): 望ましいモーター速度レベル。
-       戻り値:
-           int: 調整されたモーター速度レベル。
+       Adjusts the motor speed based on the specified level.
+       Args:
+           level (int): Desired motor speed level.
+       Returns:
+           int: Adjusted motor speed level.
        """
-       # レベルが0の場合、モーターを停止します
+       # Stop the motor if the level is 0
        if level == 0:
            motor.stop()
            return 0
-       # 最大速度のためにレベルを4で制限します
+       # Cap the level at 4 for maximum speed
        if level >= 4:
            level = 4
-       # モーターの速度を設定します
+       # Set the motor speed
        motor.forward(speed=float(level / 4))
        return level
 
    def changeLevel():
        """
-       ボタンが押されたときにモーターの速度レベルを手動で変更し、参照温度を更新します。
+       Changes the motor speed level when the button is pressed and updates the reference temperature.
        """
        global level, currentTemp, markTemp
-       print("ボタンが押されました")
-       # レベルを0から4までサイクルさせます
+       print("Button pressed")
+       # Cycle through levels 0-4
        level = (level + 1) % 5
-       # 参照温度を更新します
+       # Update the reference temperature
        markTemp = currentTemp
 
-   # ボタンの押下イベントをchangeLevel関数にバインドします
+   # Bind the button press event to changeLevel function
    BtnPin.when_pressed = changeLevel
 
    def main():
        """
-       温度変化に連続的に監視し、応答するためのメイン関数。
+       Main function to continuously monitor and respond to temperature changes.
        """
        global level, currentTemp, markTemp
-       # 初期参照温度を設定します
+       # Set initial reference temperature
        markTemp = temperature()
        while True:
-           # 現在の温度を連続して読み取ります
+           # Continuously read current temperature
            currentTemp = temperature()
-           # 温度差に基づいてモーターのレベルを調整します
+           # Adjust motor level based on temperature difference
            if level != 0:
                if currentTemp - markTemp <= -2:
                    level -= 1
@@ -215,15 +213,16 @@ GPIO13       Pin 33   23       13
                    if level < 4:
                        level += 1
                    markTemp = currentTemp
-           # 調整されたレベルでモーターを実行します
+           # Run the motor at the adjusted level
            level = motor_run(level)
 
-   # メイン関数を実行し、キーボード割り込みを処理します
+   # Run the main function and handle KeyboardInterrupt
    try:
        main()
    except KeyboardInterrupt:
-       # スクリプトが中断された場合、モーターを停止します
+       # Stop the motor when the script is interrupted
        motor.stop()
+
 
 
 コードの説明
@@ -244,14 +243,14 @@ GPIO13       Pin 33   23       13
 
    .. code-block:: python
 
-       # ボタンとモーター制御のための GPIO ピンを初期化
+       # Initialize GPIO pins for the button and motor control
        BtnPin = Button(22)
        motor = Motor(forward=5, backward=6, enable=13)
 
-       # 温度センシングのために ADC0834 モジュールを初期化
+       # Initialize the ADC0834 module for temperature sensing
        ADC0834.setup()
 
-       # モーター速度レベルと温度を追跡するための変数を初期化
+       # Initialize variables to track the motor speed level and temperatures
        level = 0
        currentTemp = 0
        markTemp = 0
@@ -262,16 +261,16 @@ GPIO13       Pin 33   23       13
 
        def temperature():
            """
-           センサーから現在の温度を読み取り、計算します。
-           戻り値:
-               float: 摂氏での現在の温度。
+           Reads and calculates the current temperature from the sensor.
+           Returns:
+               float: The current temperature in Celsius.
            """
-           # ADC0834 モジュールからアナログ値を取得
+           # Read analog value from the ADC0834 module
            analogVal = ADC0834.getResult()
-           # アナログ値を電圧に変換し、抵抗に変換
+           # Convert analog value to voltage and then to resistance
            Vr = 5 * float(analogVal) / 255
            Rt = 10000 * Vr / (5 - Vr)
-           # 摂氏での温度を計算
+           # Calculate temperature in Celsius
            temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
            Cel = temp - 273.15
            return Cel
@@ -282,20 +281,20 @@ GPIO13       Pin 33   23       13
 
        def motor_run(level):
            """
-           指定されたレベルに基づいてモーターの速度を調整します。
-           引数:
-               level (int): 望ましいモーター速度レベル。
-           戻り値:
-               int: 調整されたモーター速度レベル。
+           Adjusts the motor speed based on the specified level.
+           Args:
+               level (int): Desired motor speed level.
+           Returns:
+               int: Adjusted motor speed level.
            """
-           # レベルが0の場合、モーターを停止
+           # Stop the motor if the level is 0
            if level == 0:
                motor.stop()
                return 0
-           # レベルを最大4に制限
+           # Cap the level at 4 for maximum speed
            if level >= 4:
                level = 4
-           # モーター速度を設定
+           # Set the motor speed
            motor.forward(speed=float(level / 4))
            return level
 
@@ -305,16 +304,16 @@ GPIO13       Pin 33   23       13
 
        def changeLevel():
            """
-           ボタンが押されたときにモーターの速度レベルを手動で変更し、参照温度を更新します。
+           Changes the motor speed level when the button is pressed and updates the reference temperature.
            """
            global level, currentTemp, markTemp
-           print("ボタンが押されました")
-           # レベルを0から4までサイクル
+           print("Button pressed")
+           # Cycle through levels 0-4
            level = (level + 1) % 5
-           # 参照温度を更新
+           # Update the reference temperature
            markTemp = currentTemp
 
-       # ボタンのプレスイベントを changeLevel 関数にバインド
+       # Bind the button press event to changeLevel function
        BtnPin.when_pressed = changeLevel
 
 #. 温度変化に応じてモーターの速度を連続的に調整するメイン関数を実装することが残っています。
@@ -323,15 +322,15 @@ GPIO13       Pin 33   23       13
 
        def main():
            """
-           温度変化に連続的に監視し、応答するためのメイン関数。
+           Main function to continuously monitor and respond to temperature changes.
            """
            global level, currentTemp, markTemp
-           # 初期参照温度を設定
+           # Set initial reference temperature
            markTemp = temperature()
            while True:
-               # 現在の温度を連続して読み取ります
+               # Continuously read current temperature
                currentTemp = temperature()
-               # レベルが0でない場合、温度差に基づいてモーターレベルを調整します
+               # Adjust motor level based on temperature difference
                if level != 0:
                    if currentTemp - markTemp <= -2:
                        level -= 1
@@ -340,12 +339,17 @@ GPIO13       Pin 33   23       13
                        if level < 4:
                            level += 1
                        markTemp = currentTemp
-               # 調整されたレベルでモーターを実行します
+               # Run the motor at the adjusted level
                level = motor_run(level)
 
-       # メイン関数を実行し、キーボード割り込みを処理します
+#. メイン関数を実行し、スクリプトが中断された場合にモーターが停止することを保証する。
+
+   .. code-block:: python
+
+       # Run the main function and handle KeyboardInterrupt
        try:
            main()
        except KeyboardInterrupt:
-           # スクリプトが中断された場合、モーターを停止します
+           # Stop the motor when the script is interrupted
            motor.stop()
+

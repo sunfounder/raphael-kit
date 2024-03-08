@@ -39,19 +39,19 @@
     *   - コンポーネントの紹介
         - 購入リンク
 
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`抵抗器`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`LED`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`ボタン`
+    *   - :ref:`cpn_button`
         - |link_button_buy|
-    *   - :ref:`カメラモジュール`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 回路図
@@ -76,9 +76,9 @@ GPIO18       Pin 12   1        18
   :width: 800
   :align: center
 
-**ステップ2:** カメラモジュールを接続し、設定を完了してください。詳しくは :ref:`カメラモジュール` を参照。
+**ステップ2:** カメラモジュールを接続し、設定を完了してください。詳しくは :ref:`cpn_camera_module` を参照。
 
-**ステップ3:** Raspberry Piデスクトップに入ります。より良い体験のためにスクリーンが必要かもしれません： `Raspberry Piを接続する <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。リモートからRaspberry Piのデスクトップにアクセスすることもできます。詳しいチュートリアルは :ref:`remote_desktop_1` を参照してください。
+**ステップ3:** Raspberry Piデスクトップに入ります。より良い体験のためにスクリーンが必要かもしれません： `Raspberry Piを接続する <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。リモートからRaspberry Piのデスクトップにアクセスすることもできます。詳しいチュートリアルは :ref:`remote_desktop` を参照してください。
 
 **ステップ4:** ターミナルを開き、コードのディレクトリに移動します。
 

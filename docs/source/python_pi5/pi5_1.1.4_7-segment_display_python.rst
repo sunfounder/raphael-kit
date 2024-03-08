@@ -8,16 +8,48 @@
 
 7セグメントディスプレイを制御して、0から9およびAからFまでの数字を表示してみましょう。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
 このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/1.1.4_7_segment_list.png
 
-.. raw:: html
+一式を購入するのが便利です、こちらがリンクです： 
 
-   <br/>
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_7_segment`
+        - |link_7segment_buy|
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
 
 回路図
 ---------------------
@@ -80,48 +112,48 @@ GPIO27       Pin 13   27
    from gpiozero import OutputDevice
    from time import sleep
 
-   # 74HC595シフトレジスタに接続されたGPIOピン
-   SDI = OutputDevice(17)   # シリアルデータ入力
-   RCLK = OutputDevice(18)  # メモリクロック入力（レジスタクロック）
-   SRCLK = OutputDevice(27) # シフトレジスタクロック
+   # GPIO pins connected to 74HC595 shift register
+   SDI = OutputDevice(17)   # Serial Data Input
+   RCLK = OutputDevice(18)  # Memory Clock Input (Register Clock)
+   SRCLK = OutputDevice(27) # Shift Register Clock
 
-   # 7セグメントディスプレイの共通陰極の16進数デジットコード
+   # Hexadecimal digit codes for a common cathode 7-segment display
    segCode = [
        0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
        0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
    ]
 
    def hc595_shift(data):
-       # 74HC595に8ビットのデータをシフト
+       # Shift 8 bits of data into the 74HC595
        for bit in range(8):
-           # データビットに基づいてSDIを高または低に設定
+           # Set SDI high or low based on data bit
            SDI.value = 0x80 & (data << bit)
-           # シフトレジスタクロックをトリガ
+           # Trigger shift register clock
            SRCLK.on()
            sleep(0.001)
            SRCLK.off()
-       # メモリクロックをトリガしてデータを出力にラッチ
+       # Latch data to output by triggering memory clock
        RCLK.on()
        sleep(0.001)
        RCLK.off()
 
    def display_all_on():
-       # すべてのセグメントをオンにする関数（共通陰極の7セグメントディスプレイ用）
+       # Function to turn all segments on (for common cathode 7-segment display)
        all_on_code = 0x3f
        hc595_shift(all_on_code)
        print("Displaying all segments on")
 
    try:
        while True:
-           # 7セグメントディスプレイに各16進数デジットを表示
+           # Display each hexadecimal digit on 7-segment display
            for code in segCode:
-               hc595_shift(code)  # コードを74HC595にシフト
-               # 表示されたセグメントコードを表示
-               print(f"segCode[{segCode.index(code)}]: 0x{code:02X}")
-               sleep(0.5)  # 各デジットを表示する間の一時停止
+               hc595_shift(code)  # Shift the code into 74HC595
+               # Print the displayed segment code
+               print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+               sleep(0.5)  # Pause between displaying each digit
 
    except KeyboardInterrupt:
-       # スクリプトの中断（例：Ctrl+C）を優雅に処理
+       # Gracefully handle script interruption (e.g., Ctrl+C)
        pass
 
 **コードの説明**
@@ -138,16 +170,16 @@ GPIO27       Pin 13   27
 
    .. code-block:: python
 
-       # 74HC595シフトレジスタに接続されたGPIOピン
-       SDI = OutputDevice(17)   # シリアルデータ入力
-       RCLK = OutputDevice(18)  # メモリクロック入力（レジスタクロック）
-       SRCLK = OutputDevice(27) # シフトレジスタクロック
+       # GPIO pins connected to 74HC595 shift register
+       SDI = OutputDevice(17)   # Serial Data Input
+       RCLK = OutputDevice(18)  # Memory Clock Input (Register Clock)
+       SRCLK = OutputDevice(27) # Shift Register Clock
 
 #. ``segCode`` は、7セグメントディスプレイに表示する各デジットの16進数コードを含む配列です。
 
    .. code-block:: python
 
-       # 一般陰極型7セグメントディスプレイ用の16進数のデジットコード
+       # Hexadecimal digit codes for a common cathode 7-segment display
        segCode = [
            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
            0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
@@ -158,15 +190,15 @@ GPIO27       Pin 13   27
    .. code-block:: python
 
        def hc595_shift(data):
-           # 74HC595に8ビットのデータをシフトします
+           # Shift 8 bits of data into the 74HC595
            for bit in range(8):
-               # データビットに基づいてSDIを高または低に設定します
+               # Set SDI high or low based on data bit
                SDI.value = 0x80 & (data << bit)
-               # シフトレジスタクロックをトリガします
+               # Trigger shift register clock
                SRCLK.on()
                sleep(0.001)
                SRCLK.off()
-           # データをアウトプットにラッチするためにメモリクロックをトリガします
+           # Latch data to output by triggering memory clock
            RCLK.on()
            sleep(0.001)
            RCLK.off()
@@ -176,7 +208,7 @@ GPIO27       Pin 13   27
    .. code-block:: python
 
        def display_all_on():
-           # すべてのセグメントをオンにするための関数（一般陰極型7セグメントディスプレイ用）
+           # Function to turn all segments on (for common cathode 7-segment display)
            all_on_code = 0x3f
            hc595_shift(all_on_code)
            print("Displaying all segments on")
@@ -187,17 +219,17 @@ GPIO27       Pin 13   27
 
        try:
            while True:
-               # 7セグメントディスプレイに各16進数のデジットを表示します
+               # Display each hexadecimal digit on 7-segment display
                for code in segCode:
-                   hc595_shift(code)  # コードを74HC595にシフト
-                   # 表示されているセグメントコードを表示
-                   print(f"segCode[{segCode.index(code)}]: 0x{code:02X}")
-                   sleep(0.5)  # 各デジットの表示間に一時停止
+                   hc595_shift(code)  # Shift the code into 74HC595
+                   # Print the displayed segment code
+                   print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+                   sleep(0.5)  # Pause between displaying each digit
 
 #. この部分のコードは、スクリプトの中断（Ctrl+Cなど）を優雅に処理します。
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # スクリプトの中断を優雅に処理します（例：Ctrl+C）
+           # Gracefully handle script interruption (e.g., Ctrl+C)
            pass

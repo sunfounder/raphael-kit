@@ -9,46 +9,46 @@
 キーパッドはボタンの長方形の配列です。このプロジェクトでは、
 キーパッドを文字の入力に使用します。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.8_keypad_list.png
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`keypad`
-..         - \-
-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_keypad`
+        - \-
+        
 回路図
 -----------------
 
@@ -107,36 +107,36 @@
    class Keypad:
        def __init__(self, rows_pins, cols_pins, keys):
            """
-           指定された行と列のピン、およびキーパッドのレイアウトでキーパッドを初期化します。
-           :param rows_pins: 行のGPIOピンのリスト。
-           :param cols_pins: 列のGPIOピンのリスト。
-           :param keys: キーパッドのレイアウトのキーリスト。
+           Initialize the Keypad with specified row and column pins and keypad layout.
+           :param rows_pins: List of GPIO pins for the rows.
+           :param cols_pins: List of GPIO pins for the columns.
+           :param keys: List of keys in the keypad layout.
            """
-           # 行のピンをDigitalOutputDeviceとして初期化
+           # Initialize row pins as DigitalOutputDevice
            self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
-           # 列のピンをButtonとして初期化
+           # Initialize column pins as Buttons
            self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
-           self.keys = keys  # キーパッドのレイアウトを設定
+           self.keys = keys  # Set the keypad layout
 
        def read(self):
            """
-           キーパッドで現在押されているキーを読み取ります。
-           :return: 押されたキーのリスト。
+           Read the currently pressed keys on the keypad.
+           :return: A list of pressed keys.
            """
            pressed_keys = []
-           # 押されたキーを識別するために各行と列をスキャン
+           # Scan each row and column to identify pressed keys
            for i, row in enumerate(self.rows):
-               row.on()  # 現在の行を有効にする
+               row.on()  # Enable the current row
                for j, col in enumerate(self.cols):
-                   if col.is_pressed:  # 列のボタンが押されているか確認
-                       # 行と列に基づいてキーのインデックスを計算
+                   if col.is_pressed:  # Check if the column button is pressed
+                       # Calculate the key index based on row and column
                        index = i * len(self.cols) + j
                        pressed_keys.append(self.keys[index])
-               row.off()  # 現在の行を無効にする
+               row.off()  # Disable the current row
            return pressed_keys
 
    try:
-       # 行、列、およびキーパッドのレイアウトを設定
+       # Configure rows, columns, and keypad layout
        rows_pins = [18, 23, 24, 25]
        cols_pins = [10, 22, 27, 17]
        keys = ["1", "2", "3", "A",
@@ -144,20 +144,20 @@
                "7", "8", "9", "C",
                "*", "0", "#", "D"]
 
-       # Keypadクラスのインスタンスを作成
+       # Create an instance of the Keypad class
        keypad = Keypad(rows_pins, cols_pins, keys)
        last_key_pressed = []
 
-       # キーパッドを連続的に読み取り、新たに押されたキーを表示
+       # Continuously read the keypad and print newly pressed keys
        while True:
            pressed_keys = keypad.read()
            if pressed_keys and pressed_keys != last_key_pressed:
-               print(pressed_keys)  # 押されたキーのリストを表示
+               print(pressed_keys)  # Print the list of pressed keys
                last_key_pressed = pressed_keys
-           sleep(0.1)  # CPU負荷を軽減するための短い遅延
+           sleep(0.1)  # Short delay to reduce CPU load
 
    except KeyboardInterrupt:
-       # キーボード割り込み（Ctrl+Cなど）を処理してスクリプトを正常に終了
+       # Handle a keyboard interrupt (Ctrl+C) for a clean exit
        pass
 
 
@@ -172,39 +172,39 @@
        from gpiozero import DigitalOutputDevice, Button
        from time import sleep
 
-2. ``Keypad`` クラスを定義します。``__init__`` メソッドは、指定された行と列のピンとキーパッドのキーレイアウトでキーパッドを初期化します。``read`` メソッドはキーパッドをスキャンし、押されたキーのリストを返します。
+2. ``Keypad`` クラスを定義します。 ``__init__`` メソッドは、指定された行と列のピンとキーパッドのキーレイアウトでキーパッドを初期化します。``read`` メソッドはキーパッドをスキャンし、押されたキーのリストを返します。
 
    .. code-block:: python
 
        class Keypad:
            def __init__(self, rows_pins, cols_pins, keys):
                """
-               指定された行と列のピン、およびキーパッドのレイアウトでキーパッドを初期化します。
-               :param rows_pins: 行のGPIOピンのリスト。
-               :param cols_pins: 列のGPIOピンのリスト。
-               :param keys: キーパッドのレイアウトのキーリスト。
+               Initialize the Keypad with specified row and column pins and keypad layout.
+               :param rows_pins: List of GPIO pins for the rows.
+               :param cols_pins: List of GPIO pins for the columns.
+               :param keys: List of keys in the keypad layout.
                """
-               # 行のピンをDigitalOutputDeviceとして初期化
+               # Initialize row pins as DigitalOutputDevice
                self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
-               # 列のピンをButtonとして初期化
+               # Initialize column pins as Buttons
                self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
-               self.keys = keys  # キーパッドのレイアウトを設定
+               self.keys = keys  # Set the keypad layout
 
            def read(self):
                """
-               キーパッドで現在押されているキーを読み取ります。
-               :return: 押されたキーのリスト。
+               Read the currently pressed keys on the keypad.
+               :return: A list of pressed keys.
                """
                pressed_keys = []
-               # 押されたキーを識別するために各行と列をスキャン
+               # Scan each row and column to identify pressed keys
                for i, row in enumerate(self.rows):
-                   row.on()  # 現在の行を有効にする
+                   row.on()  # Enable the current row
                    for j, col in enumerate(self.cols):
-                       if col.is_pressed:  # 列のボタンが押されているか確認
-                           # 行と列に基づいてキーのインデックスを計算
+                       if col.is_pressed:  # Check if the column button is pressed
+                           # Calculate the key index based on row and column
                            index = i * len(self.cols) + j
                            pressed_keys.append(self.keys[index])
-                   row.off()  # 現在の行を無効にする
+                   row.off()  # Disable the current row
                return pressed_keys
 
 3. GPIOピンの行と列を設定し、キーパッドのレイアウトを定義します。
@@ -212,7 +212,7 @@
    .. code-block:: python
 
        try:
-           # 行、列、およびキーパッドのレイアウトを設定
+           # Configure rows, columns, and keypad layout
            rows_pins = [18, 23, 24, 25]
            cols_pins = [10, 22, 27, 17]
            keys = ["1", "2", "3", "A",
@@ -227,7 +227,7 @@
        try:
            ...
 
-           # Keypadクラスのインスタンスを作成
+           # Create an instance of the Keypad class
            keypad = Keypad(rows_pins, cols_pins, keys)
            last_key_pressed = []
 
@@ -238,14 +238,14 @@
        try:
            ...
 
-           # キーパッドを連続的に読み取り、新たに押されたキーを表示
+           # Continuously read the keypad and print newly pressed keys
            while True:
                pressed_keys = keypad.read()
                if pressed_keys and pressed_keys != last_key_pressed:
-                   print(pressed_keys)  # 押されたキーのリストを表示
+                   print(pressed_keys)  # Print the list of pressed keys
                    last_key_pressed = pressed_keys
-               sleep(0.1)  # CPU負荷を軽減するための短い遅延
+               sleep(0.1)  # Short delay to reduce CPU load
 
        except KeyboardInterrupt:
-           # キーボード割り込み（Ctrl+Cなど）を処理してスクリプトを正常に終了
+           # Handle a keyboard interrupt (Ctrl+C) for a clean exit
            pass

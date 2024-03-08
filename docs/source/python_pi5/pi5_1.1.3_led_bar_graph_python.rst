@@ -8,16 +8,45 @@
 
 このプロジェクトでは、LEDバーグラフ上のライトを順番に点灯させます。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
 このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/1.1.3_led_bar_list.png
 
-.. raw:: html
+一式を購入するのが便利です、こちらがリンクです： 
 
-   <br/>
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
 
 回路図
 -------------------------
@@ -88,53 +117,53 @@ GPIO21       Pin 40   29       21
    from gpiozero import LED
    from time import sleep
 
-   # LEDが接続されているGPIOピンを定義します
+   # Define GPIO pins where LEDs are connected
    led_pins = [18, 23, 24, 25, 8, 7, 12, 16, 20, 21]
 
-   # 各ピンに対応するLEDオブジェクトを作成します
+   # Create LED objects for each pin
    leds = [LED(pin) for pin in led_pins]
 
    def odd_led_bar_graph():
-       # 奇数番目のLED（インデックス0, 2, 4など）を順番に点灯させます。
+       # Sequentially light up odd-numbered LEDs (index 0, 2, 4, etc.)
        for i in range(5):
-           j = i * 2  # 奇数のインデックスを計算
-           leds[j].on()  # 奇数番目のLEDを点灯
-           sleep(0.3)    # 視覚効果のための遅延
-           leds[j].off() # LEDを消灯
+           j = i * 2  # Calculate odd index
+           leds[j].on()  # Turn on odd-numbered LED
+           sleep(0.3)    # Delay for visual effect
+           leds[j].off() # Turn off LED
 
    def even_led_bar_graph():
-       # 偶数番目のLED（インデックス1, 3, 5など）を順番に点灯させます。
+       # Sequentially light up even-numbered LEDs (index 1, 3, 5, etc.)
        for i in range(5):
-           j = i * 2 + 1  # 偶数のインデックスを計算
-           leds[j].on()   # 偶数番目のLEDを点灯
-           sleep(0.3)     # 視覚効果のための遅延
-           leds[j].off()  # LEDを消灯
+           j = i * 2 + 1  # Calculate even index
+           leds[j].on()   # Turn on even-numbered LED
+           sleep(0.3)     # Delay for visual effect
+           leds[j].off()  # Turn off LED
 
    def all_led_bar_graph():
-       # すべてのLEDを順番に点灯させます
+       # Sequentially light up all LEDs one by one
        for led in leds:
-           led.on()       # LEDを点灯
-           sleep(0.3)     # 視覚効果のための遅延
-           led.off()      # LEDを消灯
+           led.on()       # Turn on LED
+           sleep(0.3)     # Delay for visual effect
+           led.off()      # Turn off LED
 
    def turn_off_all_leds():
-       # すべてのLEDを一斉に消灯させます
+       # Turn off all LEDs at once
        for led in leds:
            led.off()
 
    try:
-       # LEDパターンをサイクルするためのメインループ
+       # Main loop to cycle through LED patterns
        while True:
-           odd_led_bar_graph()   # 奇数番目のLEDをアクティブに
-           sleep(0.3)            # パターン間の一時停止
-           even_led_bar_graph()  # 偶数番目のLEDをアクティブに
-           sleep(0.3)            # パターン間の一時停止
-           all_led_bar_graph()   # すべてのLEDをアクティブに
-           sleep(0.3)            # 再起動前の一時停止
+           odd_led_bar_graph()   # Activate odd-numbered LEDs
+           sleep(0.3)            # Pause between patterns
+           even_led_bar_graph()  # Activate even-numbered LEDs
+           sleep(0.3)            # Pause between patterns
+           all_led_bar_graph()   # Activate all LEDs
+           sleep(0.3)            # Pause before restarting
 
    except KeyboardInterrupt:
-       # 中断（Ctrl+C）を処理する
-       turn_off_all_leds()      # 終了時にすべてのLEDが消灯するようにします
+       # Handle interruption (Ctrl+C) gracefully
+       turn_off_all_leds()      # Ensure all LEDs are turned off on exit
        pass
 
 
@@ -152,10 +181,10 @@ GPIO21       Pin 40   29       21
 
    .. code-block:: python
 
-       # LEDが接続されているGPIOピンを定義します
+       # Define GPIO pins where LEDs are connected
        led_pins = [18, 23, 24, 25, 8, 7, 12, 16, 20, 21]
 
-       # 各ピンに対応するLEDオブジェクトを作成します
+       # Create LED objects for each pin
        leds = [LED(pin) for pin in led_pins]
 
 #. LEDバーグラフの奇数番号のLEDを順番に点灯させます。
@@ -163,51 +192,51 @@ GPIO21       Pin 40   29       21
    .. code-block:: python
 
        def odd_led_bar_graph():
-           # 奇数番号のLED（インデックス0, 2, 4など）を順番に点灯させます
+           # Sequentially light up odd-numbered LEDs (index 0, 2, 4, etc.)
            for i in range(5):
-               j = i * 2  # 奇数のインデックスを計算します
-               leds[j].on()  # 奇数番号のLEDを点灯させます
-               sleep(0.3)    # 視覚的な効果のための遅延
-               leds[j].off() # LEDを消灯させます
+               j = i * 2  # Calculate odd index
+               leds[j].on()  # Turn on odd-numbered LED
+               sleep(0.3)    # Delay for visual effect
+               leds[j].off() # Turn off LED
 
 #. LEDバーグラフの偶数番号のLEDを順番に点灯させます。
 
    .. code-block:: python
 
        def even_led_bar_graph():
-           # 偶数番号のLED（インデックス1, 3, 5など）を順番に点灯させます
+           # Sequentially light up even-numbered LEDs (index 1, 3, 5, etc.)
            for i in range(5):
-               j = i * 2 + 1  # 偶数のインデックスを計算します
-               leds[j].on()   # 偶数番号のLEDを点灯させます
-               sleep(0.3)     # 視覚的な効果のための遅延
-               leds[j].off()  # LEDを消灯させます
+               j = i * 2 + 1  # Calculate even index
+               leds[j].on()   # Turn on even-numbered LED
+               sleep(0.3)     # Delay for visual effect
+               leds[j].off()  # Turn off LED
 
 #. LEDバーグラフのLEDを1つずつ順番に点灯させます。
 
    .. code-block:: python
 
        def all_led_bar_graph():
-           # すべてのLEDを順番に点灯させます
+           # Sequentially light up all LEDs one by one
            for led in leds:
-               led.on()       # LEDを点灯させます
-               sleep(0.3)     # 視覚的な効果のための遅延
-               led.off()      # LEDを消灯させます
+               led.on()       # Turn on LED
+               sleep(0.3)     # Delay for visual effect
+               led.off()      # Turn off LED
 
 #.  ``while True`` ループはLEDパターンを連続してサイクルします。 ``except`` ブロックはKeyboardInterrupt（Ctrl+C）を処理し、終了時にすべてのLEDが消灯することを確認します。
 
    .. code-block:: python
 
        try:
-           # LEDパターンをサイクルするメインループ
+           # Main loop to cycle through LED patterns
            while True:
-               odd_led_bar_graph()   # 奇数番号のLEDをアクティブにする
-               sleep(0.3)            # パターン間の一時停止
-               even_led_bar_graph()  # 偶数番号のLEDをアクティブにする
-               sleep(0.3)            # パターン間の一時停止
-               all_led_bar_graph()   # すべてのLEDをアクティブにする
-               sleep(0.3)            # 再開前の一時停止
+               odd_led_bar_graph()   # Activate odd-numbered LEDs
+               sleep(0.3)            # Pause between patterns
+               even_led_bar_graph()  # Activate even-numbered LEDs
+               sleep(0.3)            # Pause between patterns
+               all_led_bar_graph()   # Activate all LEDs
+               sleep(0.3)            # Pause before restarting
 
        except KeyboardInterrupt:
-           # インタラプト（Ctrl+C）を処理します
-           turn_off_all_leds()      # 終了時にすべてのLEDが消灯していることを確認します
+           # Handle interruption (Ctrl+C) gracefully
+           turn_off_all_leds()      # Ensure all LEDs are turned off on exit
            pass

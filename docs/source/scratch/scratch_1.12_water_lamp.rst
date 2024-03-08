@@ -38,15 +38,15 @@ LEDバーグラフは、ステージ上の矢印の方向に従って順番に�
     *   - コンポーネントの紹介
         - 購入リンク
 
-    *   - :ref:`GPIO拡張ボード`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`ブレッドボード`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`ジャンパーワイヤー`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`抵抗器`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`LEDバーグラフ`
+    *   - :ref:`cpn_bar_graph`
         - \-
 
 回路を組む

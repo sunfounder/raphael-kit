@@ -1,6 +1,6 @@
 .. _4.1.9_py_pi5:
 
-4.1.6 リバースアラーム
+4.1.4 リバースアラーム
 ======================================
 
 はじめに
@@ -11,51 +11,51 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.9_reversing_alarm_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`buzzer`
-..         - \-
-..     *   - :ref:`transistor`
-..         - |link_transistor_buy|
-..     *   - :ref:`ultrasonic_sensor`
-..         - |link_ultrasonic_buy|
-..     *   - :ref:`i2c_lcd1602`
-..         - |link_i2clcd1602_buy|
-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_ultrasonic_sensor`
+        - |link_ultrasonic_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+        
 回路図
 --------------------
 
@@ -128,55 +128,55 @@ SCL1         Pin 5
     import time
     from gpiozero import DistanceSensor, Buzzer
 
-    # GPIOピンとともに超音波センサーを初期化します
-    sensor = DistanceSensor(echo=24, trigger=23)  # EchoピンはGPIO 24、TriggerピンはGPIO 23です
+    # Initialize the ultrasonic sensor with GPIO pins
+    sensor = DistanceSensor(echo=24, trigger=23)  # Echo pin is GPIO 24, Trigger pin is GPIO 23
 
-    # GPIOピン17に接続されたブザーを初期化します
+    # Initialize the buzzer connected to GPIO pin 17
     buzzer = Buzzer(17)
 
     def lcdsetup():
-        # I2Cアドレスとバックライトを有効にしてLCDを初期化します
-        LCD1602.init(0x27, 1)  # 0x27はLCDのI2Cアドレスです
-        LCD1602.clear()  # LCDディスプレイをクリアします
-        # LCDに起動メッセージを表示します
-        LCD1602.write(0, 0, '超音波センサー起動中')
-        LCD1602.write(1, 1, 'SunFounder製')
-        time.sleep(2)  # 2秒待機します
+        # Initialize the LCD with I2C address and enable backlight
+        LCD1602.init(0x27, 1)  # 0x27 is the I2C address of the LCD
+        LCD1602.clear()  # Clear the LCD display
+        # Display startup messages on LCD
+        LCD1602.write(0, 0, 'Ultrasonic Starting')
+        LCD1602.write(1, 1, 'By SunFounder')
+        time.sleep(2)  # Wait for 2 seconds
 
     def distance():
-        # センサーによって測定された距離を計算して返します
-        dis = sensor.distance * 100  # 距離をセンチメートルに変換します
-        print('距離: {:.2f} cm'.format(dis))  # 小数点以下2桁の距離を表示します
-        time.sleep(0.3)  # 次の測定まで0.3秒待機します
+        # Calculate and return the distance measured by the sensor
+        dis = sensor.distance * 100  # Convert distance to centimeters
+        print('Distance: {:.2f} cm'.format(dis))  # Print distance with two decimal places
+        time.sleep(0.3)  # Wait for 0.3 seconds before next measurement
         return dis
 
     def loop():
-        # 距離を連続して測定し、LCDとブザーを更新します
+        # Continuously measure distance and update LCD and buzzer
         while True:
-            dis = distance()  # 現在の距離を取得します
-            # 距離に基づいて距離を表示し、アラートを処理します
-            if dis > 400:  # 距離が範囲外かどうかをチェックします
+            dis = distance()  # Get the current distance
+            # Display distance and handle alerts based on distance
+            if dis > 400:  # Check if distance is out of range
                 LCD1602.clear()
-                LCD1602.write(0, 0, 'エラー')
-                LCD1602.write(3, 1, '範囲外')
+                LCD1602.write(0, 0, 'Error')
+                LCD1602.write(3, 1, 'Out of range')
                 time.sleep(0.5)
             else:
-                # LCDに現在の距離を表示します
+                # Display current distance on LCD
                 LCD1602.clear()
-                LCD1602.write(0, 0, '距離:')
+                LCD1602.write(0, 0, 'Distance is')
                 LCD1602.write(5, 1, str(round(dis, 2)) + ' cm')
-                # 距離に基づいてブザーの周波数を調整します
+                # Adjust buzzer frequency based on distance
                 if dis >= 50:
                     time.sleep(0.5)
                 elif 20 < dis < 50:
-                    # 中距離：中程度のブザー周波数
+                    # Medium distance: medium buzzer frequency
                     for _ in range(2):
                         buzzer.on()
                         time.sleep(0.05)
                         buzzer.off()
                         time.sleep(0.2)
                 elif dis <= 20:
-                    # 近距離：高いブザー周波数
+                    # Close distance: high buzzer frequency
                     for _ in range(5):
                         buzzer.on()
                         time.sleep(0.05)
@@ -184,12 +184,12 @@ SCL1         Pin 5
                         time.sleep(0.05)
 
     try:
-        lcdsetup()  # LCDディスプレイをセットアップ
-        loop()      # 測定ループを開始
+        lcdsetup()  # Setup the LCD display
+        loop()      # Start the measurement loop
     except KeyboardInterrupt:
-        # ユーザーによる割り込み（例：Ctrl+C）でブザーをオフにしてLCDをクリアします
+        # Turn off buzzer and clear LCD on user interrupt (e.g., Ctrl+C)
         buzzer.off()
-        LCD1602.clear()
+    LCD1602.clear()
 
 
 
@@ -208,10 +208,10 @@ SCL1         Pin 5
 
    .. code-block:: python
 
-       # GPIOピンで超音波センサーを初期化
-       sensor = DistanceSensor(echo=24, trigger=23)  # エコーピンはGPIO 24、トリガーピンはGPIO 23です
+       # Initialize the ultrasonic sensor with GPIO pins
+       sensor = DistanceSensor(echo=24, trigger=23)  # Echo pin is GPIO 24, Trigger pin is GPIO 23
 
-       # GPIOピン17に接続されたブザーを初期化
+       # Initialize the buzzer connected to GPIO pin 17
        buzzer = Buzzer(17)
 
 #. LCDディスプレイの初期化では、クリアしてから起動メッセージを表示する手順が含まれています。
@@ -219,23 +219,23 @@ SCL1         Pin 5
    .. code-block:: python
 
        def lcdsetup():
-           # I2Cアドレスとバックライトを有効にしてLCDを初期化
-           LCD1602.init(0x27, 1)  # 0x27はLCDのI2Cアドレスです
-           LCD1602.clear()  # LCDディスプレイをクリア
-           # LCD上に起動メッセージを表示
+           # Initialize the LCD with I2C address and enable backlight
+           LCD1602.init(0x27, 1)  # 0x27 is the I2C address of the LCD
+           LCD1602.clear()  # Clear the LCD display
+           # Display startup messages on LCD
            LCD1602.write(0, 0, 'Ultrasonic Starting')
            LCD1602.write(1, 1, 'By SunFounder')
-           time.sleep(2)  # 2秒待機
+           time.sleep(2)  # Wait for 2 seconds
 
 #. ``distance`` 関数は超音波センサーによって測定された距離を計算し、センチメートル単位で値を返します。
 
    .. code-block:: python
 
        def distance():
-           # センサーによって測定された距離を計算して返す
-           dis = sensor.distance * 100  # 距離をセンチメートルに変換
-           print('Distance: {:.2f} cm'.format(dis))  # 距離を小数点以下2桁で表示
-           time.sleep(0.3)  # 次の測定前に0.3秒待機
+           # Calculate and return the distance measured by the sensor
+           dis = sensor.distance * 100  # Convert distance to centimeters
+           print('Distance: {:.2f} cm'.format(dis))  # Print distance with two decimal places
+           time.sleep(0.3)  # Wait for 0.3 seconds before next measurement
            return dis
 
 #. メインループは距離を連続的に測定し、LCDとブザーの両方を更新します。測定された距離に基づいて異なる距離範囲を処理し、エラーメッセージを表示したり、測定された距離に基づいてブザーの周波数を変更したりします。
@@ -243,32 +243,32 @@ SCL1         Pin 5
    .. code-block:: python
 
        def loop():
-           # 距離を連続的に測定し、LCDとブザーを更新
+           # Continuously measure distance and update LCD and buzzer
            while True:
-               dis = distance()  # 現在の距離を取得
-               # 距離に基づいてアラートを表示し、処理
-               if dis > 400:  # 距離が範囲外かどうかをチェック
+               dis = distance()  # Get the current distance
+               # Display distance and handle alerts based on distance
+               if dis > 400:  # Check if distance is out of range
                    LCD1602.clear()
                    LCD1602.write(0, 0, 'Error')
                    LCD1602.write(3, 1, 'Out of range')
                    time.sleep(0.5)
                else:
-                   # LCD上に現在の距離を表示
+                   # Display current distance on LCD
                    LCD1602.clear()
                    LCD1602.write(0, 0, 'Distance is')
                    LCD1602.write(5, 1, str(round(dis, 2)) + ' cm')
-                   # 距離に基づいてブザーの周波数を調整
+                   # Adjust buzzer frequency based on distance
                    if dis >= 50:
                        time.sleep(0.5)
                    elif 20 < dis < 50:
-                       # 中距離：中程度のブザーの周波数
+                       # Medium distance: medium buzzer frequency
                        for _ in range(2):
                            buzzer.on()
                            time.sleep(0.05)
                            buzzer.off()
                            time.sleep(0.2)
                    elif dis <= 20:
-                       # 近距離：高いブザーの周波数
+                       # Close distance: high buzzer frequency
                        for _ in range(5):
                            buzzer.on()
                            time.sleep(0.05)
@@ -280,9 +280,9 @@ SCL1         Pin 5
    .. code-block:: python
 
        try:
-           lcdsetup()  # LCDディスプレイのセットアップ
-           loop()      # 測定ループの開始
+           lcdsetup()  # Setup the LCD display
+           loop()      # Start the measurement loop
        except KeyboardInterrupt:
-           # ユーザー割り込み（Ctrl+Cなど）でブザーをオフにし、LCDをクリア
+           # Turn off buzzer and clear LCD on user interrupt (e.g., Ctrl+C)
            buzzer.off()
            LCD1602.clear()

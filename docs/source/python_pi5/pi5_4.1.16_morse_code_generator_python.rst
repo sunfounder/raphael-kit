@@ -1,58 +1,58 @@
 .. _4.1.16_py_pi5:
 
-4.1.13 モールス信号ジェネレータ
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1.11 モールス信号ジェネレータ
+=================================
 
 はじめに
 -----------------
 
 このプロジェクトでは、Raspberry Piに英字のシリーズを入力し、それをモールス信号として表示するモールス信号ジェネレータを作成します。
 
-必要なコンポーネント
+必要な部品
 ------------------------------
 
-このプロジェクトでは、以下のコンポーネントが必要です。
+このプロジェクトには、次のコンポーネントが必要です。
 
 .. image:: ../python_pi5/img/4.1.16_morse_code_generator_list.png
     :width: 800
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`buzzer`
-..         - \-
-..     *   - :ref:`transistor`
-..         - |link_transistor_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
 
 回路図
 -----------------------
@@ -105,11 +105,11 @@ GPIO22       Pin 15   3        22
    from gpiozero import Buzzer, LED
    import time
 
-   # ブザーとLEDをGPIOピンに初期化
+   # Initialize Buzzer and LED to GPIO pins
    BeepPin = Buzzer(22)
    ALedPin = LED(17)
 
-   # 文字のモールス信号表現
+   # Morse code representation for characters
    MORSECODE = {
        'A': '01', 'B': '1000', 'C': '1010', 'D': '100', 'E': '0', 'F': '0010', 'G': '110',
        'H': '0000', 'I': '00', 'J': '0111', 'K': '101', 'L': '0100', 'M': '11', 'N': '10',
@@ -122,19 +122,19 @@ GPIO22       Pin 15   3        22
    }
 
    def on():
-       """ ブザーとLEDをオンにします。"""
+       """ Turn on the buzzer and LED. """
        BeepPin.on()
        ALedPin.on()
 
    def off():
-       """ ブザーとLEDをオフにします。"""
+       """ Turn off the buzzer and LED. """
        BeepPin.off()
        ALedPin.off()
 
-   def beep(dt):  # dtは遅延時間用です。
+   def beep(dt):  # dt for delay time.
        """
-       指定された時間のブザー音とLEDフラッシュを生成します。
-       :param dt: ブザー音とフラッシュのための期間。
+       Produce a beep sound and LED flash for the specified duration.
+       :param dt: Duration for the beep and flash.
        """
        on()
        time.sleep(dt)
@@ -143,28 +143,28 @@ GPIO22       Pin 15   3        22
 
    def morsecode(code):
        """
-       入力されたコードをモールス信号に変換し、ブザーとLEDを使用して信号化します。
-       :param code: モールス信号に変換するテキスト。
+       Convert the input code into Morse code and signal it using the buzzer and LED.
+       :param code: The text to be converted to Morse code.
        """
        pause = 0.25
        for letter in code:
            for tap in MORSECODE[letter]:
                if tap == '0':
-                   beep(pause / 2)  # 短いビープ音
+                   beep(pause / 2)  # Short beep for dot
                if tap == '1':
-                   beep(pause)      # 長いビープ音
-           time.sleep(pause)  # 文字間の休憩
+                   beep(pause)      # Long beep for dash
+           time.sleep(pause)  # Pause between letters
 
    def destroy():
-       """ スクリプトの終了時にリソースをクリーンアップします。"""
+       """ Clean up resources on script termination. """
        print("")
        BeepPin.off()
        ALedPin.off()
 
    try:
        while True:
-           code = input("メッセンジャーを入力してください：")
-           code = code.upper()  # モールス信号検索用に大文字に変換
+           code = input("Please input the messenger:")
+           code = code.upper()  # Convert to uppercase for Morse code lookup
            print(code)
            morsecode(code)
    except KeyboardInterrupt:
@@ -184,7 +184,7 @@ GPIO22       Pin 15   3        22
 
    .. code-block:: python
 
-       # ブザーとLEDをGPIOピンに初期化
+       # Initialize Buzzer and LED to GPIO pins
        BeepPin = Buzzer(22)
        ALedPin = LED(17)
 
@@ -192,7 +192,7 @@ GPIO22       Pin 15   3        22
 
    .. code-block:: python
 
-       # 文字のモールス信号表現
+       # Morse code representation for characters
        MORSECODE = {
            'A': '01', 'B': '1000', 'C': '1010', 'D': '100', 'E': '0', 'F': '0010', 'G': '110',
            'H': '0000', 'I': '00', 'J': '0111', 'K': '101', 'L': '0100', 'M': '11', 'N': '10',
@@ -209,12 +209,12 @@ GPIO22       Pin 15   3        22
    .. code-block:: python
 
        def on():
-           """ ブザーとLEDをオンにします。"""
+           """ Turn on the buzzer and LED. """
            BeepPin.on()
            ALedPin.on()
 
        def off():
-           """ ブザーとLEDをオフにします。"""
+           """ Turn off the buzzer and LED. """
            BeepPin.off()
            ALedPin.off()
 
@@ -222,15 +222,16 @@ GPIO22       Pin 15   3        22
 
    .. code-block:: python
 
-       def beep(dt):  # dtは遅延時間用です。
+       def beep(dt):  # dt for delay time.
            """
-           指定された時間のブザー音とLEDフラッシュを生成します。
-           :param dt: ブザー音とフラッシュのための期間。
+           Produce a beep sound and LED flash for the specified duration.
+           :param dt: Duration for the beep and flash.
            """
            on()
            time.sleep(dt)
            off()
            time.sleep(dt)
+
 
 #. ``morsecode()`` 関数は、入力された文字のモールス信号を処理し、ブザーとLEDを使用してそれを示します。
 
@@ -238,24 +239,24 @@ GPIO22       Pin 15   3        22
 
        def morsecode(code):
            """
-           入力されたコードをモールス信号に変換し、ブザーとLEDを使用して信号化します。
-           :param code: モールス信号に変換するテキスト。
+           Convert the input code into Morse code and signal it using the buzzer and LED.
+           :param code: The text to be converted to Morse code.
            """
            pause = 0.25
            for letter in code:
                for tap in MORSECODE[letter]:
                    if tap == '0':
-                       beep(pause / 2)  # 短いビープ音
+                       beep(pause / 2)  # Short beep for dot
                    if tap == '1':
-                       beep(pause)      # 長いビープ音
-               time.sleep(pause)  # 文字間の休憩
+                       beep(pause)      # Long beep for dash
+               time.sleep(pause)  # Pause between letters
 
 #. ``destroy()`` 関数は、スクリプトが終了したときにブザーとLEDの両方をオフにするようにします。これにより、GPIOピンがアクティブな状態にならないようになります。
 
    .. code-block:: python
 
        def destroy():
-           """ スクリプトの終了時にリソースをクリーンアップします。"""
+           """ Clean up resources on script termination. """
            print("")
            BeepPin.off()
            ALedPin.off()
@@ -266,8 +267,8 @@ GPIO22       Pin 15   3        22
 
        try:
            while True:
-               code = input("メッセンジャーを入力してください：")
-               code = code.upper()  # モールス信号検索用に大文字に変換
+               code = input("Please input the messenger:")
+               code = code.upper()  # Convert to uppercase for Morse code lookup
                print(code)
                morsecode(code)
        except KeyboardInterrupt:

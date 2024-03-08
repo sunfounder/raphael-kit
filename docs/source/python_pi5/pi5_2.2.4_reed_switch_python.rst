@@ -11,46 +11,46 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.2.4_reed_switch_list.png
     :width: 700
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`reed_switch`
-..         - |link_reed_switch_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_reed_switch`
+        - |link_reed_switch_buy|
 
 回路図
 -----------------------
@@ -117,35 +117,36 @@ GPIO22       Pin 15   3        22
    #!/usr/bin/env python3
    from gpiozero import LED, Button
 
-   # GPIO Zeroを使用してリードスイッチとLEDを初期化
-   reed_switch = Button(17, pull_up=True)  # 内部プルアップ抵抗を使用してGPIO 17にリードスイッチ
-   green_led = LED(27)                     # GPIOピン27に接続された緑色LED
-   red_led = LED(22)                       # GPIOピン22に接続された赤色LED
+   # Initialize the reed switch and LEDs using GPIO Zero
+   reed_switch = Button(17, pull_up=True)  # Reed switch on GPIO 17, using an internal pull-up resistor
+   green_led = LED(27)                     # Green LED connected to GPIO pin 27
+   red_led = LED(22)                       # Red LED connected to GPIO pin 22
 
    def update_leds():
        """
-       リードスイッチの状態に基づいてLEDの状態を更新します。
-       リードスイッチが押された時は赤色LEDを点灯し、緑色LEDを消灯し、反対の状態で逆にします。
+       Update the state of the LEDs based on the reed switch.
+       Turns the red LED on and green LED off when the reed switch is pressed, and vice versa.
        """
        if reed_switch.is_pressed:
-           green_led.off()          # 緑色LEDを消灯
-           red_led.on()             # 赤色LEDを点灯
+           green_led.off()          # Turn off the green LED
+           red_led.on()             # Turn on the red LED
        else:
-           green_led.on()           # 緑色LEDを点灯
-           red_led.off()            # 赤色LEDを消灯
+           green_led.on()           # Turn on the green LED
+           red_led.off()            # Turn off the red LED
 
    try:
-       green_led.on()               # 開始時に緑色LEDを点灯
+       green_led.on()               # Turn on the green LED at the start
        while True:
-           # リードスイッチの状態変化に対するコールバック関数を設定
-           reed_switch.when_pressed = update_leds   # スイッチが押された時のコールバック
-           reed_switch.when_released = update_leds  # スイッチが離された時のコールバック
+           # Set the callback functions for reed switch state changes
+           reed_switch.when_pressed = update_leds   # Callback when the switch is pressed
+           reed_switch.when_released = update_leds  # Callback when the switch is released
 
    except KeyboardInterrupt:
-       # Ctrl+Cでリソースをクリーンアップして終了
+       # Clean up resources and exit on Ctrl+C
        green_led.off()
        red_led.off()
        pass
+
 
 **コード説明**
 
@@ -160,10 +161,10 @@ GPIO22       Pin 15   3        22
 
    .. code-block:: python
        
-       # GPIO Zeroを使用してリードスイッチとLEDを初期化
-       reed_switch = Button(17, pull_up=True)  # 内部プルアップ抵抗を使用してGPIO 17にリードスイッチ
-       green_led = LED(27)                     # GPIOピン27に接続された緑色LED
-       red_led = LED(22)                       # GPIOピン22に接続された赤色LED
+       # Initialize the reed switch and LEDs using GPIO Zero
+       reed_switch = Button(17, pull_up=True)  # Reed switch on GPIO 17, using an internal pull-up resistor
+       green_led = LED(27)                     # Green LED connected to GPIO pin 27
+       red_led = LED(22)                       # Red LED connected to GPIO pin 22
 
 #. リードスイッチの状態に基づいてLEDの状態を更新する ``update_leds`` 関数を定義します。スイッチが押された時は赤色LEDを点灯し緑色LEDを消灯し、その逆の状態で逆にします。
 
@@ -171,25 +172,25 @@ GPIO22       Pin 15   3        22
 
        def update_leds():
            if reed_switch.is_pressed:
-               green_led.off()          # 緑色LEDを消灯
-               red_led.on()             # 赤色LEDを点灯
+               green_led.off()          # Turn off the green LED
+               red_led.on()             # Turn on the red LED
            else:
-               green_led.on()           # 緑色LEDを点灯
-               red_led.off()            # 赤色LEDを消灯
+               green_led.on()           # Turn on the green LED
+               red_led.off()            # Turn off the red LED
 
 #. 開始時に緑色LEDを点灯状態にします。メインループではリードスイッチの ``when_pressed`` および ``when_released`` イベントに ``update_leds`` 関数をコールバックとして割り当てます。KeyboardInterruptの例外処理を含み、プログラムを優雅に終了させます。
 
    .. code-block:: python
 
        try:
-           green_led.on()               # 開始時に緑色LEDを点灯
+           green_led.on()               # Turn on the green LED at the start
            while True:
-               # リードスイッチの状態変化に対するコールバック関数を設定
-               reed_switch.when_pressed = update_leds   # スイッチが押された時のコールバック
-               reed_switch.when_released = update_leds  # スイッチが離された時のコールバック
+               # Set the callback functions for reed switch state changes
+               reed_switch.when_pressed = update_leds   # Callback when the switch is pressed
+               reed_switch.when_released = update_leds  # Callback when the switch is released
 
        except KeyboardInterrupt:
-           # Ctrl+Cでリソースをクリーンアップして終了
+           # Clean up resources and exit on Ctrl+C
            green_led.off()
            red_led.off()
            pass

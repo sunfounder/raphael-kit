@@ -1,7 +1,7 @@
 .. _play_with_processing:
 
-Processingを体験しよう
-==========================
+Processingを体験しよう(Pi 4)
+=============================
 
 Processingとは？
 ---------------------------
@@ -20,7 +20,7 @@ Processingのインストール
 
 .. note:: 
 
-    Processingを使用する前に、Raspberry Piのデスクトップにリモートでアクセスする必要があります(:ref:`リモートデスクトップ`)、またはRaspberry Pi用のディスプレイを接続する必要があります。
+    Processingを使用する前に、Raspberry Piのデスクトップにリモートでアクセスする必要があります(:ref:`remote_desktop`)、またはRaspberry Pi用のディスプレイを接続する必要があります。
 
 .. ターミナルで以下のコマンドを実行して、Processingをインストールしてください。
 

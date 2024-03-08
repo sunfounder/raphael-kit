@@ -11,46 +11,46 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.2.6_photo_interrrupter_list.png
     :width: 700
     :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`speed_sensor`
-..         - \-
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_speed_sensor`
+        - \-
 
 回路図
 -----------------------
@@ -108,34 +108,34 @@
    from gpiozero import LED, Button
    from signal import pause
 
-   # GPIO Zeroライブラリを使用してスピードセンサーとLEDのGPIOピンを初期化
-   speed_sensor = Button(17, pull_up=False)  # プルアップ抵抗なしでGPIOピン17に接続されたスピードセンサー
-   green_led = LED(27)                      # GPIOピン27に接続された緑色LED
-   red_led = LED(22)                        # GPIOピン22に接続された赤色LED
+   # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
+   speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
+   green_led = LED(27)                      # Green LED connected to GPIO pin 27
+   red_led = LED(22)                        # Red LED connected to GPIO pin 22
 
    def update_leds():
        """
-       スピードセンサーに基づいてLEDの状態を更新します。
-       - センサーが押された（トリガーされた）場合、赤色LEDが点灯し、メッセージが表示されます。
-       - センサーが解放された（トリガーされない）場合、緑色LEDが点灯します。
+       Update the state of LEDs based on the speed sensor.
+       - If the sensor is pressed (triggered), the red LED is turned on and a message is printed.
+       - If the sensor is released (not triggered), the green LED is turned on.
        """
        if speed_sensor.is_pressed:
-           green_led.off()  # 緑色LEDを消灯
-           red_led.on()     # 赤色LEDを点灯
-           print('Light was blocked')  # センサーがトリガーされたことを示すメッセージを表示
+           green_led.off()  # Turn off green LED
+           red_led.on()     # Turn on red LED
+           print('Light was blocked')  # Print message indicating sensor is triggered
        else:
-           green_led.on()   # 緑色LEDを点灯
-           red_led.off()    # 赤色LEDを消灯
+           green_led.on()   # Turn on green LED
+           red_led.off()    # Turn off red LED
 
    try:
-       # センサーの状態を連続的にチェックするメインループ
+       # Main loop to continuously check sensor state
        while True:
-           # センサーの状態変化に基づいてLEDを更新
-           speed_sensor.when_pressed = update_leds   # センサーが押された時にLEDを更新
-           speed_sensor.when_released = update_leds  # センサーが解放された時にLEDを更新
+           # Update LEDs based on sensor state changes
+           speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
+           speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
 
    except KeyboardInterrupt:
-       # Ctrl+Cでスクリプトの優雅な終了を処理
+       # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
        pass
 
 
@@ -153,10 +153,10 @@
 
    .. code-block:: python
 
-       # GPIO Zeroライブラリを使用してスピードセンサーとLEDのGPIOピンを初期化
-       speed_sensor = Button(17, pull_up=False)  # プルアップ抵抗なしでGPIOピン17に接続されたスピードセンサー
-       green_led = LED(27)                      # GPIOピン27に接続された緑色LED
-       red_led = LED(22)                        # GPIOピン22に接続された赤色LED
+       # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
+       speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
+       green_led = LED(27)                      # Green LED connected to GPIO pin 27
+       red_led = LED(22)                        # Red LED connected to GPIO pin 22
 
 #. スピードセンサーの状態をチェックする ``update_leds`` 関数を定義します。センサーが押される（活性化する）と、緑色LEDを消し、赤色LEDを点け、メッセージを表示します。センサーが解放されると、逆の動作をします。
 
@@ -164,29 +164,29 @@
 
        def update_leds():
            """
-           スピードセンサーに基づいてLEDの状態を更新します。
-           - センサーが押された（トリガーされた）場合、赤色LEDが点灯し、メッセージが表示されます。
-           - センサーが解放された（トリガーされない）場合、緑色LEDが点灯します。
+           Update the state of LEDs based on the speed sensor.
+           - If the sensor is pressed (triggered), the red LED is turned on and a message is printed.
+           - If the sensor is released (not triggered), the green LED is turned on.
            """
            if speed_sensor.is_pressed:
-               green_led.off()  # 緑色LEDを消灯
-               red_led.on()     # 赤色LEDを点灯
-               print('Light was blocked')  # センサーがトリガーされたことを示すメッセージを表示
+               green_led.off()  # Turn off green LED
+               red_led.on()     # Turn on red LED
+               print('Light was blocked')  # Print message indicating sensor is triggered
            else:
-               green_led.on()   # 緑色LEDを点灯
-               red_led.off()    # 赤色LEDを消灯
+               green_led.on()   # Turn on green LED
+               red_led.off()    # Turn off red LED
 
 #. メインループはスピードセンサーの状態を連続的にチェックします。 ``when_pressed`` と ``when_released`` 属性は、センサーの状態が変化したときに ``update_leds`` 関数を呼び出すイベントハンドラです。try-exceptブロックは、Ctrl+Cでの優雅な終了を処理するために使用されます。
 
    .. code-block:: python
 
        try:
-           # センサーの状態を連続的にチェックするメインループ
+           # Main loop to continuously check sensor state
            while True:
-               # センサーの状態変化に基づいてLEDを更新
-               speed_sensor.when_pressed = update_leds   # センサーが押された時にLEDを更新
-               speed_sensor.when_released = update_leds  # センサーが解放された時にLEDを更新
+               # Update LEDs based on sensor state changes
+               speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
+               speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
 
        except KeyboardInterrupt:
-           # Ctrl+Cでスクリプトの優雅な終了を処理
+           # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
            pass

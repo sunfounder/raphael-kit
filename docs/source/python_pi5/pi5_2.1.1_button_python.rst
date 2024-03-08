@@ -12,45 +12,44 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/2.1.1_Button_list.png
 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+以下のリンクから別々に購入することもできます。
 
-.. You can also buy them separately from the links below.
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
-
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`button`
-..         - |link_button_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_button`
+        - |link_button_buy|
 
 回路図
 ---------------------
@@ -107,21 +106,22 @@ Raspberry Piの入力として通常開放ボタンを使用し、接続は以�
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
-   from signal import pause  # signalモジュールからpause関数をインポート
+   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+   from signal import pause  # Import pause function from signal module
 
-   # GPIOピン17に接続されたLEDオブジェクトを初期化
+   # Initialize an LED object on GPIO pin 17
    led = LED(17)
-   # GPIOピン18に接続されたButtonオブジェクトを初期化
+   # Initialize a Button object on GPIO pin 18
    button = Button(18)
 
-   # ボタンの「when_pressed」イベントをLEDの「on()」メソッドにリンク
+   # Link the button's "when_pressed" event to the LED's on() method
    button.when_pressed = led.on
-   # ボタンの「when_released」イベントをLEDの「off()」メソッドにリンク
+   # Link the button's "when_released" event to the LED's off() method
    button.when_released = led.off
 
-   # ボタンのイベントを待ち続け、スクリプトを実行し続けるイベントループを実行
+   # Run an event loop that waits for button events and keeps the script running
    pause()
+
 
 
 **コードの説明**
@@ -131,30 +131,30 @@ Raspberry Piの入力として通常開放ボタンを使用し、接続は以�
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # gpiozeroからLEDとButtonクラスをインポート
-       from signal import pause  # signalモジュールからpause関数をインポート
+       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+       from signal import pause  # Import pause function from signal module
 
 #. GPIOピン17に接続されたLEDオブジェクトとGPIOピン18に接続されたボタンオブジェクトを初期化します。
 
    .. code-block:: python
 
-       # GPIOピン17に接続されたLEDオブジェクトを初期化
+       # Initialize an LED object on GPIO pin 17
        led = LED(17)
-       # GPIOピン18に接続されたButtonオブジェクトを初期化
+       # Initialize a Button object on GPIO pin 18
        button = Button(18)
 
 #. ボタンが押されたときにLEDが点灯し、ボタンが離されたときにLEDが消灯するようにイベントハンドラを設定します。
 
    .. code-block:: python
 
-       # ボタンの「when_pressed」イベントをLEDの「on()」メソッドにリンク
+       # Link the button's "when_pressed" event to the LED's on() method
        button.when_pressed = led.on
-       # ボタンの「when_released」イベントをLEDの「off()」メソッドにリンク
+       # Link the button's "when_released" event to the LED's off() method
        button.when_released = led.off
 
 #. ボタンの押下およびリリースイベントを待ち続けるために、スクリプトをイベントループ内で実行し続けます。
 
    .. code-block:: python
        
-       # ボタンのイベントを待ち続け、スクリプトを実行し続けるイベントループを実行
+       # Run an event loop that waits for button events and keeps the script running
        pause()

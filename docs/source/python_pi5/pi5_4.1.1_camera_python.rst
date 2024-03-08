@@ -1,7 +1,7 @@
 .. _4.1.1_py_pi5:
 
 4.1.1 カメラ
-~~~~~~~~~~~~~~~~
+==================
 
 はじめに
 -----------------
@@ -11,48 +11,48 @@
 必要な部品
 ------------------------------
 
-このプロジェクトには、以下の部品が必要です。
+このプロジェクトには、次のコンポーネントが必要です。 
 
 .. image:: ../python_pi5/img/4.1.1_camera_list.png
   :width: 800
   :align: center
 
-.. It's definitely convenient to buy a whole kit, here's the link: 
+一式を購入するのが便利です、こちらがリンクです： 
 
-.. .. list-table::
-..     :widths: 20 20 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
 
-..     *   - Name	
-..         - ITEMS IN THIS KIT
-..         - LINK
-..     *   - Raphael Kit
-..         - 337
-..         - |link_Raphael_kit|
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
 
-.. You can also buy them separately from the links below.
+以下のリンクから別々に購入することもできます。
 
-.. .. list-table::
-..     :widths: 30 20
-..     :header-rows: 1
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
 
-..     *   - COMPONENT INTRODUCTION
-..         - PURCHASE LINK
+    *   - コンポーネントの紹介
+        - 購入リンク
 
-..     *   - :ref:`gpio_extension_board`
-..         - |link_gpio_board_buy|
-..     *   - :ref:`breadboard`
-..         - |link_breadboard_buy|
-..     *   - :ref:`wires`
-..         - |link_wires_buy|
-..     *   - :ref:`resistor`
-..         - |link_resistor_buy|
-..     *   - :ref:`led`
-..         - |link_led_buy|
-..     *   - :ref:`button`
-..         - |link_button_buy|
-..     *   - :ref:`camera_module`
-..         - |link_camera_buy|
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_button`
+        - |link_button_buy|
+    *   - :ref:`cpn_camera_module`
+        - |link_camera_buy|
 
 回路図
 -----------------------
@@ -75,9 +75,9 @@ GPIO18       Pin 12   1        18
   :width: 800
   :align: center
 
-**ステップ 2:** カメラモジュールを接続し、設定を完了してください。詳細は、 :ref:`camera_module` を参照してください。
+**ステップ 2:** カメラモジュールを接続し、設定を完了してください。詳細は、 :ref:`cpn_camera_module` を参照してください。
 
-**ステップ 3:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`windows_remote_desktop` の詳細なチュートリアルを参照してください。
+**ステップ 3:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`remote_desktop` の詳細なチュートリアルを参照してください。
 
 **ステップ 4:** ターミナルを開き、コードのフォルダに入ります。
 
@@ -124,55 +124,55 @@ GPIO18       Pin 12   1        18
    import time
    import os
 
-   # 現在のユーザーのログイン名とホームディレクトリを取得
+   # Get the current user's login name and home directory
    user = os.getlogin()
    user_home = os.path.expanduser(f'~{user}')
 
-   # カメラを初期化
+   # Initialize the camera
    camera = Picamera2()
    camera.start()
 
-   # カメラの状態を追跡する変数を初期化
+   # Initialize a variable to track the camera's status
    global status
    status = False
 
-   # LEDとボタンをGPIOピン番号で設定
+   # Set up LED and button with their GPIO pin numbers
    led = LED(17)
    button = Button(18)
 
    def takePhotos(pin):
-       """ボタンが押されたときにカメラの状態をTrueに設定する関数。"""
+       """Function to set the camera's status to True when the button is pressed."""
        global status
        status = True
 
    try:
-       # ボタンが押されたときに呼び出される関数を割り当て
+       # Assign the function to be called when the button is pressed
        button.when_pressed = takePhotos
        
-       # メインループ
+       # Main loop
        while True:
-           # ボタンが押されたか確認
+           # Check if the button has been pressed
            if status:
-               # LEDを5回点滅
+               # Blink the LED five times
                for i in range(5):
                    led.on()
                    time.sleep(0.1)
                    led.off()
                    time.sleep(0.1)
-               # 写真を撮影して保存
+               # Capture and save a photo
                camera.capture_file(f'{user_home}/my_photo.jpg')
-               print('写真を撮りました！')          
-               # 状態をリセット
+               print('Take a photo!')          
+               # Reset the status
                status = False
            else:
-               # 撮影していないときはLEDを消灯
+               # Turn off the LED if not capturing
                led.off()
            
-           # ボタンの状態を再確認する前に短い間隔を待機
+           # Wait for a short period before checking the button status again
            time.sleep(1)
 
    except KeyboardInterrupt:
-       # KeyboardInterruptが発生した場合、カメラのプレビューを停止してLEDを消灯
+       # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
        camera.stop_preview()
        led.off()
        pass
@@ -193,7 +193,7 @@ GPIO18       Pin 12   1        18
 
    .. code-block:: python
 
-       # 現在のユーザーのログイン名とホームディレクトリを取得
+       # Get the current user's login name and home directory
        user = os.getlogin()
        user_home = os.path.expanduser(f'~{user}')
 
@@ -201,7 +201,7 @@ GPIO18       Pin 12   1        18
 
    .. code-block:: python
 
-       # カメラを初期化
+       # Initialize the camera
        camera = Picamera2()
        camera.start()
 
@@ -209,7 +209,7 @@ GPIO18       Pin 12   1        18
 
    .. code-block:: python
 
-       # カメラの状態を追跡する変数を初期化
+       # Initialize a variable to track the camera's status
        global status
        status = False
 
@@ -217,7 +217,7 @@ GPIO18       Pin 12   1        18
 
    .. code-block:: python
 
-       # LEDとボタンをGPIOピン番号で設定
+       # Set up LED and button with their GPIO pin numbers
        led = LED(17)
        button = Button(18)
 
@@ -226,7 +226,7 @@ GPIO18       Pin 12   1        18
    .. code-block:: python
 
        def takePhotos(pin):
-           """ボタンが押されたときにカメラの状態をTrueに設定する関数。"""
+           """Function to set the camera's status to True when the button is pressed."""
            global status
            status = True
 
@@ -235,7 +235,7 @@ GPIO18       Pin 12   1        18
    .. code-block:: python
 
        try:
-           # ボタンが押されたときに呼び出される関数を割り当て
+           # Assign the function to be called when the button is pressed
            button.when_pressed = takePhotos
            
            ...
@@ -247,26 +247,26 @@ GPIO18       Pin 12   1        18
        try:        
            ...
            
-           # メインループ
+           # Main loop
            while True:
-               # ボタンが押されたか確認
+               # Check if the button has been pressed
                if status:
-                   # LEDを5回点滅
+                   # Blink the LED five times
                    for i in range(5):
                        led.on()
                        time.sleep(0.1)
                        led.off()
                        time.sleep(0.1)
-                   # 写真を撮影して保存
+                   # Capture and save a photo
                    camera.capture_file(f'{user_home}/my_photo.jpg')
-                   print('写真を撮りました！')          
-                   # 状態をリセット
+                   print('Take a photo!')          
+                   # Reset the status
                    status = False
                else:
-                   # 撮影していないときはLEDを消灯
+                   # Turn off the LED if not capturing
                    led.off()
                
-               # ボタンの状態を再確認する前に短い間隔を待機
+               # Wait for a short period before checking the button status again
                time.sleep(1)
 
 #. Ctrl+CのようなKeyboardInterruptを捕捉し、カメラのプレビューを停止し、LEDを消灯してから終了します。
@@ -274,7 +274,7 @@ GPIO18       Pin 12   1        18
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # KeyboardInterruptが発生した場合、カメラのプレビューを停止してLEDを消灯
+           # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
            camera.stop_preview()
            led.off()
            pass
