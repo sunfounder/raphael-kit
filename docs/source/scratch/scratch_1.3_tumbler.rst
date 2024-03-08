@@ -36,15 +36,15 @@ Sie können diese auch einzeln über die folgenden Links erwerben.
     *   - KOMPONENTENBESCHREIBUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`tilt_switch` 
+    *   - :ref:`cpn_tilt_switch` 
         - \-
 
 Schaltung aufbauen

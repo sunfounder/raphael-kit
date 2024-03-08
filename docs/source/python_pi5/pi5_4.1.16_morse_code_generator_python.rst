@@ -39,19 +39,19 @@ Sie können sie auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`buzzer`
+    *   - :ref:`cpn_buzzer`
         - \-
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
 Schaltplan
@@ -103,11 +103,11 @@ Nachdem das Programm ausgeführt wurde, geben Sie eine Reihe von Zeichen ein, un
    from gpiozero import Buzzer, LED
    import time
 
-   # Initialisiere Buzzer und LED an GPIO-Pins
+   # Initialize Buzzer and LED to GPIO pins
    BeepPin = Buzzer(22)
    ALedPin = LED(17)
 
-   # Morsecode-Darstellung für Zeichen
+   # Morse code representation for characters
    MORSECODE = {
        'A': '01', 'B': '1000', 'C': '1010', 'D': '100', 'E': '0', 'F': '0010', 'G': '110',
        'H': '0000', 'I': '00', 'J': '0111', 'K': '101', 'L': '0100', 'M': '11', 'N': '10',
@@ -120,19 +120,19 @@ Nachdem das Programm ausgeführt wurde, geben Sie eine Reihe von Zeichen ein, un
    }
 
    def on():
-       """ Schaltet den Summer und die LED ein. """
+       """ Turn on the buzzer and LED. """
        BeepPin.on()
        ALedPin.on()
 
    def off():
-       """ Schaltet den Summer und die LED aus. """
+       """ Turn off the buzzer and LED. """
        BeepPin.off()
        ALedPin.off()
 
-   def beep(dt):  # dt steht für Verzögerungszeit.
+   def beep(dt):  # dt for delay time.
        """
-       Erzeugt einen Beep-Ton und LED-Blinken für die angegebene Dauer.
-       :param dt: Dauer des Beep-Tons und Blinkens.
+       Produce a beep sound and LED flash for the specified duration.
+       :param dt: Duration for the beep and flash.
        """
        on()
        time.sleep(dt)
@@ -141,28 +141,28 @@ Nachdem das Programm ausgeführt wurde, geben Sie eine Reihe von Zeichen ein, un
 
    def morsecode(code):
        """
-       Wandelt den eingegebenen Code in Morsecode um und signalisiert ihn mit dem Summer und der LED.
-       :param code: Der Text, der in Morsecode umgewandelt werden soll.
+       Convert the input code into Morse code and signal it using the buzzer and LED.
+       :param code: The text to be converted to Morse code.
        """
        pause = 0.25
-       for buchstabe in code:
-           for signal in MORSECODE[buchstabe]:
-               if signal == '0':
-                   beep(pause / 2)  # Kurzer Beep für Punkt
-               if signal == '1':
-                   beep(pause)      # Langer Beep für Strich
-           time.sleep(pause)  # Pause zwischen Buchstaben
+       for letter in code:
+           for tap in MORSECODE[letter]:
+               if tap == '0':
+                   beep(pause / 2)  # Short beep for dot
+               if tap == '1':
+                   beep(pause)      # Long beep for dash
+           time.sleep(pause)  # Pause between letters
 
    def destroy():
-       """ Bereinigt Ressourcen bei Skriptbeendigung. """
+       """ Clean up resources on script termination. """
        print("")
        BeepPin.off()
        ALedPin.off()
 
    try:
        while True:
-           code = input("Bitte geben Sie die Nachricht ein:")
-           code = code.upper()  # Umwandlung in Großbuchstaben für Morsecode-Suche
+           code = input("Please input the messenger:")
+           code = code.upper()  # Convert to uppercase for Morse code lookup
            print(code)
            morsecode(code)
    except KeyboardInterrupt:

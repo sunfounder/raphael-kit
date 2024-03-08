@@ -37,15 +37,15 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`potentiometer`
+    *   - :ref:`cpn_potentiometer`
         - |link_potentiometer_buy|
-    *   - :ref:`adc0834`
+    *   - :ref:`cpn_adc0834`
         - \-
 
 Schaltplan
@@ -107,42 +107,43 @@ Nachdem der Code ausgeführt wurde, drehen Sie den Knopf am Potenziometer, die I
    import ADC0834
    import time
 
-   # Initialisierung einer PWM-LED am GPIO-Pin 22
+   # Initialize a PWM LED on GPIO pin 22
    led = PWMLED(22)
 
-   # Einrichtung des ADC0834-Moduls
+   # Set up the ADC0834 module
    ADC0834.setup()
 
    def MAP(x, in_min, in_max, out_min, out_max):
        """
-       Ordnet einen Wert einem neuen Bereich zu.
-       :param x: Der umzuordnende Wert.
-       :param in_min: Die untere Grenze des aktuellen Bereichs des Werts.
-       :param in_max: Die obere Grenze des aktuellen Bereichs des Werts.
-       :param out_min: Die untere Grenze des Zielbereichs des Werts.
-       :param out_max: Die obere Grenze des Zielbereichs des Werts.
-       :return: Der neu zugeordnete Wert.
+       Map a value from one range to another.
+       :param x: The value to be mapped.
+       :param in_min: The lower bound of the value's current range.
+       :param in_max: The upper bound of the value's current range.
+       :param out_min: The lower bound of the value's target range.
+       :param out_max: The upper bound of the value's target range.
+       :return: The mapped value.
        """
        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
    try:
        while True:
-           # Aktuelle Messung vom ADC0834-Modul abrufen
+           # Get the current reading from the ADC0834 module
            res = ADC0834.getResult()
            print('res = %d' % res)
 
-           # ADC-Wert einem Bereich zuordnen, der für die Einstellung der LED-Helligkeit geeignet ist
+           # Map the ADC value to a range suitable for setting LED brightness
            R_val = MAP(res, 0, 255, 0, 100)
 
-           # LED-Helligkeit einstellen
+           # Set the LED brightness
            led.value = float(R_val / 100)
 
-           # 0.2 Sekunden warten, bevor erneut gemessen wird
+           # Wait for 0.2 seconds before reading again
            time.sleep(0.2)
 
-   # Elegantes Beenden bei 'Strg+C'
+   # Graceful exit when 'Ctrl+C' is pressed
    except KeyboardInterrupt: 
-       led.value = 0  # LED ausschalten
+       led.value = 0  # Turn off the LED
+
 
 
 **Code-Erklärung**
@@ -161,10 +162,10 @@ Nachdem der Code ausgeführt wurde, drehen Sie den Knopf am Potenziometer, die I
 
    .. code-block:: python
 
-       # Initialisierung einer PWM-LED am GPIO-Pin 22
+       # Initialize a PWM LED on GPIO pin 22
        led = PWMLED(22)
 
-       # Einrichtung des ADC0834-Moduls
+       # Set up the ADC0834 module
        ADC0834.setup()
 
 #. Definiert eine Funktion mit dem Namen ``MAP``, um einen Wertebereich in einen anderen zu konvertieren, nützlich für die Zuordnung von ADC-Werten zu angemessenen LED-Helligkeitsstufen.
@@ -180,20 +181,20 @@ Nachdem der Code ausgeführt wurde, drehen Sie den Knopf am Potenziometer, die I
 
        try:
            while True:
-               # Aktuelle Messung vom ADC0834-Modul abrufen
+               # Get the current reading from the ADC0834 module
                res = ADC0834.getResult()
                print('res = %d' % res)
 
-               # ADC-Wert einem Bereich zuordnen, der für die Einstellung der LED-Helligkeit geeignet ist
+               # Map the ADC value to a range suitable for setting LED brightness
                R_val = MAP(res, 0, 255, 0, 100)
 
-               # LED-Helligkeit einstellen
+               # Set the LED brightness
                led.value = float(R_val / 100)
 
-               # 0.2 Sekunden warten, bevor erneut gemessen wird
+               # Wait for 0.2 seconds before reading again
                time.sleep(0.2)
 
-       # Elegantes Beenden bei 'Strg+C'
+       # Graceful exit when 'Ctrl+C' is pressed
        except KeyboardInterrupt: 
-           led.value = 0  # LED ausschalten
+           led.value = 0  # Turn off the LED
 

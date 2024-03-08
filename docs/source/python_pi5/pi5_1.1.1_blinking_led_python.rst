@@ -41,15 +41,15 @@ Du kannst sie auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
 
 
@@ -88,7 +88,7 @@ Experimentelle Verfahren
 
 1. Wenn du einen Bildschirm verwendest, empfehlen wir dir, die folgenden Schritte zu befolgen.
 
-Finde `1.1.1_BlinkingLed_zero.py` und doppelklicke darauf, um es zu öffnen. Jetzt bist du in der
+Finde ``1.1.1_BlinkingLed_zero.py`` und doppelklicke darauf, um es zu öffnen. Jetzt bist du in der
 Datei.
 
 Klicke auf **Ausführen** ->\ **Modul ausführen** im Fenster und die folgenden
@@ -127,9 +127,9 @@ kannst du die Ergebnisse sehen.
 
 Nachdem der Code ausgeführt wurde, wirst du sehen, dass die LED blinkt.
 
-**Schritt 4:** Wenn du die Code-Datei `1.1.1_BlinkingLed_zero.py` bearbeiten möchtest,
+**Schritt 4:** Wenn du die Code-Datei ``1.1.1_BlinkingLed_zero.py`` bearbeiten möchtest,
 drücke ``Ctrl + C``, um die Ausführung des Codes zu stoppen. Gib dann den folgenden
-Befehl ein, um `1.1.1_BlinkingLed_zero.py` zu öffnen:
+Befehl ein, um ``1.1.1_BlinkingLed_zero.py`` zu öffnen:
 
 .. raw:: html
 
@@ -141,13 +141,13 @@ Befehl ein, um `1.1.1_BlinkingLed_zero.py` zu öffnen:
 
 .. note::
     nano ist ein Texteditor-Tool. Der Befehl wird verwendet, um die
-    Code-Datei `1.1.1_BlinkingLed_zero.py` mit diesem Tool zu öffnen.
+    Code-Datei ``1.1.1_BlinkingLed_zero.py`` mit diesem Tool zu öffnen.
 
 Drücke ``Ctrl+X``, um zu beenden. Wenn du den Code geändert hast, wird eine
 Aufforderung erscheinen, ob die Änderungen gespeichert werden sollen oder nicht. Gib ``Y`` (speichern)
 oder ``N`` (nicht speichern) ein.
 
-Dann drücke ``Enter``, um zu beenden. Gib nano `1.1.1_BlinkingLed_zero.py` erneut ein, um
+Dann drücke ``Enter``, um zu beenden. Gib nano ``1.1.1_BlinkingLed_zero.py`` erneut ein, um
 den Effekt nach der Änderung zu sehen.
 
 **Code**
@@ -168,27 +168,81 @@ Das Folgende ist der Programmcode:
    from gpiozero import LED
    from time import sleep
 
-   # Initialisiere eine LED, die mit dem GPIO-Pin 17 verbunden ist, mit der GPIO Zero-Bibliothek.
+   # Initialize an LED connected to GPIO pin 17 using the GPIO Zero library.
    led = LED(17)
 
    try:
-      # Starte eine unendliche Schleife, um den Zustand der LED umzuschalten.
+      # Start an infinite loop to toggle the LED state.
       while True:
-         # Schalte die LED ein und gib eine Nachricht auf der Konsole aus.
+         # Turn on the LED and print a message to the console.
          led.on()
-         print('...LED EIN')
+         print('...LED ON')
 
-         # Warte 0,5 Sekunden, während die LED eingeschaltet ist.
+         # Wait for 0.5 seconds with the LED on.
          sleep(0.5)
 
-         # Schalte die LED aus und gib eine Nachricht auf der Konsole aus.
+         # Turn off the LED and print a message to the console.
          led.off()
-         print('LED AUS...')
+         print('LED OFF...')
 
-         # Warte 0,5 Sekunden, während die LED ausgeschaltet ist.
+         # Wait for 0.5 seconds with the LED off.
          sleep(0.5)
 
    except KeyboardInterrupt:
-      # Behandle ein Tastaturunterbrechungssignal (Ctrl+C) elegant, indem die Schleife beendet wird.
-      # GPIO Zero kümmert sich automatisch um das Aufräumen der GPIO-Einstellungen beim Beenden.
+      # Gracefully handle a keyboard interrupt (Ctrl+C) by breaking the loop.
+      # GPIO Zero handles cleanup of GPIO settings automatically on exit.
       pass
+
+
+
+**Code-Erklärung**
+
+1. Wenn das System dies erkennt, sucht es den Installationspfad von Python in der Umgebungseinstellung und ruft den entsprechenden Interpreter auf, um die Operation abzuschließen. Dies verhindert, dass der Benutzer Python nicht im Standardpfad ``/usr/bin`` installiert hat.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+2. Diese Zeilen importieren die notwendigen Klassen und Funktionen. ``LED`` aus ``gpiozero`` für die LED-Steuerung und ``sleep`` aus ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       from gpiozero import LED
+       from time import sleep
+
+3. Diese Zeile erstellt ein LED-Objekt, das mit dem GPIO-Pin 17 verbunden ist.
+
+   .. code-block:: python
+
+       # Initialize an LED connected to GPIO pin 17 using the GPIO Zero library.
+       led = LED(17)
+
+4. Eine Endlosschleife wird mit ``while True:`` gestartet. Innerhalb der Schleife wird die LED eingeschaltet (``led.on()``), und eine Nachricht wird ausgegeben. Das Programm pausiert dann für 0,5 Sekunden (``sleep(0.5)``). Danach wird die LED ausgeschaltet (``led.off()``), eine weitere Nachricht wird ausgegeben, und das Programm pausiert erneut für 0,5 Sekunden.
+
+    .. code-block:: python
+
+       try:
+           # Start an infinite loop to toggle the LED state.
+           while True:
+               # Turn on the LED and print a message to the console.
+               led.on()
+               print('...LED ON')
+
+               # Wait for 0.5 seconds with the LED on.
+               sleep(0.5)
+
+               # Turn off the LED and print a message to the console.
+               led.off()
+               print('LED OFF...')
+
+               # Wait for 0.5 seconds with the LED off.
+               sleep(0.5)
+
+5. Der ``except``-Block fängt ein ``KeyboardInterrupt`` (wie das Drücken von Ctrl+C) ab und beendet die Schleife sicher. Die ``pass``-Anweisung wird hier als Platzhalter verwendet, um anzudeuten, dass bei Unterbrechung keine spezifische Aktion durchgeführt wird.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Gracefully handle a keyboard interrupt (Ctrl+C) by breaking the loop.
+           # GPIO Zero handles cleanup of GPIO settings automatically on exit.
+           pass

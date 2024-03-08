@@ -31,7 +31,7 @@ Wenn Sie darauf stoßen, wählen Sie **More info** und dann **Run anyway**. Befo
 
 **Schritt 3**
 
-Nach der Installation des Imagers öffnen Sie die Anwendung, indem Sie auf das Symbol **Raspberry Pi Imager** klicken oder `rpi-imager` ausführen.
+Nach der Installation des Imagers öffnen Sie die Anwendung, indem Sie auf das Symbol **Raspberry Pi Imager** klicken oder ``rpi-imager`` ausführen.
 
 .. image:: img/image4.png
     :align: center

@@ -39,17 +39,17 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`speed_sensor`
+    *   - :ref:`cpn_speed_sensor`
         - \-
 
 Schaltplan
@@ -109,34 +109,34 @@ Entfernen Sie das Hindernis und die grüne LED leuchtet wieder auf.
    from gpiozero import LED, Button
    from signal import pause
 
-   # Initialisiere GPIO-Pins für den Geschwindigkeitssensor und LEDs mit der GPIO Zero Bibliothek
-   speed_sensor = Button(17, pull_up=False)  # Geschwindigkeitssensor verbunden mit GPIO Pin 17 ohne Pull-up
-   green_led = LED(27)                      # Grüne LED verbunden mit GPIO Pin 27
-   red_led = LED(22)                        # Rote LED verbunden mit GPIO Pin 22
+   # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
+   speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
+   green_led = LED(27)                      # Green LED connected to GPIO pin 27
+   red_led = LED(22)                        # Red LED connected to GPIO pin 22
 
    def update_leds():
        """
-       Aktualisiere den Zustand der LEDs basierend auf dem Geschwindigkeitssensor.
-       - Wenn der Sensor ausgelöst wird (gedrückt), wird die rote LED eingeschaltet und eine Nachricht ausgegeben.
-       - Wenn der Sensor freigegeben wird (nicht ausgelöst), wird die grüne LED eingeschaltet.
+       Update the state of LEDs based on the speed sensor.
+       - If the sensor is pressed (triggered), the red LED is turned on and a message is printed.
+       - If the sensor is released (not triggered), the green LED is turned on.
        """
        if speed_sensor.is_pressed:
-           green_led.off()  # Grüne LED ausschalten
-           red_led.on()     # Rote LED einschalten
-           print('Light was blocked')  # Nachricht ausgeben, dass der Sensor ausgelöst wurde
+           green_led.off()  # Turn off green LED
+           red_led.on()     # Turn on red LED
+           print('Light was blocked')  # Print message indicating sensor is triggered
        else:
-           green_led.on()   # Grüne LED einschalten
-           red_led.off()    # Rote LED ausschalten
+           green_led.on()   # Turn on green LED
+           red_led.off()    # Turn off red LED
 
    try:
-       # Hauptloop zur kontinuierlichen Überprüfung des Sensorzustands
+       # Main loop to continuously check sensor state
        while True:
-           # LEDs basierend auf Sensorzustandsänderungen aktualisieren
-           speed_sensor.when_pressed = update_leds   # LEDs aktualisieren, wenn der Sensor ausgelöst wird
-           speed_sensor.when_released = update_leds  # LEDs aktualisieren, wenn der Sensor freigegeben wird
+           # Update LEDs based on sensor state changes
+           speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
+           speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
 
    except KeyboardInterrupt:
-       # Behandlung von KeyboardInterrupt (Strg+C) für einen eleganten Skriptabbruch
+       # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
        pass
 
 
@@ -154,10 +154,10 @@ Entfernen Sie das Hindernis und die grüne LED leuchtet wieder auf.
 
    .. code-block:: python
 
-       # Initialisiere GPIO-Pins für den Geschwindigkeitssensor und LEDs mit der GPIO Zero Bibliothek
-       speed_sensor = Button(17, pull_up=False)  # Geschwindigkeitssensor verbunden mit GPIO Pin 17 ohne Pull-up
-       green_led = LED(27)                      # Grüne LED verbunden mit GPIO Pin 27
-       red_led = LED(22)                        # Rote LED verbunden mit GPIO Pin 22
+       # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
+       speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
+       green_led = LED(27)                      # Green LED connected to GPIO pin 27
+       red_led = LED(22)                        # Red LED connected to GPIO pin 22
 
 #. Die Funktion ``update_leds`` überprüft den Zustand des Geschwindigkeitssensors. Wenn der Sensor ausgelöst wird (aktiviert), schaltet sie die grüne LED aus, die rote LED ein und gibt eine Nachricht aus. Wenn der Sensor freigegeben wird, macht sie das Gegenteil.
 
@@ -165,32 +165,33 @@ Entfernen Sie das Hindernis und die grüne LED leuchtet wieder auf.
 
        def update_leds():
            """
-           Aktualisiere den Zustand der LEDs basierend auf dem Geschwindigkeitssensor.
-           - Wenn der Sensor ausgelöst wird (gedrückt), wird die rote LED eingeschaltet und eine Nachricht ausgegeben.
-           - Wenn der Sensor freigegeben wird (nicht ausgelöst), wird die grüne LED eingeschaltet.
+           Update the state of LEDs based on the speed sensor.
+           - If the sensor is pressed (triggered), the red LED is turned on and a message is printed.
+           - If the sensor is released (not triggered), the green LED is turned on.
            """
            if speed_sensor.is_pressed:
-               green_led.off()  # Grüne LED ausschalten
-               red_led.on()     # Rote LED einschalten
-               print('Light was blocked')  # Nachricht ausgeben, dass der Sensor ausgelöst wurde
+               green_led.off()  # Turn off green LED
+               red_led.on()     # Turn on red LED
+               print('Light was blocked')  # Print message indicating sensor is triggered
            else:
-               green_led.on()   # Grüne LED einschalten
-               red_led.off()    # Rote LED ausschalten
+               green_led.on()   # Turn on green LED
+               red_led.off()    # Turn off red LED
 
 #. Die Hauptschleife überprüft kontinuierlich den Zustand des Geschwindigkeitssensors. Die Attribute ``when_pressed`` und ``when_released`` sind Ereignishandler, die die Funktion ``update_leds`` aufrufen, wenn sich der Sensorzustand ändert. Der try-except-Block dient zur Behandlung eines KeyboardInterrupt für einen eleganten Ausstieg.
 
    .. code-block:: python
 
        try:
-           # Hauptloop zur kontinuierlichen Überprüfung des Sensorzustands
+           # Main loop to continuously check sensor state
            while True:
-               # LEDs basierend auf Sensorzustandsänderungen aktualisieren
-               speed_sensor.when_pressed = update_leds   # LEDs aktualisieren, wenn der Sensor ausgelöst wird
-               speed_sensor.when_released = update_leds  # LEDs aktualisieren, wenn der Sensor freigegeben wird
+               # Update LEDs based on sensor state changes
+               speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
+               speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
 
        except KeyboardInterrupt:
-           # Behandlung von KeyboardInterrupt (Strg+C) für einen eleganten Skriptabbruch
+           # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
            pass
+
 
 
 

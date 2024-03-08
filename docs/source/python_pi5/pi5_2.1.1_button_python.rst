@@ -37,17 +37,17 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`button`
+    *   - :ref:`cpn_button`
         - |link_button_buy|
 
 Schaltplan
@@ -108,20 +108,20 @@ Jetzt, wenn Sie den Taster drücken, leuchtet die LED auf; wenn Sie den Taster l
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # Import der Klassen LED und Button aus gpiozero
-   from signal import pause  # Import der Funktion pause aus dem signal-Modul
+   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+   from signal import pause  # Import pause function from signal module
 
-   # Initialisierung eines LED-Objekts am GPIO-Pin 17
+   # Initialize an LED object on GPIO pin 17
    led = LED(17)
-   # Initialisierung eines Button-Objekts am GPIO-Pin 18
+   # Initialize a Button object on GPIO pin 18
    button = Button(18)
 
-   # Verknüpfung des "when_pressed"-Ereignisses des Buttons mit der on()-Methode der LED
+   # Link the button's "when_pressed" event to the LED's on() method
    button.when_pressed = led.on
-   # Verknüpfung des "when_released"-Ereignisses des Buttons mit der off()-Methode der LED
+   # Link the button's "when_released" event to the LED's off() method
    button.when_released = led.off
 
-   # Ausführung einer Ereignisschleife, die auf Button-Ereignisse wartet und das Skript am Laufen hält
+   # Run an event loop that waits for button events and keeps the script running
    pause()
 
 
@@ -132,32 +132,32 @@ Jetzt, wenn Sie den Taster drücken, leuchtet die LED auf; wenn Sie den Taster l
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # Import der Klassen LED und Button aus gpiozero
-       from signal import pause  # Import der Funktion pause aus dem signal-Modul
+       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+       from signal import pause  # Import pause function from signal module
 
 #. Initialisiert ein ``LED``-Objekt am GPIO-Pin 17 und ein ``Button``-Objekt am GPIO-Pin 18.
 
    .. code-block:: python
 
-       # Initialisierung eines LED-Objekts am GPIO-Pin 17
+       # Initialize an LED object on GPIO pin 17
        led = LED(17)
-       # Initialisierung eines Button-Objekts am GPIO-Pin 18
+       # Initialize a Button object on GPIO pin 18
        button = Button(18)
 
 #. Richtet Ereignisbehandler ein, sodass die LED einschaltet, wenn der Taster gedrückt wird, und ausschaltet, wenn der Taster losgelassen wird.
 
    .. code-block:: python
 
-       # Verknüpfung des "when_pressed"-Ereignisses des Buttons mit der on()-Methode der LED
+       # Link the button's "when_pressed" event to the LED's on() method
        button.when_pressed = led.on
-       # Verknüpfung des "when_released"-Ereignisses des Buttons mit der off()-Methode der LED
+       # Link the button's "when_released" event to the LED's off() method
        button.when_released = led.off
 
 #. Dies hält das Skript in einer Ereignisschleife am Laufen, die auf die Tastendruck- und Loslassereignisse wartet.
 
    .. code-block:: python
        
-       # Ausführung einer Ereignisschleife, die auf Button-Ereignisse wartet und das Skript am Laufen hält
+       # Run an event loop that waits for button events and keeps the script running
        pause()
 
 

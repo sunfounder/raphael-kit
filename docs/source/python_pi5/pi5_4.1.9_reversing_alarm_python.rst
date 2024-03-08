@@ -39,21 +39,21 @@ Sie können sie auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`buzzer`
+    *   - :ref:`cpn_buzzer`
         - \-
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
-    *   - :ref:`ultrasonic_sensor`
+    *   - :ref:`cpn_ultrasonic_sensor`
         - |link_ultrasonic_buy|
-    *   - :ref:`i2c_lcd1602`
+    *   - :ref:`cpn_i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
 Schaltplan
@@ -127,55 +127,55 @@ Während der Code ausgeführt wird, erfasst das Ultraschallmodul den Abstand zum
     import time
     from gpiozero import DistanceSensor, Buzzer
 
-    # Initialisieren des Ultraschallsensors mit GPIO-Pins
-    sensor = DistanceSensor(echo=24, trigger=23)  # Echo-Pin ist GPIO 24, Trigger-Pin ist GPIO 23
+    # Initialize the ultrasonic sensor with GPIO pins
+    sensor = DistanceSensor(echo=24, trigger=23)  # Echo pin is GPIO 24, Trigger pin is GPIO 23
 
-    # Initialisieren des Buzzers an GPIO-Pin 17
+    # Initialize the buzzer connected to GPIO pin 17
     buzzer = Buzzer(17)
 
     def lcdsetup():
-        # Initialisieren des LCDs mit I2C-Adresse und Aktivieren der Hintergrundbeleuchtung
-        LCD1602.init(0x27, 1)  # 0x27 ist die I2C-Adresse des LCDs
-        LCD1602.clear()  # Das LCD-Display löschen
-        # Anzeigen von Startnachrichten auf dem LCD
-        LCD1602.write(0, 0, 'Ultraschall startet')
-        LCD1602.write(1, 1, 'Von SunFounder')
-        time.sleep(2)  # 2 Sekunden warten
+        # Initialize the LCD with I2C address and enable backlight
+        LCD1602.init(0x27, 1)  # 0x27 is the I2C address of the LCD
+        LCD1602.clear()  # Clear the LCD display
+        # Display startup messages on LCD
+        LCD1602.write(0, 0, 'Ultrasonic Starting')
+        LCD1602.write(1, 1, 'By SunFounder')
+        time.sleep(2)  # Wait for 2 seconds
 
     def distance():
-        # Berechnen und Rückgabe des vom Sensor gemessenen Abstands
-        dis = sensor.distance * 100  # Umrechnung des Abstands in Zentimeter
-        print('Abstand: {:.2f} cm'.format(dis))  # Ausgabe des Abstands mit zwei Dezimalstellen
-        time.sleep(0.3)  # 0,3 Sekunden warten vor der nächsten Messung
+        # Calculate and return the distance measured by the sensor
+        dis = sensor.distance * 100  # Convert distance to centimeters
+        print('Distance: {:.2f} cm'.format(dis))  # Print distance with two decimal places
+        time.sleep(0.3)  # Wait for 0.3 seconds before next measurement
         return dis
 
     def loop():
-        # Kontinuierliche Messung des Abstands und Aktualisierung von LCD und Summer
+        # Continuously measure distance and update LCD and buzzer
         while True:
-            dis = distance()  # Den aktuellen Abstand erhalten
-            # Abstand anzeigen und Warnungen basierend auf dem Abstand behandeln
-            if dis > 400:  # Überprüfen, ob der Abstand außerhalb des Bereichs liegt
+            dis = distance()  # Get the current distance
+            # Display distance and handle alerts based on distance
+            if dis > 400:  # Check if distance is out of range
                 LCD1602.clear()
-                LCD1602.write(0, 0, 'Fehler')
-                LCD1602.write(3, 1, 'Außer Reichweite')
+                LCD1602.write(0, 0, 'Error')
+                LCD1602.write(3, 1, 'Out of range')
                 time.sleep(0.5)
             else:
-                # Den aktuellen Abstand auf dem LCD anzeigen
+                # Display current distance on LCD
                 LCD1602.clear()
-                LCD1602.write(0, 0, 'Abstand ist')
+                LCD1602.write(0, 0, 'Distance is')
                 LCD1602.write(5, 1, str(round(dis, 2)) + ' cm')
-                # Anpassen der Summerfrequenz basierend auf dem Abstand
+                # Adjust buzzer frequency based on distance
                 if dis >= 50:
                     time.sleep(0.5)
                 elif 20 < dis < 50:
-                    # Mittlerer Abstand: mittlere Summerfrequenz
+                    # Medium distance: medium buzzer frequency
                     for _ in range(2):
                         buzzer.on()
                         time.sleep(0.05)
                         buzzer.off()
                         time.sleep(0.2)
                 elif dis <= 20:
-                    # Geringer Abstand: hohe Summerfrequenz
+                    # Close distance: high buzzer frequency
                     for _ in range(5):
                         buzzer.on()
                         time.sleep(0.05)
@@ -183,12 +183,12 @@ Während der Code ausgeführt wird, erfasst das Ultraschallmodul den Abstand zum
                         time.sleep(0.05)
 
     try:
-        lcdsetup()  # Das LCD-Display einrichten
-        loop()      # Den Messzyklus starten
+        lcdsetup()  # Setup the LCD display
+        loop()      # Start the measurement loop
     except KeyboardInterrupt:
-        # Summer ausschalten und LCD löschen bei Benutzerunterbrechung (z.B. Ctrl+C)
+        # Turn off buzzer and clear LCD on user interrupt (e.g., Ctrl+C)
         buzzer.off()
-        LCD1602.clear()
+    LCD1602.clear()
 
 
 
@@ -212,6 +212,7 @@ Während der Code ausgeführt wird, erfasst das Ultraschallmodul den Abstand zum
 
        # Initialize the buzzer connected to GPIO pin 17
        buzzer = Buzzer(17)
+
 
 #. Die Initialisierung des LCD-Displays beinhaltet das Löschen desselben und das Anzeigen einer Startnachricht.
 
@@ -273,6 +274,7 @@ Während der Code ausgeführt wird, erfasst das Ultraschallmodul den Abstand zum
                            time.sleep(0.05)
                            buzzer.off()
                            time.sleep(0.05)
+
 
 #. Bei Ausführung richtet das Skript das LCD ein und tritt in die Hauptschleife ein. Es kann mit einem Tastaturbefehl (Ctrl+C) unterbrochen werden, wodurch der Summer ausgeschaltet und das LCD gelöscht wird.
 

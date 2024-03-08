@@ -43,7 +43,7 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTEN-VORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 
@@ -54,7 +54,7 @@ Schaltung aufbauen
 
 .. note::
 
-    Sie müssen sich auf :ref:`camera_module` beziehen, um das Kameramodul anzuschließen und die Raspberry Pi Kamera-Schnittstelle zu aktivieren.
+    Sie müssen sich auf :ref:`cpn_camera_module` beziehen, um das Kameramodul anzuschließen und die Raspberry Pi Kamera-Schnittstelle zu aktivieren.
 
 Laden Sie den Code und sehen Sie, was passiert
 ---------------------------------------------------

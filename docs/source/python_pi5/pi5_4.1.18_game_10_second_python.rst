@@ -39,19 +39,19 @@ Sie können sie auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`4_digit`
+    *   - :ref:`cpn_4_digit`
         - \-
-    *   - :ref:`74hc595`
+    *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
-    *   - :ref:`tilt_switch`
+    *   - :ref:`cpn_tilt_switch`
         - \-
 
 Schaltplan
@@ -118,27 +118,27 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
     import time
     import threading
 
-    # Initialisiere den Button, verbunden mit GPIO 26
+    # Initialize the button connected to GPIO 26
     sensorPin = Button(26)
 
-    # Definiere GPIO-Pins, verbunden mit dem 74HC595 Schieberegister
-    SDI = OutputDevice(24)   # Serieller Dateneingang
+    # Define GPIO pins connected to the 74HC595 shift register
+    SDI = OutputDevice(24)   # Serial Data Input
     RCLK = OutputDevice(23)  # Register Clock
-    SRCLK = OutputDevice(18) # Schieberegister Clock
+    SRCLK = OutputDevice(18) # Shift Register Clock
 
-    # Definiere GPIO-Pins für die Ziffernauswahl auf der 7-Segment-Anzeige
+    # Define GPIO pins for digit selection on the 7-segment display
     placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-    # Definiere Segmentcodes für Zahlen 0 bis 9 auf der 7-Segment-Anzeige
+    # Define segment codes for numbers 0 to 9 on the 7-segment display
     number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-    # Zähler- und Timer-Variablen
+    # Counter and timer variables
     counter = 0
     timer1 = None
     gameState = 0
 
     def clearDisplay():
-        """ Schalte alle Segmente auf der 7-Segment-Anzeige aus. """
+        """ Clear all segments on the 7-segment display. """
         for _ in range(8):
             SDI.on()
             SRCLK.on()
@@ -147,7 +147,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
         RCLK.off()
 
     def hc595_shift(data):
-        """ Verschiebe Daten in das 74HC595 Schieberegister, um eine Ziffer anzuzeigen. """
+        """ Shift data to the 74HC595 shift register to display a digit. """
         for i in range(8):
             SDI.value = 0x80 & (data << i)
             SRCLK.on()
@@ -156,13 +156,13 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
         RCLK.off()
 
     def pickDigit(digit):
-        """ Wähle aus, welche Ziffer auf der 7-Segment-Anzeige angezeigt werden soll. """
+        """ Select which digit to display on the 7-segment display. """
         for pin in placePin:
             pin.off()
         placePin[digit].on()
 
     def display():
-        """ Zeige den aktuellen Wert des Zählers auf der 7-Segment-Anzeige an. """
+        """ Display the current counter value on the 7-segment display. """
         global counter
         clearDisplay()
         pickDigit(0)
@@ -181,7 +181,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
         hc595_shift(number[counter % 10000 // 1000])
 
     def stateChange():
-        """ Behandle Zustandsänderungen des Zählers basierend auf Tastendrücken. """
+        """ Handle state changes for the counter based on button presses. """
         global gameState, counter, timer1
         if gameState == 0:
             counter = 0
@@ -193,7 +193,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
         gameState = (gameState + 1) % 2
 
     def loop():
-        """ Hauptloop, um Tastendrücke zu überprüfen und das Display zu aktualisieren. """
+        """ Main loop to check for button presses and update the display. """
         global counter
         currentState = 0
         lastState = 0
@@ -205,9 +205,9 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
             lastState = currentState
 
     def timer():
-        """ Timerfunktion, die den Zähler alle 0,01 Sekunden erhöht. """
+        """ Timer function that increments the counter every 0.01 second. """
         global counter, timer1
-        timer1 = threading.Timer(0,01, timer)
+        timer1 = threading.Timer(0.01, timer)
         timer1.start()
         counter += 1
 
@@ -233,14 +233,14 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
 
    .. code-block:: python
 
-       # Initialisiere den Button an GPIO 26
+       # Initialize the button connected to GPIO 26
        sensorPin = Button(26)
 
 #. Initialisiert GPIO-Pins, die mit dem Schieberegisters Serial Data Input (SDI), Register Clock Input (RCLK) und Shift Register Clock Input (SRCLK) verbunden sind.
 
    .. code-block:: python
 
-       # Definiere GPIO-Pins für das 74HC595 Schieberegister
+       # Define GPIO pins connected to the 74HC595 shift register
        SDI = OutputDevice(24)   # Serial Data Input
        RCLK = OutputDevice(23)  # Register Clock
        SRCLK = OutputDevice(18) # Shift Register Clock
@@ -249,10 +249,10 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
 
    .. code-block:: python
 
-       # Definiere GPIO-Pins für die Ziffernauswahl auf der 7-Segment-Anzeige
+       # Define GPIO pins for digit selection on the 7-segment display
        placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-       # Definiere Segmentcodes für Zahlen 0 bis 9 auf der 7-Segment-Anzeige
+       # Define segment codes for numbers 0 to 9 on the 7-segment display
        number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
 #. Funktionen zur Steuerung der 7-Segment-Anzeige. ``clearDisplay`` schaltet alle Segmente aus, ``hc595_shift`` verschiebt Daten in das Schieberegister und ``pickDigit`` aktiviert eine bestimmte Ziffer auf der Anzeige.
@@ -260,7 +260,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
    .. code-block:: python
 
        def clearDisplay():
-           """ Lösche alle Segmente der 7-Segment-Anzeige. """
+           """ Clear all segments on the 7-segment display. """
            for _ in range(8):
                SDI.on()
                SRCLK.on()
@@ -269,7 +269,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
            RCLK.off()
 
        def hc595_shift(data):
-           """ Verschiebe Daten zum 74HC595 Schieberegister, um eine Ziffer anzuzeigen. """
+           """ Shift data to the 74HC595 shift register to display a digit. """
            for i in range(8):
                SDI.value = 0x80 & (data << i)
                SRCLK.on()
@@ -278,7 +278,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
            RCLK.off()
 
        def pickDigit(digit):
-           """ Wähle, welche Ziffer auf der 7-Segment-Anzeige angezeigt wird. """
+           """ Select which digit to display on the 7-segment display. """
            for pin in placePin:
                pin.off()
            placePin[digit].on()
@@ -288,7 +288,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
    .. code-block:: python
 
        def display():
-           """ Zeige den aktuellen Zählerwert auf der 7-Segment-Anzeige. """
+           """ Display the current counter value on the 7-segment display. """
            global counter
            clearDisplay()
            pickDigit(0)
@@ -311,7 +311,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
    .. code-block:: python
 
        def stateChange():
-           """ Handhabe Zustandsänderungen für den Zähler basierend auf Tastendrücken. """
+           """ Handle state changes for the counter based on button presses. """
            global gameState, counter, timer1
            if gameState == 0:
                counter = 0
@@ -327,7 +327,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
    .. code-block:: python
 
        def loop():
-           """ Hauptschleife zur Überprüfung von Tastendrücken und Aktualisierung der Anzeige. """
+           """ Main loop to check for button presses and update the display. """
            global counter
            currentState = 0
            lastState = 0
@@ -343,7 +343,7 @@ Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen,
    .. code-block:: python
 
        def timer():
-           """ Timer-Funktion, die den Zähler alle 0,01 Sekunden erhöht. """
+           """ Timer function that increments the counter every 0.01 second. """
            global counter, timer1
            timer1 = threading.Timer(0.01, timer)
            timer1.start()

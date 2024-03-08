@@ -37,15 +37,15 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`joystick`
+    *   - :ref:`cpn_joystick`
         - \-
-    *   - :ref:`adc0834`
+    *   - :ref:`cpn_adc0834`
         - \-
 
 Schaltplan
@@ -105,29 +105,29 @@ Nachdem der Code ausgeführt wurde, drehen Sie den Joystick, dann werden die ent
    import ADC0834
    import time
 
-   # Initialisiert den Button, der mit dem GPIO-Pin 22 verbunden ist
+   # Initialize the button connected to GPIO pin 22
    BtnPin = Button(22)
 
-   # Einrichtung des ADC0834 ADC
+   # Setup the ADC0834 ADC
    ADC0834.setup()
 
    try:
-       # Hauptschleife zum Lesen und Anzeigen der ADC-Werte und des Button-Zustands
+       # Main loop to read and print ADC values and button state
        while True:
-           # Liest X- und Y-Werte von den ADC-Kanälen 0 und 1
+           # Read X and Y values from ADC channels 0 and 1
            x_val = ADC0834.getResult(0)
            y_val = ADC0834.getResult(1)
 
-           # Liest den Zustand des Buttons (gedrückt oder nicht)
+           # Read the state of the button (pressed or not)
            Btn_val = BtnPin.value
 
-           # Gibt die X-, Y- und Button-Werte aus
+           # Print the X, Y, and button values
            print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
 
-           # Verzögerung von 0,2 Sekunden vor dem nächsten Lesen
+           # Delay of 0.2 seconds before the next read
            time.sleep(0.2)
 
-   # Elegante Behandlung der Skriptbeendigung (z.B. durch KeyboardInterrupt)
+   # Gracefully handle script termination (e.g., via KeyboardInterrupt)
    except KeyboardInterrupt: 
        pass
 
@@ -147,10 +147,10 @@ Nachdem der Code ausgeführt wurde, drehen Sie den Joystick, dann werden die ent
 
    .. code-block:: python
 
-       # Initialisiert den Button, der mit dem GPIO-Pin 22 verbunden ist
+       # Initialize the button connected to GPIO pin 22
        BtnPin = Button(22)
 
-       # Einrichtung des ADC0834 ADC
+       # Setup the ADC0834 ADC
        ADC0834.setup()
 
 #. Die VRX- und VRY-Verbindungen des Joysticks sind mit CH0 und CH1 des ADC0834 verbunden. Dies ermöglicht das Lesen der Werte von CH0 und CH1, die dann in den Variablen ``x_val`` und ``y_val`` gespeichert werden. Zusätzlich wird der SW-Wert des Joysticks gelesen und der Variablen ``Btn_val`` zugewiesen. Die abgerufenen Werte von ``x_val``, ``y_val`` und ``Btn_val`` werden anschließend mit der Funktion ``print()`` angezeigt.
@@ -158,22 +158,23 @@ Nachdem der Code ausgeführt wurde, drehen Sie den Joystick, dann werden die ent
    .. code-block:: python
 
        try:
-           # Hauptschleife zum Lesen und Anzeigen der ADC-Werte und des Button-Zustands
+           # Main loop to read and print ADC values and button state
            while True:
-               # Liest X- und Y-Werte von den ADC-Kanälen 0 und 1
+               # Read X and Y values from ADC channels 0 and 1
                x_val = ADC0834.getResult(0)
                y_val = ADC0834.getResult(1)
 
-               # Liest den Zustand des Buttons (gedrückt oder nicht)
+               # Read the state of the button (pressed or not)
                Btn_val = BtnPin.value
 
-               # Gibt die X-, Y- und Button-Werte aus
+               # Print the X, Y, and button values
                print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
 
-               # Verzögerung von 0,2 Sekunden vor dem nächsten Lesen
+               # Delay of 0.2 seconds before the next read
                time.sleep(0.2)
 
-       # Elegante Behandlung der Skriptbeendigung (z.B. durch KeyboardInterrupt)
+       # Gracefully handle script termination (e.g., via KeyboardInterrupt)
        except KeyboardInterrupt: 
            pass
+
 

@@ -37,13 +37,13 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`rotary_encoder`
+    *   - :ref:`cpn_rotary_encoder`
         - |link_rotary_encoder_buy|
 
 Schaltplan
@@ -100,36 +100,36 @@ Sie werden den Zählerstand in der Shell sehen. Wenn Sie den Drehencoder im Uhrz
    from gpiozero import RotaryEncoder, Button
    from time import sleep
 
-   # Initialisierung des Drehencoders und des Knopfes
-   encoder = RotaryEncoder(a=17, b=18)  # Drehencoder verbunden mit den GPIO-Pins 17 (CLK) und 18 (DT)
-   button = Button(27)                  # Knopf verbunden mit dem GPIO-Pin 27
+   # Initialize the rotary encoder and button
+   encoder = RotaryEncoder(a=17, b=18)  # Rotary Encoder connected to GPIO pins 17 (CLK) and 18 (DT)
+   button = Button(27)                  # Button connected to GPIO pin 27
 
-   global_counter = 0  # Verfolgt die Position des Drehencoders
+   global_counter = 0  # Track the rotary encoder's position
 
    def rotary_change():
-      """ Aktualisiert den globalen Zähler basierend auf der Drehung des Drehencoders. """
+      """ Update the global counter based on the rotary encoder's rotation. """
       global global_counter
-      global_counter += encoder.steps  # Zähler basierend auf den Schritten des Encoders anpassen
-      encoder.steps = 0  # Encoder-Schritte nach der Aktualisierung des Zählers zurücksetzen
-      print('Globaler Zähler =', global_counter)  # Aktuellen Zählerwert anzeigen
+      global_counter += encoder.steps  # Adjust counter based on encoder steps
+      encoder.steps = 0  # Reset encoder steps after updating counter
+      print('Global Counter =', global_counter)  # Display current counter value
 
    def reset_counter():
-      """ Setzt den globalen Zähler auf null zurück, wenn der Knopf gedrückt wird. """
+      """ Reset the global counter to zero when the button is pressed. """
       global global_counter
-      global_counter = 0  # Zähler zurücksetzen
-      print('Zähler zurückgesetzt')  # Hinweis auf Zähler-Rücksetzung
+      global_counter = 0  # Reset the counter
+      print('Counter reset')  # Indicate counter reset
 
-   # Zuweisen der Funktion reset_counter zum Ereignis des Knopfdrucks
+   # Assign the reset_counter function to button press event
    button.when_pressed = reset_counter
 
    try:
-      # Kontinuierliche Überwachung des Drehencoders und Bearbeitung von Änderungen
+      # Monitor rotary encoder continuously and process changes
       while True:
-         rotary_change()  # Änderungen am Drehencoder bearbeiten
-         sleep(0.1)  # Kurze Verzögerung, um die CPU-Last zu reduzieren
+         rotary_change()  # Handle rotary encoder changes
+         sleep(0.1)  # Short delay to reduce CPU load
 
    except KeyboardInterrupt:
-      # Elegante Behandlung einer Tastaturunterbrechung (Strg+C)
+      # Gracefully handle a keyboard interrupt (Ctrl+C)
       pass
 
 
@@ -147,42 +147,42 @@ Sie werden den Zählerstand in der Shell sehen. Wenn Sie den Drehencoder im Uhrz
 
    .. code-block:: python
 
-      # Initialisierung des Drehencoders und des Knopfes
-      encoder = RotaryEncoder(a=17, b=18)  # Drehencoder verbunden mit den GPIO-Pins 17 (CLK) und 18 (DT)
-      button = Button(27)                  # Knopf verbunden mit dem GPIO-Pin 27
+      # Initialize the rotary encoder and button
+      encoder = RotaryEncoder(a=17, b=18)  # Rotary Encoder connected to GPIO pins 17 (CLK) and 18 (DT)
+      button = Button(27)                  # Button connected to GPIO pin 27
 
 #. Deklariert eine globale Variable ``global_counter``, um die Position des Drehencoders zu verfolgen.
 
    .. code-block:: python
 
-      global_counter = 0  # Verfolgt die Position des Drehencoders
+      global_counter = 0  # Track the rotary encoder's position
 
 #. Definiert eine Funktion ``rotary_change``, um den globalen Zähler basierend auf der Drehung des Drehencoders zu aktualisieren.
 
    .. code-block:: python
 
       def rotary_change():
-         """ Aktualisiert den globalen Zähler basierend auf der Drehung des Drehencoders. """
+         """ Update the global counter based on the rotary encoder's rotation. """
          global global_counter
-         global_counter += encoder.steps  # Zähler basierend auf den Schritten des Encoders anpassen
-         encoder.steps = 0  # Encoder-Schritte nach der Aktualisierung des Zählers zurücksetzen
-         print('Globaler Zähler =', global_counter)  # Aktuellen Zählerwert anzeigen
+         global_counter += encoder.steps  # Adjust counter based on encoder steps
+         encoder.steps = 0  # Reset encoder steps after updating counter
+         print('Global Counter =', global_counter)  # Display current counter value
 
 #. Definiert eine Funktion ``reset_counter``, um den globalen Zähler auf null zurückzusetzen, wenn der Knopf gedrückt wird.
 
-   .. code-block:: python
+  .. code-block:: python
 
       def reset_counter():
-         """ Setzt den globalen Zähler auf null zurück, wenn der Knopf gedrückt wird. """
+         """ Reset the global counter to zero when the button is pressed. """
          global global_counter
-         global_counter = 0  # Zähler zurücksetzen
-         print('Zähler zurückgesetzt')  # Hinweis auf Zähler-Rücksetzung
+         global_counter = 0  # Reset the counter
+         print('Counter reset')  # Indicate counter reset
 
 #. Weist die Funktion ``reset_counter`` dem Druckereignis des Knopfes zu.
 
    .. code-block:: python
 
-      # Zuweisen der Funktion reset_counter zum Ereignis des Knopfdrucks
+      # Assign the reset_counter function to button press event
       button.when_pressed = reset_counter
 
 #. In einer kontinuierlichen Schleife ruft das Skript ``rotary_change`` auf, um Änderungen am Drehencoder zu bearbeiten, und führt eine kurze Verzögerung ein, um die CPU-Last zu verringern. Verwendet einen try-except-Block, um KeyboardInterrupts anmutig zu behandeln.
@@ -190,12 +190,11 @@ Sie werden den Zählerstand in der Shell sehen. Wenn Sie den Drehencoder im Uhrz
    .. code-block:: python
 
       try:
-         # Kontinuierliche Überwachung des Drehencoders und Bearbeitung von Änderungen
+         # Monitor rotary encoder continuously and process changes
          while True:
-            rotary_change()  # Änderungen am Drehencoder bearbeiten
-            sleep(0.1)  # Kurze Verzögerung, um die CPU-Last zu reduzieren
+            rotary_change()  # Handle rotary encoder changes
+            sleep(0.1)  # Short delay to reduce CPU load
 
       except KeyboardInterrupt:
-         # Elegante Behandlung einer Tastaturunterbrechung (Strg+C)
+         # Gracefully handle a keyboard interrupt (Ctrl+C)
          pass
-

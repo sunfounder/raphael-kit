@@ -39,23 +39,23 @@ Sie können diese auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`pir`
+    *   - :ref:`cpn_pir`
         - \-
-    *   - :ref:`servo`
+    *   - :ref:`cpn_servo`
         - |link_servo_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`cpn_Buzzer`
         - |link_passive_buzzer_buy|
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
 
@@ -122,23 +122,23 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
 
    #!/usr/bin/env python3
 
-   von gpiozero import LED, MotionSensor, Servo, TonalBuzzer
+   from gpiozero import LED, MotionSensor, Servo, TonalBuzzer
    import time
 
-   # GPIO-Pin-Einstellungen für LED, Bewegungssensor (PIR) und Summer
+   # GPIO pin setup for LED, motion sensor (PIR), and buzzer
    ledPin = LED(6)
    pirPin = MotionSensor(21)
    buzPin = TonalBuzzer(27)
 
-   # Servomotor-Pulsbreitenkorrekturfaktor und Berechnung
+   # Servo motor pulse width correction factor and calculation
    myCorrection = 0.45
-   maxPW = (2.0 + myCorrection) / 1000  # Maximale Pulsbreite
-   minPW = (1.0 - myCorrection) / 1000  # Minimale Pulsbreite
+   maxPW = (2.0 + myCorrection) / 1000  # Maximum pulse width
+   minPW = (1.0 - myCorrection) / 1000  # Minimum pulse width
 
-   # Servomotor mit benutzerdefinierten Pulsbreiten initialisieren
+   # Initialize servo with custom pulse widths
    servoPin = Servo(25, min_pulse_width=minPW, max_pulse_width=maxPW)
 
-   # Musikalische Melodie für den Summer, mit Noten und Dauern
+   # Musical tune for buzzer, with notes and durations
    tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
            ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
            ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -152,51 +152,51 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
 
    def setAngle(angle):
        """
-       Bewegt den Servo zu einem bestimmten Winkel.
-       :param angle: Winkel in Grad (0-180).
+       Move the servo to a specified angle.
+       :param angle: Angle in degrees (0-180).
        """
-       value = float(angle / 180)  # Winkel in Servowert umrechnen
-       servoPin.value = value      # Servoposition einstellen
-       time.sleep(0.001)           # Kurze Verzögerung für Servobewegung
+       value = float(angle / 180)  # Convert angle to servo value
+       servoPin.value = value      # Set servo position
+       time.sleep(0.001)           # Short delay for servo movement
 
    def doorbell():
        """
-       Spielt eine musikalische Melodie mit dem Summer.
+       Play a musical tune using the buzzer.
        """
        for note, duration in tune:
-           buzPin.play(note)       # Note abspielen
-           time.sleep(float(duration))  # Dauer der Note
-       buzPin.stop()               # Summer stoppen nach Abspielen der Melodie
+           buzPin.play(note)       # Play the note
+           time.sleep(float(duration))  # Duration of the note
+       buzPin.stop()               # Stop buzzer after playing the tune
 
    def closedoor():
-       # LED ausschalten und Servo bewegen, um Tür zu schließen
+       # Turn off LED and move servo to close door
        ledPin.off()
        for i in range(180, -1, -1):
-           setAngle(i)             # Servo von 180 bis 0 Grad bewegen
-           time.sleep(0.001)       # Kurze Verzögerung für gleichmäßige Bewegung
-       time.sleep(1)               # Warten nach Schließen der Tür
+           setAngle(i)             # Move servo from 180 to 0 degrees
+           time.sleep(0.001)       # Short delay for smooth movement
+       time.sleep(1)               # Wait after closing door
 
    def opendoor():
-       # LED einschalten, Tür öffnen (Servo bewegen), Melodie spielen, Tür schließen
+       # Turn on LED, open door (move servo), play tune, close door
        ledPin.on()
        for i in range(0, 181):
-           setAngle(i)             # Servo von 0 bis 180 Grad bewegen
-           time.sleep(0.001)       # Kurze Verzögerung für gleichmäßige Bewegung
-       time.sleep(1)               # Warten vor Abspielen der Melodie
-       doorbell()                  # Türklingelton abspielen
-       closedoor()                 # Tür nach der Melodie schließen
+           setAngle(i)             # Move servo from 0 to 180 degrees
+           time.sleep(0.001)       # Short delay for smooth movement
+       time.sleep(1)               # Wait before playing the tune
+       doorbell()                  # Play the doorbell tune
+       closedoor()                 # Close the door after the tune
 
    def loop():
-       # Hauptschleife zur Überprüfung der Bewegungserkennung und Türbetätigung
+       # Main loop to check for motion and operate door
        while True:
            if pirPin.motion_detected:
-               opendoor()               # Tür öffnen, wenn Bewegung erkannt
-           time.sleep(0.1)              # Kurze Verzögerung in der Schleife
+               opendoor()               # Open door if motion detected
+           time.sleep(0.1)              # Short delay in loop
 
    try:
        loop()
    except KeyboardInterrupt:
-       # GPIO aufräumen bei Benutzerunterbrechung (z. B. Ctrl+C)
+       # Clean up GPIO on user interrupt (e.g., Ctrl+C)
        buzPin.stop()
        ledPin.off()
 

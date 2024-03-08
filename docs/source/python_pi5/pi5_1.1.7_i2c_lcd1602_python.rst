@@ -38,15 +38,15 @@ Sie können sie auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`i2c_lcd1602`
+    *   - :ref:`cpn_i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
 Schaltplan
@@ -111,25 +111,26 @@ Nachdem der Code ausgeführt wurde, können Sie sehen, dass auf dem LCD „Greet
 .. code-block:: python
 
    #!/usr/bin/env python3
-   import LCD1602  # Modul für die Schnittstelle mit dem LCD1602 importieren
-   import time     # Modul für Zeitfunktionen importieren
+   import LCD1602  # Import module for interfacing with LCD1602
+   import time     # Import module for timing functions
 
    def setup():
-       # LCD mit I2C-Adresse 0x27 initialisieren und Hintergrundbeleuchtung aktivieren
+       # Initialize LCD with I2C address 0x27 and enable backlight
        LCD1602.init(0x27, 1) 
-       # Die Nachricht 'Greetings!' in der oberen linken Ecke anzeigen (Zeile 0, Spalte 0)
+       # Display the message 'Greetings!' at the top-left corner (row 0, column 0)
        LCD1602.write(0, 0, 'Greetings!') 
-       # Die Nachricht 'From SunFounder' in der zweiten Zeile anzeigen (Zeile 1, Spalte 1)
+       # Display the message 'From SunFounder' on the second line (row 1, column 1)
        LCD1602.write(1, 1, 'From SunFounder') 
-       time.sleep(2)  # Nachrichten für 2 Sekunden anzeigen
+       time.sleep(2)  # Display messages for 2 seconds
 
    try:
-       setup()  # Die Setup-Funktion ausführen, um das LCD zu initialisieren und Nachrichten anzuzeigen
+       setup()  # Run the setup function to initialize the LCD and display messages
        
    except KeyboardInterrupt:
-       # Das LCD-Display löschen, wenn eine Tastaturunterbrechung (z. B. Ctrl+C) auftritt
+       # Clear the LCD display if a keyboard interruption (e.g., Ctrl+C) occurs
        LCD1602.clear()
-       pass  # Ohne weitere Aktion fortfahren
+       pass  # Proceed with no further action
+
 
 **Code-Erklärung**
 
@@ -137,21 +138,21 @@ Nachdem der Code ausgeführt wurde, können Sie sehen, dass auf dem LCD „Greet
 
    .. code-block:: python
 
-       import LCD1602  # Modul für die Schnittstelle mit dem LCD1602 importieren
+       import LCD1602  # Import module for interfacing with LCD1602
 
 2. Die Funktion initialisiert das I2C-System mit dem angegebenen Gerätesymbol. Der erste Parameter ist die Adresse des I2C-Geräts, die über den i2cdetect-Befehl ermittelt werden kann (siehe Anhang für Details). Die Adresse des I2C LCD1602 ist in der Regel 0x27.
 
    .. code-block:: python
 
-       # LCD mit I2C-Adresse 0x27 initialisieren und Hintergrundbeleuchtung aktivieren
+       # Initialize LCD with I2C address 0x27 and enable backlight
        LCD1602.init(0x27, 1) 
 
 3. „LCD1602.write“ wird verwendet, um Nachrichten auf dem LCD anzuzeigen. Die ersten beiden Parameter sind Zeilen- und Spaltenpositionen und der dritte ist die Nachricht. Nun können Sie „Greetings!! From SunFounder“ auf dem LCD angezeigt sehen.
 
    .. code-block:: python
 
-       # Die Nachricht 'Greetings!' in der oberen linken Ecke anzeigen (Zeile 0, Spalte 0)
+       # Display the message 'Greetings!' at the top-left corner (row 0, column 0)
        LCD1602.write(0, 0, 'Greetings!') 
-       # Die Nachricht 'From SunFounder' in der zweiten Zeile anzeigen (Zeile 1, Spalte 1)
+       # Display the message 'From SunFounder' on the second line (row 1, column 1)
        LCD1602.write(1, 1, 'From SunFounder') 
 

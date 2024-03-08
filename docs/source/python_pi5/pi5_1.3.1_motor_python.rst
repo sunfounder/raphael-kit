@@ -37,17 +37,17 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`power_module`
+    *   - :ref:`cpn_power_module`
         - \-
-    *   - :ref:`l293d`
+    *   - :ref:`cpn_l293d`
         - \-
-    *   - :ref:`motor`
+    *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
 
@@ -108,24 +108,25 @@ Während der Code ausgeführt wird, dreht sich der Motor zunächst 5 Sekunden la
    from gpiozero import Motor
    from time import sleep
 
-   # Initialisierung des Motors mit GPIO Zero, wobei die GPIO-Pins für Vorwärts (17), Rückwärts (27) und Enable (22) Kontrolle angegeben werden
+   # Initialize the Motor with GPIO Zero, specifying GPIO pins for forward (17), backward (27), and enable (22) control
    motor = Motor(forward=17, backward=27, enable=22)
 
    try:
-       # Hauptfunktion zur Steuerung der Richtung und Bewegung des Motors.
-       # Wechselt die Drehrichtung des Motors zwischen im Uhrzeigersinn und gegen den Uhrzeigersinn mit Stopps dazwischen.
-       actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Definition der Motoraktionen für bessere Lesbarkeit
+       # Main function to control the motor's direction and movement.
+       # Alternates motor rotation between clockwise and counterclockwise with stops in between.
+       actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Define motor actions for readability
        
        while True:
-           # Durchlaufen der definierten Aktionen zur Steuerung der Motordrehrichtung
+           # Loop through the defined actions to control motor direction
            for action in ['CW', 'STOP', 'CCW', 'STOP']:
-               actions[action]()  # Ausführen der aktuellen Aktion (vorwärts, stopp, rückwärts, stopp)
-               print(f"{action}")  # Anzeigen der aktuellen Aktion in der Konsole
-               sleep(5)  # Pause von 5 Sekunden vor dem Wechsel zur nächsten Aktion
+               actions[action]()  # Execute the current action (forward, stop, backward, stop)
+               print(f"{action}")  # Display the current action in the console
+               sleep(5)  # Pause for 5 seconds before proceeding to the next action
 
    except KeyboardInterrupt:
-       # Elegantes Handhaben eines Tastaturinterrupts (z.B. Strg+C) zum Stoppen des Programms
+       # Gracefully handle a keyboard interrupt (e.g., Ctrl+C) to stop the program
        pass
+
 
 
 **Code-Erklärung**
@@ -143,7 +144,7 @@ Während der Code ausgeführt wird, dreht sich der Motor zunächst 5 Sekunden la
     
    .. code-block:: python
        
-       # Initialisierung des Motors mit GPIO Zero, wobei die GPIO-Pins für Vorwärts (17), Rückwärts (27) und Enable (22) Kontrolle angegeben werden
+       # Initialize the Motor with GPIO Zero, specifying GPIO pins for forward (17), backward (27), and enable (22) control
        motor = Motor(forward=17, backward=27, enable=22)
       
 
@@ -152,16 +153,16 @@ Während der Code ausgeführt wird, dreht sich der Motor zunächst 5 Sekunden la
    .. code-block:: python
        
        try:
-           # Hauptfunktion zur Steuerung der Richtung und Bewegung des Motors.
-           # Wechselt die Drehrichtung des Motors zwischen im Uhrzeigersinn und gegen den Uhrzeigersinn mit Stopps dazwischen.
-           actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Definition der Motoraktionen für bessere Lesbarkeit
+           # Main function to control the motor's direction and movement.
+           # Alternates motor rotation between clockwise and counterclockwise with stops in between.
+           actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Define motor actions for readability
            
            while True:
-               # Durchlaufen der definierten Aktionen zur Steuerung der Motordrehrichtung
+               # Loop through the defined actions to control motor direction
                for action in ['CW', 'STOP', 'CCW', 'STOP']:
-                   actions[action]()  # Ausführen der aktuellen Aktion (vorwärts, stopp, rückwärts, stopp)
-                   print(f"{action}")  # Anzeigen der aktuellen Aktion in der Konsole
-                   sleep(5)  # Pause von 5 Sekunden vor dem Wechsel zur nächsten Aktion
+                   actions[action]()  # Execute the current action (forward, stop, backward, stop)
+                   print(f"{action}")  # Display the current action in the console
+                   sleep(5)  # Pause for 5 seconds before proceeding to the next action
       
 
 #. Dieser Abschnitt ermöglicht es, das Programm sicher mit einem Tastaturinterrupt (Strg+C) zu beenden, ohne Fehler zu verursachen.
@@ -169,7 +170,7 @@ Während der Code ausgeführt wird, dreht sich der Motor zunächst 5 Sekunden la
    .. code-block:: python
        
        except KeyboardInterrupt:
-       # Elegantes Handhaben eines Tastaturinterrupts (z.B. Strg+C) zum Stoppen des Programms
+       # Gracefully handle a keyboard interrupt (e.g., Ctrl+C) to stop the program
        pass
       
 

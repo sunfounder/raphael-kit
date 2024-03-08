@@ -39,19 +39,19 @@ Sie können diese auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`cpn_Buzzer`
         - |link_passive_buzzer_buy|
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
-    *   - :ref:`reed_switch`
+    *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
 
@@ -111,29 +111,29 @@ Nach Entfernen des Magneten (wie beim Diebstahl der Vase) wird der Reed-Schalter
 .. code-block:: python
 
    #!/usr/bin/env python3
-   von gpiozero import Buzzer, Button
+   from gpiozero import Buzzer, Button
    import time
 
-   # Den Summer am GPIO-Pin 27 initialisieren
+   # Initialize the buzzer on GPIO pin 27
    buzzer = Buzzer(27)
-   # Den Reed-Schalter am GPIO-Pin 17 mit aktiviertem Pull-Up-Widerstand initialisieren
+   # Initialize the reed switch on GPIO pin 17 with pull-up resistor enabled
    reed_switch = Button(17, pull_up=True)
 
    try:
        while True:
-           # Überprüfen, ob der Reed-Schalter gedrückt ist
+           # Check if the reed switch is pressed
            if reed_switch.is_pressed:
-               # Den Summer ausschalten, wenn der Reed-Schalter gedrückt ist
+               # Turn off the buzzer if reed switch is pressed
                buzzer.off()
            else:
-               # Wenn der Reed-Schalter nicht gedrückt ist, den Summer piepen lassen
+               # If reed switch is not pressed, beep the buzzer
                buzzer.on()
-               time.sleep(0.1)  # Summer für 0.1 Sekunden einschalten
+               time.sleep(0.1)  # Buzzer on for 0.1 seconds
                buzzer.off()
-               time.sleep(0.1)  # Summer für 0.1 Sekunden ausschalten
+               time.sleep(0.1)  # Buzzer off for 0.1 seconds
 
    except KeyboardInterrupt:
-       # Den Summer ausschalten, wenn das Programm unterbrochen wird (z. B. durch Tastaturunterbrechung)
+       # Turn off the buzzer when the program is interrupted (e.g., keyboard interrupt)
        buzzer.off()
        pass
 
@@ -152,37 +152,38 @@ Nach Entfernen des Magneten (wie beim Diebstahl der Vase) wird der Reed-Schalter
 
 #. Der ``Buzzer``-Objekt ist mit dem GPIO-Pin 27 verbunden, und ein ``Button`` (fungiert als Reed-Schalter) ist mit dem GPIO-Pin 17 verbunden, mit dem Argument ``pull_up=True``, welches den internen Pull-Up-Widerstand aktiviert.
 
-    .. code-block:: python
+   .. code-block:: python
 
-        # Den Summer am GPIO-Pin 27 initialisieren
-        buzzer = Buzzer(27)
-        # Den Reed-Schalter am GPIO-Pin 17 mit aktiviertem Pull-Up-Widerstand initialisieren
-        reed_switch = Button(17, pull_up=True)
+       # Initialize the buzzer on GPIO pin 27
+       buzzer = Buzzer(27)
+       # Initialize the reed switch on GPIO pin 17 with pull-up resistor enabled
+       reed_switch = Button(17, pull_up=True)
 
 
 #. Der ``try``-Block enthält eine Endlosschleife (``while True``), die den Zustand des Reed-Schalters überprüft. Wenn gedrückt (``is_pressed``), wird der Summer ausgeschaltet. Andernfalls piept der Summer (0,1 Sekunden an, 0,1 Sekunden aus).
 
-    .. code-block:: python
+   .. code-block:: python
 
-        try:
-            while True:
-                # Überprüfen, ob der Reed-Schalter gedrückt ist
-                if reed_switch.is_pressed:
-                    # Den Summer ausschalten, wenn der Reed-Schalter gedrückt ist
-                    buzzer.off()
-                else:
-                    # Wenn der Reed-Schalter nicht gedrückt ist, den Summer piepen lassen
-                    buzzer.on()
-                    time.sleep(0.1)  # Summer für 0.1 Sekunden einschalten
-                    buzzer.off()
-                    time.sleep(0.1)  # Summer für 0.1 Sekunden ausschalten
+       try:
+           while True:
+               # Check if the reed switch is pressed
+               if reed_switch.is_pressed:
+                   # Turn off the buzzer if reed switch is pressed
+                   buzzer.off()
+               else:
+                   # If reed switch is not pressed, beep the buzzer
+                   buzzer.on()
+                   time.sleep(0.1)  # Buzzer on for 0.1 seconds
+                   buzzer.off()
+                   time.sleep(0.1)  # Buzzer off for 0.1 seconds
 
 
 #. Der ``except``-Block behandelt ein KeyboardInterrupt (wie ein Ctrl+C im Terminal), um den Summer sicher auszuschalten.
 
-    .. code-block:: python
+   .. code-block:: python
 
-        except KeyboardInterrupt:
-            # Den Summer ausschalten, wenn das Programm unterbrochen wird (z. B. durch Tastaturunterbrechung)
-            buzzer.off()
-            pass
+       except KeyboardInterrupt:
+           # Turn off the buzzer when the program is interrupted (e.g., keyboard interrupt)
+           buzzer.off()
+           pass
+

@@ -39,27 +39,27 @@ Sie können sie auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`joystick`
+    *   - :ref:`cpn_joystick`
         - \-
-    *   - :ref:`adc0834`
+    *   - :ref:`cpn_adc0834`
         - \-
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
-    *   - :ref:`i2c_lcd1602`
+    *   - :ref:`cpn_i2c_lcd1602`
         - |link_i2clcd1602_buy|
-    *   - :ref:`thermistor`
+    *   - :ref:`cpn_thermistor`
         - |link_thermistor_buy|
-    *   - :ref:`buzzer`
+    *   - :ref:`cpn_buzzer`
         - \-
 
 Schaltplan
@@ -139,21 +139,21 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
    import time
    import math
 
-   # Initialisierung des Joystick-Knopfes, des Buzzers und der LED
+   # Initialize joystick button, buzzer, and LED
    Joy_BtnPin = Button(22)
    buzzPin = Buzzer(23)
    ledPin = LED(24)
 
-   # Festlegen der anfänglichen oberen Temperaturgrenze
+   # Set initial upper temperature threshold
    upperTem = 40
 
-   # Einrichtung der ADC- und LCD-Module
+   # Setup ADC and LCD modules
    ADC0834.setup()
    LCD1602.init(0x27, 1)
 
    def get_joystick_value():
        """
-       Liest die Joystick-Werte und gibt einen Änderungswert basierend auf der Position des Joysticks zurück.
+       Reads the joystick values and returns a change value based on the joystick's position.
        """
        x_val = ADC0834.getResult(1)
        y_val = ADC0834.getResult(2)
@@ -170,10 +170,10 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
    def upper_tem_setting():
        """
-       Passt und zeigt die obere Temperaturgrenze auf dem LCD an.
+       Adjusts and displays the upper temperature threshold on the LCD.
        """
        global upperTem
-       LCD1602.write(0, 0, 'Obergrenze anpassen: ')
+       LCD1602.write(0, 0, 'Upper Adjust: ')
        change = int(get_joystick_value())
        upperTem += change
        strUpperTem = str(upperTem)
@@ -183,7 +183,7 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
    def temperature():
        """
-       Liest die aktuelle Temperatur vom Sensor und gibt sie in Celsius zurück.
+       Reads the current temperature from the sensor and returns it in Celsius.
        """
        analogVal = ADC0834.getResult()
        Vr = 5 * float(analogVal) / 255
@@ -194,13 +194,13 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
    def monitoring_temp():
        """
-       Überwacht und zeigt die aktuelle Temperatur und die obere Temperaturgrenze an. 
-       Aktiviert den Summer und die LED, wenn die Temperatur die obere Grenze überschreitet.
+       Monitors and displays the current temperature and upper temperature threshold. 
+       Activates buzzer and LED if the temperature exceeds the upper limit.
        """
        global upperTem
        Cel = temperature()
        LCD1602.write(0, 0, 'Temp: ')
-       LCD1602.write(0, 1, 'Obergrenze: ')
+       LCD1602.write(0, 1, 'Upper: ')
        LCD1602.write(6, 0, str(Cel))
        LCD1602.write(7, 1, str(upperTem))
        time.sleep(0.1)
@@ -211,13 +211,13 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
            buzzPin.off()
            ledPin.off()
 
-   # Hauptausführungsschleife
+   # Main execution loop
    try:
        lastState = 1
        stage = 0
        while True:
            currentState = Joy_BtnPin.value
-           # Umschalten zwischen Einstellungs- und Überwachungsmodus
+           # Toggle between settings and monitoring mode
            if currentState == 1 and lastState == 0:
                stage = (stage + 1) % 2
                time.sleep(0.1)
@@ -228,7 +228,7 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
            else:
                monitoring_temp()
    except KeyboardInterrupt:
-       # Aufräumen und Beenden
+       # Clean up and exit
        LCD1602.clear()
        ADC0834.destroy()
 
@@ -251,7 +251,7 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
    .. code-block:: python
 
-       # Initialisierung des Joystick-Knopfes, des Buzzers und der LED
+       # Initialize joystick button, buzzer, and LED
        Joy_BtnPin = Button(22)
        buzzPin = Buzzer(23)
        ledPin = LED(24)
@@ -260,20 +260,20 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
    .. code-block:: python
 
-       # Festlegung der anfänglichen oberen Temperaturgrenze
+       # Set initial upper temperature threshold
        upperTem = 40
 
-       # Einrichtung der ADC- und LCD-Module
+       # Setup ADC and LCD modules
        ADC0834.setup()
        LCD1602.init(0x27, 1)
-
+    
 #. Diese Funktion liest die X- und Y-Werte des Joysticks unter Verwendung von ADC0834. Sie gibt einen Änderungswert basierend auf der Position des Joysticks zurück, der zur Anpassung der Temperaturschwelle verwendet wird.
 
    .. code-block:: python
 
        def get_joystick_value():
            """
-           Liest die Joystick-Werte und gibt einen Änderungswert basierend auf der Position des Joysticks zurück.
+           Reads the joystick values and returns a change value based on the joystick's position.
            """
            x_val = ADC0834.getResult(1)
            y_val = ADC0834.getResult(2)
@@ -294,10 +294,10 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
        def upper_tem_setting():
            """
-           Passt und zeigt die obere Temperaturschwelle auf dem LCD an.
+           Adjusts and displays the upper temperature threshold on the LCD.
            """
            global upperTem
-           LCD1602.write(0, 0, 'Obergrenze einstellen: ')
+           LCD1602.write(0, 0, 'Upper Adjust: ')
            change = int(get_joystick_value())
            upperTem += change
            strUpperTem = str(upperTem)
@@ -311,7 +311,7 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
        def temperature():
            """
-           Liest die aktuelle Temperatur vom Sensor und gibt sie in Celsius zurück.
+           Reads the current temperature from the sensor and returns it in Celsius.
            """
            analogVal = ADC0834.getResult()
            Vr = 5 * float(analogVal) / 255
@@ -326,13 +326,13 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
        def monitoring_temp():
            """
-           Überwacht und zeigt die aktuelle Temperatur und die obere Temperaturschwelle an. 
-           Aktiviert den Buzzer und die LED, wenn die Temperatur die obere Grenze überschreitet.
+           Monitors and displays the current temperature and upper temperature threshold. 
+           Activates buzzer and LED if the temperature exceeds the upper limit.
            """
            global upperTem
            Cel = temperature()
            LCD1602.write(0, 0, 'Temp: ')
-           LCD1602.write(0, 1, 'Obergrenze: ')
+           LCD1602.write(0, 1, 'Upper: ')
            LCD1602.write(6, 0, str(Cel))
            LCD1602.write(7, 1, str(upperTem))
            time.sleep(0.1)
@@ -347,13 +347,13 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
 
    .. code-block:: python
 
-       # Hauptausführungsschleife
+       # Main execution loop
        try:
            lastState = 1
            stage = 0
            while True:
                currentState = Joy_BtnPin.value
-               # Wechsel zwischen Einstellungs- und Überwachungsmodus
+               # Toggle between settings and monitoring mode
                if currentState == 1 and lastState == 0:
                    stage = (stage + 1) % 2
                    time.sleep(0.1)
@@ -369,7 +369,6 @@ Der **Joystick** dient hier dazu, den hohen Temperaturschwellenwert anzupassen. 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Bereinigen und beenden
+           # Clean up and exit
            LCD1602.clear()
            ADC0834.destroy()
-

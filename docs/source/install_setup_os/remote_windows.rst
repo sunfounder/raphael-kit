@@ -51,7 +51,7 @@ Wenn Sie ein Windows-Benutzer sind, können Sie die Windows PowerShell verwenden
         :width: 550
         :align: center
 
-.. _windows_remote_desktop:
+.. _remote_desktop:
 
 Remote-Desktop
 ------------------

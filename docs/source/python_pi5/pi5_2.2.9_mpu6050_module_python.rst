@@ -39,13 +39,13 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`mpu6050`
+    *   - :ref:`cpn_mpu6050`
         - |link_mpu6050_buy|
 
 Schaltplan
@@ -112,7 +112,7 @@ Mit der Ausführung des Codes werden der Ablenkwinkel der x- und y-Achse sowie d
    import math
    import time
 
-   # Energiemanagement-Register
+   # Power management registers
    power_mgmt_1 = 0x6b
    power_mgmt_2 = 0x6c
 
@@ -144,10 +144,10 @@ Mit der Ausführung des Codes werden der Ablenkwinkel der x- und y-Achse sowie d
        return math.degrees(radians)
 
 
-   bus = smbus.SMBus(1) # oder bus = smbus.SMBus(1) für Revision 2 Boards
-   address = 0x68       # Dies ist der Adresswert, der über den i2cdetect-Befehl gelesen wird
+   bus = smbus.SMBus(1) # or bus = smbus.SMBus(1) for Revision 2 boards
+   address = 0x68       # This is the address value read via the i2cdetect command
 
-   # Wecke den 6050 auf, da er im Schlafmodus startet
+   # Now wake the 6050 up as it starts in sleep mode
    bus.write_byte_data(address, power_mgmt_1, 0)
 
    while True:
@@ -156,24 +156,24 @@ Mit der Ausführung des Codes werden der Ablenkwinkel der x- und y-Achse sowie d
        gyro_yout = read_word_2c(0x45)
        gyro_zout = read_word_2c(0x47)
 
-       print ("gyro_xout : ", gyro_xout, " skaliert: ", (gyro_xout / 131))
-       print ("gyro_yout : ", gyro_yout, " skaliert: ", (gyro_yout / 131))
-       print ("gyro_zout : ", gyro_zout, " skaliert: ", (gyro_zout / 131))
+       print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+       print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+       print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
 
        accel_xout = read_word_2c(0x3b)
        accel_yout = read_word_2c(0x3d)
        accel_zout = read_word_2c(0x3f)
 
-       accel_xout_skaliert = accel_xout / 16384.0
-       accel_yout_skaliert = accel_yout / 16384.0
-       accel_zout_skaliert = accel_zout / 16384.0
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
 
-       print ("accel_xout: ", accel_xout, " skaliert: ", accel_xout_skaliert)
-       print ("accel_yout: ", accel_yout, " skaliert: ", accel_yout_skaliert)
-       print ("accel_zout: ", accel_zout, " skaliert: ", accel_zout_skaliert)
+       print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+       print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+       print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
 
-       print ("x-Drehung: " , get_x_rotation(accel_xout_skaliert, accel_yout_skaliert, accel_zout_skaliert))
-       print ("y-Drehung: " , get_y_rotation(accel_xout_skaliert, accel_yout_skaliert, accel_zout_skaliert))
+       print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+       print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
 
        time.sleep(1)
 
@@ -221,9 +221,9 @@ Mit der Ausführung des Codes werden der Ablenkwinkel der x- und y-Achse sowie d
        gyro_yout = read_word_2c(0x45)
        gyro_zout = read_word_2c(0x47)
 
-       print ("gyro_xout : ", gyro_xout, " skaliert: ", (gyro_xout / 131))
-       print ("gyro_yout : ", gyro_yout, " skaliert: ", (gyro_yout / 131))
-       print ("gyro_zout : ", gyro_zout, " skaliert: ", (gyro_zout / 131))
+       print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+       print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+       print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
 
 #. Liest die Werte der x-, y- und z-Achse des Beschleunigungssensors, wandelt die Daten in Beschleunigungswerte (Gravitationseinheit) um und gibt sie dann aus.
 
@@ -233,20 +233,20 @@ Mit der Ausführung des Codes werden der Ablenkwinkel der x- und y-Achse sowie d
        accel_yout = read_word_2c(0x3d)
        accel_zout = read_word_2c(0x3f)
 
-       accel_xout_skaliert = accel_xout / 16384.0
-       accel_yout_skaliert = accel_yout / 16384.0
-       accel_zout_skaliert = accel_zout / 16384.0
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
 
-       print ("accel_xout: ", accel_xout, " skaliert: ", accel_xout_skaliert)
-       print ("accel_yout: ", accel_yout, " skaliert: ", accel_yout_skaliert)
-       print ("accel_zout: ", accel_zout, " skaliert: ", accel_zout_skaliert)
+       print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+       print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+       print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
 
 #. Gibt die Ablenkwinkel der x- und y-Achse aus.
 
    .. code-block:: python
 
-       print ("x-Drehung: " , get_x_rotation(accel_xout_skaliert, accel_yout_skaliert, accel_zout_skaliert))
-       print ("y-Drehung: " , get_y_rotation(accel_xout_skaliert, accel_yout_skaliert, accel_zout_skaliert))
+       print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+       print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
 
 
 

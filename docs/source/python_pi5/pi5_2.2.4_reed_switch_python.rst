@@ -39,17 +39,17 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`reed_switch`
+    *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
 Schaltplan
@@ -117,32 +117,32 @@ Die grüne LED leuchtet, wenn der Code ausgeführt wird. Wenn ein Magnet nahe an
    #!/usr/bin/env python3
    from gpiozero import LED, Button
 
-   # Initialisiere den Reed-Schalter und LEDs mit GPIO Zero
-   reed_switch = Button(17, pull_up=True)  # Reed-Schalter an GPIO 17, mit internem Pull-up-Widerstand
-   green_led = LED(27)                     # Grüne LED verbunden mit GPIO-Pin 27
-   red_led = LED(22)                       # Rote LED verbunden mit GPIO-Pin 22
+   # Initialize the reed switch and LEDs using GPIO Zero
+   reed_switch = Button(17, pull_up=True)  # Reed switch on GPIO 17, using an internal pull-up resistor
+   green_led = LED(27)                     # Green LED connected to GPIO pin 27
+   red_led = LED(22)                       # Red LED connected to GPIO pin 22
 
    def update_leds():
        """
-       Aktualisiere den Zustand der LEDs basierend auf dem Zustand des Reed-Schalters.
-       Schaltet die rote LED ein und die grüne LED aus, wenn der Reed-Schalter betätigt wird, und umgekehrt.
+       Update the state of the LEDs based on the reed switch.
+       Turns the red LED on and green LED off when the reed switch is pressed, and vice versa.
        """
        if reed_switch.is_pressed:
-           green_led.off()          # Grüne LED ausschalten
-           red_led.on()             # Rote LED einschalten
+           green_led.off()          # Turn off the green LED
+           red_led.on()             # Turn on the red LED
        else:
-           green_led.on()           # Grüne LED einschalten
-           red_led.off()            # Rote LED ausschalten
+           green_led.on()           # Turn on the green LED
+           red_led.off()            # Turn off the red LED
 
    try:
-       green_led.on()               # Grüne LED beim Start einschalten
+       green_led.on()               # Turn on the green LED at the start
        while True:
-           # Setze die Callback-Funktionen für Zustandsänderungen des Reed-Schalters
-           reed_switch.when_pressed = update_leds   # Callback, wenn der Schalter gedrückt wird
-           reed_switch.when_released = update_leds  # Callback, wenn der Schalter losgelassen wird
+           # Set the callback functions for reed switch state changes
+           reed_switch.when_pressed = update_leds   # Callback when the switch is pressed
+           reed_switch.when_released = update_leds  # Callback when the switch is released
 
    except KeyboardInterrupt:
-       # Ressourcen aufräumen und bei Strg+C beenden
+       # Clean up resources and exit on Ctrl+C
        green_led.off()
        red_led.off()
        pass
@@ -160,10 +160,10 @@ Die grüne LED leuchtet, wenn der Code ausgeführt wird. Wenn ein Magnet nahe an
 
    .. code-block:: python
        
-       # Initialisiere den Reed-Schalter und LEDs mit GPIO Zero
-       reed_switch = Button(17, pull_up=True)  # Reed-Schalter an GPIO 17, mit internem Pull-up-Widerstand
-       green_led = LED(27)                     # Grüne LED verbunden mit GPIO-Pin 27
-       red_led = LED(22)                       # Rote LED verbunden mit GPIO-Pin 22
+       # Initialize the reed switch and LEDs using GPIO Zero
+       reed_switch = Button(17, pull_up=True)  # Reed switch on GPIO 17, using an internal pull-up resistor
+       green_led = LED(27)                     # Green LED connected to GPIO pin 27
+       red_led = LED(22)                       # Red LED connected to GPIO pin 22
 
 #. Definiert die Funktion ``update_leds``, die den Zustand der LEDs basierend auf dem Zustand des Reed-Schalters aktualisiert. Die rote LED wird eingeschaltet und die grüne LED wird ausgeschaltet, wenn der Schalter gedrückt wird, und umgekehrt, wenn er losgelassen wird.
 
@@ -171,25 +171,25 @@ Die grüne LED leuchtet, wenn der Code ausgeführt wird. Wenn ein Magnet nahe an
 
        def update_leds():
            if reed_switch.is_pressed:
-               green_led.off()          # Grüne LED ausschalten
-               red_led.on()             # Rote LED einschalten
+               green_led.off()          # Turn off the green LED
+               red_led.on()             # Turn on the red LED
            else:
-               green_led.on()           # Grüne LED einschalten
-               red_led.off()            # Rote LED ausschalten
+               green_led.on()           # Turn on the green LED
+               red_led.off()            # Turn off the red LED
 
 #. Setzt den anfänglichen Zustand der grünen LED auf Ein. Die Hauptschleife weist der Funktion ``update_leds`` als Callbacks für die Ereignisse ``when_pressed`` und ``when_released`` des Reed-Schalters zu. Beinhaltet die Behandlung von Ausnahmen für KeyboardInterrupt, um die Ressourcen aufzuräumen und das Programm sanft zu beenden.
 
    .. code-block:: python
 
        try:
-           green_led.on()               # Grüne LED beim Start einschalten
+           green_led.on()               # Turn on the green LED at the start
            while True:
-               # Setze die Callback-Funktionen für Zustandsänderungen des Reed-Schalters
-               reed_switch.when_pressed = update_leds   # Callback, wenn der Schalter gedrückt wird
-               reed_switch.when_released = update_leds  # Callback, wenn der Schalter losgelassen wird
+               # Set the callback functions for reed switch state changes
+               reed_switch.when_pressed = update_leds   # Callback when the switch is pressed
+               reed_switch.when_released = update_leds  # Callback when the switch is released
 
        except KeyboardInterrupt:
-           # Ressourcen aufräumen und bei Strg+C beenden
+           # Clean up resources and exit on Ctrl+C
            green_led.off()
            red_led.off()
            pass

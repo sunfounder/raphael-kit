@@ -37,13 +37,13 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`ultrasonic_sensor`
+    *   - :ref:`cpn_ultrasonic_sensor`
         - |link_ultrasonic_buy|
 
 Schaltplan
@@ -98,20 +98,21 @@ Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensormodul die Dista
    from gpiozero import DistanceSensor
    from time import sleep
 
-   # Initialisiere den Ultraschallsensor mit der GPIO Zero Bibliothek
-   # Trigger-Pin ist mit GPIO 23 verbunden, Echo-Pin mit GPIO 24
+   # Initialize the DistanceSensor using GPIO Zero library
+   # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
    sensor = DistanceSensor(echo=24, trigger=23)
 
    try:
-       # Hauptschleife zur kontinuierlichen Messung und Berichterstattung der Distanz
+       # Main loop to continuously measure and report distance
        while True:
-           dis = sensor.distance * 100  # Distanz messen und von Metern in Zentimeter umrechnen
-           print('Distanz: {:.2f} cm'.format(dis))  # Distanz mit zwei Dezimalstellen ausgeben
-           sleep(0.3)  # 0.3 Sekunden warten vor der nächsten Messung
+           dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
+           print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
+           sleep(0.3)  # Wait for 0.3 seconds before the next measurement
 
    except KeyboardInterrupt:
-       # KeyboardInterrupt (Strg+C) abfangen für einen sanften Ausstieg aus der Schleife
+       # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
        pass
+
 
 
 **Code-Erklärung**
@@ -128,8 +129,8 @@ Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensormodul die Dista
 
    .. code-block:: python
 
-       # Initialisiere den Ultraschallsensor mit der GPIO Zero Bibliothek
-       # Trigger-Pin ist mit GPIO 23 verbunden, Echo-Pin mit GPIO 24
+       # Initialize the DistanceSensor using GPIO Zero library
+       # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
        sensor = DistanceSensor(echo=24, trigger=23)
 
 #. Die Hauptschleife misst kontinuierlich die Distanz, wandelt sie von Metern in Zentimeter um und gibt sie mit zwei Dezimalstellen an. Dann wartet sie 0.3 Sekunden und misst die Distanz erneut. Fängt ein KeyboardInterrupt (wie Strg+C) ab, um einen sanften Ausstieg aus dem Skript zu ermöglichen.
@@ -137,14 +138,14 @@ Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensormodul die Dista
    .. code-block:: python
 
        try:
-           # Hauptschleife zur kontinuierlichen Messung und Berichterstattung der Distanz
+           # Main loop to continuously measure and report distance
            while True:
-               dis = sensor.distance * 100  # Distanz messen und von Metern in Zentimeter umrechnen
-               print('Distanz: {:.2f} cm'.format(dis))  # Distanz mit zwei Dezimalstellen ausgeben
-               sleep(0.3)  # 0.3 Sekunden warten vor der nächsten Messung
+               dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
+               print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
+               sleep(0.3)  # Wait for 0.3 seconds before the next measurement
 
        except KeyboardInterrupt:
-           # KeyboardInterrupt (Strg+C) abfangen für einen sanften Ausstieg aus der Schleife
+           # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
            pass
 
 

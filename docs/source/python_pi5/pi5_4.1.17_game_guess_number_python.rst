@@ -39,17 +39,17 @@ Sie können sie auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`keypad`
+    *   - :ref:`cpn_keypad`
         - \-
-    *   - :ref:`i2c_lcd1602`
+    *   - :ref:`cpn_i2c_lcd1602`
         - |link_i2clcd1602_buy|
 
 
@@ -148,31 +148,31 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
    class Keypad:
       def __init__(self, rows_pins, cols_pins, keys):
          """
-         Initialisiert das Tastenfeld mit den angegebenen Reihen- und Spaltenpins und dem Tastenlayout.
-         :param rows_pins: Liste der GPIO-Pins für die Reihen.
-         :param cols_pins: Liste der GPIO-Pins für die Spalten.
-         :param keys: Layout der Tasten auf dem Tastenfeld.
+         Initialize the keypad with specified row and column pins and key layout.
+         :param rows_pins: List of GPIO pins for the rows.
+         :param cols_pins: List of GPIO pins for the columns.
+         :param keys: Layout of keys on the keypad.
          """
-         self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Reihenpins einrichten
-         self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Spaltenpins einrichten
-         self.keys = keys  # Tastenfeldlayout definieren
+         self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Setup row pins
+         self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Setup column pins
+         self.keys = keys  # Define keypad layout
 
       def read(self):
          """
-         Liest und gibt die derzeit gedrückten Tasten zurück.
-         :return: Liste der gedrückten Tasten.
+         Read and return the currently pressed keys.
+         :return: List of pressed keys.
          """
          pressed_keys = []
          for i, row in enumerate(self.rows):
-               row.on()  # Aktuelle Reihe aktivieren
+               row.on()  # Activate current row
                for j, col in enumerate(self.cols):
                   if col.is_pressed:
                      index = i * len(self.cols) + j
-                     pressed_keys.append(self.keys[index])  # Gedrückte Taste anhängen
-               row.off()  # Reihe deaktivieren
+                     pressed_keys.append(self.keys[index])  # Append pressed key
+               row.off()  # Deactivate row
          return pressed_keys
 
-   # Spielbezogene Variablen
+   # Game-related variables
    count = 0
    pointValue = 0
    upper = 99
@@ -180,7 +180,7 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 
    def setup():
       """
-      Setup-Funktion für die Initialisierung des Tastenfelds und der LCD-Anzeige.
+      Setup function for initializing the keypad and LCD display.
       """
       global keypad, last_key_pressed, keys
       rowsPins = [18, 23, 24, 25]
@@ -191,26 +191,26 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
                "*", "0", "#", "D"]
       keypad = Keypad(rowsPins, colsPins, keys)
       last_key_pressed = []
-      LCD1602.init(0x27, 1)  # LCD initialisieren
+      LCD1602.init(0x27, 1)  # Initialize LCD
       LCD1602.clear()
-      LCD1602.write(0, 0, 'Willkommen!')
-      LCD1602.write(0, 1, 'Drücke A zum Start!')
+      LCD1602.write(0, 0, 'Welcome!')
+      LCD1602.write(0, 1, 'Press A to Start!')
 
    def init_new_value():
       """
-      Initialisiert einen neuen Zielwert und setzt die Spielparameter zurück.
+      Initialize a new target value and reset game parameters.
       """
       global pointValue, upper, lower, count
       pointValue = random.randint(0, 99)
       upper = 99
       lower = 0
       count = 0
-      print('Punkt ist %d' % pointValue)
+      print('point is %d' % pointValue)
 
    def detect_point():
       """
-      Überprüft, ob die geratene Zahl das Ziel ist, zu hoch oder zu niedrig.
-      :return: 1 bei richtiger Vermutung, 0 sonst.
+      Check if the guessed number is the target, too high, or too low.
+      :return: 1 if correct guess, 0 otherwise.
       """
       global count, upper, lower
       if count > pointValue and count < upper:
@@ -225,25 +225,25 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 
    def lcd_show_input(result):
       """
-      Zeigt den aktuellen Spielstand und Ergebnisse auf dem LCD an.
-      :param result: Ergebnis der letzten Vermutung (0 oder 1).
+      Display the current game state and results on the LCD.
+      :param result: Result of the last guess (0 or 1).
       """
       LCD1602.clear()
       if result == 1:
-         LCD1602.write(0, 1, 'Du hast es geschafft!')
+         LCD1602.write(0, 1, 'You have got it!')
          sleep(5)
          init_new_value()
          lcd_show_input(0)
       else:
-         LCD1602.write(0, 0, 'Zahl eingeben:')
+         LCD1602.write(0, 0, 'Enter number:')
          LCD1602.write(13, 0, str(count))
          LCD1602.write(0, 1, str(lower))
-         LCD1602.write(3, 1, ' < Punkt < ')
+         LCD1602.write(3, 1, ' < Point < ')
          LCD1602.write(13, 1, str(upper))
 
    def loop():
       """
-      Hauptschleife für die Verarbeitung der Tastenfeldeingabe und Aktualisierung des Spielstands.
+      Main game loop for handling keypad input and updating game state.
       """
       global keypad, last_key_pressed, count
       while True:
@@ -271,8 +271,7 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
       setup()
       loop()
    except KeyboardInterrupt:
-      LCD1602.clear()  # LCD bei Unterbrechung löschen
-
+      LCD1602.clear()  # Clear LCD on interrupt
 
 **Code-Erklärung**
 
@@ -294,35 +293,35 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
       class Keypad:
          def __init__(self, rows_pins, cols_pins, keys):
             """
-            Initialisiert das Keypad mit spezifizierten Zeilen- und Spaltenpins sowie der Tastenanordnung.
-            :param rows_pins: Liste der GPIO-Pins für die Zeilen.
-            :param cols_pins: Liste der GPIO-Pins für die Spalten.
-            :param keys: Layout der Tasten auf dem Keypad.
+            Initialize the keypad with specified row and column pins and key layout.
+            :param rows_pins: List of GPIO pins for the rows.
+            :param cols_pins: List of GPIO pins for the columns.
+            :param keys: Layout of keys on the keypad.
             """
-            self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Zeilenpins einrichten
-            self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Spaltenpins einrichten
-            self.keys = keys  # Keypad-Layout definieren
+            self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Setup row pins
+            self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Setup column pins
+            self.keys = keys  # Define keypad layout
 
          def read(self):
             """
-            Liest und gibt die aktuell gedrückten Tasten zurück.
-            :return: Liste der gedrückten Tasten.
+            Read and return the currently pressed keys.
+            :return: List of pressed keys.
             """
             pressed_keys = []
             for i, row in enumerate(self.rows):
-                  row.on()  # Aktuelle Zeile aktivieren
+                  row.on()  # Activate current row
                   for j, col in enumerate(self.cols):
                      if col.is_pressed:
                         index = i * len(self.cols) + j
-                        pressed_keys.append(self.keys[index])  # Gedrückte Taste anhängen
-                  row.off()  # Zeile deaktivieren
+                        pressed_keys.append(self.keys[index])  # Append pressed key
+                  row.off()  # Deactivate row
             return pressed_keys
 
 #. Initialisiert eine Variable „count“ als Null, möglicherweise verwendet, um Versuche oder spezifische Werte im Spiel zu verfolgen. Konfiguriert das Keypad und LCD-Display mit einer Begrüßungsnachricht und Anweisungen. Initialisiert die Variable „pointValue“ auf Null, möglicherweise repräsentiert sie einen Zielwert oder Punktestand im Spiel. Definiert eine „obere“ Grenze für das Spiel, zunächst auf 99 gesetzt, was das Maximum in einem Zahlenratespiel sein könnte. Setzt die „untere“ Grenze beginnend von Null, wahrscheinlich verwendet als minimale Grenze im Spiel.
 
    .. code-block:: python
 
-      # Spielbezogene Variablen
+      # Game-related variables
       count = 0
       pointValue = 0
       upper = 99
@@ -334,7 +333,7 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 
       def setup():
          """
-         Setup-Funktion zur Initialisierung des Keypads und LCD-Displays.
+         Setup function for initializing the keypad and LCD display.
          """
          global keypad, last_key_pressed, keys
          rowsPins = [18, 23, 24, 25]
@@ -345,10 +344,10 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
                   "*", "0", "#", "D"]
          keypad = Keypad(rowsPins, colsPins, keys)
          last_key_pressed = []
-         LCD1602.init(0x27, 1)  # LCD initialisieren
+         LCD1602.init(0x27, 1)  # Initialize LCD
          LCD1602.clear()
-         LCD1602.write(0, 0, 'Willkommen!')
-         LCD1602.write(0, 1, 'Drücke A zum Starten!')
+         LCD1602.write(0, 0, 'Welcome!')
+         LCD1602.write(0, 1, 'Press A to Start!')
 
 #. Initialisiert einen neuen Zielwert für das Spiel und setzt die Spielparameter zurück.
 
@@ -356,14 +355,15 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 
       def init_new_value():
          """
-         Initialisiert einen neuen Zielwert und setzt die Spielparameter zurück.
+         Initialize a new target value and reset game parameters.
          """
          global pointValue, upper, lower, count
          pointValue = random.randint(0, 99)
          upper = 99
          lower = 0
          count = 0
-         print('Punkt ist %d' % pointValue)
+         print('point is %d' % pointValue)
+
 
 #. Überprüft, ob die geratene Zahl dem Ziel entspricht und aktualisiert entsprechend den Ratebereich.
 
@@ -371,13 +371,13 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 
       def detect_point():
          """
-         Überprüft, ob die geratene Zahl das Ziel, zu hoch oder zu niedrig ist.
-         :return: 1 bei richtiger Vermutung, 0 sonst.
+         Check if the guessed number is the target, too high, or too low.
+         :return: 1 if correct guess, 0 otherwise.
          """
          global count, upper, lower
-         if count > pointValue und count < upper:
+         if count > pointValue and count < upper:
             upper = count
-         elif count < pointValue und count > lower:
+         elif count < pointValue and count > lower:
             lower = count
          elif count == pointValue:
             count = 0
@@ -391,21 +391,22 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 
       def lcd_show_input(result):
          """
-         Zeigt den aktuellen Spielstand und Ergebnisse auf dem LCD an.
-         :param result: Ergebnis der letzten Vermutung (0 oder 1).
+         Display the current game state and results on the LCD.
+         :param result: Result of the last guess (0 or 1).
          """
          LCD1602.clear()
          if result == 1:
-            LCD1602.write(0, 1, 'Du hast es geschafft!')
+            LCD1602.write(0, 1, 'You have got it!')
             sleep(5)
             init_new_value()
             lcd_show_input(0)
          else:
-            LCD1602.write(0, 0, 'Gib eine Zahl ein:')
+            LCD1602.write(0, 0, 'Enter number:')
             LCD1602.write(13, 0, str(count))
             LCD1602.write(0, 1, str(lower))
-            LCD1602.write(3, 1, ' < Punkt < ')
+            LCD1602.write(3, 1, ' < Point < ')
             LCD1602.write(13, 1, str(upper))
+
 
 #. Die Hauptschleife zur Handhabung der Keypad-Eingabe, Aktualisierung des Spielstands und Anzeige der Ergebnisse auf dem LCD.
 
@@ -413,13 +414,13 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 
       def loop():
          """
-         Hauptschleife zur Handhabung der Keypad-Eingabe und Aktualisierung des Spielstands.
+         Main game loop for handling keypad input and updating game state.
          """
          global keypad, last_key_pressed, count
          while True:
             result = 0
             pressed_keys = keypad.read()
-            if pressed_keys und pressed_keys != last_key_pressed:
+            if pressed_keys and pressed_keys != last_key_pressed:
                   if pressed_keys == ["A"]:
                      init_new_value()
                      lcd_show_input(0)
@@ -437,6 +438,7 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
             last_key_pressed = pressed_keys
             sleep(0.1)
 
+
 #. Führt das Setup aus und tritt in die Hauptschleife ein, ermöglicht einen sauberen Ausstieg mit einem Tastaturinterrupt.
 
    .. code-block:: python
@@ -445,5 +447,5 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
          setup()
          loop()
       except KeyboardInterrupt:
-         LCD1602.clear()  # LCD bei Unterbrechung löschen
+         LCD1602.clear()  # Clear LCD on interrupt
 

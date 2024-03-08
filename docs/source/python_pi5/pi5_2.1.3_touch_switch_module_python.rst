@@ -39,17 +39,17 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`touch_switch`
+    *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
 
 Schaltplan
@@ -104,31 +104,31 @@ Während der Code läuft, leuchtet die rote LED; wenn Sie das Berührungsschalte
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # Import der Klassen LED und Button aus gpiozero
-   from time import sleep  # Import der Funktion sleep für Verzögerungen
+   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+   from time import sleep  # Import sleep for delay
 
-   # Initialisierung des Berührungssensors (Button) am GPIO-Pin 17, Pull-Up-Widerstand deaktiviert
-   touch_sensor = Button(17, pull_up=False)  # Geeignet für Sensoren, die den Pin bei Berührung auf Low ziehen
+   # Initialize touch sensor (Button) on GPIO pin 17, pull-up resistor disabled
+   touch_sensor = Button(17, pull_up=False)  # Suitable for sensors that pull the pin low when pressed
 
-   # Initialisierung von LED1 und LED2, verbunden mit den GPIO-Pins 22 und 27
-   led1 = LED(22)  # LED1 verbunden mit GPIO-Pin 22
-   led2 = LED(27)  # LED2 verbunden mit GPIO-Pin 27
+   # Initialize LED1 and LED2 connected to GPIO pins 22 and 27 respectively
+   led1 = LED(22)  # LED1 connected to GPIO pin 22
+   led2 = LED(27)  # LED2 connected to GPIO pin 27
 
    try:
-       # Kontinuierliche Überwachung des Zustands des Berührungssensors und entsprechende Steuerung der LEDs
+       # Continuously monitor the state of the touch sensor and control LEDs accordingly
        while True:
-           if touch_sensor.is_pressed:  # Überprüfung, ob der Berührungssensor gedrückt wird
-               print('Berührt!')  # Ausgabe einer Nachricht, die die Aktivierung des Sensors anzeigt
-               led1.off()  # LED1 ausschalten
-               led2.on()   # LED2 einschalten
-           else:  # Wenn der Sensor nicht berührt wird
-               led1.on()   # LED1 einschalten
-               led2.off()  # LED2 ausschalten
+           if touch_sensor.is_pressed:  # Check if the touch sensor is pressed
+               print('You touch it!')  # Output message indicating sensor activation
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
+           else:  # If the sensor is not pressed
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
 
-           sleep(0.5)  # Pause von 0,5 Sekunden vor erneuter Überprüfung des Sensorzustands
+           sleep(0.5)  # Pause for 0.5 seconds before rechecking the sensor state
 
    except KeyboardInterrupt:
-       # Sauberes Beenden des Skripts bei Tastaturunterbrechung (Strg+C)
+       # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
        pass
 	
 
@@ -139,38 +139,38 @@ Während der Code läuft, leuchtet die rote LED; wenn Sie das Berührungsschalte
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # Import der Klassen LED und Button aus gpiozero
-       from time import sleep  # Import der Funktion sleep für Verzögerungen
+       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
+       from time import sleep  # Import sleep for delay
 
 #. Initialisiert einen Berührungssensor (als Button) am GPIO-Pin 17 mit deaktiviertem Pull-Up-Widerstand und zwei LEDs an den GPIO-Pins 22 und 27.
 
    .. code-block:: python
 
-       # Initialisierung des Berührungssensors (Button) am GPIO-Pin 17, Pull-Up-Widerstand deaktiviert
-       touch_sensor = Button(17, pull_up=False)  # Geeignet für Sensoren, die den Pin bei Berührung auf Low ziehen
+       # Initialize touch sensor (Button) on GPIO pin 17, pull-up resistor disabled
+       touch_sensor = Button(17, pull_up=False)  # Suitable for sensors that pull the pin low when pressed
 
-       # Initialisierung von LED1 und LED2, verbunden mit den GPIO-Pins 22 und 27
-       led1 = LED(22)  # LED1 verbunden mit GPIO-Pin 22
-       led2 = LED(27)  # LED2 verbunden mit GPIO-Pin 27
+       # Initialize LED1 and LED2 connected to GPIO pins 22 and 27 respectively
+       led1 = LED(22)  # LED1 connected to GPIO pin 22
+       led2 = LED(27)  # LED2 connected to GPIO pin 27
 
 #. In der Hauptschleife wird der Zustand des Berührungssensors überprüft. Bei Berührung schaltet sich LED2 ein und LED1 aus; wenn nicht berührt, ist LED1 eingeschaltet und LED2 ausgeschaltet. Die Schleife wiederholt sich alle 0,5 Sekunden. Fängt eine Tastaturunterbrechung (wie Strg+C) ab, um das Skript anmutig zu beenden.
 
    .. code-block:: python
 
        try:
-           # Kontinuierliche Überwachung des Zustands des Berührungssensors und entsprechende Steuerung der LEDs
+           # Continuously monitor the state of the touch sensor and control LEDs accordingly
            while True:
-               if touch_sensor.is_pressed:  # Überprüfung, ob der Berührungssensor gedrückt wird
-                   print('Berührt!')  # Ausgabe einer Nachricht, die die Aktivierung des Sensors anzeigt
-                   led1.off()  # LED1 ausschalten
-                   led2.on()   # LED2 einschalten
-               else:  # Wenn der Sensor nicht berührt wird
-                   led1.on()   # LED1 einschalten
-                   led2.off()  # LED2 ausschalten
+               if touch_sensor.is_pressed:  # Check if the touch sensor is pressed
+                   print('You touch it!')  # Output message indicating sensor activation
+                   led1.off()  # Turn off LED1
+                   led2.on()   # Turn on LED2
+               else:  # If the sensor is not pressed
+                   led1.on()   # Turn on LED1
+                   led2.off()  # Turn off LED2
 
-               sleep(0.5)  # Pause von 0,5 Sekunden vor erneuter Überprüfung des Sensorzustands
+               sleep(0.5)  # Pause for 0.5 seconds before rechecking the sensor state
 
        except KeyboardInterrupt:
-           # Sauberes Beenden des Skripts bei Tastaturunterbrechung (Strg+C)
+           # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
            pass
 

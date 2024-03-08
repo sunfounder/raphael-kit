@@ -20,22 +20,25 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
+2024-03-08:
+- Optimize the code section of the Pi5 project - - - Add video tutorials.
+
 2023-11-30:
-    - Updated "Install and Setup Raspberry Pi OS" documentation.
+- Updated "Install and Setup Raspberry Pi OS" documentation.
 
 2023-10-26:
-    - The first release of the German version.
+- The first release of the German version.
 
 2023-10-17:
-    - Add anchor points to the course project.
+- Add anchor points to the course project.
 
 2023-09-04:
-    - Add About this kit page.
-    - Add the introduction of Camera Module.
-    - Add component purchase link for each item
-    - Installing the OS page updated.
-    - Set up Your Raspberry Pi page updated.
-    - GPIO Extension Board page image updated.
+- Add About this kit page.
+- Add the introduction of Camera Module.
+- Add component purchase link for each item
+- Installing the OS page updated.
+- Set up Your Raspberry Pi page updated.
+- GPIO Extension Board page image updated.
 
 <a id="trouble"></a>
 ## Trouble Shootings:

@@ -37,13 +37,13 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`servo`
+    *   - :ref:`cpn_servo`
         - |link_servo_buy|
 
 Schaltplan
@@ -98,41 +98,41 @@ Nachdem das Programm ausgeführt wurde, wird der Servomotor von 0 Grad über 90 
    from gpiozero import Servo
    from time import sleep
 
-   # Festlegen der GPIO-Pin-Nummer, an die der Servomotor angeschlossen ist
+   # Set the GPIO pin number where the servo motor is connected
    myGPIO = 18
 
-   # Definieren eines Korrekturfaktors zur Feinabstimmung der Servoimpulsbreite
+   # Define a correction factor to fine-tune servo pulse width
    myCorrection = 0.45
-   maxPW = (2.0 + myCorrection) / 1000  # Maximale Impulsbreite berechnen
-   minPW = (1.0 - myCorrection) / 1000  # Minimale Impulsbreite berechnen
+   maxPW = (2.0 + myCorrection) / 1000  # Calculate maximum pulse width
+   minPW = (1.0 - myCorrection) / 1000  # Calculate minimum pulse width
 
-   # Initialisierung des Servo-Objekts mit benutzerdefinierten Impulsbreiten
+   # Initialize the Servo object with custom pulse widths
    servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
 
    try:
        while True:
-           # Positionieren des Servos in der Mitte und warten
+           # Position the servo at the middle and wait
            servo.mid()
-           print("Mitte")  # Aktuelle Position anzeigen
-           sleep(0.5)    # Kurze Pause von 0,5 Sekunden
+           print("mid")  # Indicate current position
+           sleep(0.5)    # Brief pause for 0.5 seconds
 
-           # Bewegen des Servos in die minimale Position und warten
+           # Move the servo to its minimum position and wait
            servo.min()
-           print("Min")  # Aktuelle Position anzeigen
-           sleep(1)      # Position für 1 Sekunde halten
+           print("min")  # Indicate current position
+           sleep(1)      # Hold position for 1 second
 
-           # Rückkehr des Servos in die Mittelposition und warten
+           # Return the servo to the middle position and wait
            servo.mid()
-           print("Mitte")  # Aktuelle Position anzeigen
-           sleep(0.5)    # Kurze Pause von 0,5 Sekunden
+           print("mid")  # Indicate current position
+           sleep(0.5)    # Brief pause for 0.5 seconds
 
-           # Bewegen des Servos in die maximale Position und warten
+           # Move the servo to its maximum position and wait
            servo.max()
-           print("Max")  # Aktuelle Position anzeigen
-           sleep(1)      # Position für 1 Sekunde halten
+           print("max")  # Indicate current position
+           sleep(1)      # Hold position for 1 second
 
    except KeyboardInterrupt:
-       # Skript bei einem Tastaturunterbrechung (Strg+C) elegant beenden
+       # Gracefully terminate the script on a keyboard interrupt (Ctrl+C)
        pass
     
 
@@ -150,23 +150,23 @@ Nachdem das Programm ausgeführt wurde, wird der Servomotor von 0 Grad über 90 
 
    .. code-block:: python
 
-       # Festlegen der GPIO-Pin-Nummer, an die der Servomotor angeschlossen ist
+       # Set the GPIO pin number where the servo motor is connected
        myGPIO = 18
 
 #. Diese Zeilen definieren einen Korrekturfaktor und verwenden ihn, um die maximale und minimale Impulsbreite für den Servo zu berechnen und damit seinen Bewegungsbereich fein abzustimmen.
 
    .. code-block:: python
 
-       # Definieren eines Korrekturfaktors zur Feinabstimmung der Servoimpulsbreite
+       # Define a correction factor to fine-tune servo pulse width
        myCorrection = 0.45
-       maxPW = (2.0 + myCorrection) / 1000  # Maximale Impulsbreite berechnen
-       minPW = (1.0 - myCorrection) / 1000  # Minimale Impulsbreite berechnen
+       maxPW = (2.0 + myCorrection) / 1000  # Calculate maximum pulse width
+       minPW = (1.0 - myCorrection) / 1000  # Calculate minimum pulse width
 
 #. Initialisiert das Servo-Objekt mit der angegebenen GPIO-Pin-Nummer und benutzerdefinierten Impulsbreiten.
 
    .. code-block:: python
 
-       # Initialisierung des Servo-Objekts mit benutzerdefinierten Impulsbreiten
+       # Initialize the Servo object with custom pulse widths
        servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
 
 #. Der `try`-Block enthält eine `while True`-Schleife, um den Servo kontinuierlich zu bewegen. Der Servo wird an den Mittel-, Min- und Max-Punkten positioniert, mit jeder Position, die ausgedruckt und für eine bestimmte Dauer gehalten wird.
@@ -175,26 +175,26 @@ Nachdem das Programm ausgeführt wurde, wird der Servomotor von 0 Grad über 90 
 
        try:
            while True:
-               # Positionieren des Servos in der Mitte und warten
+               # Position the servo at the middle and wait
                servo.mid()
-               print("Mitte")  # Aktuelle Position anzeigen
-               sleep(0.5)    # Kurze Pause von 0,5 Sekunden
+               print("mid")  # Indicate current position
+               sleep(0.5)    # Brief pause for 0.5 seconds
 
-               # Bewegen des Servos in die minimale Position und warten
+               # Move the servo to its minimum position and wait
                servo.min()
-               print("Min")  # Aktuelle Position anzeigen
-               sleep(1)      # Position für 1 Sekunde halten
+               print("min")  # Indicate current position
+               sleep(1)      # Hold position for 1 second
 
-               # Rückkehr des Servos in die Mittelposition und warten
+               # Return the servo to the middle position and wait
                servo.mid()
-               print("Mitte")  # Aktuelle Position anzeigen
-               sleep(0.5)    # Kurze Pause von 0,5 Sekunden
+               print("mid")  # Indicate current position
+               sleep(0.5)    # Brief pause for 0.5 seconds
 
-               # Bewegen des Servos in die maximale Position und warten
+               # Move the servo to its maximum position and wait
                servo.max()
-               print("Max")  # Aktuelle Position anzeigen
-               sleep(1)      # Position für 1 Sekunde halten
+               print("max")  # Indicate current position
+               sleep(1)      # Hold position for 1 second
 
        except KeyboardInterrupt:
-           # Skript bei einem Tastaturunterbrechung (Strg+C) elegant beenden
+           # Gracefully terminate the script on a keyboard interrupt (Ctrl+C)
            pass

@@ -37,21 +37,21 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
-    *   - :ref:`relay`
+    *   - :ref:`cpn_relay`
         - |link_relay_buy|
-    *   - :ref:`diode`
+    *   - :ref:`cpn_diode`
         - |link_diode_buy|
 
 Schaltplan
@@ -103,26 +103,26 @@ Während der Code läuft, leuchtet die LED auf. Zusätzlich kann man ein Klicken
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import OutputDevice  # Import der Klasse zur Steuerung von GPIO-Pins
-   from time import sleep  # Import der Sleep-Funktion für Verzögerungen
+   from gpiozero import OutputDevice  # Import the class for controlling GPIO pins
+   from time import sleep  # Import the sleep function for delay
 
-   # Initialisierung des Relais, verbunden mit GPIO-Pin 17, beginnend im 'aus'-Zustand
+   # Initialize the relay connected to GPIO pin 17, starting in the 'off' state
    relay = OutputDevice(17, initial_value=False)
 
    try:
-       # Schleife, um den Zustand des Relais jede Sekunde umzuschalten
+       # Loop to continuously toggle the relay's state every second
        while True:
-           print('Relais öffnet...')  # Information, dass das Relais aktiviert wird
-           relay.on()  # Einschalten des Relais (Annahme einer aktiven Low-Konfiguration)
-           sleep(1)   # Das Relais bleibt 1 Sekunde im Einschaltzustand
+           print('Relay open...')  # Inform that the relay is being activated
+           relay.on()  # Turn on the relay (assuming active low configuration)
+           sleep(1)   # Maintain the relay in the on state for 1 second
 
-           print('...Relais schließt')  # Information, dass das Relais deaktiviert wird
-           relay.off()  # Ausschalten des Relais
-           sleep(1)   # Das Relais bleibt 1 Sekunde im Ausschaltzustand
+           print('...Relay close')  # Inform that the relay is being deactivated
+           relay.off()  # Turn off the relay
+           sleep(1)   # Maintain the relay in the off state for 1 second
 
    except KeyboardInterrupt:
-       # Sauberes Beenden des Skripts bei Tastaturunterbrechung (Strg+C)
-       relay.off()  # Stellen Sie sicher, dass das Relais vor dem Beenden ausgeschaltet ist
+       # Handle a keyboard interrupt (Ctrl+C) to exit the loop
+       relay.off()  # Ensure the relay is turned off before exiting
        pass
 
 
@@ -133,14 +133,14 @@ Während der Code läuft, leuchtet die LED auf. Zusätzlich kann man ein Klicken
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import OutputDevice  # Import der Klasse zur Steuerung von GPIO-Pins
-       from time import sleep  # Import der Sleep-Funktion für Verzögerungen
+       from gpiozero import OutputDevice  # Import the class for controlling GPIO pins
+       from time import sleep  # Import the sleep function for delay
 
 #. Initialisiert ein ``OutputDevice``-Objekt für das Relais, verbunden mit GPIO-Pin 17. ``initial_value=False`` setzt das Relais anfänglich in den Zustand „aus“ (unter der Annahme einer aktiven Low-Konfiguration).
 
    .. code-block:: python
 
-       # Initialisierung des Relais, verbunden mit GPIO-Pin 17, beginnend im 'aus'-Zustand
+       # Initialize the relay connected to GPIO pin 17, starting in the 'off' state
        relay = OutputDevice(17, initial_value=False)
 
 #. Im ``try``-Block befindet sich eine ``while True``-Schleife, die den Zustand des Relais kontinuierlich umschaltet. Das Relais wird ein- und ausgeschaltet, jeweils mit einer 1-Sekunden-Verzögerung zwischen den Zuständen, begleitet von Konsolenausgaben.
@@ -148,22 +148,22 @@ Während der Code läuft, leuchtet die LED auf. Zusätzlich kann man ein Klicken
    .. code-block:: python
 
        try:
-           # Schleife, um den Zustand des Relais jede Sekunde umzuschalten
+           # Loop to continuously toggle the relay's state every second
            while True:
-               print('Relais öffnet...')  # Information, dass das Relais aktiviert wird
-               relay.on()  # Einschalten des Relais (Annahme einer aktiven Low-Konfiguration)
-               sleep(1)   # Das Relais bleibt 1 Sekunde im Einschaltzustand
+               print('Relay open...')  # Inform that the relay is being activated
+               relay.on()  # Turn on the relay (assuming active low configuration)
+               sleep(1)   # Maintain the relay in the on state for 1 second
 
-               print('...Relais schließt')  # Information, dass das Relais deaktiviert wird
-               relay.off()  # Ausschalten des Relais
-               sleep(1)   # Das Relais bleibt 1 Sekunde im Ausschaltzustand
+               print('...Relay close')  # Inform that the relay is being deactivated
+               relay.off()  # Turn off the relay
+               sleep(1)   # Maintain the relay in the off state for 1 second
 
 #. Fängt eine Tastaturunterbrechung (wie Strg+C) ab, um das Skript anmutig zu beenden. Das Relais wird vor dem Beenden des Skripts ausgeschaltet.
 
    .. code-block:: python
       
       except KeyboardInterrupt:
-        # Sauberes Beenden des Skripts bei Tastaturunterbrechung (Strg+C)
-        relay.off()  # Stellen Sie sicher, dass das Relais vor dem Beenden ausgeschaltet ist
+        # Handle a keyboard interrupt (Ctrl+C) to exit the loop
+        relay.off()  # Ensure the relay is turned off before exiting
         pass
 

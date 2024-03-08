@@ -37,17 +37,17 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`thermistor`
+    *   - :ref:`cpn_thermistor`
         - |link_thermistor_buy|
-    *   - :ref:`adc0834`
+    *   - :ref:`cpn_adc0834`
         - \-
 
 Schaltplan
@@ -107,39 +107,39 @@ Wenn der Code läuft, erkennt der Thermistor die Umgebungstemperatur, die auf de
    import time
    import math
 
-   # Initialisierung des ADC0834-Moduls
+   # Initialize the ADC0834 module
    ADC0834.setup()
 
-   # Ausführen des Prozesses in einem try-except-Block
+   # Run the process in a try-except block
    try:
        while True:
-           # Lesen des analogen Werts vom Sensor
+           # Read the analog value from the sensor
            analogVal = ADC0834.getResult()
 
-           # Umwandeln des analogen Werts in eine Spannung
+           # Convert the analog value to a voltage
            Vr = 5 * float(analogVal) / 255
 
-           # Berechnen des Widerstands des Thermistors
+           # Calculate the resistance of the thermistor
            Rt = 10000 * Vr / (5 - Vr)
 
-           # Berechnen der Temperatur in Kelvin
+           # Calculate the temperature in Kelvin
            temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
 
-           # Umrechnen von Kelvin in Celsius
+           # Convert Kelvin to Celsius
            Cel = temp - 273.15
 
-           # Umrechnen von Celsius in Fahrenheit
+           # Convert Celsius to Fahrenheit
            Fah = Cel * 1.8 + 32
 
-           # Ausgeben der Temperatur in Celsius und Fahrenheit
+           # Print the temperature in both Celsius and Fahrenheit
            print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
 
-           # Warten von 0.2 Sekunden vor der nächsten Messung
+           # Wait for 0.2 seconds before the next read
            time.sleep(0.2)
 
-   # Behandeln von KeyboardInterrupt für einen anmutigen Abbruch
+   # Handle KeyboardInterrupt for graceful termination
    except KeyboardInterrupt:
-       # Ressourcen des ADC0834 aufräumen
+       # Clean up ADC0834 resources
        ADC0834.destroy()
 
 
@@ -160,46 +160,46 @@ Wenn der Code läuft, erkennt der Thermistor die Umgebungstemperatur, die auf de
 
    .. code-block:: python
 
-       # Initialisiere das ADC0834-Modul
+       # Initialize the ADC0834 module
        ADC0834.setup()
 
 #. Implementiert eine Endlosschleife für kontinuierliches Datenlesen. Die Schleife liest den analogen Wert von einem Thermistor, wandelt diesen Wert in eine Spannung um, berechnet den Widerstand des Thermistors und übersetzt diesen Widerstand dann in Temperaturmessungen in Kelvin, Celsius und Fahrenheit. Zudem werden die Temperaturmessungen in Celsius und Fahrenheit ausgegeben, mit einer Pause von 0,2 Sekunden zwischen jeder Messung.
 
    .. code-block:: python
 
-       # Führe den Prozess in einem try-except-Block durch
+       # Run the process in a try-except block
        try:
            while True:
-               # Lies den analogen Wert vom Sensor
+               # Read the analog value from the sensor
                analogVal = ADC0834.getResult()
 
-               # Wandle den analogen Wert in eine Spannung um
+               # Convert the analog value to a voltage
                Vr = 5 * float(analogVal) / 255
 
-               # Berechne den Widerstand des Thermistors
+               # Calculate the resistance of the thermistor
                Rt = 10000 * Vr / (5 - Vr)
 
-               # Berechne die Temperatur in Kelvin
+               # Calculate the temperature in Kelvin
                temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
 
-               # Wandle Kelvin in Celsius um
+               # Convert Kelvin to Celsius
                Cel = temp - 273.15
 
-               # Wandle Celsius in Fahrenheit um
+               # Convert Celsius to Fahrenheit
                Fah = Cel * 1.8 + 32
 
-               # Gib die Temperatur sowohl in Celsius als auch in Fahrenheit aus
+               # Print the temperature in both Celsius and Fahrenheit
                print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
 
-               # Warte 0,2 Sekunden vor der nächsten Ablesung
+               # Wait for 0.2 seconds before the next read
                time.sleep(0.2)
 
 #. Fängt eine KeyboardInterrupt-Ausnahme ab, um das Programm sanft zu beenden und beinhaltet Aufräum-Anweisungen für die ADC0834-Ressourcen bei Beendigung.
 
    .. code-block:: python
 
-       # Behandle KeyboardInterrupt für einen sanften Abbruch
+       # Handle KeyboardInterrupt for graceful termination
        except KeyboardInterrupt:
-           # Räume ADC0834-Ressourcen auf
+           # Clean up ADC0834 resources
            ADC0834.destroy()
 

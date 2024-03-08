@@ -39,19 +39,19 @@ Sie können diese auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`button`
+    *   - :ref:`cpn_button`
         - |link_button_buy|
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 Schaltplan
@@ -76,9 +76,9 @@ Experimentelle Verfahren
   :width: 800
   :align: center
 
-**Schritt 2:** Um das Kameramodul anzuschließen und die Konfiguration abzuschließen, siehe: :ref:`camera_module`.
+**Schritt 2:** Um das Kameramodul anzuschließen und die Konfiguration abzuschließen, siehe: :ref:`cpn_camera_module`.
 
-**Schritt 3:** Gehen Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`windows_remote_desktop`.
+**Schritt 3:** Gehen Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`remote_desktop`.
 
 **Schritt 4:** Öffnen Sie ein Terminal und wechseln Sie in den Ordner des Codes.
 
@@ -194,7 +194,7 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
 
    .. code-block:: python
 
-       # Den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers abrufen
+       # Get the current user's login name and home directory
        user = os.getlogin()
        user_home = os.path.expanduser(f'~{user}')
 
@@ -202,7 +202,7 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
 
    .. code-block:: python
 
-       # Die Kamera initialisieren
+       # Initialize the camera
        camera = Picamera2()
        camera.start()
 
@@ -210,7 +210,7 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
 
    .. code-block:: python
 
-       # Eine Variable initialisieren, um den Status der Kamera zu verfolgen
+       # Initialize a variable to track the camera's status
        global status
        status = False
 
@@ -218,7 +218,7 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
 
    .. code-block:: python
 
-       # LED und Knopf mit ihren GPIO-Pinnummern einrichten
+       # Set up LED and button with their GPIO pin numbers
        led = LED(17)
        button = Button(18)
 
@@ -227,7 +227,7 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
    .. code-block:: python
 
        def takePhotos(pin):
-           """Funktion, um den Kamerastatus auf True zu setzen, wenn der Knopf gedrückt wird."""
+           """Function to set the camera's status to True when the button is pressed."""
            global status
            status = True
 
@@ -236,10 +236,11 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
    .. code-block:: python
 
        try:
-           # Die Funktion zuweisen, die aufgerufen werden soll, wenn der Knopf gedrückt wird
+           # Assign the function to be called when the button is pressed
            button.when_pressed = takePhotos
            
            ...
+
 #. Überprüft kontinuierlich, ob der ``status`` ``True`` ist. Wenn ja, lässt es die LED fünfmal blinken, macht ein Foto und setzt ``status`` zurück. Wenn nicht, bleibt die LED aus. Es gibt eine 1-Sekunden-Verzögerung zwischen den Iterationen der Schleife.
 
    .. code-block:: python
@@ -247,26 +248,26 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
        try:        
            ...
            
-           # Hauptschleife
+           # Main loop
            while True:
-               # Überprüfen, ob der Knopf gedrückt wurde
+               # Check if the button has been pressed
                if status:
-                   # Die LED fünfmal blinken lassen
+                   # Blink the LED five times
                    for i in range(5):
                        led.on()
                        time.sleep(0.1)
                        led.off()
                        time.sleep(0.1)
-                   # Ein Foto aufnehmen und speichern
+                   # Capture and save a photo
                    camera.capture_file(f'{user_home}/my_photo.jpg')
-                   print('Foto aufgenommen!')          
-                   # Den Status zurücksetzen
+                   print('Take a photo!')          
+                   # Reset the status
                    status = False
                else:
-                   # Die LED ausschalten, wenn nicht aufgenommen wird
+                   # Turn off the LED if not capturing
                    led.off()
                
-               # Kurz warten, bevor der Knopfstatus erneut überprüft wird
+               # Wait for a short period before checking the button status again
                time.sleep(1)
 
 #. Fängt ein KeyboardInterrupt (wie Ctrl+C) ab und stoppt die Kameravorschau und schaltet die LED aus, bevor das Programm beendet wird.
@@ -274,9 +275,10 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Die Kamera stoppen und die LED ausschalten, wenn ein KeyboardInterrupt auftritt
+           # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
            camera.stop_preview()
            led.off()
            pass
+
 
 

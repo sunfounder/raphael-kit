@@ -39,25 +39,25 @@ Sie können sie auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`power_module`
+    *   - :ref:`cpn_power_module`
         - \-
-    *   - :ref:`thermistor`
+    *   - :ref:`cpn_thermistor`
         - |link_thermistor_buy|
-    *   - :ref:`l293d`
+    *   - :ref:`cpn_l293d`
         - \-
-    *   - :ref:`adc0834`
+    *   - :ref:`cpn_adc0834`
         - \-
-    *   - :ref:`button`
+    *   - :ref:`cpn_button`
         - |link_button_buy|
-    *   - :ref:`motor`
+    *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
 
@@ -134,78 +134,78 @@ Code
    import ADC0834
    import math
 
-   # Initialisierung der GPIO-Pins für die Taste und die Motorsteuerung
+   # Initialize GPIO pins for the button and motor control
    BtnPin = Button(22)
    motor = Motor(forward=5, backward=6, enable=13)
 
-   # Initialisierung des ADC0834-Moduls zur Temperaturmessung
+   # Initialize the ADC0834 module for temperature sensing
    ADC0834.setup()
 
-   # Initialisierung von Variablen zur Überwachung der Motorgeschwindigkeitsstufe und der Temperaturen
+   # Initialize variables to track the motor speed level and temperatures
    level = 0
    currentTemp = 0
    markTemp = 0
 
    def temperature():
        """
-       Liest und berechnet die aktuelle Temperatur vom Sensor.
-       Rückgabewert:
-           float: Die aktuelle Temperatur in Celsius.
+       Reads and calculates the current temperature from the sensor.
+       Returns:
+           float: The current temperature in Celsius.
        """
-       # Analogen Wert vom ADC0834-Modul lesen
+       # Read analog value from the ADC0834 module
        analogVal = ADC0834.getResult()
-       # Analogen Wert in Spannung und dann in Widerstand umwandeln
+       # Convert analog value to voltage and then to resistance
        Vr = 5 * float(analogVal) / 255
        Rt = 10000 * Vr / (5 - Vr)
-       # Temperatur in Celsius berechnen
+       # Calculate temperature in Celsius
        temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
        Cel = temp - 273.15
        return Cel
 
    def motor_run(level):
        """
-       Passt die Motorgeschwindigkeit basierend auf der angegebenen Stufe an.
-       Argumente:
-           level (int): Gewünschte Motorgeschwindigkeitsstufe.
-       Rückgabewert:
-           int: Angepasste Motorgeschwindigkeitsstufe.
+       Adjusts the motor speed based on the specified level.
+       Args:
+           level (int): Desired motor speed level.
+       Returns:
+           int: Adjusted motor speed level.
        """
-       # Motor stoppen, wenn die Stufe 0 ist
+       # Stop the motor if the level is 0
        if level == 0:
            motor.stop()
            return 0
-       # Stufe bei 4 für maximale Geschwindigkeit begrenzen
+       # Cap the level at 4 for maximum speed
        if level >= 4:
            level = 4
-       # Motorgeschwindigkeit einstellen
+       # Set the motor speed
        motor.forward(speed=float(level / 4))
        return level
 
    def changeLevel():
        """
-       Ändert die Motorgeschwindigkeitsstufe, wenn die Taste gedrückt wird, und aktualisiert die Referenztemperatur.
+       Changes the motor speed level when the button is pressed and updates the reference temperature.
        """
        global level, currentTemp, markTemp
-       print("Taste gedrückt")
-       # Durch Stufen 0-4 zyklisch durchlaufen
+       print("Button pressed")
+       # Cycle through levels 0-4
        level = (level + 1) % 5
-       # Referenztemperatur aktualisieren
+       # Update the reference temperature
        markTemp = currentTemp
 
-   # Binden des Tastendruckereignisses an die Funktion changeLevel
+   # Bind the button press event to changeLevel function
    BtnPin.when_pressed = changeLevel
 
    def main():
        """
-       Hauptfunktion zur kontinuierlichen Überwachung und Reaktion auf Temperaturänderungen.
+       Main function to continuously monitor and respond to temperature changes.
        """
        global level, currentTemp, markTemp
-       # Anfängliche Referenztemperatur setzen
+       # Set initial reference temperature
        markTemp = temperature()
        while True:
-           # Kontinuierliche aktuelle Temperatur lesen
+           # Continuously read current temperature
            currentTemp = temperature()
-           # Motorniveau basierend auf Temperaturdifferenz anpassen
+           # Adjust motor level based on temperature difference
            if level != 0:
                if currentTemp - markTemp <= -2:
                    level -= 1
@@ -214,16 +214,15 @@ Code
                    if level < 4:
                        level += 1
                    markTemp = currentTemp
-           # Motor auf der angepassten Stufe laufen lassen
+           # Run the motor at the adjusted level
            level = motor_run(level)
 
-   # Hauptfunktion ausführen und KeyboardInterrupt behandeln
+   # Run the main function and handle KeyboardInterrupt
    try:
        main()
    except KeyboardInterrupt:
-       # Motor stoppen, wenn das Skript unterbrochen wird
+       # Stop the motor when the script is interrupted
        motor.stop()
-
 
 
 Code-Erklärung

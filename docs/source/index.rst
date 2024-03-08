@@ -35,10 +35,7 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
     :maxdepth: 2
 
     Über dieses Kit <self>
-    about_video_course
-    component_list
     install_setup_os/preparation
-    gpio_extension_board 
     download_the_code
 
 .. toctree::
@@ -46,6 +43,7 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
 
     python/play_with_python
     python_pi5/play_with_python_pi5
+    python_video/python_video
 
 .. toctree::
     :maxdepth: 3
@@ -72,6 +70,7 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
 .. toctree::
     :maxdepth: 2
 
+    component/component_list
     appendix/appendix
     thank-learning
 

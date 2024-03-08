@@ -36,17 +36,17 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENBESCHREIBUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`power_module`
+    *   - :ref:`cpn_power_module`
         - \-
-    *   - :ref:`l293d`
+    *   - :ref:`cpn_l293d`
         - \-
-    *   - :ref:`motor`
+    *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
 Schaltung aufbauen

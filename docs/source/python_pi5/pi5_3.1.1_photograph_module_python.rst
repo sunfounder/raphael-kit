@@ -38,13 +38,13 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`Kameramodul`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 Experimentelle Verfahren
 ------------------------------
 
-**Schritt 1:** Gehe zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`windows_remote_desktop`.
+**Schritt 1:** Gehe zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`remote_desktop`.
 
 **Schritt 2:** Überprüfen Sie, ob die Kamera aktiviert ist. Für Anweisungen siehe: :ref:`enable_camera`.
 
@@ -78,29 +78,29 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
    from picamera2 import Picamera2, Preview
    import os
 
-   # Den Login-Namen des aktuellen Benutzers abrufen
+   # Get the current user's login name
    user = os.getlogin()
-   # Den Pfad zum Home-Verzeichnis des Benutzers abrufen
+   # Get the path to the user's home directory
    user_home = os.path.expanduser(f'~{user}')
 
-   # Eine Picamera2-Instanz erstellen
+   # Create a Picamera2 instance
    camera = Picamera2()
-   # Die Standard-Vorschaukonfiguration abrufen
+   # Retrieve the default preview configuration
    preview_config = camera.preview_configuration
 
    try:
-       # Vorschaugröße und -format einstellen
+       # Set preview size and format
        preview_config.size = (800, 600)
        preview_config.format = 'XRGB8888'  
-       # Die Kameravorschau im QTGL-Modus starten
+       # Start the camera preview in QTGL mode
        camera.start_preview(Preview.QTGL)
-       # Die Kamera starten
+       # Start the camera
        camera.start()
-       # Ein Foto aufnehmen und im Home-Verzeichnis des Benutzers speichern
+       # Capture and save a photo to the user's home directory
        camera.capture_file(f'{user_home}/my_photo.jpg')
 
    except KeyboardInterrupt:
-       # Die Kameravorschau bei einem KeyboardInterrupt (z.B. Strg+C) stoppen
+       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
        camera.stop_preview()
        pass
 
@@ -118,18 +118,18 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
 
    .. code-block:: python
 
-       # Den Login-Namen des aktuellen Benutzers abrufen
+       # Get the current user's login name
        user = os.getlogin()
-       # Den Pfad zum Home-Verzeichnis des Benutzers abrufen
+       # Get the path to the user's home directory
        user_home = os.path.expanduser(f'~{user}')
 
 #. Erstellt eine Instanz der Klasse ``Picamera2`` und ruft die Standard-Vorschaukonfiguration ab.
 
    .. code-block:: python
 
-       # Eine Picamera2-Instanz erstellen
+       # Create a Picamera2 instance
        camera = Picamera2()
-       # Die Standard-Vorschaukonfiguration abrufen
+       # Retrieve the default preview configuration
        preview_config = camera.preview_configuration
 
 #. Legt die Größe und das Format der Kameravorschau fest. Die Größe wird auf 800x600 Pixel festgelegt, und das Format auf ``XRGB8888``.
@@ -137,7 +137,7 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
    .. code-block:: python
 
        try:
-           # Vorschaugröße und -format festlegen
+           # Set preview size and format
            preview_config.size = (800, 600)
            preview_config.format = 'XRGB8888'
 
@@ -150,9 +150,9 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
        try:
            ...
            
-           # Die Kameravorschau im QTGL-Modus starten
+           # Start the camera preview in QTGL mode
            camera.start_preview(Preview.QTGL)
-           # Die Kamera starten
+           # Start the camera
            camera.start()
 
            ...
@@ -164,23 +164,23 @@ Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
        try:
            ...           
            
-           # Ein Foto aufnehmen und im Home-Verzeichnis des Benutzers speichern
+           # Capture and save a photo to the user's home directory
            camera.capture_file(f'{user_home}/my_photo.jpg')
 
    .. note::
-       Sie können die Funktion ``camera.capture()`` und eine ``for``-Schleife zusammen verwenden, um eine kontinuierliche Aufnahme zu erreichen. Und mit der Funktion ``delay`` das Zeitintervall für das Aufnehmen von Bildern anpassen.
+       You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
 
        .. code-block:: python
 
-           for i in range(5):
-               camera.capture(f'{user_home}/my_photo{i}.jpg')
+           for i in 5:
+               camera.capture(f'{user_home}/my_photo%s.jpg' % i)
 
-#. Dieser Codeblock behandelt ein KeyboardInterrupt (z.B. Strg+C), indem die Kameravorschau gestoppt wird. Die Anweisung `pass` wird verwendet, um die Ausnahme zu behandeln, ohne sonst etwas zu tun.
+#. Dieser Codeblock behandelt ein KeyboardInterrupt (z.B. Strg+C), indem die Kameravorschau gestoppt wird. Die Anweisung ``pass`` wird verwendet, um die Ausnahme zu behandeln, ohne sonst etwas zu tun.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Die Kameravorschau bei einem KeyboardInterrupt (z.B. Strg+C) stoppen
+           # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
            camera.stop_preview()
            pass
 

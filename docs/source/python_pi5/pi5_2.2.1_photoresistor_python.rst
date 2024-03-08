@@ -37,19 +37,19 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`adc0834`
+    *   - :ref:`cpn_adc0834`
         - \-
-    *   - :ref:`photoresistor`
+    *   - :ref:`cpn_photoresistor`
         - |link_photoresistor_buy|
 
 Schaltplan
@@ -107,34 +107,34 @@ Wenn der Code läuft, ändert sich die Helligkeit der LED entsprechend der vom F
    import ADC0834
    import time
 
-   # Initialisiert eine PWM-LED am GPIO-Pin 22
+   # Initialize a PWM LED on GPIO pin 22
    led = PWMLED(22)
 
-   # Einrichtung des ADC0834-Moduls
+   # Set up the ADC0834 module
    ADC0834.setup()
 
-   # Definiert eine Funktion zum Umrechnen von Werten von einem Bereich in einen anderen
+   # Define a function for mapping values from one range to another
    def MAP(x, in_min, in_max, out_min, out_max):
        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-   # Hauptschleife zum Lesen des ADC-Wertes und Steuern der LED-Helligkeit
+   # Main loop for reading ADC value and controlling LED brightness
    def loop():
        while True:
-           # Liest den analogen Wert vom ADC
+           # Read analog value from ADC
            analogVal = ADC0834.getResult()
-           print('Wert = %d' % analogVal)
+           print('value = %d' % analogVal)
 
-           # Setzt den ADC-Wert in einen PWM-Wert um und stellt die LED-Helligkeit ein
+           # Map the ADC value to a PWM value and set LED brightness
            led.value = float(analogVal/255)
 
-           # Wartet 0,2 Sekunden
+           # Wait for 0.2 seconds
            time.sleep(0.2)
 
-   # Führt die Hauptschleife aus und behandelt KeyboardInterrupt für einen anmutigen Abschluss
+   # Run the main loop and handle KeyboardInterrupt for graceful shutdown
    try:
        loop()
    except KeyboardInterrupt: 
-       # Schaltet die LED aus, bevor das Programm beendet wird
+       # Turn off LED before exiting
        led.value = 0
 
 
@@ -153,17 +153,17 @@ Wenn der Code läuft, ändert sich die Helligkeit der LED entsprechend der vom F
 
    .. code-block:: python
 
-       # Initialisiert eine PWM-LED am GPIO-Pin 22
+       # Initialize a PWM LED on GPIO pin 22
        led = PWMLED(22)
 
-       # Einrichtung des ADC0834-Moduls
+       # Set up the ADC0834 module
        ADC0834.setup()
 
 #. Definiert eine Funktion zur Umrechnung eines Eingabewertes von einem Bereich in einen anderen. Diese Funktion ist entscheidend für die Übersetzung der ADC-Lesungen in einen geeigneten Bereich für die PWM-Steuerung.
 
    .. code-block:: python
 
-       # Definiert eine Funktion zum Umrechnen von Werten von einem Bereich in einen anderen
+       # Define a function for mapping values from one range to another
        def MAP(x, in_min, in_max, out_min, out_max):
            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
@@ -171,27 +171,28 @@ Wenn der Code läuft, ändert sich die Helligkeit der LED entsprechend der vom F
 
    .. code-block:: python
 
-       # Hauptschleife zum Lesen des ADC-Wertes und Steuern der LED-Helligkeit
+       # Main loop for reading ADC value and controlling LED brightness
        def loop():
            while True:
-               # Liest den analogen Wert vom ADC
+               # Read analog value from ADC
                analogVal = ADC0834.getResult()
-               print('Wert = %d' % analogVal)
+               print('value = %d' % analogVal)
 
-               # Setzt den ADC-Wert in einen PWM-Wert um und stellt die LED-Helligkeit ein
+               # Map the ADC value to a PWM value and set LED brightness
                led.value = float(analogVal/255)
 
-               # Wartet 0,2 Sekunden
+               # Wait for 0.2 seconds
                time.sleep(0.2)
 
 #. Führt die Funktion loop aus und beinhaltet Fehlerbehandlung für einen anmutigen Abbruch bei KeyboardInterrupt. Es wird sichergestellt, dass die LED ausgeschaltet ist, wenn das Programm gestoppt wird.
 
    .. code-block:: python
 
-       # Führt die Hauptschleife aus und behandelt KeyboardInterrupt für einen anmutigen Abschluss
+       # Run the main loop and handle KeyboardInterrupt for graceful shutdown
        try:
            loop()
        except KeyboardInterrupt: 
-           # Schaltet die LED aus, bevor das Programm beendet wird
+           # Turn off LED before exiting
            led.value = 0
+
 

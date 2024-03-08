@@ -14,7 +14,7 @@ Standardtastatur und -maus bedient wird. Es handelt sich um ein leistungsfähige
 kleines Gerät, mit dem Menschen jeden Alters die Informatik erkunden und 
 Programmiersprachen wie Scratch und Python erlernen können.
 
-.. image:: img/image1.jpeg
+.. image:: img/compitable_pi.jpg
 
 **Netzadapter**
 

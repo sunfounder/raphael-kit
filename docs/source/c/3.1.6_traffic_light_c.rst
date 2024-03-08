@@ -40,19 +40,19 @@ Sie können die Teile aber auch einzeln über die untenstehenden Links erwerben.
     *   - KOMPONENTENBESCHREIBUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`4_digit`
+    *   - :ref:`cpn_4_digit`
         - \-
-    *   - :ref:`74hc595`
+    *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
 Schaltplan
@@ -343,7 +343,7 @@ Die Codes werden verwendet, um die LED ein- und auszuschalten.
     }
 
 Die Codes werden verwendet, um den Timer ein- und auszuschalten. Weitere Details finden Sie im Kapitel
-1.1.5. Hier wird, wenn der Timer null erreicht, der `colorState` gewechselt, um die LED umzuschalten, und der Timer erhält einen neuen Wert.
+1.1.5. Hier wird, wenn der Timer null erreicht, der ``colorState`` gewechselt, um die LED umzuschalten, und der Timer erhält einen neuen Wert.
 
 .. code-block:: c
 
@@ -364,7 +364,7 @@ Die Codes werden verwendet, um den Timer ein- und auszuschalten. Weitere Details
         return 0;
     }
 
-Der Timer wird in der `main()` Funktion gestartet. In der `loop()` Funktion wird eine 
+Der Timer wird in der ``main()`` Funktion gestartet. In der ``loop()`` Funktion wird eine 
 **while(1)** Schleife verwendet und die Funktionen von 4-stelligen 7-Segment-Anzeigen und LED aufgerufen.
 
 Phänomen-Bild

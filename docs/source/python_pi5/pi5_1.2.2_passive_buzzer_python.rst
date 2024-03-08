@@ -37,17 +37,17 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`Buzzer`
+    *   - :ref:`cpn_Buzzer`
         - |link_passive_buzzer_buy|
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
 Schaltplan
@@ -111,21 +111,21 @@ Der Code wird ausgeführt, der Summer spielt ein Musikstück.
    from gpiozero import TonalBuzzer
    from time import sleep
 
-   # Initialisieren eines TonalBuzzer, verbunden mit GPIO Pin 17
-   tb = TonalBuzzer(17)  # Aktualisieren Sie diese Pin-Nummer entsprechend Ihrer Konfiguration
+   # Initialize a TonalBuzzer connected to GPIO pin 17
+   tb = TonalBuzzer(17)  # Update this pin number based on your setup
 
    def play(tune):
        """
-       Spielen Sie eine musikalische Melodie mit dem Summer.
-       :param tune: Liste von Tupeln (Note, Dauer), wobei jedes Tupel eine Note und ihre Dauer repräsentiert.
+       Play a musical tune using the buzzer.
+       :param tune: List of tuples (note, duration), where each tuple represents a note and its duration.
        """
        for note, duration in tune:
-           print(note)  # Ausgabe der aktuell gespielten Note
-           tb.play(note)  # Spielen der Note auf dem Summer
-           sleep(float(duration))  # Verzögerung für die Dauer der Note
-       tb.stop()  # Stoppen des Spielens nach Vollendung der Melodie
+           print(note)  # Output the current note being played
+           tb.play(note)  # Play the note on the buzzer
+           sleep(float(duration))  # Delay for the duration of the note
+       tb.stop()  # Stop playing after the tune is complete
 
-   # Definieren einer musikalischen Melodie als eine Sequenz von Noten und Dauern
+   # Define a musical tune as a sequence of notes and durations
    tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
        ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
        ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -138,10 +138,10 @@ Der Code wird ausgeführt, der Summer spielt ein Musikstück.
        ('D4', 0.2), ('E4', 0.2)]
 
    try:
-       play(tune)  # Ausführen der Funktion play, um die Melodie zu spielen
+       play(tune)  # Execute the play function to start playing the tune
 
    except KeyboardInterrupt:
-       # Behandlung von KeyboardInterrupt für einen gnädigen Abbruch
+       # Handle KeyboardInterrupt for graceful termination
        pass
 
 
@@ -161,8 +161,8 @@ Der Code wird ausgeführt, der Summer spielt ein Musikstück.
     
    .. code-block:: python
        
-       # Initialisieren eines TonalBuzzer, verbunden mit GPIO Pin 17
-       tb = TonalBuzzer(17)  # Aktualisieren Sie diese Pin-Nummer entsprechend Ihrer Konfiguration
+       # Initialize a TonalBuzzer connected to GPIO pin 17
+       tb = TonalBuzzer(17)  # Update this pin number based on your setup
       
 
 #. Die Funktion ``play`` iteriert über eine Liste von Tupeln, die musikalische Noten und ihre Dauern darstellen. Jede Note wird für ihre spezifizierte Dauer gespielt, und der Summer stoppt nach Abschluss der Melodie.
@@ -171,20 +171,20 @@ Der Code wird ausgeführt, der Summer spielt ein Musikstück.
 
        def play(tune):
            """
-           Spielen Sie eine musikalische Melodie mit dem Summer.
-           :param tune: Liste von Tupeln (Note, Dauer), wobei jedes Tupel eine Note und ihre Dauer repräsentiert.
+           Play a musical tune using the buzzer.
+           :param tune: List of tuples (note, duration), where each tuple represents a note and its duration.
            """
            for note, duration in tune:
-               print(note)  # Ausgabe der aktuell gespielten Note
-               tb.play(note)  # Spielen der Note auf dem Summer
-               sleep(float(duration))  # Verzögerung für die Dauer der Note
-           tb.stop()  # Stoppen des Spielens nach Vollendung der Melodie
+               print(note)  # Output the current note being played
+               tb.play(note)  # Play the note on the buzzer
+               sleep(float(duration))  # Delay for the duration of the note
+           tb.stop()  # Stop playing after the tune is complete
 
 #. Die Melodie wird als eine Sequenz von Noten (Frequenz) und Dauern (Sekunden) definiert.
     
    .. code-block:: python
 
-       # Definieren einer musikalischen Melodie als eine Sequenz von Noten und Dauern
+       # Define a musical tune as a sequence of notes and durations
        tune = [('C#4', 0.2), ('D4', 0.2), (None, 0.2),
            ('Eb4', 0.2), ('E4', 0.2), (None, 0.6),
            ('F#4', 0.2), ('G4', 0.2), (None, 0.6),
@@ -201,9 +201,10 @@ Der Code wird ausgeführt, der Summer spielt ein Musikstück.
    .. code-block:: python  
        
        try:
-           play(tune)  # Ausführen der Funktion play, um die Melodie zu spielen
+           play(tune)  # Execute the play function to start playing the tune
 
        except KeyboardInterrupt:
-           # Behandlung von KeyboardInterrupt für einen gnädigen Abbruch
+           # Handle KeyboardInterrupt for graceful termination
            pass
+
 

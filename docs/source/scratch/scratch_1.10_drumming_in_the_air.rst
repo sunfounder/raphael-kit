@@ -36,15 +36,15 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENBESCHREIBUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`audio_speaker`
+    *   - :ref:`cpn_audio_speaker`
         - \-
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 Schaltung aufbauen
@@ -56,7 +56,7 @@ Schaltung aufbauen
 
 .. note::
   
-  Sie sollten sich auf :ref:`camera_module` beziehen, um das Kameramodul anzuschließen und die Raspberry Pi Kamera-Schnittstelle zu aktivieren.
+  Sie sollten sich auf :ref:`cpn_camera_module` beziehen, um das Kameramodul anzuschließen und die Raspberry Pi Kamera-Schnittstelle zu aktivieren.
 
 Laden Sie den Code und sehen Sie, was passiert
 ----------------------------------------------------

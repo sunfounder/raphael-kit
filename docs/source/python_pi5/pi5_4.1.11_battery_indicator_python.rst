@@ -38,17 +38,17 @@ Sie können sie auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`bar_graph`
+    *   - :ref:`cpn_bar_graph`
         - \-
-    *   - :ref:`adc0834`
+    *   - :ref:`cpn_adc0834`
         - \-
 
 Schaltplan
@@ -119,55 +119,37 @@ Nachdem das Programm ausgeführt wurde, geben Sie dem 3. Pin des ADC0834 und dem
    import ADC0834
    import time
 
-   # Liste der GPIO-Pins, an die LEDs angeschlossen sind
+   # List of GPIO pins to which LEDs are connected
    ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
-   # Initialisierung der LED-Objekte für jeden Pin in der Liste
+   # Initialize LED objects for each pin in the list
    leds = [LED(pin) for pin in ledPins]
 
-   # Einrichtung des ADC0834-Moduls
+   # Setup ADC0834 module
    ADC0834.setup()
 
    def LedBarGraph(value):
-       # Alle LEDs ausschalten
+       # Turn off all LEDs
        for i in range(10):
            leds[i].off()
-       # LEDs bis zum angegebenen Wert einschalten
+       # Turn on LEDs up to the specified value
        for i in range(value):
            leds[i].on()
 
    try:
-       # Hauptschleife zur kontinuierlichen Aktualisierung des LED-Balkendiagramms
+       # Main loop to continuously update LED bar graph
        while True:
-           # Analogen Wert vom ADC0834 lesen
+           # Read analog value from ADC0834
            analogVal = ADC0834.getResult()
-           # Analogen Wert in LED-Balkendiagramm-Level umwandeln
+           # Convert analog value to LED bar graph level
            LedBarGraph(int(analogVal/25))
    except KeyboardInterrupt: 
-       # Alle LEDs ausschalten, wenn das Programm unterbrochen wird
+       # Turn off all LEDs when program is interrupted
        for i in range(10):
            leds[i].off()
-
-
 
 **Code-Erklärung**
 
 #. Dieser Abschnitt importiert die notwendigen Bibliotheken. ``gpiozero`` wird zur Steuerung der LEDs verwendet, ``ADC0834`` zur Schnittstelle mit dem ADC-Modul und ``time`` für zeitbezogene Operationen.
-
-#. Definiert die GPIO-Pins, an die die LEDs angeschlossen sind, und initialisiert ein Array von LED-Objekten für jeden Pin. Dies ermöglicht eine einfache Steuerung jeder LED im Array.
-
-#. Initialisiert das ADC0834-Modul für die Analog-Digital-Umwandlung.
-
-#. Diese Funktion schaltet alle LEDs aus und schaltet dann eine Anzahl von LEDs basierend auf dem Eingabewert ein, wodurch effektiv eine Balkendiagrammdarstellung erzeugt wird.
-
-#. Liest kontinuierlich den analogen Wert vom ADC0834 und aktualisiert das LED-Balkendiagramm basierend auf diesem Wert. Der analoge Wert wird auf einen Bereich von 0-10 für die 10 LEDs skaliert.
-
-#. Stellt sicher, dass alle LEDs ausgeschaltet werden, wenn das Programm unterbrochen wird (z.B. durch Drücken von Ctrl+C).
-
-
-
-**Code Explanation**
-
-#. This section imports the necessary libraries. ``gpiozero`` is for controlling the LEDs, ``ADC0834`` for interfacing with the ADC module, and ``time`` for time-related operations.
 
    .. code-block:: python
 
@@ -176,7 +158,7 @@ Nachdem das Programm ausgeführt wurde, geben Sie dem 3. Pin des ADC0834 und dem
        import ADC0834
        import time
 
-#. Defines the GPIO pins to which the LEDs are connected and initializes an array of LED objects for each pin. This allows for easy control of each LED in the array.
+#. Definiert die GPIO-Pins, an die die LEDs angeschlossen sind, und initialisiert ein Array von LED-Objekten für jeden Pin. Dies ermöglicht eine einfache Steuerung jeder LED im Array.
 
    .. code-block:: python
 
@@ -185,14 +167,14 @@ Nachdem das Programm ausgeführt wurde, geben Sie dem 3. Pin des ADC0834 und dem
        # Initialize LED objects for each pin in the list
        leds = [LED(pin) for pin in ledPins]
 
-#. Initializes the ADC0834 module for analog-to-digital conversion.
+#. Initialisiert das ADC0834-Modul für die Analog-Digital-Umwandlung.
 
    .. code-block:: python
 
        # Setup ADC0834 module
        ADC0834.setup()
 
-#. This function turns off all LEDs and then turns on a number of LEDs based on the input value, effectively creating a bar graph representation.
+#. Diese Funktion schaltet alle LEDs aus und schaltet dann eine Anzahl von LEDs basierend auf dem Eingabewert ein, wodurch effektiv eine Balkendiagrammdarstellung erzeugt wird.
 
    .. code-block:: python
 
@@ -204,7 +186,7 @@ Nachdem das Programm ausgeführt wurde, geben Sie dem 3. Pin des ADC0834 und dem
            for i in range(value):
                leds[i].on()
 
-#. Continuously reads the analog value from the ADC0834 and updates the LED bar graph based on this value. The analog value is scaled down to a range of 0-10 for the 10 LEDs.
+#. Liest kontinuierlich den analogen Wert vom ADC0834 und aktualisiert das LED-Balkendiagramm basierend auf diesem Wert. Der analoge Wert wird auf einen Bereich von 0-10 für die 10 LEDs skaliert.
 
    .. code-block:: python
 
@@ -216,7 +198,7 @@ Nachdem das Programm ausgeführt wurde, geben Sie dem 3. Pin des ADC0834 und dem
                # Convert analog value to LED bar graph level
                LedBarGraph(int(analogVal/25))
 
-#. Ensures all LEDs are turned off when the program is interrupted (e.g., by pressing Ctrl+C).
+#. Stellt sicher, dass alle LEDs ausgeschaltet werden, wenn das Programm unterbrochen wird (z.B. durch Drücken von Ctrl+C).
 
    .. code-block:: python
 

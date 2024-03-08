@@ -39,17 +39,17 @@ Sie können diese auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`camera_module`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
-    *   - :ref:`pir`
+    *   - :ref:`cpn_pir`
         - \-
 
 
@@ -76,9 +76,9 @@ Vor diesem Projekt sollten Sie sicherstellen, dass Sie :ref:`3.1.1_py_pi5` abges
   :width: 800
   :align: center
 
-**Schritt 2:** Um das Kameramodul anzuschließen und die Konfiguration abzuschließen, siehe: :ref:`camera_module`.
+**Schritt 2:** Um das Kameramodul anzuschließen und die Konfiguration abzuschließen, siehe: :ref:`cpn_camera_module`.
 
-**Schritt 3:** Gehen Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`windows_remote_desktop`.
+**Schritt 3:** Gehen Sie zum Raspberry Pi Desktop. Für ein besseres Erlebnis benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`remote_desktop`.
 
 **Schritt 4:** Öffnen Sie ein Terminal und wechseln Sie in den Ordner des Codes.
 
@@ -126,43 +126,43 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
 .. code-block:: python
 
     #!/usr/bin/env python3  
-    von picamera2 import Picamera2, Preview
-    von gpiozero import MotionSensor
+    from picamera2 import Picamera2, Preview
+    from gpiozero import MotionSensor
     import time
     import os
 
-    # Den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers abrufen
+    # Retrieve the current user's login name and home directory
     user = os.getlogin()
     user_home = os.path.expanduser(f'~{user}')
 
-    # Die Kamera initialisieren
+    # Initialize the camera
     camera = Picamera2()
     camera.start()
 
-    # Den Bewegungssensor am GPIO-Pin 17 initialisieren
+    # Initialize the motion sensor on GPIO pin 17
     pir = MotionSensor(17)
 
     try:
-        i = 1  # Die Bildanzahl initialisieren
+        i = 1  # Initialize the image count
         while True:
             if pir.motion_detected:
-                # Ein Bild aufnehmen, wenn Bewegung erkannt wird, und es mit einer einzigartigen Nummer speichern
+                # Capture an image when motion is detected and save it with a unique number
                 camera.capture_file(f'{user_home}/capture%s.jpg' % i)
-                print('Die Nummer ist %s' % i)  # Die Bildanzahl ausdrucken
-                time.sleep(3)  # 3 Sekunden warten, bevor die nächste Erkennung stattfindet
-                i += 1  # Die Bildanzahl erhöhen
+                print('The number is %s' % i)  # Print the image count
+                time.sleep(3)  # Wait for 3 seconds before next detection
+                i += 1  # Increment the image count
             else:
-                print('warte')  # 'warte' ausdrucken, wenn keine Bewegung erkannt wird
-                time.sleep(0.5)  # Alle 0.5 Sekunden auf Bewegung prüfen
+                print('waiting')  # Print 'waiting' when no motion is detected
+                time.sleep(0.5)  # Check for motion every 0.5 seconds
 
     except KeyboardInterrupt:
-        # Die Kamera stoppen und die LED ausschalten, wenn ein KeyboardInterrupt auftritt
+        # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
         camera.stop_preview()
         pass
 
 **Code-Erklärung**
 
-#. Importiert die Klassen `Picamera2` und `Preview` für die Kamerasteuerung, die Klasse `MotionSensor` für die Bewegungserkennung und die Standardbibliotheken `time` und `os` für die Zeitsteuerung und Interaktionen mit dem Betriebssystem.
+#. Importiert die Klassen ``Picamera2`` und ``Preview`` für die Kamerasteuerung, die Klasse ``MotionSensor`` für die Bewegungserkennung und die Standardbibliotheken ``time`` und ``os`` für die Zeitsteuerung und Interaktionen mit dem Betriebssystem.
 
    .. code-block:: python
 
@@ -176,7 +176,7 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
 
    .. code-block:: python
 
-       # Den Login-Namen und das Home-Verzeichnis des aktuellen Benutzers abrufen
+       # Retrieve the current user's login name and home directory
        user = os.getlogin()
        user_home = os.path.expanduser(f'~{user}')
 
@@ -184,7 +184,7 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
 
    .. code-block:: python
 
-       # Die Kamera initialisieren
+       # Initialize the camera
        camera = Picamera2()
        camera.start()
 
@@ -192,7 +192,7 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
 
    .. code-block:: python
 
-       # Den Bewegungssensor am GPIO-Pin 17 initialisieren
+       # Initialize the motion sensor on GPIO pin 17
        pir = MotionSensor(17)
 
 #. Initialisiert einen Zähler ``i``, um die Anzahl der aufgenommenen Bilder zu verfolgen. In einer Endlosschleife wird überprüft, ob eine Bewegung erkannt wurde. Wenn eine Bewegung erkannt wird, wird ein Bild aufgenommen, dieses mit einem einzigartigen Namen basierend auf dem Zähler ``i`` gespeichert, die Bildnummer ausgedruckt und 3 Sekunden gewartet, bevor erneut auf Bewegung geprüft wird. Der Zähler ``i`` wird nach jeder Aufnahme erhöht.
@@ -200,14 +200,14 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
    .. code-block:: python
 
        try:
-           i = 1  # Die Bildanzahl initialisieren
+           i = 1  # Initialize the image count
            while True:
                if pir.motion_detected:
-                   # Ein Bild aufnehmen, wenn Bewegung erkannt wird, und es mit einer einzigartigen Nummer speichern
+                   # Capture an image when motion is detected and save it with a unique number
                    camera.capture_file(f'{user_home}/capture%s.jpg' % i)
-                   print('Die Nummer ist %s' % i)  # Die Bildanzahl ausdrucken
-                   time.sleep(3)  # 3 Sekunden warten, bevor die nächste Erkennung stattfindet
-                   i += 1  # Die Bildanzahl erhöhen
+                   print('The number is %s' % i)  # Print the image count
+                   time.sleep(3)  # Wait for 3 seconds before next detection
+                   i += 1  # Increment the image count
 
 #. Wenn keine Bewegung erkannt wird, wird ``warte`` ausgedruckt und alle 0,5 Sekunden erneut auf Bewegung geprüft.
 
@@ -220,17 +220,18 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
                ...
                
                else:
-                   print('warte')  # 'warte' ausdrucken, wenn keine Bewegung erkannt wird
-                   time.sleep(0.5)  # Alle 0.5 Sekunden auf Bewegung prüfen
+                   print('waiting')  # Print 'waiting' when no motion is detected
+                   time.sleep(0.5)  # Check for motion every 0.5 seconds
 
 #. Fängt ein KeyboardInterrupt (wie Ctrl+C) ab, um die Kameravorschau zu stoppen und das Skript ordentlich zu beenden.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Die Kamera stoppen und die LED ausschalten, wenn ein KeyboardInterrupt auftritt
+           # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
            camera.stop_preview()
            pass
+
 
 
 

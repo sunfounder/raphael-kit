@@ -7,7 +7,7 @@ Hier lernen Sie, Scratch 3 auf dem Raspberry Pi zu verwenden und mit Scratch 3 a
 
 .. note::
 
-    Wenn Sie mit Scratch 3 programmieren, benötigen Sie möglicherweise einen Bildschirm für ein besseres Erlebnis. Siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Natürlich können Sie, wenn Sie keinen Bildschirm haben, auch remote auf den Raspberry Pi Desktop zugreifen. Eine ausführliche Anleitung finden Sie unter :ref:`windows_remote_desktop`.
+    Wenn Sie mit Scratch 3 programmieren, benötigen Sie möglicherweise einen Bildschirm für ein besseres Erlebnis. Siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Natürlich können Sie, wenn Sie keinen Bildschirm haben, auch remote auf den Raspberry Pi Desktop zugreifen. Eine ausführliche Anleitung finden Sie unter :ref:`remote_desktop`.
 
 .. toctree::
     :maxdepth: 2

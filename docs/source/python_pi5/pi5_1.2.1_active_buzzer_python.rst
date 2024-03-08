@@ -37,17 +37,17 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`buzzer`
+    *   - :ref:`cpn_buzzer`
         - \-
-    *   - :ref:`transistor`
+    *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
 
@@ -110,23 +110,23 @@ Der Code wird ausgeführt, der Summer piept.
    from gpiozero import Buzzer
    from time import sleep
 
-   # Initialisieren eines Buzzer-Objekts am GPIO-Pin 17
+   # Initialize a Buzzer object on GPIO pin 17
    buzzer = Buzzer(17)
 
    try:
        while True:
-           # Den Summer einschalten
-           print('Summer An')
+           # Turn on the buzzer
+           print('Buzzer On')
            buzzer.on()
-           sleep(0.1)  # Den Summer für 0.1 Sekunden eingeschaltet lassen
+           sleep(0.1)  # Keep the buzzer on for 0.1 seconds
 
-           # Den Summer ausschalten
-           print('Summer Aus')
+           # Turn off the buzzer
+           print('Buzzer Off')
            buzzer.off()
-           sleep(0.1)  # Den Summer für 0.1 Sekunden ausgeschaltet lassen
+           sleep(0.1)  # Keep the buzzer off for 0.1 seconds
 
    except KeyboardInterrupt:
-       # KeyboardInterrupt (Strg+C) für einen sauberen Skriptabbruch behandeln
+       # Handle KeyboardInterrupt (Ctrl+C) for clean script termination
        pass
 
 
@@ -145,7 +145,7 @@ Der Code wird ausgeführt, der Summer piept.
     
    .. code-block:: python
        
-       # Initialisieren eines Buzzer-Objekts am GPIO-Pin 17
+       # Initialize a Buzzer object on GPIO pin 17
        buzzer = Buzzer(17)
         
       
@@ -156,22 +156,22 @@ Der Code wird ausgeführt, der Summer piept.
        
        try:
            while True:
-               # Den Summer einschalten
-               print('Summer An')
+               # Turn on the buzzer
+               print('Buzzer On')
                buzzer.on()
-               sleep(0.1)  # Den Summer für 0.1 Sekunden eingeschaltet lassen
+               sleep(0.1)  # Keep the buzzer on for 0.1 seconds
 
-               # Den Summer ausschalten
-               print('Summer Aus')
+               # Turn off the buzzer
+               print('Buzzer Off')
                buzzer.off()
-               sleep(0.1)  # Den Summer für 0.1 Sekunden ausgeschaltet lassen
+               sleep(0.1)  # Keep the buzzer off for 0.1 seconds
 
 #. Dieser Abschnitt stellt sicher, dass das Programm sicher mit einer Tastaturunterbrechung (Strg+C) beendet werden kann, ohne einen Fehler auszulösen.
       
    .. code-block:: python
        
        except KeyboardInterrupt:
-       # KeyboardInterrupt (Strg+C) für einen sauberen Skriptabbruch behandeln
+       # Handle KeyboardInterrupt (Ctrl+C) for clean script termination
        pass
       
 

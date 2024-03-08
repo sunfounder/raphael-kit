@@ -37,19 +37,19 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`slide_switch`
+    *   - :ref:`cpn_slide_switch`
         - |link_slide_switch_buy|
-    *   - :ref:`capacitor`
+    *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
 Schaltplan
@@ -106,32 +106,32 @@ Während der Code läuft, verbinden Sie den Schalter mit der linken Seite, dann 
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # Import der Klassen LED und Button für die GPIO-Steuerung
-   from time import sleep  # Import der Funktion sleep für Verzögerungen
+   from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
+   from time import sleep  # Import sleep function for adding delays
 
-   # Initialisierung des Mikroschalters am GPIO-Pin 17 mit deaktiviertem Pull-Up-Widerstand
+   # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
    micro_switch = Button(17, pull_up=False)
-   # Initialisierung von LED1 am GPIO-Pin 22
+   # Initialize LED1 on GPIO pin 22
    led1 = LED(22)
-   # Initialisierung von LED2 am GPIO-Pin 27
+   # Initialize LED2 on GPIO pin 27
    led2 = LED(27)
 
    try:
-       # Hauptloop zur Steuerung der LED-Zustände basierend auf dem Zustand des Mikroschalters
+       # Main loop to control LED states based on the micro switch's state
        while True:
-           if micro_switch.is_pressed:  # Überprüfen, ob der Mikroschalter gedrückt ist
-               print('    LED1 EIN    ')  # Statusmeldung ausgeben
-               led1.on()   # LED1 einschalten
-               led2.off()  # LED2 ausschalten
-           else:  # Wenn der Mikroschalter nicht gedrückt ist
-               print('    LED2 EIN    ')  # Statusmeldung ausgeben
-               led1.off()  # LED1 ausschalten
-               led2.on()   # LED2 einschalten
+           if micro_switch.is_pressed:  # Check if the micro switch is pressed
+               print('    LED1 ON    ')  # Print status message
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
+           else:  # If the micro switch is not pressed
+               print('    LED2 ON    ')  # Print status message
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
 
-           sleep(0.5)  # 0,5 Sekunden warten, bevor der Schalterzustand erneut geprüft wird
+           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
 
    except KeyboardInterrupt:
-       # Sauberes Beenden des Skripts bei einer Tastaturunterbrechung (Strg+C)
+       # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
        pass
  
 
@@ -142,40 +142,41 @@ Während der Code läuft, verbinden Sie den Schalter mit der linken Seite, dann 
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # Import der Klassen LED und Button für die GPIO-Steuerung
-       from time import sleep  # Import der Funktion sleep für Verzögerungen
+       from gpiozero import LED, Button  # Import LED and Button classes for GPIO control
+       from time import sleep  # Import sleep function for adding delays
 
 #. Initialisiert einen Mikroschalter, der mit dem GPIO-Pin 17 verbunden ist, mit deaktiviertem Pull-Up-Widerstand und zwei LEDs, die mit den GPIO-Pins 22 und 27 verbunden sind.
 
    .. code-block:: python
 
-       # Initialisierung des Mikroschalters am GPIO-Pin 17 mit deaktiviertem Pull-Up-Widerstand
+       # Initialize the micro switch on GPIO pin 17 with the pull-up resistor disabled
        micro_switch = Button(17, pull_up=False)
-       # Initialisierung von LED1 am GPIO-Pin 22
+       # Initialize LED1 on GPIO pin 22
        led1 = LED(22)
-       # Initialisierung von LED2 am GPIO-Pin 27
+       # Initialize LED2 on GPIO pin 27
        led2 = LED(27)
+
 
 #. Die Hauptschleife überprüft den Zustand des Mikroschalters. Wenn gedrückt, leuchtet LED1 und LED2 geht aus; wenn nicht gedrückt, geht LED1 aus und LED2 leuchtet. Die Schleife wiederholt sich alle 0,5 Sekunden. Fängt eine Tastaturunterbrechung (wie Strg+C) ab, um das Skript anmutig zu beenden.
 
    .. code-block:: python
 
        try:
-       # Hauptloop zur Steuerung der LED-Zustände basierend auf dem Zustand des Mikroschalters
+       # Main loop to control LED states based on the micro switch's state
        while True:
-           if micro_switch.is_pressed:  # Überprüfen, ob der Mikroschalter gedrückt ist
-               print('    LED1 EIN    ')  # Statusmeldung ausgeben
-               led1.on()   # LED1 einschalten
-               led2.off()  # LED2 ausschalten
-           else:  # Wenn der Mikroschalter nicht gedrückt ist
-               print('    LED2 EIN    ')  # Statusmeldung ausgeben
-               led1.off()  # LED1 ausschalten
-               led2.on()   # LED2 einschalten
+           if micro_switch.is_pressed:  # Check if the micro switch is pressed
+               print('    LED1 ON    ')  # Print status message
+               led1.on()   # Turn on LED1
+               led2.off()  # Turn off LED2
+           else:  # If the micro switch is not pressed
+               print('    LED2 ON    ')  # Print status message
+               led1.off()  # Turn off LED1
+               led2.on()   # Turn on LED2
 
-           sleep(0.5)  # 0,5 Sekunden warten, bevor der Schalterzustand erneut geprüft wird
+           sleep(0.5)  # Wait for 0.5 seconds before rechecking the switch state
 
        except KeyboardInterrupt:
-           # Sauberes Beenden des Skripts bei einer Tastaturunterbrechung (Strg+C)
+           # Handle a keyboard interrupt (Ctrl+C) for a clean exit from the loop
            pass
        
 

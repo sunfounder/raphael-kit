@@ -39,13 +39,13 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`infrared_avoidance`
+    *   - :ref:`cpn_infrared_avoidance`
         - |link_obstacle_avoidance_buy|
 
 Schaltplan
@@ -103,19 +103,19 @@ Nachdem der Code ausgeführt wurde, leuchtet die Ausgangsanzeige auf dem Modul a
    from gpiozero import Button
    import time
 
-   # Initialisiere den Hindernissensor, verbunden mit GPIO Pin 17
-   # Der Sensor ist mit einem Pull-up-Widerstand konfiguriert
+   # Initialize the obstacle sensor connected to GPIO pin 17
+   # The sensor is configured with a pull-up resistor
    obstacle_sensor = Button(17, pull_up=True)  
 
    try:
-      # Kontinuierliches Überwachen auf Hindernisse
+      # Continuously monitor for obstacles
       while True:
-         if obstacle_sensor.is_pressed:  # Prüfe, ob der Sensor ausgelöst ist
-               print("Detected Barrier!")  # Nachricht ausgeben, wenn ein Hindernis erkannt wird
-               time.sleep(1)  # Verzögerung von 1 Sekunde, um wiederholte Nachrichten zu vermeiden
+         if obstacle_sensor.is_pressed:  # Check if the sensor is triggered
+               print("Detected Barrier!")  # Print a message when an obstacle is detected
+               time.sleep(1)  # Delay for 1 second to avoid repetitive messages
 
    except KeyboardInterrupt:
-      # Behandlung von KeyboardInterrupt (Strg+C) für einen sauberen und sicheren Ausstieg
+      # Handle KeyboardInterrupt (Ctrl+C) for a clean and safe exit
       pass
 
 
@@ -133,8 +133,8 @@ Nachdem der Code ausgeführt wurde, leuchtet die Ausgangsanzeige auf dem Modul a
 
    .. code-block:: python
 
-      # Initialisiere den Hindernissensor, verbunden mit GPIO Pin 17
-      # Der Sensor ist mit einem Pull-up-Widerstand konfiguriert
+      # Initialize the obstacle sensor connected to GPIO pin 17
+      # The sensor is configured with a pull-up resistor
       obstacle_sensor = Button(17, pull_up=True)  
 
 #. In einer fortlaufenden Schleife überprüft das Programm, ob der Hindernissensor aktiviert ist (``is_pressed``). Wenn ein Hindernis erkannt wird, druckt es "Detected Barrier!" und wartet dann eine Sekunde (um wiederholte Nachrichten zu vermeiden). Die ``try-except``-Struktur wird verwendet, um eine KeyboardInterrupt für einen sauberen Ausstieg zu behandeln.
@@ -142,14 +142,15 @@ Nachdem der Code ausgeführt wurde, leuchtet die Ausgangsanzeige auf dem Modul a
    .. code-block:: python
 
       try:
-         # Kontinuierliches Überwachen auf Hindernisse
+         # Continuously monitor for obstacles
          while True:
-            if obstacle_sensor.is_pressed:  # Prüfe, ob der Sensor ausgelöst ist
-                  print("Detected Barrier!")  # Nachricht ausgeben, wenn ein Hindernis erkannt wird
-                  time.sleep(1)  # Verzögerung von 1 Sekunde, um wiederholte Nachrichten zu vermeiden
+            if obstacle_sensor.is_pressed:  # Check if the sensor is triggered
+                  print("Detected Barrier!")  # Print a message when an obstacle is detected
+                  time.sleep(1)  # Delay for 1 second to avoid repetitive messages
 
       except KeyboardInterrupt:
-         # Behandlung von KeyboardInterrupt (Strg+C) für einen sauberen und sicheren Ausstieg
+         # Handle KeyboardInterrupt (Ctrl+C) for a clean and safe exit
          pass
+
 
 

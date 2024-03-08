@@ -38,13 +38,13 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENÜBERSICHT
         - KAUF-LINK
 
-    *   - :ref:`Kameramodul`
+    *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 Experimentelle Verfahren
 ------------------------------
 
-**Schritt 1:** Wechseln Sie zum Raspberry Pi Desktop. Für eine bessere Erfahrung benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`windows_remote_desktop`.
+**Schritt 1:** Wechseln Sie zum Raspberry Pi Desktop. Für eine bessere Erfahrung benötigen Sie möglicherweise einen Bildschirm, siehe: `Verbinden Sie Ihren Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Oder greifen Sie remote auf den Raspberry Pi Desktop zu, für eine detaillierte Anleitung siehe :ref:`remote_desktop`.
 
 **Schritt 2:** Überprüfen Sie, ob die Kamera aktiviert ist. Anweisungen finden Sie unter: :ref:`enable_camera`.
 
@@ -83,41 +83,41 @@ Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
    from picamera2.outputs import FfmpegOutput
    import os
 
-   # Ermitteln des aktuellen Benutzernamens
+   # Get the current user's login name
    user = os.getlogin()
-   # Pfad zum Home-Verzeichnis des Benutzers ermitteln
+   # Get the path to the user's home directory
    user_home = os.path.expanduser(f'~{user}')
 
-   # Erstellen einer Picamera2-Instanz
+   # Create a Picamera2 instance
    camera = Picamera2()
-   # Abrufen der Standardvorschaukonfiguration
+   # Retrieve the default preview configuration
    preview_config = camera.preview_configuration
 
    try:
-       # Konfigurieren der Vorschaugröße und des -formats
+       # Configure preview size and format
        preview_config.size = (800, 600)
        preview_config.format = 'XRGB8888'
-       # Starten der Kameravorschau im QTGL-Modus
+       # Start the camera preview in QTGL mode
        camera.start_preview(Preview.QTGL)
 
-       # Videokonfiguration mit Größe, Bildrate und Pufferanzahl definieren
+       # Define video configuration with size, frame rate, and buffer count
        conf = {'size': (800, 600)}
        controls = {'FrameRate': 40}
        config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
-       # Erstellen eines Videoencoders mit einer bestimmten Bitrate
+       # Create a video encoder with a specified bitrate
        encoder = H264Encoder(bitrate=10000000)
-       # Ausgabedatei für das Video definieren
+       # Define output file for the video
        output = FfmpegOutput(f'{user_home}/my_video.mp4')
-       # Konfigurieren und Starten der Aufnahme
+       # Configure and start recording
        camera.configure(config)
        camera.start_recording(encoder, output)
-       # 10 Sekunden aufnehmen
+       # Record for 10 seconds
        time.sleep(10)
-       # Aufnahme stoppen
+       # Stop the recording
        camera.stop_recording()
 
    except KeyboardInterrupt:
-       # Vorschau der Kamera stoppen, wenn ein KeyboardInterrupt (z. B. Ctrl+C) auftritt
+       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
        camera.stop_preview()
        pass
 
@@ -139,18 +139,18 @@ Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
 
    .. code-block:: python
 
-       # Den Login-Namen des aktuellen Benutzers abrufen
+       # Get the current user's login name
        user = os.getlogin()
-       # Den Pfad zum Home-Verzeichnis des Benutzers abrufen
+       # Get the path to the user's home directory
        user_home = os.path.expanduser(f'~{user}')
 
 #. Erstellt eine Instanz der Klasse ``Picamera2`` und ruft die Standard-Vorschaueinstellung ab.
 
    .. code-block:: python
 
-       # Eine Instanz von Picamera2 erstellen
+       # Create a Picamera2 instance
        camera = Picamera2()
-       # Die Standard-Vorschaueinstellung abrufen
+       # Retrieve the default preview configuration
        preview_config = camera.preview_configuration
 
 #. Stellt die Größe und das Format der Kameravorschau ein. Die Größe wird auf 800x600 Pixel festgelegt, das Format auf ``XRGB8888``.
@@ -158,7 +158,7 @@ Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
    .. code-block:: python
 
        try:
-           # Vorschaugröße und -format konfigurieren
+           # Configure preview size and format
            preview_config.size = (800, 600)
            preview_config.format = 'XRGB8888'
            
@@ -169,7 +169,7 @@ Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
        try:
            ...          
              
-           # Die Kameravorschau im QTGL-Modus starten
+           # Start the camera preview in QTGL mode
            camera.start_preview(Preview.QTGL)
            
            ...
@@ -181,12 +181,13 @@ Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
        try:
            ...
            
-           # Videokonfiguration mit Größe, Bildrate und Pufferanzahl definieren
+           # Define video configuration with size, frame rate, and buffer count
            conf = {'size': (800, 600)}
            controls = {'FrameRate': 40}
            config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
            
            ...
+
 
 #. Erstellt einen Videoencoder mit einer festgelegten Bitrate von 10 Mbps, unter Verwendung des H.264-Encoding-Formats. Legt den Ausgabedateipfad für das Video fest, speichert es als ``my_video.mp4`` im Home-Verzeichnis des Benutzers.
 
@@ -195,9 +196,9 @@ Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
        try:
            ...
 
-           # Einen Videoencoder mit einer festgelegten Bitrate erstellen
+           # Create a video encoder with a specified bitrate
            encoder = H264Encoder(bitrate=10000000)
-           # Ausgabedatei für das Video definieren
+           # Define output file for the video
            output = FfmpegOutput(f'{user_home}/my_video.mp4')
            
            ...
@@ -209,20 +210,20 @@ Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
        try:
            ...
 
-           # Konfigurieren und mit der Aufnahme beginnen
+           # Configure and start recording
            camera.configure(config)
            camera.start_recording(encoder, output)
-           # 10 Sekunden aufnehmen
+           # Record for 10 seconds
            time.sleep(10)
-           # Die Aufnahme stoppen
+           # Stop the recording
            camera.stop_recording()
 
-#. Dieser Block von Code behandelt ein KeyboardInterrupt (z. B. Ctrl+C), indem die Kameravorschau gestoppt wird. Das `pass` Statement wird verwendet, um die Ausnahme zu behandeln, ohne etwas anderes zu tun.
+#. Dieser Block von Code behandelt ein KeyboardInterrupt (z. B. Ctrl+C), indem die Kameravorschau gestoppt wird. Das ``pass`` Statement wird verwendet, um die Ausnahme zu behandeln, ohne etwas anderes zu tun.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Die Kameravorschau stoppen, wenn ein KeyboardInterrupt (z.B. Ctrl+C) erfolgt
+           # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
            camera.stop_preview()
            pass
 

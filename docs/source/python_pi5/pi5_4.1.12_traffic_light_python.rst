@@ -39,19 +39,19 @@ Sie können sie auch einzeln über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`led`
+    *   - :ref:`cpn_led`
         - |link_led_buy|
-    *   - :ref:`4_digit`
+    *   - :ref:`cpn_4_digit`
         - \-
-    *   - :ref:`74hc595`
+    *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
 
@@ -121,43 +121,43 @@ Code
    from gpiozero import OutputDevice, LED
    import threading
 
-   # GPIO-Pins für das 74HC595 Schieberegister einrichten
-   SDI = OutputDevice(24)   # Serieller Dateneingang
+   # Setup GPIO pins for 74HC595 shift register
+   SDI = OutputDevice(24)   # Serial Data Input
    RCLK = OutputDevice(23)  # Register Clock
-   SRCLK = OutputDevice(18) # Schieberegister Clock
+   SRCLK = OutputDevice(18) # Shift Register Clock
 
-   # GPIO-Pins für die Auswahl der Ziffern auf dem 7-Segment-Display einrichten
+   # Setup GPIO pins for digit selection on 7-segment display
    placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-   # Segmentcodes für die Zahlen 0-9 auf dem 7-Segment-Display
+   # Segment codes for numbers 0-9 on 7-segment display
    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-   # GPIO-Pins für die LEDs der Ampel einrichten
-   ledPinR = LED(25) # Rote LED
-   ledPinG = LED(8)  # Grüne LED
-   ledPinY = LED(7)  # Gelbe LED
+   # Setup GPIO pins for traffic light LEDs
+   ledPinR = LED(25) # Red LED
+   ledPinG = LED(8)  # Green LED
+   ledPinY = LED(7)  # Yellow LED
 
-   # Zeiteinstellungen für die Ampelphasen
+   # Duration settings for traffic lights
    greenLight = 30
    yellowLight = 5
    redLight = 60
 
-   # Namen der Ampelfarben
-   lightColor = ("Rot", "Grün", "Gelb")
+   # Traffic light color names
+   lightColor = ("Red", "Green", "Yellow")
 
-   # Zustandsvariablen initialisieren
+   # Initialize state variables
    colorState = 0
    counter = 60
    timer1 = None
 
    def setup():
-       """ Initialisiert das Ampelsystem und startet den Timer. """
+       """ Initialize the traffic light system and start the timer. """
        global timer1
        timer1 = threading.Timer(1.0, timer)
        timer1.start()
 
    def clearDisplay():
-       """ Löscht das 7-Segment-Display. """
+       """ Clear the 7-segment display. """
        for _ in range(8):
            SDI.on()
            SRCLK.on()
@@ -166,7 +166,7 @@ Code
        RCLK.off()
 
    def hc595_shift(data):
-       """ Überträgt Daten in das 74HC595 Schieberegister für die Anzeige. """
+       """ Shift data to the 74HC595 shift register for digit display. """
        for i in range(8):
            SDI.value = 0x80 & (data << i)
            SRCLK.on()
@@ -175,13 +175,13 @@ Code
        RCLK.off()
 
    def pickDigit(digit):
-       """ Wählt eine spezifische Ziffer zur Anzeige auf dem 7-Segment-Display aus. """
+       """ Select a specific digit to display on the 7-segment display. """
        for pin in placePin:
            pin.off()
        placePin[digit].on()
 
    def timer():
-       """ Verwaltet die Zeit für den Wechsel der Ampellichter. """
+       """ Handle the timing for traffic light changes. """
        global counter, colorState, timer1
        timer1 = threading.Timer(1.0, timer)
        timer1.start()
@@ -192,7 +192,7 @@ Code
        print(f"counter : {counter}    color: {lightColor[colorState]}")
 
    def lightup():
-       """ Aktualisiert das Ampellicht basierend auf dem aktuellen Zustand. """
+       """ Update the traffic light LED based on the current state. """
        global colorState
        ledPinR.off()
        ledPinG.off()
@@ -200,7 +200,7 @@ Code
        [ledPinR, ledPinG, ledPinY][colorState].on()
 
    def display():
-       """ Zeigt den aktuellen Zählerwert auf dem 7-Segment-Display an. """
+       """ Display the current counter value on the 7-segment display. """
        global counter
 
        for i in range(4):
@@ -212,13 +212,13 @@ Code
            hc595_shift(number[digit])
 
    def loop():
-       """ Hauptloop zur kontinuierlichen Aktualisierung der Anzeige und der Lichter. """
+       """ Main loop to continuously update display and lights. """
        while True:
            display()
            lightup()
 
    def destroy():
-       """ Räumt Ressourcen auf, wenn das Skript beendet wird. """
+       """ Clean up resources when the script is terminated. """
        global timer1
        timer1.cancel()
        ledPinR.off()

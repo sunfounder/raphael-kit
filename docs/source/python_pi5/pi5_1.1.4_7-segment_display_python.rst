@@ -37,17 +37,17 @@ Sie können sie auch separat über die untenstehenden Links kaufen.
     *   - KOMPONENTENVORSTELLUNG
         - KAUF-LINK
 
-    *   - :ref:`gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
-    *   - :ref:`breadboard`
+    *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
-    *   - :ref:`wires`
+    *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`resistor`
+    *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`7_segment`
+    *   - :ref:`cpn_7_segment`
         - |link_7segment_buy|
-    *   - :ref:`74hc595`
+    *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
 Schaltplan
@@ -113,48 +113,48 @@ Nachdem der Code ausgeführt wurde, sehen Sie, dass die 7-Segment-Anzeige 0-9, A
    from gpiozero import OutputDevice
    from time import sleep
 
-   # GPIO-Pins, die mit dem 74HC595-Schieberegister verbunden sind
-   SDI = OutputDevice(17)   # Serieller Dateneingang
-   RCLK = OutputDevice(18)  # Speichertakt Eingang (Register Clock)
-   SRCLK = OutputDevice(27) # Schieberegistertakt
+   # GPIO pins connected to 74HC595 shift register
+   SDI = OutputDevice(17)   # Serial Data Input
+   RCLK = OutputDevice(18)  # Memory Clock Input (Register Clock)
+   SRCLK = OutputDevice(27) # Shift Register Clock
 
-   # Hexadezimale Zifferncodes für eine gemeinsame Kathoden-7-Segment-Anzeige
+   # Hexadecimal digit codes for a common cathode 7-segment display
    segCode = [
        0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
        0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
    ]
 
    def hc595_shift(data):
-       # Verschiebe 8 Bit Daten in den 74HC595
+       # Shift 8 bits of data into the 74HC595
        for bit in range(8):
-           # Setze SDI auf High oder Low basierend auf dem Datenbit
+           # Set SDI high or low based on data bit
            SDI.value = 0x80 & (data << bit)
-           # Auslösen des Schieberegistertakts
+           # Trigger shift register clock
            SRCLK.on()
            sleep(0.001)
            SRCLK.off()
-       # Daten durch Auslösen des Speichertakts auf Ausgang übertragen
+       # Latch data to output by triggering memory clock
        RCLK.on()
        sleep(0.001)
        RCLK.off()
 
    def display_all_on():
-       # Funktion, um alle Segmente einzuschalten (für gemeinsame Kathoden-7-Segment-Anzeige)
+       # Function to turn all segments on (for common cathode 7-segment display)
        all_on_code = 0x3f
        hc595_shift(all_on_code)
-       print("Alle Segmente eingeschaltet")
+       print("Displaying all segments on")
 
    try:
        while True:
-           # Zeige jede hexadezimale Ziffer auf der 7-Segment-Anzeige an
+           # Display each hexadecimal digit on 7-segment display
            for code in segCode:
-               hc595_shift(code)  # Code in den 74HC595 verschieben
-               # Angezeigten Segmentcode drucken
-               print(f"Anzeige segCode[{segCode.index(code)}]: 0x{code:02X}")
-               sleep(0.5)  # Pause zwischen der Anzeige jeder Ziffer
+               hc595_shift(code)  # Shift the code into 74HC595
+               # Print the displayed segment code
+               print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+               sleep(0.5)  # Pause between displaying each digit
 
    except KeyboardInterrupt:
-       # Elegante Behandlung der Skriptunterbrechung (z.B. Ctrl+C)
+       # Gracefully handle script interruption (e.g., Ctrl+C)
        pass
 
 
@@ -172,16 +172,16 @@ Nachdem der Code ausgeführt wurde, sehen Sie, dass die 7-Segment-Anzeige 0-9, A
 
    .. code-block:: python
 
-       # GPIO-Pins, die mit dem 74HC595-Schieberegister verbunden sind
-       SDI = OutputDevice(17)   # Serieller Dateneingang
-       RCLK = OutputDevice(18)  # Speichertakt Eingang (Register Clock)
-       SRCLK = OutputDevice(27) # Schieberegistertakt
+       # GPIO pins connected to 74HC595 shift register
+       SDI = OutputDevice(17)   # Serial Data Input
+       RCLK = OutputDevice(18)  # Memory Clock Input (Register Clock)
+       SRCLK = OutputDevice(27) # Shift Register Clock
 
 #. ``segCode`` ist ein Array, das hexadezimale Codes für jede anzuzeigende Ziffer auf der 7-Segment-Anzeige enthält.
 
    .. code-block:: python
 
-       # Hexadezimale Zifferncodes für eine gemeinsame Kathoden-7-Segment-Anzeige
+       # Hexadecimal digit codes for a common cathode 7-segment display
        segCode = [
            0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
            0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
@@ -192,15 +192,15 @@ Nachdem der Code ausgeführt wurde, sehen Sie, dass die 7-Segment-Anzeige 0-9, A
    .. code-block:: python
 
        def hc595_shift(data):
-           # Verschiebe 8 Bit Daten in den 74HC595
+           # Shift 8 bits of data into the 74HC595
            for bit in range(8):
-               # Setze SDI auf High oder Low basierend auf dem Datenbit
+               # Set SDI high or low based on data bit
                SDI.value = 0x80 & (data << bit)
-               # Auslösen des Schieberegistertakts
+               # Trigger shift register clock
                SRCLK.on()
                sleep(0.001)
                SRCLK.off()
-           # Daten durch Auslösen des Speichertakts auf Ausgang übertragen
+           # Latch data to output by triggering memory clock
            RCLK.on()
            sleep(0.001)
            RCLK.off()
@@ -210,10 +210,11 @@ Nachdem der Code ausgeführt wurde, sehen Sie, dass die 7-Segment-Anzeige 0-9, A
    .. code-block:: python
 
        def display_all_on():
-           # Funktion, um alle Segmente einzuschalten (für gemeinsame Kathoden-7-Segment-Anzeige)
+           # Function to turn all segments on (for common cathode 7-segment display)
            all_on_code = 0x3f
            hc595_shift(all_on_code)
-           print("Alle Segmente eingeschaltet")
+           print("Displaying all segments on")
+
 
 #. In der Hauptschleife wird jeder Code in ``segCode`` in Sequenz an die Anzeige gesendet, mit einer Verzögerung zwischen jedem.
 
@@ -221,18 +222,18 @@ Nachdem der Code ausgeführt wurde, sehen Sie, dass die 7-Segment-Anzeige 0-9, A
 
        try:
            while True:
-               # Zeige jede hexadezimale Ziffer auf der 7-Segment-Anzeige an
+               # Display each hexadecimal digit on 7-segment display
                for code in segCode:
-                   hc595_shift(code)  # Code in den 74HC595 verschieben
-                   # Angezeigten Segmentcode drucken
-                   print(f"Anzeige segCode[{segCode.index(code)}]: 0x{code:02X}")
-                   sleep(0.5)  # Pause zwischen der Anzeige jeder Ziffer
+                   hc595_shift(code)  # Shift the code into 74HC595
+                   # Print the displayed segment code
+                   print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+                   sleep(0.5)  # Pause between displaying each digit
 
 #. Dieser Teil des Codes behandelt die Skriptunterbrechung (wie Ctrl+C) auf elegante Weise.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Elegante Behandlung der Skriptunterbrechung (z.B. Ctrl+C)
+           # Gracefully handle script interruption (e.g., Ctrl+C)
            pass
 
