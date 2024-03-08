@@ -29,7 +29,7 @@ Installing the OS
 
     .. image:: img/os_choose_device.png
 
-#. Select **CHOOSE OS**.
+#. Then click on Choose OS and select an operating system for installation.
 
     .. image:: img/os_choose_os.png
 
