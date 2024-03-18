@@ -1,5 +1,5 @@
-Python Video Course
-=======================
+Python Video Course(not for Pi 5)
+========================================
 
 Dive into the Raspberry Pi universe with our concise Python Video Course, perfect for both beginners and hobbyists. 
 Starting with an introduction to the Raspberry Pi's capabilities, 

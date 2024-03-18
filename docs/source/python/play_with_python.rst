@@ -1,5 +1,5 @@
-Play with Python (for Pi 4)
-===========================
+Play with Python (not for Pi 5)
+=================================
 
 .. toctree::
     :maxdepth: 3
