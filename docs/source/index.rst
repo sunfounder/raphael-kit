@@ -75,7 +75,8 @@ SunFounder Ulimate Raphael Kit for Raspberry Pi
 
 .. toctree::
     :maxdepth: 2
-    
+
+    pi5_other_languages
     component/component_list
     appendix/appendix
     thank-learning
