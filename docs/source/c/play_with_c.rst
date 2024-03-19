@@ -1,5 +1,5 @@
-Spielen Sie mit C
-====================
+Spielen Sie mit C (nicht für Pi 5)
+=======================================
 
 .. toctree::
     :maxdepth: 3

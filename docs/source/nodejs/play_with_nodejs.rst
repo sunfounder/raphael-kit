@@ -1,5 +1,5 @@
-Spielen Sie mit Nodejs
-==========================
+Spielen Sie mit Nodejs (nicht für Pi 5)
+============================================
 
 
 .. toctree::

@@ -70,6 +70,7 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
 .. toctree::
     :maxdepth: 2
 
+    pi5_other_languages
     component/component_list
     appendix/appendix
     thank-learning

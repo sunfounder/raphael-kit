@@ -1,5 +1,5 @@
-Spielen Sie mit Scratch
-==========================
+Spielen Sie mit Scratch (nicht für Pi 5)
+============================================
 
 Scratch ist eine blockbasierte visuelle Programmiersprache und Website, die hauptsächlich für Kinder im Alter von 8-16 Jahren als Bildungsinstrument für das Programmieren entwickelt wurde. Nutzer der Seite können Projekte im Internet mit einer blockähnlichen Oberfläche erstellen. Der Dienst wurde vom MIT Media Lab entwickelt, in 70+ Sprachen übersetzt und wird in den meisten Teilen der Welt verwendet.
 

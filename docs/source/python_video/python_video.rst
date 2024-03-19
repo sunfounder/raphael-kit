@@ -1,5 +1,5 @@
-Python Videokurs
-=======================
+Python Videokurs (nicht für Pi 5)
+======================================
 
 Tauchen Sie mit unserem prägnanten Python Videokurs in das Universum des Raspberry Pi ein, ideal für Anfänger und Hobbyisten.
 Beginnend mit einer Einführung in die Fähigkeiten des Raspberry Pi, 
