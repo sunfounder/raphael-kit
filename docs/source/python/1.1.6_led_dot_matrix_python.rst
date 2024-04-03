@@ -161,7 +161,7 @@ SPISCLK      Pin 23   14       SCLK
     from luma.core.legacy.font import proportional, CP437_FONT, LCD_FONT
     import time
 
-関連するライブラリをインポートします。``luma.core`` はPython 3のPillow互換キャンバスを提供するコンポーネントライブラリであり、Raspberry Piやその他のシングルボードコンピューターでの小型ディスプレイをサポートするその他の描画機能やテキストレンダリング機能も含まれています。
+関連するライブラリをインポートします。 ``luma.core`` はPython 3のPillow互換キャンバスを提供するコンポーネントライブラリであり、Raspberry Piやその他のシングルボードコンピューターでの小型ディスプレイをサポートするその他の描画機能やテキストレンダリング機能も含まれています。
 詳細は `https://luma-core.readthedocs.io/en/latest/intro.html <https://luma-core.readthedocs.io/en/latest/intro.html>`_ で学べます。
 
 .. code-block:: python

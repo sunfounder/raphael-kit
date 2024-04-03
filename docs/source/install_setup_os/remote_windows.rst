@@ -22,7 +22,7 @@ Windowsユーザーであれば、Windows PowerShellを使ってRaspberry Piに�
         :align: center
 
     * もしターミナルに ``Ping request could not find host <hostname>.local`` と表示されたら、Raspberry Piがネットワークに接続できていない可能性があります。
-    * どうしても ``<hostname>.local`` にpingが打てない場合は、代わりに :ref:`get_ip` と ``ping <IPアドレス>`` を試してみてください。(例: ``ping 192.168.6.116``)
+    * どうしても ``<hostname>.local`` にpingが打てない場合は、代わりに :ref:`get_ip` と ``ping <IPアドレス>`` を試してみてください。(例: ``ping 192.168.6.116`` )
     * "Reply from <IPアドレス>: bytes=32 time<1ms TTL=64"といったプロンプトが複数表示されれば、コンピュータはRaspberry Piにアクセスできています。
 
 #. ``ssh <username>@<hostname>.local`` （または ``ssh <username>@<IPアドレス>``）と入力します。

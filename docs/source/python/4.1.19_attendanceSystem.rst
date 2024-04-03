@@ -90,7 +90,7 @@ SPISCLK      Pin 23   14       SCLK
     cd ~/raphael-kit/python
     sudo python3 2.2.10_write.py
 
-ステップ3: 名前を入力します（ここでは ``John`` を例にします）。「Enter」キーを押して確認し、カードをMFRC522モジュールに置き、"Data writing is complete" が表示されるのを待ち、カードを取り外します。または、別のカードにメッセージを書き直すか、``Ctrl+C`` で終了します。
+ステップ3: 名前を入力します（ここでは ``John`` を例にします）。「Enter」キーを押して確認し、カードをMFRC522モジュールに置き、"Data writing is complete" が表示されるのを待ち、カードを取り外します。または、別のカードにメッセージを書き直すか、 ``Ctrl+C`` で終了します。
 
 .. image:: ../img/write_card.png
 

@@ -20,6 +20,9 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
+2024-04-03:
+- Add the tutorial on installing a virtual environment
+
 2024-03-08:
     - Optimize the code section of the Pi5 project
     - Add video tutorials.

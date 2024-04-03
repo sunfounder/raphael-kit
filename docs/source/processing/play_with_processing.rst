@@ -32,7 +32,7 @@ Processingのインストール
 
 ..     curl https://processing.org/download/install-arm.sh | sudo sh
 
-.. インストールが完了したら、``processing``と入力して開始してください。
+.. インストールが完了したら、 ``processing`` と入力して開始してください。
 
 .. .. image:: img/processing1.png
 

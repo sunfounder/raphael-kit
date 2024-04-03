@@ -69,7 +69,7 @@ GPIO拡張を追加
 コードをロードして何が起こるかを確認する
 -----------------------------------------
 
-コンピュータから(``~/raphael-kit/scratch/code``)のコードファイルをScratch 3にロードします。
+コンピュータから( ``~/raphael-kit/scratch/code`` )のコードファイルをScratch 3にロードします。
 
 .. image:: img/1.1_scratch_step1.png
 
