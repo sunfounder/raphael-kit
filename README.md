@@ -20,6 +20,9 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
+2024-04-03:
+- Add the tutorial on installing a virtual environment
+
 2023-11-29:
     - Updated "Install and Setup Raspberry Pi OS" documentation.
 
