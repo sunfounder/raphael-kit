@@ -94,6 +94,11 @@ gettext_compact = False # Support for generating the contents of the folders ins
 # Purchase links of components
 rst_epilog = """
 
+.. |link_sf_facebook| raw:: html
+
+    <a href="https://www.facebook.com/groups/1247420012884582r" target="_blank">here</a>
+
+
 .. |link_Raphael_kit| raw:: html
 
     <a href="https://www.sunfounder.com/products/raphael-kit?_pos=1&_sid=e78196ab0&_ss=r" target="_blank">Raphael Kit</a>
