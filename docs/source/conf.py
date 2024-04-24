@@ -96,7 +96,7 @@ rst_epilog = """
 
 .. |link_sf_facebook| raw:: html
 
-    <a href="https://www.facebook.com/groups/1247420012884582r" target="_blank">here</a>
+    <a href="https://www.facebook.com/groups/1247420012884582" target="_blank">here</a>
 
 
 .. |link_Raphael_kit| raw:: html
