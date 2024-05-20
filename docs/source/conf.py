@@ -97,10 +97,6 @@ gettext_compact = False # Support for generating the contents of the folders ins
 
 rst_epilog = """
 
-.. |link_sf_facebook| raw:: html
-
-    <a href="https://www.facebook.com/groups/1247420012884582" target="_blank">ここ</a>
-
 .. |link_Raphael_kit| raw:: html
 
     <a href="https://www.sunfounder.com/products/raphael-kit?_pos=1&_sid=e78196ab0&_ss=r" target="_blank">Raphael Kit</a>
@@ -264,6 +260,10 @@ rst_epilog = """
 
 rst_epilog += """
 
+.. |link_sf_facebook| raw:: html
+
+    <a href="https://bit.ly/raphaelkit" target="_blank">ここ</a>
+    
 .. |link_german_tutorials| raw:: html
 
     <a href="https://docs.sunfounder.com/projects/raphael-kit/de/latest/" target="_blank">Deutsch Online-Kurs</a>
