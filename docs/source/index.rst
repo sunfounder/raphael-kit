@@ -12,7 +12,7 @@
 
     👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
 
-SunFounder Ulimate Raphael Kit for Raspberry Pi
+SunFounder Raphael Ulimate Kit for Raspberry Pi
 =======================================================
 
 当社のUltimate Raphael Kitを選んでいただき、ありがとうございます。
