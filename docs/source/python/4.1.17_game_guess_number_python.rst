@@ -1,64 +1,51 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _4.1.17_py:
 
-4.1.17 GAME– Guess Number
+4.1.17 JEU - Devinez le Nombre
 ==============================================
 
 Introduction
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+Devinez le Nombre est un jeu amusant pour les fêtes où vous et vos amis tour à tour 
+saisissez un nombre (0~99). La plage de nombres devient plus petite à chaque saisie 
+jusqu'à ce qu'un joueur trouve le bon nombre. Ensuite, le joueur est battu et puni. 
+Par exemple, si le nombre chanceux est 51 que les joueurs ne peuvent pas voir, et 
+que le joueur ① saisit 50, l'intervalle de nombres change à 50~99 ; si le joueur ② 
+saisit 70, l'intervalle de nombres devient 50~70 ; si le joueur ③ saisit 51, ce 
+joueur est le malchanceux. Ici, nous utilisons un pavé numérique pour entrer les 
+nombres et un écran LCD pour afficher les résultats.
 
-Required Components
+
+Composants Requis
 ------------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_GAME_Guess_Number.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -74,11 +61,11 @@ You can also buy them separately from the links below.
         - |link_i2clcd1602_buy|
 
 
-Schematic Diagram
+Schéma de Câblage
 -----------------------
 
 ============ ======== ======== =======
-T-Board Name physical wiringPi BCM
+Nom T-Board  physique wiringPi BCM
 GPIO18       Pin 12   1        18
 GPIO23       Pin 16   4        23
 GPIO24       Pin 18   5        24
@@ -94,16 +81,16 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: ../img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
+Procédures Expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image273.png
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`.)
+**Étape 2** : Configurer l'I2C (voir :ref:`i2c_config`.)
 
-**Step 3**: Change directory.
+**Étape 3** : Changez de répertoire.
 
 .. raw:: html
 
@@ -113,7 +100,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 4**: Run.
+**Étape 4** : Exécutez.
 
 .. raw:: html
 
@@ -123,45 +110,41 @@ Experimental Procedures
 
     sudo python3 4.1.17_GAME_GuessNumber.py
 
-After the program runs, there displays the initial page on the LCD:
+Après l'exécution du programme, la page initiale s'affiche sur le LCD :
 
 .. code-block:: 
 
    Welcome!
    Press A to go!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+Appuyez sur ‘A’, et le jeu commencera et la page de jeu apparaîtra sur le LCD.
 
 .. code-block:: 
 
    Enter number:
    0 ‹point‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Un nombre aléatoire ‘\ **point**\ ’ est produit mais non affiché sur le LCD lorsque 
+le jeu commence, et ce que vous devez faire est de le deviner. Le nombre que vous 
+avez tapé apparaît à la fin de la première ligne jusqu'à ce que le calcul final soit 
+terminé. (Appuyez sur ‘D’ pour démarrer la comparaison, et si le nombre saisi est supérieur 
+à **10**, la comparaison automatique commencera.)
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
+La plage de nombres de ‘point’ est affichée sur la deuxième ligne. Et vous devez taper le 
+nombre dans la plage. Lorsque vous tapez un nombre, la plage se rétrécit ; si vous avez trouvé 
+le nombre chanceux par chance ou par malchance, il y aura l'affichage “You've got it!”
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
+    * Si vous obtenez l'erreur ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, vous devez vous référer à :ref:`i2c_config` pour activer l'I2C.
+    * Si vous obtenez l'erreur ``ModuleNotFoundError: No module named 'smbus2'``, veuillez exécuter ``sudo pip3 install smbus2``.
+    * Si l'erreur ``OSError: [Errno 121] Remote I/O error`` apparaît, cela signifie que le module est mal câblé ou qu'il est défectueux.
+    * Si le code et le câblage sont corrects, mais que l'écran LCD ne s'affiche toujours pas, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller dans le chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -296,13 +279,12 @@ appear “You've got it!”
       except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
          destroy()
 
-**Code Explanation**
+**Explication du Code**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in :ref:`1.1.7_py` and :ref:`2.1.8_py`.
+Au début du code, il y a les fonctions de **keypad** et **I2C LCD1602**. Vous pouvez en apprendre 
+plus sur elles dans :ref:`1.1.7_py` et :ref:`2.1.8_py`.
 
-Here, what we need to know is as follows:
+Voici ce que nous devons savoir :
 
 .. code-block:: python
 
@@ -314,8 +296,8 @@ Here, what we need to know is as follows:
         count = 0
         print('point is %d' %(pointValue))
 
-The function produces the random number ‘\ **point**\ ’ and resets the
-range hint of the point.
+Cette fonction génère le nombre aléatoire ‘\ **point**\ ’ et réinitialise l'indication de 
+la plage du point.
 
 .. code-block:: python
 
@@ -333,11 +315,9 @@ range hint of the point.
         count = 0
         return 0
 
-``detect_point()`` compares the input number (**count**) with the produced
-“\ **point**\ ”. If the comparing outcome is that they are not same,
-**count** will assign values to **upper** and **lower** and return
-‘\ **0**\ ’; otherwise, if the outcome indicates they are same, there
-returns ‘\ **1**\ ’.
+``detect_point()`` compare le nombre entré (**count**) avec le nombre généré “\ **point**\ ”. 
+Si le résultat de la comparaison est différent, **count** attribuera des valeurs à **upper** et **lower** et retournera ‘\ **0**\ ’; sinon, 
+s'ils sont identiques, la fonction retourne ‘\ **1**\ ’.
 
 .. code-block:: python
 
@@ -355,11 +335,10 @@ returns ‘\ **1**\ ’.
         LCD1602.write(3,1,' < Point < ')
         LCD1602.write(13,1,str(upper))
 
-This function works for displaying the game page.
+Cette fonction sert à afficher la page du jeu.
 
-``str(count)``: Because ``write()`` can only support the data type —
-**string**, ``str()`` is needed to convert the **number** into
-**string**.
+``str(count)``: Parce que ``write()`` ne supporte que le type de données — **string**, 
+``str()`` est nécessaire pour convertir le **nombre** en **chaîne**.
 
 .. code-block:: python
 
@@ -388,25 +367,21 @@ This function works for displaying the game page.
             time.sleep(0.1)
    
 
-``main()`` contains the whole process of the program, as show below:
+``main()`` contient tout le processus du programme, comme montré ci-dessous :
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+1) Initialiser **I2C LCD1602** et **Keypad**.
 
-2) Judge whether the button is pressed and get the button reading.
+2) Vérifier si un bouton est pressé et obtenir la lecture du bouton.
 
-3) If the button ‘\ **A**\ ’ is pressed, a random number **0-99** will
-   appear then the game starts.
+3) Si le bouton ‘\ **A**\ ’ est pressé, un nombre aléatoire **0-99** apparaîtra et le jeu commence.
 
-4) If the button ‘\ **D**\ ’ is detected to have been pressed, the
-   program will enter into the outcome judgement.
+4) Si le bouton ‘\ **D**\ ’ est détecté comme étant pressé, le programme passera au jugement du résultat.
 
-5) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+5) Si le bouton **0-9** est pressé, la valeur de **count** changera ; si le **count** est supérieur à **10**, le jugement commence.
 
-6) The changes of the game and its values are displayed on **LCD1602**.
+6) Les changements du jeu et ses valeurs sont affichés sur **LCD1602**.
 
-Phenomenon Picture
+Image du Phénomène
 ------------------------
 
 .. image:: ../img/image274.jpeg

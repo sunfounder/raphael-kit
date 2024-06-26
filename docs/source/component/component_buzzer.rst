@@ -1,48 +1,34 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_buzzer:
 
 Buzzer
-=======
+=========
 
 .. image:: img/buzzer.png
     :width: 600
 
-As a type of electronic buzzer with an integrated structure, buzzers, which are supplied by DC power, are widely used in computers, printers, photocopiers, alarms, electronic toys, automotive electronic devices, telephones, timers and other electronic products or voice devices. 
+En tant que type de buzzer électronique à structure intégrée, les buzzers, alimentés par une source de courant continu (DC), sont largement utilisés dans les ordinateurs, imprimantes, photocopieuses, alarmes, jouets électroniques, dispositifs électroniques automobiles, téléphones, minuteurs et autres produits électroniques ou dispositifs vocaux.
 
-Buzzers can be categorized as active and passive ones (see the following picture). Turn the buzzer so that its pins are facing up, and the buzzer with a green circuit board is a passive buzzer, while the one enclosed with a black tape is an active one.
+Les buzzers peuvent être classés en deux catégories : actifs et passifs (voir l'image suivante). Tournez le buzzer de manière à ce que ses broches soient orientées vers le haut. Le buzzer avec une carte de circuit imprimé verte est un buzzer passif, tandis que celui enveloppé de ruban noir est un buzzer actif.
 
-The difference between an active buzzer and a passive buzzer: 
+La différence entre un buzzer actif et un buzzer passif :
 
-An active buzzer has a built-in oscillating source, so it will make sounds when electrified. But a passive buzzer does not have such source, so it will not beep if DC signals are used; instead, you need to use square waves whose frequency is between 2K and 5K to drive it. The active buzzer is often more expensive than the passive one because of multiple built-in oscillating circuits.
+Un buzzer actif a une source d'oscillation intégrée, il émet donc des sons lorsqu'il est alimenté. En revanche, un buzzer passif ne dispose pas de cette source, il ne bipera pas si des signaux DC sont utilisés. Vous devez utiliser des ondes carrées dont la fréquence est comprise entre 2K et 5K pour le faire fonctionner. Le buzzer actif est souvent plus coûteux que le buzzer passif en raison des multiples circuits d'oscillation intégrés.
 
-The following is the electrical symbol of a buzzer. It has two pins with positive and negative poles. With a + in the surface represents the anode and the other is the cathode. 
+Voici le symbole électrique d'un buzzer. Il a deux broches avec des pôles positif et négatif. Un + sur la surface représente l'anode et l'autre est la cathode.
 
 .. image:: img/buzzer_symbol.png
     :width: 150
 
-You can check the pins of the buzzer, the longer one is the anode and the shorter one is the cathode. Please don’t mix them up when connecting, otherwise the buzzer will not make sound. 
+Vous pouvez vérifier les broches du buzzer, la plus longue est l'anode et la plus courte est la cathode. Veuillez ne pas les mélanger lors de la connexion, sinon le buzzer ne produira pas de son.
 
 `Buzzer - Wikipedia <https://en.wikipedia.org/wiki/Buzzer>`_
 
-**Example**
+**Exemple**
 
-* :ref:`1.2.1_c` (C Project)
-* :ref:`1.2.2_c` (C Project)
-* :ref:`1.2.1_py` (Python Project)
-* :ref:`1.2.2_py` (Python Project)
-* :ref:`1.13_scratch` (Scratch Project)
-* :ref:`1.14_scratch` (Scratch Project)
+* :ref:`1.2.1_c` (Projet C)
+* :ref:`1.2.2_c` (Projet C)
+* :ref:`1.2.1_py` (Projet Python)
+* :ref:`1.2.2_py` (Projet Python)
+* :ref:`1.13_scratch` (Projet Scratch)
+* :ref:`1.14_scratch` (Projet Scratch)
 

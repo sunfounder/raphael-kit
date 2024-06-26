@@ -1,17 +1,4 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.7_py_pi5:
 
 2.2.6 PIR
@@ -20,40 +7,40 @@
 Introduction
 ------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+Dans ce projet, nous allons fabriquer un dispositif en utilisant des capteurs 
+pyroelectriques infrarouges pour le corps humain. Lorsque quelqu'un s'approche 
+de la LED, celle-ci s'allume automatiquement. Sinon, la lumière s'éteint. Ce 
+capteur de mouvement infrarouge est un type de capteur qui peut détecter l'infrarouge 
+émis par les humains et les animaux.
 
-Required Components
-------------------------------
+Composants nécessaires
+----------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/2.2.7_pir_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,21 +55,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_pir`
         - \-
 
-
-Schematic Diagram
------------------
+Schéma
+---------
 
 .. image:: ../python_pi5/img/2.2.7_pir_schematic.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/2.2.7_pir_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -92,7 +78,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run the executable file.
+**Étape 3 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -102,9 +88,12 @@ Experimental Procedures
 
     sudo python3 2.2.7_PIR_zero.py
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+Après l'exécution du code, le PIR détecte les environs et fait briller la LED 
+RVB en jaune s'il détecte quelqu'un passant à proximité.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité 
+et l'autre pour ajuster la distance de détection. Pour que le module PIR fonctionne 
+mieux, vous devez les tourner tous les deux dans le sens antihoraire jusqu'à la fin.
 
 .. image:: ../python_pi5/img/2.2.7_PIR_TTE.png
     :width: 400
@@ -114,7 +103,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre au chemin du code source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 
 .. raw:: html
@@ -145,9 +134,9 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. Imports the ``RGBLED`` class for controlling an RGB LED and the ``MotionSensor`` class for motion detection from the GPIO Zero library. Also imports the ``sleep`` function for creating delays.
+#. Importe la classe ``RGBLED`` pour contrôler une LED RVB et la classe ``MotionSensor`` pour la détection de mouvement depuis la bibliothèque GPIO Zero. Importe également la fonction ``sleep`` pour créer des délais.
 
    .. code-block:: python
 
@@ -155,7 +144,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
        from gpiozero import RGBLED, MotionSensor
        from time import sleep
 
-#. Initializes an RGB LED with red, green, and blue components connected to GPIO pins 18, 27, and 22, respectively. Also, initializes a PIR sensor on GPIO pin 17.
+#. Initialise une LED RVB avec les composants rouge, vert et bleu connectés respectivement aux broches GPIO 18, 27 et 22. Initialise également un capteur PIR sur la broche GPIO 17.
 
    .. code-block:: python
 
@@ -163,7 +152,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
        led = RGBLED(red=18, green=27, blue=22)  # RGB LED connected to GPIO pins 18 (Red), 27 (Green), 22 (Blue)
        pir = MotionSensor(17)  # PIR sensor connected to GPIO pin 17
 
-#. The program enters an infinite loop, continuously checking for motion using the PIR sensor. If motion is detected, the LED is set to yellow (mix of red and green). If no motion is detected, the LED turns blue. A short sleep of 0.1 seconds reduces CPU load.
+#. Le programme entre dans une boucle infinie, vérifiant continuellement la présence de mouvement à l'aide du capteur PIR. Si un mouvement est détecté, la LED devient jaune (mélange de rouge et vert). Si aucun mouvement n'est détecté, la LED devient bleue. Un court délai de 0,1 seconde réduit la charge du CPU.
 
    .. code-block:: python
 

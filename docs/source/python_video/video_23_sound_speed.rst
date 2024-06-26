@@ -1,34 +1,20 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 23: Measuring the Speed of Sound with an Ultrasonic Sensor
+Vidéo 23 : Mesurer la vitesse du son avec un capteur ultrasonique
 =======================================================================================
 
-Learn how to measure the speed of sound using a Raspberry Pi and an HC-SR04 ultrasonic sensor in this step-by-step tutorial.
+Apprenez à mesurer la vitesse du son en utilisant un Raspberry Pi et un capteur ultrasonique HC-SR04 dans ce tutoriel étape par étape.
 
 
-1. Introduction to using the HC-SR04 ultrasonic sensor for measuring sound speed.
-2. Understanding the basic equation for distance, rate, and time.
-3. Hardware setup using Raspberry Pi and the ultrasonic sensor.
-4. Writing Python code to control the sensor and calculate the speed of sound.
-5. Performing dimensional analysis to convert units for the final speed calculation.
-6. Practical demonstration of the setup and measurement process using a ruler and target.
+1. Introduction à l'utilisation du capteur ultrasonique HC-SR04 pour mesurer la vitesse du son.
+2. Compréhension de l'équation de base pour la distance, la vitesse et le temps.
+3. Configuration matérielle avec Raspberry Pi et le capteur ultrasonique.
+4. Rédaction du code Python pour contrôler le capteur et calculer la vitesse du son.
+5. Réalisation d'une analyse dimensionnelle pour convertir les unités pour le calcul final de la vitesse.
+6. Démonstration pratique de l'installation et du processus de mesure à l'aide d'une règle et d'une cible.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/v87vxJRLp-Q?si=APlxSPTCjpHCBQEz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/v87vxJRLp-Q?si=APlxSPTCjpHCBQEz" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 

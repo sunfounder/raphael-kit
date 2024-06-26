@@ -1,42 +1,22 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 42: How to Send Data to the PC over WiFi or Ethernet Using UDP
+Vidéo 42 : Comment envoyer des données au PC via WiFi ou Ethernet en utilisant UDP
 =======================================================================================
 
+Cette vidéo démontre comment configurer une communication client-serveur entre un Raspberry Pi et un PC en utilisant Python et le protocole UDP (User Datagram Protocol). Elle couvre la création des programmes serveur et client, l'initialisation et la liaison des sockets, l'échange de données et la mise en œuvre de fonctionnalités de base.
 
-The video demonstrates how to set up client-server communication between a Raspberry Pi and a PC using Python and UDP (User Datagram Protocol). 
-It covers the creation of both server and client programs, initialization and binding of sockets, data exchange, and basic functionality implementation.
+1. **Introduction à la communication client-serveur** : Comprendre le besoin de connexions distantes plus propres.
+2. **Création du programme serveur** : Guide étape par étape pour créer un programme serveur sur Raspberry Pi en utilisant la bibliothèque socket de Python.
+3. **Initialisation et liaison des sockets** : Apprendre à initialiser et à lier des sockets pour la communication.
+4. **Échange de données** : Explorer le processus d'envoi et de réception de données entre le PC et le Raspberry Pi.
+5. **Création du programme client** : Découvrir comment créer un programme client sur le PC pour communiquer avec le serveur Raspberry Pi.
+6. **Configuration de l'adresse du serveur** : Spécifier l'adresse du serveur (IP du Raspberry Pi) dans le code client.
+7. **Création d'un client UDP** : Utiliser la bibliothèque socket pour créer un client UDP du côté client.
+8. **Initiation de la communication** : Initier la communication en envoyant des requêtes du client vers le serveur.
+9. **Traitement des requêtes sur le serveur** : Traiter les requêtes du client et renvoyer des réponses sur le serveur.
+10. **Décodage des données** : Décoder les données reçues en utilisant le codage UTF-8 pour une meilleure lisibilité.
+11. **Implémentation des fonctionnalités de base** : Démontrer la communication bidirectionnelle avec un simple exemple de manipulation de compteur.
 
-1. **Introduction to Client-Server Communication**: Understanding the need for cleaner remote connections.
-2. **Server Program Creation**: Step-by-step guide to creating a server program on Raspberry Pi using Python's socket library.
-3. **Socket Initialization and Binding**: Learning how to initialize and bind sockets for communication.
-4. **Data Exchange**: Exploring the process of sending and receiving data between the PC and Raspberry Pi.
-5. **Client Program Creation**: Discovering how to create a client program on the PC side to communicate with the Raspberry Pi server.
-6. **Server Address Setup**: Specifying the server address (Raspberry Pi's IP) in the client code.
-7. **UDP Client Creation**: Utilizing the socket library to create a UDP client on the client side.
-8. **Communication Initiation**: Initiating communication by sending requests from the client to the server.
-9. **Request Handling on Server**: Processing client requests and sending back responses on the server.
-10. **Data Decoding**: Decoding received data using UTF-8 encoding for readability.
-11. **Basic Functionality Implementation**: Demonstrating bidirectional communication with a simple example of counter manipulation.
-
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/S7Yle8clJ30?si=6PugK0FVZ9w5Pfy5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/S7Yle8clJ30?si=6PugK0FVZ9w5Pfy5" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

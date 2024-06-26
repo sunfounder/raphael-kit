@@ -1,55 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.5_py_pi5:
 
-1.1.5 4-Digit 7-Segment Display
-====================================
+1.1.5 Afficheur 7 segments à 4 chiffres
+==============================================
 
 Introduction
------------------
+--------------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+Ensuite, suivez-moi pour essayer de contrôler l'afficheur 7 segments à 4 chiffres.
 
-Required Components
-------------------------------
+Composants requis
+----------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/1.1.5_4_digit_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,11 +51,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
-Schematic Diagram
+Schéma de câblage
 --------------------------
 
 ============ ======== ===
-T-Board Name physical BCM
+Nom de la carte physique BCM
 GPIO17       Pin 11   17
 GPIO27       Pin 13   27
 GPIO22       Pin 15   22
@@ -81,14 +68,14 @@ GPIO24       Pin 18   24
 .. image:: ../python_pi5/img/1.1.5_4_digit_schmatic.png
 
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: ../python_pi5/img/1.1.5_4-Digit_circuit.png
 
-**Step 2:** Go to the folder of the code. 
+**Étape 2** : Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -98,7 +85,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run the executable file.
+**Étape 3** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -108,13 +95,13 @@ Experimental Procedures
 
     sudo python3 1.1.5_4-Digit_zero.py
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4 digit display displays the count.
+Après l'exécution du code, le programme effectue un comptage, augmentant de 1 par seconde, et l'afficheur à 4 chiffres affiche le comptage.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller dans le chemin source du code comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -210,23 +197,23 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
        destroy()  # Cleanup resources on exit
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. These four pins control the common anode pins of the four-digit 7-segment displays.
+#. Ces quatre broches contrôlent les broches de l'anode commune des afficheurs 7 segments à quatre chiffres.
 
    .. code-block:: python
 
        # Define GPIO pins for digit selection on the 7-segment display
        placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
 
-#. A segment code array from 0 to 9 in hexadecimal (common anode).
+#. Un tableau de codes de segments de 0 à 9 en hexadécimal (anode commune).
 
    .. code-block:: python
 
        # Define segment codes for numbers 0-9 for the 7-segment display
        number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-#. Initializes a timer that triggers the ``timer`` function every second. This sets up the recurring counter increment.
+#. Initialise un minuteur qui déclenche la fonction ``timer`` toutes les secondes. Cela configure l'incrément récurrent du compteur.
 
    .. code-block:: python
 
@@ -236,7 +223,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
            timer1 = threading.Timer(1.0, timer)  # Initialize and start the timer
            timer1.start()
 
-#. After Timer reaches 1.0s, the Timer function is called; add 1 to counter, and the Timer is used again to execute itself repeatedly every second.
+#. Après que le minuteur atteint 1,0 seconde, la fonction Timer est appelée ; ajouter 1 au compteur, et le minuteur est utilisé à nouveau pour s'exécuter toutes les secondes.
 
    .. code-block:: python
 
@@ -248,7 +235,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
            counter += 1  # Increment counter
            print("%d" % counter)  # Print current counter value
 
-#. Shifts a byte of data into the 74HC595 shift register, controlling the display segments.
+#. Déplace un octet de données dans le registre à décalage 74HC595, contrôlant les segments de l'affichage.
 
    .. code-block:: python
 
@@ -261,7 +248,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
            RCLK.on()  # Latch data on the output by pulsing Register Clock
            RCLK.off()
 
-#. Continuously updates the display with the current counter value, showing each digit sequentially.
+#. Met continuellement à jour l'affichage avec la valeur actuelle du compteur, en affichant chaque chiffre séquentiellement.
 
    .. code-block:: python
 
@@ -276,8 +263,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
                    hc595_shift(number[digit])  # Shift digit value to 74HC595
                    time.sleep(0.001)  # Short delay for display stability
 
-
-#. Clears the 7-segment display by setting all segments off before displaying the next digit.
+#. Efface l'afficheur 7 segments en éteignant tous les segments avant d'afficher le chiffre suivant.
 
    .. code-block:: python
 
@@ -290,8 +276,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
            RCLK.on()
            RCLK.off()
 
-
-#. Selects which digit of the 7-segment display to activate. Each digit is controlled by a separate GPIO pin.
+#. Sélectionne quel chiffre de l'afficheur 7 segments activer. Chaque chiffre est contrôlé par une broche GPIO séparée.
 
    .. code-block:: python
 
@@ -301,9 +286,7 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
                pin.off()  # Turn off all digit selection pins
            placePin[digit].on()  # Turn on the selected digit
 
-
-
-#. Properly releases the GPIO resources and stops the timer when the program is interrupted.
+#. Libère correctement les ressources GPIO et arrête le minuteur lorsque le programme est interrompu.
 
    .. code-block:: python
 

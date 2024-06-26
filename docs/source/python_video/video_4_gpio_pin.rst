@@ -1,45 +1,31 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 4: Understanding and Using GPIO Pins
+Vidéo 4 : Comprendre et Utiliser les Broches GPIO
 =======================================================================================
 
-This comprehensive tutorial covers the basics of Raspberry Pi GPIO pins and their usage with Python programming. Viewers will learn how to set up GPIO pins, control LEDs, introduce delays, and clean up GPIO resources after use. Additionally, a homework assignment is provided to reinforce learning through practical application.
+Ce tutoriel complet couvre les bases des broches GPIO du Raspberry Pi et leur utilisation avec la programmation Python. Les spectateurs apprendront comment configurer les broches GPIO, contrôler des LED, introduire des délais, et nettoyer les ressources GPIO après utilisation. De plus, un devoir est fourni pour renforcer l'apprentissage par l'application pratique.
 
-1. Introduction to Raspberry Pi GPIO pins and their numbering system.
-2. Explanation of breadboard configuration and usage.
-3. Overview of the LED circuit schematic.
-4. Demonstration of translating the schematic to physical components on a breadboard.
-5. Tips for organizing and keeping components neat during projects.
-6. Importance of correctly identifying component orientation, such as LED leg lengths.
-7. Setting up GPIO pins using the ``gpio.setmode()`` and ``gpio.setup()`` functions.
-8. Controlling LEDs with the ``gpio.output()`` function and variables to store state values.
-9. Introducing delays in Python programs using the ``time.sleep()`` function.
-10. Proper resource management with the ``gpio.cleanup()`` function.
-11. Assignment: Writing a Python program to blink an LED based on user input.
-12. Tips for viewers: Emphasize the importance of cleaning up GPIO pins after use and sharing homework solutions for learning validation.
+1. Introduction aux broches GPIO du Raspberry Pi et à leur système de numérotation.
+2. Explication de la configuration et de l'utilisation de la planche à pain.
+3. Aperçu du schéma de circuit des LED.
+4. Démonstration de la traduction du schéma en composants physiques sur une planche à pain.
+5. Conseils pour organiser et maintenir les composants ordonnés pendant les projets.
+6. Importance de l'identification correcte de l'orientation des composants, telle que la longueur des pattes des LED.
+7. Configuration des broches GPIO en utilisant les fonctions ``gpio.setmode()`` et ``gpio.setup()``.
+8. Contrôle des LED avec la fonction ``gpio.output()`` et des variables pour stocker les valeurs d'état.
+9. Introduction de délais dans les programmes Python avec la fonction ``time.sleep()``.
+10. Gestion adéquate des ressources avec la fonction ``gpio.cleanup()``.
+11. Devoir : Écrire un programme Python pour faire clignoter une LED en fonction des entrées de l'utilisateur.
+12. Conseils pour les spectateurs : Souligner l'importance de nettoyer les broches GPIO après utilisation et partager les solutions de devoirs pour valider l'apprentissage.
 
-**Video**
-
-.. raw:: html
-
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/az90qK3jmDo?si=_U47tOoNF9-51xtr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
-**Homework Solution**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/n9v3G0JqTaI?si=P42m5hVv7PhvLrCS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/az90qK3jmDo?si=_U47tOoNF9-51xtr" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+**Solution du devoir**
+
+.. raw:: html
+
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/n9v3G0JqTaI?si=P42m5hVv7PhvLrCS" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

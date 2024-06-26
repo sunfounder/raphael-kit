@@ -1,17 +1,4 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.7_c:
 
 2.2.7 PIR
@@ -20,40 +7,39 @@
 Introduction
 ------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+Dans ce projet, nous allons fabriquer un dispositif en utilisant des capteurs pyroelectriques 
+infrarouges pour le corps humain. Lorsqu'une personne s'approche de la LED, celle-ci s'allume 
+automatiquement. Sinon, la lumière s'éteint. Ce capteur de mouvement infrarouge est un type de 
+capteur qui peut détecter l'infrarouge émis par les humains et les animaux.
 
 Required Components
 ------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -77,11 +63,11 @@ Schematic Diagram
 Experimental Procedures
 -----------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -91,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.7/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -101,7 +87,7 @@ Experimental Procedures
 
     gcc 2.2.7_PIR.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -111,9 +97,10 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+Après l'exécution du code, le PIR détecte les environs et fait briller la LED RVB en jaune s'il détecte quelqu'un qui passe.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité et l'autre pour ajuster la distance de détection. 
+Pour que le module PIR fonctionne mieux, vous devez tourner les deux potentiomètres à fond dans le sens antihoraire.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
@@ -121,9 +108,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: ``wiringPi.h No such file or directory``, please refer to :ref:`install_wiringpi`.
-
-
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : ``wiringPi.h No such file or directory``, veuillez vous référer à :ref:`install_wiringpi`.
 **Code**
 
 .. code-block:: c
@@ -169,15 +154,14 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2_c` for more details.
+Ces codes sont utilisés pour définir la couleur de la LED RVB. Veuillez vous référer à :ref:`1.1.2_c` pour plus de détails.
 
 .. code-block:: c
 
@@ -198,10 +182,9 @@ to :ref:`1.1.2_c` for more details.
         return 0;
     }
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+Lorsque le PIR détecte le spectre infrarouge humain, la LED RVB émet une lumière jaune ; sinon, elle émet une lumière bleue.
 
-Phenomenon Picture
+Photo du Phénomène
 ------------------
 
 .. image:: ../img/image215.jpeg

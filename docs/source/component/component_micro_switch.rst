@@ -1,58 +1,43 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_micro_switch:
 
-Micro Switch
+Micro-interrupteur
 =====================
 
 .. image:: img/micro_pic.png
     :width: 200
     :align: center
 
-The construction of a micro switch is really simple. The main parts of the switch are:
+La construction d'un micro-interrupteur est vraiment simple. Les principales parties de l'interrupteur sont :
 
 .. image:: img/micro_switch2.png
     :align: center
 
-* 1.Plunger (Actuator)
-* 2.Cover
-* 3.Moving piece
-* 4.Support
-* 5.Case
-* 6.NO terminal: normally open
-* 7.NC terminal: normally closed
-* 8.Contact
-* 9.Moving arm
+* 1. Poussoir (Actionneur)
+* 2. Couvercle
+* 3. Pièce mobile
+* 4. Support
+* 5. Boîtier
+* 6. Borne NO : normalement ouvert
+* 7. Borne NC : normalement fermé
+* 8. Contact
+* 9. Bras mobile
 
+Après qu'un micro-interrupteur ait établi un contact physique avec un objet, ses contacts changent de position. Le principe de fonctionnement de base est le suivant.
 
-After a micro switch makes physical contact with an object, its contacts change position. The basic working principle is as follows.
+Lorsque le poussoir est en position relâchée ou de repos.
 
-When the plunger is in the released or rest position.
+* Le circuit normalement fermé peut laisser passer le courant.
+* Le circuit normalement ouvert est isolé électriquement.
 
-* The normally closed circuit can carry current.
-* The normally open circuit is electrically insulated.
+Lorsque le poussoir est enfoncé ou commuté.
 
-When the plunger is depressed or switched.
-
-* The normally closed circuit is open.
-* The normally open circuit is closed.
+* Le circuit normalement fermé est ouvert.
+* Le circuit normalement ouvert est fermé.
 
 .. image:: img/micro_switch1.png
 
-**Example**
+**Exemple**
 
-* :ref:`2.1.2_c` (C Project)
-* :ref:`2.1.2_py` (Python Project)
-* :ref:`1.8_scratch` (Scratch Project)
+* :ref:`2.1.2_c` (Projet C)
+* :ref:`2.1.2_py` (Projet Python)
+* :ref:`1.8_scratch` (Projet Scratch)

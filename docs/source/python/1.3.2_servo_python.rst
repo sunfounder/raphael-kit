@@ -1,55 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.3.2_py:
 
 1.3.2 Servo
 ============
 
 Introduction
---------------
+-----------------
 
-In this project, we will learn how to make the servo rotate.
+Dans ce projet, nous allons apprendre à faire tourner un servo-moteur.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_1.3.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,20 +47,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_servo`
         - |link_servo_buy|
 
-Schematic Diagram
---------------------
+Schéma de Principe
+---------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+---------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -83,7 +70,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3**: Run the executable file.
+**Étape 3 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -93,14 +80,13 @@ Experimental Procedures
 
     sudo python3 1.3.2_Servo.py
 
-After the program is executed, the servo will rotate from 0 degrees 
-to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
-
+Après l'exécution du programme, le servo-moteur tournera de 0 degrés 
+à 180 degrés, puis de 180 degrés à 0 degrés, en boucle.
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 
 .. raw:: html
@@ -152,18 +138,17 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
             loop()
         except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be executed.
             destroy()
-        
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     p = GPIO.PWM(ServoPin, 50)     # set Frequecy to 50Hz
     p.start(0)                     # Duty Cycle = 0
 
-Set the servoPin to PWM pin, then the frequency to 50hz, and the period to 20ms.
+Définir la broche ServoPin comme broche PWM, puis la fréquence à 50Hz, et la période à 20ms.
 
-p.start(0): Run the PWM function，and set the initial value to 0.
+p.start(0) : Exécutez la fonction PWM et définissez la valeur initiale à 0.
 
 .. code-block:: python
 
@@ -172,20 +157,20 @@ p.start(0): Run the PWM function，and set the initial value to 0.
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
         p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it
-    
-Create a function, setAngle() to write angle that ranges from 0 to 180 into the servo.
+
+Créer une fonction, setAngle() pour écrire un angle compris entre 0 et 180 dans le servo.
 
 .. code-block:: python
 
     angle = max(0, min(180, angle))
 
-This code is used to limit the angle within the range 0-180°.
+Ce code est utilisé pour limiter l'angle dans la plage 0-180°.
 
-The min() function returns the minimum of the input values. 
-If 180<angle, then return 180,if not, return angle.
+La fonction min() renvoie la valeur minimale des valeurs d'entrée.
+Si 180<angle, alors retourner 180, sinon retourner angle.
 
-The max() method returns the maximum element in an iterable or largest of 
-two or more parameters. If 0>angle, then return 0, if not, return angle.
+La méthode max() renvoie l'élément maximal d'un itérable ou le plus grand de
+deux ou plusieurs paramètres. Si 0>angle, alors retourner 0, sinon retourner angle.
 
 .. code-block:: python
 
@@ -193,16 +178,15 @@ two or more parameters. If 0>angle, then return 0, if not, return angle.
     pwm = map(pulse_width, 0, 20000, 0, 100)
     p.ChangeDutyCycle(pwm)
 
-To render a range 0 ~ 180 ° to the servo, the pulse width of the servo
-is set to 0.5ms(500us)-2.5ms(2500us).
+Pour rendre une plage de 0 à 180° au servo, la largeur d'impulsion du servo
+est définie à 0,5ms(500us)-2,5ms(2500us).
 
-The period of PWM is 20ms(20000us), thus the duty cycle of PWM is
-(500/20000)%-(2500/20000)%, and the range 0 ~ 180 is mapped to 2.5 ~
-12.5.
+La période du PWM est de 20ms(20000us), donc le cycle de service du PWM est
+(500/20000)%-(2500/20000)%, et la plage 0-180 est mappée à 2,5-12,5.
 
 
-Phenomenon Picture
-------------------
+Image du Phénomène
+------------------------
 
 .. image:: ../img/image126.jpeg
 

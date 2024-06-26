@@ -1,88 +1,75 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _3.1.2_py:
 
-3.1.2 Video Module
+3.1.2 Module Vidéo
 =====================
 
 Introduction
 -----------------
 
-In addition to taking photos, the Camera Module can also be used to record videos.
+En plus de prendre des photos, le module caméra peut également être utilisé pour enregistrer des vidéos.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément avec les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
+Procédures Expérimentales
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Étape 1 :** Accédez au bureau de la Raspberry Pi. Vous pouvez avoir besoin d'un écran pour une meilleure expérience, consultez : `Connectez votre Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Ou accédez à distance au bureau Raspberry Pi, pour un tutoriel détaillé, veuillez consulter : :ref:`remote_desktop`.
 
-**Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
+**Étape 2 :** Vérifiez si la caméra est activée. Pour les instructions, veuillez consulter : :ref:`enable_camera`.
 
-**Step 3:** Open a Terminal and get into the folder of the code.
+**Étape 3 :** Ouvrez un Terminal et accédez au dossier du code.
 
 
 .. code-block::
 
     cd ~/raphael-kit/python/
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez le code.
 
 
 .. code-block::
 
     sudo python3 3.1.2_VideoModule.py
 
-Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``~`` directory.
+Exécutez le code pour commencer l'enregistrement. Appuyez sur ``Ctrl+C`` pour terminer l'enregistrement. Nommez la vidéo ``my_video.h264`` et stockez-la dans le répertoire ``~``.
 
 .. note::
 
-    You can also open ``3.1.2_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    Vous pouvez également ouvrir ``3.1.2_PhotographModule.py`` dans le chemin ``~/raphael-kit/python/`` avec un IDE Python, cliquer sur le bouton Exécuter pour lancer le code, et arrêter le code avec le bouton Arrêter.
 
-If you want to send photos to your PC, please refer to :ref:`filezilla`.
+Si vous souhaitez envoyer des photos sur votre PC, veuillez consulter : :ref:`filezilla`.
 
 
 **Code**
@@ -116,16 +103,17 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     start_recording(output, format=None, resize=None, splitter_port=1, **options)
 
-Start recording video from the camera, storing it in ``output``.
+Commencez l'enregistrement vidéo à partir de la caméra, en le stockant dans ``output``.
 
 .. code-block:: python
 
     camera.stop_recording()
 
-End the recording.
+Arrêtez l'enregistrement.
+

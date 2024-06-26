@@ -1,61 +1,48 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.4_c:
 
-2.2.4 Reed Switch Module
+2.2.4 Module à interrupteur Reed
 ==============================
 
 Introduction
 -------------------
 
-In this project, we will learn about the reed switch, which is an electrical switch that operates by means of an applied magnetic field.
+Dans ce projet, nous allons découvrir l'interrupteur Reed, qui est un interrupteur électrique fonctionnant au moyen d'un champ magnétique appliqué.
 
 .. image:: ../img/2.2.4reed_switch.png
     :width: 300
     :align: center
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/2.2.4component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,15 +57,15 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Schematic Diagram
+Diagramme Schématique
 -----------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-============ ======== ======== ===
+============== ========= ========= ===
+Nom de T-Board  physique  wiringPi BCM
+GPIO17          Broche 11 0        17
+GPIO27          Broche 13 2        27
+GPIO22          Broche 15 3        22
+============    ========= ======== ===
 
 .. image:: ../img/reed_schematic.png
     :width: 400
@@ -88,16 +75,16 @@ GPIO22       Pin 15   3        22
     :width: 400
     :align: center
 
-Experimental Procedures
+Procédures Expérimentales
 -------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/2.2.4fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Change directory.
+**Étape 2 :** Changer de répertoire.
 
 .. raw:: html
 
@@ -107,7 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.4/
 
-**Step 3:** Compile.
+**Étape 3 :** Compiler.
 
 .. raw:: html
 
@@ -117,7 +104,7 @@ Experimental Procedures
 
     gcc 2.2.4_ReedSwitch.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécuter.
 
 .. raw:: html
 
@@ -127,11 +114,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-The green LED will light up when the code is run. If a magnet is placed close to the reed switch module, the red LED lights up; take away the magnet and the green LED lights up again.
+La LED verte s'allumera lorsque le code sera exécuté. Si un aimant est placé près du module de l'interrupteur Reed, la LED rouge s'allume ; retirez l'aimant et la LED verte s'allume à nouveau.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution ou s'il y a une erreur indiquant : \"wiringPi.h: Aucun fichier ou répertoire de ce type\", veuillez vous référer à :ref:`install_wiringpi`.
 
 **Code**
 
@@ -191,7 +178,8 @@ The green LED will light up when the code is run. If a magnet is placed close to
         return 0;
     }
 
-**Code Explanation**
+
+**Explication du Code**
 
 .. code-block:: c
 
@@ -199,9 +187,8 @@ The green LED will light up when the code is run. If a magnet is placed close to
     #define Gpin		2
     #define Rpin		3
 
-Pin GPIO17, GPIO27 and GPIO22 of the T_Extension Board is corresponding to 
-the GPIO0, GPIO2 and GPIO3 in wiringPi. Assign GPIO0, GPIO2 and GPIO3 to 
-``ReedPin``, ``Gpin`` and ``Rpin``.
+Les broches GPIO17, GPIO27 et GPIO22 de la carte d'extension T sont correspondantes aux GPIO0, 
+GPIO2 et GPIO3 dans wiringPi. Attribuez les GPIO0, GPIO2 et GPIO3 à ``ReedPin``, ``Gpin`` et ``Rpin``.
 
 .. code-block:: c
 
@@ -223,9 +210,9 @@ the GPIO0, GPIO2 and GPIO3 in wiringPi. Assign GPIO0, GPIO2 and GPIO3 to
             printf("LED Error");
     }
 
-Set a ``LED()`` function to control the 2 LEDs, the parameter of this function is ``color``.
+Définissez une fonction ``LED()`` pour contrôler les 2 LED, le paramètre de cette fonction est ``color``.
 
-When ``color`` is ``"RED"``, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`` to ``LOW`` (turn off the green LED); when ``color`` is ``"GREEN"``, then light up the green LED and turn off the red LED. 
+Lorsque ``color`` est ``"RED"``, définissez ``Rpin`` sur ``HIGH`` (allumer la LED rouge) et ``Gpin`` sur ``LOW`` (éteindre la LED verte) ; lorsque ``color`` est ``"GREEN"``, allumez la LED verte et éteignez la LED rouge. 
 
 .. code-block:: c
 
@@ -246,12 +233,12 @@ When ``color`` is ``"RED"``, set ``Rpin`` to ``HIGH`` (light up the red LED) and
             }
         }
 
-Read the value of the reed switch module, if the value read 2 times is 0, call ``LED("RED")`` to light up the red LED and print ``"Magnetic material detected!"``.
+Lisez la valeur du module d'interrupteur à lames, si la valeur lue deux fois est 0, appelez ``LED("RED")`` pour allumer la LED rouge et imprimez ``"Matériau magnétique détecté !"``.
 
-If the value is 1, the green LED is lit.
+Si la valeur est 1, la LED verte s'allume.
 
 
-Phenomenon Picture
+Photo du Phénomène
 ------------------------
 
 .. image:: ../img/2.2.4reed_switch.JPG

@@ -1,44 +1,23 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 44: Building an Improved Client Server Connection to the Pi
+Vidéo 44 : Créer une connexion client-serveur améliorée avec le Raspberry Pi
 =======================================================================================
 
+Ce tutoriel offre un guide complet pour établir une relation client-serveur sophistiquée en utilisant un Raspberry Pi, permettant au PC d'envoyer des commandes pour des mesures de température ou d'humidité et de recevoir les données correspondantes. Il aborde la gestion des erreurs, la transmission des données et les plans de leçons futurs.
 
-This tutorial provides a comprehensive guide to building a sophisticated client-server relationship using Raspberry Pi, 
-allowing the PC to send commands for temperature or humidity measurements and receive corresponding data packets. 
-It covers error handling, data transmission, and future lesson plans.
+1. **Introduction** : Série de tutoriels sponsorisée par SunFounder pour les applications Raspberry Pi.
+2. **Leçons précédentes** : Aperçu du transfert de données entre le Raspberry Pi et le PC en utilisant UDP.
+3. **Relation client-serveur simple** : Explication de la configuration de base démontrée dans les leçons précédentes.
+4. **Relation client-serveur sophistiquée** : Introduction à l'objectif de la leçon actuelle, qui porte sur la demande de commandes utilisateur et la gestion des réponses de données.
+5. **Précision des données** : Importance de l'étiquetage des réponses pour assurer une transmission précise des données.
+6. **Configuration du serveur Raspberry Pi** : Guide étape par étape pour configurer le serveur, y compris les imports de bibliothèques, la configuration des GPIO, la définition de l'IP/du port, la création de socket, le binding et l'initialisation du serveur.
+7. **Gestion des erreurs** : Apprendre à gérer efficacement les commandes ou requêtes invalides reçues par le serveur.
+8. **Transmission des données** : Comprendre le processus de codage et de décodage des données pour une communication fluide entre le client et le serveur.
+9. **Configuration du serveur** : Configurer le serveur pour écouter les commandes et y répondre en conséquence.
+10. **Configuration côté client** : Configurer le client pour envoyer des commandes et recevoir les réponses du serveur.
+11. **Tests de robustesse** : Tester la robustesse de l'application en envoyant des commandes à plusieurs reprises pour assurer une performance stable.
+12. **Leçons futures** : Obtenez un aperçu des prochaines leçons axées sur l'utilisation de la caméra Raspberry Pi et la configuration du système d'exploitation Buster.
 
-
-1. **Introduction**: Sponsored tutorial series by SunFounder for Raspberry Pi applications.
-2. **Previous lessons**: Overview of transferring data between Raspberry Pi and PC using UDP.
-3. **Simple client-server relationship**: Explanation of the basic setup demonstrated in previous lessons.
-4. **Sophisticated client-server relationship**: Introduction to the current lesson's focus on prompting user commands and handling data responses.
-5. **Data accuracy**: Importance of tagging responses to ensure accurate data transmission.
-6. **Raspberry Pi server setup**: Step-by-step guide to setting up the server, including library imports, GPIO configuration, IP/port definition, socket creation, binding, and server initiation.
-7. **Error handling**: Learn how to handle invalid commands or requests received by the server effectively.
-8. **Data transmission**: Understand the process of encoding and decoding data for seamless communication between client and server.
-9. **Server setup**: Configure the server to listen for commands and respond accordingly.
-10. **Client-side configuration**: Set up the client to send commands and receive responses from the server.
-11. **Robustness testing**: Test the application's robustness by repeatedly sending commands to ensure stable performance.
-12. **Future lessons**: Get insights into upcoming lessons focusing on using the Raspberry Pi camera and configuring the Buster operating system.
-
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/79dlpK03t30?si=FvnBbJ1aaX45hzpV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/79dlpK03t30?si=FvnBbJ1aaX45hzpV" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

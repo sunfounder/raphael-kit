@@ -1,58 +1,45 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _3.1.6_c:
 
-3.1.6 Traffic Light
-============================
+3.1.6 Feu de signalisation
+===========================
 
 Introduction
 ---------------
 
-In this project, we will use LED lights of three colors to realize the
-change of traffic lights and a four-digit 7-segment display will be used
-to display the timing of each traffic state.
+Dans ce projet, nous allons utiliser des LED de trois couleurs pour simuler le changement des
+ feux de signalisation et un afficheur à sept segments à quatre chiffres sera utilisé pour 
+ afficher le compte à rebours de chaque état de signalisation.
 
-Required Components
-------------------------------
+Composants nécessaires
+----------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants :
 
 .. image:: ../img/list_Traffic_Light.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,8 +56,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
-Schematic Diagram
---------------------
+Schéma de câblage
+---------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -88,15 +75,14 @@ SPICE1       Pin 26   11       7
 
 .. image:: ../img/Schematic_three_one7.png
    :align: center
-
-Experimental Procedures
+Procédures expérimentales
 ------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image254.png
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -106,7 +92,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.6/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -116,7 +102,7 @@ Experimental Procedures
 
     gcc 3.1.6_TrafficLight.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez le fichier compilé.
 
 .. raw:: html
 
@@ -126,16 +112,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, LEDs will simulate the color changing of traffic
-lights. Firstly, the red LED lights up for 60s, then the green LED
-lights up for 30s; next, the yellow LED lights up for 5s. After that,
-the red LED lights up for 60s once again. In this way, this series of
-actions will be executed repeatedly.
+Lorsque le code s'exécute, les LED simuleront le changement de couleur des feux de circulation.
+ D'abord, la LED rouge s'allume pendant 60 secondes, puis la LED verte s'allume pendant 30 secondes ;
+  ensuite, la LED jaune s'allume pendant 5 secondes. Après cela, la LED rouge s'allume de nouveau pendant 
+  60 secondes. Cette série d'actions sera répétée en boucle.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
 Code
 ---------
 
@@ -299,7 +283,7 @@ Code
     }
 
 
-Code Explanation
+Explication du code
 --------------------
 
 .. code-block:: c
@@ -316,9 +300,9 @@ Code Explanation
     void clearDisplay();
     void display();
 
-These codes are used to realize the function of number display of 4-Digit 7-Segment 
-Displays. Refer to chapter 1.1.5 of the document for more details. Here, we use the 
-codes to display countdown of traffic light time.
+Ces codes sont utilisés pour réaliser la fonction d'affichage des nombres sur les écrans à 4 chiffres 7 segments. 
+Consultez le chapitre 1.1.5 du document pour plus de détails. Ici, nous utilisons les codes pour afficher le compte 
+à rebours du temps des feux de circulation.
 
 .. code-block:: c
 
@@ -334,7 +318,7 @@ codes to display countdown of traffic light time.
         digitalWrite(ledPin[colorState],LOW);    
     }
 
-The codes are used to switch the LED on and off.
+Ces codes sont utilisés pour allumer et éteindre les LED.
 
 .. code-block:: c
 
@@ -359,10 +343,9 @@ The codes are used to switch the LED on and off.
         }
     }
 
-The codes are used to switch the timer on and off. Refer to chapter
-1.1.5 for more details. Here, when the timer returns to zero, colorState
-will be switched so as to switch LED, and the timer will be assigned to
-a new value.
+Ces codes sont utilisés pour activer et désactiver la minuterie. Consultez le chapitre 1.1.5 
+pour plus de détails. Ici, lorsque la minuterie revient à zéro, colorState sera changé pour 
+basculer les LED, et la minuterie sera réassignée à une nouvelle valeur.
 
 .. code-block:: c
 
@@ -383,10 +366,10 @@ a new value.
         return 0;
     }
 
-The timer is started in the main() function. In loop() function, use
-**while(1)** loop and call the functions of 4-Digit 7-Segment and LED.
+La minuterie est démarrée dans la fonction main(). Dans la fonction loop(), 
+utilisez la boucle **while(1)** et appelez les fonctions des écrans à 4 chiffres 7 segments et des LED.
 
-Phenomenon Picture
+Image du phénomène
 -------------------
 
 .. image:: ../img/IMG_8319.jpg

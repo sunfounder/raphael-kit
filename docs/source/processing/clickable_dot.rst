@@ -1,51 +1,37 @@
-.. note::
+.. _dot_cliquable:
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Point Cliquable
+======================
 
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-.. _clickable_dot:
-
-Clickable Dot
-==================
-
-We've tried drawing motion graphic, responding to mouse event, and controlling LED.  So, we might as well combine these functions, draw a clickable dot, to control the LED!  
+Nous avons essayé de dessiner des graphiques animés, de répondre à des événements de souris et de contrôler une LED. Nous pourrions donc combiner ces fonctions, dessiner un point cliquable pour contrôler la LED !  
 
 .. image:: img/clickable_dot_on.png
 
-**Required Components**
+**Composants Nécessaires**
 
-In this project, we need the following components.
+Dans ce projet, nous avons besoin des composants suivants.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -56,11 +42,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-**Wiring**
+**Câblage**
 
 .. image:: img/image49.png
 
-**Sketch**
+**Esquisse**
 
 .. code-block:: arduino
 
@@ -90,9 +76,9 @@ You can also buy them separately from the links below.
             {state = !state;}
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-This project has a lot in common with :ref:`blinking_dot`, the difference is that it puts the toggle state in the mouse event.
-This causes the LED to not blink automatically, but to light up and go off with a mouse click.
+Ce projet a beaucoup en commun avec :ref:`blinking_dot`, la différence est qu'il met l'état de bascule dans l'événement de la souris.
+Cela fait que la LED ne clignote pas automatiquement, mais s'allume et s'éteint avec un clic de souris.
 
-And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.
+Et dans l'événement ``mouseClicked()``, la fonction ``dist()`` est utilisée pour déterminer la position de la souris au moment du clic, et le point est considéré comme cliqué uniquement si la distance entre la souris et le centre du point est inférieure au rayon.

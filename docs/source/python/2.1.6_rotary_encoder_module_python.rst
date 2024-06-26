@@ -1,59 +1,44 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.6_py:
 
-2.1.6 Rotary Encoder Module
-===========================
+2.1.6 Module de Codeur Rotatif
+===================================
 
 Introduction
-------------
+---------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+Dans ce projet, vous allez découvrir le module de codeur rotatif. Un codeur rotatif est un interrupteur électronique qui génère une série d'impulsions régulières dans une séquence temporelle stricte. Utilisé avec un circuit intégré (CI), il peut réaliser des opérations telles que l'incrémentation, la décrémentation, le changement de page, ainsi que d'autres opérations comme le défilement de la souris, la sélection de menu, etc.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+
+Composants Nécessaires
+-------------------------
+
+Pour ce projet, nous avons besoin des composants suivants :
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,26 +49,25 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rotary_encoder`
         - |link_rotary_encoder_buy|
 
-Schematic Diagram
-------------------------
+Schéma Électrique
+--------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
-17.
+Dans cet exemple, nous pouvons connecter directement les broches du codeur rotatif au Raspberry Pi 
+en utilisant une breadboard et un câble à 40 broches. Connectez le GND du codeur rotatif à GND, 
+「+」à 5V, SW à GPIO27 digital, DT à GPIO18 digital et CLK à GPIO17 digital.
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrir le fichier de code.
 
 .. raw:: html
 
@@ -93,7 +77,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécuter.
 
 .. raw:: html
 
@@ -103,14 +87,16 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo python3 2.1.6_RotaryEncoder.py
 
-You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
-
+Vous verrez le compteur dans le terminal. Lorsque vous tournez le codeur rotatif dans le sens des 
+aiguilles d'une montre, le compteur augmente ; lorsque vous le tournez dans le sens inverse, 
+le compteur diminue. Si vous appuyez sur l'interrupteur du codeur rotatif, les valeurs reviendront 
+à zéro.
 
 **Code**
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+   Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 
 .. raw:: html
@@ -181,20 +167,20 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
          destroy()
 
 
-**Code Analysis**
+**Analyse du Code**
 
-* Read dtPin value when clkPin is low.
-* When clkPin is high, if dtPin goes from low to high, the count decreases, otherwise the count increases.
-* swPin will output low when the shaft is pressed.
+* Lire la valeur de dtPin lorsque clkPin est bas.
+* Lorsque clkPin est haut, si dtPin passe de bas à haut, le compteur diminue, sinon il augmente.
+* swPin produira une sortie basse lorsque l'axe est pressé.
 
-From this, the program flow is shown below:
+À partir de cela, le flux du programme est illustré ci-dessous :
 
 
 .. image:: ../img/2.1.6_flow.png
    :align: center
 
-Phenomenon Picture
--------------------------
+Image du Phénomène
+------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG
    :align: center

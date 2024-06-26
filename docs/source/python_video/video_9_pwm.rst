@@ -1,36 +1,19 @@
-.. note::
+Vidéo 9 : Utilisation des Broches GPIO pour le PWM afin de Simuler une Sortie Analogique
+=====================================================================================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Cette vidéo vous guide à travers les bases de la modulation de largeur d'impulsion (PWM) en utilisant les broches GPIO du Raspberry Pi, démontrant le contrôle de la luminosité des LED et l'ajustement de la fréquence en temps réel.
 
-    **Why Join?**
+1. Introduction au PWM et son rôle dans la simulation des signaux analogiques.
+2. Compréhension du cycle de travail et son importance dans les signaux PWM.
+3. Démonstration pratique du contrôle de la luminosité des LED en utilisant le PWM avec les broches GPIO du Raspberry Pi.
+4. Utilisation d'un oscilloscope pour visualiser les signaux PWM, vérifiant le cycle de travail et la fréquence.
+5. Explication de la fréquence et son impact sur les signaux PWM.
+6. Démonstration en temps réel du changement de cycle de travail et de fréquence en utilisant des commandes Python dans le terminal du Raspberry Pi.
+7. Devoir impliquant un contrôle précis de la luminosité des LED à l'aide de boutons-poussoirs, favorisant l'apprentissage pratique et l'expérimentation.
+8. Importance des broches GPIO dans le contrôle de divers composants tels que les LED, les moteurs et les capteurs.
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 9: Using GPIO Pins for PWM to Simulate Analog Output
-=======================================================================================
-
-This video guides you through the basics of PWM (Pulse Width Modulation) using the Raspberry Pi GPIO pins, demonstrating LED brightness control and real-time frequency adjustment.
-
-
-
-1. Introduction to PWM and its role in simulating analog signals.
-2. Understanding duty cycle and its significance in PWM signals.
-3. Hands-on demonstration of LED brightness control using PWM with Raspberry Pi GPIO pins.
-4. Utilizing an oscilloscope to visualize PWM signals, verifying duty cycle and frequency.
-5. Explanation of frequency and its impact on PWM signals.
-6. Real-time demonstration of changing duty cycle and frequency using Python commands in the Raspberry Pi terminal.
-7. Homework assignment involving precise LED brightness control using push buttons, fostering hands-on learning and experimentation.
-8. Importance of GPIO pins in controlling various components such as LEDs, motors, and sensors.
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
     
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/yJdN6LmGqvc?si=ta6vDlpAcGePqCdD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/yJdN6LmGqvc?si=ta6vDlpAcGePqCdD" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

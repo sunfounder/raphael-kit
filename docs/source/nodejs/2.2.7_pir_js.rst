@@ -1,17 +1,4 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.7_js:
 
 2.2.7 PIR
@@ -20,40 +7,40 @@
 Introduction
 ------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+Dans ce projet, nous allons créer un dispositif en utilisant des capteurs infrarouges 
+pyroélectriques pour le corps humain. Lorsque quelqu'un s'approche de la LED, celle-ci 
+s'allumera automatiquement. Sinon, la lumière s'éteindra. Ce capteur de mouvement infrarouge 
+est un type de capteur capable de détecter l'infrarouge émis par les humains et les animaux.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Composants Nécessaires
+-----------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,20 +55,19 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_pir`
         - \-
 
-Schematic Diagram
------------------
+Schéma de Câblage
+---------------------
 
 .. image:: ../img/image327.png
 
+Procédures Expérimentales
+-----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Aller dans le dossier du code.
 
 .. raw:: html
 
@@ -91,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécuter le code.
 
 .. raw:: html
 
@@ -101,11 +87,11 @@ Experimental Procedures
 
     sudo node pir.js
 
-After the code runs, PIR detects surroundings and let RGB LED glow
-yellow if it senses someone walking by. There are two potentiometers on
-the PIR module: one is to adjust sensitivity and the other is to adjust
-the detection distance. In order to make the PIR module work better, you
-need to try to adjust these two potentiometers.
+Après l'exécution du code, le PIR détecte les environs et fait briller la LED RGB en 
+jaune s'il détecte quelqu'un passant à proximité. Il y a deux potentiomètres sur le 
+module PIR : l'un pour ajuster la sensibilité et l'autre pour ajuster la distance de 
+détection. Afin d'optimiser le fonctionnement du module PIR, il est nécessaire d'ajuster 
+ces deux potentiomètres.
 
 **Code**
 
@@ -175,13 +161,12 @@ need to try to adjust these two potentiometers.
         process.exit();
     })
 
-**Code Explanation**
+**Explication du Code**
 
-The code for this example is a combination of :ref:`2.1.1_js` and :ref:`1.1.2_js`, no need to go into details.
+Le code de cet exemple est une combinaison de :ref:`2.1.1_js` et :ref:`1.1.2_js`, inutile d'entrer dans les détails.
 
 
-Phenomenon Picture
+Image du Phénomène
 ------------------
 
 .. image:: ../img/image215.jpeg
-    

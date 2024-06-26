@@ -1,61 +1,48 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.5_js:
 
-2.2.5 IR Obstacle Avoidance Sensor
-===================================
+2.2.5 Capteur d'évitement d'obstacles IR
+============================================
 
 Introduction
 -----------------
 
-In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+Dans ce projet, nous allons apprendre à utiliser le module d'évitement d'obstacles IR, qui est un module de capteur pouvant être utilisé pour détecter des obstacles à courte distance, avec peu d'interférences, facile à assembler, facile à utiliser, etc. Il peut être largement utilisé dans l'évitement d'obstacles pour robots, les chariots d'évitement d'obstacles, le comptage sur ligne d'assemblage, etc.
 
 .. image:: ../img/2.2.5IR_Obstacle.png
    :width: 300
    :align: center
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/2.2.5component.png
    :width: 700
    :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,23 +53,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_avoid_module`
         - |link_obstacle_avoidance_buy|
 
-Schematic Diagram
------------------------
+Schéma de câblage
+---------------------
 
 .. image:: ../img/IR_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
--------------------------
+Procédures Expérimentales
+----------------------------
 
-**Step 1:** Build the circuit
+**Étape 1 :** Construire le circuit
 
 .. image:: ../img/2.2.5fritzing.png
    :width: 700
    :align: center
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Aller dans le dossier du code.
 
 .. raw:: html
 
@@ -92,7 +79,7 @@ Experimental Procedures
    
    cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécuter le code.
 
 .. raw:: html
 
@@ -102,8 +89,8 @@ Experimental Procedures
 
    sudo node ir_obstacle.js
 
-After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
-repeatedly printed on the screen until the your hand is removed.
+Après l'exécution du code, lorsque vous mettez votre main devant la sonde du module, l'indicateur 
+de sortie sur le module s'allume et "Detected Barrier!" sera imprimé à l'écran de manière répétée jusqu'à ce que votre main soit retirée.
 
 **Code**
 
@@ -121,10 +108,7 @@ repeatedly printed on the screen until the your hand is removed.
       console.log('Detected Barrier!');        
    });
 
-
-
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: js
 
@@ -136,8 +120,8 @@ repeatedly printed on the screen until the your hand is removed.
       edge: Gpio.FALLING_EDGE        
    });
 
-Import the pigpio module, create an object to control the IO port Gpio17,
-Set it to input mode and interrupt on falling edge.
+Importer le module pigpio, créer un objet pour contrôler le port IO Gpio17,
+le régler en mode input et en interruption sur le front descendant.
 
 .. code-block:: js
 
@@ -145,12 +129,11 @@ Set it to input mode and interrupt on falling edge.
       console.log('Detected Barrier!');        
    });
 
-When an interrupt is triggered, meaning an obstacle is detected, print "Detected Barrier!".
+Lorsque l'interruption est déclenchée, signifiant qu'un obstacle est détecté, imprimer "Detected Barrier!".
 
-
-Phenomenon Picture
------------------------
+Image du Phénomène
+------------------
 
 .. image:: ../img/2.2.5IR.JPG
    :width: 500
-   
+

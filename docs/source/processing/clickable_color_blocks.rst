@@ -1,51 +1,38 @@
-.. note::
+ 
+.. _carrés_clicables:
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Carrés de Couleur Clicables
+======================================
 
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-.. _clickable_color_blocks:
-
-Clickable Color Blocks
-=======================
-
-We've already tried drawing a clickable dot to control the LED, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
+Nous avons déjà essayé de dessiner un point cliquable pour contrôler la LED, allons donc plus loin et dessinons 3 carrés colorés pour ajuster les couleurs RGB !
 
 .. image:: img/colorful_square.png
 
-**Required Components**
+**Composants nécessaires**
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,16 +42,15 @@ You can also buy them separately from the links below.
         - |link_wires_buy|
     *   - :ref:`cpn_rgb_led`
         - |link_rgb_led_buy|
-
-**Wiring**
+**Câblage**
 
 .. image:: img/image61.png
 
-**Sketch**
+**Esquisse**
 
 .. code-block:: arduino
 
-    import processing.io.*; // use the GPIO library
+    import processing.io.*; // utiliser la bibliothèque GPIO
 
     int[] pins = { 17, 18, 27 };
 
@@ -101,13 +87,13 @@ You can also buy them separately from the links below.
     }
 
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-This project has a lot in common with :ref:`clickable_dot`, except that it refines the conditions for determining mouse click event.
+Ce projet a beaucoup en commun avec :ref:`clickable_dot`, sauf qu'il affine les conditions pour déterminer l'événement de clic de souris.
 
-First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
+Dessinez d'abord trois blocs de couleur dans ``draw()``, puis identifiez quel bloc de couleur a été cliqué en fonction de la valeur de mouseX (la coordonnée X de la souris), et enfin, allumez la couleur correspondante avec la LED RGB.
 
-**What more?**
+**Quoi de plus ?**
 
-Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
-Now you can try it out for yourself.
+En combinant les lumières, nous pouvons faire afficher à la LED RGB sept couleurs - ajouter du rouge au vert produit du jaune ; ajouter les trois couleurs primaires ensemble produit du blanc.
+Maintenant, essayez-le vous-même.

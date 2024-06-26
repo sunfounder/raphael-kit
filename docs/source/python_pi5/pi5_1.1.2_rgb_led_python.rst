@@ -1,56 +1,43 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.2_py_pi5:
 
-1.1.2 RGB LED
+1.1.2 LED RVB
 ====================
 
 Introduction
 --------------
 
-In this project, we will control an RGB LED to flash various colors.
+Dans ce projet, nous allons contrôler une LED RVB pour afficher diverses couleurs.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/1.1.2_rgb_led_list.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,13 +51,13 @@ You can also buy them separately from the links below.
         - |link_rgb_led_buy|
 
 
-Schematic Diagram
+Schéma de câblage
 -----------------------
 
-After connecting the pins of R, G, and B to a current limiting resistor, connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest pin (GND) of the LED connects to the GND of the Raspberry Pi. When the three pins are given different PWM values, the RGB LED will display different colors.
+Après avoir connecté les broches R, G et B à une résistance de limitation de courant, connectez-les respectivement aux GPIO17, GPIO18 et GPIO27. La broche la plus longue (GND) de la LED se connecte à la masse (GND) du Raspberry Pi. Lorsque les trois broches reçoivent différentes valeurs PWM, la LED RVB affichera différentes couleurs.
 
 ============ ======== ===
-T-Board Name physical BCM
+Nom T-Board  Physique BCM
 GPIO17       Pin 11   17
 GPIO18       Pin 12   18
 GPIO27       Pin 13   27
@@ -78,14 +65,14 @@ GPIO27       Pin 13   27
 
 .. image:: ../python_pi5/img/1.1.2_rgb_led_schematic.png
 
-Experimental Procedures
+Procédures expérimentales
 ----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/1.1.2_rgbLed_circuit.png
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -95,7 +82,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -105,14 +92,13 @@ Experimental Procedures
 
     sudo python3 1.1.2_rgbLed_zero.py
 
-After the code runs, you will see that RGB displays red, green, blue,
-yellow, pink, and cyan.
+Après l'exécution du code, vous verrez que la LED RVB affiche rouge, vert, bleu, jaune, rose et cyan.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, vous devez aller au chemin source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -148,9 +134,9 @@ yellow, pink, and cyan.
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. This imports the ``RGBLED`` class from the ``gpiozero`` library for controlling an RGB LED, and the ``time`` library for implementing delays in the code.
+#. Cette section importe la classe ``RGBLED`` de la bibliothèque ``gpiozero`` pour contrôler une LED RVB, et la bibliothèque ``time`` pour implémenter des délais dans le code.
 
    .. code-block:: python
 
@@ -160,22 +146,22 @@ yellow, pink, and cyan.
 
        # Define a list of colors for the RGB LED in RGB format (Red, Green, Blue).
        # Each color component ranges from 0 (off) to 1 (full intensity).
-    
-#. The ``COLORS`` list contains tuples representing different colors in RGB format. By assigning different Pulse Width Modulation (PWM) values to each of the R, G, and B pins through the ``rgb_led.color`` attribute, the LED can produce a variety of colors. The PWM values range from 0 to 1, where 0 represents no intensity (off) and 1 represents full intensity for each color component.
-#. For instance, setting ``rgb_led.color = (1, 0, 0)`` turns the LED red, as it sets full intensity for the red component while keeping green and blue off. Similarly, varying combinations of these values result in different colors. This technique of color mixing through PWM allows for the creation of a wide range of colors on the RGB LED.
+
+#. La liste ``COLORS`` contient des tuples représentant différentes couleurs au format RVB. En attribuant différentes valeurs de modulation de largeur d'impulsion (PWM) à chacune des broches R, G et B via l'attribut ``rgb_led.color``, la LED peut produire une variété de couleurs. Les valeurs PWM varient de 0 à 1, où 0 représente aucune intensité (éteint) et 1 représente une intensité maximale pour chaque composant de couleur.
+#. Par exemple, régler ``rgb_led.color = (1, 0, 0)`` rend la LED rouge, car cela met l'intensité maximale pour le composant rouge tout en éteignant les composants vert et bleu. De même, des combinaisons variées de ces valeurs produisent différentes couleurs. Cette technique de mélange des couleurs par PWM permet de créer une large gamme de couleurs sur la LED RVB.
 
    .. code-block:: python    
        
        COLORS = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
 
-#. An RGB LED is initialized with its red, green, and blue components connected to GPIO pins 17, 18, and 27, respectively.
+#. Une LED RVB est initialisée avec ses composants rouge, vert et bleu connectés respectivement aux broches GPIO 17, 18 et 27.
 
    .. code-block:: python
 
        # Initialize an RGB LED. Connect the red component to GPIO 17, green to GPIO 18, and blue to GPIO 27.
        rgb_led = RGBLED(red=17, green=18, blue=27)
 
-#. The ``while True:`` loop continuously cycles through the colors defined in ``COLORS``. For each color, ``rgb_led.color = color`` sets the LED to that color, and ``sleep(1)`` pauses for 1 second. 
+#. La boucle ``while True:`` parcourt en continu les couleurs définies dans ``COLORS``. Pour chaque couleur, ``rgb_led.color = color`` règle la LED sur cette couleur, et ``sleep(1)`` fait une pause de 1 seconde.
 
    .. code-block:: python
 
@@ -190,7 +176,7 @@ yellow, pink, and cyan.
                    # Wait for 1 second before switching to the next color.
                    sleep(1)
 
-#. This section gracefully handles a ``KeyboardInterrupt`` (such as pressing Ctrl+C). The ``pass`` statement is used as a placeholder to indicate no specific action on interruption, as GPIO Zero handles GPIO cleanup automatically.
+#. Cette section gère proprement une ``KeyboardInterrupt`` (comme appuyer sur Ctrl+C). L'instruction ``pass`` est utilisée comme un espace réservé pour indiquer qu'aucune action spécifique n'est entreprise lors de l'interruption, car GPIO Zero gère automatiquement le nettoyage des GPIO.
 
    .. code-block:: python
 

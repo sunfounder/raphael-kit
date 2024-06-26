@@ -1,36 +1,22 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.4_c:
 
-1.1.4 7-segment Display
+1.1.4 Affichage 7 segments
 =============================
 
 Introduction
 -----------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+Essayons de piloter un affichage à 7 segments pour afficher des chiffres de 0 à 9 et des lettres de A à F.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_7_segment.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
@@ -43,14 +29,14 @@ It's definitely convenient to buy a whole kit, here's the link:
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,20 +51,19 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
-Schematic Diagram
+Schéma de câblage
 ---------------------
 
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+Connectez la broche ST_CP du 74HC595 à GPIO18 du Raspberry Pi, SH_CP à GPIO27, DS à GPIO17, 
+les ports de sortie parallèles aux 8 segments de l'affichage LED. Les données sont entrées 
+dans la broche DS vers le registre à décalage lorsque SH_CP (l'entrée d'horloge du registre 
+à décalage) est en front montant, et vers le registre de mémoire lorsque ST_CP (l'entrée d'horloge
+ de la mémoire) est en front montant. Vous pouvez alors contrôler les états de SH_CP et ST_CP via 
+ les GPIO du Raspberry Pi pour transformer les données d'entrée série en données de sortie 
+ parallèle afin d'économiser les GPIO du Raspberry Pi et piloter l'affichage.
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  Physique wiringPi BCM
 GPIO17       Pin 11   0        17
 GPIO18       Pin 12   1        18
 GPIO27       Pin 13   2        27
@@ -86,15 +71,14 @@ GPIO27       Pin 13   2        27
 
 .. image:: ../img/schematic_7_segment.png
 
-
-Experimental Procedures
+Procédures expérimentales
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image73.png
 
-**Step 2:** Get into the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -104,7 +88,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.4/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilez.
 
 .. raw:: html
 
@@ -114,7 +98,7 @@ Experimental Procedures
 
     gcc 1.1.4_7-Segment.c -lwiringPi
 
-**Step 4:** Run the executable file above.
+**Étape 4 :** Exécutez le fichier exécutable ci-dessus.
 
 .. raw:: html
 
@@ -124,11 +108,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+Après l'exécution du code, vous verrez l'affichage à 7 segments afficher 0-9, A-F.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
 
 **Code**
 
@@ -180,14 +164,14 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         return 0;
     }
 
-**Code Explanation**
+**Explication du code**
 
 
 .. code-block:: c
 
     unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
-A segment code array from 0 to F in Hexadecimal (Common cathode).
+Un tableau de codes segment de 0 à F en hexadécimal (cathode commune).
 
 .. code-block:: c
 
@@ -200,31 +184,31 @@ A segment code array from 0 to F in Hexadecimal (Common cathode).
         digitalWrite(SRCLK, 0);
     }
 
-Set ds, st_cp, sh_cp three pins to OUTPUT, and the initial state as 0.
+Définir les broches ds, st_cp, sh_cp en sortie et l'état initial à 0.
 
 .. code-block:: c
 
     void hc595_shift(unsigned char dat){}
 
-To assign 8 bit value to 74HC595’s shift register.
+Attribuer une valeur de 8 bits au registre à décalage du 74HC595.
 
 .. code-block:: c
 
     digitalWrite(SDI, 0x80 & (dat << i));
 
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when i=2, 0x3f will shift left(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+Attribuer les données dat à SDI(DS) par bits. Supposons ici dat=0x3f(0011 1111), lorsque i=2, 0x3f sera décalé à gauche (<<) de 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, est vrai.
 
 .. code-block:: c
 
     digitalWrite(SRCLK, 1);
 
-SRCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge pulse, then shift the DS date to shift register.
+La valeur initiale de SRCLK était définie à 0, et ici elle est définie à 1, ce qui génère une impulsion de front montant, puis décale les données DS vers le registre à décalage.
 
 .. code-block:: c
 
     digitalWrite(RCLK, 1);
 
-RCLK's initial value was set to 0, and here it's set to 1, which is to generate a rising edge, then shift data from shift register to storage register.
+La valeur initiale de RCLK était définie à 0, et ici elle est définie à 1, ce qui génère une impulsion de front montant, puis décale les données du registre à décalage vers le registre de stockage.
 
 .. code-block:: c
 
@@ -236,13 +220,12 @@ RCLK's initial value was set to 0, and here it's set to 1, which is to generate 
             }
         }
 
-In this for loop, we use ``%1X`` to output i as a hexadecimal number. Apply i to find the corresponding segment code in the ``SegCode[]`` array, and employ ``hc595_shift()`` to pass the SegCode into 74HC595's shift register.
+Dans cette boucle for, nous utilisons ``%1X`` pour afficher i en tant que nombre hexadécimal. Appliquez i pour trouver le code segment correspondant dans le tableau ``SegCode[]``, et utilisez ``hc595_shift()`` pour passer le code SegCode dans le registre à décalage du 74HC595.
 
 .. note::
-    The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+    Le format hexadécimal des nombres 0~15 est (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
 
-**Phenomenon Picture**
+**Image du phénomène**
 
 .. image:: ../img/image74.jpeg
-
 

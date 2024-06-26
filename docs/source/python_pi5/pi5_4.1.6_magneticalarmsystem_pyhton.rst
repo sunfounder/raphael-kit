@@ -1,57 +1,43 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _4.1.6_py_pi5:
 
-4.1.1 Magnetic Induction Alarm System
-============================================
+4.1.1 Système d'alarme à induction magnétique
+==================================================
 
 Introduction
------------------
+------------------
 
-When you get a precious vase, you can make a magnetic induction alarm system for it, no matter who moves it, you can hear the alarm in time.
+Lorsque vous possédez un vase précieux, vous pouvez créer un système d'alarme à induction magnétique pour le protéger. Peu importe qui le déplace, vous entendrez l'alarme immédiatement.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants :
 
 .. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_list.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,12 +54,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-
-Schematic Diagram
------------------------
+Schéma
+-----------
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  Physique wiringPi BCM
 GPIO17       Pin 11   0        17
 GPIO27       Pin 13   2        27
 ============ ======== ======== ===
@@ -81,16 +66,16 @@ GPIO27       Pin 13   2        27
 .. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_schematic.png
    :align: center
 
-Experimental Procedures
-------------------------------
+Procédures Expérimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_circuit.png
   :width: 800
   :align: center
 
-**Step 2:** Get into the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -100,7 +85,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez le programme.
 
 .. raw:: html
 
@@ -110,13 +95,12 @@ Experimental Procedures
 
     sudo python3 4.1.6_MagneticAlarmSystem_zero.py
 
-If the reed switch is affected by the magnet (for example, the reed switch is placed on the base and the magnet is placed in the vase), the object is safe. At this time, the reed switch is in the closed state, and the buzzer is silent.
-After removing the magnet (such as the vase being stolen), the reed switch is not affected by the magnetic, the switch opens, and the buzzer sounds an alarm.
-
+Si l'interrupteur à lames est influencé par l'aimant (par exemple, l'interrupteur à lames est placé sur la base et l'aimant est placé dans le vase), l'objet est en sécurité. À ce moment-là, l'interrupteur à lames est en état fermé, et le buzzer reste silencieux. 
+Après avoir retiré l'aimant (par exemple, si le vase est volé), l'interrupteur à lames n'est plus affecté par le magnétisme, l'interrupteur s'ouvre et le buzzer émet une alarme.
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -152,9 +136,9 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
        pass
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. This imports the necessary classes ``Buzzer`` and ``Button`` from the ``gpiozero`` library, and the ``time`` module from Python's standard library.
+#. Cette ligne importe les classes nécessaires ``Buzzer`` et ``Button`` de la bibliothèque ``gpiozero`` ainsi que le module ``time`` de la bibliothèque standard de Python.
 
    .. code-block:: python
 
@@ -162,7 +146,7 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
        from gpiozero import Buzzer, Button
        import time
 
-#. The ``Buzzer`` object is linked to GPIO pin 27, and a ``Button`` (acting as a reed switch) is connected to GPIO pin 17 with the ``pull_up=True`` argument, enabling the internal pull-up resistor.
+#. L'objet ``Buzzer`` est relié à la broche GPIO 27, et un ``Button`` (agissant comme un interrupteur à lames) est connecté à la broche GPIO 17 avec l'argument ``pull_up=True``, activant ainsi la résistance pull-up interne.
 
    .. code-block:: python
 
@@ -171,7 +155,7 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
        # Initialize the reed switch on GPIO pin 17 with pull-up resistor enabled
        reed_switch = Button(17, pull_up=True)
 
-#. The ``try`` block contains an infinite loop (``while True``) checking the state of the reed switch. If pressed (``is_pressed``), the buzzer is turned off. Otherwise, the buzzer beeps (0.1 seconds on, 0.1 seconds off). 
+#. Le bloc ``try`` contient une boucle infinie (``while True``) vérifiant l'état de l'interrupteur à lames. Si l'interrupteur est activé (``is_pressed``), le buzzer est éteint. Sinon, le buzzer émet un bip (0,1 seconde allumé, 0,1 seconde éteint).
 
    .. code-block:: python
 
@@ -188,7 +172,7 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
                    buzzer.off()
                    time.sleep(0.1)  # Buzzer off for 0.1 seconds
 
-#. The ``except`` block handles a KeyboardInterrupt (like a Ctrl+C in the terminal) to turn off the buzzer safely.
+#. Le bloc ``except`` gère une interruption clavier (comme Ctrl+C dans le terminal) pour éteindre le buzzer en toute sécurité.
 
    .. code-block:: python
 

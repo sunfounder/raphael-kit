@@ -1,36 +1,17 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 51: Modifying OpenCV Images and Creating Regions of Interest
+Vidéo 51 : Modification des images OpenCV et création de régions d'intérêt
 =======================================================================================
 
-In this tutorial, we delve into advanced image manipulation techniques with the Raspberry Pi camera, 
-covering topics such as extracting and manipulating regions of interest (ROI), understanding pixel data, and working with frame dimensions.
+Dans ce tutoriel, nous explorons des techniques avancées de manipulation d'images avec la caméra Raspberry Pi, couvrant des sujets tels que l'extraction et la manipulation de régions d'intérêt (ROI), la compréhension des données de pixels et le travail avec les dimensions des images.
 
-1. **Understanding frame dimensions and pixel data**: Learn about the structure of frames as rows and columns of pixels, each containing three color values (blue, green, red).
-2. **Manipulating individual pixels**: Explore how to access and modify individual pixels within a frame using row and column indices.
-3. **Handling edge cases**: Be mindful of edge cases when accessing pixels, such as starting indexing at zero and adjusting for the last row and column.
-4. **Working with ranges in frames**: Learn efficient manipulation techniques by working with ranges of pixels within a frame.
-5. **Defining regions of interest (ROI)**: Understand how to define and extract specific regions of interest from a frame for further processing.
-6. **Applying ROI to image manipulation**: Utilize extracted ROIs to manipulate specific areas of an image, including copying and moving regions within the frame.
+1. **Comprendre les dimensions des images et les données des pixels** : Apprenez la structure des images en tant que lignes et colonnes de pixels, chacune contenant trois valeurs de couleur (bleu, vert, rouge).
+2. **Manipuler des pixels individuels** : Découvrez comment accéder et modifier des pixels individuels dans une image en utilisant les indices de lignes et de colonnes.
+3. **Gérer les cas particuliers** : Soyez attentif aux cas particuliers lors de l'accès aux pixels, comme le démarrage de l'indexation à zéro et l'ajustement pour la dernière ligne et colonne.
+4. **Travailler avec des plages de pixels dans les images** : Apprenez des techniques de manipulation efficaces en travaillant avec des plages de pixels dans une image.
+5. **Définir des régions d'intérêt (ROI)** : Comprenez comment définir et extraire des régions spécifiques d'intérêt dans une image pour un traitement ultérieur.
+6. **Appliquer les ROI à la manipulation d'images** : Utilisez les ROI extraites pour manipuler des zones spécifiques d'une image, y compris copier et déplacer des régions au sein de l'image.
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/IaVok7CMWcw?si=pusI5nWHpKS04o5w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/IaVok7CMWcw?si=pusI5nWHpKS04o5w" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

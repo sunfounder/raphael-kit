@@ -1,54 +1,40 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.13_scratch:
 
-1.13 Doorbell
-==================
+1.13 Sonnette
+================
 
-Today we will make a doorbell, click the button3 sprite on the stage, the buzzer will sound; click again, the buzzer will stop sounding.
+Aujourd'hui, nous allons fabriquer une sonnette. Cliquez sur le sprite bouton3 sur la scène, le buzzer sonnera; cliquez à nouveau, le buzzer cessera de sonner.
 
 .. image:: img/1.13_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.13_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,48 +49,47 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-Build the Circuit
----------------------
+Construire le Circuit
+------------------------
 
 .. image:: img/1.13_image106.png
 
-Load the Code and See What Happens
------------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+---------------------------------------
 
-Load the code file (``1.13_doorbell.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.13_doorbell.sb3``) sur Scratch 3.
 
-Click on the green flag on the stage. When we click on the Button 3 sprite, it will turn blue and then the buzzer will sound; when we click again, the **Button3** sprite reverts to gray and the buzzer stops sounding.
+Cliquez sur le drapeau vert sur la scène. Lorsque nous cliquons sur le sprite Button 3, il deviendra bleu et le buzzer sonnera; lorsque nous cliquons à nouveau, le sprite **Button3** redevient gris et le buzzer cesse de sonner.
 
 
-Tips on Sprite
-----------------
+Astuces sur les Sprites
+---------------------------
 
-Delete the default sprite, then choose the **Button 3** sprite.
+Supprimez le sprite par défaut, puis choisissez le sprite **Button 3**.
 
 .. image:: img/1.13_scratch_button3.png
 
-Then set the size to 200.
+Puis réglez la taille sur 200.
 
 .. image:: img/1.13_scratch_button3_size.png
 
-Tips on Codes
---------------
+Astuces sur les Codes
+-------------------------
 
 .. image:: img/1.13_buzzer4.png
   :width: 400
 
-This block allows you to switch the sprite's costume.
+Ce bloc vous permet de changer le costume du sprite.
 
 .. image:: img/1.13_buzzer5.png
   :width: 400
 
-Set gpio17 to low to make the buzzer sound; set it to high and the buzzer will not sound.
 
+Réglez gpio17 sur bas pour faire sonner le buzzer; réglez-le sur haut et le buzzer ne sonnera pas.
 
-The **status** switch is used here, and we will use a flowchart to help you understand the whole code.
+L'interrupteur **status** est utilisé ici, et nous utiliserons un organigramme pour vous aider à comprendre l'ensemble du code.
 
-When the green flag is clicked, the **status** will be set to 0 first, and wait for the sprite to be clicked at this time; if **button3** sprite is clicked, it will switch to costume as **button-b** costume (blue) and the **status** will be set to 1. When the main program receives the **status** as 1, it will let the buzzer sound at 0.1s interval.
-If **button3** is clicked again, it will switch to **button-a** costume (gray) and **status** will be set to 0 again.
+Lorsque le drapeau vert est cliqué, le **status** sera d'abord réglé sur 0, et attendra que le sprite soit cliqué; si le sprite **button3** est cliqué, il changera de costume en **button-b** (bleu) et le **status** sera réglé sur 1. Lorsque le programme principal reçoit le **status** à 1, il fera sonner le buzzer à intervalle de 0.1s. Si **button3** est cliqué à nouveau, il changera de costume en **button-a** (gris) et le **status** sera de nouveau réglé sur 0.
 
 .. image:: img/1.13_scratch_code.png
 

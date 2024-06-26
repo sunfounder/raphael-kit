@@ -1,63 +1,49 @@
-.. note::
+Configurer votre Raspberry Pi
+========================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Configuration avec un écran
+------------------------------
 
-    **Why Join?**
+Utiliser un écran simplifie le processus de travail avec votre Raspberry Pi.
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Setting Up Your Raspberry Pi
-=====================================
-
-Setting Up with a Screen
----------------------------
-
-Having a screen simplifies the process of working with your Raspberry Pi.
-
-**Required Components**
+**Composants requis**
 
 * Raspberry Pi
-* Power Adapter
-* Micro SD card
-* Screen Power Adapter
-* HDMI cable
-* Screen
-* Mouse
-* Keyboard
+* Adaptateur secteur
+* Carte Micro SD
+* Adaptateur secteur pour l'écran
+* Câble HDMI
+* Écran
+* Souris
+* Clavier
 
-**Steps**:
+**Étapes** :
 
-#. Connect the Mouse and Keyboard to the Raspberry Pi.
+#. Connectez la souris et le clavier au Raspberry Pi.
 
-#. Use the HDMI cable to connect the screen to the Raspberry Pi's HDMI port. Ensure the screen is plugged into a power source and turned on.
+#. Utilisez le câble HDMI pour connecter l'écran au port HDMI du Raspberry Pi. Assurez-vous que l'écran est branché à une source d'alimentation et allumé.
 
-#. Power the Raspberry Pi using the power adapter. The Raspberry Pi OS desktop should appear on the screen after a few seconds.
+#. Alimentez le Raspberry Pi avec l'adaptateur secteur. Le bureau de Raspberry Pi OS devrait apparaître à l'écran après quelques secondes.
 
     .. image:: img/bullseye_desktop.png
         :align: center
 
-Setting Up Without a Screen
+Configuration sans écran
 ------------------------------
 
-If you don't have a monitor, remote login is a viable option.
+Si vous n'avez pas de moniteur, la connexion à distance est une option viable.
 
-**Required Components**
+**Composants requis**
 
 * Raspberry Pi
-* Power Adapter
-* Micro SD card
+* Adaptateur secteur
+* Carte Micro SD
 
-Using SSH, you can access the Raspberry Pi's Bash shell, which is the default Linux shell. Bash offers a command-line interface for performing various tasks.
+En utilisant SSH, vous pouvez accéder au shell Bash du Raspberry Pi, qui est le shell Linux par défaut. Bash offre une interface en ligne de commande pour effectuer diverses tâches.
 
-For those preferring a graphical user interface (GUI), the remote desktop feature is a convenient alternative for managing files and operations.
+Pour ceux qui préfèrent une interface graphique (GUI), la fonctionnalité de bureau à distance est une alternative pratique pour gérer les fichiers et les opérations.
 
-For detailed setup tutorials based on your operating system, refer to the following sections:
+Pour des tutoriels de configuration détaillés en fonction de votre système d'exploitation, consultez les sections suivantes :
 
 .. toctree::
 
@@ -65,4 +51,3 @@ For detailed setup tutorials based on your operating system, refer to the follow
     remote_windows
     remote_linux
     remote_desktop
-

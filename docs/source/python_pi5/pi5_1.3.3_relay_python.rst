@@ -1,59 +1,46 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.3.3_py_pi5:
 
-1.3.3 Relay
-===========
+1.3.3 Relais
+============
 
 Introduction
 ------------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+Dans ce projet, nous allons apprendre à utiliser un relais. C'est l'un des composants 
+couramment utilisés dans les systèmes de contrôle automatique. Lorsque la tension, le 
+courant, la température, la pression, etc., atteignent, dépassent ou sont inférieurs à 
+la valeur prédéterminée, le relais connecte ou interrompt le circuit, pour contrôler et 
+protéger l'équipement.
 
-Required Components
-------------------------------
+Composants Nécessaires
+----------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/1.3.3_relay_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -72,20 +59,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_diode`
         - |link_diode_buy|
 
-Schematic Diagram
------------------
+Schéma de Câblage
+---------------------
 
 .. image:: ../python_pi5/img/1.3.3_relay_schematic.png
 
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/1.3.3_relay_circuit.png
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -95,8 +82,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -106,15 +92,15 @@ Experimental Procedures
 
     sudo python3 1.3.3_Relay_zero.py
 
-While the code is running, the LED lights up. In addition, you can hear
-a ticktock caused by breaking normally close contact and closing
-normally open contact.
+Pendant l'exécution du code, la LED s'allume. De plus, vous pouvez entendre un
+ tic-tac causé par l'ouverture du contact normalement fermé et la fermeture du
+  contact normalement ouvert.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller dans le chemin du code source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 
 .. raw:: html
@@ -147,9 +133,9 @@ normally open contact.
        pass
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. It imports ``OutputDevice`` from ``gpiozero`` for controlling GPIO pins and ``sleep`` from ``time`` for adding delays.
+#. Importer ``OutputDevice`` de ``gpiozero`` pour contrôler les broches GPIO et ``sleep`` de ``time`` pour ajouter des délais.
 
    .. code-block:: python
 
@@ -179,7 +165,7 @@ normally open contact.
                relay.off()  # Turn off the relay
                sleep(1)   # Maintain the relay in the off state for 1 second
 
-#. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination. The relay is turned off before exiting the script.
+#. Attrape une interruption clavier (comme Ctrl+C) pour permettre une terminaison en douceur du script. Le relais est éteint avant de sortir du script.
 
    .. code-block:: python
       

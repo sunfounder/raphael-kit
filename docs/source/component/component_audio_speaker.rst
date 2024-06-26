@@ -1,88 +1,73 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _cpn_audio_speaker:
 
-Audio Module and Speaker
-===========================
+Module Audio et Haut-parleur
+=================================
 
-**Audio Amplifier Module**
+**Module Amplificateur Audio**
 
 .. image:: img/audio_module.jpg
     :width: 500
     :align: center
 
-Audio Amplifier Module contains a HXJ8002 audio power amplifier chip. This chip is a power amplifier with low power supply, that can provide 3W average audio power for a 3Ω BTL load with low harmonic distortion (under 10% threshold distortion at 1KHz) from a 5V DC power supply. This chip can amplify audio signals without any coupling capacitors or bootstrap capacitors.
+Le module amplificateur audio contient une puce amplificatrice de puissance audio HXJ8002. Cette puce est un amplificateur de puissance à faible consommation qui peut fournir une puissance audio moyenne de 3W pour une charge BTL de 3Ω avec une distorsion harmonique faible (sous le seuil de 10% à 1KHz) à partir d'une alimentation de 5V DC. Cette puce peut amplifier les signaux audio sans aucun condensateur de couplage ou de bootstrap.
 
-The module can be supplied by a 2.0V up to 5.5V DC with 10mA operating current (0.6uA for typical standby current) power source and produce a powerful amplified sound into a 3Ω, 4Ω, or 8Ω impedance speaker. This module has an improved pop and clicks circuitry for reducing significantly the transition nose at the powering on and off moment. Tiny size besides high efficiency and low power supplying make it applicable in widely portable and battery-powered projects and microcontrollers.  
-
+Le module peut être alimenté par une source de 2,0V à 5,5V DC avec un courant de fonctionnement de 10mA (0,6uA pour le courant de veille typique) et produire un son amplifié puissant dans un haut-parleur d'impédance 3Ω, 4Ω ou 8Ω. Ce module dispose d'un circuit amélioré de réduction des bruits de transition pour réduire significativement les bruits à l'allumage et à l'extinction. Sa petite taille, son efficacité élevée et sa faible consommation le rendent applicable dans de nombreux projets portables et alimentés par batterie ainsi que pour les microcontrôleurs.
 
 * **IC**: HXJ8002
-* **Input Voltage**: 2V ~ 5.5V
-* **Standby Mode Current**: 0.6uA (typical value)
-* **Output Power**: 3W (3Ω load) , 2.5W (4Ω load) , 1.5W (8Ω load)
-* **Output Speaker Impedance**: 3Ω, 4Ω, 8Ω
-* **Size**: 19.8mm x 14.2mm
+* **Tension d'entrée**: 2V ~ 5.5V
+* **Courant en mode veille**: 0.6uA (valeur typique)
+* **Puissance de sortie**: 3W (charge de 3Ω), 2.5W (charge de 4Ω), 1.5W (charge de 8Ω)
+* **Impédance du haut-parleur de sortie**: 3Ω, 4Ω, 8Ω
+* **Dimensions**: 19.8mm x 14.2mm
 
-**Speaker**
+**Haut-parleur**
 
 .. image:: img/speaker_pic.png
     :width: 300
     :align: center
 
-* **Size**: 20x30x7mm
-* **Impedance**：8ohm
-* **Rate Input Power**: 1.5W 
-* **Max Input Power**: 2.0W
-* **Wire Length**: 10cm
+* **Dimensions**: 20x30x7mm
+* **Impédance**：8 ohms
+* **Puissance d'entrée nominale**: 1.5W 
+* **Puissance d'entrée maximale**: 2.0W
+* **Longueur du fil**: 10 cm
 
 .. image:: img/2030_speaker.png
 
-The size chart is as follows：
+Le tableau des dimensions est le suivant :
 
-* :download:`2030 Speaker Datasheet <https://github.com/sunfounder/sf-pdf/raw/master/datasheet/2030-speaker-datasheet.pdf>`
+* :download:`Fiche technique du haut-parleur 2030 <https://github.com/sunfounder/sf-pdf/raw/master/datasheet/2030-speaker-datasheet.pdf>`
 
-**Audio Cable**
+**Câble Audio**
 
 .. image:: img/audio_cable_pic2.png
     :width: 500
     :align: center
 
-This is a 3.5mm male audio cable with a total length of 43cm. it has 3 connectors, red for the left channel, white for the right channel, and GND in the middle.
+Il s'agit d'un câble audio mâle de 3,5mm d'une longueur totale de 43cm. Il comporte 3 connecteurs : rouge pour le canal gauche, blanc pour le canal droit et GND au milieu.
 
 **Circuit**
 
 .. image:: img/4.1.4fritzing.png
 
-After building the circuit according to the above diagram, then plug the audio cable into the Raspberry Pi's 3.5mm audio jack.
+Après avoir construit le circuit selon le schéma ci-dessus, branchez le câble audio dans la prise audio de 3,5 mm du Raspberry Pi.
 
 .. image:: img/audio4.png
     :width: 400
     :align: center
 
+Si votre haut-parleur ne produit aucun son, cela peut être dû au fait que le Raspberry Pi a sélectionné la mauvaise sortie audio (par défaut, c'est HDMI). Vous devez :ref:`changer_la_sortie_audio` pour **Casque**.
 
-If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`change_audio_output` to **Headphones**.
+Si vous trouvez que le volume des haut-parleurs est trop bas, vous pouvez :ref:`ajuster_le_volume`.
 
-If you feel that the volume of the speakers is too low, you can :ref:`adjust_volume`.
+**Exemple**
 
-**Example**
-
-* :ref:`3.1.3_py` (Python Project)
-* :ref:`3.1.4_py` (Python Project)
-* :ref:`4.1.2_py` (Python Project)
-* :ref:`4.1.3_py` (Python Project)
-* :ref:`4.1.5_py` (Python Project)
-* :ref:`1.8_scratch` (Scratch Project)
-* :ref:`1.9_scratch` (Scratch Project)
-* :ref:`1.10_scratch` (Scratch Project)
+* :ref:`3.1.3_py` (Projet Python)
+* :ref:`3.1.4_py` (Projet Python)
+* :ref:`4.1.2_py` (Projet Python)
+* :ref:`4.1.3_py` (Projet Python)
+* :ref:`4.1.5_py` (Projet Python)
+* :ref:`1.8_scratch` (Projet Scratch)
+* :ref:`1.9_scratch` (Projet Scratch)
+* :ref:`1.10_scratch` (Projet Scratch)

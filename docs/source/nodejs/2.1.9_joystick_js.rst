@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _2.1.9_js:
 
 2.1.9 Joystick
-==============
+================
 
 Introduction
-------------
+--------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+Dans ce projet, nous allons apprendre comment fonctionne un joystick. Nous manipulerons le 
+joystick et afficherons les résultats à l'écran.
 
 Required Components
-------------------------------
+--------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/image317.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,12 +52,12 @@ You can also buy them separately from the links below.
         - \-
 
 Schematic Diagram
------------------
+-----------------------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Lors de la lecture des données du joystick, il y a quelques différences entre les axes : 
+les données des axes X et Y sont analogiques, nécessitant l'utilisation de l'ADC0834 pour 
+convertir la valeur analogique en valeur numérique. Les données de l'axe Z sont numériques, 
+vous pouvez donc les lire directement avec le GPIO ou utiliser également l'ADC pour les lire.
 
 .. image:: ../img/image319.png
 
@@ -79,14 +65,14 @@ you can directly use the GPIO to read, or you can also use ADC to read.
 .. image:: ../img/image320.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image193.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -96,7 +82,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -106,8 +92,8 @@ Experimental Procedures
 
     sudo node joystick.js
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
+Après l'exécution du code, manipulez le joystick, puis les valeurs correspondantes de x, y, 
+Btn s'affichent à l'écran.
 
 **Code**
 
@@ -133,13 +119,13 @@ x, y, Btn are displayed on screen.
 
 
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
     const ADC0834 = require('./adc0834.js').ADC0834;
 
-We import an ``ADC0834`` constructor to use the adc0834 module.
+Nous importons un constructeur ``ADC0834`` pour utiliser le module adc0834.
 
 .. code-block:: js
 
@@ -152,19 +138,16 @@ We import an ``ADC0834`` constructor to use the adc0834 module.
         console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
     }, 100);
 
-
-When reading the values of multiple channels of ADC0834 at the same time, asynchronous programming is required.
-We build a promise function here,
-And use the await instruction of async function to elegantly write this complex asynchronous task.
+Lors de la lecture des valeurs de plusieurs canaux de l'ADC0834 en même temps, une programmation asynchrone est nécessaire.
+Nous construisons ici une fonction promise,
+et utilisons l'instruction await de la fonction async pour écrire élégamment cette tâche asynchrone complexe.
 
 * `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 * `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
 
 
-
-Phenomenon Picture
-------------------
+Image du phénomène
+----------------------
 
 .. image:: ../img/image194.jpeg
-
 

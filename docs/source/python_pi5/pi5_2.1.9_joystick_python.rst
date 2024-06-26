@@ -1,56 +1,43 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.9_py_pi5:
 
 2.1.9 Joystick
-==============
+=================
 
 Introduction
-------------
+---------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+Dans ce projet, nous allons apprendre comment fonctionne un joystick. Nous manipulons le 
+joystick et affichons les résultats à l'écran.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/2.1.9_joystick_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,13 +52,14 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
------------------
+Schéma
+-----------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Lors de la lecture des données du joystick, il y a des différences entre les 
+axes : les données des axes X et Y sont analogiques, il est donc nécessaire 
+d'utiliser l'ADC0834 pour convertir les valeurs analogiques en valeurs numériques. 
+Les données de l'axe Z sont numériques, vous pouvez donc utiliser directement le GPIO 
+pour les lire, ou utiliser l'ADC.
 
 .. image:: ../python_pi5/img/2.1.9_joystick_schematic_1.png
 
@@ -79,14 +67,14 @@ you can directly use the GPIO to read, or you can also use ADC to read.
 .. image:: ../python_pi5/img/2.1.9_joystick_schematic_2.png
 
 
-Experimental Procedures
------------------------
+Procédures expérimentales
+-------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../python_pi5/img/2.1.9_Joystick_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -96,7 +84,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -106,14 +94,14 @@ Experimental Procedures
 
     sudo python3 2.1.9_Joystick_zero.py
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
+Après l'exécution du code, tournez le joystick, puis les valeurs correspondantes 
+de x, y, Btn s'affichent à l'écran.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre au chemin du code source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 
 .. raw:: html
@@ -154,9 +142,9 @@ x, y, Btn are displayed on screen.
        pass
 
 
-**Code Explanation**
+**Explication du code**
 
-#. This section imports the Button class from the ``gpiozero`` library to manage a button connected to a GPIO pin. It also imports the ``ADC0834`` library for interfacing with the ADC0834 ADC (Analog-to-Digital Converter) module.
+#. Cette section importe la classe Button de la bibliothèque ``gpiozero`` pour gérer un bouton connecté à une broche GPIO. Elle importe également la bibliothèque ``ADC0834`` pour l'interface avec le module ADC0834 (convertisseur analogique-numérique).
 
    .. code-block:: python
 
@@ -165,7 +153,7 @@ x, y, Btn are displayed on screen.
        import ADC0834
        import time
 
-#. Initializes a button connected to GPIO pin 22 and sets up the ADC0834 module for usage.
+#. Initialise un bouton connecté à la broche GPIO 22 et configure le module ADC0834 pour son utilisation.
 
    .. code-block:: python
 
@@ -175,7 +163,7 @@ x, y, Btn are displayed on screen.
        # Setup the ADC0834 ADC
        ADC0834.setup()
 
-#. The VRX and VRY connections of the joystick are linked to CH0 and CH1 of the ADC0834, respectively. This setup facilitates reading the values from CH0 and CH1, which are then saved in the ``x_val`` and ``y_val`` variables. In addition, the SW value of the joystick is read and assigned to the ``Btn_val`` variable. The retrieved values of ``x_val``, ``y_val``, and ``Btn_val`` are subsequently displayed using the ``print()`` function.
+#. Les connexions VRX et VRY du joystick sont reliées à CH0 et CH1 de l'ADC0834, respectivement. Cette configuration permet de lire les valeurs de CH0 et CH1, qui sont ensuite enregistrées dans les variables ``x_val`` et ``y_val``. De plus, la valeur SW du joystick est lue et attribuée à la variable ``Btn_val``. Les valeurs récupérées de ``x_val``, ``y_val`` et ``Btn_val`` sont ensuite affichées à l'aide de la fonction ``print()``.
 
    .. code-block:: python
 

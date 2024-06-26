@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_resistor:
 
-Resistor
-============
+Résistance
+===============
 
 .. image:: img/resistor.png
     :width: 300
 
-Resistor is an electronic element that can limit the branch current. 
-A fixed resistor is a kind of resistor whose resistance cannot be changed, while that of a potentiometer or a variable resistor can be adjusted. 
+Une résistance est un composant électronique qui peut limiter le courant dans une branche de circuit. 
+Une résistance fixe est un type de résistance dont la valeur ne peut être modifiée, tandis que celle d'un potentiomètre ou d'une résistance variable peut être ajustée. 
 
-Two generally used circuit symbols for resistor. Normally, the resistance is marked on it. So if you see these symbols in a circuit, it stands for a resistor. 
+Voici deux symboles de circuit généralement utilisés pour une résistance. Normalement, la valeur de la résistance y est indiquée. Donc, si vous voyez ces symboles dans un circuit, cela représente une résistance. 
 
 .. image:: img/resistor_symbol.png
     :width: 400
 
-**Ω** is the unit of resistance and the larger units include KΩ, MΩ, etc. 
-Their relationship can be shown as follows: 1 MΩ=1000 KΩ, 1 KΩ = 1000 Ω. Normally, the value of resistance is marked on it. 
+**Ω** est l'unité de résistance et les unités plus grandes incluent KΩ, MΩ, etc. 
+Leur relation est la suivante : 1 MΩ = 1000 KΩ, 1 KΩ = 1000 Ω. Normalement, la valeur de la résistance est marquée dessus. 
 
-When using a resistor, we need to know its resistance first. Here are two methods: you can observe the bands on the resistor, or use a multimeter to measure the resistance. You are recommended to use the first method as it is more convenient and faster. 
+Lors de l'utilisation d'une résistance, il est nécessaire de connaître sa valeur. Voici deux méthodes : vous pouvez observer les bandes sur la résistance ou utiliser un multimètre pour mesurer la résistance. Il est recommandé d'utiliser la première méthode car elle est plus pratique et plus rapide. 
 
 .. image:: img/resistance_card.jpg
 
-As shown in the card, each color stands for a number. 
+Comme indiqué sur la carte, chaque couleur représente un chiffre. 
 
 .. list-table::
 
-   * - Black
-     - Brown
-     - Red
+   * - Noir
+     - Marron
+     - Rouge
      - Orange
-     - Yellow
-     - Green
-     - Blue
+     - Jaune
+     - Vert
+     - Bleu
      - Violet
-     - Grey
-     - White
-     - Gold
-     - Silver
+     - Gris
+     - Blanc
+     - Or
+     - Argent
    * - 0
      - 1
      - 2
@@ -61,51 +47,54 @@ As shown in the card, each color stands for a number.
      - 7
      - 8
      - 9
-     - 0.1
-     - 0.01
+     - 0,1
+     - 0,01
 
-The 4- and 5-band resistors are frequently used, on which there are 4 and 5 chromatic bands. 
+Les résistances à 4 et 5 bandes sont fréquemment utilisées, avec respectivement 4 et 5 bandes colorées. 
 
-Normally, when you get a resistor, you may find it hard to decide which end to start for reading the color. 
-The tip is that the gap between the 4th and 5th band will be comparatively larger.
+Normalement, lorsque vous prenez une résistance, vous pouvez avoir du mal à décider de quel côté commencer pour lire les couleurs. 
+L'astuce est que l'écart entre la 4e et la 5e bande sera comparativement plus grand.
 
-Therefore, you can observe the gap between the two chromatic bands at one end of the resistor; 
-if it's larger than any other band gaps, then you can read from the opposite side. 
+Par conséquent, vous pouvez observer l'écart entre les deux bandes colorées à une extrémité de la résistance ; 
+si cet écart est plus grand que les autres, vous pouvez lire à partir du côté opposé. 
 
-Let’s see how to read the resistance value of a 5-band resistor as shown below.
+Voyons comment lire la valeur d'une résistance à 5 bandes comme illustré ci-dessous.
 
 .. image:: img/220ohm.jpg
     :width: 500
 
-So for this resistor, the resistance should be read from left to right. 
-The value should be in this format: 1st Band 2nd Band 3rd Band x 10^Multiplier (Ω) and the permissible error is ±Tolerance%. 
-So the resistance value of this resistor is 2(red) 2(red) 0(black) x 10^0(black) Ω = 220 Ω, 
-and the permissible error is ± 1% (brown). 
+Pour cette résistance, la valeur doit être lue de gauche à droite. 
+La valeur devrait être dans ce format : 1ère Bande 2e Bande 3e Bande x 10^Multiplicateur (Ω) et l'erreur admissible est ±Tolérance%. 
+Ainsi, la valeur de cette résistance est 2(rouge) 2(rouge) 0(noir) x 10^0(noir) Ω = 220 Ω, 
+et l'erreur admissible est ± 1% (marron). 
 
-.. list-table::Common resistor color band
+.. list-table:: Bandes de couleur communes des résistances
     :header-rows: 1
 
-    * - Resistor 
-      - Color Band  
+    * - Résistance 
+      - Bande de couleur  
     * - 10Ω   
-      - brown black black silver brown
+      - marron noir noir argent marron
     * - 100Ω   
-      - brown black black black brown
+      - marron noir noir noir marron
     * - 220Ω 
-      - red red black black brown
+      - rouge rouge noir noir marron
     * - 330Ω 
-      - orange orange black black brown
+      - orange orange noir noir marron
     * - 1kΩ 
-      - brown black black brown brown
+      - marron noir noir marron marron
     * - 2kΩ 
-      - red black black brown brown
+      - rouge noir noir marron marron
     * - 5.1kΩ 
-      - green brown black brown brown
+      - vert marron noir marron marron
     * - 10kΩ 
-      - brown black black red brown 
+      - marron noir noir rouge marron 
     * - 100kΩ 
-      - brown black black orange brown 
+      - marron noir noir orange marron 
     * - 1MΩ 
-      - brown black black green brown 
+      - marron noir noir vert marron 
 
-You can learn more about resistor from Wiki: `Resistor - Wikipedia <https://en.wikipedia.org/wiki/Resistor>`_.
+
+
+Vous pouvez en apprendre davantage sur les résistances sur Wiki : `Resistor - Wikipedia <https://en.wikipedia.org/wiki/Resistor>`_.
+

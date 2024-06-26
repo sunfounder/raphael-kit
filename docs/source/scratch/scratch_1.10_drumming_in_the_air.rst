@@ -1,55 +1,40 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.10_scratch:
 
-1.10 Drumming in the Air
-==========================
+1.10 Jouer du Tambour dans l'Air
+===================================
 
-Today we will learn to use the Raspberry Pi camera, Scratch has an expansion module for Video Sensing which turns on the camera in Scratch and detects the movement of objects on the stage. 
-
+Aujourd'hui, nous allons apprendre à utiliser la caméra Raspberry Pi. Scratch dispose d'un module d'extension pour la détection vidéo qui active la caméra dans Scratch et détecte le mouvement des objets sur la scène.
 
 .. image:: img/1.10_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.10_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,54 +47,52 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Build the Circuit
--------------------------
+Construire le Circuit
+------------------------
 
 .. image:: img/1.10_fritzing_speaker.png
 
 .. image:: img/1.10_camera.png
 
 .. note::
-  
-  You need to refer to :ref:`cpn_camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
 
+    Vous devez vous référer à :ref:`cpn_camera_module` pour connecter le module caméra et activer l'interface caméra du Raspberry Pi.
 
-Load the Code and See What Happens
-----------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+------------------------------------------
 
-Load the code file (``1.10_drumming_in_the_air.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.10_drumming_in_the_air.sb3``) dans Scratch 3.
 
-Click on the green flag to start the game, place your hand in front of the camera module and Scratch 3 will make instrument sounds when your hand is shown touching an instrument on the stage area.
+Cliquez sur le drapeau vert pour commencer le jeu, placez votre main devant le module caméra et Scratch 3 émettra des sons d'instruments lorsque votre main touchera un instrument sur la scène.
 
 .. note::
 
-  For a better gaming experience, please try to play on a white background to avoid interference with the camera from other objects.
+    Pour une meilleure expérience de jeu, essayez de jouer sur un fond blanc pour éviter les interférences de la caméra avec d'autres objets.
 
-Tips on Sprite
-----------------
+Astuces sur le Sprite
+-------------------------
 
-First delete the default sprites, then find the **Drum-cymbal** sprite and **Drum-snare** sprite and add them.
+Supprimez d'abord les sprites par défaut, puis trouvez le sprite **Drum-cymbal** et le sprite **Drum-snare** et ajoutez-les.
 
 .. image:: img/1.10_camera1.png
 
-Click the **Add Extension** icon at the bottom left of Scratch and add the **Music** and **Video Sensing** extensions to it.
+Cliquez sur l'icône **Ajouter une extension** en bas à gauche de Scratch et ajoutez les extensions **Musique** et **Détection Vidéo**.
 
 .. image:: img/1.10_scratch.png
 
 .. image:: img/1.10_scratch2.png
 
-Tips on Codes
---------------
+Astuces sur les Codes
+----------------------
 
 .. image:: img/1.10_camera3.png
 
-When the green flag is clicked, it keeps cycling to detect if our hand is moving over the **Drum-cymbal** sprite by more than 60. if so, it is assumed that our hand touched the sprite, at which point the Open Hi-Hat instrument sound is played.
+Lorsque le drapeau vert est cliqué, il continue à détecter si notre main se déplace sur le sprite **Drum-cymbal** de plus de 60. Si c'est le cas, on suppose que notre main a touché le sprite, à ce moment-là le son de l'instrument Open Hi-Hat est joué.
 
 .. note::
 
-  The movement magnitude refers to the change in coordinates on the stage area, which is calculated with respect to the amount of change in the coordinates of the detection target on the stage area.
+    L'amplitude du mouvement fait référence au changement de coordonnées sur la zone de scène, qui est calculé par rapport au changement des coordonnées de la cible de détection sur la zone de scène.
 
 .. image:: img/1.10_camera4.png
 
-Similarly, if the movement of our hand on the **Drum-snare** sprite is detected to be greater than 60, our hand is considered to have touched the sprite and the sound of the snare drum instrument is played.
-
+De même, si le mouvement de notre main sur le sprite **Drum-snare** est détecté à plus de 60, notre main est considérée comme ayant touché le sprite et le son de l'instrument caisse claire est joué.

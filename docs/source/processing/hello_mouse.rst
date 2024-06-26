@@ -1,27 +1,14 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _hello_mouse:
 
-Hello Mouse
-==================
+Bonjour Souris
+====================
 
-In this project, your mouse will keep shooting lines towards a point; move the mouse and you will draw a unique line of stars. Press the mouse to restart the drawing.
+Dans ce projet, votre souris continuera de tirer des lignes vers un point ; déplacez la souris et vous dessinerez une ligne unique d'étoiles. Appuyez sur la souris pour redémarrer le dessin.
 
 .. image:: img/hello_mouse1.png
 
-**Sketch**
+**Croquis**
 
 .. code-block:: arduino
 
@@ -44,14 +31,14 @@ In this project, your mouse will keep shooting lines towards a point; move the m
         background(192, 16, 18);
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-The previous project was drawing a single image without any animation or interaction.
+Le projet précédent dessinait une seule image sans aucune animation ni interaction.
 
-If we want to make an interactive sketch, we need to add the ``setup()`` and ``draw()`` functions (these are built-in functions that are called automatically) to build the frame.
+Si nous voulons créer un croquis interactif, nous devons ajouter les fonctions ``setup()`` et ``draw()`` (ce sont des fonctions intégrées qui sont appelées automatiquement) pour construire le cadre.
 
-* ``setup()``: Executed only once at the start of the sketch.
-* ``draw()``: Executed repeatedly, where we usually add the sketch for drawing the animation.
+* ``setup()`` : Exécuté une seule fois au démarrage du croquis.
+* ``draw()`` : Exécuté de manière répétée, où nous ajoutons généralement le croquis pour dessiner l'animation.
 
 .. code-block:: arduino
 
@@ -68,9 +55,9 @@ If we want to make an interactive sketch, we need to add the ``setup()`` and ``d
         line(pointX, pointY, mouseX, mouseY);
     }
 
-This sketch above already works smoothly as an interactive sketch.
+Ce croquis ci-dessus fonctionne déjà sans problème en tant que croquis interactif.
 
-Next you can add a mouse click event. This event can be implemented with the ``mousePressed()`` function, where we add statements to refresh the target point and clear the screen.
+Ensuite, vous pouvez ajouter un événement de clic de souris. Cet événement peut être implémenté avec la fonction ``mousePressed()``, où nous ajoutons des instructions pour actualiser le point cible et effacer l'écran.
 
 .. code-block:: arduino
 
@@ -93,6 +80,4 @@ Next you can add a mouse click event. This event can be implemented with the ``m
         background(192, 16, 18);
     }
 
-
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
-
+Pour plus d'informations, veuillez vous référer à `Processing Reference <https://processing.org/reference/>`_.

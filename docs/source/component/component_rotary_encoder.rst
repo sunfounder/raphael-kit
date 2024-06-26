@@ -1,43 +1,28 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_rotary_encoder:
 
-Rotary Encoder Module
+Module Encodeur Rotatif
 =============================
 
 .. image:: img/rotary_encoder_pic.png
     :width: 300
     :align: center
 
-A rotary encoder is a position sensor that converts the rotation of a knob into an output signal, indicating the direction in which the knob is turned.
+Un encodeur rotatif est un capteur de position qui convertit la rotation d'un bouton en un signal de sortie, indiquant la direction dans laquelle le bouton est tourné.
 
-Rotary encoders are digital versions of potentiometers, offering greater versatility. They can rotate continuously, while potentiometers have limited rotation. Potentiometers indicate exact knob position, while rotary encoders show changes in position.
+Les encodeurs rotatifs sont des versions numériques des potentiomètres, offrant une plus grande polyvalence. Ils peuvent tourner en continu, tandis que les potentiomètres ont une rotation limitée. Les potentiomètres indiquent la position exacte du bouton, tandis que les encodeurs rotatifs montrent les changements de position.
 
-There are mainly two types of rotary encoders: absolute and incremental (relative) encoders. An incremental one is used in this kit.
+Il existe principalement deux types d'encodeurs rotatifs : les encodeurs absolus et les encodeurs incrémentaux (relatifs). Un encodeur incrémental est utilisé dans ce kit.
 
-Incremental encoders produce two-phase square waves, with a 90-degree phase difference commonly referred to as the A and B channels.
+Les encodeurs incrémentaux produisent des ondes carrées à deux phases, avec une différence de phase de 90 degrés, couramment appelée canaux A et B.
 
-As illustrated below, when channel A transitions from a high level to a low level, if channel B is at a high level, it indicates that the rotary encoder is rotating clockwise (CW); if at that moment channel B is at a low level, it means the rotation is counterclockwise (CCW). Therefore, by reading the value of channel B when channel A is at a low level, we can determine the direction in which the rotary encoder rotates.
-
-
+Comme illustré ci-dessous, lorsque le canal A passe d'un niveau haut à un niveau bas, si le canal B est à un niveau haut, cela indique que l'encodeur rotatif tourne dans le sens horaire (CW); si à ce moment-là le canal B est à un niveau bas, cela signifie que la rotation est antihoraire (CCW). Par conséquent, en lisant la valeur du canal B lorsque le canal A est à un niveau bas, nous pouvons déterminer la direction de rotation de l'encodeur rotatif.
 
 .. image:: img/image206.png
     :width: 600
     :align: center
 	
-**Example**
+**Exemple**
 
-* :ref:`2.1.6_c` (C Project)
-* :ref:`2.1.6_py` (Python Project)
+* :ref:`2.1.6_c` (Projet en C)
+* :ref:`2.1.6_py` (Projet en Python)
+

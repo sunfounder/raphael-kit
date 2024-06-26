@@ -1,33 +1,19 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 14: Installing Visual Python on the Raspberry Pi
+Vidéo 14 : Installation de Visual Python sur le Raspberry Pi
 =======================================================================================
 
-This video demonstrates how to control an RGB LED using buttons with a Raspberry Pi, focusing on installing Visual Python, creating a simple 3D animation, and integrating it with the LED control code from a previous lesson. The tutorial covers installing Visual Python, integrating existing circuit and code for RGB LED control, creating 3D animations to represent LED states, understanding PWM duty cycles and color representation, troubleshooting code execution and calibration issues, and exploring further customization and optimization possibilities.
+Cette vidéo montre comment contrôler une LED RGB en utilisant des boutons avec un Raspberry Pi, en se concentrant sur l'installation de Visual Python, la création d'une simple animation 3D, et son intégration avec le code de contrôle de la LED d'une leçon précédente. Le tutoriel couvre l'installation de Visual Python, l'intégration du circuit existant et du code pour le contrôle de la LED RGB, la création d'animations 3D pour représenter les états des LED, la compréhension des cycles de travail PWM et de la représentation des couleurs, le dépannage des problèmes d'exécution du code et de calibration, ainsi que l'exploration de possibilités de personnalisation et d'optimisation supplémentaires.
 
-1. Installing Visual Python on Raspberry Pi and setting up the environment.
-2. Integrating existing circuit and code from previous lessons for RGB LED control.
-3. Creating 3D animations using Visual Python to represent LED states.
-4. Understanding the conversion between PWM duty cycles used for LED control and color representation in Visual Python.
-5. Troubleshooting issues with code execution and calibration between real and virtual LEDs.
-6. Exploring further customization and optimization possibilities for the animations and LED control.
+1. Installation de Visual Python sur Raspberry Pi et configuration de l'environnement.
+2. Intégration du circuit existant et du code des leçons précédentes pour le contrôle des LED RGB.
+3. Création d'animations 3D utilisant Visual Python pour représenter les états des LED.
+4. Compréhension de la conversion entre les cycles de travail PWM utilisés pour le contrôle des LED et la représentation des couleurs dans Visual Python.
+5. Dépannage des problèmes d'exécution du code et de calibration entre les LED réelles et virtuelles.
+6. Exploration de possibilités supplémentaires de personnalisation et d'optimisation pour les animations et le contrôle des LED.
 
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/_q5t46kIC30?si=FoxAczZ8MOsqtwUN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/_q5t46kIC30?si=FoxAczZ8MOsqtwUN" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+

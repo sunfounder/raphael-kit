@@ -1,57 +1,44 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.2_js:
 
-1.1.2 RGB LED
-================
+1.1.2 LED RGB
+==================
 
 Introduction
---------------
+----------------
 
-In this project, we will control an RGB LED to flash various colors.
+Dans ce projet, nous allons contrôler une LED RGB pour qu'elle clignote en diverses couleurs.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous aurons besoin des composants suivants : 
 
 
 .. image:: img/list_rgb_led.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,25 +51,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rgb_led`
         - |link_rgb_led_buy|
 
-Schematic Diagram
+Schéma de Câblage
 -----------------------
 
-After connecting the pins of R, G, and B to a current limiting resistor,
-connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest
-pin (GND) of the LED connects to the GND of the Raspberry Pi. When the
-three pins are given different PWM values, the RGB LED will display
-different colors.
+Après avoir connecté les broches R, G et B à une résistance de limitation de courant, connectez-les 
+respectivement aux GPIO17, GPIO18 et GPIO27. La broche la plus longue (GND) de la LED se connecte 
+au GND du Raspberry Pi. Lorsque les trois broches reçoivent différentes valeurs PWM, la LED RGB 
+affichera différentes couleurs.
 
 .. image:: img/rgb_led_schematic.png
-
-Experimental Procedures
+Procédures Expérimentales
 ----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1:** Construire le circuit.
 
 .. image:: img/image61.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2:** Aller dans le dossier du code.
 
 .. raw:: html
 
@@ -92,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3:** Exécuter le code.
 
 .. raw:: html
 
@@ -102,7 +87,7 @@ Experimental Procedures
 
     sudo node rgb_led.js
 
-After the code runs, you will see that RGB displays red, green, blue, yellow, pink, and cyan.   
+Après l'exécution du code, vous verrez que la LED RGB affiche les couleurs rouge, vert, bleu, jaune, rose et cyan.   
 
 **Code**
 
@@ -147,7 +132,7 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
         }
     }, 500);  
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: js
 
@@ -155,7 +140,7 @@ After the code runs, you will see that RGB displays red, green, blue, yellow, pi
     const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
     const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
 
-Initialize pins 17, 18, and 27 to output mode, and assign them to the constants ``ledred``, ``ledgreen``, and ``ledblue`` respectively.
+Initialiser les broches 17, 18 et 27 en mode sortie, et les assigner respectivement aux constantes ``ledred``, ``ledgreen`` et ``ledblue``.
 
 .. code-block:: js
 
@@ -165,10 +150,10 @@ Initialize pins 17, 18, and 27 to output mode, and assign them to the constants 
         ledblue.pwmWrite(b);
     }
 
-Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to pins 17, 18, 27. The Gpio library encapsulates the function ``pwmWrite()`` to write to pins Pulse value, the value is 0x00 to 0xff. Then you can write RGB values to the RGB LED through the ``colorset(r,g,b)`` function, so that it can display a variety of colors. 
+Implémenter une fonction ``colorset(r,g,b)``, qui est utilisée pour écrire des valeurs de pulsation sur les broches 17, 18 et 27. La bibliothèque Gpio encapsule la fonction ``pwmWrite()`` pour écrire des valeurs de pulsation sur les broches, dont les valeurs vont de 0x00 à 0xff. Ensuite, vous pouvez écrire les valeurs RGB dans la LED RGB via la fonction ``colorset(r,g,b)``, afin qu'elle puisse afficher une variété de couleurs.
 
 .. note::
-    For questions about RGB, please refer to the website: https://www.rapidtables.com/web/color/RGB_Color.html
+    Pour des questions sur le RGB, veuillez consulter le site : https://www.rapidtables.com/web/color/RGB_Color.html
 
 .. code-block:: js
 
@@ -200,15 +185,12 @@ Implement a ``colorset(r,g,b)`` function, which is used to write pulse values to
         }
     }, 500);  
 
-The RGB LED is controlled by ``colorset()`` executed every 500ms.
-A switch case is used here to select the color emitted by the RGB LEDs.
-Since ``color_index`` is changed by one every cycle, the color of this one RGB LED will change in order.
+La LED RGB est contrôlée par ``colorset()`` exécutée toutes les 500ms.
+Un switch case est utilisé ici pour sélectionner la couleur émise par les LEDs RGB.
+Comme ``color_index`` est changé de un à chaque cycle, la couleur de cette LED RGB changera en ordre.
 
 
-Phenomenon Picture
+Image du Phénomène
 ------------------------
 
 .. image:: img/image62.jpeg
-
-
-

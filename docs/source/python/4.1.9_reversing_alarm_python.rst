@@ -1,58 +1,46 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _4.1.9_py:
 
-4.1.9 Reversing Alarm
+4.1.9 Alerte de Recul
 ======================================
 
 Introduction
 -------------
 
-In this project, we will use LCD, buzzer and ultrasonic sensors to make
-a reverse assist system. We can put it on the remote control vehicle to
-simulate the actual process of reversing the car into the garage.
+Dans ce projet, nous allons utiliser un écran LCD, un buzzer et des capteurs ultrasoniques 
+pour créer un système d'assistance au recul. Nous pouvons le placer sur un véhicule télécommandé 
+pour simuler le processus réel de recul d'une voiture dans un garage.
 
-Required Components
+
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components.
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_Reversing_Alarm.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -71,36 +59,35 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_i2c_lcd`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+Schéma de Câblage
 --------------------
 
-Ultrasonic sensor detects the distance between itself and the obstacle
-that will be displayed on the LCD in the form of code. At the same time,
-the ultrasonic sensor let the buzzer issue prompt sound of different
-frequency according to different distance value.
+Le capteur ultrasonique détecte la distance entre lui-même et l'obstacle qui sera affichée 
+sur l'écran LCD sous forme de code. En même temps, le capteur ultrasonique fait émettre au 
+buzzer un son d'alerte de fréquence différente en fonction de la valeur de la distance.
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO23       Pin 16   4        23
-GPIO24       Pin 18   5        24
-GPIO17       Pin 11   0        17
-SDA1         Pin 3             
-SCL1         Pin 5             
-============ ======== ======== ===
+=============== ======== ======== ===
+Nom de la Carte Brochage wiringPi BCM
+GPIO23          Pin 16   4        23
+GPIO24          Pin 18   5        24
+GPIO17          Pin 11            17
+SDA1            Pin 3               
+SCL1            Pin 5               
+=============== ======== ======== ===
 
 .. image:: ../img/Schematic_three_one3.png
    :align: center
 
-Experimental Procedures
-------------------------
+Procédures Expérimentales
+------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image242.png
     :width: 400
     :align: center
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -110,7 +97,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -120,23 +107,21 @@ Experimental Procedures
 
     sudo python3 4.1.9_ReversingAlarm.py
 
-As the code runs, ultrasonic sensor module detects the distance to the
-obstacle and then displays the information about the distance on
-LCD1602; besides, buzzer emits warning tone whose frequency changes with
-the distance.
+Pendant l'exécution du code, le module de capteur ultrasonique détecte la distance 
+par rapport à l'obstacle et affiche l'information sur l'écran LCD1602. De plus, 
+le buzzer émet un son d'avertissement dont la fréquence varie en fonction de la distance.
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
-
+    * Si vous obtenez l'erreur ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, vous devez vous référer à :ref:`i2c_config` pour activer l'I2C.
+    * Si vous obtenez l'erreur ``ModuleNotFoundError: No module named 'smbus2'``, veuillez exécuter ``sudo pip3 install smbus2``.
+    * Si l'erreur ``OSError: [Errno 121] Remote I/O error`` apparaît, cela signifie que le module est mal câblé ou défectueux.
+    * Si le code et le câblage sont corrects mais que l'écran LCD n'affiche toujours pas de contenu, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller dans le chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -154,82 +139,81 @@ the distance.
 
     def lcdsetup():
     LCD1602.init(0x27, 1)   # init(slave address, background light)
-    LCD1602.clear()   
-    LCD1602.write(0, 0, 'Ultrasonic Starting')
-    LCD1602.write(1, 1, 'By SunFounder')
-    time.sleep(2)
+        LCD1602.clear()   
+        LCD1602.write(0, 0, 'Ultrasonic Starting')
+        LCD1602.write(1, 1, 'By SunFounder')
+        time.sleep(2)
 
     def setup():
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(TRIG, GPIO.OUT)
-    GPIO.setup(ECHO, GPIO.IN)
-    GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
-    lcdsetup()
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(TRIG, GPIO.OUT)
+        GPIO.setup(ECHO, GPIO.IN)
+        GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
+        lcdsetup()
 
     def distance():
-    GPIO.output(TRIG, 0)
-    time.sleep(0.000002)
+        GPIO.output(TRIG, 0)
+        time.sleep(0.000002)
 
-    GPIO.output(TRIG, 1)
-    time.sleep(0.00001)
-    GPIO.output(TRIG, 0)
+        GPIO.output(TRIG, 1)
+        time.sleep(0.00001)
+        GPIO.output(TRIG, 0)
 
-    while GPIO.input(ECHO) == 0:
-        a = 0
-    time1 = time.time()
-    while GPIO.input(ECHO) == 1:
-        a = 1
-    time2 = time.time()
+        while GPIO.input(ECHO) == 0:
+            a = 0
+        time1 = time.time()
+        while GPIO.input(ECHO) == 1:
+            a = 1
+        time2 = time.time()
 
-    during = time2 - time1
-    return during * 340 / 2 * 100
+        during = time2 - time1
+        return during * 340 / 2 * 100
 
     def destroy():
-    GPIO.output(BUZZER, GPIO.LOW)
-    GPIO.cleanup()
-    LCD1602.clear()
+        GPIO.output(BUZZER, GPIO.LOW)
+        GPIO.cleanup()
+        LCD1602.clear()
 
     def loop():
-    while True:
-        dis = distance()
+        while True:
+            dis = distance()
         print (dis, 'cm')
         print ('')
-        GPIO.output(BUZZER, GPIO.LOW)
+            GPIO.output(BUZZER, GPIO.LOW)
         if (dis > 400):
-            LCD1602.clear()
+                LCD1602.clear()
             LCD1602.write(0, 0, 'Error')
             LCD1602.write(3, 1, 'Out of range')
-            time.sleep(0.5)
-        else:
-            LCD1602.clear()
+                time.sleep(0.5)
+            else:
+                LCD1602.clear()
             LCD1602.write(0, 0, 'Distance is')
             LCD1602.write(5, 1, str(round(dis,2)) +' cm')
             if(dis>=50):
-                time.sleep(0.5)
+                    time.sleep(0.5)
             elif(dis<50 and dis>20):
                 for i in range(0,2,1):
-                    GPIO.output(BUZZER, GPIO.HIGH)
-                    time.sleep(0.05)
-                    GPIO.output(BUZZER, GPIO.LOW)
-                    time.sleep(0.2)
+                        GPIO.output(BUZZER, GPIO.HIGH)
+                        time.sleep(0.05)
+                        GPIO.output(BUZZER, GPIO.LOW)
+                        time.sleep(0.2)
             elif(dis<=20):
                 for i in range(0,5,1):
-                    GPIO.output(BUZZER, GPIO.HIGH)
-                    time.sleep(0.05)
-                    GPIO.output(BUZZER, GPIO.LOW)
-                    time.sleep(0.05)
+                        GPIO.output(BUZZER, GPIO.HIGH)
+                        time.sleep(0.05)
+                        GPIO.output(BUZZER, GPIO.LOW)
+                        time.sleep(0.05)
 
 
     if __name__ == "__main__":
         setup()
-        try:       
+        try:
             loop()
         except KeyboardInterrupt:
             destroy()
 
 
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
@@ -243,9 +227,9 @@ the distance.
         GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
         lcdsetup()
 
-In this program, we apply the previously used components synthetically.
-Here we use buzzers, LCD and ultrasonic. We can initialize them in the
-same way as we did before.
+Dans ce programme, nous appliquons de manière synthétique les composants utilisés précédemment. 
+Ici, nous utilisons des buzzers, un écran LCD et un capteur ultrasonique. Nous pouvons les 
+initialiser de la même manière que nous l'avons fait auparavant.
 
 .. code-block:: python
 
@@ -263,20 +247,18 @@ same way as we did before.
         LCD1602.write(0, 0, 'Distance is')
         LCD1602.write(5, 1, str(round(dis,2)) +' cm')
 
-
-Here we get the values of the ultrasonic sensor and get the distance
-through calculation. If the value of distance is greater than the range
-of value to be detected, an error message is printed on the LCD. And if
-the distance is within the working range, the corresponding results will
-be output.
+Ici, nous obtenons les valeurs du capteur ultrasonique et calculons la distance. Si la valeur 
+de la distance est supérieure à la plage de détection, un message d'erreur est affiché sur 
+l'écran LCD. Si la distance est dans la plage de fonctionnement, les résultats correspondants 
+seront affichés.
 
 .. code-block:: python
 
     LCD1602.write(5, 1, str(round(dis,2)) +' cm')
 
-Since the LCD output only supports character types, we need to use **str
-()** to convert numeric values to characters. We are going to round it
-to two decimal places.
+Étant donné que la sortie LCD ne prend en charge que les types de caractères, nous devons 
+utiliser **str()** pour convertir les valeurs numériques en caractères. Nous allons arrondir 
+à deux décimales.
 
 .. code-block:: python
 
@@ -295,13 +277,13 @@ to two decimal places.
             GPIO.output(BUZZER, GPIO.LOW)
             time.sleep(0.05)
 
-This judgment condition is used to control the sound of the buzzer.
-According to the difference in distance, it can be divided into three
-cases, in which there will be different sound frequencies. Since the
-total value of delay is 500, all of them can provide a 500ms interval
-for the ultrasonic sensor to work.
+Cette condition de jugement est utilisée pour contrôler le son du buzzer. Selon la différence 
+de distance, elle peut être divisée en trois cas, chacun ayant des fréquences sonores différentes. 
+Étant donné que la valeur totale du délai est de 500, toutes peuvent fournir un intervalle de 
+500 ms pour le fonctionnement du capteur ultrasonique.
 
-Phenomenon Picture
+
+Photo du Phénomène
 --------------------
 
 .. image:: ../img/image243.jpeg

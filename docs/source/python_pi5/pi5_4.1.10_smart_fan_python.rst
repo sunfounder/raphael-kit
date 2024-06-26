@@ -1,58 +1,45 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _4.1.10_py_pi5:
 
-4.1.5 Smart Fan
-=========================
+4.1.5 Ventilateur Intelligent
+=================================
 
 Introduction
------------------
+----------------
 
-In this project, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+Dans ce projet, nous allons utiliser des moteurs, des boutons et des thermistances 
+pour fabriquer un ventilateur intelligent manuel + automatique dont la vitesse du vent est réglable.
 
-Required Components
-------------------------------
+Composants nécessaires
+---------------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -75,12 +62,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
-
-Schematic Diagram
+Schéma
 ------------------------
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  Physique wiringPi BCM
 GPIO17       Pin 11   0        17
 GPIO18       Pin 12   1        18
 GPIO27       Pin 13   2        27
@@ -93,22 +79,22 @@ GPIO13       Pin 33   23       13
 .. image:: ../python_pi5/img/4.1.10_smart_fan_schematic.png
    :align: center
 
-Experimental Procedures
+Procédures Expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_circuit.png
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Le module d'alimentation peut utiliser une pile de 9V avec le connecteur de pile 
+    9V dans le kit. Insérez le capuchon de cavalier du module d'alimentation dans les 
+    bandes de bus 5V de la plaque d'essai.
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_battery.jpeg
    :align: center
 
-**Step 2**: Get into the folder of the code.
+**Étape 2** : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -118,7 +104,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run.
+**Étape 3** : Exécutez.
 
 .. raw:: html
 
@@ -128,19 +114,20 @@ Experimental Procedures
 
     sudo python3 4.1.10_SmartFan_zero.py
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+Lorsque le code s'exécute, démarrez le ventilateur en appuyant sur le bouton. 
+Chaque fois que vous appuyez, un niveau de vitesse est ajusté vers le haut ou 
+vers le bas. Il y a **5** niveaux de vitesse : **0~4**. Lorsqu'il est réglé sur 
+la 4\ :sup:`e` vitesse et que vous appuyez sur le bouton, le ventilateur s'arrête 
+avec une vitesse du vent de **0**.
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+Une fois que la température augmente ou diminue de plus de 2℃, la vitesse augmente 
+ou diminue automatiquement d'un niveau.
 
 Code
 --------
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -247,10 +234,10 @@ Code
 
 
 
-Code Explanation
----------------------
+Explication du Code
+------------------------
 
-#. Imports classes for managing a motor and a button, and the sleep function for introducing pauses. Additionally, it imports the ADC0834 library for temperature sensing and the math library for mathematical calculations.
+#. Importe des classes pour gérer un moteur et un bouton, et la fonction sleep pour introduire des pauses. De plus, elle importe la bibliothèque ADC0834 pour la mesure de la température et la bibliothèque mathématique pour les calculs.
 
    .. code-block:: python
 
@@ -261,7 +248,7 @@ Code Explanation
        import ADC0834
        import math
 
-#. Sets up the button on GPIO pin 22 and configures the motor with specific GPIO pins for control. Initializes the ADC0834 module for temperature measurement. Also, initializes variables to monitor the motor speed level and temperatures.
+#. Configure le bouton sur la broche GPIO 22 et configure le moteur avec des broches GPIO spécifiques pour le contrôle. Initialise le module ADC0834 pour la mesure de la température. Initialise également des variables pour surveiller le niveau de vitesse du moteur et les températures.
 
    .. code-block:: python
 
@@ -277,7 +264,7 @@ Code Explanation
        currentTemp = 0
        markTemp = 0
 
-#. Defines a function to read and calculate the temperature from the sensor, converting the readout to Celsius.
+#. Définit une fonction pour lire et calculer la température du capteur, convertissant la lecture en Celsius.
 
    .. code-block:: python
 
@@ -297,7 +284,7 @@ Code Explanation
            Cel = temp - 273.15
            return Cel
 
-#. Introduces a function to adjust the motor speed according to the specified level.
+#. Introduit une fonction pour ajuster la vitesse du moteur selon le niveau spécifié.
 
    .. code-block:: python
 
@@ -320,7 +307,7 @@ Code Explanation
            motor.forward(speed=float(level / 4))
            return level
 
-#. Implements a function to change the motor speed level manually using a button, and binds this function to the button's press event.
+#. Implémente une fonction pour changer manuellement le niveau de vitesse du moteur à l'aide d'un bouton, et lie cette fonction à l'événement de pression du bouton.
 
    .. code-block:: python
 
@@ -338,7 +325,7 @@ Code Explanation
        # Bind the button press event to changeLevel function
        BtnPin.when_pressed = changeLevel
 
-#. The main function, designed to continually adjust the motor speed in response to temperature fluctuations, remains to be implemented.
+#. La fonction principale, conçue pour ajuster continuellement la vitesse du moteur en réponse aux fluctuations de température, reste à implémenter.
 
    .. code-block:: python
 
@@ -364,7 +351,7 @@ Code Explanation
                # Run the motor at the adjusted level
                level = motor_run(level)
 
-#. Runs the main function and ensures the motor stops if the script is interrupted.
+#. Exécute la fonction principale et garantit que le moteur s'arrête si le script est interrompu.
 
    .. code-block:: python
 

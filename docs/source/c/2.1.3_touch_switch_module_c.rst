@@ -1,40 +1,25 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _2.1.3_c:
 
-2.1.3 Touch Switch Module
+2.1.3 Module Interrupteur Tactile
 ====================================
 
 Introduction
 -------------------
 
-In this project, you will learn about touch switch module. It can replace 
-the traditional kinds of switch with these advantages: convenient operation, 
-fine touch sense, precise control and least mechanical wear.
+Dans ce projet, vous allez découvrir le module interrupteur tactile. 
+Il peut remplacer les types d'interrupteurs traditionnels avec ces avantages : utilisation pratique, 
+sensation tactile agréable, contrôle précis et usure mécanique minimale.
 
-
-Required Components
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/2.1.3component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
@@ -47,14 +32,14 @@ It's definitely convenient to buy a whole kit, here's the link:
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,23 +54,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
 
-Schematic Diagram
+Schéma de Câblage
 -----------------
 
 .. image:: ../img/2.1.3circuit.png
     :width: 500
     :align: center
 
-Experimental Procedures
+Procédures Expérimentales
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/2.1.3fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Change directory.
+**Étape 2 :** Changez de répertoire.
 
 .. raw:: html
 
@@ -95,7 +80,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.3/
 
-**Step 3:** Compile.
+**Étape 3 :** Compilez.
 
 .. raw:: html
 
@@ -105,7 +90,7 @@ Experimental Procedures
 
     gcc 2.1.3_TouchSwitch.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez.
 
 .. raw:: html
 
@@ -115,12 +100,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
+Pendant l'exécution du code, la LED rouge s'allume ; lorsque vous appuyez sur le module interrupteur tactile, la LED jaune s'allume.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
+    Si cela ne fonctionne pas après exécution, ou s'il y a un message d'erreur : \"wiringPi.h:  No such file or directory", veuillez consulter :ref:`install_wiringpi`.
 **Code**
 
 .. code-block:: c
@@ -161,7 +145,7 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -169,9 +153,7 @@ While the code is running, the red LED lights up; when you tap on the touch swit
     #define led1		   3
     #define led2 		   2
     
-Pin GPIO17, GPIO22 and GPIO27 of the T_Extension Board is corresponding to 
-the GPIO0, GPIO3 and GPIO2 in wiringPi. Assign GPIO0, GPIO3 and GPIO2 to 
-``touchPin``, ``led1`` and ``led2``. 
+Les broches GPIO17, GPIO22 et GPIO27 de la carte T_Extension correspondent aux GPIO0, GPIO3 et GPIO2 dans wiringPi. Assignez GPIO0, GPIO3 et GPIO2 à ``touchPin``, ``led1`` et ``led2``. 
 
 .. code-block:: c
 
@@ -179,8 +161,7 @@ the GPIO0, GPIO3 and GPIO2 in wiringPi. Assign GPIO0, GPIO3 and GPIO2 to
     pinMode(led1, OUTPUT);
     pinMode(led2, OUTPUT);
 
-Set ``led1``, ``led2`` as output to write value to them and set ``touchPin`` as input to
-read value from it.
+Définissez ``led1`` et ``led2`` comme sorties pour leur attribuer une valeur et définissez ``touchPin`` comme entrée pour lire sa valeur.
 
 .. code-block:: c
 
@@ -198,10 +179,9 @@ read value from it.
         }
     }
 
-Set an infinite loop, when you tap on the touch switch module, ``touchPin`` is high, led1 will light up and print "You touch it!" . When touchPin is low, led2 will light up.
+Créez une boucle infinie : lorsque vous appuyez sur le module interrupteur tactile, ``touchPin`` passe à l'état haut, led1 s'allume et affiche "You touch it!". Lorsque ``touchPin`` est à l'état bas, led2 s'allume.
 
-
-Phenomenon Picture
+Photo du Phénomène
 ------------------------
 
 .. image:: ../img/2.1.3touch_switch_module.JPG

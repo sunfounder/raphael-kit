@@ -1,32 +1,18 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _draw_a_matchmaker:
 
-Draw a Matchmaker
-========================
+Dessiner un Entremetteur
+===========================
 
-You're now running the Processing Development Environment (or PDE). 
-There's not much to it; the large area is the Text Editor, and there's a row of buttons across the top; this is the toolbar. 
-Below the editor is the Message Area, and below that is the Console. 
-The Message Area is used for one line messages, and the Console is used for more technical details.
+Vous utilisez maintenant l'environnement de développement Processing (ou PDE). 
+Il n'y a pas grand-chose à savoir ; la grande zone est l'éditeur de texte, et il y a une rangée de boutons en haut ; c'est la barre d'outils. 
+Sous l'éditeur se trouve la zone de messages, et en dessous se trouve la console. 
+La zone de messages est utilisée pour les messages d'une ligne, et la console est utilisée pour des détails plus techniques.
 
-Let's get familiar with the usage of Processing and draw a matchmaker.
+Familiarisons-nous avec l'utilisation de Processing et dessinons un entremetteur.
 
-**Sketch**
+**Croquis**
 
-Copy the sketch below into Processing and run it. A new display window will appear and a cheering matchmaker will be drawn.
+Copiez le croquis ci-dessous dans Processing et exécutez-le. Une nouvelle fenêtre d'affichage apparaîtra et un entremetteur acclamant sera dessiné.
 
 .. code-block:: arduino
 
@@ -44,18 +30,18 @@ Copy the sketch below into Processing and run it. A new display window will appe
 
 .. note:: 
 
-    If you run it and the message area turns red and reports some errors, then there is something wrong with the sketch. Make sure you copy the sample sketch exactly: numbers should be enclosed in parentheses, with commas between each number, and lines should end with semicolons.
+    Si vous l'exécutez et que la zone de messages devient rouge et rapporte des erreurs, alors il y a quelque chose qui ne va pas avec le croquis. Assurez-vous de copier exactement le croquis d'exemple : les nombres doivent être entre parenthèses, avec des virgules entre chaque nombre, et les lignes doivent se terminer par des points-virgules.
 
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-The key here is to realize that the display window can be treated as a square of paper.
+L'essentiel ici est de comprendre que la fenêtre d'affichage peut être traitée comme un carré de papier.
 
-Each pixel of the display window is a coordinate (x,y) that determines the position of a point in space. The origin (0,0) of the coordinates is in the upper left corner, the positive direction of the X-axis is horizontally to the right, and the positive direction of the Y-axis is vertically down.
+Chaque pixel de la fenêtre d'affichage est une coordonnée (x,y) qui détermine la position d'un point dans l'espace. L'origine (0,0) des coordonnées se trouve dans le coin supérieur gauche, la direction positive de l'axe X est horizontalement vers la droite, et la direction positive de l'axe Y est verticalement vers le bas.
 
-What we have to do is to specify what shape and color should appear at these pixel coordinates.
+Ce que nous devons faire, c'est spécifier quelle forme et quelle couleur doivent apparaître à ces coordonnées de pixels.
 
-For example, draw a rectangle of width 20 and height 60 with coordinates (100,120) as the midpoint.
+Par exemple, dessinez un rectangle de largeur 20 et de hauteur 60 avec les coordonnées (100,120) comme point médian.
 
 .. code-block:: arduino
 
@@ -64,19 +50,13 @@ For example, draw a rectangle of width 20 and height 60 with coordinates (100,12
 
 .. image:: img/draw_one_coodinate.png
 
-Once we understand the relationship between the display window and the axes, this sketch is not difficult for us, we just need to understand some simple graphic drawing statements.
+Une fois que nous avons compris la relation entre la fenêtre d'affichage et les axes, ce croquis n'est pas difficile pour nous, nous devons juste comprendre quelques instructions simples de dessin graphique.
 
-    * ``size(width, height)``: Defines the dimension of the display window width and height in units of pixels.
-    * ``background(red, green, blue)``: Set the background color of the display window.
-    * ``rectMode(mode)``: Modifies the location from which rectangles are drawn by changing the way in which parameters given to ``rect()`` are intepreted.
-    * ``rect(x, y, width, height)``: Draws a rectangle to the screen. 
-    * ``ellipse(x, y, width, height)``: Draws an ellipse (oval) to the screen. 
-    * ``line(x1, y1, x2, y2)``: Draws a line (a direct path between two points) to the screen.
+    * ``size(width, height)``: Définit les dimensions de la fenêtre d'affichage en largeur et hauteur en unités de pixels.
+    * ``background(red, green, blue)``: Définit la couleur de fond de la fenêtre d'affichage.
+    * ``rectMode(mode)``: Modifie l'emplacement à partir duquel les rectangles sont dessinés en changeant la manière dont les paramètres donnés à ``rect()`` sont interprétés.
+    * ``rect(x, y, width, height)``: Dessine un rectangle à l'écran. 
+    * ``ellipse(x, y, width, height)``: Dessine une ellipse (ovale) à l'écran. 
+    * ``line(x1, y1, x2, y2)``: Dessine une ligne (un chemin direct entre deux points) à l'écran.
 
-For more please refer to `Processing Reference <https://processing.org/reference/>`_.
-
-
-
-
-
-
+Pour plus d'informations, veuillez vous référer à `Processing Reference <https://processing.org/reference/>`_.

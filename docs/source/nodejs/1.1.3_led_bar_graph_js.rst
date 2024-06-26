@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.3_js:
 
-1.1.3 LED Bar Graph
-======================
+1.1.3 Graphique à Barres LED
+=================================
 
 Introduction
--------------
+----------------
 
-In this project, we sequentially illuminate the lights on the LED Bar
-Graph.
+Dans ce projet, nous allumons séquentiellement les lumières sur le graphique à barres LED.
 
-Required Components
-------------------------------
+Composants Requis
+--------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: img/list_led_bar.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,22 +49,21 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_bar_graph`
         - \-
 
-Schematic Diagram
+Schéma de Connexion
 -------------------------
 
 .. image:: img/schematic_led_bar.png
 
-Experimental Procedures
+Procédures Expérimentales
 ------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. note::
-    Pay attention to the direction when connecting. If you connect it backwards, it will not light up.
+    Faites attention à la direction lors de la connexion. Si vous le connectez à l'envers, il ne s'allumera pas.
 
 .. image:: img/image66.png
-
-**Step 2**: Go to the folder of the code.
+**Étape 2** : Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -88,7 +73,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/ 
 
-**Step 3**: Compile the code.
+**Étape 3** : Compilez le code.
 
 .. raw:: html
 
@@ -98,7 +83,7 @@ Experimental Procedures
 
     sudo node led_bar_graph.js
 
-After the code runs, you will see the LEDs on the LED bar turn on and off regularly.
+Après l'exécution du code, vous verrez les LED sur le graphique à barres LED s'allumer et s'éteindre régulièrement.
 
 **Code**
 
@@ -142,15 +127,13 @@ After the code runs, you will see the LEDs on the LED bar turn on and off regula
             evenLedBarGraph();
         }
     }, 500);
-  
-
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
     var pins = [17,18,27,22,23,24,25,2,3,8];
 
-Because the led bar graph will use multiple pins, we create a constant array ``pins`` to store them in batches.
+Comme le graphique à barres LED utilisera plusieurs broches, nous créons un tableau constant ``pins`` pour les stocker en lot.
 
 .. code-block:: js
 
@@ -159,8 +142,7 @@ Because the led bar graph will use multiple pins, we create a constant array ``p
         leds[i] = new Gpio(pins[i], { mode: Gpio.OUTPUT });
     }
 
-Instantiate these pins as leds objects with a for loop.
-
+Instancier ces broches comme objets leds avec une boucle for.
 
 .. code-block:: js
 
@@ -174,8 +156,7 @@ Instantiate these pins as leds objects with a for loop.
         }
     }
 
-Implement an ``oddLedBarGraph()`` function to make the LEDs on the 
-odd digits of the LED bar graph light up.    
+Implémenter une fonction ``oddLedBarGraph()`` pour faire s'allumer les LED sur les chiffres impairs du graphique à barres LED.
 
 .. code-block:: js
 
@@ -189,8 +170,7 @@ odd digits of the LED bar graph light up.
         };
     }
 
-Implement an ``evenLedBarGraph()`` function to make the LEDs on the 
-even digits of the LED bar graph light up. 
+Implémenter une fonction ``evenLedBarGraph()`` pour faire s'allumer les LED sur les chiffres pairs du graphique à barres LED.
 
 .. code-block:: js
 
@@ -205,12 +185,9 @@ even digits of the LED bar graph light up.
         }
     }, 500);
 
-The working state of the LED is switched every 500ms.
+L'état de fonctionnement de la LED est commuté toutes les 500 ms.
 
-Phenomenon Picture
+Image du phénomène
 ---------------------------
 
 .. image:: img/image67.jpeg
-
-
-

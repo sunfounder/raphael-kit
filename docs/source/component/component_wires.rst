@@ -1,45 +1,29 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_wires:
 
-Jumper Wires
+Fils de Liaison
 =====================
 
-Wires that connect two terminals are called jumper wires. There are
-various kinds of jumper wires. Here we focus on those used in
-breadboard. Among others, they are used to transfer electrical signals
-from anywhere on the breadboard to the input/output pins of a
-microcontroller.
+Les fils qui connectent deux terminaux sont appelés fils de liaison. Il existe
+différents types de fils de liaison. Ici, nous nous concentrons sur ceux utilisés dans les
+plaques de montage. Entre autres, ils sont utilisés pour transférer des signaux électriques
+de n'importe où sur la plaque de montage vers les broches d'entrée/sortie d'un
+microcontrôleur.
 
-Jump wires are fitted by inserting their "end connectors" into the slots
-provided in the breadboard, beneath whose surface there are a few sets
-of parallel plates that connect the slots in groups of rows or columns
-depending on the area. The "end connectors" are inserted into the
-breadboard, without soldering, in the particular slots that need to be
-connected in the specific prototype.
+Les fils de liaison sont installés en insérant leurs "connecteurs d'extrémité" dans les emplacements
+prévus sur la plaque de montage, sous la surface de laquelle se trouvent quelques ensembles
+de plaques parallèles qui connectent les emplacements en groupes de rangées ou de colonnes,
+selon la zone. Les "connecteurs d'extrémité" sont insérés dans la plaque de montage, sans soudure,
+dans les emplacements particuliers qui doivent être connectés dans le prototype spécifique.
 
-There are three types of jumper wire: Female-to-Female, Male-to-Male,
-and Male-to-Female. The reason we call it Male-to-Female is because it
-has the outstanding tip in one end as well as a sunk female end.
-Male-to-Male means both side are male and Female-to-Female means both
-ends are female.
+Il existe trois types de fils de liaison : Femelle-à-Femelle, Mâle-à-Mâle,
+et Mâle-à-Femelle. La raison pour laquelle nous l'appelons Mâle-à-Femelle est qu'il
+possède une extrémité mâle proéminente ainsi qu'une extrémité femelle enfoncée.
+Mâle-à-Mâle signifie que les deux côtés sont mâles et Femelle-à-Femelle signifie que les deux
+extrémités sont femelles.
 
 .. image:: img/Jumper_Wires.png
 
-
-More than one type of them may be used in a project. The color of the
-jump wires is different but it doesn’t mean their function is different
-accordingly; it's just designed so to better identify the connection
-between each circuit.
+Plusieurs types de ces fils peuvent être utilisés dans un projet. La couleur des
+fils de liaison est différente mais cela ne signifie pas que leur fonction est différente
+en conséquence ; c'est simplement conçu ainsi pour mieux identifier la connexion
+entre chaque circuit.

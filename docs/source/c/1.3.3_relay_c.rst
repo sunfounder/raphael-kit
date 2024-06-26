@@ -1,59 +1,45 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.3.3_c:
 
-1.3.3 Relay
+1.3.3 Relais
 =================
 
 Introduction
 ------------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+Dans ce projet, nous allons apprendre à utiliser un relais. C'est l'un des composants les 
+plus couramment utilisés dans les systèmes de contrôle automatique. Lorsque la tension, 
+le courant, la température, la pression, etc., atteignent, dépassent ou sont inférieurs 
+à la valeur prédéterminée, le relais connecte ou interrompt le circuit pour contrôler et 
+protéger l'équipement.
 
 Required Components
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/list_1.3.4.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -81,11 +67,11 @@ Schematic Diagram
 Experimental Procedures
 -----------------------
 
-**Step 1:** Build the circuit.
+**Step 1:** Construisez le circuit.
 
 .. image:: ../img/image144.png
 
-**Step 2**: Open the code file.
+**Step 2**: Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -95,7 +81,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.3.3
 
-**Step 3:** Compile the code.
+**Step 3:** Compilez le code.
 
 .. raw:: html
 
@@ -106,7 +92,7 @@ Experimental Procedures
     gcc 1.3.3_Relay.c -lwiringPi
 
 
-**Step 4:** Run the executable file.
+**Step 4:** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -116,13 +102,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the LED will light up. In addition, you can
-hear a ticktock caused by breaking normally close contact and 
-closing normally open contact.
+Après l'exécution du code, la LED s'allumera. De plus, vous pouvez entendre un tic-tac causé par l'ouverture du contact normalement fermé et la fermeture du contact normalement ouvert.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h : Aucun fichier ou répertoire de ce type", veuillez vous référer à :ref:`install_wiringpi`.
 
 **Code**
 
@@ -152,23 +136,23 @@ closing normally open contact.
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
     digitalWrite(RelayPin, LOW);
 
-Set the I/O port as low level (0V), thus the transistor is not energized
-and the coil is not powered. There is no electromagnetic force, so the
-relay opens, LED does not turn on.
+Définir le port I/O à un niveau bas (0V), ainsi le transistor n'est pas alimenté et 
+la bobine n'est pas sous tension. Il n'y a pas de force électromagnétique, donc le 
+relais s'ouvre, la LED ne s'allume pas.
 
 .. code-block:: c
 
     digitalWrite(RelayPin, HIGH);
 
-set the I/O port as high level (5V) to energize the transistor. The coil
-of the relay is powered and generate electromagnetic force, and the
-relay closes, LED lights up.
+Définir le port I/O à un niveau haut (5V) pour alimenter le transistor. 
+La bobine du relais est sous tension et génère une force électromagnétique, 
+et le relais se ferme, la LED s'allume.
 
 Phenomenon Picture
 ------------------

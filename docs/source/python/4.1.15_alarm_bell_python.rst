@@ -1,58 +1,45 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _4.1.15_py:
 
-4.1.15 Alarm Bell
+4.1.15 Alarme
 ================================
 
 Introduction
 -----------------
 
-In this project, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+Dans ce projet, nous allons créer un dispositif d'alarme manuel. Vous pouvez remplacer 
+l'interrupteur à bascule par un thermistor ou un capteur photosensible pour créer une 
+alarme de température ou de lumière.
 
-Required Components
+Composants Requis
 ------------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_Alarm_Bell.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -73,11 +60,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Schéma de Câblage
 -------------------------
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  physique wiringPi BCM
 GPIO17       Pin 11   0        17
 GPIO18       Pin 12   1        18
 GPIO27       Pin 13   2        27
@@ -87,14 +74,14 @@ GPIO22       Pin 15   3        22
 .. image:: ../img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
+Procédures Expérimentales
 -----------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: ../img/image266.png
 
-**Step 2:** Change directory.
+**Étape 2** : Changez de répertoire.
 
 .. raw:: html
 
@@ -104,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Étape 3** : Exécutez.
 
 .. raw:: html
 
@@ -114,14 +101,14 @@ Experimental Procedures
 
     sudo python3 4.1.15_AlarmBell.py
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Après le démarrage du programme, l'interrupteur à bascule sera basculé vers la droite et le 
+buzzer émettra des sons d'alarme. En même temps, les LED rouges et vertes clignoteront à une 
+certaine fréquence.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller dans le chemin du code source comme ``raphael-kit/python``.
 
 .. raw:: html
 
@@ -209,17 +196,15 @@ red and green LEDs will flash at a certain frequency.
             main()
         except KeyboardInterrupt:
             destroy()
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     import threading
 
-Here, we import the ``Threading`` module and it allows you to do
-multiple things at once, while normal programs can only execute code
-from top to bottom. With ``Threading`` modules, the LED and the buzzer
-can work separately.
+Ici, nous importons le module ``Threading`` qui permet d'exécuter plusieurs tâches en même temps, 
+alors que les programmes normaux ne peuvent exécuter le code que de haut en bas. Avec les modules 
+``Threading``, la LED et le buzzer peuvent fonctionner séparément.
 
 .. code-block:: python
 
@@ -232,9 +217,9 @@ can work separately.
             time.sleep(0.5)
             GPIO.output(BLedPin,GPIO.LOW)
 
-The function ``ledWork()`` helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La fonction ``ledWork()`` aide à définir l'état de fonctionnement de ces 2 LED : elle maintient 
+la LED verte allumée pendant 0,5 s puis l'éteint ; de même, elle maintient la LED rouge allumée 
+pendant 0,5 s puis l'éteint.
 
 .. code-block:: python
 
@@ -248,9 +233,9 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
             Buzz.ChangeFrequency(note)
             time.sleep(0.01)
 
-The function ``buzzWork()`` is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La fonction ``buzzWork()`` est utilisée pour définir l'état de fonctionnement du buzzer. 
+Ici, nous définissons la fréquence entre 130 et 800, pour accumuler ou diminuer à un 
+intervalle de 20.
 
 .. code-block:: python
 
@@ -263,25 +248,22 @@ at an interval of 20.
         tLed = threading.Thread(target=ledWork) 
         tLed.start()  
 
-In the function ``on()`` :
+Dans la fonction ``on()`` :
 
-1) Define the mark “flag=1”, indicating the ending of the control
-   thread.
+1) Définir le marqueur « flag=1 », indiquant la fin du thread de contrôle.
 
-2) Start the Buzz, and set the duty cycle to 50%.
+2) Démarrer le Buzz et régler le cycle de service à 50 %.
 
-3) Create **2** separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Créer **2** threads distincts pour que la LED et le buzzer puissent fonctionner en même temps.
 
-``threading.Thread()`` function is used to create the thread and its prototype is as follows:
+La fonction ``threading.Thread()`` est utilisée pour créer le thread et son prototype est le suivant :
 
    ``class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)``
 
-Among the construction methods, the principal parameter is ``target``,
-we need to assign a callable object (here are the functions ``ledWork``
-and ``BuzzWork``) to ``target``.
+Parmi les méthodes de construction, le paramètre principal est ``target``, nous devons assigner un objet appelable (ici les fonctions ``ledWork`` et ``BuzzWork``) à ``target``.
 
-Next ``start()`` is called to start the thread object, ex., ``tBuzz.start()`` is used to start the newly installed ``tBuzz`` thread.
+Ensuite, ``start()`` est appelé pour démarrer l'objet thread, par exemple, ``tBuzz.start()`` 
+est utilisé pour démarrer le thread nouvellement installé ``tBuzz``.
 
 .. code-block:: python
 
@@ -292,8 +274,8 @@ Next ``start()`` is called to start the thread object, ex., ``tBuzz.start()`` is
         GPIO.output(ALedPin,GPIO.LOW)
         GPIO.output(BLedPin,GPIO.LOW)
 
-The function ``Off()`` defines “flag=0” so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La fonction ``Off()`` définit « flag=0 » afin de quitter les threads 
+**ledWork** et **BuzzWork** et ensuite éteindre le buzzer et les LED.
 
 .. code-block:: python
 
@@ -301,19 +283,18 @@ The function ``Off()`` defines “flag=0” so as to exit the threads
         lastState=0
         while True:
             currentState =GPIO.input(switchPin)
-            if currentState == 1 and lastState == 0:
+            if currentState == 1 et lastState == 0:
                 on()
-            elif currentState == 0 and lastState == 1:
+            elif currentState == 0 et lastState == 1:
                 off()
             lastState=currentState
 
-``Main()`` contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function ``on()`` is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+``Main()`` contient l'ensemble du processus du programme : d'abord lire la valeur de 
+l'interrupteur à glissière ; si l'interrupteur à bascule est basculé vers la droite 
+(la lecture est 1), la fonction ``on()`` est appelée, le buzzer est actionné pour émettre 
+des sons et les LED rouges et vertes clignotent. Sinon, le buzzer et les LED ne fonctionnent pas.
 
-Phenomenon Picture
+Image du Phénomène
 ------------------------
 
 .. image:: ../img/image267.jpeg

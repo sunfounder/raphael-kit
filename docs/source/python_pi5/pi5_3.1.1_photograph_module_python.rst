@@ -1,88 +1,73 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _3.1.1_py_pi5:
 
-3.1.1 Photograph Module
-==========================
+3.1.1 Module Photographique
+===============================
 
 Introduction
------------------
+---------------
 
-In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
+Dans ce kit, équipé d'un module caméra, essayons de prendre une photo avec le Raspberry Pi.
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/3.3.1_photograph_list.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
-------------------------------
+Procédures expérimentales
+-----------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Étape 1 :** Accédez au bureau du Raspberry Pi. Vous aurez peut-être besoin d'un écran pour une meilleure expérience, référez-vous à : `Connecter votre Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Ou accédez au bureau du Raspberry Pi à distance, pour un tutoriel détaillé veuillez consulter :ref:`remote_desktop`.
 
-**Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
+**Étape 2 :** Vérifiez si la caméra est activée. Pour les instructions, veuillez consulter : :ref:`enable_camera`.
 
-**Step 3:** Open a Terminal and get into the folder of the code.
+**Étape 3 :** Ouvrez un Terminal et accédez au dossier du code.
 
 .. code-block::
 
     cd ~/raphael-kit/python-pi5
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez.
 
 .. code-block::
 
     sudo python3 3.1.1_PhotographModule_zero.py
 
-After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``~`` directory. 
+Lorsque le code s'exécute, la caméra prendra une photo. Vous pouvez maintenant voir la photo nommée ``my_photo.jpg`` dans le répertoire ``~``.
 
 .. note::
 
-    You can also open ``3.1.1_PhotographModule.py`` in the ``~/raphael-kit/python-pi5/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    Vous pouvez également ouvrir ``3.1.1_PhotographModule.py`` dans le chemin ``~/raphael-kit/python-pi5/`` avec un IDE Python, cliquer sur le bouton Exécuter pour exécuter et arrêter le code avec le bouton Stop.
 
-
-If you want to download the photo to your PC, please refer to :ref:`filezilla`.
-
+Si vous souhaitez télécharger la photo sur votre PC, veuillez vous référer à :ref:`filezilla`.
 
 **Code**
 
@@ -119,9 +104,9 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
        pass
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. Imports the ``Picamera2`` and ``Preview`` classes from the picamera2 library, and the ``os`` module for operating system interactions.
+#. Importe les classes ``Picamera2`` et ``Preview`` de la bibliothèque picamera2, ainsi que le module ``os`` pour les interactions avec le système d'exploitation.
 
    .. code-block:: python
 
@@ -129,7 +114,7 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
        from picamera2 import Picamera2, Preview
        import os
 
-#. Retrieves the current user's login name and the path to their home directory.
+#. Récupère le nom d'utilisateur actuel et le chemin de son répertoire personnel.
 
    .. code-block:: python
 
@@ -138,7 +123,7 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
        # Get the path to the user's home directory
        user_home = os.path.expanduser(f'~{user}')
 
-#. Creates an instance of the ``Picamera2`` class and retrieves the default preview configuration.
+#. Crée une instance de la classe ``Picamera2`` et récupère la configuration de prévisualisation par défaut.
 
    .. code-block:: python
 
@@ -147,7 +132,7 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
        # Retrieve the default preview configuration
        preview_config = camera.preview_configuration
 
-#. Sets the size and format of the camera preview. The size is set to 800x600 pixels, and the format is set to ``XRGB8888``.
+#. Définit la taille et le format de la prévisualisation de la caméra. La taille est définie à 800x600 pixels, et le format à ``XRGB8888``.
 
    .. code-block:: python
 
@@ -158,7 +143,7 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
            ...
 
-#. Starts the camera preview in QTGL mode, which is a method for displaying the preview, and then starts the camera itself.
+#. Démarre la prévisualisation de la caméra en mode QTGL, puis démarre la caméra elle-même.
 
    .. code-block:: python
 
@@ -172,7 +157,7 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
            ...
 
-#. Capture an image from the camera, storing it in ``~/``.
+#. Capture une image à partir de la caméra et l'enregistre dans le répertoire personnel de l'utilisateur.
 
    .. code-block:: python
 
@@ -183,14 +168,14 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
            camera.capture_file(f'{user_home}/my_photo.jpg')
 
    .. note::
-       You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
+       Vous pouvez utiliser la fonction ``camera.capture()`` et une boucle ``for`` ensemble pour réaliser une prise de vue en continu. Utilisez la fonction ``delay`` pour ajuster l'intervalle de temps entre les prises de vue.
 
        .. code-block:: python
 
            for i in 5:
                camera.capture(f'{user_home}/my_photo%s.jpg' % i)
 
-#. This block of code handles a KeyboardInterrupt (such as Ctrl+C) by stopping the camera preview. The ``pass`` statement is used to handle the exception without doing anything else.
+#. Ce bloc de code gère une interruption clavier (comme Ctrl+C) en arrêtant la prévisualisation de la caméra. L'instruction ``pass`` est utilisée pour gérer l'exception sans faire autre chose.
 
    .. code-block:: python
 

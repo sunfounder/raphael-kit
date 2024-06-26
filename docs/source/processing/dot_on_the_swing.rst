@@ -1,52 +1,37 @@
-.. note::
+.. _point_sur_la_balançoire:
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Point sur la Balançoire
+================================
 
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-.. _dot_on_the_swing:
-
-Dot on the Swing
-==============================
-
-In this project, 3 buttons are connected, one to change the size of the dot, one to change the position and the last one to change the color. If you press all 3 buttons at the same time, you will get a dot that is swinging and has a variable color.
-
+Dans ce projet, 3 boutons sont connectés : un pour changer la taille du point, un pour changer la position et le dernier pour changer la couleur. Si vous appuyez sur les 3 boutons en même temps, vous obtiendrez un point qui se balance et change de couleur.
 
 .. image:: img/dancing_dot.png
 
-**Required Components**
+**Composants Nécessaires**
 
-In this project, we need the following components.
+Dans ce projet, nous avons besoin des composants suivants.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -57,11 +42,10 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-**Wiring**
+**Câblage**
 
 .. image:: img/circuit_dancing_dot.png
-
-**Sketch**
+**Croquis**
 
 .. code-block:: arduino
 
@@ -154,31 +138,30 @@ You can also buy them separately from the links below.
             ellipse(currentX, currentY, currentSize, currentSize);
         }
     }
+**Comment ça marche ?**
 
-**How it works?**
+Au lieu de dessiner directement un point, nous créons ici une classe ``Dot``.
+Ensuite, nous déclarons l'objet (dans ce cas, ``myDot``).
 
-Instead of drawing dot directly, we create a ``Dot`` class here.
-Then, declare the object (in this case ``myDot``).
+C'est une manière simple de dessiner des points avec plusieurs propriétés identiques. 
+Par exemple, si nous ajoutons trois fonctions au point dans ce projet - changer la taille, 
+changer la position et changer la couleur - alors chaque point que nous déclarons aura les 
+mêmes fonctions. Nous pouvons utiliser le même bouton pour leur faire faire la même chose, 
+ou nous pouvons utiliser différents boutons pour contrôler chaque point séparément.
 
-This is a simple way to draw dots with multiple identical properties.
-For example, if we add three functions to the dot in this project - change size, change position and change color - then each dot we declare will have the same function.
-We can use the same button to make them do the same thing, or we can use different buttons to control each dot separately.
+Utiliser des **classes** rend votre croquis plus élégant, puissant et flexible.
 
-Using **classes** makes your sketch beautiful, powerful and flexible.
+`Class (programmation informatique) - Wikipédia <https://fr.wikipedia.org/wiki/Classe_(informatique)>`_
 
-`Class (computer programming) - Wikipedia <https://en.wikipedia.org/wiki/Class_(computer_programming)>`_
-
-Next, let's take a closer look at the ``Dot`` class. 
-
+Ensuite, examinons de plus près la classe ``Dot``. 
 
 .. code-block:: arduino
 
     Dot(float x, float y, float s, int c)
 
-In the declaration, it needs to pass in four parameters, which are the X  and Y coordinate value of the position, the size, and the color (here it is set to the `HSB color mode <https://en.wikipedia.org/wiki/HSL_and_HSV>`_ ).
+Dans la déclaration, elle doit recevoir quatre paramètres : les valeurs de coordonnées X et Y de la position, la taille, et la couleur (ici définie en `mode de couleur HSB <https://fr.wikipedia.org/wiki/Teinte_Saturation_Valeur>`_ ).
 
-Each parameter will be assigned to 2 sets of values ​​(initial value and current value).
-
+Chaque paramètre sera assigné à deux ensembles de valeurs (valeur initiale et valeur actuelle).
 
 .. code-block:: arduino
 
@@ -196,9 +179,9 @@ Each parameter will be assigned to 2 sets of values ​​(initial value and cur
     int currentColor;
     int ColorRange = 80;
 
-In addition to the initial value and the current value, there is also a set of range values. It is not difficult to understand that the initial value is used to determine the initial state of the dot (determined by the incoming parameters), while the current value will change within the range to make the dot move.
+En plus de la valeur initiale et de la valeur actuelle, il y a aussi un ensemble de valeurs de plage. Il n'est pas difficile de comprendre que la valeur initiale est utilisée pour déterminer l'état initial du point (déterminé par les paramètres d'entrée), tandis que la valeur actuelle changera dans la plage pour faire bouger le point.
 
-Therefore, except for the X coordinate value, the current values of the other three parameters are calculated as follows:
+Par conséquent, à l'exception de la valeur de la coordonnée X, les valeurs actuelles des trois autres paramètres sont calculées comme suit :
 
 .. code-block:: arduino
 
@@ -214,10 +197,12 @@ Therefore, except for the X coordinate value, the current values of the other th
         currentColor = int(initColor + ColorRange * sin( timer ));
     }
 
+Si vous êtes familier avec les fonctions trigonométriques, il ne devrait pas être difficile de 
+comprendre `sinus et cosinus <https://fr.wikipedia.org/wiki/Sinus>`_, qui donnent un changement 
+périodique lisse (de -1 à 1) de la valeur actuelle du point.
 
-If you are familiar with trigonometric functions, it should not be difficult to understand `sine and cosine <https://en.wikipedia.org/wiki/Sine>`_, which gives a smooth periodic change (from -1 to 1) of the current value of the dot.
-
-We also need to add a seed, ``timer``, for the periodic variation. It adds the fixed value in the method ``update()`` and is called in ``draw()``.
+Nous devons également ajouter une variable, ``timer``, pour la variation périodique. Elle ajoute 
+la valeur fixe dans la méthode ``update()`` et est appelée dans ``draw()``.
 
 .. code-block:: arduino
 
@@ -225,7 +210,7 @@ We also need to add a seed, ``timer``, for the periodic variation. It adds the f
         timer += speed;
     }
 
-Finally, the dot is displayed according to the current value using the method ``show()``, which is also called in ``draw()``.
+Enfin, le point est affiché en fonction de la valeur actuelle en utilisant la méthode ``show()``, qui est également appelée dans ``draw()``.
 
 .. code-block:: arduino
 
@@ -234,9 +219,7 @@ Finally, the dot is displayed according to the current value using the method ``
         ellipse(currentX, currentY, currentSize, currentSize);
     }
 
-**What more?**
+**Que faire de plus ?**
 
-Having mastered the use of classes, you can already draw multiple dots with the same properties, so why not try to do something cooler.
-For example, how about drawing a stable binary star system, or making a 'DUET' game?
-
-
+Ayant maîtrisé l'utilisation des classes, vous pouvez déjà dessiner plusieurs points avec les mêmes propriétés, alors pourquoi ne pas essayer de faire quelque chose de plus cool ?
+Par exemple, que diriez-vous de dessiner un système binaire stable, ou de créer un jeu 'DUET' ?

@@ -1,58 +1,45 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.4_py:
 
-2.1.4 Slide Switch
-==================
+2.1.4 Interrupteur à Glissière
+===================================
 
 Introduction
-------------
+---------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+Dans ce projet, nous allons apprendre à utiliser un interrupteur à glissière. Habituellement, 
+l'interrupteur à glissière est soudé sur un circuit imprimé en tant qu'interrupteur d'alimentation, 
+mais ici nous devons l'insérer dans la plaque de prototypage, ce qui peut ne pas le fixer solidement. Nous l'utilisons sur la plaque de prototypage pour démontrer sa fonction.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Composants Requis
+--------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,12 +56,12 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Schéma de Connexion
+----------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Connectez la broche centrale de l'interrupteur à glissière au GPIO17, et deux LEDs aux broches 
+GPIO22 et GPIO27 respectivement. Ensuite, lorsque vous actionnez l'interrupteur, vous pouvez voir 
+les deux LEDs s'allumer alternativement.
 
 .. image:: ../img/image305.png
 
@@ -82,14 +69,14 @@ can see the two LEDs light up alternately.
 .. image:: ../img/image306.png
 
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Get into the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -99,7 +86,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -109,15 +96,16 @@ Experimental Procedures
 
     sudo python3 2.1.4_Slider.py
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Pendant que le code s'exécute, connectez l'interrupteur à gauche, alors la LED jaune s'allume ; 
+à droite, la lumière rouge s'allume.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. 
+    Mais avant cela, vous devez aller au chemin du code source comme ``raphael-kit/python``. 
+    Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -179,7 +167,7 @@ the yellow LED lights up; to the right, the red light turns on.
         except KeyboardInterrupt:
             destroy()   
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
@@ -187,9 +175,9 @@ the yellow LED lights up; to the right, the red light turns on.
                 GPIO.output(led1Pin, GPIO.LOW)
                 GPIO.output(led2Pin, GPIO.HIGH)
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off.
+Lorsque l'interrupteur est tiré vers la droite, la broche centrale et la broche droite sont 
+connectées ; le Raspberry Pi lit un niveau haut sur la broche centrale, donc la LED1 s'allume 
+et la LED2 s'éteint.
 
 .. code-block:: python
 
@@ -197,11 +185,11 @@ LED1 is on and LED2 off.
                 GPIO.output(led2Pin, GPIO.LOW)
                 GPIO.output(led1Pin, GPIO.HIGH)
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off.
+Lorsque l'interrupteur est tiré vers la gauche, la broche centrale et la broche gauche sont 
+connectées ; le Raspberry Pi lit un niveau bas, donc la LED2 s'allume et la LED1 s'éteint.
 
-Phenomenon Picture
-------------------
+Image du Phénomène
+---------------------
 
 .. image:: ../img/image162.jpeg
 

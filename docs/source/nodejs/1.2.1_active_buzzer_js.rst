@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.2.1_js:
 
-1.2.1 Active Buzzer
-====================
+1.2.1 Buzzer Actif
+========================
 
 Introduction
-------------
+---------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+Dans ce projet, nous apprendrons à faire émettre un bip à un buzzer actif à l'aide d'un transistor PNP.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,28 +51,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
------------------
+Schéma de Câblage
+--------------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+Dans cette expérience, un buzzer actif, un transistor PNP et une résistance de 1k sont utilisés 
+entre la base du transistor et le GPIO pour protéger le transistor. Lorsque le GPIO17 du 
+Raspberry Pi est alimenté en niveau bas (0V) par programmation, le transistor sera conducteur en 
+raison de la saturation du courant et le buzzer émettra des sons. Mais lorsque le niveau haut est 
+fourni à l'IO du Raspberry Pi, le transistor sera coupé et le buzzer n'émettra pas de sons.
 
 .. image:: ../img/image332.png
 
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+----------------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Étape 1:** Construire le circuit. (Le buzzer actif a un autocollant blanc sur la surface et un dos noir.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Go to the folder of the code.
+**Étape 2**: Aller dans le dossier du code.
 
 .. raw:: html
 
@@ -96,7 +80,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run.
+**Étape 3**: Exécuter.
 
 .. raw:: html
 
@@ -106,7 +90,7 @@ Experimental Procedures
 
     sudo node active_buzzer.js
 
-The code run, the buzzer beeps.
+Le code s'exécute, le buzzer émet un bip.
 
 **Code**
 
@@ -124,14 +108,14 @@ The code run, the buzzer beeps.
     process.exit();
   });
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
     const active = new Gpio(17,{mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, and instantiate an object active to control the IO port Gpio17, and the mode is set to output mode.
+Importer le module ``pigpio``, et instancier un objet actif pour contrôler le port IO Gpio17, et le mode est défini en mode sortie.
 
 .. code-block:: js
 
@@ -139,8 +123,8 @@ Import the ``pigpio`` module, and instantiate an object active to control the IO
     active.digitalWrite(!active.digitalRead());
   }, 500);
 
-The active buzzer is similar to the LED in usage and can be controlled with ``digitalWrite()``, and ``digitalRead()`` is used to read the current pin level.
-Here we make the active buzzer change its working state every 500ms.
+Le buzzer actif est similaire à la LED en termes d'utilisation et peut être contrôlé avec ``digitalWrite()``, et ``digitalRead()`` est utilisé pour lire le niveau de la broche actuelle.
+Ici, nous faisons en sorte que le buzzer actif change son état de fonctionnement toutes les 500ms.
 
 .. code-block:: js
 
@@ -150,11 +134,11 @@ Here we make the active buzzer change its working state every 500ms.
       process.exit()
   })
 
-Handle Ctrl+C, here is used to stop the buzzer sounding when exiting the program.
+Gérer Ctrl+C, ici utilisé pour arrêter le son du buzzer lors de la sortie du programme.
 
 `Process - NodeJS <https://nodejs.org/api/process.html>`_
 
-Phenomenon Picture
+Image du Phénomène
 ------------------
 
 .. image:: ../img/image105.jpeg

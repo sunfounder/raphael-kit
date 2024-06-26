@@ -1,30 +1,16 @@
-.. note::
+Qu'est-ce que Node.js ?
+================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Node.js a été lancé en mai 2009 et développé par Ryan Dahl. Il s'agit d'un environnement d'exécution JavaScript basé sur le moteur V8 de Chrome. Il utilise un modèle d'E/S non bloquant et piloté par des événements pour permettre à JavaScript de s'exécuter sur une plateforme de développement côté serveur.
 
-    **Why Join?**
+En termes simples, Node.js est du JavaScript s'exécutant sur le serveur. Si vous êtes familier avec JavaScript, vous apprendrez facilement Node.js.
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+Node.js utilise généralement la commande ``npm install xxx`` pour installer des packages tiers, ce qui nécessite l'installation de l'outil npm, similaire à l'outil pip en Python.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+Installer ou mettre à jour Node.js et npm
+-----------------------------------------
 
-What is Nodejs？
-=======================
-
-Node.js was released in May 2009 and developed by Ryan Dahl. It is a JavaScript runtime environment based on the Chrome V8 engine. It uses an event-driven, non-blocking I/O model to allow JavaScript to run on the server-side development platform.
-
-Simply put, Node.js is JavaScript running on the server. If you are familiar with Javascript, then you will easily learn Node.js.
-
-Nodejs usually uses the command ``npm install xxx`` to install third-party packages, which requires us to install the npm tool, similar to the pip tool in python.
-
-Install or update nodejs and npm
-------------------------------------------
-
-Run the following commands to install and update nodejs and npm.
+Exécutez les commandes suivantes pour installer et mettre à jour Node.js et npm.
 
 .. raw:: html
 
@@ -37,7 +23,7 @@ Run the following commands to install and update nodejs and npm.
     sudo apt-get install npm 
     sudo npm install npm -g
 
-Then check the current Node version with the following command.
+Ensuite, vérifiez la version actuelle de Node avec la commande suivante.
 
 .. raw:: html
 
@@ -47,7 +33,7 @@ Then check the current Node version with the following command.
 
     node -v
 
-The following command checks the current npm version.
+La commande suivante vérifie la version actuelle de npm.
 
 .. raw:: html
 

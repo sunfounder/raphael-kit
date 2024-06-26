@@ -1,112 +1,97 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.18_scratch:
 
-1.18 Eating Banana Game
-================================
+1.18 Jeu de la Banane
+========================
 
 Description
----------------
+--------------
 
-Scratch has a Video Sensing expansion module, which can turn on the camera in Scratch and detect the movement of objects on the camera screen.
+Scratch dispose d'un module d'extension de détection vidéo, qui peut activer la caméra dans Scratch et détecter les mouvements des objets à l'écran.
 
-Today, we will use the camera to make a eating banana game. In the stipulated time, help the Monkey eat more bananas.
+Aujourd'hui, nous allons utiliser la caméra pour créer un jeu de bananes. Dans le temps imparti, aidez le Singe à manger plus de bananes.
 
-To play the game against a white background, click on the green flag to start. Move colored objects in front of the camera to control the Monkey sprite.
+Pour jouer, placez-vous devant un fond blanc et cliquez sur le drapeau vert pour commencer. Déplacez des objets colorés devant la caméra pour contrôler le sprite du Singe.
 
 .. image:: img/1.18_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+---------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.18_photo1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-
-Build the Circuit
---------------------
+Construire le Circuit
+-------------------------
 
 .. image:: img/1.10_camera.png
 
 .. note::
 
-    You need to refer to :ref:`cpn_camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
+    Vous devez vous référer à :ref:`cpn_camera_module` pour connecter le module caméra et activer l'interface caméra du Raspberry Pi.
 
-Load the Code and See What Happens
----------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+-------------------------------------------
 
-Load the code file (``1.18_eating_banana_game.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.18_eating_banana_game.sb3``) sur Scratch 3.
 
-Tips on Codes
-----------------
+Astuces sur les Codes
+-------------------------
 
-Arrange monkeys and bananas
+Disposer les singes et les bananes
 
-First, we delete the original sprite, then add Monkey sprite and Bananas sprite, and change their sizes to 50.
+Tout d'abord, nous supprimons le sprite d'origine, puis ajoutons le sprite Singe et le sprite Bananes, et modifions leurs tailles à 50.
 
-Let Bananas appear randomly.
+Faire apparaître les Bananes de manière aléatoire.
 
 .. image:: img/1.18_code1.png
 
-Bananas disappears after encountering the Monkey, which means it was eaten by the Monkey and reappears randomly.
+Les Bananes disparaissent après avoir rencontré le Singe, ce qui signifie qu'elles ont été mangées par le Singe et réapparaissent de manière aléatoire.
 
 .. image:: img/1.18_code2.png
 
-Let the Monkey appear in the center of the stage and initialize the camera data (transparency is set to 20).
+Faire apparaître le Singe au centre de la scène et initialiser les données de la caméra (la transparence est réglée à 20).
 
 .. image:: img/1.18_code3.png
 
-If the camera detects an object moving, let the Monkey move towards the object.
+Si la caméra détecte un objet en mouvement, déplacer le Singe vers l'objet.
 
 .. image:: img/1.18_code4.png
 
-Now, click on the green flag at the top of the stage area to start the game.
+Maintenant, cliquez sur le drapeau vert en haut de la scène pour commencer le jeu.
 
-Let the Monkey eat bananas, it is very hungry! Try to play this game on a white background to prevent interference from other objects.
+Laissez le Singe manger des bananes, il a très faim ! Essayez de jouer à ce jeu sur un fond blanc pour éviter les interférences avec d'autres objets.
 
-Challenge
--------------
+Défi
+----------
 
-I believe that you will be smart enough to program and implement this game soon. Next, we will add some challenges to enrich our game content.
+Je suis sûr que vous serez assez intelligent pour programmer et réaliser ce jeu rapidement. Ensuite, nous ajouterons quelques défis pour enrichir le contenu de notre jeu.
 
-· When Monkey eats banana, we add 1 to the score. Within 30s, see who has the highest score!
+· Lorsque le Singe mange une banane, ajoutez 1 au score. Dans les 30 secondes, voyez qui obtient le score le plus élevé !
 
-· When Monkey eats a banana, it emits a suitable sound effect.
+· Lorsque le Singe mange une banane, il émet un effet sonore approprié.

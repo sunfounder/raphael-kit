@@ -1,63 +1,50 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_thermistor:
 
-Thermistor
-===============
+Thermistance
+=================
 
 .. image:: img/thermistor.png
     :width: 150
     :align: center
 
-A thermistor is a type of resistor whose resistance is strongly dependent on temperature, more so than in standard resistors. The word is a combination of thermal and resistor. Thermistors are widely used as inrush current limiters, temperature sensors (negative temperature coefficient or NTC type typically), self-resetting overcurrent protectors, and self-regulating heating elements (positive temperature coefficient or PTC type typically).
+Une thermistance est un type de résistance dont la valeur dépend fortement de la température, bien plus que dans les résistances standards. Le mot est une combinaison de thermique et résistance. Les thermistances sont largement utilisées comme limiteurs de courant d'appel, capteurs de température (type à coefficient de température négatif ou NTC typiquement), protecteurs de surintensité auto-réarmables, et éléments chauffants auto-régulants (type à coefficient de température positif ou PTC typiquement).
 
-* `Thermistor - Wikipedia <https://en.wikipedia.org/wiki/Thermistor>`_
+* `Thermistance - Wikipédia <https://en.wikipedia.org/wiki/Thermistor>`_
 
-Here is the electronic symbol of thermistor.
+Voici le symbole électronique de la thermistance.
 
 .. image:: img/thermistor_symbol.png
     :width: 300
     :align: center
 
-Thermistors are of two opposite fundamental types:
+Il existe deux types fondamentaux de thermistances :
 
-* With NTC thermistors, resistance decreases as temperature rises usually due to an increase in conduction electrons bumped up by thermal agitation from valency band. An NTC is commonly used as a temperature sensor, or in series with a circuit as an inrush current limiter.
-* With PTC thermistors, resistance increases as temperature rises usually due to increased thermal lattice agitations particularly those of impurities and imperfections. PTC thermistors are commonly installed in series with a circuit, and used to protect against overcurrent conditions, as resettable fuses.
+* Avec les thermistances NTC, la résistance diminue à mesure que la température augmente, généralement en raison d'une augmentation des électrons de conduction stimulés par l'agitation thermique de la bande de valence. Une NTC est couramment utilisée comme capteur de température ou en série avec un circuit comme limiteur de courant d'appel.
+* Avec les thermistances PTC, la résistance augmente à mesure que la température augmente, généralement en raison de l'augmentation des agitations thermiques du réseau, en particulier celles des impuretés et des imperfections. Les thermistances PTC sont couramment installées en série avec un circuit et utilisées pour se protéger contre les conditions de surintensité, comme des fusibles réarmables.
 
-In this kit we use an NTC one. Each thermistor has a normal resistance. Here it is 10k ohm, which is measured under 25 degree Celsius.
+Dans ce kit, nous utilisons une NTC. Chaque thermistance a une résistance normale. Ici, elle est de 10k ohms, mesurée à 25 degrés Celsius.
 
-Here is the relation between the resistance and temperature:
+Voici la relation entre la résistance et la température :
 
     RT = RN * expB(1/TK – 1/TN)   
 
-* **RT** is the resistance of the NTC thermistor when the temperature is TK. 
-* **RN** is the resistance of the NTC thermistor under the rated temperature TN. Here, the numerical value of RN is 10k.
-* **TK** is a Kelvin temperature and the unit is K. Here, the numerical value of TK is 273.15 + degree Celsius.
-* **TN** is a rated Kelvin temperature; the unit is K too. Here, the numerical value of TN is 273.15+25.
-* And **B(beta)**, the material constant of NTC thermistor, is also called heat sensitivity index with a numerical value 3950.      
-* **exp** is the abbreviation of exponential, and the base number e is a natural number and equals 2.7 approximately.  
+* **RT** est la résistance de la thermistance NTC lorsque la température est TK. 
+* **RN** est la résistance de la thermistance NTC à la température nominale TN. Ici, la valeur numérique de RN est de 10k.
+* **TK** est une température en Kelvin et l'unité est K. Ici, la valeur numérique de TK est de 273,15 + degrés Celsius.
+* **TN** est une température nominale en Kelvin ; l'unité est également K. Ici, la valeur numérique de TN est de 273,15 + 25.
+* Et **B(bêta)**, la constante matérielle de la thermistance NTC, est également appelée indice de sensibilité thermique avec une valeur numérique de 3950.      
+* **exp** est l'abréviation de exponentielle, et le nombre de base e est un nombre naturel et vaut approximativement 2,7.  
 
-Convert this formula TK=1/(ln(RT/RN)/B+1/TN) to get Kelvin temperature that minus 273.15 equals degree Celsius.
+Convertissez cette formule TK=1/(ln(RT/RN)/B+1/TN) pour obtenir la température en Kelvin, moins 273,15 égale degrés Celsius.
 
-This relation is an empirical formula. It is accurate only when the temperature and resistance are within the effective range.
+Cette relation est une formule empirique. Elle est précise uniquement lorsque la température et la résistance sont dans la plage effective.
 
-**Example**
+**Exemple**
 
-* :ref:`2.2.2_c` (C Project)
-* :ref:`3.1.4_c` (C Project)
-* :ref:`3.1.7_c` (C Project)
-* :ref:`2.2.2_py` (Python Project)
-* :ref:`4.1.10_py` (Python Project)
-* :ref:`4.1.13_py` (Python Project)
+* :ref:`2.2.2_c` (Projet C)
+* :ref:`3.1.4_c` (Projet C)
+* :ref:`3.1.7_c` (Projet C)
+* :ref:`2.2.2_py` (Projet Python)
+* :ref:`4.1.10_py` (Projet Python)
+* :ref:`4.1.13_py` (Projet Python)
+

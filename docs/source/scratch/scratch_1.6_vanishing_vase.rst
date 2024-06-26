@@ -1,54 +1,40 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.6_scratch:
 
-1.6 Vanishing Vase
+1.6 Vase Disparu
 ========================
 
-Now let's do a little magic trick, do nothing, and then the vase somehow disappears.
+Maintenant, faisons un petit tour de magie : ne rien faire, et le vase disparaît mystérieusement.
 
 .. image:: img/1.6_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+-------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.6_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,34 +45,34 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Build the Circuit
----------------------
+Construire le Circuit
+------------------------
 
 .. image:: img/1.6_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+------------------------------------------
 
-Load the code file (``1.6_vanishing_vase.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.6_vanishing_vase.sb3``) dans Scratch 3.
 
-When you use a magnet near the reed switch module, a vase will appear on the stage, take away the magnet and the vase will disappear.
+Lorsque vous utilisez un aimant près du module de l'interrupteur à lames, un vase apparaît sur la scène. Enlevez l'aimant et le vase disparaît.
 
-Tips on Sprite
-----------------
+Astuces sur le Sprite
+----------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **desk1.png** and **desk2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **desk**.
+Sélectionnez Sprite1 et cliquez sur **Costumes** en haut à gauche ; téléchargez **desk1.png** et **desk2.png** depuis le chemin ``~/raphael-kit/scratch/picture`` via le bouton **Télécharger Costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **desk**.
 
 .. image:: img/1.6_vase.png
 
-Tips on Codes
---------------
+Astuces sur les Codes
+----------------------
 
 .. image:: img/1.6_reed2.png
   :width: 400
 
-When the magnet is close to the reed switch module, gpio17 is low, and the costume of the **desk** sprite is switched to **desk1** (the vase is still on the desk).
+Lorsque l'aimant est proche du module de l'interrupteur à lames, gpio17 est bas, et le costume du sprite **desk** est changé en **desk1** (le vase est toujours sur le bureau).
 
 .. image:: img/1.6_reed3.png
   :width: 400
 
-After taking away the magnet, gpio17 is high, at this time the costume of the **desk** sprite is switched to **desk2** (only one desk).
+Après avoir retiré l'aimant, gpio17 est haut, à ce moment-là le costume du sprite **desk** est changé en **desk2** (seulement le bureau).

@@ -1,38 +1,22 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.4_c:
 
-2.1.4 Slide Switch
-========================
+2.1.4 Interrupteur à glissière
+=====================================
 
 Introduction
-------------
+---------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+Dans ce projet, nous allons apprendre à utiliser un interrupteur à glissière. Habituellement, l'interrupteur à glissière est soudé sur un PCB comme interrupteur d'alimentation, mais ici, nous devons l'insérer dans la plaque d'essai, il peut donc ne pas être bien fixé. Nous l'utilisons sur la plaque d'essai pour montrer son fonctionnement.
 
-Required Components
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
@@ -45,14 +29,14 @@ It's definitely convenient to buy a whole kit, here's the link:
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,27 +53,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Schéma de Câblage
+---------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Connectez la broche centrale de l'interrupteur à glissière au GPIO17 et deux LEDs aux broches GPIO22 et GPIO27 respectivement. Ensuite, lorsque vous déplacez le glisseur, vous pouvez voir les deux LEDs s'allumer alternativement.
 
 .. image:: ../img/image305.png
 
-
 .. image:: ../img/image306.png
 
+Procédures Expérimentales
+---------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Étape 1:** Construisez le circuit.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Étape 2**: Allez dans le répertoire du code.
 
 .. raw:: html
 
@@ -99,7 +79,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.4
 
-**Step 3**: Compile.
+**Étape 3**: Compilez le code.
 
 .. raw:: html
 
@@ -109,7 +89,7 @@ Experimental Procedures
 
     gcc 2.1.4_Slider.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**Étape 4**: Exécutez le fichier exécutable ci-dessus.
 
 .. raw:: html
 
@@ -119,12 +99,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
-
+Pendant l'exécution du code, connectez l'interrupteur à gauche, puis la LED jaune s'allume ; 
+à droite, la LED rouge s'allume.
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : "wiringPi.h : No such file or directory", veuillez consulter :ref:`install_wiringpi`.
 
 **Code**
 
@@ -163,7 +142,7 @@ the yellow LED lights up; to the right, the red light turns on.
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -173,9 +152,9 @@ the yellow LED lights up; to the right, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+Lorsque le glisseur est tiré vers la droite, la broche du milieu et celle de droite sont 
+connectées; le Raspberry Pi lit un niveau haut sur la broche du milieu, donc la LED1 est 
+allumée et la LED2 éteinte.
 
 .. code-block:: c
 
@@ -185,12 +164,9 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
+Lorsque le glisseur est tiré vers la gauche, la broche du milieu et celle de gauche sont connectées; le Raspberry Pi lit un niveau bas, donc la LED2 est allumée et la LED1 éteinte.
 
-Phenomenon Picture
+Photo du Phénomène
 ------------------
 
 .. image:: ../img/image162.jpeg
-
-

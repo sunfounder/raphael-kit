@@ -1,54 +1,40 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.17_scratch:
 
-1.17 Rotating fan
-==================
+1.17 Ventilateur Rotatif
+=============================
 
-In this project, we will make a spinning star sprite and fan.
+Dans ce projet, nous allons créer un sprite d'étoile tournant et un ventilateur.
 
 .. image:: img/1.17_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+---------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.17_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,72 +49,72 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
-Build the Circuit
----------------------
+Construire le Circuit
+-------------------------
 
 .. image:: img/1.17_image117.png
 
-Load the Code and See What Happens
----------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+-------------------------------------------
 
-Load the code file (``1.17_rotating_fan.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.17_rotating_fan.sb3``) sur Scratch 3.
 
-After clicking the green flag on the stage, click on the star sprite，then it and the motor will rotate clockwise; you can change the direction of rotation by clicking on the two **arrow** sprites. When you click on the **star** sprite again, it and the motor will stop rotating.
+Après avoir cliqué sur le drapeau vert dans la scène, cliquez sur le sprite étoile, puis l'étoile et le moteur tourneront dans le sens des aiguilles d'une montre ; vous pouvez changer le sens de rotation en cliquant sur les deux sprites **flèche**. Lorsque vous cliquez à nouveau sur le sprite **étoile**, celui-ci et le moteur arrêteront de tourner.
 
-Tips on Sprite
-----------------
-Delete the default sprite, then select the **Star** sprite and the **Arrow1** sprite, and copy Arrow1 once.
+
+Astuces sur les Sprites
+-----------------------------
+
+Supprimez le sprite par défaut, puis sélectionnez le sprite **Étoile** et le sprite **Flèche1**, et copiez Flèche1 une fois.
 
 .. image:: img/1.17_motor1.png
 
-In the **Costumes** option, change the Arrow2 sprite to a different direction costume.
+Dans l'option **Costumes**, changez le sprite Flèche2 en un costume de direction différente.
 
 .. image:: img/1.17_motor2.png
 
-Adjust the size and position of the sprite appropriately.
+Ajustez la taille et la position du sprite de manière appropriée.
 
 .. image:: img/1.17_motor3.png
 
 
-Tips on Codes
---------------
+Astuces sur les Codes
+--------------------------
 
-**Flow Chart**
+**Diagramme de Flux**
 
 .. image:: img/1.17_scratch.png
 
-In this code, you will see 2 pink blocks, turn left and turn right, which are our custom blocks (functions).
+Dans ce code, vous verrez 2 blocs roses, tourner à gauche et tourner à droite, qui sont nos blocs personnalisés (fonctions).
 
 .. image:: img/1.17_new_block.png
 
-**How to Make a Block?**
+**Comment Créer un Bloc ?**
 
-Let's learn how to make a block (function). The block (function) can be used to simplify your program, especially if you perform the same operation multiple times. Putting these operations into a newly declared block can be very convenient for you.
+Apprenons à créer un bloc (fonction). Le bloc (fonction) peut être utilisé pour simplifier votre programme, en particulier si vous effectuez la même opération plusieurs fois. Mettre ces opérations dans un nouveau bloc déclaré peut être très pratique pour vous.
 
-First find **My Blocks** in the block palette, then select **Make a Block**.
+Tout d'abord, trouvez **Mes Blocs** dans la palette de blocs, puis sélectionnez **Créer un Bloc**.
 
 .. image:: img/1.17_motor4.png
 
-Enter the name of the new block.
+Entrez le nom du nouveau bloc.
 
 .. image:: img/1.17_motor5.png
 
-After writing the function of the new block in the coding area, save it and then you can find the block in the blocks palette.
+Après avoir écrit la fonction du nouveau bloc dans la zone de codage, enregistrez-la, puis vous pourrez trouver le bloc dans la palette de blocs.
 
 .. image:: img/1.17_motor6.png
 
-**turn left**
+**tourner à gauche**
 
-This is the code inside the turn left block to make the motor rotate counterclockwise.
+Voici le code à l'intérieur du bloc tourner à gauche pour faire tourner le moteur dans le sens inverse des aiguilles d'une montre.
 
 .. image:: img/1.17_motor12.png
   :width: 400
 
-**turn right**
+**tourner à droite**
 
-This is the code inside the turn right block to make the motor rotate clockwise.
-
-
+Voici le code à l'intérieur du bloc tourner à droite pour faire tourner le moteur dans le sens des aiguilles d'une montre.
 
 .. image:: img/1.17_motor11.png
   :width: 400

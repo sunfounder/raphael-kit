@@ -1,52 +1,39 @@
-.. note::
+ 
+.. _point_clignotant:
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-.. _blinking_dot:
-
-Blinking Dot
+Point Clignotant
 ===========================
 
-In this project, we will draw a dot on Processing, which blinks synchronously with the LED. Please build the circuit as shown in the diagram and run the sketch.
+Dans ce projet, nous allons dessiner un point dans Processing, qui clignote en synchronisation avec la LED. Veuillez construire le circuit comme indiqué sur le schéma et exécuter le sketch.
 
 .. image:: img/blinking_dot.png
 .. image:: img/clickable_dot_on.png
 
-**Required Components**
+**Composants nécessaires**
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -57,7 +44,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-**Wiring**
+**Câblage**
 
 .. image:: img/image49.png
 
@@ -87,19 +74,18 @@ You can also buy them separately from the links below.
         ellipse(width/2, height/2, width*0.75, height*0.75);
     }
 
-**How it works?**
+**Comment ça marche ?**
 
-At the beginning of the sketch, you need to embed Processing's GPIO function library by ``import processing.io.*;``, which is indispensable for circuit experiments.
+Au début du sketch, vous devez intégrer la bibliothèque de fonctions GPIO de Processing avec ``import processing.io.*;``, indispensable pour les expériences de circuit.
 
-**Frame rate** is the frequency of bitmaps appearing on the board, expressed in hertz (Hz). In other words, it is also the frequency at which the ``draw()`` function is called. In ``setup()``, setting the **frame rate** to 2 will call ``draw()`` every 0.5s.
+La **fréquence d'images** est la fréquence à laquelle les bitmaps apparaissent sur la carte, exprimée en hertz (Hz). En d'autres termes, c'est aussi la fréquence à laquelle la fonction ``draw()`` est appelée. Dans ``setup()``, définir la **fréquence d'images** à 2 appellera ``draw()`` toutes les 0,5s.
 
-Each call of the ``draw()`` function takes the inverse of ``state`` and subsequently determines it. If the value is ``true``, the LED is lit and the brush is filled with red; if not, the LED is turned off and the brush is filled with gray.
+Chaque appel de la fonction ``draw()`` inverse la valeur de ``state`` et la détermine ensuite. Si la valeur est ``true``, la LED s'allume et le pinceau se remplit de rouge ; sinon, la LED s'éteint et le pinceau se remplit de gris.
 
-After completing the judgment, use the ``ellipse()`` function to draw a circle. It should be noted that ``width`` and ``height`` are system variables used to store the width and height of the display window.
+Après avoir terminé le jugement, utilisez la fonction ``ellipse()`` pour dessiner un cercle. Il convient de noter que ``width`` et ``height`` sont des variables système utilisées pour stocker la largeur et la hauteur de la fenêtre d'affichage.
 
-There are two other points to note. When using GPIOs, you need to use the ``GPIO.pinMode()`` function to set the INPUT/OUTPUT state of the pin, and then use the ``GPIO.digitalWrite()`` function to assign a value (HIGH/LOW) to the pin .
-
+Il y a deux autres points à noter. Lors de l'utilisation des GPIO, vous devez utiliser la fonction ``GPIO.pinMode()`` pour définir l'état INPUT/OUTPUT de la broche, puis utiliser la fonction ``GPIO.digitalWrite()`` pour attribuer une valeur (HIGH/LOW) à la broche.
 
 .. note::
 
-    Please try to avoid using ``delay()`` in ``draw()`` because it will affect the display window refresh.
+    Veuillez essayer d'éviter d'utiliser ``delay()`` dans ``draw()`` car cela affectera le rafraîchissement de la fenêtre d'affichage.

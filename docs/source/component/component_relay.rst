@@ -1,72 +1,55 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_relay:
 
-Relay
+Relais
 ==========================================
 
 .. image:: img/relay_pic.png
     :width: 200
     :align: center
 
-As we may know, relay is a device which is used to provide connection
-between two or more points or devices in response to the input signal
-applied. In other words, relays provide isolation between the controller
-and the device as devices may work on AC as well as on DC. However, they
-receive signals from a microcontroller which works on DC hence requiring
-a relay to bridge the gap. Relay is extremely useful when you need to
-control a large amount of current or voltage with small electrical
-signal.
+Comme nous le savons, un relais est un dispositif utilisé pour établir une connexion entre deux 
+ou plusieurs points ou dispositifs en réponse au signal d'entrée appliqué. En d'autres termes, 
+les relais assurent l'isolation entre le contrôleur et le dispositif, car les dispositifs peuvent 
+fonctionner en courant alternatif (AC) ainsi qu'en courant continu (DC). Cependant, ils reçoivent 
+des signaux d'un microcontrôleur fonctionnant en DC, nécessitant ainsi un relais pour combler le 
+fossé. Le relais est extrêmement utile lorsque vous avez besoin de contrôler une grande quantité 
+de courant ou de tension avec un petit signal électrique.
 
-There are 5 parts in every relay:
+
+Chaque relais se compose de 5 parties :
 
 .. image:: img/relay142.jpeg
 
-**Electromagnet** - It consists of an iron core wounded by coil of
-wires. When electricity is passed through, it becomes magnetic.
-Therefore, it is called electromagnet.
+**Électroaimant** - Il se compose d'un noyau de fer entouré d'une bobine de fils. Lorsque 
+l'électricité passe à travers, il devient magnétique. Par conséquent, il est appelé électroaimant.
 
-**Armature** - The movable magnetic strip is known as armature. When
-current flows through them, the coil is it energized thus producing a
-magnetic field which is used to make or break the normally open (N/O) or
-normally close (N/C) points. And the armature can be moved with direct
-current (DC) as well as alternating current (AC).
+**Armature** - La bande magnétique mobile est connue sous le nom d'armature. Lorsque le courant 
+passe à travers elle, la bobine est énergisée, produisant ainsi un champ magnétique utilisé pour 
+établir ou interrompre les points normalement ouverts (N/O) ou normalement fermés (N/C). L'armature 
+peut être déplacée par un courant continu (DC) ainsi qu'un courant alternatif (AC).
 
-**Spring** - When no currents flow through the coil on the
-electromagnet, the spring pulls the armature away so the circuit cannot
-be completed.
 
-Set of electrical **contacts** - There are two contact points:
+**Ressort** - Lorsque aucun courant ne passe à travers la bobine de l'électroaimant, le ressort 
+tire l'armature de sorte que le circuit ne peut pas être complété.
 
--  Normally open - connected when the relay is activated, and disconnected when it is inactive.
+Ensemble de **contacts électriques** - Il y a deux points de contact :
 
--  Normally close - not connected when the relay is activated, and connected when it is inactive.
+-  Normalement ouvert - connecté lorsque le relais est activé, et déconnecté lorsqu'il est inactif.
 
-**Molded frame** - Relays are covered with plastic for protection.
+-  Normalement fermé - non connecté lorsque le relais est activé, et connecté lorsqu'il est inactif.
 
-The working principle of relay is simple. When power is supplied to the
-relay, currents start flowing through the control coil; as a result, the
-electromagnet starts energizing. Then the armature is attracted to the
-coil, pulling down the moving contact together thus connecting with the
-normally open contacts. So the circuit with the load is energized. Then
-breaking the circuit would a similar case, as the moving contact will be
-pulled up to the normally closed contacts under the force of the spring.
-In this way, the switching on and off of the relay can control the state
-of a load circuit.
+**Cadre moulé** - Les relais sont recouverts de plastique pour la protection.
 
-**Example**
+Le principe de fonctionnement du relais est simple. Lorsqu'une alimentation est 
+fournie au relais, le courant commence à circuler à travers la bobine de commande ; 
+en conséquence, l'électroaimant commence à s'énergiser. Ensuite, l'armature est 
+attirée par la bobine, abaissant le contact mobile et se connectant ainsi aux contacts 
+normalement ouverts. Le circuit avec la charge est alors énergisé. L'interruption du 
+circuit se fait de manière similaire, le contact mobile étant remonté vers les 
+contacts normalement fermés sous l'effet du ressort. De cette manière, l'activation 
+et la désactivation du relais peuvent contrôler l'état d'un circuit de charge.
 
-* :ref:`1.3.3_c` (C Project)
-* :ref:`1.3.3_py` (Python Project)
+**Exemple**
+
+* :ref:`1.3.3_c` (Projet C)
+* :ref:`1.3.3_py` (Projet Python)

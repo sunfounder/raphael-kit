@@ -1,55 +1,41 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.2.2_py_pi5:
 
-1.2.2 Passive Buzzer
-=====================
+1.2.2 Buzzer Passif
+=======================
 
 Introduction
-------------
+--------------
 
-In this project, we will learn how to make a passive buzzer play music.
+Dans ce projet, nous allons apprendre à faire jouer de la musique à un buzzer passif.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est vraiment pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,32 +50,31 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
------------------
+Schéma
+----------
 
-In this experiment, a passive buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor.
+Dans cette expérience, un buzzer passif, un transistor PNP et une résistance de 1k 
+sont utilisés entre la base du transistor et le GPIO pour protéger le transistor.
 
-When GPIO17 is given different frequencies, the passive buzzer will emit
-different sounds; in this way, the buzzer plays music.
+Lorsque GPIO17 reçoit différentes fréquences, le buzzer passif émet différents sons ; 
+ainsi, le buzzer joue de la musique.
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  Physique wiringPi BCM
 GPIO17       Pin 11   0        17
 ============ ======== ======== ===
 
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_schematic.png
 
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+-------------------------
 
-**Step 1**: Build the circuit. (The Passive buzzer with green circuit board on the back.)
+**Étape 1** : Construisez le circuit. (Le buzzer passif avec une carte de circuit imprimé verte au dos.)
 
 .. image:: ../python_pi5/img/1.2.2_PassiveBuzzer_circuit.png
 
-**Step 2: Change directory.**
+**Étape 2** : Changez de répertoire.
 
 .. raw:: html
 
@@ -99,7 +84,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3: Run.**
+**Étape 3** : Exécutez le code.
 
 .. raw:: html
 
@@ -109,14 +94,13 @@ Experimental Procedures
 
     sudo python3 1.2.2_PassiveBuzzer_zero.py
 
-The code run, the buzzer plays a piece of music.
+Lorsque le code s'exécute, le buzzer joue un morceau de musique.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to the source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
 
 .. raw:: html
 
@@ -161,11 +145,9 @@ The code run, the buzzer plays a piece of music.
        # Handle KeyboardInterrupt for graceful termination
        pass
 
-
-
 **Code Explanation**
 
-#. These lines import the ``TonalBuzzer`` class from the ``gpiozero`` library for buzzer control and the ``sleep`` function from the ``time`` module for creating delays.
+#. Ces lignes importent la classe ``TonalBuzzer`` de la bibliothèque ``gpiozero`` pour contrôler le buzzer et la fonction ``sleep`` du module ``time`` pour créer des délais.
     
    .. code-block:: python  
 
@@ -174,7 +156,7 @@ The code run, the buzzer plays a piece of music.
        from time import sleep
       
 
-#. This line initializes a ``TonalBuzzer`` object on GPIO pin 17.
+#. Cette ligne initialise un objet ``TonalBuzzer`` sur le port GPIO 17.
     
    .. code-block:: python
        
@@ -182,7 +164,7 @@ The code run, the buzzer plays a piece of music.
        tb = TonalBuzzer(17)  # Update this pin number based on your setup
       
 
-#. The ``play`` function iterates over a list of tuples representing musical notes and their durations. Each note is played for its specified duration, and the buzzer stops after completing the tune.
+#. La fonction ``play`` parcourt une liste de tuples représentant des notes musicales et leurs durées. Chaque note est jouée pendant sa durée spécifiée, et le buzzer s'arrête après avoir joué la mélodie.
     
    .. code-block:: python  
 
@@ -197,7 +179,7 @@ The code run, the buzzer plays a piece of music.
                sleep(float(duration))  # Delay for the duration of the note
            tb.stop()  # Stop playing after the tune is complete
 
-#. The tune is defined as a sequence of notes (frequency) and durations (seconds).
+#. La mélodie est définie comme une séquence de notes (fréquence) et de durées (secondes).
     
    .. code-block:: python
 
@@ -213,7 +195,7 @@ The code run, the buzzer plays a piece of music.
            ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
            ('D4', 0.2), ('E4', 0.2)]  
 
-#. The ``play(tune)`` function is called inside a ``try`` block. A ``KeyboardInterrupt`` (like Ctrl+C) will stop the program gracefully.
+#. La fonction ``play(tune)`` est appelée à l'intérieur d'un bloc ``try``. Une interruption clavier (comme Ctrl+C) arrêtera le programme proprement.
     
    .. code-block:: python  
        

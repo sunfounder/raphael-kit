@@ -1,67 +1,49 @@
-.. note::
+De quoi avons-nous besoin ?
+=======================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-What Do We Need?
-========================
-
-Required Components
------------------------
+Composants requis
+---------------------
 
 **Raspberry Pi**
 
-The Raspberry Pi is a low cost, credit-card sized computer that plugs
-into a computer monitor or TV, and uses a standard keyboard and mouse.
-It is a capable little device that enables people of all ages to explore
-computing, and to learn how to program in languages like Scratch and
-Python.
+Le Raspberry Pi est un ordinateur de la taille d'une carte de crédit à faible coût qui se branche 
+sur un moniteur ou une télévision, et utilise un clavier et une souris standard. C'est un petit 
+appareil performant qui permet aux personnes de tous âges d'explorer l'informatique et d'apprendre 
+à programmer dans des langages comme Scratch et Python.
 
 .. image:: img/compitable_pi.jpg
    :align: center
 
-**Power Adapter**
+**Adaptateur secteur**
 
-To connect to a power socket, the Raspberry Pi has a micro USB port (the
-same found on many mobile phones). You will need a power supply which
-provides at least 2.5 amps.
+Pour se connecter à une prise de courant, le Raspberry Pi dispose d'un port micro USB 
+(le même que celui trouvé sur de nombreux téléphones mobiles). Vous aurez besoin d'une 
+alimentation fournissant au moins 2,5 ampères.
 
-**Micro SD Card**
+**Carte Micro SD**
 
-Your Raspberry Pi needs an Micro SD card to store all its files and the
-Raspberry Pi OS. You will need a micro SD card with a capacity of at
-least 8 GB.
+Votre Raspberry Pi a besoin d'une carte Micro SD pour stocker tous ses fichiers et le système 
+d'exploitation Raspberry Pi OS. Vous aurez besoin d'une carte Micro SD d'une capacité d'au moins 8 Go.
 
-Optional Components
--------------------------
+Composants optionnels
+---------------------------
 
-**Screen**
+**Écran**
 
-To view the desktop environment of Raspberry Pi, you need to use the
-screen that can be a TV screen or a computer monitor. If the screen has
-built-in speakers, the Pi plays sounds via them.
+Pour visualiser l'environnement de bureau du Raspberry Pi, vous devez utiliser un écran qui peut 
+être un téléviseur ou un moniteur d'ordinateur. Si l'écran est équipé de haut-parleurs intégrés, 
+le Pi émet des sons via ceux-ci.
 
-**Mouse & Keyboard**
+**Souris et clavier**
 
-When you use a screen , a USB keyboard and a USB mouse are also needed.
+Lorsque vous utilisez un écran, un clavier USB et une souris USB sont également nécessaires.
 
 **HDMI**
 
-The Raspberry Pi has a HDMI output port that is compatible with the HDMI
-ports of most modern TV and computer monitors. If your screen has only
-DVI or VGA ports, you will need to use the appropriate conversion line.
+Le Raspberry Pi possède un port de sortie HDMI compatible avec les ports HDMI de la plupart des 
+téléviseurs et des moniteurs modernes. Si votre écran ne dispose que de ports DVI ou VGA, vous 
+devrez utiliser le câble de conversion approprié.
 
-**Case**
+**Boîtier**
 
-You can put the Raspberry Pi in a case; by this means, you can protect
-your device.
-
+Vous pouvez mettre le Raspberry Pi dans un boîtier ; de cette manière, vous pouvez protéger votre appareil.

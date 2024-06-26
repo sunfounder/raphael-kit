@@ -1,80 +1,57 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_adc0834:
 
 ADC0834
 ==============
 
-ADC0834 is an 8-bit successive approximation analog-to-digital converter that is equipped with an input-configurable
-multichannel multi-plexer and serial input/output. The serial
-input/output is configured to interface with standard shift registers or
-microprocessors.
+L'ADC0834 est un convertisseur analogique-numérique à approximation successive de 8 bits, équipé d'un multiplexeur multicanal configurable en entrée et d'une entrée/sortie série. L'entrée/sortie série est configurée pour interfacer avec des registres à décalage standard ou des microprocesseurs.
 
 .. image:: img/image309.png
 
+**Séquence de fonctionnement**
 
-**Sequence of Operation**
+Une conversion est initiée en mettant CS à un niveau bas, ce qui active tous les circuits logiques.
+CS doit être maintenu bas pendant tout le processus de conversion. Une horloge est ensuite reçue du
+ processeur. À chaque transition du bas vers le haut de l'entrée d'horloge, les données sur DI sont
+  horodatées dans le registre de décalage de l'adresse du multiplexeur. Le premier niveau haut 
+  sur l'entrée est le bit de départ. Un mot d'attribution de 3 à 4 bits suit le bit de départ. 
+  À chaque transition successive du bas vers le haut de l'entrée d'horloge, le bit de départ et 
+  le mot d'attribution sont décalés dans le registre de décalage. Lorsque le bit de départ est 
+  décalé dans la position de départ du registre du multiplexeur, le canal d'entrée est sélectionné 
+  et la conversion commence. La sortie de l'état SAR (SARS) devient haute pour indiquer qu'une 
+  conversion est en cours, et DI vers le registre de décalage du multiplexeur est désactivé pour 
+  la durée de la conversion.
 
-A conversion is initiated by setting CS low, which enables all logic
-circuits. CS must be held low for the complete conversion process. A
-clock input is then received from the processor. On each low-to-high
-transition of the clock input, the data on DI is clocked into the
-multiplexer address shift register. The first logic high on the input is
-the start bit. A 3- to 4-bit assignment word follows the start bit. On
-each successive low-to-high transition of the clock input, the start bit
-and assignment word are shifted through the shift register. When the
-start bit is shifted into the start location of the multiplexer
-register, the input channel is selected and conversion starts. The SAR
-Statu output (SARS) goes high to indicate that a conversion is in
-progress, and DI to the multiplexer shift register is disabled the
-duration of the conversion.
+Un intervalle d'une période d'horloge est automatiquement inséré pour permettre au canal multiplexé 
+sélectionné de se stabiliser. La sortie de données DO sort de l'état haute impédance et fournit un 
+niveau bas initial pour cette période d'horloge de temps de stabilisation du multiplexeur. 
+Le comparateur SAR compare les sorties successives de l'échelle résistive avec le signal analogique
+entrant. La sortie du comparateur indique si l'entrée analogique est supérieure ou inférieure à 
+la sortie de l'échelle résistive. À mesure que la conversion progresse, les données de conversion 
+sont simultanément sorties par la broche de sortie DO, avec le bit de poids fort (MSB) en premier.
 
-An interval of one clock period is automatically inserted to allow the
-selected multiplexed channel to settle. The data output DO comes out of
-the high-impedance state and provides a leading low for this one clock
-period of multiplexer settling time. The SAR comparator compares
-successive outputs from the resistive ladder with the incoming analog
-signal. The comparator output indicates whether the analog input is
-greater than or less than the resistive ladder output. As the conversion
-proceeds, conversion data is simultaneously output from the DO output
-pin, with the most significant bit (MSB) first.
-
-After eight clock periods, the conversion is complete and the SARS
-output goes low. Finally outputs the least-significant-bit-first data
-after the MSB-first data stream.
+Après huit périodes d'horloge, la conversion est terminée et la sortie SARS devient basse. Enfin, 
+les données sont sorties avec le bit de poids faible en premier après le flux de données avec le 
+MSB en premier.
 
 .. image:: img/image175.png
 
-
-**ADC0834 MUX ADDRESS CONTROL LOGIC TABLE**
+**TABLE DE LOGIQUE DE CONTRÔLE D'ADRESSE MUX DE L'ADC0834**
 
 .. image:: img/image176.png
 
-* `ADC0831 series Datasheet <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
+* `Fiche technique de la série ADC0831 <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
 
-**Example**
+**Exemple**
 
-* :ref:`2.1.7_c` (C Project)
-* :ref:`2.2.1_c` (C Project)
-* :ref:`2.2.2_c` (C Project)
-* :ref:`3.1.4_c` (C Project)
-* :ref:`3.1.5_c` (C Project)
-* :ref:`3.1.7_c` (C Project)
-* :ref:`2.1.7_py` (Python Project)
-* :ref:`2.2.1_py` (Pyhton Project)
-* :ref:`2.2.2_py` (Pyhton Project)
-* :ref:`4.1.10_py` (Pyhton Project)
-* :ref:`4.1.11_py` (Pyhton Project)
-* :ref:`4.1.13_py` (Pyhton Project)
+* :ref:`2.1.7_c` (Projet C)
+* :ref:`2.2.1_c` (Projet C)
+* :ref:`2.2.2_c` (Projet C)
+* :ref:`3.1.4_c` (Projet C)
+* :ref:`3.1.5_c` (Projet C)
+* :ref:`3.1.7_c` (Projet C)
+* :ref:`2.1.7_py` (Projet Python)
+* :ref:`2.2.1_py` (Projet Python)
+* :ref:`2.2.2_py` (Projet Python)
+* :ref:`4.1.10_py` (Projet Python)
+* :ref:`4.1.11_py` (Projet Python)
+* :ref:`4.1.13_py` (Projet Python)

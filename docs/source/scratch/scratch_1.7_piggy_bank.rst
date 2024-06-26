@@ -1,57 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.7_scratch:
 
-1.7 Piggy Bank
+1.7 Tirelire
 =========================
 
-In this project we will use Speed sensor module, Raspberry Pi and Scratch to make a Piggy Bank.
+Dans ce projet, nous allons utiliser un module de capteur de vitesse, un Raspberry Pi et Scratch pour fabriquer une tirelire.
 
-Place a piece of paper in the middle of the Speed sensor module and you will see a coin fall into the Piggy Bank on the stage.
-
+Placez une feuille de papier au milieu du module de capteur de vitesse et vous verrez une pièce tomber dans la tirelire sur la scène.
 
 .. image:: img/1.7_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.7_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,35 +47,32 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_speed_sensor`
         - \-
 
-Build the Circuit
----------------------
+Construire le Circuit
+------------------------
 
 .. image:: img/1.7_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+------------------------------------------
 
-Load the code file (``1.7_piggy_bank.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.7_piggy_bank.sb3``) dans Scratch 3.
 
-The 2 terminals in the middle of the speed sensor, one is to send light, one is to receive light; if you put a piece of paper in the middle to isolate the light transmission, thus the speed sensor will output a high level. At this point Scratch receives the high level, then switch the costumes of the sprite and you will see a coin fall into the Piggy Bank on the stage.
+Les deux bornes au milieu du capteur de vitesse, l'une émet de la lumière, l'autre reçoit de la lumière ; si vous mettez une feuille de papier au milieu pour isoler la transmission de la lumière, le capteur de vitesse émettra un niveau haut. À ce moment, Scratch reçoit le niveau haut, puis change les costumes du sprite et vous verrez une pièce tomber dans la tirelire sur la scène.
 
-Tips on Sprite
-----------------
+Astuces sur le Sprite
+------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **piggybank1.png**, **piggybank2.png** and **piggybank3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **piggybank**.
+Sélectionnez Sprite1 et cliquez sur **Costumes** en haut à gauche ; téléchargez **piggybank1.png**, **piggybank2.png** et **piggybank3.png** depuis le chemin ``~/raphael-kit/scratch/picture`` via le bouton **Télécharger Costume** ; supprimez les 2 costumes par défaut, et renommez le sprite en **piggybank**.
 
 .. image:: img/1.7_photoInterrupter1.png
 
-Tips on Codes
---------------
+Astuces sur les Codes
+------------------------
 
 .. image:: img/1.7_code2.png
 
-When pin17 is low (no coins are put in), switch the sprite's costume to **piggybank1**.
+Lorsque pin17 est bas (aucune pièce n'est introduite), changez le costume du sprite en **piggybank1**.
 
 .. image:: img/1.7_code3.png
 
-When pin17 is high (a coin is put in), switch the sprite's costume to **piggybank2**, and after 0.5s switch to **piggybank3**, so that we can see a coin falling into the Piggy Bank on the stage.
-
-
-
+Lorsque pin17 est haut (une pièce est introduite), changez le costume du sprite en **piggybank2**, puis après 0,5s en **piggybank3**, de sorte que nous puissions voir une pièce tomber dans la tirelire sur la scène.

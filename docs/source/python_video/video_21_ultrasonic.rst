@@ -1,41 +1,27 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 21: Using a HC-SR04 Ultrasonic Sensor For Echolocation
+Vidéo 21 : Utilisation d'un capteur ultrasonique HC-SR04 pour l'écholocalisation
 =======================================================================================
 
-This tutorial covers the process of creating an ultrasonic distance sensor with a Raspberry Pi using the HC-SR04 sensor. 
-This video explains the principles of echolocation, introduces the necessary components, demonstrates the wiring setup, 
-and walks through the coding process step by step. 
-It emphasizes the importance of precise timing in the code execution for accurate distance measurements and promotes good engineering practices.
+Ce tutoriel couvre le processus de création d'un capteur de distance ultrasonique avec un Raspberry Pi en utilisant le capteur HC-SR04.
+Cette vidéo explique les principes de l'écholocalisation, présente les composants nécessaires, démontre la configuration du câblage,
+et guide pas à pas à travers le processus de codage.
+Elle souligne l'importance d'une temporisation précise dans l'exécution du code pour des mesures de distance exactes et promeut de bonnes pratiques d'ingénierie.
 
-1. **Introduction to Echolocation**: Using sound to detect objects' positions, inspired by bats and whales.
-2. **Components Overview**: Introduction to the HC-SR04 ultrasonic sensor and its connection to Raspberry Pi.
-3. **Wiring Setup**: Connecting the HC-SR04 sensor to Raspberry Pi GPIO pins for power, ground, trigger, and echo.
-4. **Coding Process**: Python code walkthrough for generating ultrasonic pulses, triggering the sensor, and measuring echo return time.
-5. **Timing Considerations**: Importance of precise timing for accurate distance measurement.
-6. **Good Engineering Practices**: Stressing planning and understanding of code before implementation.
-7. **Waiting for Echo Pin**: Utilizing a while loop to wait for the echo pin to go high.
-8. **Recording Start Time**: Capturing system time when echo pin goes high to mark measurement start.
-9. **Measuring Ping Travel Time**: Calculating ping travel time by determining time difference between echo pin going high and low.
-10. **Converting Units**: Multiplying ping travel time by a million for readability.
-11. **Adding Delay**: Introducing delay after each measurement to prevent multiple echoes.
-12. **Calculating Distance**: Using speed of sound and ping travel time to calculate distance to target.
+1. **Introduction à l'Écholocalisation** : Utiliser le son pour détecter la position des objets, inspiré par les chauves-souris et les baleines.
+2. **Vue d'ensemble des composants** : Présentation du capteur ultrasonique HC-SR04 et de sa connexion au Raspberry Pi.
+3. **Configuration du câblage** : Connexion du capteur HC-SR04 aux broches GPIO du Raspberry Pi pour l'alimentation, la masse, la gâchette et l'écho.
+4. **Processus de codage** : Parcours du code Python pour générer des impulsions ultrasoniques, activer le capteur et mesurer le temps de retour de l'écho.
+5. **Considérations de temporisation** : Importance d'une temporisation précise pour une mesure de distance exacte.
+6. **Bonnes pratiques d'ingénierie** : Insister sur la planification et la compréhension du code avant la mise en œuvre.
+7. **Attente pour la broche d'écho** : Utilisation d'une boucle while pour attendre que la broche d'écho soit activée.
+8. **Enregistrement de l'heure de début** : Capture du temps système lorsque la broche d'écho est activée pour marquer le début de la mesure.
+9. **Mesure du temps de parcours du ping** : Calcul du temps de parcours du ping en déterminant la différence de temps entre le moment où la broche d'écho est activée et désactivée.
+10. **Conversion des unités** : Multiplication du temps de parcours du ping par un million pour une lisibilité.
+11. **Ajout de délai** : Introduction d'un délai après chaque mesure pour éviter les échos multiples.
+12. **Calcul de la distance** : Utilisation de la vitesse du son et du temps de parcours du ping pour calculer la distance jusqu'à la cible.
 
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/SoAGLXoQ5XI?si=OPMqLtQ53hKNHs4j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/SoAGLXoQ5XI?si=OPMqLtQ53hKNHs4j" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

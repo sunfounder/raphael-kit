@@ -1,49 +1,36 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _show_number:
 
-Show Number
-=============================================
+Afficher un chiffre
+=======================
 
-In this project, we use processing to drive a 7-segment display to show a figure from 0 to 9 and A to F.
+Dans ce projet, nous utilisons Processing pour piloter un afficheur 7 segments afin d'afficher un chiffre de 0 à 9 et les lettres de A à F.
 
-**Required Components**
+**Composants nécessaires**
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - COMPOSANTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -58,11 +45,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
-**Wiring**
+**Câblage**
 
 .. image:: img/image125.png
 
-**Sketch**
+**Esquisse**
 
 .. code-block:: arduino
 
@@ -120,16 +107,16 @@ You can also buy them separately from the links below.
 		hc595_shift(SegCode[number]);
 	}
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-Import ``processing.io.*`` and use the GPIO function library to control the digital tube pins.
+Importez ``processing.io.*`` et utilisez la bibliothèque de fonctions GPIO pour contrôler les broches du tube numérique.
 
-Define array ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}``
-which represents a segment code array from 0 to F in Hexadecimal (Common cathode).
+Définissez le tableau ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}`` 
+qui représente un tableau de codes de segments de 0 à F en Hexadécimal (cathode commune).
 
-``setup()`` function sets the three pins SDI,RCLK and SRCLK as output, and the initial data as 0.
+La fonction ``setup()`` définit les trois broches SDI, RCLK et SRCLK comme sorties, et les données initiales comme étant 0.
 
-``hc595_shift(int dat)`` function is used to shift the ``SegCode`` to 74HC595.
+La fonction ``hc595_shift(int dat)`` est utilisée pour transférer le ``SegCode`` vers le 74HC595.
  
 .. code:: 
 
@@ -153,17 +140,17 @@ which represents a segment code array from 0 to F in Hexadecimal (Common cathode
 		GPIO.digitalWrite(RCLK, 0);
 	}
  
-``n=(0x80 & (dat << i))`` means to shift dat to the left by ``i`` bits and then do the ``&`` operation with 0x80.
+``n=(0x80 & (dat << i))`` signifie décaler dat vers la gauche de ``i`` bits puis faire l'opération ``&`` avec 0x80.
 
-The rule of ``&`` operation is that when both sides of ``&`` are 1, the result is 1, otherwise the result is 0.
+La règle de l'opération ``&`` est que lorsque les deux côtés de ``&`` sont 1, le résultat est 1, sinon le résultat est 0.
 
-For example, we assume dat=0x3f,i=2(0011 1111 << 2 shift to 1111 1100), then 1111 1100 & 1000 0000 (0x80)) = 1000 0000.
+Par exemple, supposons dat=0x3f,i=2(0011 1111 << 2 décalé à 1111 1100), alors 1111 1100 & 1000 0000 (0x80) = 1000 0000.
 
-At last assign the dat data to SDI(DS) by bits.
+Enfin, assignez les données dat à SDI(DS) par bits.
  
-``digitalWrite(SRCLK, 1)`` when SRCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the DS register to the shift register;
+``digitalWrite(SRCLK, 1)`` lorsque SRCLK génère une impulsion montante de 0 à 1, les données seront transférées du registre DS au registre de décalage ;
  
-``digitalWrite(RCLK, 1)`` when RCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the shift register to the storage register.
+``digitalWrite(RCLK, 1)`` lorsque RCLK génère une impulsion montante de 0 à 1, les données seront transférées du registre de décalage au registre de stockage.
 
 .. code::
 
@@ -171,8 +158,8 @@ At last assign the dat data to SDI(DS) by bits.
 	textAlign(CENTER,CENTER);
 	textSize(height*0.8);
 
-The ``fill()`` function used in ``setup()`` can fill the text color, ``textAlign(CENTER,CENTER)`` is used to center the text, ``textSize(height*0.8)`` change the text height to 0.8 times the original.
-These functions can customize the text style displayed on the processing
+La fonction ``fill()`` utilisée dans ``setup()`` peut remplir la couleur du texte, ``textAlign(CENTER,CENTER)`` est utilisée pour centrer le texte, ``textSize(height*0.8)`` change la hauteur du texte à 0,8 fois l'original.
+Ces fonctions peuvent personnaliser le style du texte affiché sur le processing
 
 .. code::
 
@@ -184,7 +171,7 @@ These functions can customize the text style displayed on the processing
 		hc595_shift(SegCode[number]);
 	}
 
-The ``frameCount`` is a seed, which is related to ``frameRate``.
-By default ``frameRate`` is 60, which means that ``frameCount`` will accumulate 60 times per second.
+Le ``frameCount`` est une graine, qui est liée à ``frameRate``.
+Par défaut, ``frameRate`` est 60, ce qui signifie que ``frameCount`` s'accumulera 60 fois par seconde.
 
-Then we can let processing and 7-segment display to show the figure from 0 to 9 and A to F simultaneously.
+Nous pouvons alors laisser Processing et l'affichage 7 segments afficher le chiffre de 0 à 9 et de A à F simultanément.

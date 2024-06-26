@@ -1,47 +1,32 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 15: Analog Input on the Raspberry Pi Using the ADC0834
+Vidéo 15 : Entrée analogique sur le Raspberry Pi utilisant l'ADC0834
 =======================================================================================
 
-Learn how to enable analog input on your Raspberry Pi using the ADC0834 analog-to-digital converter, including hardware setup, library installation, 
-and transitioning to the Thonny IDE for Python development.
+Apprenez à activer une entrée analogique sur votre Raspberry Pi en utilisant le convertisseur analogique-numérique ADC0834, y compris la configuration matérielle, l'installation de la bibliothèque,
+et la transition vers l'IDE Thonny pour le développement en Python.
 
 
-1. Introduction to analog input and the need for an ADC on the Raspberry Pi.
-2. Hardware setup and GPIO pin connections for the ADC0834 chip.
-3. Establishing proper power and ground connections for components.
-4. Installation and usage of the ADC0834 library for Python.
-5. Transitioning to Thonny as a modern IDE for clean and efficient coding.
-6. Best practices for troubleshooting and verifying connections before programming.
-7. Library installation: Install the ADC library for Raspberry Pi.
-8. Python setup: Save the library code in a Python file and move it to the correct directory.
-9. GPIO usage: Set up Python program to read analog input using GPIO pins.
-10. Analog reading: Write a Python script to continuously read analog values from the potentiometer.
-11. Channel switching: Demonstrate switching between different channels of the ADC chip.
-12. Homework assignment: Create a dimmable LED controlled by the potentiometer position.
-
-
-
+1. Introduction à l'entrée analogique et à la nécessité d'un ADC sur le Raspberry Pi.
+2. Configuration matérielle et connexions des broches GPIO pour le circuit intégré ADC0834.
+3. Établissement des connexions appropriées pour l'alimentation et la masse des composants.
+4. Installation et utilisation de la bibliothèque ADC0834 pour Python.
+5. Transition vers Thonny comme IDE moderne pour un codage propre et efficace.
+6. Meilleures pratiques pour le dépannage et la vérification des connexions avant la programmation.
+7. Installation de la bibliothèque : Installer la bibliothèque ADC pour Raspberry Pi.
+8. Configuration Python : Enregistrer le code de la bibliothèque dans un fichier Python et le déplacer dans le répertoire approprié.
+9. Utilisation des GPIO : Configurer un programme Python pour lire une entrée analogique à l'aide des broches GPIO.
+10. Lecture analogique : Écrire un script Python pour lire en continu les valeurs analogiques du potentiomètre.
+11. Commutation de canal : Démontrer la commutation entre différents canaux du circuit intégré ADC.
+12. Devoir à la maison : Créer une LED dimmable contrôlée par la position du potentiomètre.
 
 
 
 
-**Video**
+
+
+
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/_PnVt8XtFcw?si=B3mupzoCGO-7MSHA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/_PnVt8XtFcw?si=B3mupzoCGO-7MSHA" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

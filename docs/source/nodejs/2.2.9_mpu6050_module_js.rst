@@ -1,62 +1,49 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.9_js:
 
-2.2.9 MPU6050 Module
-====================
+2.2.9 Module MPU6050
+=======================
 
 Introduction
-------------
+----------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+Le MPU-6050 est le premier et unique dispositif de suivi de mouvement à 6 axes au monde 
+(gyroscope à 3 axes et accéléromètre à 3 axes) conçu pour les smartphones, les tablettes 
+et les capteurs portables. Il possède des caractéristiques telles que la faible consommation 
+d'énergie, le faible coût et les performances élevées.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+Dans cette expérience, nous utiliserons l'I2C pour obtenir les valeurs du capteur d'accélération 
+à trois axes et du gyroscope à trois axes du MPU6050 et les afficher à l'écran.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Composants nécessaires
+--------------------------------
+
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.2.6.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est vraiment pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,28 +54,25 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_mpu6050`
         - |link_mpu6050_buy|
 
-Schematic Diagram
+Schéma de connexion
 -----------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+Le MPU6050 communique avec le microcontrôleur via l'interface de bus I2C. Les broches SDA1 et 
+SCL1 doivent être connectées aux broches correspondantes.
 
 .. image:: ../img/image330.png
 
 
-Experimental Procedures
--------------------------------
+Procédures expérimentales
+--------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/image227.png
 
+**Étape 2 :** Configurer l'I2C (voir l'Annexe :ref:`i2c_config`. Si vous avez déjà configuré l'I2C, passez cette étape.)
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
-
-**Step 2:** Go to the folder of the code.
+**Étape 3 :** Aller dans le dossier du code.
 
 .. raw:: html
 
@@ -98,7 +82,7 @@ step.)
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Install dependencies.
+**Étape 4 :** Installer les dépendances.
 
 .. raw:: html
 
@@ -108,7 +92,7 @@ step.)
 
     sudo npm install mpu6050-gyro
 
-**Step 4:** Run the code.
+**Étape 5 :** Exécuter le code.
 
 .. raw:: html
 
@@ -118,10 +102,8 @@ step.)
 
     sudo node mpu6050_module.js
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
-
+Lorsque le code est exécuté, l'angle de déflexion des axes x et y, ainsi que l'accélération et la 
+vitesse angulaire sur chaque axe lues par le MPU6050 seront imprimés à l'écran après calcul.
 
 
 **Code**
@@ -154,7 +136,7 @@ printed on the screen after being calculating.
         update_telemetry();
     }
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
@@ -164,11 +146,11 @@ printed on the screen after being calculating.
     var bus = 1; //i2c bus used   
     var gyro = new gyro( bus,address );
 
-Import the ``mpu6050-gyro`` module, determine the MPU6050 address and the bus creation object gyro,
-It is convenient to call the encapsulated functions in the module.
+Importer le module ``mpu6050-gyro``, déterminer l'adresse du MPU6050 et le bus de création de 
+l'objet gyro. Cela permet d'appeler facilement les fonctions encapsulées dans le module.
 
 .. note:: 
-    About this module, please refer to: https://www.npmjs.com/package/mpu6050-gyro
+    Pour plus de détails sur ce module, veuillez consulter : https://www.npmjs.com/package/mpu6050-gyro
 
 .. code-block:: js
 
@@ -185,16 +167,15 @@ It is convenient to call the encapsulated functions in the module.
     
     setTimeout(update_telemetry, 500);
 
-The module encapsulates three available functions:
+Le module encapsule trois fonctions disponibles :
 
-``gyro.get_gyro_xyz()``: Returns JSON object with raw x,y,z datas from gyroscope.
+``gyro.get_gyro_xyz()`` : Renvoie un objet JSON avec les données brutes x, y, z du gyroscope.
 
-``gyro.get_accel_xyz()``: Returns JSON object with raw x,y,z datas from accelerometer.
+``gyro.get_accel_xyz()`` : Renvoie un objet JSON avec les données brutes x, y, z de l'accéléromètre.
 
-``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: Returns JSON object with roll and pitch in degrees.
+``gyro.get_roll_pitch(gyro_xyz, accel_xyz)`` : Renvoie un objet JSON avec le roulis et le tangage en degrés.
 
-Phenomenon Picture
+Image du phénomène
 ------------------
 
 .. image:: ../img/image228.jpeg
-    

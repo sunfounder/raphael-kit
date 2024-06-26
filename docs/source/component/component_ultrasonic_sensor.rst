@@ -1,56 +1,40 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_ultrasonic_sensor:
 
-Ultrasonic Module
-================================
+Module Ultrasonique
+===========================
 
 .. image:: img/ultrasonic_pic.png
     :width: 400
     :align: center
 
-Ultrasonic ranging module provides 2cm - 400cm non-contact measurement function, and the ranging accuracy can reach to 3mm. 
-It can ensure that the signal is stable within 5m, and the signal is gradually weakened after 5m, till the 7m position disappears.
+Le module de télémétrie ultrasonique offre une fonction de mesure sans contact de 2 cm à 400 cm, avec une précision de mesure pouvant atteindre 3 mm. 
+Il peut assurer que le signal reste stable dans un rayon de 5 m, le signal s'affaiblissant progressivement après 5 m jusqu'à disparaître à 7 m.
 
-The module includes ultrasonic transmitters, receiver and control circuit. The basic principles are as follows:
+Le module comprend des émetteurs ultrasoniques, un récepteur et un circuit de contrôle. Les principes de base sont les suivants :
 
-#. Use an IO flip-flop to process a high level signal of at least 10us.
+#. Utilisez une bascule IO pour traiter un signal de niveau haut d'au moins 10 μs.
 
-#. The module automatically sends eight 40khz and detects if there is a pulse signal return.
+#. Le module envoie automatiquement huit impulsions de 40 kHz et détecte si un signal de retour est présent.
 
-#. If the signal returns, passing the high level, the high output IO duration is the time from the transmission of the ultrasonic wave to the return of it. Here, test distance = (high time x sound speed (340 m / s) / 2.
+#. Si le signal revient, en passant par le niveau haut, la durée de sortie de l'IO haut correspond au temps écoulé entre l'émission de l'onde ultrasonique et son retour. La distance mesurée est alors calculée comme suit : distance = (temps haut x vitesse du son (340 m/s) / 2).
 
-
-
-The timing diagram is shown below. 
+Le diagramme de chronométrage est présenté ci-dessous.
 
 .. image:: img/ultrasonic228.png
 
-You only need to supply a short 10us pulse for the trigger input to start the ranging, and then the module
-will send out an 8 cycle burst of ultrasound at 40 kHz and raise its
-echo. You can calculate the range through the time interval between
-sending trigger signal and receiving echo signal.
+Il suffit de fournir une courte impulsion de 10 μs à l'entrée du déclencheur pour démarrer la télémétrie, puis le module
+enverra une rafale de 8 cycles d'ultrasons à 40 kHz et élèvera son
+écho. Vous pouvez calculer la portée grâce à l'intervalle de temps entre
+l'envoi du signal de déclenchement et la réception du signal d'écho.
 
-Formula: us / 58 = centimeters or us / 148 =inch; or: the range = high
-level time \* velocity (340M/S) / 2; you are suggested to use
-measurement cycle over 60ms in order to prevent signal collisions of
-trigger signal and the echo signal.
+Formule : μs / 58 = centimètres ou μs / 148 = pouces ; ou : la portée = temps du niveau haut \* vitesse (340 m/s) / 2 ; il est recommandé d'utiliser
+un cycle de mesure supérieur à 60 ms afin de prévenir les collisions de
+signal entre le signal de déclenchement et le signal d'écho.
 
-**Example**
+**Exemple**
 
-* :ref:`2.2.8_c` (C Project)
-* :ref:`3.1.3_c` (C Project)
-* :ref:`2.2.8_py` (Python Project)
-* :ref:`4.1.9_py` (Python Project)
+* :ref:`2.2.8_c` (Projet C)
+* :ref:`3.1.3_c` (Projet C)
+* :ref:`2.2.8_py` (Projet Python)
+* :ref:`4.1.9_py` (Projet Python)
+

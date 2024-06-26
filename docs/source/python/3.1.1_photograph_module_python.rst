@@ -1,91 +1,75 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _3.1.1_py:
 
-3.1.1 Photograph Module
-==========================
+3.1.1 Module Photographique
+===============================
 
 Introduction
------------------
+---------------
 
-In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
+Dans ce kit, équipé d'un module caméra, essayons de prendre une photo avec le Raspberry Pi.
 
-Required Components
-------------------------------
+Composants Nécessaires
+-------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
+Procédures Expérimentales
 ------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Étape 1 :** Accédez au bureau du Raspberry Pi. Vous aurez peut-être besoin d'un écran pour une meilleure expérience, référez-vous à : `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Ou accédez au bureau du Raspberry Pi à distance, pour un tutoriel détaillé, veuillez vous référer à :ref:`remote_desktop`.
 
-**Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
+**Étape 2 :** Vérifiez si la caméra est activée. Pour les instructions, veuillez vous référer à :ref:`enable_camera`.
 
-**Step 3:** Open a Terminal and get into the folder of the code.
+**Étape 3 :** Ouvrez un terminal et allez dans le dossier du code.
 
 .. code-block::
 
     cd ~/raphael-kit/python/
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez.
 
 .. code-block::
 
     sudo python3 3.1.1_PhotographModule.py
 
-After the code runs, the camera will take a photo. Now you can see the photo named ``my_photo.jpg`` in the ``~`` directory. 
+Après l'exécution du code, la caméra prendra une photo. Vous pouvez maintenant voir la photo nommée ``my_photo.jpg`` dans le répertoire ``~``.
 
 .. note::
 
-    You can also open ``3.1.1_PhotographModule.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    Vous pouvez également ouvrir ``3.1.1_PhotographModule.py`` dans le chemin ``~/raphael-kit/python/`` avec un IDE Python, cliquer sur le bouton Exécuter pour exécuter, et arrêter le code avec le bouton Arrêter.
 
-
-If you want to download the photo to your PC, please refer to :ref:`filezilla`.
-
+Si vous souhaitez télécharger la photo sur votre PC, veuillez vous référer à :ref:`filezilla`.
 
 **Code**
-
 
 .. code-block:: python
 
@@ -114,7 +98,7 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
@@ -122,26 +106,26 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
     camera = PiCamera()
 
-Import the ``picamera`` library and instantiate the ``PiCamera`` class to use the camera module.
+Importez la bibliothèque ``picamera`` et instanciez la classe ``PiCamera`` pour utiliser le module caméra.
 
 .. code-block:: python
 
     start_preview(**options)
 
 
-Show the preview overlay and change the transparency level of the preview with ``alpha`` - from 0 to 255. This method starts a camera preview as an overlay on the Pi’s primary display (HDMI or composite). By default, the renderer will be opaque and fullscreen.
+Affichez l'aperçu en superposition et modifiez le niveau de transparence de l'aperçu avec ``alpha`` - de 0 à 255. Cette méthode lance un aperçu de la caméra en superposition sur l'écran principal du Pi (HDMI ou composite). Par défaut, le rendu sera opaque et en plein écran.
 
 
-This means the default preview overrides whatever is currently visible on the display. More specifically, the preview does not rely on a graphical environment like X-Windows (it can run quite happily from a TTY console); it is simply an overlay on the Pi’s video output. To stop the preview and reveal the display again, call ``stop_preview()`` . The preview can be started and stopped multiple times during the lifetime of the ``PiCamera`` object.
+Cela signifie que l'aperçu par défaut remplace ce qui est actuellement visible sur l'écran. Plus précisément, l'aperçu ne dépend pas d'un environnement graphique comme X-Windows (il peut fonctionner sans problème à partir d'une console TTY); il s'agit simplement d'une superposition sur la sortie vidéo du Pi. Pour arrêter l'aperçu et révéler à nouveau l'écran, appelez ``stop_preview()``. L'aperçu peut être démarré et arrêté plusieurs fois pendant la durée de vie de l'objet ``PiCamera``.
 
 .. code-block:: python
 
     camera.capture(f'{user_home}/my_photo.jpg')
 
-Capture an image from the camera, storing it in ``~/``.
+Capturez une image à partir de la caméra, en la stockant dans ``~/``.
 
 .. note::
-    You can use ``camera.capture()`` function and ``for`` loop together to achieve continuous shooting. And use the ``delay`` function to adjust the time interval for taking pictures.
+    Vous pouvez utiliser la fonction ``camera.capture()`` et la boucle ``for`` ensemble pour réaliser une prise de vue continue. Utilisez la fonction ``delay`` pour ajuster l'intervalle de temps entre les prises de vue.
 
     .. code-block:: python
 

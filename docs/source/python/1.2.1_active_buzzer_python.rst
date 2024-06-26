@@ -1,56 +1,43 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.2.1_py:
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Buzzer Actif
+=======================
 
 Introduction
-------------
+---------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+Dans ce projet, nous allons apprendre à faire biper un buzzer actif avec
+un transistor PNP.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,29 +52,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-
-Schematic Diagram
+Schéma de Principe
 -----------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+Dans cette expérience, un buzzer actif, un transistor PNP et une résistance de 1k sont utilisés 
+entre la base du transistor et le GPIO pour protéger le transistor. Lorsque le GPIO17 du 
+Raspberry Pi est programmé pour fournir un niveau bas (0V), le transistor se met à conduire 
+en raison de la saturation du courant et le buzzer émet des sons. Mais lorsqu'un niveau haut 
+est fourni au GPIO du Raspberry Pi, le transistor se coupe et le buzzer ne produit aucun son.
 
 .. image:: ../img/image332.png
 
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+-------------------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Étape 1 :** Construisez le circuit. (Le buzzer actif a un autocollant blanc sur la surface et un dos noir.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -97,7 +81,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -107,13 +91,13 @@ Experimental Procedures
 
     sudo python3 1.2.1_ActiveBuzzer.py
 
-The code run, the buzzer beeps.
+Le code s'exécute, le buzzer émet des bips.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 
 .. raw:: html
@@ -159,31 +143,31 @@ The code run, the buzzer beeps.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.LOW)
 
-Set the buzzer pin as low level to make the buzzer beep.  
+Définir la broche du buzzer au niveau bas pour faire biper le buzzer.
 
 .. code-block:: python
 
     time.sleep(0.1)
 
-Wait for 0.1 second. Change the switching frequency by 
-changing this parameter. 
+Attendre 0,1 seconde. Modifier la fréquence de commutation en 
+changeant ce paramètre.
 
 .. note::
-    Not the sound frequency. Active Buzzer cannot change sound frequency.
+    Ce n'est pas la fréquence sonore. Le buzzer actif ne peut pas changer de fréquence sonore.
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.HIGH)
 
-Close the buzzer. 
+Arrêter le buzzer.
 
-Phenomenon Picture
-------------------
+Image du Phénomène
+---------------------
 
 .. image:: ../img/image105.jpeg

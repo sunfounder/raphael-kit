@@ -1,26 +1,12 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Check the ``GPIO Zero``
+ 
+Vérifiez le ``GPIO Zero``
 =================================
 
-If you are a Raspberry Pi 5 Python user, you can program GPIOs with API provided by
-``GPIO Zero``.
+Si vous êtes un utilisateur de Python sur Raspberry Pi 5, vous pouvez programmer les GPIOs avec l'API fournie par ``GPIO Zero``.
 
-``GPIO Zero`` is a module for controlling Raspberry Pi GPIO pins. This package provides a range of user-friendly classes and functions to control GPIO on a Raspberry Pi. For examples and documentation, visit: https://gpiozero.readthedocs.io/en/latest/.
+``GPIO Zero`` est un module pour contrôler les broches GPIO du Raspberry Pi. Ce package fournit une gamme de classes et de fonctions conviviales pour contrôler les GPIO sur un Raspberry Pi. Pour des exemples et de la documentation, visitez : https://gpiozero.readthedocs.io/en/latest/.
 
-Test whether GPIO Zero is installed or not, type in python:
+Pour tester si GPIO Zero est installé, tapez dans Python :
 
 .. raw:: html
 
@@ -34,8 +20,7 @@ Test whether GPIO Zero is installed or not, type in python:
     :width: 100%
 
 
-In Python CLI, input ``import gpiozero``, If no error prompts, it means
-GPIO Zero is installed.
+Dans l'interface de commande Python, entrez ``import gpiozero``. Si aucune erreur n'apparaît, cela signifie que GPIO Zero est installé.
 
 .. raw:: html
 
@@ -49,7 +34,7 @@ GPIO Zero is installed.
     :width: 100%
 
 
-If you want to quit python CLI, type in:
+Si vous souhaitez quitter l'interface de commande Python, tapez :
 
 .. raw:: html
 

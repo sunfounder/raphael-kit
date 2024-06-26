@@ -1,44 +1,32 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 59: Control System for Pan/Tilt Camera Hat for RPi Camera
+Vidéo 59 : Système de Contrôle pour Pan/Tilt Hat de Caméra RPi
 =======================================================================================
 
+Dans ce tutoriel, sponsorisé par SunFounder, les spectateurs apprennent à mettre 
+en œuvre un système de suivi panoramique et d'inclinaison utilisant un Raspberry 
+Pi et une caméra. La vidéo s'appuie sur les leçons précédentes, en se concentrant 
+sur un fonctionnement en mode double pour l'entraînement et le suivi. Elle commence 
+par une vue d'ensemble du devoir précédent impliquant le suivi panoramique et d'inclinaison. 
+Le système en mode double est expliqué, comprenant un mode d'entraînement pour la 
+calibration et un mode de suivi pour le suivi actif. L'implémentation du code pour 
+le contrôle des servos en fonction des entrées utilisateur est démontrée, ainsi que 
+le calcul de l'erreur d'inclinaison pour ajuster l'angle de la caméra. Des mesures 
+de sécurité sont mises en place pour éviter une inclinaison excessive de la caméra, 
+assurant une opération sécurisée.
 
-In this tutorial, sponsored by SunFounder, 
-viewers learn how to implement a pan-tilt tracking system using a Raspberry Pi and camera. 
-The video builds upon previous lessons, focusing on dual-mode operation for training and tracking. 
-It starts with an overview of the previous homework assignment involving pan and tilt tracking. 
-The dual-mode system is explained, comprising training mode for calibration and tracking mode for active tracking. 
-Code implementation for controlling servos based on user input is demonstrated, along with tilt error calculation to adjust the camera angle. 
-Safeguards are implemented to prevent the camera from tilting too far, ensuring safe operation.
+1. Introduction à la série de tutoriels sponsorisée par SunFounder.
+2. Vue d'ensemble du devoir précédent sur le suivi panoramique et d'inclinaison.
+3. Introduction au système en mode double : mode d'entraînement pour la calibration et mode de suivi pour le suivi actif.
+4. Démonstration de l'implémentation du code pour le contrôle des servos en fonction des entrées utilisateur.
+5. Explication du calcul de l'erreur d'inclinaison et de son rôle dans l'ajustement de l'angle de la caméra.
+6. Mise en œuvre de mesures de sécurité pour prévenir une inclinaison excessive et assurer une opération sécurisée.
+7. Ajustement dynamique de l'angle d'inclinaison basé sur des conditions prédéfinies.
+8. Test du système de suivi dans divers modes et résolution des erreurs.
+9. Engagement dans un devoir pour améliorer intelligemment le système de contrôle.
+10. Introduction aux sujets futurs, y compris l'élargissement des capacités de suivi d'objets au-delà du suivi basé sur la couleur.
 
-1. Introduction to SunFounder-sponsored tutorial series.
-2. Overview of the previous homework assignment on pan and tilt tracking.
-3. Introduction to the dual-mode system: training mode for calibration and tracking mode for active tracking.
-4. Demonstration of code implementation for servo control based on user input.
-5. Explanation of tilt error calculation and its role in adjusting the camera angle.
-6. Implementation of safeguards to prevent excessive tilting for safe operation.
-7. Adjusting tilt angle dynamically based on predefined conditions.
-8. Testing the tracker in various modes and troubleshooting errors.
-9. Engaging in a homework assignment to enhance the control system intelligently.
-10. Introduction to future topics, including expanding object tracking capabilities beyond color-based tracking.
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/C-ddlvrGPV4?si=DW5bSS_zH02j3mUJ" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/C-ddlvrGPV4?si=DW5bSS_zH02j3mUJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

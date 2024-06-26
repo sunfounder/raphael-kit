@@ -1,50 +1,36 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_motor:
 
-DC Motor
-===================
+Moteur à courant continu
+================================
 
 .. image:: img/image114.jpeg
     :align: center
 
-This is a 3V DC motor. When you give a high level and a low level to each of the 2 terminals, it will rotate.
+Ceci est un moteur à courant continu de 3V. Lorsque vous appliquez un niveau élevé et un niveau faible à chacune des 2 bornes, il se mettra à tourner.
 
-* **Size**: 25*20*15MM
-* **Operation Voltage**: 1-6V
-* **Free-run Current** (3V): 70m
-* **A Free-run Speed** (3V): 13000RPM
-* **Stall Current** (3V): 800mA
-* **Shaft Diameter**: 2mm
+* **Dimensions** : 25*20*15MM
+* **Tension de fonctionnement** : 1-6V
+* **Courant à vide** (3V) : 70mA
+* **Vitesse à vide** (3V) : 13000RPM
+* **Courant de blocage** (3V) : 800mA
+* **Diamètre de l'arbre** : 2mm
 
-Direct current (DC) motor is a continuous actuator that converts electrical energy into mechanical energy. DC motors make rotary pumps, fans, compressors, impellers, and other devices work by producing continuous angular rotation.
+Le moteur à courant continu (DC) est un actionneur continu qui convertit l'énergie électrique en énergie mécanique. Les moteurs à courant continu permettent de faire fonctionner des pompes rotatives, des ventilateurs, des compresseurs, des turbines et d'autres dispositifs en produisant une rotation angulaire continue.
 
-A DC motor consists of two parts, the fixed part of the motor called the **stator** and the internal part of the motor called the **rotor** (or **armature** of a DC motor) that rotates to produce motion.
-The key to generating motion is to position the armature within the magnetic field of the permanent magnet (whose field extends from the north pole to the south pole). The interaction of the magnetic field and the moving charged particles (the current-carrying wire generates the magnetic field) produces the torque that rotates the armature.
+Un moteur à courant continu se compose de deux parties : la partie fixe du moteur appelée **stator** et la partie interne du moteur appelée **rotor** (ou **armature** d'un moteur à courant continu) qui tourne pour produire le mouvement.
+La clé pour générer du mouvement est de positionner l'armature dans le champ magnétique de l'aimant permanent (dont le champ s'étend du pôle nord au pôle sud). L'interaction du champ magnétique et des particules chargées en mouvement (le fil porteur de courant génère le champ magnétique) produit le couple qui fait tourner l'armature.
 
 .. image:: img/motor_sche.png
     :align: center
 
-Current flows from the positive terminal of the battery through the circuit, through the copper brushes to the commutator, and then to the armature.
-But because of the two gaps in the commutator, this flow reverses halfway through each complete rotation.
-This continuous reversal essentially converts the DC power from the battery to AC, allowing the armature to experience torque in the right direction at the right time to maintain rotation.
+Le courant circule de la borne positive de la batterie à travers le circuit, passant par les balais en cuivre jusqu'au collecteur, puis jusqu'à l'armature.
+Mais en raison des deux fentes dans le collecteur, ce flux s'inverse à mi-chemin de chaque rotation complète.
+Cette inversion continue convertit essentiellement l'alimentation en courant continu de la batterie en courant alternatif, permettant à l'armature de subir un couple dans la bonne direction au bon moment pour maintenir la rotation.
 
-**Example**
+**Exemple**
 
-* :ref:`1.3.1_c` (C Project)
-* :ref:`3.1.4_c` (C Project)
-* :ref:`1.3.1_py` (Python Project)
-* :ref:`4.1.10_py` (Python Project)
-* :ref:`1.17_scratch` (Scratch Project)
+* :ref:`1.3.1_c` (Projet C)
+* :ref:`3.1.4_c` (Projet C)
+* :ref:`1.3.1_py` (Projet Python)
+* :ref:`4.1.10_py` (Projet Python)
+* :ref:`1.17_scratch` (Projet Scratch)

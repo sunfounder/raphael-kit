@@ -1,58 +1,44 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.3_js:
 
-2.1.3 Touch Switch Module
-=================================
+2.1.3 Module Interrupteur Tactile
+=======================================
 
 Introduction
 -------------------
 
-In this project, you will learn about touch switch module. It can replace the traditional kinds of switch with these advantages: convenient operation, fine touch sense, precise control and least mechanical wear.
+Dans ce projet, vous apprendrez à utiliser un module interrupteur tactile. Il peut remplacer les types traditionnels d'interrupteurs avec les avantages suivants : opération pratique, sensation tactile fine, contrôle précis et usure mécanique minimale.
 
-
-Required Components
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/2.1.3component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est vraiment pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,23 +53,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
 
-Schematic Diagram
------------------
+Schéma de Câblage
+--------------------
 
 .. image:: ../img/2.1.3circuit.png
     :width: 500
     :align: center
 
-**Experimental Procedures**
-------------------------------
+**Procédures Expérimentales**
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/2.1.3fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -93,7 +79,7 @@ Schematic Diagram
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -103,7 +89,7 @@ Schematic Diagram
 
     sudo node touch_switch.js
 
-While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
+Pendant l'exécution du code, la LED rouge s'allume ; lorsque vous appuyez sur le module interrupteur tactile, la LED jaune s'allume.
 
 **Code**
 
@@ -125,7 +111,7 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         led2.digitalWrite(!level);       
     });   
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: js
 
@@ -140,9 +126,8 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         edge: Gpio.EITHER_EDGE        
     });
 
-
-Import the ``pigpio`` module and create three objects led1, led2, touchSwitch,
-By reading the level of the touchSwitch IO port, the on and off of led1 and led2 are controlled.
+Importer le module ``pigpio`` et créer trois objets : led1, led2, touchSwitch. 
+En lisant le niveau du port IO de touchSwitch, on contrôle l'allumage et l'extinction de led1 et led2.
 
 .. code-block:: js
 
@@ -151,14 +136,13 @@ By reading the level of the touchSwitch IO port, the on and off of led1 and led2
         led2.digitalWrite(!level);       
     });   
 
-When the level of the read touchSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Lorsque le niveau du port IO de touchSwitch change, écrire le même 
+niveau sur led1 et le niveau opposé sur led2.
 
 
-**Phenomenon Picture**
+**Image du Phénomène**
 ------------------------
 
 .. image:: ../img/2.1.3touch_switch_module.JPG
     :width: 500
     :align: center
-    

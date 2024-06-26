@@ -1,31 +1,16 @@
-.. note::
+.. _configuration_audio:
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-.. _audio_configuration:
-
-Audio Configuration
+Configuration Audio
 =========================
 
-.. _change_audio_output:
+.. _changer_sortie_audio:
 
-Change Audio Output
+Changer la sortie audio
 ----------------------------
 
-If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output, the correct one should be **Headphones**. You can change the audio output by following these steps.
+Si vos haut-parleurs ne produisent aucun son, cela peut être dû au fait que le Raspberry Pi a sélectionné la mauvaise sortie audio. La sortie correcte devrait être **Casque**. Vous pouvez changer la sortie audio en suivant ces étapes.
 
-
-Enter the following command.
+Entrez la commande suivante.
 
 .. raw:: html
 
@@ -35,24 +20,24 @@ Enter the following command.
 
     sudo raspi-config
 
-Select **1 System Options**.
+Sélectionnez **1 Options Système**.
 
 .. image:: img/audio1.jpg
 
-Then **S2 Audio**.
+Puis **S2 Audio**.
 
 .. image:: img/audio2.jpg
 
-After selecting **1 Headphones**, press ``Enter`` to confirm and select ``Finish`` to exit.
+Après avoir sélectionné **1 Casque**, appuyez sur ``Enter`` pour confirmer et sélectionnez ``Finish`` pour quitter.
 
 .. image:: img/audio3.jpg
 
-.. _adjust_volume:
+.. _ajuster_volume:
 
-Adjust Volume 
----------------
+Ajuster le volume 
+--------------------
 
-If you feel that the volume of the speakers is too low, you can adjust it by entering the following command.
+Si vous trouvez que le volume des haut-parleurs est trop faible, vous pouvez l'ajuster en entrant la commande suivante.
 
 .. raw:: html
 
@@ -64,14 +49,14 @@ If you feel that the volume of the speakers is too low, you can adjust it by ent
 
 .. image:: img/faq1.png
 
-The default page is shown below.
+La page par défaut est illustrée ci-dessous.
 
 .. image:: img/faq2.png
 
-Press ``F6`` to select **Headphones** mode.
+Appuyez sur ``F6`` pour sélectionner le mode **Casque**.
 
 .. image:: img/faq3.png
 
-Then press the arrow keys up and down to adjust the volume level, and press ``ESC`` to exit.
+Ensuite, utilisez les touches fléchées haut et bas pour ajuster le niveau de volume, et appuyez sur ``ESC`` pour quitter.
 
 .. image:: img/faq4.png

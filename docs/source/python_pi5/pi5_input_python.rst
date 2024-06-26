@@ -1,21 +1,7 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Input
+Entrée
 =============
 
-2.1 Controllers
+2.1 Contrôleurs
 --------------------
 
 .. toctree::
@@ -31,7 +17,7 @@ Input
     pi5_2.1.8_keypad_python
     pi5_2.1.9_joystick_python
 
-2.2 Sensors
+2.2 Capteurs
 ----------------
 
 .. toctree::
@@ -45,3 +31,4 @@ Input
     pi5_2.2.7_pir_python
     pi5_2.2.8_ultrasonic_sensor_module_python
     pi5_2.2.9_mpu6050_module_python
+

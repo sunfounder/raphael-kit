@@ -1,45 +1,22 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 70: Using the MFRC522 RFID Module and Tag on Raspberry Pi
+Vidéo 70 : Utilisation du Module RFID MFRC522 et du Tag sur Raspberry Pi
 =======================================================================================
 
+Cette vidéo aborde des techniques avancées pour programmer des cartes RFID/NFC en utilisant un Raspberry Pi. Elle couvre des sujets tels que le regroupement de données, la gestion des entrées utilisateur, l'interaction matérielle et la vérification des erreurs. Le tutoriel offre des perspectives sur une gestion efficace des données, des invites utilisateur et des techniques de débogage pour implémenter des fonctionnalités administratives dans les projets de programmation de cartes RFID/NFC.
 
-The video discusses advanced techniques for programming RFID/NFC cards using a Raspberry Pi. 
-It covers topics such as data bundling, user input handling, hardware interaction, and error checking. 
-The tutorial provides insights into efficient data management, 
-user prompts, and debugging techniques for implementing admin functionality in RFID/NFC card programming projects.
+1. Introduction au kit Raspberry Pi sponsorisé par SunFounder.
+2. Configuration du module RFID RC522 et de la LED RGB.
+3. Utilisation des dictionnaires pour une gestion efficace des données.
+4. Mise en œuvre des invites et des réponses utilisateur.
+5. Fonctionnalité administrative pour programmer de nouvelles cartes RFID/NFC.
+6. Regroupement de données : utilisation d'un délimiteur deux-points pour regrouper les données de manière efficace.
+7. Formatage approprié et gestion des apostrophes pour les entrées utilisateur.
+8. Écriture de données personnalisées sur les cartes NFC.
+9. Contrôle des LEDs en fonction des données lues à partir des cartes NFC.
+10. Importance de la vérification des erreurs et techniques pour la gestion des erreurs.
+11. Devoir à domicile : implémentation de la vérification des erreurs pour les entrées de couleur et mise à jour dynamique du dictionnaire dans la section admin du programme.
 
-
-1. Introduction to Raspberry Pi kit sponsored by SunFounder.
-2. Setting up RC522 RFID module and RGB LED.
-3. Utilizing dictionaries for efficient data management.
-4. Implementing user prompts and responses.
-5. Admin functionality for programming new RFID/NFC cards.
-6. Data Bundling: Using a colon delimiter to bundle data efficiently.
-7. Proper formatting and apostrophe handling for user input.
-8. Writing personalized data onto NFC cards.
-9. Controlling LEDs based on the data read from NFC cards.
-10. Importance of error checking and techniques for error handling.
-11. Homework assignment: Implementing error checking for color input and dynamically updating the dictionary in the admin section of the program.
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/P58Xv9Q3f60?si=HK_TAmxyw1Xr90Qf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/P58Xv9Q3f60?si=HK_TAmxyw1Xr90Qf" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

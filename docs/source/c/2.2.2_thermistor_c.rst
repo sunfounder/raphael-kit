@@ -1,57 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.2_c:
 
-2.2.2 Thermistor
+2.2.2 Thermistance
 ======================
 
 Introduction
 ------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Tout comme la photorésistance peut détecter la lumière, la thermistance est un dispositif électronique sensible à la température qui peut être utilisé pour réaliser des fonctions de contrôle de la température, telles que la création d'une alarme thermique.
 
-Required Components
+Composants requis
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,7 +51,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
+Schéma de câblage
 -----------------
 
 .. image:: ../img/image323.png
@@ -75,14 +60,14 @@ Schematic Diagram
 .. image:: ../img/image324.png
 
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -92,7 +77,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.2/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -103,10 +88,9 @@ Experimental Procedures
     gcc 2.2.2_Thermistor.c -lwiringPi -lm
 
 .. note::
-    -lm is to load the library math. Do not omit, or you will make
-    an error.
+    -lm est pour charger la bibliothèque mathématique. Ne pas omettre, sinon vous ferez une erreur.
 
-**Step 4:** Run the executable file.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -116,12 +100,12 @@ Experimental Procedures
 
     sudo ./a.out
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Lorsque le code s'exécute, la thermistance détecte la température ambiante qui sera 
+imprimée à l'écran une fois que le programme aura terminé le calcul.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur indiquant : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
 
 **Code**
 
@@ -192,7 +176,7 @@ be printed on the screen once it finishes the program calculation.
     int main(void)
     {
         unsigned char analogVal;
-    double Vr, Rt, temp, cel, Fah;
+        double Vr, Rt, temp, cel, Fah;
         if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
             printf("setup wiringPi failed !");
             return 1;
@@ -212,21 +196,20 @@ be printed on the screen once it finishes the program calculation.
         }
         return 0;
     }
-
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     #include <math.h>
 
-There is a C numerics library which declares a set of functions to
-compute common mathematical operations and transformations.
+Il existe une bibliothèque numérique en C qui déclare un ensemble de fonctions 
+pour effectuer des opérations et transformations mathématiques courantes.
 
 .. code-block:: c
 
     analogVal = get_ADC_Result(0);
 
-This function is used to read the value of the thermistor.
+Cette fonction est utilisée pour lire la valeur de la thermistance.
 
 .. code-block:: c
 
@@ -237,43 +220,42 @@ This function is used to read the value of the thermistor.
     Fah = cel * 1.8 +32;
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-These calculations convert the thermistor values into Celsius values.
+Ces calculs convertissent les valeurs de la thermistance en valeurs Celsius.
 
 .. code-block:: c
 
     Vr = 5 * (double)(analogVal) / 255;
     Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
 
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
+Ces deux lignes de code calculent la distribution de la tension avec la valeur 
+analogique lue afin d'obtenir Rt (résistance de la thermistance).
 
 .. code-block:: c
 
     temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
 
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
+Ce code fait référence à l'insertion de Rt dans la formule
+ **T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** pour obtenir la température en Kelvin.
 
 .. code-block:: c
 
     temp = temp - 273.15;
 
-Convert Kelvin temperature into degree Celsius.
+Convertit la température en Kelvin en degrés Celsius.
 
 .. code-block:: c
 
     Fah = cel * 1.8 +32;
 
-Convert degree Celsius into Fahrenheit.
+Convertit les degrés Celsius en Fahrenheit.
     
 .. code-block:: c
 
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
+Affiche les degrés Celsius, les degrés Fahrenheit et leurs unités à l'écran.
 
-Phenomenon Picture
+Image du phénomène
 ------------------
 
 .. image:: ../img/image203.jpeg

@@ -1,67 +1,53 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _3.1.1_js:
 
-3.1.1 Photograph Module
-==========================
+3.1.1 Module de photographie
+================================
 
 Introduction
------------------
+---------------
 
-In this kit, equipped with a camera module, let's try to take a picture with Raspberry Pi.
+Dans ce kit, équipé d'un module caméra, essayons de prendre une photo avec le Raspberry Pi.
 
-Required Components
-------------------------------
+Composants requis
+--------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/photo1.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
-------------------------------
+Procédures expérimentales
+-------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Étape 1 :** Aller sur le bureau du Raspberry Pi. Vous aurez peut-être besoin d'un écran pour une meilleure expérience, référez-vous à : `Connecter votre Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Ou accédez au bureau du Raspberry Pi à distance, pour un tutoriel détaillé veuillez vous référer à :ref:`remote_desktop`.
 
-
-**Step 2:** Open a Terminal and get into the folder of the code.
+**Étape 2 :** Ouvrir un terminal et aller dans le dossier du code.
 
 .. raw:: html
 
@@ -71,7 +57,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécuter le code.
 
 .. raw:: html
 
@@ -81,8 +67,7 @@ Experimental Procedures
 
     sudo node camera.js
 
-After the code runs, the camera will take a photo. Now you can see the photo named ``test.jpg`` in current directory. 
-
+Après l'exécution du code, la caméra prendra une photo. Vous pouvez maintenant voir la photo nommée ``test.jpg`` dans le répertoire actuel.
 
 
 **Code**
@@ -93,21 +78,21 @@ After the code runs, the camera will take a photo. Now you can see the photo nam
 
     exec('libcamera-still -o test.jpg');
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
     const exec = require('child_process').exec;
 
-Import the ``child_process`` module, which allows nodejs to perform various operations on child processes, including creating child processes to directly execute system commands.
+Importer le module ``child_process``, qui permet à nodejs d'effectuer diverses opérations sur les processus fils, y compris la création de processus fils pour exécuter directement des commandes système.
 
 .. note:: 
-    About this module, please refer to: https://nodejs.org/api/child_process.html
+    Pour plus de détails sur ce module, veuillez consulter : https://nodejs.org/api/child_process.html
 
 .. code-block:: js
 
     exec('libcamera-still -o test.jpg');
 
-After enabling the Camera function, you can directly use the command ``libcamera-still -o test.jpg`` to capture photos in the terminal. We can also use the method provided by the ``child_process`` module ``child_process.exec(cmd, [options] , callback)`` to create child processes to run system commands.
+Après avoir activé la fonction caméra, vous pouvez directement utiliser la commande ``libcamera-still -o test.jpg`` pour capturer des photos dans le terminal. Nous pouvons également utiliser la méthode fournie par le module ``child_process`` ``child_process.exec(cmd, [options], callback)`` pour créer des processus fils afin d'exécuter des commandes système.
 
-By adding loop and delay functions, we can also achieve the effect of timing photos or time-lapse video.
+En ajoutant des fonctions de boucle et de délai, nous pouvons également obtenir l'effet de photos programmées ou de vidéos en time-lapse.

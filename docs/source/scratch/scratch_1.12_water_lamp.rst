@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.12_scratch:
 
-1.12 Water Lamp
-================
+1.12 Lampe à eau
+====================
 
-Today, we will use LED Bar Graph, Raspberry Pi and scratch to make a Water Lamp.
+Aujourd'hui, nous allons utiliser une barre LED, un Raspberry Pi et Scratch pour créer une lampe à eau.
 
-The LED Bar Graph will light up in order with the direction of the arrows on the stage.
+La barre LED s'allumera en suivant la direction des flèches sur la scène.
 
 .. image:: img/1.12_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.12_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,71 +49,64 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_bar_graph`
         - \-
 
-Build the Circuit
+Construire le Circuit
 -----------------------
 
 .. image:: img/1.12_image66.png
 
-Load the Code and See What Happens
------------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+------------------------------------------
 
-Load the code file (``1.12_water_lamp.sb3``) from your computer to Scratch 3.
+Chargez le fichier de code (``1.12_water_lamp.sb3``) depuis votre ordinateur vers Scratch 3.
 
-By clicking on **Arrow1**, the LEDs on the LED bar are lit in sequence from the left to the right (one at a time) and then off. Click **Arrow2** and the LEDs light up in the opposite order.
+En cliquant sur **Arrow1**, les LED de la barre s'allument une à une de la gauche vers la droite, puis s'éteignent. Cliquez sur **Arrow2** et les LED s'allument dans l'ordre inverse.
 
-Tips on Sprites
-----------------
+Astuces sur les Sprites
+----------------------------
 
-Delete the default sprite and choose the **Arrow1** sprite.
+Supprimez le sprite par défaut et choisissez le sprite **Arrow1**.
 
 .. image:: img/1.12_graph1.png
 
-Here we will need 2 **Arrow1** sprites, which can be done with the duplicate button.
+Nous aurons besoin de 2 sprites **Arrow1**, que vous pouvez dupliquer avec le bouton de duplication.
 
 .. image:: img/1.12_scratch_duplicate.png
 
-Click on the **Arrow 2** sprite and change the direction of the arrow by selecting costume 2.
+Cliquez sur le sprite **Arrow 2** et changez la direction de la flèche en sélectionnant le costume 2.
 
 .. image:: img/1.12_graph2.png
 
-
-Now let's make a variable.
+Créons maintenant une variable.
 
 .. image:: img/1.12_graph3.png
 
-
-Name it as **num**.
+Nommez-la **num**.
 
 .. image:: img/1.12_graph4.png
 
-
-Follow the same method to create a list called **led**.
+Suivez la même méthode pour créer une liste appelée **led**.
 
 .. image:: img/1.12_graph6.png
 
+Après l'ajout, vous devriez voir la variable **num** et la liste **led** sur la zone de la scène.
 
-After adding, you should see the **num** variable and the **led** list on the stage area. 
-
-Click **+** to add 10 list items and enter the pin numbers in order (17,18,27,22,23,24,25,2,3,8).
+Cliquez sur **+** pour ajouter 10 éléments à la liste et entrez les numéros de broche dans l'ordre (17,18,27,22,23,24,25,2,3,8).
 
 .. image:: img/1.12_graph7.png
 
-Tips on Codes
---------------
+Astuces sur les Codes
+-------------------------
 
 .. image:: img/1.12_graph10.png
   :width: 300
 
-This is an event block that is triggered when the current sprite is clicked.
+Ceci est un bloc d'événement qui est déclenché lorsque le sprite actuel est cliqué.
 
 .. image:: img/1.12_graph8.png
   :width: 300
 
-The initial value of the **num** variable determines which LED is lit first.
+La valeur initiale de la variable **num** détermine quelle LED est allumée en premier.
 
 .. image:: img/1.12_graph9.png
 
-
-Set the pin corresponding to **num** in the led list to low to light the LED, and then set the pin corresponding to **num-1** to high to turn off the previous LED.
-
-
+Réglez la broche correspondant à **num** dans la liste led sur bas pour allumer la LED, puis réglez la broche correspondant à **num-1** sur haut pour éteindre la LED précédente.

@@ -1,51 +1,38 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _drag_number:
 
-Drag Number
+Nombre à glisser
 ================================================
 
-Let\'s draw a slider bar to control the 7-segment Display.
+Dessinons une barre de défilement pour contrôler l'affichage à 7 segments.
 
 .. image:: img/drag_servo.png
 
-**Required Components**
+**Composants requis**
 
-In this project, we need the following components.
+Dans ce projet, nous avons besoin des composants suivants.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,11 +47,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
-**Wiring**
+**Câblage**
 
 .. image:: img/image125.png
 
-**Sketch**
+**Croquis**
 
 .. code-block:: arduino
 
@@ -173,7 +160,6 @@ You can also buy them separately from the links below.
         }
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-This project integrates the Slider and 7-segment Display of the previous project. For specific knowledge points, please refer to :ref:`show_number` and :ref:`metronome`.  
-
+Ce projet intègre le curseur et l'affichage à 7 segments du projet précédent. Pour des points de connaissances spécifiques, veuillez vous référer à :ref:`show_number` et :ref:`metronome`.  

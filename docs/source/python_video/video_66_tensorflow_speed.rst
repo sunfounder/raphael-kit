@@ -1,37 +1,17 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 66: Increasing Speed of Tensorflow Lite for Object Detection
+Vidéo 66 : Augmenter la Vitesse de TensorFlow Lite pour la Détection d'Objets
 =======================================================================================
 
+Apprenez à améliorer les performances de TensorFlow Lite sur votre Raspberry Pi en ajustant l'allocation de mémoire GPU, en gérant la température et en mettant à jour le firmware.
 
-Learn how to boost TensorFlow Lite performance on your Raspberry Pi by adjusting GPU memory allocation, managing temperature, and updating firmware.
+1. Introduction à la série de tutoriels sponsorisée par SunFounder.
+2. Explication de la nécessité d'optimiser les performances de TensorFlow Lite en raison de la diminution des taux de trames.
+3. Ajustement de l'allocation de mémoire GPU pour améliorer les performances de traitement graphique.
+4. Surveillance de la température du Raspberry Pi pour éviter le throttling et maintenir des performances optimales.
+5. Mise à jour du firmware du Raspberry Pi pour gérer la température plus efficacement.
+6. Exécution de TensorFlow Lite pour la détection d'objets et réalisation d'une augmentation significative des taux de trames.
 
-
-1. Introduction to the tutorial series sponsored by SunFounder.
-2. Explanation of the need to optimize TensorFlow Lite performance due to decreasing frame rates.
-3. Adjusting GPU memory allocation for improved graphics processing performance.
-4. Monitoring Raspberry Pi temperature to prevent throttling and maintain optimal performance.
-5. Updating Raspberry Pi firmware to manage temperature more efficiently.
-6. Running TensorFlow Lite for object detection and achieving a significant increase in frame rates.
-
-
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/PcHMfySIzRQ?si=jG16IjT00rej_1wz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/PcHMfySIzRQ?si=jG16IjT00rej_1wz" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

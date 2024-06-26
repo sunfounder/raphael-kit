@@ -1,39 +1,25 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.1_c:
 
-1.1.1 Blinking LED
+1.1.1 LED Clignotant
 =========================
 
 Introduction
 -----------------
 
-In this project, we will learn how to make a blinking LED by programming.
-Through your settings, your LED can produce a series of interesting
-phenomena. Now, go for it.
+Dans ce projet, nous allons apprendre à créer une LED clignotante par programmation.
+Grâce à vos réglages, votre LED peut produire une série de phénomènes intéressants. Allons-y.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/blinking_led_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
@@ -46,14 +32,14 @@ It's definitely convenient to buy a whole kit, here's the link:
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,26 +52,24 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-Schematic Diagram
+Schéma de câblage
 ---------------------
 
-In this experiment, connect a 220Ω resistor to the anode (the long pin
-of the LED), then the resistor to 3.3 V, and connect the cathode (the
-short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
-an LED, we need to make GPIO17 low (0V) level. We can get this
-phenomenon by programming.
+Dans cette expérience, connectez une résistance de 220Ω à l'anode (la longue broche de la LED),
+ puis la résistance à 3,3 V, et connectez la cathode (la broche courte) de la LED à GPIO17 du Raspberry Pi.
+  Ainsi, pour allumer une LED, nous devons rendre GPIO17 à un niveau bas (0V).
+   Nous pouvons obtenir ce phénomène par programmation.
 
 .. note::
 
-    **Pin11** refers to the 11th pin of the Raspberry Pi from left to right, and its corresponding **wiringPi** and **BCM** pin numbers are shown in the following table.
+    **Pin11** se réfère à la 11ème broche du Raspberry Pi de gauche à droite, et ses numéros de broche correspondants **wiringPi** et **BCM** sont indiqués dans le tableau suivant.
 
-In the C language related content, we make GPIO0 equivalent to 0 in the
-wiringPi. Among the Python language related content, BCM 17 is 17 in the
-BCM column of the following table. At the same time, they are the same
-as the 11th pin on the Raspberry Pi, Pin 11.
+Dans le contenu lié au langage C, nous faisons équivaloir GPIO0 à 0 dans wiringPi.
+ Parmi le contenu lié au langage Python, BCM 17 est 17 dans la colonne BCM du tableau suivant.
+  En même temps, ils sont les mêmes que la 11ème broche du Raspberry Pi, Pin 11.
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  Physique wiringPi BCM
 GPIO17       Pin 11   0        17
 ============ ======== ======== ===
 
@@ -93,40 +77,38 @@ GPIO17       Pin 11   0        17
     :width: 800
     :align: center
 
-Experimental Procedures
+Procédures expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1:** Construisez le circuit.
 
 .. image:: ../img/image49.png
     :width: 800
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
-1) If you use a screen, you're recommended to take the following steps.
+1) Si vous utilisez un écran, il est recommandé de suivre les étapes suivantes.
 
-Go to **~/** and find the folder **raphael-kit**.
+Allez dans **~/** et trouvez le dossier **raphael-kit**.
 
-Find **C** in the folder, right-click on it and select **Open in
-Terminal**.
+Trouvez **C** dans le dossier, cliquez dessus avec le bouton droit de la souris et sélectionnez **Ouvrir dans le terminal**.
 
 .. image:: ../img/image50.png
     :width: 800
     :align: center
 
-Then a window will pop up as shown below. So now you've entered the path
-of the code **1.1.1_BlinkingLed.c** .
+Ensuite, une fenêtre apparaîtra comme indiqué ci-dessous. Vous avez maintenant entré dans le chemin du code **1.1.1_BlinkingLed.c**.
 
 .. image:: ../img/image51.png
     :width: 800
     :align: center
 
-In the following projects, we will use command to enter the code file
-instead of right-clicking. But you can choose the method you prefer.
+Dans les projets suivants, nous utiliserons la commande pour entrer dans le fichier de code au lieu de faire un clic droit. 
+Mais vous pouvez choisir la méthode que vous préférez.
 
 
-2) If you log into the Raspberry Pi remotely, use ``cd`` to change directory:
+2) Si vous vous connectez à distance au Raspberry Pi, utilisez ``cd`` pour changer de répertoire :
 
 .. raw:: html
 
@@ -137,12 +119,12 @@ instead of right-clicking. But you can choose the method you prefer.
    cd ~/raphael-kit/c/1.1.1/
 
 .. note::
-    Change directory to the path of the code in this experiment via cd.
+    Changez de répertoire vers le chemin du code dans cette expérience via cd.
 
-In either way, now you are in the folder C. The subsequent
-procedures based on these two methods are the same. Let's move on.
+Dans tous les cas, vous êtes maintenant dans le dossier C. 
+Les procédures suivantes basées sur ces deux méthodes sont les mêmes. Continuons.
 
-**Step 3:** Compile the code
+**Étape 3 :** Compilez le code
 
 .. raw:: html
 
@@ -153,16 +135,13 @@ procedures based on these two methods are the same. Let's move on.
    gcc 1.1.1_BlinkingLed.c -o BlinkingLed -lwiringPi
 
 .. note::
-    gcc is GNU Compiler Collection. Here, it functions like
-    compiling the C language file ``1.1.1_BlinkingLed.c`` and outputting an
-    executable file.
+    gcc est GNU Compiler Collection. 
+    Ici, il compile le fichier de langage C ``1.1.1_BlinkingLed.c`` et produit un fichier exécutable.
 
-In the command, ``-o`` means outputting (the character immediately
-following -o is the filename output after compilation, and an executable
-named ``BlinkingLed`` will generate here) and ``-lwiringPi`` is to load
-the library wiringPi ( ``l`` is the abbreviation of library).
+Dans la commande, ``-o`` signifie sortie (le caractère immédiatement après -o est le nom de fichier de sortie après compilation,
+ et un exécutable nommé ``BlinkingLed`` sera généré ici) et ``-lwiringPi`` est pour charger la bibliothèque wiringPi (``l`` est l'abréviation de library).
 
-**Step 4:** Run the executable file output in the previous step.
+**Étape 4 :** Exécutez le fichier exécutable généré à l'étape précédente.
 
 .. raw:: html
 
@@ -174,17 +153,17 @@ the library wiringPi ( ``l`` is the abbreviation of library).
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+   Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
 
-To control the GPIO, you need to run the program, by the
-command, ``sudo`` (superuser do). The command ``./`` indicates the current
-directory. The whole command is to run the ``BlinkingLed`` in the
-current directory.
+Pour contrôler le GPIO, vous devez exécuter le programme, 
+en utilisant la commande ``sudo`` (superuser do). 
+La commande ``./`` indique le répertoire actuel. 
+La commande entière est d'exécuter le ``BlinkingLed`` dans le répertoire actuel.
 
 
-After the code runs, you will see the LED flashing.
+Après l'exécution du code, vous verrez la LED clignoter.
 
-If you want to edit the code file ``1.1.1_BlinkingLed.c``, stop the code and then type the following command to open it:
+Si vous souhaitez modifier le fichier de code ``1.1.1_BlinkingLed.c``, arrêtez le code puis tapez la commande suivante pour l'ouvrir :
 
 .. raw:: html
 
@@ -195,18 +174,17 @@ If you want to edit the code file ``1.1.1_BlinkingLed.c``, stop the code and the
    nano 1.1.1_BlinkingLed.c
 
 
-Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
-prompt asking whether to save the changes or not. Type in ``Y`` (save)
-or ``N`` (don’t save). Then press ``Enter`` to exit. Repeat ``Step 3``
-and ``Step 4`` to see the effect after modifying.
+Appuyez sur ``Ctrl+X`` pour quitter. Si vous avez modifié le code, 
+une invite vous demandera si vous souhaitez enregistrer les modifications ou non. 
+Tapez ``Y`` (enregistrer) ou ``N`` (ne pas enregistrer). Puis appuyez sur ``Entrée`` pour quitter. 
+Répétez ``Étape 3`` et ``Étape 4`` pour voir l'effet après modification.
 
 .. image:: ../img/image53.png
     :width: 800
     :align: center
-
 **Code**
 
-The program code is shown as follows:
+Le code du programme est présenté comme suit :
 
 .. code-block:: c
 
@@ -234,31 +212,29 @@ The program code is shown as follows:
       return 0;
    }
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
    #include <wiringPi.h>
 
-The hardware drive library is designed for the C language of Raspberry
-Pi. Adding this library is conducive to the initialization of hardware,
-and the output of I/O ports, PWM, etc.
+La bibliothèque de gestion matérielle est conçue pour le langage C du Raspberry Pi. 
+Ajouter cette bibliothèque facilite l'initialisation du matériel, et la sortie des ports I/O, 
+PWM, etc.
 
 .. code-block:: c
 
    #include <stdio.h>
 
-Standard I/O library. The pintf function used for printing the data
-displayed on the screen is realized by this library. There are many
-other performance functions for you to explore.
+Bibliothèque standard d'E/S. La fonction printf utilisée pour afficher les données à l'écran est réalisée par cette bibliothèque. 
+Il existe de nombreuses autres fonctions de performance à explorer.
 
 .. code-block:: c
 
    #define LedPin 0
 
-Pin GPIO17 of the T_Extension Board is corresponding to the GPIO0 in
-wiringPi. Assign GPIO0 to LedPin, LedPin represents GPIO0 in the code
-later.
+La broche GPIO17 de la T_Extension Board correspond à la GPIO0 dans wiringPi.
+Assigner GPIO0 à LedPin, LedPin représente GPIO0 dans le code suivant.
 
 .. code-block:: c
 
@@ -266,63 +242,61 @@ later.
       printf("setup wiringPi failed !");
       return 1;
 
-This initialises wiringPi and assumes that the calling program is going
-to be using the wiringPi pin numbering scheme.
+Cela initialise wiringPi et suppose que le programme appelant va utiliser le schéma de numérotation des broches wiringPi.
 
-This function needs to be called with root privileges.
-When initialize wiring failed, print message to screen. The function
-``return`` is used to jump out of the current function. Using return in
-``main()`` function will end the program.
+Cette fonction doit être appelée avec les privilèges root.
+Lorsque l'initialisation de wiring échoue, afficher un message à l'écran.
+ La fonction ``return`` est utilisée pour sortir de la fonction en cours.
+  Utiliser return dans la fonction ``main()`` met fin au programme.
 
 .. code-block:: c
 
    pinMode(LedPin, OUTPUT);
 
-Set ``LedPin`` as output to write value to it.
+Définir ``LedPin`` comme sortie pour écrire une valeur dessus.
 
 .. code-block:: c
 
    digitalWrite(LedPin, LOW);
 
-Set GPIO0 as 0V (low level). Since the cathode of LED is connected to
-GPIO0, thus the LED will light up if GPIO0 is set low. On the contrary,
-set GPIO0 as high level, LED will go out.
+Définir GPIO0 à 0V (niveau bas). Étant donné que la cathode de la LED est connectée à GPIO0,
+ la LED s'allume si GPIO0 est réglé sur bas. Au contraire,
+  définir GPIO0 à un niveau haut éteindra la LED.
 
 .. code-block:: c
 
-   printf("...LED off\n");
+   printf("...LED éteinte\n");
 
-The printf function is a standard library function and its function
-prototype is in the header file ``stdio.h``. 
+La fonction printf est une fonction de bibliothèque 
+standard et son prototype se trouve dans le fichier d'en-tête ``stdio.h``.
 
-The general form of the call is: ``printf(" format control string ", output table columns)``. The format
-control string is used to specify the output format, which is divided
-into format string and non-format string. The format string starts with
-``%`` followed by format characters, such as ``%d`` for decimal integer
-output. Unformatted strings are printed as prototypes. What is used here
-is a non-format string, followed by ``\n`` that is a newline character,
-representing automatic line wrapping after printing a string.
+La forme générale de l'appel est : ``printf(" chaîne de contrôle de format ", colonnes de tableau de sortie)``. 
+La chaîne de contrôle de format est utilisée pour spécifier le format de sortie, 
+qui est divisé en chaîne de format et chaîne sans format. 
+La chaîne de format commence par ``%`` suivie de caractères de format, tels que ``%d`` pour la sortie d'entier décimal. 
+Les chaînes sans format sont imprimées telles quelles. 
+Ce qui est utilisé ici est une chaîne sans format, 
+suivie de ``\n`` qui est un caractère de nouvelle ligne, représentant un saut de ligne automatique après l'impression d'une chaîne.
 
 .. code-block:: c
 
    delay(500);
 
-Keeps the current HIGH or LOW state for 500ms.
+Maintient l'état actuel HIGH ou LOW pendant 500 ms.
 
-This is a function that suspends the program for a period of time. And
-the speed of the program is determined by our hardware. Here we turn on
-or off the LED. If there is no delay function, the program will run the
-whole program very fast and continuously loop. So we need the delay
-function to help us write and debug the program.
+Il s'agit d'une fonction qui suspend le programme pendant une période de temps. 
+Et la vitesse du programme est déterminée par notre matériel. 
+Ici, nous allumons ou éteignons la LED. S'il n'y a pas de fonction de délai, 
+le programme exécutera l'ensemble du programme très rapidement et en boucle continue. 
+Nous avons donc besoin de la fonction de délai pour nous aider à écrire et déboguer le programme.
 
 .. code-block:: c
 
    return 0;
 
-Usually, it is placed behind the main function, indicating that the
-function returns 0 on successful execution.
+Habituellement, il est placé à la fin de la fonction principale, indiquant que la fonction renvoie 0 en cas de succès.
 
-Phenomenon Picture
+Image du phénomène
 --------------------
 
 .. image:: ../img/image54.jpeg

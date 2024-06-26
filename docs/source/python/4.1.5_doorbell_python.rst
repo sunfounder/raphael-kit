@@ -1,57 +1,44 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _4.1.5_py:
 
-4.1.5 Intelligent Visual Doorbell
+4.1.5 Sonnette Visuelle Intelligente
 ==========================================
 
 Introduction
 -----------------
 
-In this project, let's make a DIY intelligent visual doorbell.
+Dans ce projet, nous allons fabriquer une sonnette visuelle intelligente DIY.
 
-Required Components
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/3.1.19components.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,31 +56,31 @@ You can also buy them separately from the links below.
         - |link_camera_buy|
 
 
-Schematic Diagram
+Schéma de Connexion
 -----------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO27       Pin 13   2        27
-============ ======== ======== ===
+============ ======== ========= ======== ===
+Nom T-Board  Connexion physique wiringPi BCM
+GPIO27       Pin 13    2        27
+============ ======== ========= ======== ===
 
 .. image:: ../img/3.1.19_schematic.png
    :width: 500
    :align: center
 
 
-Experimental Procedures
+Procédures Expérimentales
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/3.1.19fritzing.png
   :width: 800
   :align: center
 
-Before this project, you need to make sure you complete :ref:`3.1.3_py` & :ref:`3.1.2_py`.
+Avant ce projet, vous devez vous assurer d'avoir terminé :ref:`3.1.3_py` et :ref:`3.1.2_py`.
 
-**Step 2:** Get into the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -103,7 +90,7 @@ Before this project, you need to make sure you complete :ref:`3.1.3_py` & :ref:`
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécutez.
 
 .. raw:: html
 
@@ -113,12 +100,11 @@ Before this project, you need to make sure you complete :ref:`3.1.3_py` & :ref:`
 
     python3 4.1.5_DoorBell.py
 
-After the code runs, when the button is pressed, a bell will sound, and the camera will record a 5s video, which is stored as the ``visitor.h264`` file in the ``~`` directory. If you have a screen, you can also view visitors by previewing the video in real time.
-
+Après avoir exécuté le code, lorsque le bouton est pressé, une sonnette retentira et la caméra enregistrera une vidéo de 5 secondes, qui sera stockée sous le nom de fichier ``visitor.h264`` dans le répertoire ``~``. Si vous avez un écran, vous pouvez également voir les visiteurs en prévisualisant la vidéo en temps réel.
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller dans le chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -180,19 +166,19 @@ After the code runs, when the button is pressed, a bell will sound, and the came
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
     status = False
 
-This is a flag used to record whether the doorbell is used.
+Ceci est un indicateur utilisé pour enregistrer si la sonnette est utilisée.
 
 .. code-block:: python
 
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
 
-Set the event of ``BtnPin``, when the button is pressed (the level signal changes from high to low) , call the function ``takePhotos()``.
+Configurer l'événement de ``BtnPin``, lorsque le bouton est pressé (le signal de niveau passe de haut à bas), appeler la fonction ``takePhotos()``.
 
 .. code-block:: python
 
@@ -209,10 +195,9 @@ Set the event of ``BtnPin``, when the button is pressed (the level signal change
         camera.stop_recording()
         status = False 
 
-Five seconds are used here to play music and record videos, thus functioning as a doorbell.
+Cinq secondes sont utilisées ici pour jouer de la musique et enregistrer des vidéos, fonctionnant ainsi comme une sonnette.
 
-
-Phenomenon Picture
+Photo du Phénomène
 ------------------------
 
 .. image:: ../img/4.1.5door_bell.JPG

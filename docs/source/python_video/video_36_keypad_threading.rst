@@ -1,41 +1,24 @@
-.. note::
+Vidéo 36 : Surveillance des entrées utilisateur depuis un clavier en utilisant le multithreading
+=========================================================================================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 36: Monitoring User Input from Keypad Using Threading
-=======================================================================================
+Cette vidéo démontre comment créer un système d'alarme en utilisant un Raspberry Pi, intégrant des entrées via un clavier et un affichage LCD. La vidéo couvre divers aspects tels que les instructions de câblage, le multithreading pour le multitâche, la gestion des commandes, la validation des mots de passe, la gestion des erreurs, et l'extension de fonctionnalités. McCarter souligne l'importance de la portabilité et du déploiement pour des applications réelles au-delà de l'environnement de bureau.
 
 
-This video demonstrates how to create an alarm system using a Raspberry Pi, incorporating keypad input and an LCD display. The video covers various aspects such as wiring instructions, threading for multitasking, command handling, password validation, error handling, and extending functionality. McCarter emphasizes the importance of portability and deployment for real-world applications beyond the desktop.
+1. **Portabilité et Déploiement** : Déplacer les projets Raspberry Pi au-delà du bureau pour des applications réelles.
+2. **Configuration du clavier et de l'affichage LCD** : Câblage d'un clavier et d'un affichage LCD aux broches GPIO du Raspberry Pi pour l'entrée et la sortie.
+3. **Multithreading pour le multitâche** : Utilisation du multithreading pour gérer les entrées du clavier tout en exécutant d'autres tâches.
+4. **Intégration des entrées du clavier** : Incorporation des entrées du clavier dans le projet à l'aide d'une bibliothèque.
+5. **Gestion des commandes** : Définition et traitement des commandes pour armer, désarmer et changer le mot de passe.
+6. **Validation du mot de passe** : Mise en œuvre de la validation du mot de passe pour la sécurité du système.
+7. **Interface avec l'affichage LCD** : Interface avec un affichage LCD pour fournir des retours et des invites aux utilisateurs.
+8. **Gestion des erreurs et Débogage** : Techniques pour identifier et résoudre les erreurs pendant le développement.
+9. **Extension de fonctionnalité** : Suggestions pour étendre le projet, y compris l'intégration de capteurs supplémentaires et d'alarmes sonores.
 
 
-1. **Portability and Deployment**: Moving Raspberry Pi projects beyond desktop for real-world applications.
-2. **Keypad and LCD Setup**: Wiring a keypad and LCD display to Raspberry Pi GPIO pins for input and output.
-3. **Threading for Multitasking**: Using threading to handle input from the keypad while executing other tasks.
-4. **Keypad Input Integration**: Incorporating keypad input into the project using a library.
-5. **Command Handling**: Defining and processing commands for arming, disarming, and changing the password.
-6. **Password Validation**: Implementing password validation for system security.
-7. **LCD Display Interface**: Interfacing with an LCD display to provide user feedback and prompts.
-8. **Error Handling and Debugging**: Techniques for identifying and resolving errors during development.
-9. **Extending Functionality**: Suggestions for expanding the project, including integrating additional sensors and audible alarms.
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/lzv9cwdU_ok?si=VyGkOZt_vOGniMap" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/lzv9cwdU_ok?si=VyGkOZt_vOGniMap" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

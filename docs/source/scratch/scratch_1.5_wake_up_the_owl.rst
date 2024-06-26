@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.5_scratch:
 
-1.5 Wake up the Owl
-====================
+1.5 Réveiller le Hibou
+=========================
 
-Today we are going to play a game of waking up the owl.
+Aujourd'hui, nous allons jouer à un jeu pour réveiller le hibou.
 
-When someone approaches the PIR sensor module, the owl will wake up from sleep.
+Lorsque quelqu'un s'approche du module de capteur PIR, le hibou se réveillera de son sommeil.
 
 .. image:: img/1.5_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+---------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.5_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,46 +47,45 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_pir`
         - \-
 
-Build the Circuit
----------------------
+Construire le Circuit
+------------------------
 
 .. image:: img/1.5_fritzing.png
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité et l'autre pour ajuster la distance de détection. Pour que le module PIR fonctionne mieux, vous devez tourner les deux à fond dans le sens antihoraire.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
     :align: center
 
-Load the Code and See What Happens
----------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+------------------------------------------
 
-Load the code file (``1.5_wake_up_the_owl.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.5_wake_up_the_owl.sb3``) dans Scratch 3.
 
-When you approach the PIR sensor module, you will see the owl on the stage area open its wings and wake up, and when you leave, the owl will go back to sleep again.
+Lorsque vous vous approchez du module de capteur PIR, vous verrez le hibou dans la zone de scène ouvrir ses ailes et se réveiller, et lorsque vous vous éloignez, le hibou se rendormira.
 
 
-Tips on Sprite
-----------------
+Astuces sur le Sprite
+--------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **owl1.png** and **owl2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **owl**.
+Sélectionnez Sprite1 et cliquez sur **Costumes** en haut à gauche ; téléchargez **owl1.png** et **owl2.png** depuis le chemin ``~/raphael-kit/scratch/picture`` via le bouton **Télécharger Costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **hibou**.
 
 .. image:: img/1.5_pir1.png
 
-Tips on Codes
---------------
+Astuces sur les Codes
+------------------------
 
 .. image:: img/1.3_title2.png
 
-
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Lorsque le drapeau vert est cliqué, l'état initial de gpio17 est défini sur bas.
 
 .. image:: img/1.5_owl1.png
   :width: 400
 
-When pin17 is low (no one is approaching), switch the costume of the owl sprite to owl1 (sleeping state).
+Lorsque pin17 est bas (personne ne s'approche), changez le costume du sprite hibou en owl1 (état de sommeil).
 
 .. image:: img/1.5_owl2.png
   :width: 400
 
-When pin17 is high (someone is approaching), we switch the costume of owl sprite to owl2 (wake up state).
+Lorsque pin17 est haut (quelqu'un s'approche), changez le costume du sprite hibou en owl2 (état réveillé).

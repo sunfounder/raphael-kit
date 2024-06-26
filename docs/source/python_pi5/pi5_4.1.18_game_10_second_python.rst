@@ -1,62 +1,49 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _4.1.18_py_pi5:
 
-4.1.13 GAME - 10 Second
+4.1.13 JEU - 10 Secondes
 ============================
 
 Introduction
 -------------------
 
-Next, follow me to make a game device to challenge your concentration.
-Tie the tilt switch to a stick to make a magic wand. Shake the wand, the
-4-digit segment display will start counting, shake again will let it
-stop counting. If you succeed in keeping the displayed count at
-**10.00**, then you win. You can play the game with your friends to see
-who is the time wizard.
+Ensuite, suivez-moi pour créer un dispositif de jeu qui mettra au défi votre concentration.
+Attachez l'interrupteur à bascule à un bâton pour en faire une baguette magique. 
+Agitez la baguette, l'affichage à 4 chiffres commencera à compter, une nouvelle 
+secousse arrêtera le comptage. Si vous réussissez à maintenir le compte affiché 
+à **10.00**, alors vous gagnez. Vous pouvez jouer à ce jeu avec vos amis pour 
+voir qui est le sorcier du temps.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components.
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/4.1.18_game_10_second_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -73,11 +60,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch`
         - \-
 
-Schematic Diagram
+Schéma
 ------------------------
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  physique wiringPi BCM
 GPIO17       Pin 11   0        17
 GPIO27       Pin 13   2        27
 GPIO22       Pin 15   3        22
@@ -91,14 +78,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../python_pi5/img/4.1.18_game_10_second_schematic.png
    :align: center
 
-Experimental Procedures
+Procédures expérimentales
 ---------------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1** : Construisez le circuit.
 
 .. image:: ../python_pi5/img/4.1.18_game_10_second_circuit.png
 
-**Step 2**: Go to the folder of the code.
+**Étape 2** : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -108,7 +95,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run the executable file.
+**Étape 3** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -118,15 +105,15 @@ Experimental Procedures
 
     sudo python3 4.1.18_GAME_10Second_zero.py
 
-Shake the wand, the 4-digit segment display will start counting, shake
-again will let it stop counting. If you succeed in keeping the displayed
-count at **10.00**, then you win. Shake it one more time to start the
-next round of the game.
+Secouez la baguette, l'affichage à 4 chiffres commencera à compter, secouez
+à nouveau pour arrêter le comptage. Si vous réussissez à maintenir le compte affiché
+à **10.00**, alors vous gagnez. Secouez-la une fois de plus pour commencer la
+prochaine manche du jeu.
 
 **Code**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre au chemin du code source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -240,9 +227,9 @@ next round of the game.
             timer1.cancel()
 
 
-**Code Explanation**
+**Explication du code**
 
-#. The script begins by importing necessary modules. The ``gpiozero`` library is used for interfacing with GPIO devices like buttons, and ``time`` and ``threading`` modules may be used for handling timing-related tasks or concurrent operations.
+#. Le script commence par importer les modules nécessaires. La bibliothèque ``gpiozero`` est utilisée pour interagir avec les dispositifs GPIO comme les boutons, et les modules ``time`` et ``threading`` peuvent être utilisés pour gérer des tâches liées au temps ou des opérations concurrentes.
 
    .. code-block:: python
 
@@ -252,14 +239,14 @@ next round of the game.
        import time
        import threading
 
-#. Initializes a ``Button`` object from the GPIO Zero library, connecting it to GPIO pin 26. This setup allows for the detection of button presses.
+#. Initialise un objet ``Button`` de la bibliothèque GPIO Zero, connecté à la broche GPIO 26. Cette configuration permet de détecter les pressions sur le bouton.
 
    .. code-block:: python
 
        # Initialize the button connected to GPIO 26
        sensorPin = Button(26)
 
-#. Initializes GPIO pins connected to the shift register's Serial Data Input (SDI), Register Clock Input (RCLK), and Shift Register Clock Input (SRCLK).
+#. Initialise les broches GPIO connectées aux entrées de données série (SDI), d'horloge du registre (RCLK) et d'horloge du registre à décalage (SRCLK) du registre à décalage.
 
    .. code-block:: python
 
@@ -268,7 +255,7 @@ next round of the game.
        RCLK = OutputDevice(23)  # Register Clock
        SRCLK = OutputDevice(18) # Shift Register Clock
 
-#. Initializes the pins for each digit of the 7-segment display and defines the binary codes for displaying numbers 0-9.
+#. Initialise les broches pour chaque chiffre de l'affichage à 7 segments et définit les codes binaires pour afficher les nombres de 0 à 9.
 
    .. code-block:: python
 
@@ -278,7 +265,7 @@ next round of the game.
        # Define segment codes for numbers 0 to 9 on the 7-segment display
        number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-#. Functions to control the 7-segment display. ``clearDisplay`` turns off all segments, ``hc595_shift`` shifts data into the shift register, and ``pickDigit`` activates a specific digit on the display.
+#. Fonctions pour contrôler l'affichage à 7 segments. ``clearDisplay`` éteint tous les segments, ``hc595_shift`` transfère les données dans le registre à décalage, et ``pickDigit`` active un chiffre spécifique sur l'affichage.
 
    .. code-block:: python
 
@@ -306,7 +293,7 @@ next round of the game.
                pin.off()
            placePin[digit].on()
 
-#. Function to display the current value of the counter on the 7-segment display.
+#. Fonction pour afficher la valeur actuelle du compteur sur l'affichage à 7 segments.
 
    .. code-block:: python
 
@@ -329,7 +316,7 @@ next round of the game.
            pickDigit(3)
            hc595_shift(number[counter % 10000 // 1000])
 
-#. Function to handle state changes (start/stop) of the counter based on button presses.
+#. Fonction pour gérer les changements d'état (démarrage/arrêt) du compteur en fonction des pressions sur le bouton.
 
    .. code-block:: python
 
@@ -345,7 +332,7 @@ next round of the game.
                time.sleep(1)
            gameState = (gameState + 1) % 2
 
-#. Main loop that continuously checks the button state and updates the display. It calls ``stateChange`` when the button state changes.
+#. Boucle principale qui vérifie en continu l'état du bouton et met à jour l'affichage. Elle appelle ``stateChange`` lorsque l'état du bouton change.
 
    .. code-block:: python
 
@@ -361,7 +348,7 @@ next round of the game.
                    stateChange()
                lastState = currentState
 
-#. Timer function that increments the counter at a regular interval (every 0.01 second).
+#. Fonction de minuterie qui incrémente le compteur à intervalle régulier (toutes les 0,01 seconde).
 
    .. code-block:: python
 
@@ -372,7 +359,7 @@ next round of the game.
            timer1.start()
            counter += 1
 
-#. Executes the main loop and allows for a clean exit from the program using a keyboard interrupt (Ctrl+C).
+#. Exécute la boucle principale et permet une sortie propre du programme à l'aide d'une interruption du clavier (Ctrl+C).
 
    .. code-block:: python
 

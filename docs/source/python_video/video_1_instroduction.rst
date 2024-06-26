@@ -1,40 +1,26 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 1: First Boot
+Vidéo 1 : Premier Démarrage
 =========================================================================================
 
-The video introduces a comprehensive Raspberry Pi tutorial series, covering everything from basic setup to advanced projects. 
-It emphasizes a thorough learning approach, focusing on circuits, sensors, and GPIO pins. SunFounder sponsors the series, 
-providing a comprehensive and affordable Raspberry Pi kit. The upcoming lessons will include setting up the Raspberry Pi, 
-basic Linux usage, Python overview, and working with GPIO pins. Additionally, it discusses the required hardware, 
-including the Raspberry Pi model, SD card, power supply, and HDMI adapter. 
-Another video focuses on customizing the Raspberry Pi desktop interface, 
-covering panel configuration, applet management, theme settings, and troubleshooting tips.
+La vidéo introduit une série de tutoriels complète sur le Raspberry Pi, couvrant tout, de la configuration de base aux projets avancés.
+Elle met l'accent sur une approche d'apprentissage approfondie, se concentrant sur les circuits, les capteurs et les broches GPIO. La série est sponsorisée par SunFounder,
+fournissant un kit Raspberry Pi complet et abordable. Les leçons à venir incluront la configuration du Raspberry Pi,
+les bases de l'utilisation de Linux, un aperçu de Python et le travail avec les broches GPIO. De plus, elle discute du matériel nécessaire,
+y compris le modèle de Raspberry Pi, la carte SD, l'alimentation électrique et l'adaptateur HDMI.
+Une autre vidéo se concentre sur la personnalisation de l'interface du bureau Raspberry Pi,
+couvrant la configuration du panneau, la gestion des applets, les paramètres des thèmes et les conseils de dépannage.
 
-1. Introduction to the Raspberry Pi tutorial series to meet the demand for systematic educational resources.
-2. Emphasis on comprehensive learning rather than project-based learning.
-3. Focus on circuits, sensors, and GPIO pins similar to Arduino for differentiation.
-4. SunFounder sponsorship providing a comprehensive and affordable Raspberry Pi kit.
-5. Overview of upcoming lessons, including basic setup, Linux usage, Python, and GPIO pins.
-6. Explanation of required hardware, such as the Raspberry Pi model, SD card, power supply, and HDMI adapter.
-7. Customization options for the Raspberry Pi desktop interface, including panel layout, applets, spacers, and themes.
-8. Troubleshooting tips for common issues like missing icons and misplaced panel elements.
+1. Introduction à la série de tutoriels Raspberry Pi pour répondre à la demande de ressources éducatives systématiques.
+2. Accent sur l'apprentissage complet plutôt que sur l'apprentissage basé sur des projets.
+3. Focus sur les circuits, les capteurs et les broches GPIO, similaire à Arduino pour la différenciation.
+4. Sponsorisation par SunFounder offrant un kit Raspberry Pi complet et abordable.
+5. Aperçu des leçons à venir, incluant la configuration de base, l'utilisation de Linux, Python, et les broches GPIO.
+6. Explication du matériel requis, tel que le modèle de Raspberry Pi, la carte SD, l'alimentation électrique et l'adaptateur HDMI.
+7. Options de personnalisation pour l'interface du bureau Raspberry Pi, incluant la disposition du panneau, les applets, les espacements et les thèmes.
+8. Conseils de dépannage pour les problèmes courants comme les icônes manquantes et les éléments de panneau mal placés.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/1WDagiA8fdU?si=o9Q1tTC1X1B9teef" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/1WDagiA8fdU?si=o9Q1tTC1X1B9teef" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

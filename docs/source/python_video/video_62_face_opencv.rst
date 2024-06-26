@@ -1,35 +1,17 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 62: Finding and Tracking Faces In OpenCV with Haar Cascades
+Vidéo 62 : Détection et Suivi de Visages avec OpenCV et Haar Cascades
 =======================================================================================
 
+Apprenez à créer une application de caméra sur votre Raspberry Pi en utilisant OpenCV, couvrant la détection des visages et des yeux, l'optimisation des performances et le suivi en temps réel.
 
-Learn how to create a camera application on your Raspberry Pi using OpenCV, 
-covering face and eye detection, performance optimization, and real-time face tracking.
+1. Configuration de votre environnement Raspberry Pi avec le kit Raspberry Pi de SunFounder.
+2. Écriture du code pour capturer des frames vidéo et implémenter la détection des visages et des yeux avec OpenCV.
+3. Optimisation des performances en limitant la région d'intérêt (ROI) pour la détection des yeux.
+4. Compréhension du concept de ROI et de son impact sur la vitesse de traitement.
+5. Suivi des visages en temps réel utilisant OpenCV et un servo pan-tilt.
 
-
-1. Setting up your Raspberry Pi environment with the SunFounder Raspberry Pi kit.
-2. Writing code for capturing video frames and implementing face and eye detection using OpenCV.
-3. Optimizing performance by limiting the region of interest (ROI) for eye detection.
-4. Understanding the concept of ROI and its impact on processing speed.
-5. Real-time face tracking using OpenCV and a pan-tilt servo.
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/cEgio_zgIQM?si=UUHtUKM9jqsp9tNK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/cEgio_zgIQM?si=UUHtUKM9jqsp9tNK" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

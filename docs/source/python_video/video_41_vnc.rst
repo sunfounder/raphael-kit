@@ -1,32 +1,17 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 41: How to Set Up a Remote Desktop on Raspberry Pi Using VNC
+Vidéo 41 : Comment configurer un bureau à distance sur Raspberry Pi avec VNC
 =======================================================================================
 
-Learn how to set up remote desktop access on your Raspberry Pi, enabling control from a Windows PC without the need for physical peripherals.
+Apprenez à configurer l'accès à distance sur votre Raspberry Pi, permettant le contrôle depuis un PC Windows sans avoir besoin de périphériques physiques.
 
-1. Introduction to Raspberry Pi tutorial series sponsored by SunFounder.
-2. Explanation of the need for remote desktop access to Raspberry Pi, avoiding physical peripherals.
-3. Overview of using SSH via PuTTY for remote terminal access.
-4. Introduction to VNC (Virtual Network Computing) for full desktop interface.
-5. Instructions for enabling VNC on Raspberry Pi and configuring display options.
-6. Importance of knowing the Raspberry Pi's IP address for remote connection.
+1. Introduction à la série de tutoriels Raspberry Pi sponsorisée par SunFounder.
+2. Explication de la nécessité de l'accès à distance au bureau du Raspberry Pi, évitant l'utilisation de périphériques physiques.
+3. Aperçu de l'utilisation de SSH via PuTTY pour l'accès au terminal à distance.
+4. Introduction à VNC (Virtual Network Computing) pour une interface de bureau complète.
+5. Instructions pour activer VNC sur Raspberry Pi et configurer les options d'affichage.
+6. Importance de connaître l'adresse IP du Raspberry Pi pour la connexion à distance.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/DKwpOTzPP_A?si=JjNeSuAUwsGps1ed" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/DKwpOTzPP_A?si=JjNeSuAUwsGps1ed" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

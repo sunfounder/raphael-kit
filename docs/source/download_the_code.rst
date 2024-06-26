@@ -1,26 +1,12 @@
-.. note::
+Télécharger le Code
+===========================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Avant de télécharger le code, veuillez noter que le code d'exemple est 
+**UNIQUEMENT** testé sur Raspberry Pi OS. Nous fournissons deux méthodes pour le téléchargement :
 
-    **Why Join?**
+**Méthode 1 : Utiliser git clone (Recommandé)**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Download the Code
-=================
-
-Before you download the code, please note that the example code is
-**ONLY** test on Raspberry Pi OS. We provide two methods for download:
-
-**Method 1: Use git clone (Recommended)**
-
-Log into Raspberry Pi and then change directory to ``~``.
+Connectez-vous à Raspberry Pi, puis changez de répertoire vers ``~``.
 
 .. raw:: html
 
@@ -33,9 +19,9 @@ Log into Raspberry Pi and then change directory to ``~``.
 
 .. note::
 
-   cd to change to the intended directory from the current path. Informally, here is to go to the path ``~/``.
+   Utilisez `cd` pour changer de répertoire depuis le chemin actuel. Ici, cela signifie aller vers le chemin ``~/``.
 
-Clone the repository from GitHub.
+Clonez le dépôt depuis GitHub.
 
 .. raw:: html
 
@@ -45,8 +31,8 @@ Clone the repository from GitHub.
 
    git clone https://github.com/sunfounder/raphael-kit.git
 
-**Method 2: Download the code**
+**Méthode 2 : Télécharger le code**
 
-Download the source code from github: https://github.com/sunfounder/raphael-kit
+Téléchargez le code source depuis GitHub : https://github.com/sunfounder/raphael-kit
 
 .. image:: img/image33.png

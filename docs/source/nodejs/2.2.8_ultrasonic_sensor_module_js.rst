@@ -1,57 +1,43 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.8_js:
 
-2.2.8 Ultrasonic Sensor Module
-==============================
+2.2.8 Module de Capteur Ultrasonique
+========================================
 
 Introduction
---------------
+---------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Le capteur ultrasonique utilise des ultrasons pour détecter avec précision les objets et mesurer 
+les distances. Il émet des ondes ultrasonores et les convertit en signaux électroniques.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.2.5.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est vraiment pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément en suivant les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,20 +48,19 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_ultrasonic_sensor`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
------------------
+Schéma de Montage
+--------------------
 
 .. image:: ../img/image329.png
 
+Procédures Expérimentales
+-----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -85,7 +70,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -95,9 +80,9 @@ Experimental Procedures
 
     sudo node ultrasonic_sensor.js
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Lorsque le code est exécuté, le module de capteur ultrasonique détecte la distance entre 
+l'obstacle devant lui et le module lui-même, puis la valeur de la distance sera affichée 
+à l'écran.
 
 **Code**
 
@@ -137,22 +122,21 @@ value will be printed on the screen.
 
 
 
-**Code Explanation**
+**Explication du Code**
 
-The ``trigger`` function can be used to generate a pulse on a GPIO and 
-``alerts`` can be used to determine the time of a GPIO state change 
-accurate to a few microseconds. 
+La fonction ``trigger`` peut être utilisée pour générer une impulsion sur un GPIO et
+les ``alertes`` peuvent être utilisées pour déterminer le moment d'un changement d'état GPIO
+avec une précision de quelques microsecondes.
 
-These two features can be combined to measure distance using a HC-SR04 
-ultrasonic sensor.
+Ces deux fonctionnalités peuvent être combinées pour mesurer la distance à l'aide d'un capteur ultrasonique HC-SR04.
 
 .. code-block:: js
 
     setInterval(() => {
-      trigger.trigger(10, 1); // Set trigger high for 10 microseconds
+      trigger.trigger(10, 1); // Déclencher haut pendant 10 microsecondes
     }, 1000);
 
-This is to periodically send out a 10us ultrasonic pulse.
+Cela permet d'envoyer périodiquement une impulsion ultrasonique de 10us.
 
 .. code-block:: js
 
@@ -163,21 +147,18 @@ This is to periodically send out a 10us ultrasonic pulse.
           startTick = tick;
         } else {
           const endTick = tick;
-          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
-          console.log(diff / 2 / MICROSECDONDS_PER_CM);
+          const diff = (endTick >> 0) - (startTick >> 0); // Arithmétique non signée sur 32 bits
+          console.log(diff / 2 / MICROSECONDES_PAR_CM);
         }    
     });
   };
 
-This function sets an alert that will record the time between sending the pulse (level is 1) and receiving the echo (level is 0).
-By multiplying the time difference by the speed of sound (and dividing by 2), you can get the distance to the obstacle ahead.
-
-
+Cette fonction définit une alerte qui enregistrera le temps entre l'envoi de l'impulsion (le niveau est 1) et la réception de l'écho (le niveau est 0).
+En multipliant la différence de temps par la vitesse du son (et en divisant par 2), vous pouvez obtenir la distance de l'obstacle devant vous.
 
 .. https://github.com/fivdi/pigpio
 
-Phenomenon Picture
-------------------
+Image du Phénomène
+----------------------
 
 .. image:: ../img/image221.jpeg
-    

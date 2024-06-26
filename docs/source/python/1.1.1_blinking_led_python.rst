@@ -1,59 +1,45 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.1_py:
 
-1.1.1 Blinking LED
+1.1.1 LED Clignotante
 =========================
 
 Introduction
 -----------------
 
-In this project, we will learn how to make a blinking LED by programming.
-Through your settings, your LED can produce a series of interesting
-phenomena. Now, go for it.
+Dans ce projet, nous apprendrons comment créer une LED clignotante par programmation.
+Grâce à vos réglages, votre LED peut produire une série de phénomènes intéressants. Maintenant, allons-y.
 
-Required Components
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/blinking_led_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,27 +52,25 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-
-Schematic Diagram
+Schéma de Circuit
 ---------------------
 
-In this experiment, connect a 220Ω resistor to the anode (the long pin
-of the LED), then the resistor to 3.3 V, and connect the cathode (the
-short pin) of the LED to GPIO17 of Raspberry Pi. Therefore, to turn on
-an LED, we need to make GPIO17 low (0V) level. We can get this
-phenomenon by programming.
+Dans cette expérience, connectez une résistance de 220Ω à l'anode (la patte longue de la LED), 
+puis la résistance à 3,3 V, et connectez la cathode (la patte courte) de la LED à GPIO17 du 
+Raspberry Pi. Par conséquent, pour allumer une LED, nous devons mettre GPIO17 au niveau bas (0V). 
+Nous pouvons obtenir ce phénomène par programmation.
 
 .. note::
 
-    **Pin11** refers to the 11th pin of the Raspberry Pi from left to right, and its corresponding **wiringPi** and **BCM** pin numbers are shown in the following table.
+    **Pin11** fait référence à la 11e broche du Raspberry Pi de gauche à droite, et ses numéros de 
+    broche correspondants **wiringPi** et **BCM** sont indiqués dans le tableau suivant.
 
-In the C language related content, we make GPIO0 equivalent to 0 in the
-wiringPi. Among the Python language related content, BCM 17 is 17 in the
-BCM column of the following table. At the same time, they are the same
-as the 11th pin on the Raspberry Pi, Pin 11.
+Dans le contenu lié au langage C, nous faisons en sorte que GPIO0 soit équivalent à 0 dans 
+wiringPi. Dans le contenu lié au langage Python, BCM 17 est 17 dans la colonne BCM du tableau 
+suivant. En même temps, ils sont les mêmes que la 11e broche sur le Raspberry Pi, Pin 11.
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nom T-Board  physique wiringPi BCM
 GPIO17       Pin 11   0        17
 ============ ======== ======== ===
 
@@ -94,31 +78,28 @@ GPIO17       Pin 11   0        17
     :width: 800
     :align: center
 
-Experimental Procedures
+Procédures Expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image49.png
     :width: 800
     :align: center
 
-**Step 2:** Go to the folder of the code and run it.
+**Étape 2 :** Allez dans le dossier du code et exécutez-le.
 
-1. If you use a screen, you're recommended to take the following steps.
+1. Si vous utilisez un écran, il est recommandé de suivre les étapes suivantes.
 
-Find 1.1.1_BlinkingLed.py and double click it to open. Now you're in the
-file.
+Trouvez 1.1.1_BlinkingLed.py et double-cliquez dessus pour l'ouvrir. Vous êtes maintenant dans le fichier.
 
-Click **Run** ->\ **Run Module** in the window and the following
-contents will appear.
+Cliquez sur **Run** ->\ **Run Module** dans la fenêtre et les contenus suivants apparaîtront.
 
-To stop it from running, just click the X button on the top right to
-close it and then you'll back to the code. If you modify the code,
-before clicking **Run Module (F5)** you need to save it first. Then you
-can see the results.
+Pour arrêter l'exécution, cliquez simplement sur le bouton X en haut à droite pour le fermer 
+et vous reviendrez au code. Si vous modifiez le code, avant de cliquer sur **Run Module (F5)**, 
+vous devez d'abord le sauvegarder. Ensuite, vous pouvez voir les résultats.
 
-2. If you log into the Raspberry Pi remotely, type in the command:
+2. Si vous vous connectez au Raspberry Pi à distance, tapez la commande suivante :
 
 .. raw:: html
 
@@ -129,9 +110,9 @@ can see the results.
    cd ~/raphael-kit/python
 
 .. note::
-    Change directory to the path of the code in this experiment via ``cd``.
+    Changez de répertoire vers le chemin du code dans cette expérience via ``cd``.
 
-**Step 3:** Run the code
+**Étape 3 :** Exécutez le code
 
 .. raw:: html
 
@@ -142,13 +123,13 @@ can see the results.
    sudo python3 1.1.1_BlinkingLed.py
 
 .. note::
-    Here sudo - superuser do, and python means to run the file by Python.
+    Ici sudo - superuser do, et python signifie exécuter le fichier avec Python.
 
-After the code runs, you will see the LED flashing.
+Après l'exécution du code, vous verrez la LED clignoter.
 
-**Step 4:** If you want to edit the code file 1.1.1_BlinkingLed.py,
-press ``Ctrl + C`` to stop running the code. Then type the following
-command to open 1.1.1_BlinkingLed.py:
+**Étape 4 :** Si vous souhaitez modifier le fichier de code 1.1.1_BlinkingLed.py, 
+appuyez sur ``Ctrl + C`` pour arrêter l'exécution du code. Puis tapez la commande 
+suivante pour ouvrir 1.1.1_BlinkingLed.py :
 
 .. raw:: html
 
@@ -159,23 +140,22 @@ command to open 1.1.1_BlinkingLed.py:
    nano 1.1.1_BlinkingLed.py
 
 .. note::
-    nano is a text editor tool. The command is used to open the
-    code file 1.1.1_BlinkingLed.py by this tool.
+    nano est un outil d'édition de texte. La commande est utilisée pour ouvrir le fichier 
+    de code 1.1.1_BlinkingLed.py avec cet outil.
 
-Press ``Ctrl+X`` to exit. If you have modified the code, there will be a
-prompt asking whether to save the changes or not. Type in ``Y`` (save)
-or ``N`` (don’t save).
+Appuyez sur ``Ctrl+X`` pour quitter. Si vous avez modifié le code, une invite vous demandera 
+si vous souhaitez enregistrer les modifications ou non. Tapez ``Y`` (enregistrer) ou ``N`` 
+(ne pas enregistrer).
 
-Then press ``Enter`` to exit. Type in nano 1.1.1_BlinkingLed.py again to
-see the effect after the change.
-
+Puis appuyez sur ``Enter`` pour quitter. Tapez à nouveau nano 1.1.1_BlinkingLed.py 
+pour voir l'effet après la modification.
 **Code**
 
-The following is the program code:
+Le programme suivant est le code :
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+   Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -218,36 +198,34 @@ The following is the program code:
       except KeyboardInterrupt:
          destroy()
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: python
 
    #!/usr/bin/env python3
 
-When the system detects this, it will search the installation path of
-python in the env setting, then call the corresponding interpreter to
-complete the operation. It’s to prevent the user not installing the
-python onto the ``/usr/bin`` default path.
+Lorsque le système détecte cela, il recherchera le chemin d'installation de python dans le 
+paramètre env, puis appellera l'interpréteur correspondant pour compléter l'opération. Cela 
+permet d'éviter que l'utilisateur n'installe pas python dans le chemin par défaut ``/usr/bin``.
 
 .. code-block:: python
 
    import RPi.GPIO as GPIO
 
-In this way, import the RPi.GPIO library, then define a variable, GPIO
-to replace RPI.GPIO in the following code.
+De cette façon, importez la bibliothèque RPi.GPIO, puis définissez une variable, GPIO, pour 
+remplacer RPI.GPIO dans le code suivant.
 
 .. code-block:: python
 
    import time
 
-Import time package, for time delay function in the following program.
+Importez le package time, pour la fonction de délai temporel dans le programme suivant.
 
 .. code-block:: python
 
    LedPin = 17
 
-LED connects to the GPIO17 of the T-shape extension board, namely, BCM
-17.
+La LED est connectée au GPIO17 de la carte d'extension en forme de T, c'est-à-dire, BCM 17.
 
 .. code-block:: python
 
@@ -255,33 +233,32 @@ LED connects to the GPIO17 of the T-shape extension board, namely, BCM
       GPIO.setmode(GPIO.BCM)
       GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
 
-Set LedPin's mode to output, and initial level to High (3.3v).
+Définir le mode de LedPin en sortie, et le niveau initial à High (3,3v).
 
-There are two ways of numbering the IO pins on a Raspberry Pi within
-RPi.GPIO: BOARD numbers and BCM numbers. In our projects, what we use is
-BCM numbers. You need to set up every channel you are using as an input
-or an output.
+Il existe deux façons de numéroter les broches IO sur un Raspberry Pi avec 
+RPi.GPIO : les numéros BOARD et les numéros BCM. Dans nos projets, nous 
+utilisons les numéros BCM. Vous devez configurer chaque canal que vous utilisez 
+comme entrée ou sortie.
 
 .. code-block:: python
 
    GPIO.output(LedPin, GPIO.LOW)
 
-Set GPIO17(BCM17) as 0V (low level). Since the cathode of LED is
-connected to GPIO17, thus the LED will light up.
+Définir GPIO17 (BCM17) à 0V (niveau bas). Puisque la cathode de la LED est connectée à GPIO17, 
+la LED s'allumera.
 
 .. code-block:: python
 
    time.sleep(0.5)
 
-Delay for 0.5 second. Here, the statement is delay function in C language, the unit is second.
+Délai de 0,5 seconde. Ici, l'instruction est une fonction de délai en langage C, l'unité est la seconde.
 
 .. code-block:: python
 
    def destroy():
       GPIO.cleanup()  
 
-Define a destroy function for clean up everything after the script
-finished.
+Définir une fonction destroy pour nettoyer tout après la fin du script.
 
 .. code-block:: python
 
@@ -293,13 +270,12 @@ finished.
       except KeyboardInterrupt:
          destroy()
 
-This is the general running structure of the code. When the program
-starts to run, it initializes the pin by running the setup(), and then
-runs the code in the main() function to set the pin to high and low
-levels. When ``Ctrl+C`` is pressed, the program,
-destroy() will be  executed.  
+C'est la structure générale de l'exécution du code. Lorsque le programme commence à s'exécuter, 
+il initialise la broche en exécutant setup(), puis exécute le code dans la fonction main() pour 
+définir la broche en niveaux haut et bas. Lorsque ``Ctrl+C`` est pressé, la fonction destroy() 
+sera exécutée.
 
-Phenomenon Picture
+Image du phénomène
 --------------------
 
 .. image:: ../img/image54.jpeg

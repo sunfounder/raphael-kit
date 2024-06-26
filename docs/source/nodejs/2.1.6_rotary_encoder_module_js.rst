@@ -1,59 +1,47 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.6_js:
 
-2.1.6 Rotary Encoder Module
-===========================
+2.1.6 Module Encodeur Rotatif
+================================
 
 Introduction
-------------------
+---------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+Dans ce projet, vous allez découvrir l'encodeur rotatif. Un encodeur rotatif est un interrupteur 
+électronique produisant une série de pulses réguliers dans une séquence temporelle stricte. 
+Lorsqu'il est utilisé avec un CI, il peut effectuer des opérations d'incrémentation, 
+de décrémentation, de changement de page et d'autres opérations telles que le défilement 
+de souris, la sélection de menu, etc.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Composants Nécessaires
+-----------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,26 +52,25 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rotary_encoder`
         - |link_rotary_encoder_buy|
 
-chematic Diagram
-------------------------
+Schéma de Câblage
+--------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
------------------------
+Procédures Expérimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
-17.
+Dans cet exemple, nous pouvons connecter directement la broche de l'encodeur rotatif au 
+Raspberry Pi en utilisant une breadboard et un câble à 40 broches, connecter le GND de l'encodeur 
+rotatif à GND, « + » à 5V, SW à GPIO numérique 27, DT à GPIO numérique 18, et CLK à GPIO numérique 17.
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Allez dans le dossier du code.
 
 .. raw:: html
 
@@ -93,7 +80,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -103,11 +90,10 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo node rotary_encoder_module.js
 
-You will see the count on the shell. 
-When you turn the rotary encoder clockwise, the count is increased; 
-when turn it counterclockwise, the count is decreased. 
-If you press the switch on the rotary encoder, the readings will return to zero.
-
+Vous verrez le décompte dans le terminal. Lorsque vous tournez l'encodeur rotatif dans le sens 
+horaire, le décompte augmente ; lorsque vous le tournez dans le sens antihoraire, le décompte 
+diminue. Si vous appuyez sur l'interrupteur de l'encodeur rotatif, les lectures seront 
+réinitialisées à zéro.
 
 **Code**
 
@@ -149,8 +135,7 @@ If you press the switch on the rotary encoder, the readings will return to zero.
 
 
 
-**Code Explanation**
-
+**Explication du Code**
 
 .. code-block:: js
 
@@ -166,10 +151,9 @@ If you press the switch on the rotary encoder, the readings will return to zero.
       console.log(`globalCounter = ${globalCounter}`);
     });
 
-When dtPin goes from low to high, if clkPin is high, 
-the count decreases, 
-otherwise the count increases.
-
+Lorsque dtPin passe de bas à haut, si clkPin est haut,
+le compteur diminue,
+sinon le compteur augmente.
 
 .. code-block:: js
 
@@ -178,14 +162,12 @@ otherwise the count increases.
       console.log(`globalCounter = ${globalCounter}`);
     });
 
+swPin émettra un signal bas lorsque l'axe est pressé.
+À ce moment, globalCounter est réinitialisé à zéro.
 
-The swPin will output low when the shaft is pressed. 
-Let the globalCounter go to zero at this point
 
-
-Phenomenon Picture
--------------------------
+Image du phénomène
+----------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG
    :align: center
-   

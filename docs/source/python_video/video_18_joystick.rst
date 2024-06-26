@@ -1,36 +1,18 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 18: Using a Joystick With the Raspberry Pi
+Vidéo 18 : Utiliser un joystick avec le Raspberry Pi
 =======================================================================================
 
+Apprenez à intégrer un joystick dans vos projets Raspberry Pi en utilisant le kit SunFounder, en couvrant la configuration, le câblage, la programmation et les tests.
 
-Learn how to incorporate a joystick into your Raspberry Pi projects using the SunFounder kit, covering setup, wiring, coding, and testing.
+1. **Introduction** : Explorez la polyvalence de l'utilisation d'un joystick avec les projets Raspberry Pi.
+2. **Démonstration du kit SunFounder** : Présentation des composants inclus dans le kit SunFounder.
+3. **Comprendre le joystick** : Explication des composants du joystick et de sa fonctionnalité.
+4. **Configuration du câblage** : Guide étape par étape pour connecter le joystick aux broches GPIO du Raspberry Pi.
+5. **Processus de codage** : Utilisation de Python et de la bibliothèque RPi.GPIO pour lire les valeurs analogiques et détecter les pressions sur les boutons du joystick.
+6. **Tests et validation** : Assurez-vous du bon fonctionnement du joystick et des boutons à travers des tests.
 
-1. **Introduction**: Explore the versatility of using a joystick with Raspberry Pi projects.
-2. **SunFounder Kit Demonstration**: Overview of components included in the SunFounder kit.
-3. **Understanding the Joystick**: Explanation of the joystick's components and functionality.
-4. **Wiring Setup**: Step-by-step guide on wiring the joystick to the Raspberry Pi GPIO pins.
-5. **Coding Process**: Using Python and RPi.GPIO library to read analog values and detect button presses from the joystick.
-6. **Testing and Validation**: Ensure proper functionality of the joystick and button through testing.
-
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/T6HsRRXBVS8?si=79j5wweBJj7gtfQW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/T6HsRRXBVS8?si=79j5wweBJj7gtfQW" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

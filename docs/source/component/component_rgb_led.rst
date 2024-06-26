@@ -1,44 +1,31 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_rgb_led:
 
-RGB LED
+LED RVB
 =================
 
 .. image:: img/rgb_led.png
     :width: 100
     
-RGB LEDs emit light in various colors. An RGB LED packages three LEDs of red, green, and blue into a transparent or semitransparent plastic shell. It can display various colors by changing the input voltage of the three pins and superimpose them, which, according to statistics, can create 16,777,216 different colors. 
+Les LED RVB émettent de la lumière dans différentes couleurs. Une LED RVB regroupe trois LED de couleurs rouge, verte et bleue dans une enveloppe en plastique transparente ou semi-transparente. Elle peut afficher diverses couleurs en modifiant la tension d'entrée des trois broches et en les superposant, ce qui, selon les statistiques, peut créer 16 777 216 couleurs différentes. 
 
 .. image:: img/rgb_light.png
     :width: 600
 
-RGB LEDs can be categorized into common anode and common cathode ones. In this kit, the latter is used. The **common cathode**, or CC, means to connect the cathodes of the three LEDs. After you connect it with GND and plug in the three pins, the LED will flash the corresponding color. 
+Les LED RVB peuvent être classées en anode commune et cathode commune. Dans ce kit, la seconde est utilisée. La **cathode commune**, ou CC, signifie connecter les cathodes des trois LED. Après l'avoir connectée à la masse (GND) et branché les trois broches, la LED affichera la couleur correspondante. 
 
-Its circuit symbol is shown as figure.
+Son symbole de circuit est illustré ci-dessous.
 
 .. image:: img/rgb_symbol.png
     :width: 300
 
-An RGB LED has 4 pins: the longest one is GND; the others are Red, Green and Blue. Touch its plastic shell and you will find a cut. The pin closest to the cut is the first pin, marked as Red, then GND, Green and Blue in turn. 
+Une LED RVB a 4 broches : la plus longue est la masse (GND); les autres sont Rouge, Vert et Bleu. Touchez son enveloppe en plastique et vous trouverez une encoche. La broche la plus proche de l'encoche est la première broche, marquée Rouge, puis GND, Vert et Bleu dans cet ordre. 
 
 .. image:: img/rgb_pin.jpg
     :width: 200
 
-**Example**
+**Exemple**
 
-* :ref:`1.1.2_c` (C Project)
-* :ref:`1.1.2_py` (Python Project)
-* :ref:`1.2_scratch` (Scratch Project)
+* :ref:`1.1.2_c` (Projet en C)
+* :ref:`1.1.2_py` (Projet en Python)
+* :ref:`1.2_scratch` (Projet en Scratch)
+

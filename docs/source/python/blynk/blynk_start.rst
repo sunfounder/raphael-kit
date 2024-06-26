@@ -1,132 +1,109 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _bk_start_py:
 
-Get Start with Blynk
-=========================
+Commencer avec Blynk
+===========================
 
-You will learn how to use Blynk in this project.
+Vous apprendrez à utiliser Blynk dans ce projet.
 
-In the event that you trigger widgets on Blynk, your Raspberry Pi will print out their values.
+Lorsque vous déclenchez des widgets sur Blynk, votre Raspberry Pi imprimera leurs valeurs.
 
-Follow the steps below, and note that you must do them in order and not skip any chapters.
+Suivez les étapes ci-dessous, et notez que vous devez les faire dans l'ordre sans sauter de chapitres.
 
+1. Configuration de Blynk
+----------------------------
 
-
-1. Configuring the Blynk
---------------------------
-
-
-
-1. Go to the `BLYNK <https://blynk.io/>`_ and click **START FREE**. 
+1. Allez sur `BLYNK <https://blynk.io/>`_ et cliquez sur **START FREE**. 
 
     .. image:: img/sp220607_142551.png
 
-#. Fill in your email address to register an account.
+2. Remplissez votre adresse e-mail pour créer un compte.
 
     .. image:: img/sp220607_142807.png
 
-#. Go to your email address to complete your account registration.
+3. Consultez votre adresse e-mail pour finaliser l'enregistrement de votre compte.
 
     .. image:: img/sp220607_142936.png
 
-#. Afterwards, **Blynk Tour** will appear and you can read it to learn the basic information about the Blynk.
+4. Ensuite, **Blynk Tour** apparaîtra et vous pourrez le lire pour apprendre les informations de base sur Blynk.
 
     .. image:: img/sp220607_143244.png
 
-#. Next we need to create a template and device, click **Cancel**.
+5. Ensuite, nous devons créer un modèle et un appareil, cliquez sur **Cancel**.
 
     .. image:: img/sp220607_143608.png
 
-#. Go to Template from the navigation bar.
+6. Allez dans Template depuis la barre de navigation.
 
     .. image:: img/sp220913_170029.png
 
-#. Create New Template
+7. Créez un nouveau modèle
 
     .. image:: img/sp220913_170206.png
 
-
-#. Fill in **NAME**, feel free to do so; **HARDWARE** should be **Raspberry Pi**. Then **Done**.
+8. Remplissez le **NOM**, à votre convenance ; **HARDWARE** doit être **Raspberry Pi**. Puis cliquez sur **Done**.
 
     .. image:: img/sp220913_170402.png
 
-
-#. You will be redirected to the Info page, just click on save in the top right corner.
+9. Vous serez redirigé vers la page Info, cliquez simplement sur enregistrer en haut à droite.
 
     .. image:: img/sp220913_171202.png
 
-#. Go to **Search** page from the navigation bar.
+10. Allez sur la page **Search** depuis la barre de navigation.
 
     .. image:: img/sp220913_172727.png
 
-#. Create New Device.
+11. Créez un nouvel appareil.
 
     .. image:: img/sp220913_173259.png
 
-#. From template.
+12. À partir du modèle.
 
     .. image:: img/sp220913_173350.png
 
-#. Select **TEMPLATE** as the one you just set, **DEVICE NAME** can be customized. Then click Create.
+13. Sélectionnez **TEMPLATE** comme celui que vous venez de définir, **DEVICE NAME** peut être personnalisé. Puis cliquez sur **Create**.
 
     .. image:: img/sp220913_173507.png
 
-
-#. You should now see a page like this one, which means that your initial Blynk setup is complete.
+14. Vous devriez maintenant voir une page comme celle-ci, ce qui signifie que votre configuration initiale de Blynk est terminée.
 
     .. image:: img/sp220913_173950.png
 
+2. Modifier le tableau de bord
+-----------------------------------
 
-2. Edit Dashboard
---------------------------------
-
-
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Cliquez sur l'icône du menu en haut à droite et sélectionnez "modifier le tableau de bord".
 
     .. image:: img/sp220913_180231.png
 
-#. Then drag any CONTROL Widgets you want onto the Dashboard. I dragged a Switch and a Slider.
+2. Faites glisser les Widgets de CONTRÔLE que vous souhaitez sur le tableau de bord. J'ai glissé un interrupteur et un curseur.
 
     .. image:: img/sp220913_180725.png
 
-#. Tap the setting icon on the widget.
+3. Appuyez sur l'icône de réglage du widget.
 
     .. image:: img/sp220913_180806.png
 
-#. Create Datastream, select Virtual Pin。
+4. Créez un flux de données (Datastream), sélectionnez "Virtual Pin".
 
     .. image:: img/sp220913_180906.png
 
-#. Complete the datastream setup. Here is the datastream created for Switch, so **DATA TYPE** select ``Interger``, **MIN** and **MAX** set to ``0`` and ``1``. Create and then Save.
+5. Complétez la configuration du flux de données. Ici, un flux de données a été créé pour l'interrupteur, donc **TYPE DE DONNÉES** sélectionnez ``Interger``, **MIN** et **MAX** réglez sur ``0`` et ``1``. Créez et enregistrez.
 
     .. image:: img/sp220913_181113.png
 
-#. Use the same steps to create a Datastream for the slider widget, and again, modify **DATA TYPE**, **MIN** and **MAX** to what you need.
+6. Utilisez les mêmes étapes pour créer un flux de données pour le widget curseur, et modifiez à nouveau **TYPE DE DONNÉES**, **MIN** et **MAX** selon vos besoins.
 
     .. image:: img/sp220913_182042.png
 
-#. When finished, click Save And Apply at the top right.
+7. Lorsque vous avez terminé, cliquez sur "Enregistrer et appliquer" en haut à droite.
 
     .. image:: img/sp220913_182300.png
 
+3. Installer la bibliothèque Blynk
+--------------------------------------
 
-3. Install the Blynk library
-------------------------------
-
-Run the following command to install.
+Exécutez la commande suivante pour installer.
 
 .. raw:: html
 
@@ -139,11 +116,10 @@ Run the following command to install.
     cd blynk-library-python
     sudo python3 setup.py
 
-4. Download the Example
------------------------
+4. Télécharger l'exemple
+---------------------------
 
-
-We have provided some examples, please run the following command to download them.
+Nous avons fourni quelques exemples, veuillez exécuter la commande suivante pour les télécharger.
 
 .. raw:: html
 
@@ -154,17 +130,14 @@ We have provided some examples, please run the following command to download the
     cd ~
     git clone https://github.com/sunfounder/blynk-raspberrypi-python.git
 
+5. Exécuter le code
+----------------------
 
-5. Run the Code
------------------
-
-
-
-1. Go to Blynk's Device Info page, you will see some information under **FIRMWARE CONFIGURATION**, you need to copy **BLYNK_AUTH_TOKEN** down.
+1. Allez sur la page d'informations de l'appareil Blynk, vous verrez des informations sous **CONFIGURATION DU MICROLOGICIEL**, vous devez copier **BLYNK_AUTH_TOKEN**.
 
     .. image:: img/sp220913_182456.png
 
-2. Edit the code.
+2. Modifiez le code.
 
 .. raw:: html
 
@@ -175,13 +148,13 @@ We have provided some examples, please run the following command to download the
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_start.py
 
-3. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+3. Trouvez la ligne ci-dessous et collez votre ``BLYNK_AUTH_TOKEN``.
 
 .. code-block:: 
 
     BLYNK_AUTH = 'YourAuthToken'
 
-4. Run the code.
+4. Exécutez le code.
 
 .. raw:: html
 
@@ -191,11 +164,11 @@ We have provided some examples, please run the following command to download the
 
     sudo python3 blynk_start.py
 
-5. Go to Blynk, and operate the widget on Dashboard.
+5. Allez sur Blynk, et utilisez le widget sur le tableau de bord.
 
     .. image:: img/sp220913_183529.png
 
-6. Now you will be able to see your actions on the terminal.
+6. Maintenant, vous pourrez voir vos actions sur le terminal.
 
 .. code-block:: 
 

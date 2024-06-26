@@ -1,50 +1,36 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_dot_matrix:
 
-LED Matrix Module
+Module Matrice LED
 ==============================
 
 .. image:: img/max7219_module.jpg
     :width: 400
     :align: center
 
-This is a common cathode 8x8 dot matrix module driven by MAX7219, the module operating voltage is 5V, the size is 50mmx32mmx15mm, the left side is input port, the right side is output port, support multiple modules cascade.
+Il s'agit d'un module matrice de points 8x8 à cathode commune piloté par le MAX7219. La tension de fonctionnement du module est de 5V, sa taille est de 50mmx32mmx15mm. Le côté gauche est le port d'entrée, le côté droit est le port de sortie, et il prend en charge la cascade de plusieurs modules.
 
-* **VCC**: Positive Supply Voltage. Connect to +5V.
-* **GND**: Ground (both GND pins must be connected)
-* **DIN**: Serial-Data Input. Data is loaded into the internal 16-bit shift register on CLK’s rising edge.
-* **CS**: Chip-Select Input. Serial data is loaded into the shift register while CS is low. The last 16 bits of serial data are latched on CS’s rising edge.
-* **CLK**: Serial-Clock Input. 10MHz maximum rate. On CLK’s rising edge, data is shifted into the internal shift register. On CLK’s falling edge, data is clocked out of DOUT. On the MAX7221, the CLK input is active only while CS is low.
+* **VCC** : Tension d'alimentation positive. Connecter au +5V.
+* **GND** : Masse (les deux broches GND doivent être connectées)
+* **DIN** : Entrée de données série. Les données sont chargées dans le registre à décalage interne de 16 bits sur le front montant de CLK.
+* **CS** : Entrée de sélection de la puce. Les données série sont chargées dans le registre à décalage lorsque CS est bas. Les 16 derniers bits de données série sont verrouillés sur le front montant de CS.
+* **CLK** : Entrée d'horloge série. Taux maximum de 10MHz. Sur le front montant de CLK, les données sont décalées dans le registre à décalage interne. Sur le front descendant de CLK, les données sont sorties de DOUT. Sur le MAX7221, l'entrée CLK est active uniquement lorsque CS est bas.
 
 **MAX7219**
 
-The MAX7219 is a compact, serial input/output common-cathode display drivers that interface microprocessors (µPs) to 7-segment numeric LED displays of up to 8 digits, bar-graph displays, or 64 individual LEDs. Included on-chip are a BCD code-B
-decoder, multiplex scan circuitry, segment and digit drivers, and an 8x8 static RAM that stores each digit.
+Le MAX7219 est un pilote d'affichage à cathode commune compact, à entrée/sortie série, qui interface les microprocesseurs (µP) avec des affichages LED numériques à 7 segments de jusqu'à 8 chiffres, des affichages à barres ou 64 LED individuelles. Inclus sur la puce sont un décodeur BCD code-B, un circuit de balayage multiplex, des pilotes de segment et de chiffre, et une RAM statique 8x8 qui stocke chaque chiffre.
 
-Only one external resistor is required to set the segment current for all LEDs. The MAX7221 is compatible with SPI™, QSPI™, and MICROWIRE™, and has slewrate-limited segment drivers to reduce EMI.
+Une seule résistance externe est nécessaire pour régler le courant de segment pour toutes les LED. Le MAX7221 est compatible avec SPI™, QSPI™ et MICROWIRE™, et dispose de pilotes de segment à vitesse de balayage limitée pour réduire les EMI.
 
-A convenient 4-wire serial interface connects to all common µPs. Individual digits may be addressed and updated without rewriting the entire display. The MAX7219/MAX7221 also allow the user to select codeB decoding or no-decode for each digit.
+Une interface série pratique à 4 fils se connecte à tous les µP courants. Les chiffres individuels peuvent être adressés et mis à jour sans réécrire l'affichage entier. Les MAX7219/MAX7221 permettent également à l'utilisateur de sélectionner le décodage code-B ou sans décodage pour chaque chiffre.
 
 .. image:: img/max7219_sche.png
 
 * `MAX7219 Datasheet <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`_
 
-**Example**
+**Exemple**
 
-* :ref:`1.1.6_c` (C Project)
-* :ref:`3.1.12_c` (C Project)
-* :ref:`1.1.6_py` (Python Project)
-* :ref:`4.1.19_py` (Python Project)
+* :ref:`1.1.6_c` (Projet C)
+* :ref:`3.1.12_c` (Projet C)
+* :ref:`1.1.6_py` (Projet Python)
+* :ref:`4.1.19_py` (Projet Python)
+

@@ -1,57 +1,44 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.6_c:
 
-2.2.6 Speed Sensor Module
-===============================
+2.2.6 Module de Capteur de Vitesse
+======================================
 
 Introduction
 ------------------
 
-In this project, we will learn the use of the speed sensor module. A Speed Sensor Module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+Dans ce projet, nous allons apprendre à utiliser le module de capteur de vitesse. Un module de capteur de vitesse est un type de tachymètre utilisé pour mesurer la vitesse d'un objet en rotation, comme un moteur.
 
-Required Components
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/2.2.6component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,25 +53,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_speed_sensor`
         - \-
 
-Schematic Diagram
+Schéma de Circuit
 -----------------------
 
 .. image:: ../img/2.2.6circuit.png
     :width: 400
     :align: center
 
-Experimental Procedures
+Procédures Expérimentales
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-
-
-**Step 2:** Change directory.
+**Étape 2 :** Changer de répertoire.
 
 .. raw:: html
 
@@ -94,7 +79,7 @@ Experimental Procedures
     
     cd ~/raphael-kit/c/2.2.6/
 
-**Step 3:** Compile.
+**Étape 3 :** Compiler.
 
 .. raw:: html
 
@@ -104,7 +89,7 @@ Experimental Procedures
 
     gcc 2.2.6_speed_sensor_module.c -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécuter.
 
 .. raw:: html
 
@@ -114,12 +99,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+Après l'exécution du code, la LED verte s'allumera. Si vous placez un obstacle 
+dans l'espace du module de capteur de vitesse, le message "light blocked" 
+sera affiché à l'écran et la LED rouge s'allumera. Retirez l'obstacle et la LED verte s'allumera à nouveau.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
 
 **Code**
 
@@ -128,9 +114,9 @@ Remove the obstacle and the green LED will light up again.
     #include <wiringPi.h>
     #include <stdio.h>
 
-    #define speedPin		0  
-    #define Gpin		2
-    #define Rpin		3
+    #define speedPin        0  
+    #define Gpin        2
+    #define Rpin        3
 
     void LED(int color)
     {
@@ -176,7 +162,7 @@ Remove the obstacle and the green LED will light up again.
         return 0;
     }
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -194,9 +180,9 @@ Remove the obstacle and the green LED will light up again.
         }
     }    
 
-Set a ``LED()`` function to control the 2 LEDs, the parameter of this function is ``color``.
+Définissez une fonction ``LED()`` pour contrôler les 2 LED, le paramètre de cette fonction est ``color``.
 
-When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`` to ``LOW`` (turn off the green LED); when ``color`` is 1, then light up the green LED and turn off the red LED. 
+Lorsque ``color`` est 0, définissez ``Rpin`` sur ``HIGH`` (allumer la LED rouge) et ``Gpin`` sur ``LOW`` (éteindre la LED verte); lorsque ``color`` est 1, allumez alors la LED verte et éteignez la LED rouge.
 
 
 .. code-block:: c
@@ -214,11 +200,10 @@ When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`
         Print(temp);
     }
 
-When you place an obstacle in the gap of the speed sensor module, ``speedPin`` is low level (0), then call ``LED(1)`` function to light up the green LED and "Light was blocked!" is printed.
+Lorsque vous placez un obstacle dans l'espace du module de capteur de vitesse, ``speedPin`` est à un niveau bas (0), alors appelez la fonction ``LED(1)`` pour allumer la LED verte et "Light was blocked!" est affiché.
 
 
-
-**Phenomenon Picture**
+**Image du Phénomène**
 -----------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG

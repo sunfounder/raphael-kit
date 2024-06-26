@@ -1,51 +1,38 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _blynk_light_py:
 
-Smart Light
-===========
+Lumière intelligente
+=========================
 
-In this project, we use Blynk's Silder to control the brightness of the LED, turning it on and off with Switch.
+Dans ce projet, nous utilisons le curseur de Blynk pour contrôler la luminosité de la LED, en l'allumant et l'éteignant avec un interrupteur.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
+.. note:: Avant de commencer ce projet, nous vous recommandons de compléter :ref:`bk_start_py`. Cela vous donnera une compréhension claire de Blynk.
 
-**Required Components**
+**Composants requis**
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants. 
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -58,36 +45,36 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-**1. Wiring**
+**1. Câblage**
 
 .. image:: img/wiring_led1.png
 
-**2. Create Widget and Datastream**
+**2. Créer le widget et le flux de données**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Cliquez sur l'icône de menu en haut à droite et sélectionnez "Edit Dashboard".
 
     .. image:: img/sp220913_180231.png
 
-2. Add a Switch widget and a Slider widget to the Dashboard.
+2. Ajoutez un widget Interrupteur et un widget Curseur au tableau de bord.
 
     .. image:: img/sp220914_160427.png
 
-3. Create a Datastream for the Switch widget (I used V3). It will be used to control the turning on and off of the LED.
+3. Créez un flux de données pour le widget Interrupteur (j'ai utilisé V3). Il sera utilisé pour contrôler l'allumage et l'extinction de la LED.
 
     .. image:: img/sp220914_155911.png
 
-4. Create a Datastream for the Slider widget (I used V2), its value range is 0 to 100, it will be used to control the brightness of the LED.
+4. Créez un flux de données pour le widget Curseur (j'ai utilisé V2), sa plage de valeurs est de 0 à 100, il sera utilisé pour contrôler la luminosité de la LED.
 
     .. image:: img/sp220914_160234.png
 
-#. When finished, click Save And Apply at the top right.
+#. Une fois terminé, cliquez sur "Save And Apply" en haut à droite.
 
     .. image:: img/sp220913_182300.png
 
 
-**3. Run the Code**
+**3. Exécuter le code**
 
-1. Edit the code
+1. Modifiez le code
 
 .. raw:: html
 
@@ -98,13 +85,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_light.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. Trouvez la ligne ci-dessous et collez votre ``BLYNK_AUTH_TOKEN``.
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. Exécutez le code.
 
 .. raw:: html
 
@@ -114,6 +101,6 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_light.py
 
-4. Go to Blynk, operate widget on Dashboard. now you click switch widget will turn on/off LED. slide Slider widget will change LED brightness.
+4. Allez sur Blynk, utilisez le widget sur le tableau de bord. Maintenant, en cliquant sur le widget interrupteur, vous allumerez/éteindrez la LED. En glissant le curseur, vous changerez la luminosité de la LED.
 
-#. If you want to use Blynk on mobile devices, please refer to :ref:`blynk_mobile`.
+#. Si vous souhaitez utiliser Blynk sur des appareils mobiles, veuillez vous référer à :ref:`blynk_mobile`.

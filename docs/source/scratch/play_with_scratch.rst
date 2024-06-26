@@ -1,33 +1,17 @@
-.. note::
+Jouer avec Scratch (pas pour Pi 5)
+==================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Scratch est un langage de programmation visuel basé sur des blocs et un site web principalement destiné aux enfants de 8 à 16 ans comme outil éducatif pour le codage. Les utilisateurs du site peuvent créer des projets sur le web en utilisant une interface semblable à des blocs. Le service est développé par le MIT Media Lab, a été traduit en plus de 70 langues et est utilisé dans la plupart des régions du monde.
 
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Play with Scratch (not for Pi 5)
-=================================
-
-Scratch is a block-based visual programming language and website targeted primarily at children 8-16 as an educational tool for coding. Users of the site can create projects on the web using a block-like interface. The service is developed by the MIT Media Lab, has been translated into 70+ languages, and is used in most parts of the world.
-
-
-Here you will learn to use Scratch 3 in Raspberry Pi and access Raspberry Pi GPIO with Scratch 3, which is not possible with online Scratch.
+Ici, vous apprendrez à utiliser Scratch 3 sur Raspberry Pi et à accéder aux GPIO du Raspberry Pi avec Scratch 3, ce qui n'est pas possible avec Scratch en ligne.
 
 .. note::
 
-    When programming with Scratch 3, you may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Of course, if you don't have a screen, you can also access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
-
+    Lors de la programmation avec Scratch 3, vous pourriez avoir besoin d'un écran pour une meilleure expérience, consultez : `Connectez votre Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Bien sûr, si vous n'avez pas d'écran, vous pouvez également accéder au bureau du Raspberry Pi à distance. Pour un tutoriel détaillé, veuillez consulter :ref:`remote_desktop`.
 
 .. toctree::
     :maxdepth: 2
-    
+
     quick_quide_on_scratch
     scratch_project
     

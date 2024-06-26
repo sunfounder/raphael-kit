@@ -1,98 +1,80 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.7_js:
 
-2.1.7 Potentionmeter
-=====================
+2.1.7 Potentiomètre
+======================
 
 Introduction
-------------
+---------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+La fonction ADC peut être utilisée pour convertir des signaux analogiques en signaux numériques, 
+et dans cette expérience, nous utilisons l'ADC0834 pour obtenir cette fonction impliquant l'ADC. 
+Ici, nous implémentons ce processus en utilisant un potentiomètre. Le potentiomètre modifie la 
+quantité physique - la tension, qui est convertie par la fonction ADC.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Composants nécessaires
+----------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.1.4_potentiometer.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
-        - 337
-        - |link_Raphael_kit|
+    * - Nom
+      - ARTICLES DANS CE KIT
+      - LIEN
+    * - Kit Raphael
+      - 337
+      - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément en utilisant les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
-
+    * - INTRODUCTION DES COMPOSANTS
+      - LIEN D'ACHAT
     *   - :ref:`cpn_gpio_extension_board`
-        - |link_gpio_board_buy|
+      - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
-        - |link_breadboard_buy|
+      - |link_breadboard_buy|
     *   - :ref:`cpn_wires`
-        - |link_wires_buy|
+      - |link_wires_buy|
     *   - :ref:`cpn_resistor`
-        - |link_resistor_buy|
+      - |link_resistor_buy|
     *   - :ref:`cpn_led`
-        - |link_led_buy|
+      - |link_led_buy|
     *   - :ref:`cpn_potentiometer`
-        - |link_potentiometer_buy|
+      - |link_potentiometer_buy|
     *   - :ref:`cpn_adc0834`
-        - \-
+      - \-
 
-Schematic Diagram
------------------
+Schéma de câblage
+-------------------
 
 .. image:: ../img/image311.png
 
-
 .. image:: ../img/image312.png
 
+Procédures expérimentales
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/image180.png
 
-
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    Veuillez placer la puce en vous référant à la position correspondante décrite dans l'image. 
+    Notez que les encoches sur la puce doivent être à gauche lorsqu'elle est placée.
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Aller dans le dossier du code.
 
 .. raw:: html
 
@@ -102,7 +84,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécuter le code.
 
 .. raw:: html
 
@@ -112,8 +94,8 @@ Experimental Procedures
 
     sudo node potentionmeter.js
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+Après l'exécution du code, tournez le bouton du potentiomètre, l'intensité de la LED 
+changera en conséquence.
 
 **Code**
 
@@ -134,32 +116,29 @@ of LED will change accordingly.
         });
     }, 100);
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
 
-Import the ``pigpio`` module.
+Importer le module ``pigpio``.
 
 .. code-block:: js
 
     const ADC0834 = require('./adc0834.js').ADC0834;
 
-We import an ``ADC0834`` constructor to use the adc0834 module.
-
+Nous importons un constructeur ``ADC0834`` pour utiliser le module adc0834.
 
 .. code-block:: js
 
    const adc = new ADC0834(17, 18, 27);
 
+Instancier un objet ADC0834, les trois paramètres sont ses trois broches.
 
-Instantiate an ADC0834 object, the three parameters are its three pins.
-
-This is a promise object, you may need to understand the concept from the following link.
+Ceci est un objet de promesse, vous devrez peut-être comprendre le concept à partir du lien suivant.
 
 * `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-
 
 .. code-block:: js
 
@@ -172,15 +151,15 @@ This is a promise object, you may need to understand the concept from the follow
         });
     }, 100);
 
-The value of ADC0834 channel 0 (channel 0 is connected to the potentiometer) is read every 100ms, and the value will be stored in ``value``.
+La valeur du canal 0 de l'ADC0834 (le canal 0 est connecté au potentiomètre) est lue toutes les 100ms, et la valeur sera stockée dans ``value``.
 
-Print ``value`` and use it to control the brightness of the LED, now you can see that the brightness of the LED changes with the value of the potentiometer.
-
-
+Afficher ``value`` et l'utiliser pour contrôler la luminosité de la LED. Vous pouvez maintenant voir que la luminosité de la LED change en fonction de la valeur du potentiomètre.
 
 
 
-Phenomenon Picture
+
+
+Photo du phénomène
 ------------------
 
 .. image:: ../img/image181.jpeg

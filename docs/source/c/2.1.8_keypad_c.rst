@@ -1,56 +1,41 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _2.1.8_c:
 
-2.1.8 Keypad
+2.1.8 Clavier
 ==================
 
 Introduction
 ------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un clavier est un tableau rectangulaire de boutons. Dans ce projet, nous l'utiliserons pour entrer des caractères.
 
-Required Components
-------------------------------
+Composants requis
+---------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,23 +48,21 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_keypad`
         - \-
 
-Schematic Diagram
------------------
+Schéma de câblage
+--------------------
 
 .. image:: ../img/image315.png
 
-
 .. image:: ../img/image316.png
 
+Procédures expérimentales
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -89,7 +72,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.8/
 
-**Step 3:** Compile the code.
+**Étape 3 :** Compilez le code.
 
 .. raw:: html
 
@@ -99,7 +82,7 @@ Experimental Procedures
 
     gcc 2.1.8_Keypad.cpp -lwiringPi
 
-**Step 4:** Run.
+**Étape 4 :** Exécutez.
 
 .. raw:: html
 
@@ -109,12 +92,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Après l'exécution du code, les valeurs des boutons appuyés sur le clavier (valeur du bouton) seront affichées à l'écran.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : "wiringPi.h : Aucun fichier ou dossier de ce type", veuillez vous référer à :ref:`install_wiringpi`.
 
 **Code**
 
@@ -230,8 +212,7 @@ Value) will be printed on the screen.
         }
         return -1;
     }
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: c
 
@@ -244,8 +225,7 @@ Value) will be printed on the screen.
     unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
     unsigned char colPins[COLS] = {12, 3, 2, 0};
 
-Declare each key of the matrix keyboard to the array ``keys[]`` and define
-the pins on each row and column.
+Déclarez chaque touche du clavier matriciel dans le tableau ``keys[]`` et définissez les broches sur chaque ligne et colonne.
 
 .. code-block:: c
 
@@ -259,16 +239,13 @@ the pins on each row and column.
             delay(100);
         }
 
-This is the part of the main function that reads and prints the button
-value.
+Voici la partie de la fonction principale qui lit et affiche la valeur du bouton.
 
-The function ``keyRead()`` will read the state of every button.
+La fonction ``keyRead()`` lira l'état de chaque bouton.
 
-``KeyCompare()`` and ``keyCopy()`` are used to judge whether the state of a
-button has changed (that is, a button has been pressed or released).
+``keyCompare()`` et ``keyCopy()`` sont utilisés pour juger si l'état d'un bouton a changé (c'est-à-dire si un bouton a été pressé ou relâché).
 
-``keyPrint()`` will print the button value of the button whose current level
-is high level (the button is pressed).
+``keyPrint()`` affichera la valeur du bouton dont le niveau actuel est élevé (le bouton est pressé).
 
 .. code-block:: c
 
@@ -290,23 +267,22 @@ is high level (the button is pressed).
         }
     }
 
-This function assigns a high level to each row in turn, and when the key
-in the column is pressed, the column in which the key is located gets a
-high level. After the two-layer loop judgment, the key state compilation
-will generate an array (``reasult[]``).
+Cette fonction assigne un niveau élevé à chaque ligne à tour de rôle, 
+et lorsque la touche de la colonne est pressée, la colonne dans laquelle
+ se trouve la touche obtient un niveau élevé. Après le jugement en boucle
+  à deux niveaux, la compilation de l'état de la touche générera un tableau (``result[]``).
 
-When pressing button 3:
+Lors de l'appui sur le bouton 3 :
 
 .. image:: ../img/image187.png
 
+``RowPin [0]`` écrit le niveau élevé, et ``colPin[2]`` obtient le niveau élevé.
+``colPin [0]``, ``colPin[1]``, ``colPin[3]`` obtiennent le niveau bas.
 
-``RowPin [0]`` writes in the high level, and colPin[2] gets the high level.
-``ColPin [0]``, colPin[1], colPin[3] get the low level.
+Cela nous donne 0,0,1,0. Lorsque ``rowPin[1]``, ``rowPin[2]`` et ``rowPin[3]`` sont écrits en niveau élevé,
+ ``colPin[0]~colPin[4]`` obtiendront le niveau bas.
 
-This gives us 0,0,1,0. When rowPin[1], rowPin[2] and rowPin[3] are
-written in high level, colPin[0]~colPin[4] will get low level.
-
-After the loop judgment is completed, an array will be generated:
+Après que le jugement en boucle soit terminé, un tableau sera généré :
 
 .. code-block:: c
 
@@ -333,14 +309,13 @@ After the loop judgment is completed, an array will be generated:
         }
     }
 
+Ces deux fonctions sont utilisées pour juger si l'état de la touche a changé, par exemple
+ lorsque vous relâchez votre main après avoir appuyé sur '3' ou en appuyant sur '2',
+  ``keyCompare()`` renvoie false.
 
-These two functions are used to judge whether the key state has changed,
-for example when you release your hand when pressing '3' or pressing
-'2', keyCompare() returns false.
-
-KeyCopy() is used to re-write the current button value for the a array
-(last_key_pressed[BUTTON_NUM]) after each comparison. So we can compare
-them next time.
+``keyCopy()`` est utilisé pour réécrire la valeur actuelle du bouton dans 
+le tableau a (``last_key_pressed[BUTTON_NUM]``) après chaque comparaison. 
+Ainsi, nous pouvons les comparer la prochaine fois.
 
 .. code-block:: c
 
@@ -357,14 +332,11 @@ them next time.
         printf("\n");
     }
 
-This function is used to print the value of the button currently
-pressed. If the button '1' is pressed, the '1' will be printed. If the
-button '1' is pressed and the button '3' is pressed, the '1, 3' will be
-printed.
+Cette fonction est utilisée pour imprimer la valeur de la touche actuellement appuyée.
+ Si la touche '1' est pressée, le '1' sera imprimé. Si la touche '1' est pressée et que
+  la touche '3' est également pressée, '1, 3' sera imprimé.
 
-Phenomenon Picture
-------------------
+Image du phénomène
+----------------------
 
 .. image:: ../img/image188.jpeg
-
-

@@ -1,49 +1,36 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_reed_switch:
 
-Reed Switch Module
-======================
+Module Interrupteur à Lame Relevable
+==========================================
 
 .. image:: img/reed_switch.png
     :width: 300
     :align: center
 
-* Using normally open type reed switch.
-* Comparator output, clean signal, good waveform, strong driving ability, more than 15mA.
-* Working voltage: 3.3V-5V
-* Output form: digital switch output (0 and 1).
-* With fixed bolt holes for easy installation.
-* Small board PCB size: 3.2cm x 1.4cm.
-* Use wide voltage LM393 comparator.
+* Utilisation d'un interrupteur à lame normalement ouvert.
+* Sortie du comparateur, signal propre, bonne forme d'onde, capacité de pilotage puissante, plus de 15mA.
+* Tension de fonctionnement : 3.3V-5V.
+* Forme de sortie : sortie de commutateur numérique (0 et 1).
+* Avec des trous de boulons fixes pour une installation facile.
+* Taille de la carte PCB : 3.2cm x 1.4cm.
+* Utilisation d'un comparateur LM393 à large tension.
 
-The reed switch module consists of a reed switch, potentiometer, LM393 comparator, LED, etc. The internal circuit is shown below, when the magnet is close to the module, it will be on, and the module will output low level; when there is no magnetism, it will be off, and output high level. Reed switch and magnet induction distance should be within 1.5cm, beyond will not be sensitive or no trigger phenomenon, you can also adjust the sensitivity through the potentiometer on the module.
+Le module interrupteur à lame se compose d'un interrupteur à lame, d'un potentiomètre, d'un comparateur LM393, d'une LED, etc. Le circuit interne est illustré ci-dessous. Lorsque l'aimant est proche du module, il s'allume et le module sort un niveau bas ; lorsqu'il n'y a pas de magnétisme, il s'éteint et sort un niveau haut. La distance d'induction entre l'interrupteur à lame et l'aimant doit être inférieure à 1,5 cm ; au-delà, il ne sera pas sensible ou ne déclenchera pas. Vous pouvez également ajuster la sensibilité via le potentiomètre sur le module.
     
 .. image:: img/reedswitch_sche.jpg
     :width: 600
     :align: center
 
-Reed switch, also known as a magnetic switch or reed switch.
+L'interrupteur à lame, également connu sous le nom d'interrupteur magnétique ou interrupteur à lames.
 
-It has two internal metal reeds, sealed in a glass tube, which is filled with inert gas. Normally the two reeds overlap each other, but are separated by a gap, and the circuit is broken. When there is a magnetic object close to the two reeds will produce a mutual attraction of the magnetic force, which will be sucked together, the circuit is connected. Therefore, the reed switch can be used to make a magnetic sensor.
+Il contient deux lames métalliques internes, scellées dans un tube en verre rempli de gaz inerte. Normalement, les deux lames se chevauchent mais sont séparées par un écart, et le circuit est ouvert. Lorsqu'un objet magnétique s'approche, les deux lames produisent une attraction magnétique mutuelle, se rapprochent et le circuit se ferme. Par conséquent, l'interrupteur à lame peut être utilisé comme capteur magnétique.
         
 .. image:: img/HowItWorksReed.jpg
 
-**Example**
+**Exemple**
 
-* :ref:`2.2.4_c` (C Project)
-* :ref:`2.2.4_py` (Python Project)
-* :ref:`4.1.6_py` (Python Project)
-* :ref:`1.6_scratch` (Scratch Project)
+* :ref:`2.2.4_c` (Projet C)
+* :ref:`2.2.4_py` (Projet Python)
+* :ref:`4.1.6_py` (Projet Python)
+* :ref:`1.6_scratch` (Projet Scratch)
+

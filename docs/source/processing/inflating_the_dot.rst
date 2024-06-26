@@ -1,50 +1,35 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Inflating the Dot
+Gonfler le Point
 ===========================
 
-Next, let's build a circuit that allows the button to control the size of the dot.
-When we press the button, the dot will quickly get bigger; when we release the button, the dot will gradually get smaller, which makes the dot look like a balloon being inflated.
+Ensuite, construisons un circuit qui permet de contrôler la taille du point avec un bouton. Lorsque nous appuyons sur le bouton, le point grossira rapidement ; lorsque nous relâchons le bouton, le point diminuera progressivement, donnant l'impression que le point se gonfle comme un ballon.
 
 .. image:: img/dot_size.png
 
-**Required Components**
+**Composants nécessaires**
 
-In this project, we need the following components.
+Dans ce projet, nous avons besoin des composants suivants.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,11 +40,11 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-**Wiring**
+**Câblage**
 
 .. image:: img/button_pressed.png
 
-**Sketch**
+**Croquis**
 
 .. code-block:: arduino
 
@@ -85,11 +70,10 @@ You can also buy them separately from the links below.
         ellipse(width/2, height/2,diameter, diameter);
     }
 
-**How it works?**
+**Comment ça fonctionne ?**
 
-This project uses the input function compared to the previous 2 projects that used the output function of the GPIO.
+Ce projet utilise la fonction d'entrée par rapport aux 2 projets précédents qui utilisaient la fonction de sortie du GPIO.
 
-The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
+La fonction ``GPIO.pinMode()`` est utilisée pour définir ``buttonPin`` en mode entrée avec résistance pull-up, ce qui permet à la broche d'être automatiquement à l'état haut par défaut.
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
-
+Ensuite, utilisez la fonction ``GPIO.digitalRead()`` pour lire la valeur de ``buttonPin``. Lorsque la valeur est LOW, cela signifie que le bouton est enfoncé, à ce moment-là, laissez le diamètre du point augmenter de 5 ; si le bouton est relâché, alors le diamètre du point diminuera de 1.

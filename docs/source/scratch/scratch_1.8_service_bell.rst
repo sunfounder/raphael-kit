@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.8_scratch:
 
 1.8 Service Bell
-===================
+=====================
 
-Today, we will use Micro Switch, speakers, audio amplifier module, Raspberry Pi and scratch to make a service bell.
+Aujourd'hui, nous allons utiliser un micro-interrupteur, des haut-parleurs, un module amplificateur audio, un Raspberry Pi et Scratch pour fabriquer une sonnette de service.
 
-Tap the Micro Switch to make the service bell sound.
+Appuyez sur le micro-interrupteur pour faire sonner la sonnette de service.
 
 .. image:: img/1.8_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.8_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,45 +53,44 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_audio_speaker`
         - \-
 
-Build the Circuit
----------------------
+Construire le Circuit
+------------------------
 
 .. image:: img/1.8_fritzing.png
 
+Charger le Code et Voir ce Qui Se Passe
+-------------------------------------------
 
-Load the Code and See What Happens
------------------------------------------
+Chargez le fichier de code (``1.8_service_bell.sb3``) dans Scratch 3.
 
-Load the code file (``1.8_service_bell.sb3``) to Scratch 3.
-
-Press the micro switch and the service bell will ring once.
+Appuyez sur le micro-interrupteur et la sonnette de service sonnera une fois.
 
 .. note::
-  
-  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`change_audio_output` for the solution.
 
-  Also, if you want to adjust the volume level, please refer to :ref:`adjust_volume`.
+  Si votre Raspberry Pi est connecté à un écran avec des haut-parleurs, cela peut empêcher le son de sortir de ce haut-parleur externe, veuillez vous référer à :ref:`change_audio_output` pour la solution.
 
-Tips on Sprite
-----------------
+  De plus, si vous souhaitez ajuster le niveau du volume, veuillez vous référer à :ref:`adjust_volume`.
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **bell1.png** and **bell2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **bell**.
+Astuces sur le Sprite
+------------------------
+
+Sélectionnez Sprite1 et cliquez sur **Costumes** en haut à gauche ; téléchargez **bell1.png** et **bell2.png** depuis le chemin ``~/raphael-kit/scratch/picture`` via le bouton **Télécharger Costume** ; supprimez les 2 costumes par défaut, et renommez le sprite en **bell**.
 
 .. image:: img/1.8_travel1.png
 
-In the **Sounds** option, upload the ``bell.wav`` from the ``~/raphael-kit/scratch/sound`` path to Scratch 3.
+Dans l'option **Sons**, téléchargez le fichier ``bell.wav`` depuis le chemin ``~/raphael-kit/scratch/sound`` vers Scratch 3.
 
 .. image:: img/1.8_travel2.png
 
-Tips on Codes
---------------
+Astuces sur les Codes
+-------------------------
 
 .. image:: img/1.8_travel3.png
   :width: 400
 
-When pin17 is high (the Micro switch is not pressed), switch the costume of the **bell** sprite to **bell1** (released state).
+Lorsque pin17 est haut (le micro-interrupteur n'est pas pressé), changez le costume du sprite **bell** en **bell1** (état relâché).
 
 .. image:: img/1.8_travel4.png
   :width: 400
 
-Press the micro switch, gpio17 is low level. At this time, switch the costume of the **bell** sprite to **bell2** (press state), and play a sound effect through the speaker.
+Appuyez sur le micro-interrupteur, gpio17 est à niveau bas. À ce moment-là, changez le costume du sprite **bell** en **bell2** (état pressé) et jouez un effet sonore via le haut-parleur.

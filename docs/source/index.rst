@@ -1,52 +1,35 @@
-.. note::
+SunFounder Raphael Kit Ultime pour Raspberry Pi
+============================================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-SunFounder Raphael Ulimate  Kit for Raspberry Pi
-=======================================================
-
-
-Thanks for choosing our Ulimate Raphael Kit.
+Merci d'avoir choisi notre Kit Ultime Raphael.
 
 .. note::
-    This document is available in the following languages.
+    Ce document est disponible dans les langues suivantes :
 
         * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
     
-    Please click on the respective links to access the document in your preferred language.
+    Veuillez cliquer sur les liens correspondants pour accéder au document dans votre langue préférée.
 
-Are you new to Raspberry Pi? Are you looking for a clear path to learn Raspberry Pi? 
-Would you like to do more than just copy and paste code, but actually write your own? 
-If you answered yes to any of the above questions, then the Raspberry Pi Education Starter Kit - Raphael Kit is right for you.
+Êtes-vous nouveau sur Raspberry Pi ? Cherchez-vous un chemin clair pour apprendre le Raspberry Pi ? 
+Souhaitez-vous faire plus que simplement copier-coller du code, mais en fait écrire le vôtre ? 
+Si vous avez répondu oui à l'une de ces questions, alors le Kit Éducatif de Démarrage Raspberry Pi - Kit Raphael est fait pour vous.
 
-The kit is unlike other kits that only have a variety of projects. It is a true educational kit designed for beginners, whether you are programming beginners, electronics hobbyists, 
-experienced electrical engineers, students or educators, this kit will meet all your needs.
+Le kit est différent des autres kits qui ne proposent qu'une variété de projets. C'est un véritable kit éducatif conçu pour les débutants, que vous soyez débutant en programmation, amateur d'électronique, 
+ingénieur électricien expérimenté, étudiant ou éducateur, ce kit répondra à tous vos besoins.
 
-In addition to including all the hardware and software needed for beginners, the kit also offers an online tutorial with 161 interesting projects in 5 programming languages and 45 free video courses (30 hours) on getting started to mastery.
+En plus d'inclure tout le matériel et les logiciels nécessaires pour les débutants, le kit offre également un tutoriel en ligne avec 161 projets intéressants dans 5 langages de programmation et 45 cours vidéo gratuits (30 heures) allant de l'initiation à la maîtrise.
 
+Ce `cours vidéo <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ montre aux débutants comment configurer le Raspberry Pi, utiliser les broches GPIO et les capteurs, et apprendre les bases des circuits et de la programmation. Chaque cours propose des projets simples et intéressants pour les débutants afin de pratiquer et d'apprendre. Il vous suffit de suivre pas à pas et vous finirez par maîtriser le Raspberry Pi et réaliser vos propres projets.
 
-This `video course <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ shows beginners how to set up the Raspberry Pi, use the GPIO pins and sensors, and learn the basics of circuits and programming. Each course has simple and interesting projects for beginners to practice and learn, all you need to do is to follow step by step and eventually you will be able to master the Raspberry Pi and make your own projects.
+Après avoir suivi les tutoriels vidéo, vous pouvez pratiquer l'utilisation de chaque composant grâce à nos tutoriels en ligne et vous amuser avec des projets plus avancés et intéressants.
 
+Alternativement, vous pouvez utiliser les composants pour réaliser des projets dans d'autres langages, tels que C, Scratch, Java (processing) et JavaScript (Nodejs).
 
-After learning the video tutorials, you can practice the use of each component from our online tutorials and play with some more advanced and interesting projects.
+Si vous avez des questions, veuillez envoyer un email à service@sunfounder.com et nous vous répondrons dès que possible.
 
-Alternatively, you can use the components to build projects in other languages, such as C, Scratch, Java (processing) and JavaScript (Nodejs).
-
-If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
-
-**Contents**
+**Sommaire**
 
 .. toctree::
     :maxdepth: 2
@@ -97,6 +80,6 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
 
 
-**Copyright Notice**
+**Avis de Copyright**
 
-All contents including but not limited to texts, images, and code in this manual are owned by the SunFounder Company. You should only use it for personal study,investigation, enjoyment, or other non-commercial or nonprofit purposes, under therelated regulations and copyrights laws, without infringing the legal rights of the author and relevant right holders. For any individual or organization that uses these for commercial profit without permission, the Company reserves the right to take legal action.
+Tous les contenus, y compris mais sans s'y limiter, les textes, images et codes dans ce manuel sont la propriété de la société SunFounder. Vous devez les utiliser uniquement pour des études personnelles, des recherches, des loisirs ou d'autres objectifs non commerciaux ou à but non lucratif, conformément aux réglementations et lois sur les droits d'auteur, sans enfreindre les droits légaux de l'auteur et des détenteurs des droits concernés. Pour tout individu ou organisation qui utilise ces contenus à des fins commerciales sans permission, la société se réserve le droit d'engager des poursuites judiciaires.

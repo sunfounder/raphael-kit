@@ -1,34 +1,17 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 65: Understanding Tensorflow Object Detection Data Structure
+Vidéo 65 : Comprendre la Structure des Données de Détection d'Objets TensorFlow
 =======================================================================================
 
+Apprenez à analyser et personnaliser les résultats de détection d'objets TensorFlow sur Raspberry Pi, en optimisant les performances et les visualisations.
 
-Learn how to analyze and customize TensorFlow object detection results on Raspberry Pi, optimizing performance and visualizations.
+1. **Introduction au kit Raspberry Pi** : Sponsorisé par SunFounder, explorez le kit Raspberry Pi utilisé dans le tutoriel.
+2. **Détection d'objets TensorFlow** : Utiliser TensorFlow pour des tâches de détection d'objets sur Raspberry Pi.
+3. **Récupération des données** : Comprendre comment récupérer et analyser la structure des données renvoyées par TensorFlow.
+4. **Techniques de personnalisation** : Apprenez des techniques pour personnaliser la visualisation des objets détectés, y compris changer les couleurs, les styles et ajouter des étiquettes.
+5. **Itération efficace** : Stratégies pour itérer efficacement à travers des structures de données imbriquées afin d'accéder aux informations pertinentes.
+6. **Optimisation des performances** : Optimiser les performances en supprimant les instructions print inutiles et en améliorant la visualisation.
 
-1. **Introduction to Raspberry Pi Kit**: Sponsored by SunFounder, explore the Raspberry Pi kit used in the tutorial.
-2. **TensorFlow Object Detection**: Utilizing TensorFlow for object detection tasks on Raspberry Pi.
-3. **Data Retrieval**: Understanding how to retrieve and analyze the data structure returned by TensorFlow.
-4. **Customization Techniques**: Learn techniques for customizing the visualization of detected objects, including changing colors, styles, and adding labels.
-5. **Efficient Iteration**: Strategies for efficiently iterating through nested data structures to access relevant information.
-6. **Performance Optimization**: Optimizing performance by removing unnecessary print statements and enhancing visualization.
-
-
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/oYoUz1DM0SM?si=hqdSpuJgY-6eU9vu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/oYoUz1DM0SM?si=hqdSpuJgY-6eU9vu" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

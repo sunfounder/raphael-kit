@@ -1,46 +1,27 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_avoid_module:
 
-Obstacle Avoidance Module
+Module d'évitement d'obstacles
 ===========================================
-
 
 .. image:: img/2.2.5IR_Obstacle.png
    :width: 400
    :align: center
 
-The IR obstacle avoidance module has strong adaptability to environmental light, it has a pair of infrared transmitting and receiving tubes.
+Le module d'évitement d'obstacles IR a une forte adaptabilité à la lumière ambiante. 
+Il est équipé d'une paire de tubes émetteurs et récepteurs infrarouges.
 
-The transmitting tube emits infrared frequency, when the detection direction encounters an obstacle, the infrared radiation is received by the receiving tube, 
-after the comparator circuit processing, the green indicator will light up and output low level signal.
+Le tube émetteur émet une fréquence infrarouge. Lorsque la direction de détection rencontre un 
+obstacle, le rayonnement infrarouge est reçu par le tube récepteur. Après traitement par le 
+circuit comparateur, l'indicateur vert s'allume et un signal de niveau bas est émis.
 
-The detection distance can be adjusted by potentiometer, the effective distance range 2-30cm.
+La distance de détection peut être ajustée par un potentiomètre, avec une plage de distance effective de 2 à 30 cm.
 
 .. image:: img/IR_module.png
     :width: 600
     :align: center
 
-**Example**
+**Exemple**
 
-* :ref:`2.2.5_c` (C Project)
-* :ref:`2.2.5_py` (Python Project)
-* :ref:`1.11_scratch` (Scratch Project)
-
-
-
-
-
-
+* :ref:`2.2.5_c` (Projet C)
+* :ref:`2.2.5_py` (Projet Python)
+* :ref:`1.11_scratch` (Projet Scratch)

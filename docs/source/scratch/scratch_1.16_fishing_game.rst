@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.16_scratch:
 
-1.16 Fishing Game
-========================
+1.16 Jeu de Pêche
+======================
 
-Today, we will make a fishing game.
+Aujourd'hui, nous allons créer un jeu de pêche.
 
-Observe the water on the stage area and if you find a fish on the hook, remember to tilt the switch to catch it.
+Observez l'eau dans la zone de scène et si vous trouvez un poisson sur l'hameçon, n'oubliez pas d'incliner l'interrupteur pour l'attraper.
 
 .. image:: img/1.16_header.png
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: img/1.16_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,56 +49,53 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch`
         - \-
 
-Build the Circuit
----------------------
+Construire le Circuit
+-------------------------
 
 .. image:: img/1.16_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Charger le Code et Voir ce Qui Se Passe
+-------------------------------------------
 
-Load the code file (``1.16_fishing_game.sb3``) to Scratch 3.
+Chargez le fichier de code (``1.16_fishing_game.sb3``) sur Scratch 3.
 
-You will see a child is fishing, after a period of time when the water surface movement, you can shake the tilt switch to catch the fish.
-Remember, if you do not keep shaking the switch, the fish will escape.
+Vous verrez un enfant en train de pêcher. Après un certain temps, lorsque l'eau bouge, vous pouvez secouer l'interrupteur à bascule pour attraper le poisson. Souvenez-vous, si vous ne continuez pas à secouer l'interrupteur, le poisson s'échappera.
 
-Tips on Sprite
-----------------
+Astuces sur les Sprites
+---------------------------
 
-Select Sprite1, click **Costumes** in the upper left corner; upload 6 pictures (**fish1** to **fish6**) from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes and rename the sprite to **fish**.
+Sélectionnez Sprite1, cliquez sur **Costumes** dans le coin supérieur gauche ; téléchargez 6 images (**fish1** à **fish6**) depuis le chemin ``~/raphael-kit/scratch/picture`` via le bouton **Télécharger Costume** ; supprimez les 2 costumes par défaut et renommez le sprite en **fish**.
 
 .. image:: img/1.16_upload_fish.png
 
-
-Tips on Codes
---------------
+Astuces sur les Codes
+--------------------------
 
 .. image:: img/1.16_fish2.png
   :width: 400
 
-Set the initial costume of the **fish** sprite to **fish1** and assign the value of **fish_status** to 0 (when **fish_status=0**, it means the fish is not hooked, when **fish_status=1**, it means the fish is hooked).
+Réglez le costume initial du sprite **fish** à **fish1** et attribuez la valeur de **fish_status** à 0 (lorsque **fish_status=0**, cela signifie que le poisson n'est pas accroché, lorsque **fish_status=1**, cela signifie que le poisson est accroché).
 
 .. image:: img/1.16_fish3.png
   :width: 400
 
-When **fish_status=0**, i.e. the fish is not hooked yet, start the fishing game. Wait for a random time from 0 to 10 seconds, then assign **fish_status** to 1, which means the fish is hooked, and broadcast a message "The fish is biting".
+Lorsque **fish_status=0**, c'est-à-dire que le poisson n'est pas encore accroché, commencez le jeu de pêche. Attendez un temps aléatoire de 0 à 10 secondes, puis attribuez **fish_status** à 1, ce qui signifie que le poisson est accroché, et diffusez un message "Le poisson mord".
 
 .. note::
 
-  The purpose of the broadcast block is to send a message to other code blocks or other sprites. The message can be either a request or a command.
+  Le but du bloc de diffusion est d'envoyer un message à d'autres blocs de code ou à d'autres sprites. Le message peut être soit une demande, soit une commande.
 
 .. image:: img/1.16_fish4.png
   :width: 400
 
-When the message "The fish is biting" is received, let the fish sprite switch between the **fish2** and **fish3** costumes so that we can see the fish biting.
+Lorsque le message "Le poisson mord" est reçu, faites en sorte que le sprite poisson alterne entre les costumes **fish2** et **fish3** pour que nous puissions voir le poisson mordre.
 
 .. image:: img/1.16_fish5.png
   :width: 400
 
-After switching the costume, if the game is not over, it means that the fish is off the hook and gone, so that we will switch the **fish** sprite costume to **fish6** (fish slipped state).
+Après avoir changé de costume, si le jeu n'est pas terminé, cela signifie que le poisson s'est décroché et est parti, nous changeons donc le costume du sprite **fish** en **fish6** (état du poisson échappé).
 
 .. image:: img/1.16_fish6.png
   :width: 400
 
-When gpio17 is high (the tilt switch is tilted), it means the fishing rod is pulled up. At this time, the value of fish_status is judged. If it is 1, it means that the fishing rod was pulled up when the fish was hooked and switched to fish4 costume (fish was caught). On the contrary, it means that the fishing rod pulled up when the fish is not hooked is switched to the fish5 costume (nothing is caught).
-
+Lorsque gpio17 est haut (l'interrupteur à bascule est incliné), cela signifie que la canne à pêche est tirée vers le haut. À ce moment-là, la valeur de **fish_status** est évaluée. Si elle est à 1, cela signifie que la canne à pêche a été tirée vers le haut lorsque le poisson était accroché, et le costume est changé en **fish4** (poisson attrapé). Sinon, cela signifie que la canne à pêche a été tirée vers le haut sans poisson accroché et le costume est changé en **fish5** (rien n'est attrapé).

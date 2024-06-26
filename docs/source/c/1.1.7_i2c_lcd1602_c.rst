@@ -1,36 +1,22 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _1.1.7_c:
 
-1.1.7 I2C LCD1602
+1.1.7 LCD1602 I2C
 =======================
 
 Introduction
 ------------------
 
-LCD1602 is a character type liquid crystal display, which can display 32
-(16*2) characters at the same time.
+Le LCD1602 est un affichage à cristaux liquides de type caractère, capable d'afficher 32 caractères (16*2) simultanément.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/list_i2c_lcd.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
@@ -43,14 +29,14 @@ It's definitely convenient to buy a whole kit, here's the link:
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,29 +47,28 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_i2c_lcd`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+Schéma de câblage
 ---------------------
 
 ============ ========
-T-Board Name physical
+Nom T-Board  Physique
 SDA1         Pin 3
 SCL1         Pin 5
 ============ ========
 
 .. image:: ../img/schematic_i2c_lcd.png
 
-
-Experimental Procedures
+Procédures expérimentales
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/image96.png
 
 
-**Step 2**: Setup I2C (see :ref:`I2C Configuration`. If you have set I2C, skip this step.)
+**Étape 2 :** Configurer l'I2C (voir :ref:`I2C Configuration`. Si vous avez déjà configuré l'I2C, passez cette étape.)
 
-**Step 3:** Change directory.
+**Étape 3 :** Changer de répertoire.
 
 .. raw:: html
 
@@ -93,7 +78,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.7/
 
-**Step 4:** Compile.
+**Étape 4 :** Compiler.
 
 .. raw:: html
 
@@ -103,7 +88,7 @@ Experimental Procedures
 
     gcc 1.1.7_Lcd1602.c -lwiringPi
 
-**Step 5:** Run.
+**Étape 5 :** Exécuter.
 
 .. raw:: html
 
@@ -113,19 +98,19 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you can see ``Greetings!, From SunFounder`` displaying on the LCD.
+Après l'exécution du code, vous pouvez voir ``Greetings!, From SunFounder`` s'afficher sur le LCD.
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Si une erreur ``wiringPi.h: No such file or directory`` apparaît, veuillez vous référer à :ref:`install_wiringpi`.
+    * Si vous obtenez l'erreur ``Unable to open I2C device: No such file or directory``, vous devez vous référer à :ref:`i2c_config` pour activer l'I2C et vérifier si le câblage est correct.
+    * Si le code et le câblage sont corrects, mais que le LCD ne s'affiche toujours pas, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
 
 **Code**
 
 * `1.1.7_Lcd1602.c <https://github.com/sunfounder/raphael-kit/blob/master/c/1.1.7/1.1.7_Lcd1602.c>`_
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block::
 
@@ -136,28 +121,28 @@ After the code runs, you can see ``Greetings!, From SunFounder`` displaying on t
     void clear(){……}
     void write(int x, int y, char data[]){……}
 
-These functions are used to control I2C LCD1602 open source code. They allow us to easily use I2C LCD1602.
-Among these functions, ``init()`` is used for initialization, ``clear()`` is used to clear the screen, ``write()`` is used to write what is displayed, and other functions support the above functions.
+Ces fonctions sont utilisées pour contrôler le code source ouvert I2C LCD1602. Elles nous permettent d'utiliser facilement l'I2C LCD1602.
+Parmi ces fonctions, ``init()`` est utilisée pour l'initialisation, ``clear()`` est utilisée pour effacer l'écran, ``write()`` est utilisée pour écrire ce qui est affiché, et d'autres fonctions soutiennent les fonctions ci-dessus.
 
 .. code-block:: c
 
     fd = wiringPiI2CSetup(LCDAddr);
 
-This function initializes the I2C system with the specified device symbol. The prototype of the function:
+Cette fonction initialise le système I2C avec le symbole de périphérique spécifié. Le prototype de la fonction :
 
 .. code-block:: c
 
     int wiringPiI2CSetup(int devId);
 
-Parameters devId is the address of the I2C device, it can be found through the i2cdetect command(see Appendix) and the devId of I2C LCD1602 is generally 0x27.
+Le paramètre devId est l'adresse du périphérique I2C, elle peut être trouvée via la commande i2cdetect (voir Annexe) et le devId de l'I2C LCD1602 est généralement 0x27.
 
 .. code-block:: c
 
     void write(int x, int y, char data[]){}
 
-In this function, ``data[]`` is the character to be printed on the LCD, and the parameters x and y determine the printing position (line y+1, column x+1 is the starting position of the character to be printed).
+Dans cette fonction, ``data[]`` est le caractère à imprimer sur le LCD, et les paramètres x et y déterminent la position d'impression (la ligne y+1, la colonne x+1 est la position de départ du caractère à imprimer).
 
-Phenomenon Picture
+Image du phénomène
 --------------------------
 
 .. image:: ../img/image97.jpeg

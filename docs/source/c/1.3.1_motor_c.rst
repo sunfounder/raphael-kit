@@ -1,58 +1,41 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _1.3.1_c:
 
-1.3.1 Motor
+1.3.1 Moteur
 =================
 
 Introduction
 -----------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+Dans ce projet, nous allons apprendre à utiliser le L293D pour piloter un moteur à courant continu et le faire tourner dans le sens horaire et antihoraire. Étant donné que le moteur à courant continu nécessite un courant plus élevé, pour des raisons de sécurité, nous utilisons ici le module d'alimentation pour alimenter les moteurs.
 
-Required Components
+Composants nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_1.3.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,33 +50,33 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
-Schematic Diagram
+Schéma de câblage
 ------------------
 
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+Branchez le module d'alimentation dans la plaque d'essai et insérez le cavalier 
+sur la broche 5V, il fournira alors une tension de 5V. Connectez la broche 1 du 
+L293D au GPIO22 et réglez-la en niveau haut. Connectez la broche 2 au GPIO27 et 
+la broche 7 au GPIO17, puis réglez une broche en niveau haut et l'autre en niveau bas. 
+Ainsi, vous pouvez changer la direction de rotation du moteur.
 
 .. image:: ../img/image336.png
 
 
-**Experimental Procedures**
+**Procédures expérimentales**
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Montez le circuit.
 
 .. image:: ../img/image117.png
 
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Le module d'alimentation peut utiliser une batterie de 9V avec l'attache de batterie 
+    de 9V du kit. Insérez le cavalier du module d'alimentation dans les bandes de bus 5V 
+    de la plaque d'essai.
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Get into the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -103,7 +86,7 @@ the motor’s rotation direction.
 
     cd ~/raphael-kit/c/1.3.1/
 
-**Step 3**: Compile.
+**Étape 3 :** Compilez.
 
 .. raw:: html
 
@@ -113,7 +96,7 @@ the motor’s rotation direction.
 
     gcc 1.3.1_Motor.c -lwiringPi
 
-**Step 4**: Run the executable file above.
+**Étape 4 :** Exécutez le fichier exécutable ci-dessus.
 
 .. raw:: html
 
@@ -123,13 +106,13 @@ the motor’s rotation direction.
 
     sudo ./a.out
 
-As the code runs, the motor first rotates clockwise for 5s then stops for 5s, 
-after that, it rotates anticlockwise for 5s; subsequently, the motor stops 
-for 5s. This series of actions will be executed repeatedly.  
+Lorsque le code s'exécute, le moteur tourne d'abord dans le sens horaire pendant 5s 
+puis s'arrête pendant 5s, après cela, il tourne dans le sens antihoraire pendant 5s ; 
+ensuite, le moteur s'arrête pendant 5s. Cette série d'actions sera exécutée de manière répétée.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur indiquant : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
 
 **Code**
 
@@ -184,24 +167,23 @@ for 5s. This series of actions will be executed repeatedly.
         return 0;
     }
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, HIGH);
 
-Enable the L239D.
+Activer le L239D.
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, HIGH);
     digitalWrite(MotorPin2, LOW);
 
-Set a high level for 2A(pin 7); since 1,2EN(pin 1) is in 
-high level, 2Y will output high level.
+Définir un niveau haut pour 2A (broche 7); puisque 1,2EN (broche 1) est en niveau haut, 
+2Y sortira un niveau haut.
 
-Set a low level for 1A, then 1Y will output low level, and 
-the motor will rotate.
+Définir un niveau bas pour 1A, alors 1Y sortira un niveau bas, et le moteur tournera.
 
 .. code-block:: c
 
@@ -209,22 +191,22 @@ the motor will rotate.
         delay(1000);
     }
 
-this loop is to delay for 3*1000ms.
+Cette boucle permet de retarder de 3*1000ms.
 
 .. code-block:: c
 
     digitalWrite(MotorEnable, LOW)
 
-If 1,2EN (pin1) is in low level, L293D does not work. Motor stops rotating.
+Si 1,2EN (broche 1) est en niveau bas, L293D ne fonctionne pas. Le moteur cesse de tourner.
 
 .. code-block:: c
 
     digitalWrite(MotorPin1, LOW)
     digitalWrite(MotorPin2, HIGH)
 
-Reverse the current flow of the motor, then the motor will rotate reversely.
+Inverser le sens du courant du moteur, puis le moteur tournera en sens inverse.
 
-Phenomenon Picture
+Image du phénomène
 ------------------
 
 .. image:: ../img/image119.jpeg

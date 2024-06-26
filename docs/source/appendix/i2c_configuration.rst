@@ -1,11 +1,11 @@
 .. _i2c_config:
 
-I2C Configuration
------------------------
+Configuration I2C
+====================
 
-**Step 1**: Enable the I2C port of your Raspberry Pi (If you have
-enabled it, skip this; if you do not know whether you have done that or
-not, please continue).
+**Étape 1** : Activez le port I2C de votre Raspberry Pi (Si vous l'avez
+déjà activé, passez cette étape ; si vous ne savez pas si cela a été fait,
+veuillez continuer).
 
 .. raw:: html
 
@@ -15,7 +15,7 @@ not, please continue).
 
     sudo raspi-config
 
-**3 Interfacing options**
+**3 Options d'interfaçage**
 
 .. image:: img/image282.png
     :align: center
@@ -30,7 +30,7 @@ not, please continue).
 .. image:: img/image284.png
     :align: center
 
-**Step 2:** Check whether the i2c modules are loaded and active.
+**Étape 2** : Vérifiez si les modules i2c sont chargés et actifs.
 
 .. raw:: html
 
@@ -40,14 +40,14 @@ not, please continue).
 
     lsmod | grep i2c
 
-Then the following codes will appear (the number may be different), if it does not appear, please reboot the Raspberry Pi with ``sudo reboot``.
+Ensuite, les codes suivants apparaîtront (les numéros peuvent être différents), s'ils n'apparaissent pas, veuillez redémarrer le Raspberry Pi avec ``sudo reboot``.
 
 .. code-block:: 
 
     i2c_dev                     6276    0
     i2c_bcm2708                 4121    0
 
-**Step 3:** Install i2c-tools.
+**Étape 3** : Installez i2c-tools.
 
 .. raw:: html
 
@@ -57,18 +57,15 @@ Then the following codes will appear (the number may be different), if it does n
 
     sudo apt-get install i2c-tools
 
-**Step 4:** Check the address of the I2C device.
-
+**Étape 4** : Vérifiez l'adresse du périphérique I2C.
 
 .. raw:: html
 
-    <run></run>
+   <run></run>
   
 .. code-block:: 
 
-    i2cdetect -y 1      # For Raspberry Pi 2 and higher version
-
-
+    i2cdetect -y 1      # Pour Raspberry Pi 2 et versions ultérieures
 
 .. raw:: html
 
@@ -76,7 +73,7 @@ Then the following codes will appear (the number may be different), if it does n
  
 .. code-block:: 
 
-    i2cdetect -y 0      # For Raspberry Pi 1
+    i2cdetect -y 0      # Pour Raspberry Pi 1
 
 
 .. code-block:: 
@@ -92,11 +89,11 @@ Then the following codes will appear (the number may be different), if it does n
     60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     70: -- -- -- -- -- -- -- --
 
-If there is an I2C device connected, the address of the device will be displayed.
+Si un périphérique I2C est connecté, l'adresse du périphérique sera affichée.
 
-**Step 5:**
+**Étape 5 :**
 
-**For C language users:** Install libi2c-dev.
+**Pour les utilisateurs de langage C :** Installez libi2c-dev.
 
 .. raw:: html
 
@@ -106,15 +103,15 @@ If there is an I2C device connected, the address of the device will be displayed
 
     sudo apt-get install libi2c-dev 
 
-**For Python users:**
+**Pour les utilisateurs de Python :**
 
-1. Activating the Virtual Environment.
+1. Activation de l'environnement virtuel.
 
 .. note::
     
-    * Before activation, you need to ensure that you have created a virtual environment, please refer to: :ref:`create_virtual`.
+    * Avant l'activation, vous devez vous assurer que vous avez créé un environnement virtuel, veuillez consulter : :ref:`create_virtual`.
 
-    * Each time you restart the Raspberry Pi, or open a new terminal, you will need to run the following command again to activate the virtual environment.
+    * Chaque fois que vous redémarrez le Raspberry Pi, ou que vous ouvrez un nouveau terminal, vous devrez exécuter la commande suivante à nouveau pour activer l'environnement virtuel.
 
 .. raw:: html
 
@@ -124,10 +121,10 @@ If there is an I2C device connected, the address of the device will be displayed
 
     source myenv/bin/activate
 
-Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
+Une fois l'environnement virtuel activé, vous verrez le nom de l'environnement avant l'invite de commande, indiquant que vous travaillez dans l'environnement virtuel.
 
 
-2. Install smbus for I2C.
+2. Installez smbus pour I2C.
 
 .. raw:: html
 
@@ -138,9 +135,9 @@ Once the virtual environment is activated, you will see the environment name bef
     sudo pip3 install smbus2
 
 
-3. Exiting the Virtual Environment.
+3. Sortie de l'environnement virtuel.
 
-When you have completed your work and wish to exit the virtual environment, simply run:
+Lorsque vous avez terminé votre travail et souhaitez quitter l'environnement virtuel, exécutez simplement :
 
 .. raw:: html
 
@@ -150,4 +147,4 @@ When you have completed your work and wish to exit the virtual environment, simp
 
     deactivate
 
-This will return you to the system's global Python environment.
+Cela vous ramènera à l'environnement Python global du système.

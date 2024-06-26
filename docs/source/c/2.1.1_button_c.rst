@@ -1,36 +1,21 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _2.1.1_c:
 
-2.1.1 Button
+2.1.1 Bouton
 ==================
 
 Introduction
 -----------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+Dans ce projet, nous allons apprendre à allumer ou éteindre la LED en utilisant un bouton.
 
-Required Components
+Composants Nécessaires
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/list_2.1.1_Button.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est définitivement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
@@ -43,14 +28,14 @@ It's definitely convenient to buy a whole kit, here's the link:
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément aux liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,34 +50,31 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-Schematic Diagram
+Schéma de Câblage
 ---------------------
 
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+Utilisez un bouton normalement ouvert comme entrée du Raspberry Pi, la connexion 
+est illustrée dans le schéma de câblage ci-dessous. Lorsque le bouton est pressé, 
+le GPIO18 passera à un niveau bas (0V). Nous pouvons détecter l'état du GPIO18 par programmation. 
+C'est-à-dire que si le GPIO18 passe à un niveau bas, cela signifie que le bouton est pressé. 
+Vous pouvez exécuter le code correspondant lorsque le bouton est pressé, 
+et ensuite la LED s'allumera.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    La broche la plus longue de la LED est l'anode et la plus courte est la cathode.
 
 .. image:: ../img/image302.png
 
-
 .. image:: ../img/image303.png
 
-
-Experimental Procedures
+Procédures Expérimentales
 ---------------------------
 
-**Step 1**: Build the circuit.
+**Étape 1**: Construisez le circuit.
 
 .. image:: ../img/image152.png
 
-**Step 2**: Open the code file.
+**Étape 2**: Ouvrez le fichier de code.
 
 .. raw:: html
 
@@ -103,9 +85,8 @@ Experimental Procedures
     cd ~/raphael-kit/c/2.1.1/
 
 .. note::
-    Change directory to the path of the code in this experiment via **cd**.
-
-**Step 3**: Compile the code.
+    Changez de répertoire pour accéder au code de cette expérience via **cd**.
+**Étape 3 :** Compiler le code.
 
 .. raw:: html
 
@@ -115,7 +96,7 @@ Experimental Procedures
 
     gcc 2.1.1_Button.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Étape 4 :** Exécuter le fichier exécutable.
 
 .. raw:: html
 
@@ -125,12 +106,11 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, press the button, the LED lights up; otherwise,
-turns off.
+Après l'exécution du code, appuyez sur le bouton et la LED s'allume ; sinon, elle s'éteint.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution, ou si une erreur s'affiche : "wiringPi.h: No such file or directory", veuillez consulter :ref:`install_wiringpi`.
 
 **Code**
 
@@ -169,32 +149,31 @@ turns off.
         return 0;
     }
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     #define LedPin      0
 
-Pin GPIO17 in the T_Extension Board is equal to the GPIO0 in the
-wiringPi.
+Le pin GPIO17 sur le T_Extension Board correspond à GPIO0 dans wiringPi.
 
 .. code-block:: c
 
     #define ButtonPin   1
 
-ButtonPin is connected to GPIO1.
+ButtonPin est connecté à GPIO1.
 
 .. code-block:: c
 
     pinMode(LedPin, OUTPUT);
 
-Set LedPin as output to assign value to it.
+Définir LedPin comme sortie pour lui attribuer une valeur.
 
 .. code-block:: c
 
     pinMode(ButtonPin, INPUT);
 
-Set ButtonPin as input to read the value of ButtonPin.
+Définir ButtonPin comme entrée pour lire la valeur de ButtonPin.
 
 .. code-block:: C
 
@@ -213,20 +192,18 @@ Set ButtonPin as input to read the value of ButtonPin.
         }
 
 
-``if (digitalRead (ButtonPin) == 0)`` : check whether the button has been
-pressed. Execute ``digitalWrite(LedPin, LOW)`` when button is pressed to
-light up LED.
+``if (digitalRead(ButtonPin) == 0)`` : Vérifie si le bouton a été pressé. Exécutez 
+``digitalWrite(LedPin, LOW)`` lorsque le bouton est pressé pour allumer la LED.
 
-``digitalRead()`` function is to read HIGH (high level) or LOW (low level) of 
-the input parameter word pin, it returns 1 when pin is HIGH and returns 0 
-when pin is LOW.
+La fonction ``digitalRead()`` lit HIGH (niveau haut) ou LOW (niveau bas) de 
+la broche d'entrée spécifiée. Elle retourne 1 lorsque la broche est HIGH et 0 lorsque la broche est LOW.
 
-``digitalWrite()`` function is to write HIGH (high level) or LOW (low level) to 
-the input parameter word pin.
+La fonction ``digitalWrite()`` écrit HIGH (niveau haut) ou LOW (niveau bas) 
+sur la broche d'entrée spécifiée.
 
-Phenomenon Picture
+Image du Phénomène
 ^^^^^^^^^^^^^^^^^^
 
 .. image:: ../img/image153.jpeg
 
-
+    

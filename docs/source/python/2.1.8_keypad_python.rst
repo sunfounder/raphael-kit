@@ -1,56 +1,42 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.1.8_py:
 
-2.1.8 Keypad
-============
+2.1.8 Clavier
+=================
 
 Introduction
-------------
+-----------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un clavier est une matrice rectangulaire de boutons. Dans ce projet, nous allons l'utiliser pour saisir des caractères.
 
-Required Components
-------------------------------
+Composants Nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Pour ce projet, nous avons besoin des composants suivants :
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est très pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,23 +49,22 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_keypad`
         - \-
 
-Schematic Diagram
------------------
+Schéma Électrique
+--------------------
 
 .. image:: ../img/image315.png
 
 
 .. image:: ../img/image316.png
 
+Procédures Expérimentales
+----------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Étape 2 :** Ouvrir le fichier de code.
 
 .. raw:: html
 
@@ -89,7 +74,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Étape 3 :** Exécuter.
 
 .. raw:: html
 
@@ -99,15 +84,13 @@ Experimental Procedures
 
     sudo python3 2.1.8_Keypad.py
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Après l'exécution du code, les valeurs des boutons pressés sur le clavier (valeur du bouton) seront affichées à l'écran.
 
 **Code**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. raw:: html
 
@@ -172,7 +155,7 @@ Value) will be printed on the screen.
         except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
             destroy()
 
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: python
 
@@ -180,15 +163,15 @@ Value) will be printed on the screen.
         global keypad, last_key_pressed
         rowsPins = [18,23,24,25]
         colsPins = [10,22,27,17]
-        keys = ["1","2","3","A",
-                "4","5","6","B",
-                "7","8","9","C",
+        keys = ["1","2","3","A",                
+                "4","5","6","B",                
+                "7","8","9","C",                
                 "*","0","#","D"]
         keypad = Keypad(rowsPins, colsPins, keys)
         last_key_pressed = []
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Déclarez chaque touche du clavier matriciel dans le tableau keys[] et définissez les broches de 
+chaque rangée et colonne.
 
 .. code-block:: python
 
@@ -200,23 +183,17 @@ the pins on each row and column.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-This is the part of the main function that reads and prints the button
-value.
+Voici la partie de la fonction principale qui lit et affiche la valeur du bouton.
 
-The function ``keyRead()`` will read the state of every button.
+La fonction ``keyRead()`` lira l'état de chaque bouton.
 
-The statement ``if len(pressed_keys) != 0`` and ``last_key_pressed !=
-pressed_keys`` is used to judge
+Les instructions ``if len(pressed_keys) != 0`` et ``last_key_pressed != pressed_keys`` sont utilisées pour déterminer
 
-whether a key is pressed and the state of the pressed button. (If you
-press \'3\' when you press \'1\', the judgement is tenable.)
+si une touche est enfoncée et l'état du bouton enfoncé. (Si vous appuyez sur '3' alors que '1' est enfoncé, le jugement est valide.)
 
-Prints the value of the currently pressed key when the condition is
-tenable.
+Affiche la valeur de la touche actuellement enfoncée lorsque la condition est remplie.
 
-The statement ``last_key_pressed = pressed_keys`` assigns the state of each
-judgment to an array ``last_key_pressed`` to facilitate the next round of
-conditional judgment.
+L'instruction ``last_key_pressed = pressed_keys`` assigne l'état de chaque jugement à un tableau ``last_key_pressed`` pour faciliter le prochain jugement conditionnel.
 
 .. code-block:: python
 
@@ -231,33 +208,29 @@ conditional judgment.
                 GPIO.output(row, GPIO.LOW)
             return pressed_keys
 
-This function assigns a high level to each row in turn, and when the
-button in the column is pressed, the column in which the key is located
-gets a high level. After the two-layer loop is judged, the value of the
-button whose state is 1 is stored in the array ``pressed_keys``.
+Cette fonction assigne un niveau haut à chaque rangée à tour de rôle, et lorsque le bouton de la 
+colonne est enfoncé, la colonne dans laquelle se trouve la touche obtient un niveau haut. Après 
+que la boucle à deux niveaux a jugé, la valeur du bouton dont l'état est 1 est stockée dans le 
+tableau ``pressed_keys``.
 
-If you press the key '3':
+Si vous appuyez sur la touche '3':
 
 .. image:: ../img/image187.png
 
+rowPins[0] est écrit en niveau haut, et colPins[2] obtient un niveau haut.
 
-rowPins[0] is written in high level, and colPins[2] gets high level.
+colPins[0], colPins[1], colPins[3] obtiennent un niveau bas.
 
-colPins[0]、colPins[1]、colPins[3] get low level.
+Il y a quatre états : 0, 0, 1, 0 ; et nous écrivons '3' dans ``pressed_keys``.
 
-There are four states: 0, 0, 1, 0; and we write \'3\' into ``pressed_keys``.
+Lorsque rowPins[1], rowPins[2], rowPins[3] sont écrits en niveau haut, colPins[0] à colPins[4] obtiennent un niveau bas.
 
-When rowPins[1] , rowPins[2] , rowPins[3] are written into high level,
-colPins[0] ~ colPins[4] get low level.
+La boucle s'arrête, et retourne ``pressed_keys = ‘3’``.
 
-The loop stopped, there returns ``pressed_keys = ‘3’``.
+Si vous appuyez sur les boutons '1' et '3', il retournera pressed_keys = ['1', '3'].
 
-If you press the buttons ‘1’ and ‘3’, there will return pressed_keys =
-[‘1’,’3’].
 
-Phenomenon Picture
-------------------
+Image du Phénomène
+---------------------
 
 .. image:: ../img/image188.jpeg
-
-

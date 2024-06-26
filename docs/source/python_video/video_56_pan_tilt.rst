@@ -1,33 +1,17 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 56: Prepping for the Next Lessons in the Class
+Vidéo 56 : Préparation pour les Prochaines Leçons du Cours
 =======================================================================================
 
-Join Paul McCarter as he introduces the concept of setting up a pan-tilt camera control system on Raspberry Pi using the SunFounder pan-tilt hat and alternative methods.
+Rejoignez Paul McCarter alors qu'il introduit le concept de mise en place d'un système de contrôle de caméra pan-tilt sur Raspberry Pi en utilisant le chapeau pan-tilt de SunFounder et des méthodes alternatives.
 
-1. Introduction to the SunFounder Raphael kit for Raspberry Pi.
-2. Explanation of the need for a pan-tilt camera control system to track objects of interest.
-3. Overview of the SunFounder pan-tilt hat for Raspberry Pi camera.
-4. Alternative methods for implementing pan-tilt control using servos.
-5. Discussion on designing a custom pan-tilt camera mount using Fusion 360.
-6. Preview of upcoming lessons, including assembly instructions and coding for real-time object tracking.
+1. Introduction au kit SunFounder Raphael pour Raspberry Pi.
+2. Explication de la nécessité d'un système de contrôle de caméra pan-tilt pour suivre des objets d'intérêt.
+3. Aperçu du chapeau pan-tilt de SunFounder pour la caméra Raspberry Pi.
+4. Méthodes alternatives pour implémenter le contrôle pan-tilt à l'aide de servos.
+5. Discussion sur la conception d'un support de caméra pan-tilt personnalisé en utilisant Fusion 360.
+6. Aperçu des prochaines leçons, y compris les instructions de montage et le codage pour le suivi d'objets en temps réel.
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/g6WTDMYE4Z4?si=50YctS5mCEPW0sWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/g6WTDMYE4Z4?si=50YctS5mCEPW0sWX" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

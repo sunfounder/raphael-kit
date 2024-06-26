@@ -1,21 +1,7 @@
-.. note::
+Jouez avec Python (pour tous les modèles de Pi) 
+===========================================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Play with Python (for All Pi Models) 
-======================================
-
-If you are a Raspberry Pi 5 Python user, you can program GPIOs with API provided by ``GPIO Zero``.
+Si vous êtes utilisateur de Python sur Raspberry Pi 5, vous pouvez programmer les GPIOs avec l'API fournie par ``GPIO Zero``.
 
 .. toctree::
     :maxdepth: 3
@@ -39,5 +25,5 @@ If you are a Raspberry Pi 5 Python user, you can program GPIOs with API provided
 
 
 
-    
+
 

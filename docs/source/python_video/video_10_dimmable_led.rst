@@ -1,44 +1,29 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 10: Making a Dimmable LED with Two Push Buttons
+Vidéo 10 : Création d'une LED Dimmable avec Deux Boutons-Poussoirs
 =======================================================================================
 
-This tutorial covers the construction of dimmable LED circuits using Raspberry Pi GPIO pins, 
-focusing on achieving smooth brightness control. Paul McQuarter demonstrates the process step-by-step, 
-from circuit setup to coding implementation. In the Raspberry Pi section, he explains how to build the circuit using GPIO pins and push buttons for control, 
-alongside Python coding for PWM (Pulse Width Modulation) control. 
-The video explores the nuances of PWM, 
-emphasizing non-linear changes in duty cycle for smoother brightness transitions and addressing synchronization issues between PWM frequency and camera scanning rate. 
-The video introduces the concept of using exponential scale for achieving smooth and precise brightness control. 
-It delves into mathematical concepts like logarithms and exponents, illustrating their application in coding for LED brightness control. 
-Troubleshooting tips are provided for debugging and refining the code to ensure optimal performance.
+Ce tutoriel couvre la construction de circuits de LED dimmables utilisant les broches GPIO du Raspberry Pi,
+en se concentrant sur la réalisation d'un contrôle fluide de la luminosité. Paul McQuarter démontre le processus étape par étape,
+de la configuration du circuit à la mise en œuvre du codage. Dans la section Raspberry Pi, il explique comment construire le circuit en utilisant les broches GPIO et des boutons-poussoirs pour le contrôle,
+accompagné de codage Python pour le contrôle PWM (Modulation de Largeur d'Impulsion).
+La vidéo explore les subtilités du PWM,
+en mettant l'accent sur les changements non linéaires du cycle de travail pour des transitions de luminosité plus douces et en abordant les problèmes de synchronisation entre la fréquence du PWM et le taux de balayage de la caméra.
+La vidéo introduit le concept d'utilisation de l'échelle exponentielle pour obtenir un contrôle précis et fluide de la luminosité.
+Elle plonge dans des concepts mathématiques comme les logarithmes et les exposants, illustrant leur application dans le codage pour le contrôle de la luminosité des LED.
+Des conseils de dépannage sont fournis pour déboguer et affiner le code afin d'assurer des performances optimales.
 
 
-1. **Circuit setup**: Explanation and demonstration of building dimmable LED circuits with Raspberry Pi GPIO pins, utilizing push buttons for control.
-2. **Python coding**: Walkthroughs of Python code for implementing PWM control and exponential scale for LED brightness control, respectively.
-3. **PWM principles**: Understanding PWM duty cycle and its application in LED brightness control.
-4. **Exponential scale**: Utilizing exponential scale in coding to achieve smooth and linear brightness control.
-5. **Logarithmic concept**: Applying logarithms to determine the constant required for a specific number of button pushes for brightness adjustment.
-6. **Non-linear brightness adjustment**: Exploring non-linear changes in duty cycle for smoother brightness transitions.
-7. **Synchronization issues**: Addressing synchronization problems between PWM frequency and camera scanning rate.
-8. **Troubleshooting and refinement**: Techniques for debugging code and refining LED dimming functionality for optimal performance.
+1. **Configuration du circuit** : Explication et démonstration de la construction de circuits de LED dimmables avec les broches GPIO du Raspberry Pi, utilisant des boutons-poussoirs pour le contrôle.
+2. **Codage Python** : Parcours du code Python pour la mise en œuvre du contrôle PWM et de l'échelle exponentielle pour le contrôle de la luminosité des LED, respectivement.
+3. **Principes du PWM** : Compréhension du cycle de travail du PWM et son application dans le contrôle de la luminosité des LED.
+4. **Échelle exponentielle** : Utilisation de l'échelle exponentielle dans le codage pour obtenir un contrôle de la luminosité doux et linéaire.
+5. **Concept logarithmique** : Application des logarithmes pour déterminer la constante requise pour un nombre spécifique de pressions sur les boutons pour l'ajustement de la luminosité.
+6. **Ajustement non linéaire de la luminosité** : Exploration des changements non linéaires du cycle de travail pour des transitions de luminosité plus douces.
+7. **Problèmes de synchronisation** : Traitement des problèmes de synchronisation entre la fréquence du PWM et le taux de balayage de la caméra.
+8. **Dépannage et affinement** : Techniques pour déboguer le code et affiner la fonctionnalité de gradation des LED pour des performances optimales.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
     
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/2QAn1e8U5ho?si=1aWOugdV2_4pIO9N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/2QAn1e8U5ho?si=1aWOugdV2_4pIO9N" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

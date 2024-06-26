@@ -1,89 +1,73 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _3.1.2_py_pi5:
 
-3.1.2 Video Module
+3.1.2 Module Vidéo
 =====================
 
 Introduction
------------------
+---------------
 
-In addition to taking photos, the Camera Module can also be used to record videos.
+En plus de prendre des photos, le module caméra peut également être utilisé pour enregistrer des vidéos.
 
-Required Components
-------------------------------
+Composants nécessaires
+--------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../python_pi5/img/3.3.2_photograph_list.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
-------------------------------
+Procédures expérimentales
+-----------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Étape 1 :** Accédez au bureau du Raspberry Pi. Vous aurez peut-être besoin d'un écran pour une meilleure expérience, référez-vous à : `Connecter votre Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Ou accédez au bureau du Raspberry Pi à distance, pour un tutoriel détaillé veuillez consulter :ref:`remote_desktop`.
 
-**Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
+**Étape 2 :** Vérifiez si la caméra est activée. Pour les instructions, veuillez consulter : :ref:`enable_camera`.
 
-**Step 3:** Open a Terminal and get into the folder of the code.
-
+**Étape 3 :** Ouvrez un Terminal et accédez au dossier du code.
 
 .. code-block::
 
     cd ~/raphael-kit/python-pi5
 
-**Step 4:** Run.
-
+**Étape 4 :** Exécutez.
 
 .. code-block::
 
     sudo python3 3.1.2_VideoModule_zero.py
 
-Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``~`` directory.
+Exécutez le code pour commencer l'enregistrement. Appuyez sur ``Ctrl+C`` pour terminer l'enregistrement. Nommez la vidéo ``my_video.h264`` et enregistrez-la dans le répertoire ``~``.
 
 .. note::
 
-    You can also open ``3.1.2_PhotographModule_zero.py`` in the ``~/raphael-kit/python-pi5`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    Vous pouvez également ouvrir ``3.1.2_PhotographModule_zero.py`` dans le chemin ``~/raphael-kit/python-pi5`` avec un IDE Python, cliquer sur le bouton Exécuter pour exécuter et arrêter le code avec le bouton Stop.
 
-If you want to send photos to your PC, please refer to :ref:`filezilla`.
-
+Si vous souhaitez envoyer des photos vers votre PC, veuillez vous référer à :ref:`filezilla`.
 
 **Code**
 
@@ -136,9 +120,9 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
        pass
 
 
-**Code Explanation**
+**Explication du Code**
 
-#. Imports necessary libraries and classes. The ``picamera2`` library is used for camera control, ``H264Encoder`` for video encoding, and ``FfmpegOutput`` for defining the video output file.
+#. Importe les bibliothèques et les classes nécessaires. La bibliothèque ``picamera2`` est utilisée pour le contrôle de la caméra, ``H264Encoder`` pour l'encodage vidéo, et ``FfmpegOutput`` pour définir le fichier de sortie vidéo.
 
    .. code-block:: python
 
@@ -150,7 +134,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
        from picamera2.outputs import FfmpegOutput
        import os
 
-#. Retrieves the current user's login name and the path to their home directory.
+#. Récupère le nom de connexion de l'utilisateur actuel et le chemin de son répertoire personnel.
 
    .. code-block:: python
 
@@ -159,7 +143,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
        # Get the path to the user's home directory
        user_home = os.path.expanduser(f'~{user}')
 
-#. Creates an instance of the ``Picamera2`` class and retrieves the default preview configuration.
+#. Crée une instance de la classe ``Picamera2`` et récupère la configuration de prévisualisation par défaut.
 
    .. code-block:: python
 
@@ -168,7 +152,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
        # Retrieve the default preview configuration
        preview_config = camera.preview_configuration
 
-#. Sets the size and format of the camera preview. The size is set to 800x600 pixels, and the format is set to ``XRGB8888``.
+#. Définit la taille et le format de la prévisualisation de la caméra. La taille est définie à 800x600 pixels, et le format est défini à ``XRGB8888``.
 
    .. code-block:: python
 
@@ -177,7 +161,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
            preview_config.size = (800, 600)
            preview_config.format = 'XRGB8888'
            
-#. Starts the camera preview in QTGL mode, a graphical preview mode.
+#. Démarre la prévisualisation de la caméra en mode QTGL, un mode de prévisualisation graphique.
 
    .. code-block:: python
 
@@ -189,7 +173,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
            
            ...
 
-#. Defines the video configuration with a frame size of 800x600 pixels and a frame rate of 40 frames per second.
+#. Définit la configuration vidéo avec une taille de cadre de 800x600 pixels et un taux de trame de 40 images par seconde.
 
    .. code-block:: python
 
@@ -203,7 +187,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
            
            ...
 
-#. Creates a video encoder with a specified bitrate of 10 Mbps, using the H.264 encoding format. Sets up the output file path for the video, saving it as ``my_video.mp4`` in the user's home directory.
+#. Crée un encodeur vidéo avec un débit binaire spécifié de 10 Mbps, utilisant le format d'encodage H.264. Définit le chemin du fichier de sortie pour la vidéo, en l'enregistrant sous ``my_video.mp4`` dans le répertoire personnel de l'utilisateur.
 
    .. code-block:: python
 
@@ -217,7 +201,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
            
            ...
 
-#. Configures the camera with the defined video settings, starts recording using the specified encoder and output file, records for 10 seconds, and then stops the recording.
+#. Configure la caméra avec les paramètres vidéo définis, commence l'enregistrement en utilisant l'encodeur et le fichier de sortie spécifiés, enregistre pendant 10 secondes, puis arrête l'enregistrement.
 
    .. code-block:: python
 
@@ -232,7 +216,7 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
            # Stop the recording
            camera.stop_recording()
 
-#. This block of code handles a KeyboardInterrupt (such as Ctrl+C) by stopping the camera preview. The ``pass`` statement is used to  handle the exception without doing anything else.
+#. Ce bloc de code gère une interruption clavier (comme Ctrl+C) en arrêtant la prévisualisation de la caméra. L'instruction ``pass`` est utilisée pour gérer l'exception sans rien faire d'autre.
 
    .. code-block:: python
 

@@ -1,64 +1,50 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.10_c:
 
-2.2.10 MFRC522 RFID Module
+2.2.10 Module RFID MFRC522
 ================================
 
 Introduction
 ---------------
 
-Radio Frequency Identification (RFID) refers to technologies that use
-wireless communication between an object (or tag) and interrogating
-device (or reader) to automatically track and identify such objects.
+L'identification par radiofréquence (RFID) désigne les technologies utilisant
+la communication sans fil entre un objet (ou tag) et un dispositif
+interrogateur (ou lecteur) pour suivre et identifier automatiquement ces objets.
 
-Some of the most common applications for this technology include retail
-supply chains, military supply chains, automated payment methods,
-baggage tracking and management, document tracking and pharmaceutical
-management, to name a few.
+Certaines des applications les plus courantes de cette technologie incluent les chaînes d'approvisionnement au détail,
+les chaînes d'approvisionnement militaires, les méthodes de paiement automatisées,
+le suivi et la gestion des bagages, le suivi des documents et la gestion pharmaceutique, pour ne citer que quelques exemples.
 
-In this project, we will use RFID for reading and writing.
+Dans ce projet, nous utiliserons le RFID pour lire et écrire.
 
-Required Components
+Composants requis
 ------------------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants.
 
 .. image:: ../img/list_2.2.7.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien :
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément en utilisant les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,24 +55,21 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_mfrc522`
         - |link_mfrc522_rfid_buy|
 
-Schematic Diagram
+Schéma de câblage
 -----------------
 
 .. image:: ../img/image331.png
 
-
-Experimental Procedures
+Procédures expérimentales
 -----------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construire le circuit.
 
 .. image:: ../img/image232.png
 
+**Étape 2 :** Configurer SPI (référez-vous à :ref:`Configuration SPI` pour plus de détails. Si vous avez déjà configuré SPI, passez cette étape.)
 
-**Step 2:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
-set SPI, skip this step.)
-
-**Step 3:** Go to the folder of the code.
+**Étape 3 :** Aller au dossier du code.
 
 .. raw:: html
 
@@ -96,7 +79,7 @@ set SPI, skip this step.)
 
     cd ~/raphael-kit/c/2.2.10/
 
-**Step 4:** Compile the code.
+**Étape 4 :** Compiler le code.
 
 .. raw:: html
 
@@ -107,8 +90,7 @@ set SPI, skip this step.)
     make read
     make write
 
-
-**Step 5:** After running ``./write``, enter the information, such as the name of the person, and then put the tag or card on the MRC522 module and wait for the writing to be completed.
+**Étape 5 :** Après avoir exécuté ``./write``, entrez les informations, telles que le nom de la personne, puis placez le tag ou la carte sur le module MRC522 et attendez que l'écriture soit terminée.
 
 .. raw:: html
 
@@ -118,7 +100,7 @@ set SPI, skip this step.)
 
     sudo ./write
 
-**Step 6:** Now run ``./read`` to read the information of the tag or card you have written.
+**Étape 6 :** Maintenant, exécutez ``./read`` pour lire les informations du tag ou de la carte que vous avez écrites.
 
 .. raw:: html
 
@@ -130,32 +112,29 @@ set SPI, skip this step.)
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
 
-**Code Explanation**
+**Explication du code**
 
 .. code-block:: c
 
     InitRc522();
 
-This function is used to initialize the RFID RC522 module.
+Cette fonction est utilisée pour initialiser le module RFID RC522.
 
 .. code-block:: c
 
     uint8_t read_card_data();
 
-This function is used to read the data of the card, and if 
-the read is successful, it will return "1".
+Cette fonction est utilisée pour lire les données de la carte et si la lecture réussit, elle retournera "1".
 
 .. code-block:: c
 
     uint8_t write_card_data(uint8_t *data);
 
-This function is used to write the data of card and returns "1" if 
-the write is successful. ``*data`` is the information that will be written 
-to the card.
+Cette fonction est utilisée pour écrire les données de la carte et retourne "1" si l'écriture réussit. ``*data`` est l'information qui sera écrite sur la carte.
 
-Phenomenon Picture
+Image du phénomène
 ------------------
 
 .. image:: ../img/image233.jpeg

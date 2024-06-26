@@ -1,38 +1,24 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 .. _cpn_keypad:
 
-Keypad
+Clavier
 ========================
 
-A keypad is a rectangular array of 12 or 16 OFF-(ON) buttons. 
-Their contacts are accessed via a header suitable for connection with a ribbon cable or insertion into a printed circuit board. 
-In some keypads, each button connects with a separate contact in the header, while all the buttons share a common ground.
+Un clavier est une matrice rectangulaire de 12 ou 16 boutons OFF-(ON). 
+Leurs contacts sont accessibles via un connecteur adapté à une connexion avec un câble ruban ou une insertion dans un circuit imprimé. 
+Dans certains claviers, chaque bouton se connecte à un contact séparé dans le connecteur, tandis que tous les boutons partagent une masse commune.
 
 .. image:: img/keypad314.png
 
-More often, the buttons are matrix encoded, meaning that each of them bridges a unique pair of conductors in a matrix. 
-This configuration is suitable for polling by a microcontroller, which can be programmed to send an output pulse to each of the four horizontal wires in turn. 
-During each pulse, it checks the remaining four vertical wires in sequence, to determine which one, if any, is carrying a signal. 
-Pullup or pulldown resistors should be added to the input wires to prevent the inputs of the microcontroller from behaving unpredictably when no signal is present.
+Le plus souvent, les boutons sont codés en matrice, ce qui signifie que chacun d'eux relie une paire unique de conducteurs dans une matrice. 
+Cette configuration est adaptée à l'interrogation par un microcontrôleur, qui peut être programmé pour envoyer une impulsion de sortie à chacun des quatre fils horizontaux à tour de rôle. 
+Pendant chaque impulsion, il vérifie les quatre fils verticaux restants en séquence pour déterminer lequel, le cas échéant, transporte un signal. 
+Des résistances de pull-up ou pull-down doivent être ajoutées aux fils d'entrée pour éviter que les entrées du microcontrôleur ne se comportent de manière imprévisible en l'absence de signal.
 
-**Example**
+**Exemple**
 
-* :ref:`2.1.8_c` (C Project)
-* :ref:`3.1.8_c` (C Project)
-* :ref:`3.1.11_c` (C Project)
-* :ref:`2.1.8_py` (Python Project)
-* :ref:`4.1.14_py` (Python Project)
-* :ref:`4.1.17_py` (Python Project)
+* :ref:`2.1.8_c` (Projet C)
+* :ref:`3.1.8_c` (Projet C)
+* :ref:`3.1.11_c` (Projet C)
+* :ref:`2.1.8_py` (Projet Python)
+* :ref:`4.1.14_py` (Projet Python)
+* :ref:`4.1.17_py` (Projet Python)

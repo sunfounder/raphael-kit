@@ -1,32 +1,19 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 7: GPIO Inputs from Button Switch
+Vidéo 7 : Entrées GPIO à partir d'un Interrupteur Bouton
 =======================================================================================
 
-Learn how to simplify GPIO circuits for switches or push buttons by using the internal pull-up resistor in Raspberry Pi GPIO pins, including a demonstration of the concept, circuit setup, and Python code example to toggle an LED.
+Apprenez comment simplifier les circuits GPIO pour les interrupteurs ou boutons-poussoirs en utilisant la résistance de tirage interne dans les broches GPIO du Raspberry Pi, incluant une démonstration du concept, la configuration du circuit et un exemple de code Python pour basculer une LED.
 
-1. Understanding pull-up and pull-down resistors in GPIO circuits.
-2. Demonstrating a circuit setup with a push button, pull-up resistor, and LED.
-3. Introducing the concept of using the internal pull-up resistor in Raspberry Pi GPIO pins.
-4. Explaining how to activate the internal pull-up resistor in the GPIO pin setup.
-5. Providing a Python code example to toggle an LED using a push button, utilizing the internal pull-up resistor.
-6. Highlighting the importance of toggle switches in practical applications and assigning a homework task to implement a toggle switch using the existing circuit.
+1. Compréhension des résistances de tirage haut et de tirage bas dans les circuits GPIO.
+2. Démonstration d'une configuration de circuit avec un bouton-poussoir, une résistance de tirage haut et une LED.
+3. Introduction au concept d'utilisation de la résistance de tirage interne dans les broches GPIO du Raspberry Pi.
+4. Explication de comment activer la résistance de tirage interne lors de la configuration de la broche GPIO.
+5. Fourniture d'un exemple de code Python pour basculer une LED en utilisant un bouton-poussoir, en utilisant la résistance de tirage interne.
+6. Mise en évidence de l'importance des interrupteurs à bascule dans les applications pratiques et attribution d'un devoir pour implémenter un interrupteur à bascule en utilisant le circuit existant.
 
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/tCFMmepJjDA?si=gjNAlMbt-J7kooye" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/tCFMmepJjDA?si=gjNAlMbt-J7kooye" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 

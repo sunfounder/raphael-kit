@@ -1,28 +1,14 @@
-.. note::
+Cours Vidéo Python (non adapté pour Pi 5)
+=======================================================
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+Plongez dans l'univers Raspberry Pi avec notre cours vidéo Python concis, parfait pour les débutants et les amateurs.
+Commencez par une introduction aux capacités du Raspberry Pi,
+cette série vous guide à travers les bases de la programmation Python, y compris le contrôle des broches GPIO et l'intégration des capteurs.
+Progressez à travers des projets interactifs, en explorant des composants clés comme les LED et les affichages LCD.
+Ce cours vous équipe des compétences essentielles pour la programmation et l'interface matérielle,
+rendant les concepts complexes accessibles grâce à l'exécution pratique. Rejoignez-nous pour débloquer le potentiel du Raspberry Pi dans le monde numérique.
 
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Python Video Course(not for Pi 5)
-========================================
-
-Dive into the Raspberry Pi universe with our concise Python Video Course, perfect for both beginners and hobbyists. 
-Starting with an introduction to the Raspberry Pi's capabilities, 
-this series guides you through Python programming basics, including GPIO pin control and sensor integration. 
-Progress through interactive projects, exploring key components like LEDs and LCD displays. 
-This course equips you with essential skills for programming and hardware interfacing, 
-making complex concepts accessible through practical execution. Join us to unlock the potential of Raspberry Pi in the digital world.
-
-**Projects**
+**Projets**
 
 .. toctree::
     :maxdepth: 1
@@ -98,3 +84,4 @@ making complex concepts accessible through practical execution. Join us to unloc
     video_69_mfrc522
     video_70_rgb_rfid
     video_71_ir_proximity
+

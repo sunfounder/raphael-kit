@@ -1,39 +1,26 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _remote_desktop:
 
-Remote Desktop 
+Bureau à distance
 =====================
 
-There are two ways to control the desktop of the Raspberry Pi remotely:
+Il existe deux façons de contrôler le bureau du Raspberry Pi à distance :
 
-**VNC** and **XRDP**, you can use any of them.
+**VNC** et **XRDP**, vous pouvez utiliser l'un ou l'autre.
 
-VNC 
+VNC
 --------------
 
-You can use the function of remote desktop through VNC.
+Vous pouvez utiliser la fonction de bureau à distance via VNC.
 
-**Enable VNC service**
+**Activer le service VNC**
 
-The VNC service has been installed in the system. By default, VNC is
-disabled. You need to enable it in config.
+Le service VNC est installé dans le système. Par défaut, VNC est
+désactivé. Vous devez l'activer dans la configuration.
 
-**Step 1**
+**Étape 1**
 
-Input the following command:
+Saisissez la commande suivante :
 
 .. raw:: html
 
@@ -46,87 +33,84 @@ Input the following command:
 .. image:: img/image287.png
    :align: center
 
-**Step 2**
+**Étape 2**
 
-Choose **3** **Interfacing Options** by press the down arrow key on your
-keyboard, then press the **Enter** key.
+Choisissez **3** **Options d'interfaçage** en appuyant sur la touche fléchée vers le bas de votre clavier, puis appuyez sur la touche **Entrée**.
 
 .. image:: img/image282.png
    :align: center
 
-**Step 3**
+**Étape 3**
 
 **P3 VNC**
 
 .. image:: img/image288.png
    :align: center
 
-**Step 4**
+**Étape 4**
 
-Select **Yes -> OK -> Finish** to exit the configuration.
+Sélectionnez **Yes -> OK -> Finish** pour quitter la configuration.
 
 .. image:: img/image289.png
    :align: center
 
-**Login to VNC**
+**Connexion à VNC**
 
-**Step 1**
+**Étape 1**
 
-You need to download and install the `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ on personal computer. After the installation is done, open it.
+Vous devez télécharger et installer le `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ sur votre ordinateur personnel. Une fois l'installation terminée, ouvrez-le.
 
-**Step 2**
+**Étape 2**
 
-Then select \"**New connection**\".
+Sélectionnez ensuite \"**New connection**\".
 
 .. image:: img/image290.png
    :align: center
 
-**Step 3**
+**Étape 3**
 
-Input IP address of Raspberry Pi and any **Name**.
+Entrez l'adresse IP du Raspberry Pi et un **Nom** quelconque.
 
 .. image:: img/image291.png
    :align: center
 
-**Step 4**
+**Étape 4**
 
-Double click the **connection** just created:
+Double-cliquez sur la **connexion** que vous venez de créer :
 
 .. image:: img/image292.png
    :align: center
 
-**Step 5**
+**Étape 5**
 
-Enter Username (**pi**) and Password (**raspberry** by default).
+Entrez le nom d'utilisateur (**pi**) et le mot de passe (**raspberry** par défaut).
 
 .. image:: img/image293.png
    :align: center
 
-**Step 6**
+**Étape 6**
 
-Now you can see the desktop of the Raspberry Pi:
+Vous pouvez maintenant voir le bureau du Raspberry Pi :
 
 .. image:: img/image294.png
    :align: center
 
-That's the end of the VNC part.
-
+C'est la fin de la partie VNC.
 
 XRDP
 -----------------------
 
-Another method of remote desktop is XRDP, it provides a graphical login to remote machines using RDP (Microsoft
-Remote Desktop Protocol).
+Une autre méthode de bureau à distance est XRDP, qui fournit une connexion graphique aux machines distantes en utilisant le protocole RDP (Remote Desktop Protocol de Microsoft).
 
-**Install XRDP**
+**Installer XRDP**
 
-**Step 1**
+**Étape 1**
 
-Login to Raspberry Pi by using SSH.
+Connectez-vous au Raspberry Pi en utilisant SSH.
 
-**Step 2**
+**Étape 2**
 
-Input the following instructions to install XRDP.
+Saisissez les instructions suivantes pour installer XRDP.
 
 .. raw:: html
 
@@ -137,62 +121,56 @@ Input the following instructions to install XRDP.
    sudo apt-get update
    sudo apt-get install xrdp
 
-**Step 3**
+**Étape 3**
 
-Later, the installation starts.
+Ensuite, l'installation commence.
 
-Enter \"Y\", press key \"Enter\" to confirm.
+Tapez \"Y\", puis appuyez sur la touche \"Entrée\" pour confirmer.
 
 .. image:: img/image295.png
    :align: center
 
-**Step 4**
+**Étape 4**
 
-Finished the installation, you should login to your Raspberry Pi by
-using Windows remote desktop applications.
+Une fois l'installation terminée, vous devez vous connecter à votre Raspberry Pi en utilisant les applications de bureau à distance de Windows.
 
-**Login to XRDP**
+**Connexion à XRDP**
 
-**Step 1**
+**Étape 1**
 
-If you are a Windows user, you can use the Remote Desktop feature that
-comes with Windows. If you are a Mac user, you can download and use
-Microsoft Remote Desktop from the APP Store, and there is not much
-difference between the two. The next example is Windows remote desktop.
+Si vous êtes un utilisateur Windows, vous pouvez utiliser la fonction de bureau à distance incluse avec Windows. 
+Si vous êtes un utilisateur Mac, vous pouvez télécharger et utiliser Microsoft Remote Desktop depuis l'App Store, 
+et il n'y a pas beaucoup de différence entre les deux. L'exemple suivant concerne le bureau à distance de Windows.
 
-**Step 2**
+**Étape 2**
 
-Type in \"**mstsc**\" in Run (WIN+R) to open the Remote Desktop
-Connection, and input the IP address of Raspberry Pi, then click on
-\"Connect\".
+Tapez \"**mstsc**\" dans Exécuter (WIN+R) pour ouvrir la Connexion Bureau à Distance, 
+et entrez l'adresse IP du Raspberry Pi, puis cliquez sur \"Connecter\".
 
 .. image:: img/image296.png
    :align: center
 
-**Step 3**
+**Étape 3**
 
-Then the xrdp login page pops out. Please type in your username and
-password. After that, please click \"OK\". At the first time you log in,
-your username is \"pi\" and the password is \"raspberry\".
+Ensuite, la page de connexion xrdp apparaît. Veuillez saisir votre nom d'utilisateur et votre mot de passe.
+ Après cela, cliquez sur \"OK\". Lors de votre première connexion, votre nom d'utilisateur est \"pi\" et le mot de passe est \"raspberry\".
 
 .. image:: img/image297.png
    :align: center
 
-**Step 4**
+**Étape 4**
 
-Here, you successfully login to RPi by using the remote desktop.
+Vous êtes maintenant connecté avec succès à votre Raspberry Pi en utilisant le bureau à distance.
 
 .. image:: img/image20.png
    :align: center
 
-**Copyright Notice**
+**Avis de droits d'auteur**
 
-All contents including but not limited to texts, images, and code in
-this manual are owned by the SunFounder Company. You should only use it
-for personal study, investigation, enjoyment, or other non-commercial or
-nonprofit purposes, under the related regulations and copyrights laws,
-without infringing the legal rights of the author and relevant right
-holders. For any individual or organization that uses these for
-commercial profit without permission, the Company reserves the right to
-take legal action.
+Tous les contenus, y compris mais sans s'y limiter, les textes, les images et le code de ce manuel,
+ sont la propriété de la société SunFounder. Vous devez les utiliser uniquement pour des études personnelles,
+  des recherches, des loisirs ou d'autres objectifs non commerciaux ou à but non lucratif, conformément aux réglementations et aux lois sur les droits d'auteur en vigueur,
+   sans porter atteinte aux droits légaux de l'auteur et des détenteurs de droits concernés.
+    Pour toute personne ou organisation qui utilise ces contenus à des fins lucratives sans autorisation,
+     la société se réserve le droit d'intenter une action en justice.
 

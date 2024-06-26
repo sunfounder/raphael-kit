@@ -1,44 +1,30 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
 .. _cpn_slide_switch:
 
-Slide Switch
-==============
+Interrupteur à glissière
+============================
 
 .. image:: img/slide_switch.png
     :width: 150
     :align: center
 
-A slide switch, just as its name implies, is to slide the switch bar to connect or break the circuit, and further switch circuits. The common-used types are SPDT, SPTT, DPDT, DPTT etc. The slide switch is commonly used in low-voltage circuit. It has the features of flexibility and stability, and  applies in electric instruments and electric toys widely.
-How it works: Set the middle pin as the fixed one. When you pull the slide to the left, the  two pins on the left are connected; when you pull it to the right, the two pins on the right are connected. Thus, it works as a switch connecting or disconnecting circuits. See the figure below:
+Un interrupteur à glissière, comme son nom l'indique, permet de glisser la barre de l'interrupteur pour connecter ou couper le circuit, et ainsi changer de circuit. Les types couramment utilisés sont SPDT, SPTT, DPDT, DPTT, etc. L'interrupteur à glissière est généralement utilisé dans les circuits basse tension. Il se caractérise par sa flexibilité et sa stabilité, et s'applique largement aux instruments électriques et aux jouets électroniques.
+Son fonctionnement : Réglez la broche du milieu comme fixe. Lorsque vous tirez la glissière vers la gauche, les deux broches de gauche sont connectées ; lorsque vous la tirez vers la droite, les deux broches de droite sont connectées. Ainsi, il fonctionne comme un interrupteur connectant ou déconnectant les circuits. Voir le schéma ci-dessous :
 
 .. image:: img/slide_principle.png
     :width: 400
     :align: center
 
-The circuit symbol of the slide switch is shown as below. The pin2 in the figure refers to the middle pin.
+Le symbole de circuit de l'interrupteur à glissière est montré ci-dessous. La broche 2 dans la figure fait référence à la broche du milieu.
 
 .. image:: img/slide_symbol.png
     :width: 200
     :align: center
 
-**Example**
+**Exemple**
 
-* :ref:`2.1.4_c` (C Project)
-* :ref:`3.1.9_c` (C Project)
-* :ref:`2.1.4_py` (Python Project)
-* :ref:`4.1.15_py` (Python Project)
-* :ref:`1.15_scratch` (Scratch Project)
-
+* :ref:`2.1.4_c` (Projet C)
+* :ref:`3.1.9_c` (Projet C)
+* :ref:`2.1.4_py` (Projet Python)
+* :ref:`4.1.15_py` (Projet Python)
+* :ref:`1.15_scratch` (Projet Scratch)

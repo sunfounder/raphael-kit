@@ -1,61 +1,48 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
+ 
 .. _2.2.4_js:
 
-2.2.4 Reed Switch Module
-========================
+2.2.4 Module de Commutateur Reed
+===================================
 
 Introduction
--------------------
+----------------
 
-In this project, we will learn about the reed switch, which is an electrical switch that operates by means of an applied magnetic field.
+Dans ce projet, nous allons apprendre à utiliser le commutateur reed, qui est un interrupteur électrique actionné par un champ magnétique appliqué.
 
 .. image:: ../img/2.2.4reed_switch.png
     :width: 300
     :align: center
 
-Required Components
-------------------------------
+Composants Nécessaires
+----------------------
 
-In this project, we need the following components. 
+Dans ce projet, nous avons besoin des composants suivants. 
 
 .. image:: ../img/2.2.4component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Vous pouvez également les acheter séparément via les liens ci-dessous.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,15 +57,15 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Schematic Diagram
------------------------
+Schéma de Circuit
+-----------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-============ ======== ======== ===
+============ ========= ======== ===
+Nom T-Board   physique wiringPi BCM
+GPIO17        Pin 11   0        17
+GPIO27        Pin 13   2        27
+GPIO22        Pin 15   3        22
+============ ========= ======== ===
 
 .. image:: ../img/reed_schematic.png
     :width: 400
@@ -88,16 +75,16 @@ GPIO22       Pin 15   3        22
     :width: 400
     :align: center
 
-Experimental Procedures
--------------------------------
+Procédures Expérimentales
+--------------------------
 
-**Step 1:** Build the circuit.
+**Étape 1 :** Construisez le circuit.
 
 .. image:: ../img/2.2.4fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**Étape 2 :** Accédez au dossier du code.
 
 .. raw:: html
 
@@ -107,7 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Étape 3 :** Exécutez le code.
 
 .. raw:: html
 
@@ -117,7 +104,7 @@ Experimental Procedures
 
     sudo node reed_switch_module.js
 
-The green LED will light up when the code is run. If a magnet is placed close to the reed switch module, the red LED lights up; take away the magnet and the green LED lights up again.
+La LED verte s'allumera lorsque le code sera exécuté. Si un aimant est placé près du module de commutateur reed, la LED rouge s'allume ; éloignez l'aimant et la LED verte s'allume à nouveau.
 
 **Code**
 
@@ -139,9 +126,7 @@ The green LED will light up when the code is run. If a magnet is placed close to
         led2.digitalWrite(!level);       
     });
 
-
-
-**Code Explanation**
+**Explication du Code**
 
 .. code-block:: js
 
@@ -153,14 +138,14 @@ The green LED will light up when the code is run. If a magnet is placed close to
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, create a ReedPin object to control the IO port, set it to input mode, pull down (initially low level), and set an interrupt.
+Importez le module pigpio, créez un objet ReedPin pour contrôler le port IO, définissez-le en mode entrée, tirez vers le bas (niveau bas initial) et définissez une interruption.
 
 .. code-block:: js
 
     const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
     const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
 
-Create two objects led1, led2 to control the IO ports Gpio22 and Gpio27, and set them to output mode.   
+Créez deux objets led1, led2 pour contrôler les ports IO Gpio22 et Gpio27, et définissez-les en mode sortie.   
 
 .. code-block:: js
 
@@ -169,15 +154,11 @@ Create two objects led1, led2 to control the IO ports Gpio22 and Gpio27, and set
         led2.digitalWrite(!level);       
     });
 
+Lorsque l'interruption est déclenchée, écrivez le même niveau sur led1 et le niveau opposé sur led2.
 
-
-When the interrupt is triggered, write the same level to led1, and write the opposite level to led2.
-
-
-Phenomenon Picture
-------------------------
+Image du Phénomène
+------------------
 
 .. image:: ../img/2.2.4reed_switch.JPG
     :width: 500
     :align: center
-    

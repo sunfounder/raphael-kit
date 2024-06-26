@@ -1,36 +1,21 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
-Video 29: Build a Programmable Temperature Sensing Alarm
+Vidéo 29 : Construire une alarme sensible à la température programmable
 =======================================================================================
 
-This video demonstrates how to build a programmable temperature monitoring system with an alarm using Raspberry Pi. He covers hardware setup, coding in Python, and debugging techniques. The tutorial emphasizes structured programming and troubleshooting methods for maintaining code organization and clarity.
+Cette vidéo montre comment construire un système de surveillance de la température programmable avec une alarme en utilisant un Raspberry Pi. Elle couvre la configuration matérielle, la programmation en Python et les techniques de débogage. Le tutoriel met l'accent sur la programmation structurée et les méthodes de dépannage pour maintenir l'organisation et la clarté du code.
 
-#. **Hardware setup**: Explains the required hardware components, including Raspberry Pi, breakout board, ADC0834, DHT11 temperature sensor, toggle button, active buzzer, and transistor.
-#. **Overview of the project**: Demonstrates the finished device and its components and functionalities.
-#. **Schematic overview**: Discusses the schematic diagram of the project, highlighting connections between components.
-#. **Programming**: Walks through the Python code, explaining sensor value reading, mode switching, and alarm triggering based on temperature thresholds.
-#. **Debugging**: Demonstrates debugging techniques to identify and fix errors in the code and hardware connections.
-#. Analog to digital conversion for temperature sensing.
-#. LCD display interfacing for real-time temperature display.
-#. User interaction with buttons to toggle between programming and monitoring modes.
-#. Alarm triggering based on temperature thresholds.
-#. Structured programming approach for maintaining code organization and clarity.
+#. **Configuration matérielle** : Présente les composants matériels nécessaires, incluant le Raspberry Pi, la carte d'extension, l'ADC0834, le capteur de température DHT11, un bouton bascule, un buzzer actif et un transistor.
+#. **Présentation du projet** : Démontre le dispositif fini, ses composants et ses fonctionnalités.
+#. **Vue d'ensemble du schéma** : Discute du schéma du projet, soulignant les connexions entre les composants.
+#. **Programmation** : Guide à travers le code Python, expliquant la lecture des valeurs des capteurs, le changement de mode et le déclenchement de l'alarme basé sur les seuils de température.
+#. **Débogage** : Démontre les techniques de débogage pour identifier et corriger les erreurs dans le code et les connexions matérielles.
+#. Conversion analogique-numérique pour la détection de température.
+#. Interfaçage avec un écran LCD pour l'affichage en temps réel de la température.
+#. Interaction de l'utilisateur avec des boutons pour basculer entre les modes de programmation et de surveillance.
+#. Déclenchement de l'alarme basé sur les seuils de température.
+#. Approche de programmation structurée pour maintenir l'organisation et la clarté du code.
 
-
-**Video**
+**Vidéo**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/huLUCUxizRA?si=WVWTesc08bcLt193" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/huLUCUxizRA?si=WVWTesc08bcLt193" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
