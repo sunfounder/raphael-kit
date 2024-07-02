@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-Python Videokurs (nicht für Pi 5)
+Python Videokurs 
 ======================================
 
 Tauchen Sie mit unserem prägnanten Python Videokurs in das Universum des Raspberry Pi ein, ideal für Anfänger und Hobbyisten.

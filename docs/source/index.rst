@@ -48,43 +48,20 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
 .. toctree::
     :maxdepth: 2
 
-    Über dieses Kit <self>
-    install_setup_os/preparation
+    About This Kit <self>
+    install_setup_os/installing_the_os
+
     download_the_code
 
 .. toctree::
     :maxdepth: 3
 
-    python/play_with_python
-    python_pi5/play_with_python_pi5
-    python_video/python_video
+    for_pi5
+    for_other_models
 
 .. toctree::
     :maxdepth: 3
 
-    c/play_with_c
-
-
-
-.. toctree::
-    :maxdepth: 3
-
-    processing/play_with_processing
-
-.. toctree::
-    :maxdepth: 3
-
-    nodejs/play_with_nodejs
-
-.. toctree::
-    :maxdepth: 3
-    
-    scratch/play_with_scratch
-
-.. toctree::
-    :maxdepth: 2
-
-    pi5_other_languages
     component/component_list
     appendix/appendix
     thank-learning
