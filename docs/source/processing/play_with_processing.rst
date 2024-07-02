@@ -14,7 +14,7 @@
 
 .. _play_with_processing:
 
-Play with Processing (not for Pi 5)
+Play with Processing 
 =======================================
 
 What is Processing？

@@ -25,10 +25,10 @@ If you are a Raspberry Pi 5 Python user, you can program GPIOs with API provided
     pi5_input_python
 
 
-.. .. toctree::
-..     :maxdepth: 2
+.. toctree::
+    :maxdepth: 2
 
-..     pi5_audiovisual_python
+    pi5_audiovisual_python
 
 
 .. toctree::

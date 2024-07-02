@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-Play with Python (not for Pi 5)
+Play with Python 
 =================================
 
 .. warning::

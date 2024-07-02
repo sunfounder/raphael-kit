@@ -12,33 +12,32 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-Play with Nodejs 
-==================================
-
-
-.. toctree::
-    :maxdepth: 2
-    
-    install_nodejs
+for Pi 4, 3 and Other All Pi Models
+=======================================
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 4
+
+    python/play_with_python
+    python_video/python_video
     
-    check_pigpio
+.. toctree::
+    :maxdepth: 3
+
+    c/play_with_c
+
+.. toctree::
+    :maxdepth: 3
+
+    processing/play_with_processing
+
+.. toctree::
+    :maxdepth: 3
+
+    nodejs/play_with_nodejs
 
 .. toctree::
     :maxdepth: 3
     
-    output_js
-
-
-.. toctree::
-    :maxdepth: 3
+    scratch/play_with_scratch
     
-    input_js
-
-
-.. toctree::
-    :maxdepth: 2
-
-    extension_js    

@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-Python Video Course(not for Pi 5)
+Python Video Course
 ========================================
 
 Dive into the Raspberry Pi universe with our concise Python Video Course, perfect for both beginners and hobbyists. 
