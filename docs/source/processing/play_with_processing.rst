@@ -14,7 +14,7 @@
 
 .. _play_with_processing:
 
-Processingを体験しよう (Pi 5用ではない)
+Processingを体験しよう 
 =========================================
 
 Processingとは？

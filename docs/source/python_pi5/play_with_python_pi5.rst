@@ -25,10 +25,10 @@ Raspberry Pi 5 Pythonユーザーの場合、GPIO Zeroによって提供され�
     pi5_input_python
 
 
-.. .. toctree::
-..     :maxdepth: 2
+.. toctree::
+    :maxdepth: 2
 
-..     pi5_audiovisual_python
+    pi5_audiovisual_python
 
 
 .. toctree::
