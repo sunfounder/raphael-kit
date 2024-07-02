@@ -1,57 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsiones Exclusivas**: Accede anticipadamente a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 .. _1.1.6_py:
 
-1.1.6 LED Dot Matrix
-=====================
+1.1.6 Matriz de LEDs
+========================
 
-Introduction
---------------------
+Introducción
+-----------------------
 
-As the name suggests, an LED dot matrix is a matrix composed of LEDs.
-The lighting up and dimming of the LEDs formulate different characters
-and patterns.
+Como su nombre lo indica, una matriz de LEDs es una matriz compuesta por LEDs. 
+La iluminación y el oscurecimiento de los LEDs forman diferentes caracteres y patrones.
 
-Required Components
-------------------------------
+Componentes Necesarios
+----------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_dot.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,31 +61,30 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_dot_matrix`
         - |link_led_matrix_buy|
 
-Schematic Diagram
+Diagrama Esquemático
 -----------------------
 
-============ ======== ======== ====
-T-Board Name physical wiringPi BCM
-SPIMOSI      Pin 19   12       MOSI
-SPICE0       pin 24   10       CE0
-SPISCLK      Pin 23   14       SCLK
-============ ======== ======== ====
+============== ======== ======== ====
+Nombre T-Board Physical wiringPi BCM
+SPIMOSI        Pin 19   12       MOSI
+SPICE0         Pin 24   10       CE0
+SPISCLK        Pin 23   14       SCLK
+============== ======== ======== ====
 
 .. image:: ../img/schematic_dot.png
-
-Experimental Procedures
+Procedimientos Experimentales
 ----------------------------
 
-**Step 1:** Build the circuit. 
+**Paso 1:** Monta el circuito.
 
 .. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. And the :ref:`Luma.LED_Matrix` module is also needed.
+    Enciende el SPI antes de comenzar el experimento, consulta :ref:`SPI Configuration` para más detalles. También se necesita el módulo :ref:`Luma.LED_Matrix`.
 
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia de directorio.
 
 .. raw:: html
 
@@ -96,7 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta.
 
 .. raw:: html
 
@@ -106,13 +104,13 @@ Experimental Procedures
 
     sudo python3 1.1.6_LedMatrix.py
 
-After running the code, the LED Matrix will display a rectangle for two seconds, then the text 'A' for two seconds, and finally scroll to display the text "Hello, Nice to meet you!
+Después de ejecutar el código, la Matriz de LEDs mostrará un rectángulo durante dos segundos, luego la letra 'A' durante dos segundos, y finalmente desplazará el texto "Hello, Nice to meet you!
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -165,8 +163,7 @@ After running the code, the LED Matrix will display a rectangle for two seconds,
          main()
       except KeyboardInterrupt:
          destroy()
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -178,20 +175,19 @@ After running the code, the LED Matrix will display a rectangle for two seconds,
     from luma.core.legacy.font import proportional, CP437_FONT, LCD_FONT
     import time
 
-Import the relevant libraries, of which ``luma.core`` is a component library that provides a Pillow-compatible canvas for Python 3, as well as other drawing primitives and text rendering features that support small displays on Raspberry Pi and other single-board computers.
-You can visit `https://luma-core.readthedocs.io/en/latest/intro.html <https://luma-core.readthedocs.io/en/latest/intro.html>`_ to learn more.
-
+Importa las bibliotecas relevantes, de las cuales ``luma.core`` es una biblioteca de componentes que proporciona un lienzo compatible con Pillow para Python 3, así como otras primitivas de dibujo y funciones de renderización de texto que admiten pantallas pequeñas en Raspberry Pi y otras computadoras de placa única.
+Puedes visitar `https://luma-core.readthedocs.io/en/latest/intro.html <https://luma-core.readthedocs.io/en/latest/intro.html>`_ para obtener más información.
 
 .. code-block:: python
 
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, rotate=1)
 
-Initialize the ``luma.led_matrix.device.max7219`` class.
+Inicializa la clase ``luma.led_matrix.device.max7219``.
 
 .. note::
 
-    If you want to modify the display direction of the LED Matrix, you can do so by modifying the value of rotate, where 0 means no rotation, 1 means 90° clockwise rotation, 2 means 180° rotation, and 3 means 270° clockwise rotation.
+    Si deseas modificar la dirección de visualización de la Matriz de LED, puedes hacerlo modificando el valor de rotate, donde 0 significa sin rotación, 1 significa rotación de 90° en el sentido horario, 2 significa rotación de 180°, y 3 significa rotación de 270° en el sentido horario.
 
 .. code-block:: python
 
@@ -199,8 +195,7 @@ Initialize the ``luma.led_matrix.device.max7219`` class.
         with canvas(device) as draw:
             draw.rectangle(device.bounding_box, outline="white", fill="black")
 
-Display a hollow rectangle in the edge area of the LED Matrix and modify the value of ``fill`` to ``white`` to display a solid rectangle.
-
+Muestra un rectángulo hueco en el área de borde de la Matriz de LED y modifica el valor de ``fill`` a ``white`` para mostrar un rectángulo sólido.
 
 .. code-block:: python
 
@@ -208,13 +203,13 @@ Display a hollow rectangle in the edge area of the LED Matrix and modify the val
         with canvas(device) as draw:
             text(draw, (0, 0), "A", fill="white", font=proportional(CP437_FONT))
 
-An "A" is displayed on the (0, 0) coordinate of the LED Matrix, where ``CP437_FONT`` is a font suitable for 8*8 dot matrix screens.
+Se muestra una "A" en la coordenada (0, 0) de la Matriz de LED, donde ``CP437_FONT`` es una fuente adecuada para pantallas de matriz de puntos de 8*8.
 
 .. code-block:: python
 
     virtual = viewport(device, width=200, height=400)
 
-There is no way to display a line of text in a single 8x8 LED matrix. We need to use the ``luma.core.virtual.viewport`` method so that the text can be scrolled through the virtual viewport.
+No hay forma de mostrar una línea de texto en una sola matriz de LED de 8x8. Necesitamos usar el método ``luma.core.virtual.viewport`` para que el texto pueda desplazarse a través de la ventana virtual.
 
 .. code-block:: python
 
@@ -226,14 +221,13 @@ There is no way to display a line of text in a single 8x8 LED matrix. We need to
             virtual.set_position((offset,0))
             time.sleep(0.1)
 
-``scrollToDisplayText()`` implements "Hello, Nice to meet you!" as a scrolling text on the LED Matrix.
+``scrollToDisplayText()`` implementa "Hello, Nice to meet you!" como un texto desplazable en la Matriz de LED.
 
-First, we pass virtual as an argument to the ``canvas()`` function, so that we can use the virtual window as the current display window. Then the ``text()`` function displays "Hello, Nice to meet you!" on the LED Matrix.
+Primero, pasamos virtual como un argumento a la función ``canvas()``, para que podamos usar la ventana virtual como la ventana de visualización actual. Luego, la función ``text()`` muestra "Hello, Nice to meet you!" en la Matriz de LED.
 
-Using the for loop function, we move the virtual window in the X direction so that we can see the "Hello, Nice to meet you!" text scrolling.
+Usando la función de bucle for, movemos la ventana virtual en la dirección X para que podamos ver el texto "Hello, Nice to meet you!" desplazándose.
 
-
-Phenomenon Picture
+Imagen del Fenómeno
 -----------------------
 
 .. image:: ../img/1.1.6led_dot_matrix.JPG

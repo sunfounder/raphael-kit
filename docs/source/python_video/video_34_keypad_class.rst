@@ -1,50 +1,46 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 34: Creating a Python Class and Library for Reading a Keypad
+Video 34: Crear una Clase y Biblioteca en Python para Leer un Teclado
 =======================================================================================
 
+Este tutorial cubre el proceso de crear una clase en Python para leer la entrada de un teclado conectado a una Raspberry Pi. 
+Comienza con una introducción a la serie de tutoriales de Raspberry Pi patrocinada por SunFounder. 
+Se explica la configuración del hardware, detallando las conexiones del teclado usando pines GPIO. 
+Luego, el video guía paso a paso el proceso de crear una clase "keypad" para gestionar la funcionalidad del teclado, 
+incluyendo métodos de inicialización y configuración de pines GPIO dentro de la clase. 
+Se implementa el método para leer la entrada del teclado escaneando filas y columnas. 
+Además, el video discute la lógica del código, la detección de pulsaciones de botones para evitar entradas repetidas, 
+la concatenación de caracteres de entrada, la configuración de caracteres de retorno, 
+y la creación de una biblioteca reutilizable de Python que encapsula la funcionalidad del teclado. 
+También se exploran posibles aplicaciones más allá de la entrada del teclado, como la integración con pantallas LCD y cámaras.
 
-This tutorial covers the process of creating a Python class to read input from a keypad connected to a Raspberry Pi. 
-It begins with an introduction to the Raspberry Pi tutorial series sponsored by SunFounder. 
-The hardware setup is explained, detailing the connections of the keypad using GPIO pins. 
-The video then walks through the step-by-step process of creating a "keypad" class to manage keypad functionality, 
-including initialization methods and GPIO pin configuration within the class. 
-The method for reading input from the keypad by scanning rows and columns is implemented. 
-Additionally, the video discusses code logic, button press detection to prevent repeated inputs, 
-concatenation of input characters, configuration of return characters, 
-and the creation of a reusable Python library encapsulating keypad functionality. 
-Potential applications beyond keypad input, such as integration with LCD displays and cameras, are also explored.
-
-
-1. Introduction to the Raspberry Pi tutorial series sponsored by SunFounder.
-2. Explanation of keypad hardware connections using GPIO pins.
-3. Step-by-step guide to creating a "keypad" class for managing keypad functionality.
-4. Details on initializing the keypad object with default parameters.
-5. Configuration of GPIO pins within the class for interacting with the keypad hardware.
-6. Implementation of a method to read input from the keypad by scanning rows and columns.
-7. Understanding the step-by-step logic behind building a keypad input system.
-8. Techniques for detecting button presses and preventing repeated inputs.
-9. Concatenating input characters to form a string for processing.
-10. Configuring the return character for keypad inputs.
-11. Creating a reusable Python library encapsulating keypad functionality.
-12. Exploring potential applications beyond keypad input, such as integrating with LCD displays and cameras.
-
+1. Introducción a la serie de tutoriales de Raspberry Pi patrocinada por SunFounder.
+2. Explicación de las conexiones del hardware del teclado utilizando pines GPIO.
+3. Guía paso a paso para crear una clase "keypad" para gestionar la funcionalidad del teclado.
+4. Detalles sobre la inicialización del objeto teclado con parámetros predeterminados.
+5. Configuración de los pines GPIO dentro de la clase para interactuar con el hardware del teclado.
+6. Implementación de un método para leer la entrada del teclado escaneando filas y columnas.
+7. Comprensión de la lógica paso a paso detrás de la construcción de un sistema de entrada de teclado.
+8. Técnicas para detectar pulsaciones de botones y evitar entradas repetidas.
+9. Concatenación de caracteres de entrada para formar una cadena para su procesamiento.
+10. Configuración del carácter de retorno para las entradas del teclado.
+11. Creación de una biblioteca reutilizable de Python que encapsula la funcionalidad del teclado.
+12. Exploración de posibles aplicaciones más allá de la entrada del teclado, como la integración con pantallas LCD y cámaras.
 
 **Video**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/XyhHtk8PCao?si=pT83TNbdE60aBVac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/XyhHtk8PCao?si=pT83TNbdE60aBVac" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

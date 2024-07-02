@@ -1,58 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a nuevos anuncios de productos y vistas previas.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.1.4_c:
 
-2.1.4 Slide Switch
-========================
+2.1.4 Interruptor Deslizante
+===============================
 
-Introduction
-------------
+Introducción
+----------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+En este proyecto, aprenderemos a usar un interruptor deslizante. 
+Usualmente, el interruptor deslizante se suelda en una PCB como 
+interruptor de encendido, pero aquí necesitamos insertarlo en la 
+placa de pruebas, por lo que puede no estar bien ajustado. Lo utilizamos 
+en la placa de pruebas para mostrar su función.
 
-Required Components
-------------------------------
+Componentes Necesarios
+--------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,28 +69,26 @@ You can also buy them separately from the links below.
         - |link_slide_switch_buy|
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
+Diagrama Esquemático
+------------------------
 
-Schematic Diagram
------------------
-
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Conecta el pin central del interruptor deslizante a GPIO17 y dos LEDs a
+los pines GPIO22 y GPIO27 respectivamente. Luego, cuando deslices el interruptor,
+podrás ver los dos LEDs encenderse alternativamente.
 
 .. image:: ../img/image305.png
-
 
 .. image:: ../img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -99,7 +98,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.4
 
-**Step 3**: Compile.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -109,7 +108,7 @@ Experimental Procedures
 
     gcc 2.1.4_Slider.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**Paso 4:** Ejecuta el archivo compilado.
 
 .. raw:: html
 
@@ -119,14 +118,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Mientras el código se está ejecutando, si el interruptor está conectado a la izquierda,
+el LED amarillo se encenderá; si está a la derecha, el LED rojo se encenderá.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
-**Code**
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+**Código**
 
 .. code-block:: c
 
@@ -163,7 +161,7 @@ the yellow LED lights up; to the right, the red light turns on.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -173,9 +171,9 @@ the yellow LED lights up; to the right, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+Cuando el interruptor deslizante se mueve a la derecha, el pin central y el derecho 
+están conectados; la Raspberry Pi lee un nivel alto en el pin central, por lo que el 
+LED1 se enciende y el LED2 se apaga.
 
 .. code-block:: c
 
@@ -185,11 +183,12 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
+Cuando el interruptor deslizante se mueve a la izquierda, el pin central y el izquierdo 
+están conectados; la Raspberry Pi lee un nivel bajo, por lo que el LED2 se enciende y el 
+LED1 se apaga.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image162.jpeg
 

@@ -1,57 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsualizaciones exclusivas**: Accede anticipadamente a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.2.8_js:
 
-2.2.8 Ultrasonic Sensor Module
-==============================
+2.2.8 Sensor Ultrasónico
+============================
 
-Introduction
---------------
+Introducción
+---------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+El sensor ultrasónico utiliza ultrasonidos para detectar objetos y medir distancias 
+con precisión. Emite ondas ultrasónicas y las convierte en señales electrónicas.
 
-Required Components
-------------------------------
+Componentes necesarios
+---------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_2.2.5.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,20 +61,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_ultrasonic_sensor`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
------------------
+Diagrama esquemático
+-------------------------
 
 .. image:: ../img/image329.png
 
 
-Experimental Procedures
------------------------
+Procedimientos experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -85,7 +84,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -95,11 +94,11 @@ Experimental Procedures
 
     sudo node ultrasonic_sensor.js
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Una vez ejecutado el código, el módulo del sensor ultrasónico detecta la distancia entre 
+el obstáculo al frente y el propio módulo, luego el valor de la distancia se imprimirá en 
+la pantalla.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -134,17 +133,14 @@ value will be printed on the screen.
       trigger.trigger(10, 1); // Set trigger high for 10 microseconds
     }, 1000);
 
+**Explicación del Código**
 
+La función ``trigger`` se puede usar para generar un pulso en un GPIO y 
+``alerts`` se pueden usar para determinar el tiempo de un cambio de estado GPIO 
+con precisión de unos pocos microsegundos. 
 
-
-**Code Explanation**
-
-The ``trigger`` function can be used to generate a pulse on a GPIO and 
-``alerts`` can be used to determine the time of a GPIO state change 
-accurate to a few microseconds. 
-
-These two features can be combined to measure distance using a HC-SR04 
-ultrasonic sensor.
+Estas dos características se pueden combinar para medir la distancia usando un sensor 
+ultrasónico HC-SR04.
 
 .. code-block:: js
 
@@ -169,15 +165,12 @@ This is to periodically send out a 10us ultrasonic pulse.
     });
   };
 
-This function sets an alert that will record the time between sending the pulse (level is 1) and receiving the echo (level is 0).
-By multiplying the time difference by the speed of sound (and dividing by 2), you can get the distance to the obstacle ahead.
-
-
+Esta función configura una alerta que registrará el tiempo entre el envío del pulso (level es 1) y la recepción del eco (level es 0).
+Multiplicando la diferencia de tiempo por la velocidad del sonido (y dividiendo por 2), se puede obtener la distancia al obstáculo delante.
 
 .. https://github.com/fivdi/pigpio
 
-Phenomenon Picture
-------------------
+Imagen del fenómeno
+-------------------
 
 .. image:: ../img/image221.jpeg
-    

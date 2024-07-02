@@ -1,28 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en el universo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Obtén acceso temprano a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Python Video Course(not for Pi 5)
-========================================
+Curso de Video en Python (no para Pi 5)
+==============================================
 
-Dive into the Raspberry Pi universe with our concise Python Video Course, perfect for both beginners and hobbyists. 
-Starting with an introduction to the Raspberry Pi's capabilities, 
-this series guides you through Python programming basics, including GPIO pin control and sensor integration. 
-Progress through interactive projects, exploring key components like LEDs and LCD displays. 
-This course equips you with essential skills for programming and hardware interfacing, 
-making complex concepts accessible through practical execution. Join us to unlock the potential of Raspberry Pi in the digital world.
+Sumérgete en el universo de Raspberry Pi con nuestro conciso Curso de Video en Python, perfecto tanto para principiantes como para aficionados. 
+Comenzando con una introducción a las capacidades de Raspberry Pi, 
+esta serie te guía a través de los conceptos básicos de la programación en Python, incluyendo el control de pines GPIO y la integración de sensores. 
+Avanza a través de proyectos interactivos, explorando componentes clave como LEDs y pantallas LCD. 
+Este curso te proporciona habilidades esenciales para la programación e interacción con hardware, 
+haciendo accesibles conceptos complejos mediante la ejecución práctica. Únete a nosotros para desbloquear el potencial de Raspberry Pi en el mundo digital.
 
-**Projects**
+**Proyectos**
 
 .. toctree::
     :maxdepth: 1

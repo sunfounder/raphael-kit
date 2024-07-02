@@ -1,55 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _1.1.5_c:
 
-1.1.5 4-Digit 7-Segment Display
-====================================
+1.1.5 Pantalla de 7 Segmentos de 4 Dígitos
+================================================
 
-Introduction
+Introducción
 -----------------
 
-Next, follow me to try to control the 4-digit 7-segment display.
+A continuación, sigue conmigo para intentar controlar la pantalla de 7 segmentos de 4 dígitos.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_4_digit.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí tienes el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,70 +65,68 @@ You can also buy them separately from the links below.
         - |link_74hc595_buy|
 
 .. note::
-    In this projiect, for the 4-Digit 7-Segment Display we should use BS model,if you use AS model it may not light up.
-
-Schematic Diagram
+    En este proyecto, para la pantalla de 7 segmentos de 4 dígitos, debemos usar el modelo BS, si usas el modelo AS puede que no se encienda.
+Diagrama Esquemático
 --------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-SPIMOSI      Pin 19   12       10
-GPIO18       Pin 12   1        18
-GPIO23       Pin 16   4        23
-GPIO24       Pin 18   5        24
-============ ======== ======== ===
+============== ======== ======== ===
+Nombre T-Board físico   wiringPi BCM
+GPIO17         Pin 11   0        17
+GPIO27         Pin 13   2        27
+GPIO22         Pin 15   3        22
+SPIMOSI        Pin 19   12       10
+GPIO18         Pin 12   1        18
+GPIO23         Pin 16   4        23
+GPIO24         Pin 18   5        24
+============== ======== ======== ===
 
 .. image:: ../img/schmatic_4_digit.png
 
 
-Experimental Procedures
+Procedimientos Experimentales
 -----------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construir el circuito.
 
 .. image:: ../img/image80.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     cd ~/raphael-kit/c/1.1.5/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     gcc 1.1.5_4-Digit.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
    <run></run>
 
-.. code-block::
+.. code-block:: 
 
     sudo ./a.out
 
-After the code runs, the program takes a count, increasing by 1 per second, and the 4-digit 7-segment display displays the count.
+Después de ejecutar el código, el programa realiza un conteo, aumentando en 1 por segundo, y la pantalla de 7 segmentos de 4 dígitos muestra el conteo.
 
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
-**Code**
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+**Código**
 
 .. code-block:: c
 
@@ -239,20 +237,19 @@ After the code runs, the program takes a count, increasing by 1 per second, and 
     }
 
 
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     const int placePin[] = {12, 3, 2, 0};
 
-These four pins control the common anode pins of the four-digit 7-segment display.
+Estos cuatro pines controlan los pines de ánodo común de la pantalla de 7 segmentos de cuatro dígitos.
 
 .. code-block:: c
 
     unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
 
-A segment code array from 0 to 9 in Hexadecimal (Common anode).
+Un arreglo de códigos de segmentos de 0 a 9 en Hexadecimal (Ánodo común).
 
 .. code-block:: c
 
@@ -265,7 +262,7 @@ A segment code array from 0 to 9 in Hexadecimal (Common anode).
         digitalWrite(placePin[digit], 1);
     }
 
-Select the place of the value. there is only one place that should be enable each time. The enabled place will be written high.
+Selecciona la posición del valor. Solo una posición debe estar habilitada cada vez. La posición habilitada se establecerá en alto.
 
 .. code-block:: c
 
@@ -290,35 +287,35 @@ Select the place of the value. there is only one place that should be enable eac
         }
     }
 
-The functionis used to set the number displayed on the 4-digit 7-segment display.
+La función se usa para configurar el número mostrado en la pantalla de 7 segmentos de 4 dígitos.
 
-* ``clearDisplay()``：write in 11111111 to turn off these eight LEDs on 7-segment display so as to clear the displayed content.
-* ``pickDigit(0)``：pick the fourth 7-segment display.
-* ``hc595_shift(number[counter%10])``：the number in the single digit of counter will display on the forth segment.
+* ``clearDisplay()``: escribe 11111111 para apagar estos ocho LED en la pantalla de 7 segmentos y así borrar el contenido mostrado.
+* ``pickDigit(0)``: selecciona el cuarto dígito de la pantalla de 7 segmentos.
+* ``hc595_shift(number[counter%10])``: el número en el dígito de unidades del contador se mostrará en el cuarto segmento.
 
 .. code-block:: c
 
-    signal(SIGALRM, timer); 
+    signal(SIGALRM, timer);
 
-This is a system-provided function, the prototype of code is:
+Esta es una función proporcionada por el sistema, el prototipo del código es:
 
 .. code-block:: c
 
     sig_t signal(int signum,sig_t handler);
 
-After executing the ``signal()`` , once the process receives the corresponding signum (in this case SIGALRM), it immediately pauses the existing task and processes the set function (in this case ``timer(sig)`` ).
+Después de ejecutar ``signal()``, una vez que el proceso recibe el correspondiente signum (en este caso SIGALRM), inmediatamente pausa la tarea existente y procesa la función establecida (en este caso ``timer(sig)``).
 
 .. code-block:: c
 
     alarm(1);
 
-This is also a system-provided function. The code prototype is:
+Esta es también una función proporcionada por el sistema. El prototipo del código es:
 
 .. code-block:: c
 
     unsigned int alarm (unsigned int seconds);
 
-It generates a SIGALRM signal after a certain number of seconds.
+Genera una señal SIGALRM después de un cierto número de segundos.
 
 .. code-block:: c
 
@@ -332,10 +329,10 @@ It generates a SIGALRM signal after a certain number of seconds.
         }
     }
 
-We use the functions above to implement the timer function.
-After the ``alarm()`` generates the SIGALRM signal, the timer function is called. Add 1 to counter, and the function, ``alarm(1)`` will be repeatedly called after 1 second.
+Usamos las funciones anteriores para implementar la función de temporizador.
+Después de que ``alarm()`` genera la señal SIGALRM, se llama a la función del temporizador. Se suma 1 al contador, y la función ``alarm(1)`` se llamará repetidamente después de 1 segundo.
 
-Phenomenon Picture
------------------------
+Imagen del Fenómeno
+---------------------------
 
 .. image:: ../img/image81.jpeg

@@ -1,57 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.7_scratch:
 
-1.7 Piggy Bank
+1.7 Alcancía
 =========================
 
-In this project we will use Speed sensor module, Raspberry Pi and Scratch to make a Piggy Bank.
+En este proyecto usaremos un módulo sensor de velocidad, Raspberry Pi y Scratch para hacer una alcancía.
 
-Place a piece of paper in the middle of the Speed sensor module and you will see a coin fall into the Piggy Bank on the stage.
-
+Coloca un trozo de papel en el medio del módulo sensor de velocidad y verás caer una moneda en la alcancía en el escenario.
 
 .. image:: img/1.7_header.png
 
-Required Components
+Componentes necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: img/1.7_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,35 +61,32 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_speed_sensor`
         - \-
 
-Build the Circuit
----------------------
+Construir el circuito
+-------------------------
 
 .. image:: img/1.7_fritzing.png
 
-Load the Code and See What Happens
+Cargar el código y ver qué pasa
 ---------------------------------------
 
-Load the code file (``1.7_piggy_bank.sb3``) to Scratch 3.
+Carga el archivo de código (``1.7_piggy_bank.sb3``) en Scratch 3.
 
-The 2 terminals in the middle of the speed sensor, one is to send light, one is to receive light; if you put a piece of paper in the middle to isolate the light transmission, thus the speed sensor will output a high level. At this point Scratch receives the high level, then switch the costumes of the sprite and you will see a coin fall into the Piggy Bank on the stage.
+Los 2 terminales en el medio del sensor de velocidad, uno envía luz y el otro recibe luz; si pones un trozo de papel en el medio para aislar la transmisión de luz, el sensor de velocidad emitirá un nivel alto. En este punto, Scratch recibe el nivel alto, luego cambia los disfraces del sprite y verás una moneda caer en la alcancía en el escenario.
 
-Tips on Sprite
-----------------
+Consejos sobre el sprite
+-----------------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **piggybank1.png**, **piggybank2.png** and **piggybank3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **piggybank**.
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **piggybank1.png**, **piggybank2.png** y **piggybank3.png** desde la ruta ``~/raphael-kit/scratch/picture`` mediante el botón **Cargar Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite a **piggybank**.
 
 .. image:: img/1.7_photoInterrupter1.png
 
-Tips on Codes
---------------
+Consejos sobre los códigos
+--------------------------------
 
 .. image:: img/1.7_code2.png
 
-When pin17 is low (no coins are put in), switch the sprite's costume to **piggybank1**.
+Cuando pin17 está bajo (no se han puesto monedas), cambia el disfraz del sprite a **piggybank1**.
 
 .. image:: img/1.7_code3.png
 
-When pin17 is high (a coin is put in), switch the sprite's costume to **piggybank2**, and after 0.5s switch to **piggybank3**, so that we can see a coin falling into the Piggy Bank on the stage.
-
-
-
+Cuando pin17 está alto (se ha puesto una moneda), cambia el disfraz del sprite a **piggybank2**, y después de 0.5s cambia a **piggybank3**, para que podamos ver una moneda caer en la alcancía en el escenario.

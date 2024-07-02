@@ -1,36 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Video 51: Modifying OpenCV Images and Creating Regions of Interest
+Video 51: Modificando Imágenes con OpenCV y Creando Regiones de Interés
 =======================================================================================
 
-In this tutorial, we delve into advanced image manipulation techniques with the Raspberry Pi camera, 
-covering topics such as extracting and manipulating regions of interest (ROI), understanding pixel data, and working with frame dimensions.
+En este tutorial, profundizamos en técnicas avanzadas de manipulación de imágenes con la cámara de Raspberry Pi, 
+cubriendo temas como la extracción y manipulación de regiones de interés (ROI), la comprensión de datos de píxeles y el trabajo con dimensiones de cuadros.
 
-1. **Understanding frame dimensions and pixel data**: Learn about the structure of frames as rows and columns of pixels, each containing three color values (blue, green, red).
-2. **Manipulating individual pixels**: Explore how to access and modify individual pixels within a frame using row and column indices.
-3. **Handling edge cases**: Be mindful of edge cases when accessing pixels, such as starting indexing at zero and adjusting for the last row and column.
-4. **Working with ranges in frames**: Learn efficient manipulation techniques by working with ranges of pixels within a frame.
-5. **Defining regions of interest (ROI)**: Understand how to define and extract specific regions of interest from a frame for further processing.
-6. **Applying ROI to image manipulation**: Utilize extracted ROIs to manipulate specific areas of an image, including copying and moving regions within the frame.
-
+1. **Entendiendo las dimensiones del cuadro y los datos de píxeles**: Aprende sobre la estructura de los cuadros como filas y columnas de píxeles, cada uno con tres valores de color (azul, verde, rojo).
+2. **Manipulando píxeles individuales**: Explora cómo acceder y modificar píxeles individuales dentro de un cuadro utilizando índices de fila y columna.
+3. **Manejando casos extremos**: Ten en cuenta los casos extremos al acceder a los píxeles, como empezar el índice en cero y ajustar para la última fila y columna.
+4. **Trabajando con rangos en cuadros**: Aprende técnicas eficientes de manipulación trabajando con rangos de píxeles dentro de un cuadro.
+5. **Definiendo regiones de interés (ROI)**: Entiende cómo definir y extraer regiones específicas de interés de un cuadro para un procesamiento posterior.
+6. **Aplicando ROI a la manipulación de imágenes**: Utiliza las ROIs extraídas para manipular áreas específicas de una imagen, incluyendo copiar y mover regiones dentro del cuadro.
 
 **Video**
 
 .. raw:: html
 
-
     <iframe width="700" height="500" src="https://www.youtube.com/embed/IaVok7CMWcw?si=pusI5nWHpKS04o5w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-

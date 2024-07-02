@@ -1,55 +1,55 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso temprano a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.3.2_py:
 
 1.3.2 Servo
-============
+===============
 
-Introduction
---------------
+Introducción
+----------------
 
-In this project, we will learn how to make the servo rotate.
+En este proyecto, aprenderemos a hacer que el servo gire.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-----------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_1.3.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,20 +60,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_servo`
         - |link_servo_buy|
 
-Schematic Diagram
---------------------
+Diagrama Esquemático
+------------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Montar el circuito.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ir a la carpeta del código.
 
 .. raw:: html
 
@@ -83,7 +83,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3**: Run the executable file.
+**Paso 3**: Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -93,14 +93,14 @@ Experimental Procedures
 
     sudo python3 1.3.2_Servo.py
 
-After the program is executed, the servo will rotate from 0 degrees 
-to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Después de ejecutar el programa, el servo girará de 0 grados a 180 grados, 
+y luego de 180 grados a 0 grados, en forma circular.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -121,24 +121,24 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
 
     def setup():
         global p
-        GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by BCM
-        GPIO.setup(ServoPin, GPIO.OUT)   # Set ServoPin's mode is output
-        GPIO.output(ServoPin, GPIO.LOW)  # Set ServoPin to low
-        p = GPIO.PWM(ServoPin, 50)     # set Frequecy to 50Hz
-        p.start(0)                     # Duty Cycle = 0
+        GPIO.setmode(GPIO.BCM)       # Numerar los GPIOs por BCM
+        GPIO.setup(ServoPin, GPIO.OUT)   # Configurar el modo de ServoPin como salida
+        GPIO.output(ServoPin, GPIO.LOW)  # Establecer ServoPin en bajo
+        p = GPIO.PWM(ServoPin, 50)     # Establecer frecuencia a 50Hz
+        p.start(0)                     # Ciclo de trabajo = 0
         
-    def setAngle(angle):      # make the servo rotate to specific angle (0-180 degrees) 
+    def setAngle(angle):      # hacer que el servo gire a un ángulo específico (0-180 grados) 
         angle = max(0, min(180, angle))
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
-        p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it    
+        p.ChangeDutyCycle(pwm)#mapear el ángulo al ciclo de trabajo y enviarlo    
     def loop():
         while True:
-            for i in range(0, 181, 5):   #make servo rotate from 0 to 180 deg
-                setAngle(i)     # Write to servo
+            for i in range(0, 181, 5):   #hacer que el servo gire de 0 a 180 grados
+                setAngle(i)     # Escribir al servo
                 time.sleep(0.002)
             time.sleep(1)
-            for i in range(180, -1, -5): #make servo rotate from 180 to 0 deg
+            for i in range(180, -1, -5): #hacer que el servo gire de 180 a 0 grados
                 setAngle(i)
                 time.sleep(0.001)
             time.sleep(1)
@@ -146,24 +146,23 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
         p.stop()
         GPIO.cleanup()
 
-    if __name__ == '__main__':     #Program start from here
+    if __name__ == '__main__':     # El programa empieza aquí
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:  # Cuando se presiona 'Ctrl+C', se ejecutará el programa destroy().
             destroy()
-        
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     p = GPIO.PWM(ServoPin, 50)     # set Frequecy to 50Hz
     p.start(0)                     # Duty Cycle = 0
 
-Set the servoPin to PWM pin, then the frequency to 50hz, and the period to 20ms.
+Configura el ServoPin como pin PWM, luego la frecuencia a 50Hz y el periodo a 20ms.
 
-p.start(0): Run the PWM function，and set the initial value to 0.
+p.start(0): Ejecuta la función PWM y establece el valor inicial en 0.
 
 .. code-block:: python
 
@@ -172,20 +171,18 @@ p.start(0): Run the PWM function，and set the initial value to 0.
         pulse_width = map(angle, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
         pwm = map(pulse_width, 0, 20000, 0, 100)
         p.ChangeDutyCycle(pwm)#map the angle to duty cycle and output it
-    
-Create a function, setAngle() to write angle that ranges from 0 to 180 into the servo.
+
+Crea una función, setAngle() para escribir un ángulo que varía de 0 a 180 en el servo.
 
 .. code-block:: python
 
     angle = max(0, min(180, angle))
 
-This code is used to limit the angle within the range 0-180°.
+Este código se utiliza para limitar el ángulo dentro del rango 0-180°.
 
-The min() function returns the minimum of the input values. 
-If 180<angle, then return 180,if not, return angle.
+La función min() devuelve el mínimo de los valores de entrada. Si 180<ángulo, entonces devuelve 180, si no, devuelve ángulo.
 
-The max() method returns the maximum element in an iterable or largest of 
-two or more parameters. If 0>angle, then return 0, if not, return angle.
+El método max() devuelve el elemento máximo en un iterable o el mayor de dos o más parámetros. Si 0>ángulo, entonces devuelve 0, si no, devuelve ángulo.
 
 .. code-block:: python
 
@@ -193,16 +190,12 @@ two or more parameters. If 0>angle, then return 0, if not, return angle.
     pwm = map(pulse_width, 0, 20000, 0, 100)
     p.ChangeDutyCycle(pwm)
 
-To render a range 0 ~ 180 ° to the servo, the pulse width of the servo
-is set to 0.5ms(500us)-2.5ms(2500us).
+Para establecer un rango de 0 ~ 180° en el servo, el ancho de pulso del servo se establece en 0.5ms (500us) - 2.5ms (2500us).
 
-The period of PWM is 20ms(20000us), thus the duty cycle of PWM is
-(500/20000)%-(2500/20000)%, and the range 0 ~ 180 is mapped to 2.5 ~
-12.5.
+El periodo del PWM es de 20ms (20000us), por lo tanto, el ciclo de trabajo del PWM es (500/20000)% - (2500/20000)%, y el rango 0 ~ 180 se mapea a 2.5 ~ 12.5.
 
-
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image126.jpeg
 

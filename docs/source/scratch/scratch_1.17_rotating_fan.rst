@@ -1,54 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _1.17_scratch:
 
-1.17 Rotating fan
-==================
+1.17 Ventilador giratorio
+===================================
 
-In this project, we will make a spinning star sprite and fan.
+En este proyecto, haremos un sprite de estrella giratoria y un ventilador.
 
 .. image:: img/1.17_header.png
 
-Required Components
+Componentes necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: img/1.17_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ÍTEMS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado desde los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN AL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,72 +63,70 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
-Build the Circuit
----------------------
+Construir el circuito
+---------------------------
 
 .. image:: img/1.17_image117.png
 
-Load the Code and See What Happens
----------------------------------------
+Cargar el código y ver qué pasa
+-------------------------------------------
 
-Load the code file (``1.17_rotating_fan.sb3``) to Scratch 3.
+Carga el archivo de código (``1.17_rotating_fan.sb3``) en Scratch 3.
 
-After clicking the green flag on the stage, click on the star sprite，then it and the motor will rotate clockwise; you can change the direction of rotation by clicking on the two **arrow** sprites. When you click on the **star** sprite again, it and the motor will stop rotating.
+Después de hacer clic en la bandera verde en el escenario, haz clic en el sprite de estrella, luego este y el motor girarán en el sentido de las agujas del reloj; puedes cambiar la dirección de rotación haciendo clic en los dos sprites de **flecha**. Cuando vuelvas a hacer clic en el sprite de **estrella**, este y el motor dejarán de girar.
 
-Tips on Sprite
-----------------
-Delete the default sprite, then select the **Star** sprite and the **Arrow1** sprite, and copy Arrow1 once.
+Consejos sobre el sprite
+-------------------------------
+Elimina el sprite predeterminado, luego selecciona el sprite de **estrella** y el sprite de **flecha1**, y copia Flecha1 una vez.
 
 .. image:: img/1.17_motor1.png
 
-In the **Costumes** option, change the Arrow2 sprite to a different direction costume.
+En la opción **Disfraces**, cambia el sprite de Flecha2 a un disfraz de dirección diferente.
 
 .. image:: img/1.17_motor2.png
 
-Adjust the size and position of the sprite appropriately.
+Ajusta el tamaño y la posición del sprite de manera adecuada.
 
 .. image:: img/1.17_motor3.png
 
 
-Tips on Codes
---------------
+Consejos sobre el código
+-------------------------------
 
-**Flow Chart**
+**Diagrama de flujo**
 
 .. image:: img/1.17_scratch.png
 
-In this code, you will see 2 pink blocks, turn left and turn right, which are our custom blocks (functions).
+En este código, verás 2 bloques rosas, girar a la izquierda y girar a la derecha, que son nuestros bloques personalizados (funciones).
 
 .. image:: img/1.17_new_block.png
 
-**How to Make a Block?**
+**¿Cómo hacer un bloque?**
 
-Let's learn how to make a block (function). The block (function) can be used to simplify your program, especially if you perform the same operation multiple times. Putting these operations into a newly declared block can be very convenient for you.
+Aprendamos cómo hacer un bloque (función). El bloque (función) se puede usar para simplificar tu programa, especialmente si realizas la misma operación varias veces. Poner estas operaciones en un bloque recién declarado puede ser muy conveniente para ti.
 
-First find **My Blocks** in the block palette, then select **Make a Block**.
+Primero encuentra **Mis bloques** en la paleta de bloques, luego selecciona **Crear un bloque**.
 
 .. image:: img/1.17_motor4.png
 
-Enter the name of the new block.
+Ingresa el nombre del nuevo bloque.
 
 .. image:: img/1.17_motor5.png
 
-After writing the function of the new block in the coding area, save it and then you can find the block in the blocks palette.
+Después de escribir la función del nuevo bloque en el área de codificación, guárdalo y luego podrás encontrar el bloque en la paleta de bloques.
 
 .. image:: img/1.17_motor6.png
 
-**turn left**
+**girar a la izquierda**
 
-This is the code inside the turn left block to make the motor rotate counterclockwise.
+Este es el código dentro del bloque girar a la izquierda para hacer que el motor gire en sentido antihorario.
 
 .. image:: img/1.17_motor12.png
   :width: 400
 
-**turn right**
+**girar a la derecha**
 
-This is the code inside the turn right block to make the motor rotate clockwise.
-
-
+Este es el código dentro del bloque girar a la derecha para hacer que el motor gire en sentido horario.
 
 .. image:: img/1.17_motor11.png
   :width: 400

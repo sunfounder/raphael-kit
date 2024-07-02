@@ -1,41 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 21: Using a HC-SR04 Ultrasonic Sensor For Echolocation
+Video 21: Uso de un Sensor Ultrasónico HC-SR04 para Ecolocación
 =======================================================================================
 
-This tutorial covers the process of creating an ultrasonic distance sensor with a Raspberry Pi using the HC-SR04 sensor. 
-This video explains the principles of echolocation, introduces the necessary components, demonstrates the wiring setup, 
-and walks through the coding process step by step. 
-It emphasizes the importance of precise timing in the code execution for accurate distance measurements and promotes good engineering practices.
+Este tutorial cubre el proceso de crear un sensor de distancia ultrasónico con una Raspberry Pi usando el sensor HC-SR04. 
+El video explica los principios de la ecolocación, introduce los componentes necesarios, demuestra la configuración del cableado 
+y guía paso a paso el proceso de codificación. 
+Se enfatiza la importancia de la sincronización precisa en la ejecución del código para obtener mediciones de distancia exactas y se promueven buenas prácticas de ingeniería.
 
-1. **Introduction to Echolocation**: Using sound to detect objects' positions, inspired by bats and whales.
-2. **Components Overview**: Introduction to the HC-SR04 ultrasonic sensor and its connection to Raspberry Pi.
-3. **Wiring Setup**: Connecting the HC-SR04 sensor to Raspberry Pi GPIO pins for power, ground, trigger, and echo.
-4. **Coding Process**: Python code walkthrough for generating ultrasonic pulses, triggering the sensor, and measuring echo return time.
-5. **Timing Considerations**: Importance of precise timing for accurate distance measurement.
-6. **Good Engineering Practices**: Stressing planning and understanding of code before implementation.
-7. **Waiting for Echo Pin**: Utilizing a while loop to wait for the echo pin to go high.
-8. **Recording Start Time**: Capturing system time when echo pin goes high to mark measurement start.
-9. **Measuring Ping Travel Time**: Calculating ping travel time by determining time difference between echo pin going high and low.
-10. **Converting Units**: Multiplying ping travel time by a million for readability.
-11. **Adding Delay**: Introducing delay after each measurement to prevent multiple echoes.
-12. **Calculating Distance**: Using speed of sound and ping travel time to calculate distance to target.
-
+1. **Introducción a la Ecolocación**: Uso del sonido para detectar la posición de objetos, inspirado por murciélagos y ballenas.
+2. **Descripción de los Componentes**: Introducción al sensor ultrasónico HC-SR04 y su conexión a la Raspberry Pi.
+3. **Configuración del Cableado**: Conexión del sensor HC-SR04 a los pines GPIO de la Raspberry Pi para energía, tierra, disparo y eco.
+4. **Proceso de Codificación**: Recorrido por el código en Python para generar pulsos ultrasónicos, activar el sensor y medir el tiempo de retorno del eco.
+5. **Consideraciones de Tiempo**: Importancia de la sincronización precisa para la medición exacta de distancias.
+6. **Buenas Prácticas de Ingeniería**: Enfatiza la planificación y comprensión del código antes de la implementación.
+7. **Esperando el Pin de Eco**: Uso de un bucle while para esperar a que el pin de eco se active.
+8. **Registro del Tiempo de Inicio**: Captura del tiempo del sistema cuando el pin de eco se activa para marcar el inicio de la medición.
+9. **Medición del Tiempo de Viaje del Ping**: Cálculo del tiempo de viaje del ping determinando la diferencia de tiempo entre la activación y desactivación del pin de eco.
+10. **Conversión de Unidades**: Multiplicación del tiempo de viaje del ping por un millón para mejorar la legibilidad.
+11. **Añadiendo Retraso**: Introducción de un retraso después de cada medición para evitar múltiples ecos.
+12. **Cálculo de la Distancia**: Uso de la velocidad del sonido y el tiempo de viaje del ping para calcular la distancia al objetivo.
 
 **Video**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/SoAGLXoQ5XI?si=OPMqLtQ53hKNHs4j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/SoAGLXoQ5XI?si=OPMqLtQ53hKNHs4j" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -1,45 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 37: Motion Detection Alarm System With LCD and Keypad
+Video 37: Sistema de Alarma con Detección de Movimiento, LCD y Teclado
 =======================================================================================
 
+Este tutorial muestra la creación de un sistema de alarma utilizando una Raspberry Pi, incorporando entrada de teclado y una pantalla LCD. 
+Proporciona instrucciones paso a paso sobre el cableado de los componentes, la configuración de bibliotecas 
+y la implementación de funcionalidades como armar, desarmar y cambiar la contraseña. 
+El video enfatiza la portabilidad y el despliegue en el mundo real, más allá del uso en el escritorio.
 
-This tutorial showcases the creation of an alarm system using a Raspberry Pi, incorporating keypad input and an LCD display. 
-It provides step-by-step instructions on wiring the components, configuring libraries, 
-and implementing functionalities such as arming, disarming, and changing the password. 
-The video emphasizes portability and real-world deployment, beyond desktop usage.
-
-
-1. **Portability and Deployment**: Moving Raspberry Pi projects beyond the desktop for real-world applications.
-2. **Keypad and LCD Setup**: Wiring a keypad and LCD display to Raspberry Pi GPIO pins for input and output.
-3. **Threading for Multitasking**: Utilizing threading to handle input from the keypad while executing other tasks.
-4. **Library Integration**: Importing and utilizing libraries for keypad and LCD functionality.
-5. **Program Flow**: Implementing three modes for the alarm system - armed, disarmed, and change password - and utilizing threading to continuously monitor keypad input.
-6. **Error Handling**: Providing error handling mechanisms, such as allowing users to kill the program with an asterisk input.
-7. **Program structure setup**: Demonstrates setting up threads, defining the main loop, and handling input from the keypad.
-8. **Keypad input handling**: Explains how to process commands from the keypad for arming, disarming, changing passwords, and triggering alarm actions.
-9. **Alarm functionality**: Shows implementation of motion detection using a PIR sensor to trigger intruder alerts on the LCD screen.
-10. **User interaction**: Provides user feedback through the LCD screen for system status, alerts, and password prompts.
-11. **Error handling and cleanup**: Ensures proper program termination with error handling, GPIO cleanup, and LCD screen clearing.
-12. **Viewer challenge**: Encourages viewers to enhance the alarm system with additional features like audible alarms or Bluetooth integration as part of a contest for bragging rights.
-
-
+1. **Portabilidad y Despliegue**: Trasladar proyectos de Raspberry Pi más allá del escritorio para aplicaciones en el mundo real.
+2. **Configuración del Teclado y LCD**: Cablear un teclado y una pantalla LCD a los pines GPIO de la Raspberry Pi para entrada y salida.
+3. **Hilos para Multitarea**: Utilizar hilos para manejar la entrada del teclado mientras se ejecutan otras tareas.
+4. **Integración de Bibliotecas**: Importar y utilizar bibliotecas para la funcionalidad del teclado y el LCD.
+5. **Flujo del Programa**: Implementar tres modos para el sistema de alarma - armado, desarmado y cambio de contraseña - y utilizar hilos para monitorear continuamente la entrada del teclado.
+6. **Manejo de Errores**: Proporcionar mecanismos de manejo de errores, como permitir a los usuarios matar el programa con una entrada de asterisco.
+7. **Configuración de la Estructura del Programa**: Demuestra cómo configurar hilos, definir el bucle principal y manejar la entrada del teclado.
+8. **Manejo de Entrada del Teclado**: Explica cómo procesar comandos del teclado para armar, desarmar, cambiar contraseñas y activar acciones de alarma.
+9. **Funcionalidad de Alarma**: Muestra la implementación de detección de movimiento utilizando un sensor PIR para activar alertas de intrusión en la pantalla LCD.
+10. **Interacción con el Usuario**: Proporciona retroalimentación al usuario a través de la pantalla LCD para el estado del sistema, alertas y avisos de contraseña.
+11. **Manejo de Errores y Limpieza**: Asegura la terminación adecuada del programa con manejo de errores, limpieza de GPIO y limpieza de la pantalla LCD.
+12. **Desafío para el Espectador**: Anima a los espectadores a mejorar el sistema de alarma con características adicionales como alarmas sonoras o integración con Bluetooth como parte de un concurso para obtener derechos de presumir.
 
 **Video**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/y0PEhuLAjNY?si=LI-oSA53Obuf8wn2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/y0PEhuLAjNY?si=LI-oSA53Obuf8wn2" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

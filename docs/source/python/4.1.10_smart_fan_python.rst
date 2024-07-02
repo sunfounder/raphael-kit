@@ -1,57 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.10_py:
 
-4.1.10 Smart Fan
-=========================
+4.1.10 Ventilador Inteligente
+==================================
 
-Introduction
------------------
+Introducción
+---------------
 
-In this project, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+En este proyecto, utilizaremos motores, botones y termistores para crear un ventilador inteligente manual y automático, cuya velocidad del viento es ajustable.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_Smart_Fan.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es muy conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -74,40 +73,39 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
-
-Schematic Diagram
+Diagrama Esquemático
 ------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-GPIO5        Pin 29   21       5
-GPIO6        Pin 31   22       6
-GPIO13       Pin 33   23       13
-============ ======== ======== ===
+============== =============== ======== ===
+Nombre T-Board cableado físico wiringPi BCM
+GPIO17         Pin 11          0        17
+GPIO18         Pin 12          1        18
+GPIO27         Pin 13          2        27
+GPIO22         Pin 15          3        22
+GPIO5          Pin 29          21       5
+GPIO6          Pin 31          22       6
+GPIO13         Pin 33          23       13
+============== =============== ======== ===
 
 .. image:: ../img/Schematic_three_one4.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+-------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image245.png
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    El módulo de energía puede aplicar una batería de 9V con el broche de batería 
+    de 9V incluido en el kit. Inserta el capuchón del módulo de energía en las tiras 
+    de bus de 5V de la placa de pruebas.
 
 .. image:: ../img/image118.jpeg
    :align: center
 
-**Step 2**: Get into the folder of the code.
+**Paso 2**: Accede a la carpeta del código.
 
 .. raw:: html
 
@@ -117,7 +115,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Paso 3**: Ejecuta.
 
 .. raw:: html
 
@@ -127,19 +125,19 @@ Experimental Procedures
 
     sudo python3 4.1.10_SmartFan.py
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+Cuando el código se ejecute, inicia el ventilador presionando el botón. 
+Cada vez que presiones, se ajusta una velocidad hacia arriba o hacia abajo. 
+Hay **5** tipos de velocidades: **0~4**. Cuando se ajusta a la 4\ :sup:`a` velocidad 
+y presionas el botón, el ventilador deja de funcionar con una velocidad de viento **0**.
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+Una vez que la temperatura sube o baja más de 2℃, la velocidad aumenta o disminuye 
+automáticamente un grado.
 
-Code
+Código
 --------
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -191,7 +189,6 @@ Code
         p_M1.ChangeDutyCycle(level*25)
         return level
 
-
     def main():
         lastState=0
         level=0
@@ -228,9 +225,8 @@ Code
             destroy()
 
 
-Code Explanation
----------------------
-
+Explicación del Código
+----------------------------
 .. code-block:: python
 
     def temperature():
@@ -242,8 +238,7 @@ Code Explanation
         Fah = Cel * 1.8 + 32
         return Cel
 
-``temperture()`` works by converting thermistor values read by **ADC0834**
-into temperature values. Refer to :ref:`2.2.2_py` for more details.
+``temperture()`` funciona convirtiendo los valores del termistor leídos por **ADC0834** en valores de temperatura. Consulta :ref:`2.2.2_py` para más detalles.
 
 .. code-block:: python
 
@@ -254,13 +249,12 @@ into temperature values. Refer to :ref:`2.2.2_py` for more details.
         if level>=4:
             level = 4
         GPIO.output(MotorEnable, GPIO.HIGH)
-        p_M1.ChangeDutyCycle(level*25)
-        return level
+        p_M1.ChangeDutyCycle(level*25)
+        return level
 
-
-This function controls the rotating speed of the motor. The range of the
-**Lever**: **0-4** (level **0** stops the working motor). One level
-adjustment stands for a **25%** change of the wind speed.
+Esta función controla la velocidad de rotación del motor. El rango del **Nivel**: **0-4**
+ (el nivel **0** detiene el motor en funcionamiento). Un ajuste de nivel representa un cambio 
+ del **25%** en la velocidad del viento.
 
 .. code-block:: python
 
@@ -274,7 +268,7 @@ adjustment stands for a **25%** change of the wind speed.
             if currentState == 1 and lastState == 0:
                 level=(level+1)%5
                 markTemp = currentTemp
-                time.sleep(0.5)
+                time.sleep(0.5)
             lastState=currentState
             if level!=0:
                 if currentTemp-markTemp <= -2:
@@ -285,20 +279,17 @@ adjustment stands for a **25%** change of the wind speed.
                     markTemp=currentTemp             
             level = motor(level)
 
+La función **main()** contiene todo el proceso del programa como se muestra:
 
-The function **main()** contains the whole program process as shown:
+1) Lee constantemente el estado del botón y la temperatura actual.
 
-1) Constantly read the button state and the current temperature.
+2) Cada vez que se presiona, el nivel **+1** y al mismo tiempo se actualiza la temperatura. El **Nivel** varía de **1 a 4**.
 
-2) Every press makes level\ **+1** and at the same time, the temperature
-   is updated. The **Level** ranges **1~4**.
+3) A medida que el ventilador funciona (el nivel no es **0**), la temperatura está bajo detección. Un cambio de **+2℃** causa el aumento y disminución del nivel.
 
-3) As the fan works ( the level is **not 0**), the temperature is under
-   detection. A **2℃\ +** change causes the up and down of the level.
+4) El motor cambia la velocidad de rotación con el **Nivel**.
 
-4) The motor changes the rotating speed with the **Level**.
-
-Phenomenon Picture
+Imagen del Fenómeno
 ------------------------
 
 .. image:: ../img/image246.png

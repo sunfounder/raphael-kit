@@ -1,59 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso temprano a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
 .. _2.1.7_c:
 
-2.1.7 Potentiometer
-=========================
+2.1.7 Potenciómetro
+============================
 
-Introduction
-------------
+Introducción
+--------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+La función ADC se puede utilizar para convertir señales analógicas en señales digitales, 
+y en este experimento, se usa el ADC0834 para obtener la función involucrando ADC. Aquí, 
+implementamos este proceso utilizando un potenciómetro. El potenciómetro cambia la cantidad 
+física -- voltaje, que es convertido por la función ADC.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_2.1.4_potentiometer.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,29 +69,27 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+------------------------
 
 .. image:: ../img/image311.png
-
 
 .. image:: ../img/image312.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+-----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image180.png
 
-
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    Coloca el chip refiriéndote a la posición correspondiente
+    representada en la imagen. Nota que las ranuras en el chip deben estar a
+    la izquierda cuando se coloque.
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -102,7 +99,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.7/
 
-**Step 3:** Compile the code.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -112,7 +109,7 @@ Experimental Procedures
 
     gcc 2.1.7_Potentiometer.c -lwiringPi
 
-**Step 4:** Run.
+**Paso 4:** Ejecuta.
 
 .. raw:: html
 
@@ -122,14 +119,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+Después de ejecutar el código, gira la perilla del potenciómetro y la intensidad
+del LED cambiará en consecuencia.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
-**Code**
+    Si no funciona después de ejecutar el código, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor refiérase a :ref:`install_wiringpi`.
+**Código**
 
 .. code-block:: c
 
@@ -215,8 +211,7 @@ of LED will change accordingly.
         }
         return 0;
     }
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -225,8 +220,8 @@ of LED will change accordingly.
     #define     ADC_DIO   2
     #define     LedPin    3
 
-Define CS, CLK, DIO of ADC0834, and connect them to GPIO0, GPIO1 and
-GPIO2 respectively. Then attach LED to GPIO3.
+Define los pines CS, CLK, DIO del ADC0834 y conéctalos a GPIO0, GPIO1 y GPIO2 respectivamente. 
+Luego conecta el LED al GPIO3.
 
 .. code-block:: c
 
@@ -280,14 +275,14 @@ GPIO2 respectively. Then attach LED to GPIO3.
         return(dat1==dat2) ? dat1 : 0;
     }
 
-There is a function of ADC0834 to get Analog to Digital Conversion. The
-specific workflow is as follows:
+Esta es una función del ADC0834 para obtener la conversión de Analógico a Digital. 
+El flujo de trabajo específico es el siguiente:
 
 .. code-block:: c
 
     digitalWrite(ADC_CS, 0);
 
-Set CS to low level and start enabling AD conversion.
+Establece CS a nivel bajo y comienza a habilitar la conversión AD.
 
 .. code-block:: c
 
@@ -296,9 +291,9 @@ Set CS to low level and start enabling AD conversion.
     digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
 
-When the low-to-high transition of the clock input occurs at the first
-time, set DIO to 1 as Start bit. In the following three steps, there are
-3 assignment words.
+Cuando la transición de bajo a alto de la entrada del reloj ocurre por primera vez, 
+establece DIO en 1 como bit de inicio. En los siguientes tres pasos, hay 3 palabras 
+de asignación.
 
 .. code-block:: c
 
@@ -307,8 +302,8 @@ time, set DIO to 1 as Start bit. In the following three steps, there are
     digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
 
-As soon as the low-to-high transition of the clock input occurs for the
-second time, set DIO to 1 and choose SGL mode.
+Tan pronto como la transición de bajo a alto de la entrada del reloj ocurre por segunda vez, 
+establece DIO en 1 y elige el modo SGL.
 
 .. code-block:: c
 
@@ -317,8 +312,7 @@ second time, set DIO to 1 and choose SGL mode.
     digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
 
-Once occurs for the third time, the value of DIO is controlled by the
-variable **odd**.
+Una vez que ocurre por tercera vez, el valor de DIO es controlado por la variable **odd**.
 
 .. code-block:: c
 
@@ -327,21 +321,20 @@ variable **odd**.
     digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
     digitalWrite(ADC_CLK,1);
 
-The pulse of CLK converted from low level to high level for the forth
-time, the value of DIO is controlled by the variable **sel**.
+El pulso de CLK convertido de nivel bajo a alto por cuarta vez, el valor de DIO es 
+controlado por la variable **sel**.
 
-Under the condition that channel=0, sel=0, odd=0, the operational
-formulas concerning **sel** and **odd** are as follows:
+Bajo la condición de que channel=0, sel=0, odd=0, las fórmulas operacionales relativas 
+a **sel** y **odd** son las siguientes:
 
 .. code-block:: c
 
     int sel = channel > 1 & 1;
     int odd = channel & 1;
 
-When the condition that channel=1, sel=0, odd=1 is met, please refer to
-the following address control logic table. Here CH1 is chosen, and the
-start bit is shifted into the start location of the multiplexer register
-and conversion starts.
+Cuando se cumple la condición de que channel=1, sel=0, odd=1, 
+por favor consulta la siguiente tabla de lógica de control de dirección. Aquí se elige CH1, 
+y el bit de inicio se desplaza a la ubicación inicial del registro del multiplexor y comienza la conversión.
 
 .. image:: ../img/image313.png
 
@@ -352,7 +345,7 @@ and conversion starts.
     digitalWrite(ADC_CLK,0);
     digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
 
-Here, set DIO to 1 twice, please ignore it.
+Aquí, establece DIO en 1 dos veces, ignóralo.
 
 .. code-block:: c
 
@@ -365,10 +358,10 @@ Here, set DIO to 1 twice, please ignore it.
             dat1=dat1<<1 | digitalRead(ADC_DIO);
         }
 
-In the first for() statement, as soon as the fifth pulse of CLK is
-converted from high level to low level, set DIO to input mode. Then the
-conversion starts and the converted value is stored in the variable
-dat1. After eight clock periods, the conversion is complete.
+En la primera declaración for(), tan pronto como el quinto pulso de CLK se convierte 
+de nivel alto a nivel bajo, establece DIO en modo de entrada. Luego, la conversión 
+comienza y el valor convertido se almacena en la variable dat1. Después de ocho períodos 
+de reloj, la conversión se completa.
 
 .. code-block:: c
 
@@ -379,8 +372,8 @@ dat1. After eight clock periods, the conversion is complete.
             digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
         }
 
-In the second for() statement, output the converted values via DO after
-other eight clock periods and store them in the variable dat2.
+En la segunda declaración for(), se emiten los valores convertidos a través de DO 
+después de otros ocho períodos de reloj y se almacenan en la variable dat2.
 
 .. code-block:: c
 
@@ -388,34 +381,33 @@ other eight clock periods and store them in the variable dat2.
     pinMode(ADC_DIO, OUTPUT);
     return(dat1==dat2) ? dat1 : 0;
 
-return(dat1==dat2) ? dat1 : 0 is used to compare the value gotten during
-the conversion and the output value. If they are equal to each other,
-output the converting value dat1; otherwise, output 0. Here, the
-workflow of ADC0834 is complete.
+return(dat1==dat2) ? dat1 : 0 se usa para comparar el valor obtenido durante la 
+conversión y el valor de salida. Si son iguales entre sí, se emite el valor de 
+conversión dat1; de lo contrario, se emite 0. Aquí se completa el flujo de 
+trabajo del ADC0834.
 
 .. code-block:: c
 
     softPwmCreate(LedPin,  0, 100);
 
-The function is to use software to create a PWM pin, LedPin, then the
-initial pulse width is set to 0, and the period of PWM is 100 x 100us.
+La función es usar software para crear un pin PWM, LedPin, luego el ancho de pulso 
+inicial se establece en 0 y el período de PWM es 100 x 100us.
 
 .. code-block:: c
 
     while(1){
             analogVal = get_ADC_Result(0);
-            printf("Current analogVal : %d\n", analogVal);
+            printf("Valor analógico actual: %d\n", analogVal);
             softPwmWrite(LedPin, analogVal);
             delay(100);
         }
 
-In the main program, read the value of channel 0 that has been connected
-with a potentiometer. And store the value in the variable analogVal then
-write it in LedPin. Now you can see the brightness of LED changing with
-the value of the potentiometer.
+En el programa principal, lee el valor del canal 0 que ha sido conectado con un potenciómetro. 
+Y almacena el valor en la variable analogVal, luego escríbelo en LedPin. Ahora puedes ver el 
+brillo del LED cambiar con el valor del potenciómetro.
 
-Phenomenon Picture
-------------------
+Foto del Fenómeno
+-----------------------
 
 .. image:: ../img/image181.jpeg
 

@@ -1,31 +1,29 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 33: How to Incorporate a Keypad into a Raspberry Pi Project
+Video 33: Cómo Incorporar un Teclado en un Proyecto con Raspberry Pi
 =======================================================================================
 
-This video demonstrates how to read keypad input using a Raspberry Pi, covering the circuit setup, Python code implementation, and addressing the "sticky button" issue.
+Este video demuestra cómo leer la entrada de un teclado utilizando una Raspberry Pi, cubriendo la configuración del circuito, la implementación del código en Python y cómo abordar el problema de "botón pegajoso".
 
-1. **Keypad Scanning Method**: Understanding the concept of keypad scanning with rows and columns.
-2. **Circuit Setup**: Configuring GPIO pins for rows and columns, including the use of internal pull-down resistors.
-3. **Python Code Implementation**: Step-by-step walkthrough of Python code to read keypad input by activating rows and reading columns.
-4. **"Sticky Button" Problem**: Identifying and solving the issue of repeated button presses.
-
+1. **Método de Escaneo del Teclado**: Entender el concepto de escaneo del teclado con filas y columnas.
+2. **Configuración del Circuito**: Configuración de los pines GPIO para filas y columnas, incluyendo el uso de resistencias pull-down internas.
+3. **Implementación del Código en Python**: Paso a paso del código en Python para leer la entrada del teclado activando filas y leyendo columnas.
+4. **Problema de "Botón Pegajoso"**: Identificación y solución del problema de pulsaciones repetidas de botones.
 
 **Video**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/0sD9J8iu8RQ?si=Tbc7xeVy3ASJdV3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/0sD9J8iu8RQ?si=Tbc7xeVy3ASJdV3Y" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

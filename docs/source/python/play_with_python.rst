@@ -1,23 +1,23 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de vacaciones.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Play with Python (not for Pi 5)
-=================================
+Jugar con Python (no para Pi 5)
+=====================================
 
-.. warning::
+.. advertencia::
 
-    ``RPi.GPIO`` is a widely-used GPIO library, but unfortunately, it hasn't been updated to support the latest Raspberry Pi 5. As a result, any Python programs written using this library won't be compatible with the Pi 5. It's essential to adapt to newer libraries like ``GPIO.Zero`` for seamless compatibility with the latest hardware.
+    ``RPi.GPIO`` es una biblioteca de GPIO ampliamente utilizada, pero desafortunadamente, no ha sido actualizada para soportar la última Raspberry Pi 5. Como resultado, cualquier programa de Python escrito usando esta biblioteca no será compatible con la Pi 5. Es esencial adaptarse a bibliotecas más nuevas como ``GPIO.Zero`` para una compatibilidad sin problemas con el hardware más reciente.
 
 .. toctree::
     :maxdepth: 3
@@ -42,6 +42,3 @@ Play with Python (not for Pi 5)
     :maxdepth: 2
 
     extension_python
-
-    
-

@@ -1,32 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en el universo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Obtén acceso temprano a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 7: GPIO Inputs from Button Switch
+Video 7: Entradas GPIO desde un Interruptor de Botón
 =======================================================================================
 
-Learn how to simplify GPIO circuits for switches or push buttons by using the internal pull-up resistor in Raspberry Pi GPIO pins, including a demonstration of the concept, circuit setup, and Python code example to toggle an LED.
+Aprende cómo simplificar los circuitos GPIO para interruptores o botones pulsadores utilizando la resistencia pull-up interna en los pines GPIO de Raspberry Pi, incluyendo una demostración del concepto, configuración del circuito y un ejemplo de código en Python para alternar un LED.
 
-1. Understanding pull-up and pull-down resistors in GPIO circuits.
-2. Demonstrating a circuit setup with a push button, pull-up resistor, and LED.
-3. Introducing the concept of using the internal pull-up resistor in Raspberry Pi GPIO pins.
-4. Explaining how to activate the internal pull-up resistor in the GPIO pin setup.
-5. Providing a Python code example to toggle an LED using a push button, utilizing the internal pull-up resistor.
-6. Highlighting the importance of toggle switches in practical applications and assigning a homework task to implement a toggle switch using the existing circuit.
+1. Entender las resistencias pull-up y pull-down en los circuitos GPIO.
+2. Demostrar la configuración de un circuito con un botón pulsador, una resistencia pull-up y un LED.
+3. Introducir el concepto de usar la resistencia pull-up interna en los pines GPIO de Raspberry Pi.
+4. Explicar cómo activar la resistencia pull-up interna en la configuración del pin GPIO.
+5. Proporcionar un ejemplo de código en Python para alternar un LED usando un botón pulsador, utilizando la resistencia pull-up interna.
+6. Resaltar la importancia de los interruptores de palanca en aplicaciones prácticas y asignar una tarea para implementar un interruptor de palanca usando el circuito existente.
 
 **Video**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/tCFMmepJjDA?si=gjNAlMbt-J7kooye" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/tCFMmepJjDA?si=gjNAlMbt-J7kooye" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

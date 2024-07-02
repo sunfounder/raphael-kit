@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más profundamente en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.3_py:
 
-4.1.3 Speech Clock
+4.1.3 Reloj Parlante
 =============================
 
-Introduction
+Introducción
 -----------------
 
-In this project, let's make a voice clock with a speaker and a 4-digit 7-segment display. The 4-digit 7-segment display will display the time, and the speaker will broadcast the time every hour.
+En este proyecto, vamos a hacer un reloj parlante con un altavoz y un display de 7 segmentos de 4 dígitos. El display mostrará la hora y el altavoz anunciará la hora cada hora.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/3.1.17components.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es muy conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,38 +69,38 @@ You can also buy them separately from the links below.
         - |link_74hc595_buy|
 
 
-Schematic Diagram
+Diagrama Esquemático
 --------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-SPIMOSI      Pin 19   12       10
-GPIO18       Pin 12   1        18
-GPIO23       Pin 16   4        23
-GPIO24       Pin 18   5        24
-============ ======== ======== ===
+============== =============== ======== ===
+Nombre T-Board cableado físico wiringPi BCM
+GPIO17         Pin 11          0        17
+GPIO27         Pin 13          2        27
+GPIO22         Pin 15          3        22
+SPIMOSI        Pin 19          12       10
+GPIO18         Pin 12          1        18
+GPIO23         Pin 16          4        23
+GPIO24         Pin 18          5        24
+============== =============== ======== ===
 
 .. image:: ../img/schmatic_4_digit.png
 
 .. image:: ../img/3.1.17_schematic.png
   :width: 500
   :align: center
+  
+Procedimientos Experimentales
+-------------------------------
 
-Experimental Procedures
-------------------------------
-
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/3.1.17fritzing.png
   :width: 900
   :align: center
 
-Before this project, you need to make sure you complete :ref:`3.1.4_py`.
+Antes de este proyecto, debes asegurarte de haber completado :ref:`3.1.4_py`.
 
-**Step 2:** Use the command ``date`` to view the local time.
+**Paso 2:** Usa el comando ``date`` para ver la hora local.
 
 .. raw:: html
 
@@ -110,7 +110,7 @@ Before this project, you need to make sure you complete :ref:`3.1.4_py`.
 
     date
 
-If the local time is different from the real time, you need to use the following command to set the time zone.
+Si la hora local es diferente de la hora real, necesitas usar el siguiente comando para configurar la zona horaria.
 
 .. raw:: html
 
@@ -120,11 +120,11 @@ If the local time is different from the real time, you need to use the following
 
     sudo dpkg-reconfigure tzdata
 
-Choose your time zone.
+Elige tu zona horaria.
 
 .. image:: ../img/tzdata.png
 
-**Step 3:** Get into the folder of the code.
+**Paso 3:** Accede a la carpeta del código.
 
 .. raw:: html
 
@@ -134,7 +134,7 @@ Choose your time zone.
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Paso 4:** Ejecuta.
 
 .. raw:: html
 
@@ -144,12 +144,12 @@ Choose your time zone.
 
     python3 4.1.3_SpeechClock.py
 
-When the code is run, the 4-digit 7-segment will display the time and chime on every hour.
+Cuando el código se ejecute, el display de 7 segmentos de 4 dígitos mostrará la hora y sonará cada hora.
 
-**Code**
+**Código**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -238,8 +238,7 @@ When the code is run, the 4-digit 7-segment will display the time and chime on e
             loop()
         except KeyboardInterrupt:
             destroy()
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -247,62 +246,62 @@ When the code is run, the 4-digit 7-segment will display the time and chime on e
     hour = int(time.strftime('%H',time.localtime(time.time())))
     minute = int(time.strftime('%M',time.localtime(time.time())))
 
-Through the function ``time.time()``, we can get the timestamp of the current time (the number of floating-point seconds that have passed since the 1970 epoch), and then use the time formatting method of the time module ``(time.localtime(time.time()))`` to process the current timestamp, so that we can format the timestamp as a local time. 
+A través de la función ``time.time()``, podemos obtener la marca de tiempo de la hora actual (el número de segundos en punto flotante que han pasado desde la época de 1970), y luego usamos el método de formateo de tiempo del módulo de tiempo ``(time.localtime(time.time()))`` para procesar la marca de tiempo actual, de modo que podamos formatear la marca de tiempo como hora local.
 
-The input result is:
+El resultado de la entrada es:
 
 ``time.struct_time(tm_year=2021, tm_mon=5, tm_mday=28, tm_hour=13, tm_min=54, tm_sec=26, tm_wday=4, tm_yday=148, tm_isdst=0)``
 
-Finally, we use the ``time.strftime()`` method to format the large string of information into what we want. If you want to get the current hour, you can get it through the function ``time.strftime('%H',time.localtime(time.time()))`` . 
+Finalmente, usamos el método ``time.strftime()`` para formatear la gran cadena de información en lo que queremos. Si deseas obtener la hora actual, puedes hacerlo a través de la función ``time.strftime('%H',time.localtime(time.time()))``.
 
-The output of the specified formatted string obtained by modifying the first parameter are listed below.
+Las salidas de la cadena formateada especificada obtenida modificando el primer parámetro se enumeran a continuación.
 
 +----+----------------------------------------------------+
-| %y | Two-digit year representation(00-99)               |
+| %y | Representación de año de dos dígitos (00-99)       |
 +----+----------------------------------------------------+
-| %Y | Four-digit year representation(000-9999)           |
+| %Y | Representación de año de cuatro dígitos (000-9999) |
 +----+----------------------------------------------------+
-| %m | month(01-12)                                       |
+| %m | Mes (01-12)                                        |
 +----+----------------------------------------------------+
-| %H | Day of the month(0-31)                             |
+| %d | Día del mes (0-31)                                 |
 +----+----------------------------------------------------+
-| %I | Hours in a 24-hour clock(0-23)                     |
+| %H | Horas en un reloj de 24 horas (0-23)               |
 +----+----------------------------------------------------+
-| %M | Hours in 12-hour clock(01-12)                      |
+| %I | Horas en un reloj de 12 horas (01-12)              |
 +----+----------------------------------------------------+
-| %y | Minutes(00=59)                                     |
+| %M | Minutos (00-59)                                    |
 +----+----------------------------------------------------+
-| %S | second(00-59)                                      |
+| %S | Segundos (00-59)                                   |
 +----+----------------------------------------------------+
-| %a | Local simplified week name                         |
+| %a | Nombre local simplificado de la semana             |
 +----+----------------------------------------------------+
-| %A | Full local week name                               |
+| %A | Nombre completo local de la semana                 |
 +----+----------------------------------------------------+
-| %b | Local simplified month name                        |
+| %b | Nombre local simplificado del mes                  |
 +----+----------------------------------------------------+
-| %B | Local full month name                              |
+| %B | Nombre completo local del mes                      |
 +----+----------------------------------------------------+
-| %c | Local corresponding date and time display          |
+| %c | Representación local correspondiente de fecha y hora|
 +----+----------------------------------------------------+
-| %j | Day of the year(001-366)                           |
+| %j | Día del año (001-366)                              |
 +----+----------------------------------------------------+
-| %p | The equivalent of local A.M. or P.M.               |
+| %p | Equivalente local de A.M. o P.M.                   |
 +----+----------------------------------------------------+
-| %U | Num of weeks of one year(00-53)starting with Sunday|
+| %U | Número de semanas del año (00-53) comenzando el domingo|
 +----+----------------------------------------------------+
-| %w | Week (0-6), starting with Sunday                   |
+| %w | Semana (0-6), comenzando el domingo                |
 +----+----------------------------------------------------+
-| %W | Num of weeks of one year(00-53)starting with Monday|
+| %W | Número de semanas del año (00-53) comenzando el lunes|
 +----+----------------------------------------------------+
-| %x | Local corresponding date representation            |
+| %x | Representación local correspondiente de la fecha   |
 +----+----------------------------------------------------+
-| %X | Local corresponding time representation            |
+| %X | Representación local correspondiente de la hora    |
 +----+----------------------------------------------------+
-| %Z | The name of the current time zone                  |
+| %Z | Nombre de la zona horaria actual                   |
 +----+----------------------------------------------------+
 
 .. note::
-    The output of the ``time.strftime()`` method is all string variables. Before using it, remember to do a coercive type conversion.
+    La salida del método ``time.strftime()`` son todas variables de cadena. Antes de usarlo, recuerda hacer una conversión de tipo coercitiva.
 
 .. code-block:: python
 
@@ -322,8 +321,8 @@ The output of the specified formatted string obtained by modifying the first par
     pickDigit(3)
     hc595_shift(number[hour % 100//10])
 
-The tens digit of the hour is displayed on the first 7-segment digital display, and the ones digit is displayed on the second. 
-Then the tens digit of the minutes is displayed on the third digital display, and the ones digit are displayed on the last.
+El dígito de las decenas de la hora se muestra en el primer display de 7 segmentos, y el dígito de las unidades se muestra en el segundo.
+Luego, el dígito de las decenas de los minutos se muestra en el tercer display digital, y el dígito de las unidades se muestra en el último.
 
 .. code-block:: python
 
@@ -333,10 +332,9 @@ Then the tens digit of the minutes is displayed on the third digital display, an
     elif minute != 0:
         status = 0
 
-When the number of minutes is 0 (by hour), the Raspberry Pi will use TTS to announce the time for us.
+Cuando el número de minutos es 0 (en la hora exacta), la Raspberry Pi usará TTS para anunciar la hora.
 
-
-Phenomenon Picture
+Imagen del Fenómeno
 ------------------------
 
 .. image:: ../img/4.1.3speech_clock.JPG

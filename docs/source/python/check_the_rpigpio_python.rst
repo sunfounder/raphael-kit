@@ -1,28 +1,28 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de vacaciones.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Check the ``RPi.GPIO``
+Verificación de ``RPi.GPIO``
 =================================
 
-If you are a Python user, you can program GPIOs with API provided by
+Si eres usuario de Python, puedes programar los GPIOs con la API proporcionada por
 ``RPi.GPIO``.
 
-``RPi.GPIO`` is a module to control Raspberry Pi GPIO channels. This package
-provides a class to control the GPIO on a Raspberry Pi. For examples and
-documents, visit: http://sourceforge.net/p/raspberry-gpio-python/wiki/Home/.
+``RPi.GPIO`` es un módulo para controlar los canales GPIO de Raspberry Pi. Este paquete
+proporciona una clase para controlar los GPIO en una Raspberry Pi. Para ejemplos y
+documentos, visita: http://sourceforge.net/p/raspberry-gpio-python/wiki/Home/.
 
-Test whether RPi.GPIO is installed or not, type in python:
+Para probar si RPi.GPIO está instalado o no, escribe en Python:
 
 .. raw:: html
 
@@ -34,9 +34,8 @@ Test whether RPi.GPIO is installed or not, type in python:
 
 .. image:: ../img/image27.png
 
-
-In Python CLI, input ``import RPi.GPIO``, If no error prompts, it means
-RPi.GPIO is installed.
+En la CLI de Python, ingresa ``import RPi.GPIO``. Si no aparece ningún error,
+significa que RPi.GPIO está instalado.
 
 .. raw:: html
 
@@ -48,8 +47,7 @@ RPi.GPIO is installed.
 
 .. image:: ../img/image28.png
 
-
-If you want to quit python CLI, type in:
+Si deseas salir de la CLI de Python, escribe:
 
 .. raw:: html
 
@@ -60,5 +58,4 @@ If you want to quit python CLI, type in:
     exit()
 
 .. image:: ../img/image29.png
-
 

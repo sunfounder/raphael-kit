@@ -1,41 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _blynk_mobile:
 
-How to use Blynk on mobile device?
-==================================
+¿Cómo usar Blynk en un dispositivo móvil?
+==============================================
 
 .. note::
 
-    As datastreams can only be created in Blynk on the web, you will need to reference different projects to create datastreams on the web, then follow the tutorial below to create widgets in Blynk on your mobile device.
+    Dado que los flujos de datos solo se pueden crear en Blynk en la web, necesitarás consultar diferentes proyectos para crear flujos de datos en la web y luego seguir el tutorial a continuación para crear widgets en Blynk en tu dispositivo móvil.
 
-
-#. Open Google Play or APP Store on your mobile device and search for "Blynk IoT" (not Blynk(legacy)) to download.
-#. After opening the APP, login in, this account should be the same as the account used on the web client.
-#. Then go to **Dashboard** (if you don't have one, create one) and you will see that the **Dashboard** for mobile and web are independent of each other.
+#. Abre Google Play o la APP Store en tu dispositivo móvil y busca "Blynk IoT" (no Blynk(legacy)) para descargar.
+#. Después de abrir la APP, inicia sesión, esta cuenta debe ser la misma que la cuenta utilizada en el cliente web.
+#. Luego ve a **Dashboard** (si no tienes uno, crea uno) y verás que el **Dashboard** para móvil y web son independientes entre sí.
 
     .. image:: img/APP_1.jpg
 
-#. Click **Edit** Icon.
-#. Click on the blank area. 
-#. Choose the same widget as on the web page, such as select a **Joystick** widget.
+#. Haz clic en el ícono **Editar**.
+#. Haz clic en el área en blanco.
+#. Elige el mismo widget que en la página web, por ejemplo, selecciona un widget **Joystick**.
 
     .. image:: img/APP_2.jpg
 
-#. Now you will see a **Joystick** widget appear in the blank area, click on it.
-#. **Joystick** Settings will appear, select the **Xvalue** and **Yvalue** datastreams you just set in the web page. Note that each widget corresponds to a different datastream in each project.
-#. Go back to the **Dashboard** page and you can operate the **Joystick** when you want.
+#. Ahora verás un widget **Joystick** aparecer en el área en blanco, haz clic en él.
+#. Aparecerán las configuraciones del **Joystick**, selecciona los flujos de datos **Xvalue** y **Yvalue** que acabas de configurar en la página web. Ten en cuenta que cada widget corresponde a un flujo de datos diferente en cada proyecto.
+#. Regresa a la página del **Dashboard** y podrás operar el **Joystick** cuando lo desees.
 
     .. image:: img/APP_3.jpg

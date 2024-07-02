@@ -1,55 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previews Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.19_py:
 
-4.1.19 AttendanceSystem
-================================
+4.1.19 Sistema de Asistencia
+===================================
 
-Introduction
+Introducción
 ---------------
 
-Let's make a simple attendance system. When we scan the card, the Raspberry Pi will record our information and generate a csv file.
+Vamos a crear un sistema de asistencia simple. Cuando escaneamos la tarjeta, la Raspberry Pi registrará nuestra información y generará un archivo csv.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/4.1.20components2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,36 +64,36 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_mfrc522`
         - |link_mfrc522_rfid_buy|
 
-Schematic Diagram
-----------------------
+Diagrama Esquemático
+---------------------------
 
-============ ======== ======== ====
-T-Board Name physical wiringPi BCM
-GPIO25       Pin 22   6        25
-SPIMOSI      Pin 19   12       MOSI
-SPIMISO      Pin 19   12       MISO
-SPICE0       pin 24   10       CE0
-SPICE1       pin 26   11       CE1
-SPISCLK      Pin 23   14       SCLK
-============ ======== ======== ====
+============== =============== ======== ====
+Nombre T-Board Conexión física wiringPi BCM
+GPIO25         Pin 22          6        25
+SPIMOSI        Pin 19          12       MOSI
+SPIMISO        Pin 19          12       MISO
+SPICE0         pin 24          10       CE0
+SPICE1         pin 26          11       CE1
+SPISCLK        Pin 23          14       SCLK
+============== =============== ======== ====
 
 .. image:: ../img/4.1.20_schematic.png
    :align: center
 
-Experimental Procedures
--------------------------
+Procedimientos Experimentales
+---------------------------------
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
+    Activa el SPI antes de comenzar el experimento, consulta :ref:`Configuración SPI` para más detalles.
     
-    The :ref:`Luma.LED_Matrix` and the :ref:`Spidev and MFRC522` libraries are also needed.
+    También se necesitan las bibliotecas :ref:`Luma.LED_Matrix` y :ref:`Spidev y MFRC522`.
 
-Step 1: Build the circuit.
+Paso 1: Construye el circuito.
 
 .. image:: ../img/atten1.png
 
-Step 2: Run the ``2.2.10_write.py`` file to modify the content of the rfid card.
+Paso 2: Ejecuta el archivo ``2.2.10_write.py`` para modificar el contenido de la tarjeta rfid.
 
 .. raw:: html
 
@@ -104,11 +104,11 @@ Step 2: Run the ``2.2.10_write.py`` file to modify the content of the rfid card.
     cd ~/raphael-kit/python
     sudo python3 2.2.10_write.py
 
-Step 3: Enter the name (here we use ``John`` as an example) and press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
+Paso 3: Ingresa el nombre (aquí usamos ``John`` como ejemplo) y presiona ``Enter`` para confirmar, luego coloca la tarjeta en el módulo MFRC522, espera a que aparezca "La escritura de datos está completa" y retira la tarjeta, o reescribe el mensaje en otra tarjeta y sal con ``Ctrl+C``.
 
 .. image:: ../img/write_card.png
 
-Step 4: Get into the folder of code and run.
+Paso 4: Ingresa en la carpeta del código y ejecuta.
 
 .. raw:: html
 
@@ -119,9 +119,9 @@ Step 4: Get into the folder of code and run.
     cd ~/raphael-kit/python
     sudo python3 4.1.19_Attendance_Machine.py
 
-After starting the program, we put the RFID card close to the MFRC522 RFID Module, the Raspberry Pi will send out a voice to greet you and display it on the LED matrix.
+Después de iniciar el programa, acercamos la tarjeta RFID al Módulo RFID MFRC522, la Raspberry Pi emitirá una voz para saludarte y lo mostrará en la matriz LED.
 
-We can also find a ``.csv`` file that records the time and list in the same directory. Open it with the nano command and you will see the record just now.
+También podemos encontrar un archivo ``.csv`` que registra el tiempo y la lista en el mismo directorio. Ábrelo con el comando nano y verás el registro justo ahora.
 
 .. raw:: html
 
@@ -134,10 +134,10 @@ We can also find a ``.csv`` file that records the time and list in the same dire
 .. image:: ../img/atten3.png
   :width: 400
 
-**Code**
+**Código**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Resetear/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -206,27 +206,27 @@ We can also find a ``.csv`` file that records the time and list in the same dire
         except KeyboardInterrupt:
             destroy()
 
-Code Explanation
--------------------
+Explicación del Código
+-------------------------
 
-In order to better understand the program, you may need to complete :ref:`1.1.6 LED Dot Matrix` , :ref:`2.2.10 MFRC522 RFID Module` and :ref:`3.1.4 Text-to-speech` first.
+Para entender mejor el programa, puede que necesites completar :ref:`1.1.6 Matriz de LEDs`, :ref:`2.2.10 Módulo RFID MFRC522` y :ref:`3.1.4 Conversión de texto a voz` primero.
 
 .. code-block:: python
 
     def get_time():
-	    time.time()
-	    year = str(time.strftime('%Y',time.localtime(time.time())))
-	    month = str(time.strftime('%m',time.localtime(time.time())))
-	    day = str(time.strftime('%d',time.localtime(time.time())))
-	    hour = str(time.strftime('%H',time.localtime(time.time())))
-	    minute = str(time.strftime('%M',time.localtime(time.time())))
-	    second = str(time.strftime('%S',time.localtime(time.time())))
-	    present_time = year + '.' + month + '.' + day + '.' + hour + '.' + minute + '.' + second
-	    present_date = year + '.' + month + '.' + day
-	    return present_date, present_time
+        time.time()
+        year = str(time.strftime('%Y',time.localtime(time.time())))
+        month = str(time.strftime('%m',time.localtime(time.time())))
+        day = str(time.strftime('%d',time.localtime(time.time())))
+        hour = str(time.strftime('%H',time.localtime(time.time())))
+        minute = str(time.strftime('%M',time.localtime(time.time())))
+        second = str(time.strftime('%S',time.localtime(time.time())))
+        present_time = year + '.' + month + '.' + day + '.' + hour + '.' + minute + '.' + second
+        present_date = year + '.' + month + '.' + day
+        return present_date, present_time
 
-Use the ``get_time()`` function to get the current timestamp and return two values.
-Among them, ``present_date`` is accurate to the number of days of the current timestamp, and ``present_time`` is accurate to the number of seconds of the current timestamp.
+Usa la función ``get_time()`` para obtener la marca de tiempo actual y devolver dos valores. 
+Entre ellos, ``present_date`` es precisa hasta el día actual y ``present_time`` es precisa hasta el segundo actual.
 
 .. code-block:: python
 
@@ -235,21 +235,21 @@ Among them, ``present_date`` is accurate to the number of days of the current ti
     present_date, present_time = get_time()
     attendance_statistics[name.rstrip()] = present_time
 
-The ``reader.read()`` function reads the name information, and then creates a greeting.
-Then an ``attendance_statistics`` dictionary is generated, and ``name.rstrip()`` and ``present_time`` are stored as keys and values.
+La función ``reader.read()`` lee la información del nombre y luego crea un saludo. 
+Luego se genera un diccionario ``attendance_statistics``, y ``name.rstrip()`` y ``present_time`` se almacenan como claves y valores.
 
 .. code-block:: python
 
     tts.say(greeting)
 
-Say a greeting through the speaker.
+Pronuncia un saludo a través del altavoz.
 
 .. code-block:: python
 
     with open('attendance_sheet.' + present_date + '.csv', 'w') as f:
         [f.write('{0}  {1}\n'.format(key, value)) for key, value in attendance_statistics.items()]
 
-Write the ``attendance_statistics`` to the .csv file.
+Escribe las ``attendance_statistics`` en el archivo .csv.
 
 .. code-block:: python
 
@@ -259,11 +259,9 @@ Write the ``attendance_statistics`` to the .csv file.
         virtual.set_position((offset,0))
         time.sleep(0.1)
 
-Scroll to display this greeting.
+Despliega este saludo en la pantalla.
 
-
-
-
-**Phenomenon Picture**
+**Imagen del Fenómeno**
 
 .. image:: ../img/attend_system.JPG
+

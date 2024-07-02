@@ -1,37 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Thank You
+Gracias
 ====================
 
-Thanks to the evaluators who evaluated our products, the veterans who provided suggestions for the tutorial, and the users who have been following and supporting us.
-Your valuable suggestions to us are our motivation to provide better products!
+Gracias a los evaluadores que evaluaron nuestros productos, a los veteranos que proporcionaron sugerencias para el tutorial y a los usuarios que nos han estado siguiendo y apoyando.
+¡Sus valiosas sugerencias son nuestra motivación para ofrecer mejores productos!
 
-**Particular Thanks**
+**Agradecimientos Especiales**
 
 * Len Davisson
 * Kalen Daniel
 * Juan Delacosta
-  
+
     
-Now, could you spare a little time to fill out this questionnaire?
+¿Podrías tomarte un poco de tiempo para completar este cuestionario?
 
 .. raw:: html
     
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-AZ1nPakmt9MBxZWVaQDlTZ9V5CL8zq-tTQOno60y9mqgpw/viewform?embedded=true" width="640" height="2127" frameborder="0" marginheight="0" marginwidth="0">正在加载…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-AZ1nPakmt9MBxZWVaQDlTZ9V5CL8zq-tTQOno60y9mqgpw/viewform?embedded=true" width="640" height="2127" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
 
 .. note:: 
 
-    After submitting the questionnaire, please go back to the top to view the results.
-
+    Después de enviar el cuestionario, por favor regresa al inicio para ver los resultados.

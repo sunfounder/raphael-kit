@@ -1,91 +1,90 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _3.1.2_py_pi5:
 
-3.1.2 Video Module
-=====================
+3.1.2 Módulo de Video
+========================
 
-Introduction
------------------
+Introducción
+---------------
 
-In addition to taking photos, the Camera Module can also be used to record videos.
+Además de tomar fotos, el módulo de cámara también puede usarse para grabar videos.
 
-Required Components
-------------------------------
+Componentes Requeridos
+-------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/3.3.2_photograph_list.png
   :width: 800
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los siguientes enlaces.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Paso 1:** Entra en el escritorio de Raspberry Pi. Puede que necesites una pantalla para una mejor experiencia, consulta: `Conecta tu Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. O accede al escritorio de Raspberry Pi de forma remota, para un tutorial detallado, consulta :ref:`remote_desktop`.
 
-**Step 2:** Check if the camera is enabled. For instructions, please refer to: :ref:`enable_camera`.
+**Paso 2:** Verifica si la cámara está habilitada. Para obtener instrucciones, consulta: :ref:`enable_camera`.
 
-**Step 3:** Open a Terminal and get into the folder of the code.
+**Paso 3:** Abre una terminal y accede a la carpeta del código.
 
 
 .. code-block::
 
     cd ~/raphael-kit/python-pi5
 
-**Step 4:** Run.
+**Paso 4:** Ejecuta.
 
 
 .. code-block::
 
     sudo python3 3.1.2_VideoModule_zero.py
 
-Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the video ``my_video.h264`` and store it in the ``~`` directory.
+Ejecuta el código para comenzar a grabar. Presiona ``Ctrl+C`` para finalizar la grabación. Nombra el video ``my_video.h264`` y guárdalo en el directorio ``~``.
 
-.. note::
+.. nota::
 
-    You can also open ``3.1.2_PhotographModule_zero.py`` in the ``~/raphael-kit/python-pi5`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    También puedes abrir ``3.1.2_PhotographModule_zero.py`` en la ruta ``~/raphael-kit/python-pi5`` con un IDE de Python, haz clic en el botón de ejecutar para iniciar y detén el código con el botón de detener.
 
-If you want to send photos to your PC, please refer to :ref:`filezilla`.
+Si deseas enviar fotos a tu PC, consulta :ref:`filezilla`.
 
-
-**Code**
+**Código**
 
 .. code-block:: python
 
@@ -97,48 +96,48 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
    from picamera2.outputs import FfmpegOutput
    import os
 
-   # Get the current user's login name
+   # Obtener el nombre de usuario actual
    user = os.getlogin()
-   # Get the path to the user's home directory
+   # Obtener la ruta del directorio home del usuario
    user_home = os.path.expanduser(f'~{user}')
 
-   # Create a Picamera2 instance
+   # Crear una instancia de Picamera2
    camera = Picamera2()
-   # Retrieve the default preview configuration
+   # Recuperar la configuración de vista previa predeterminada
    preview_config = camera.preview_configuration
 
    try:
-       # Configure preview size and format
+       # Configurar tamaño y formato de vista previa
        preview_config.size = (800, 600)
        preview_config.format = 'XRGB8888'
-       # Start the camera preview in QTGL mode
+       # Iniciar la vista previa de la cámara en modo QTGL
        camera.start_preview(Preview.QTGL)
 
-       # Define video configuration with size, frame rate, and buffer count
+       # Definir configuración de video con tamaño, velocidad de fotogramas y recuento de búfer
        conf = {'size': (800, 600)}
        controls = {'FrameRate': 40}
        config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
-       # Create a video encoder with a specified bitrate
+       # Crear un codificador de video con una tasa de bits especificada
        encoder = H264Encoder(bitrate=10000000)
-       # Define output file for the video
+       # Definir el archivo de salida para el video
        output = FfmpegOutput(f'{user_home}/my_video.mp4')
-       # Configure and start recording
+       # Configurar e iniciar la grabación
        camera.configure(config)
        camera.start_recording(encoder, output)
-       # Record for 10 seconds
+       # Grabar durante 10 segundos
        time.sleep(10)
-       # Stop the recording
+       # Detener la grabación
        camera.stop_recording()
 
    except KeyboardInterrupt:
-       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+       # Detener la vista previa de la cámara si ocurre una interrupción de teclado (e.g., Ctrl+C)
        camera.stop_preview()
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. Imports necessary libraries and classes. The ``picamera2`` library is used for camera control, ``H264Encoder`` for video encoding, and ``FfmpegOutput`` for defining the video output file.
+#. Importa las bibliotecas y clases necesarias. La biblioteca ``picamera2`` se usa para el control de la cámara, ``H264Encoder`` para la codificación de video, y ``FfmpegOutput`` para definir el archivo de salida del video.
 
    .. code-block:: python
 
@@ -150,94 +149,94 @@ If you want to send photos to your PC, please refer to :ref:`filezilla`.
        from picamera2.outputs import FfmpegOutput
        import os
 
-#. Retrieves the current user's login name and the path to their home directory.
+#. Recupera el nombre de usuario actual y la ruta a su directorio home.
 
    .. code-block:: python
 
-       # Get the current user's login name
+       # Obtener el nombre de usuario actual
        user = os.getlogin()
-       # Get the path to the user's home directory
+       # Obtener la ruta del directorio home del usuario
        user_home = os.path.expanduser(f'~{user}')
 
-#. Creates an instance of the ``Picamera2`` class and retrieves the default preview configuration.
+#. Crea una instancia de la clase ``Picamera2`` y recupera la configuración de vista previa predeterminada.
 
    .. code-block:: python
 
-       # Create a Picamera2 instance
+       # Crear una instancia de Picamera2
        camera = Picamera2()
-       # Retrieve the default preview configuration
+       # Recuperar la configuración de vista previa predeterminada
        preview_config = camera.preview_configuration
 
-#. Sets the size and format of the camera preview. The size is set to 800x600 pixels, and the format is set to ``XRGB8888``.
+#. Establece el tamaño y formato de la vista previa de la cámara. El tamaño se establece en 800x600 píxeles, y el formato se establece en ``XRGB8888``.
 
    .. code-block:: python
 
        try:
-           # Configure preview size and format
+           # Configurar tamaño y formato de vista previa
            preview_config.size = (800, 600)
            preview_config.format = 'XRGB8888'
            
-#. Starts the camera preview in QTGL mode, a graphical preview mode.
+#. Inicia la vista previa de la cámara en modo QTGL, un modo de vista previa gráfica.
 
    .. code-block:: python
 
        try:
            ...          
              
-           # Start the camera preview in QTGL mode
+           # Iniciar la vista previa de la cámara en modo QTGL
            camera.start_preview(Preview.QTGL)
            
            ...
 
-#. Defines the video configuration with a frame size of 800x600 pixels and a frame rate of 40 frames per second.
+#. Define la configuración del video con un tamaño de cuadro de 800x600 píxeles y una velocidad de fotogramas de 40 cuadros por segundo.
 
    .. code-block:: python
 
        try:
            ...
            
-           # Define video configuration with size, frame rate, and buffer count
+           # Definir configuración de video con tamaño, velocidad de fotogramas y recuento de búfer
            conf = {'size': (800, 600)}
            controls = {'FrameRate': 40}
            config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
            
            ...
 
-#. Creates a video encoder with a specified bitrate of 10 Mbps, using the H.264 encoding format. Sets up the output file path for the video, saving it as ``my_video.mp4`` in the user's home directory.
+#. Crea un codificador de video con una tasa de bits especificada de 10 Mbps, usando el formato de codificación H.264. Configura la ruta del archivo de salida para el video, guardándolo como ``my_video.mp4`` en el directorio home del usuario.
 
    .. code-block:: python
 
        try:
            ...
 
-           # Create a video encoder with a specified bitrate
+           # Crear un codificador de video con una tasa de bits especificada
            encoder = H264Encoder(bitrate=10000000)
-           # Define output file for the video
+           # Definir el archivo de salida para el video
            output = FfmpegOutput(f'{user_home}/my_video.mp4')
            
            ...
 
-#. Configures the camera with the defined video settings, starts recording using the specified encoder and output file, records for 10 seconds, and then stops the recording.
+#. Configura la cámara con los ajustes de video definidos, inicia la grabación usando el codificador y el archivo de salida especificados, graba durante 10 segundos y luego detiene la grabación.
 
    .. code-block:: python
 
        try:
            ...
 
-           # Configure and start recording
+           # Configurar e iniciar la grabación
            camera.configure(config)
            camera.start_recording(encoder, output)
-           # Record for 10 seconds
+           # Grabar durante 10 segundos
            time.sleep(10)
-           # Stop the recording
+           # Detener la grabación
            camera.stop_recording()
 
-#. This block of code handles a KeyboardInterrupt (such as Ctrl+C) by stopping the camera preview. The ``pass`` statement is used to  handle the exception without doing anything else.
+#. Este bloque de código maneja una interrupción de teclado (como Ctrl+C) deteniendo la vista previa de la cámara. La declaración ``pass`` se usa para manejar la excepción sin hacer nada más.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+           # Detener la vista previa de la cámara si ocurre una interrupción de teclado (e.g., Ctrl+C)
            camera.stop_preview()
            pass
 

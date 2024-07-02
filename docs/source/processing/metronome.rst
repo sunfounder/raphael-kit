@@ -1,51 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _metronome:
 
-Metronome
+Metrónomo
 ====================
 
-Here we will make a metronome, the metronome is divided into 5 levels, the higher the level, the more urgent the buzzer call.
+Aquí haremos un metrónomo, el metrónomo se divide en 5 niveles, cuanto mayor sea el nivel, más urgente será el sonido del zumbador.
 
 .. image:: img/metronome.png
 
-**Required Components**
+**Componentes Requeridos**
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado desde los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -58,15 +58,15 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-**Wiring**
+**Cableado**
 
 .. image:: img/image106.png
 
 .. note::
 
-    An active buzzer is used here, and it has a white sticker on it.
+    Aquí se utiliza un zumbador activo, y tiene una etiqueta blanca en él.
     
-**Sketch**
+**Boceto**
 
 .. code-block:: Arduino
 
@@ -147,8 +147,7 @@ You can also buy them separately from the links below.
         }
     }
 
-**How it works?**
-
+**¿Cómo funciona?**
 .. As in the previous project, we created a ``Slider`` class and made it act as **WIDGET**.
 
 .. However, ``dragPoint()`` has been slightly modified so that the widget has a discontinuous feature when sliding and is more suitable for level adjustment.
@@ -163,20 +162,19 @@ You can also buy them separately from the links below.
 ..         return value;
 ..     }
 
-Here, we created a ``Slider`` class and made it act as **WIDGET**.
+Aquí, creamos una clase ``Slider`` y la hicimos actuar como un **WIDGET**.
 
 .. code-block:: arduino
 
     Slider(ax, ay, bx, by, min, max, v)
 
-In the declaration, it needs to be passed in 7 parameters.
+En la declaración, necesita recibir 7 parámetros.
 
-The first four parameters determine the size of the widget, followed by the coordinates (x1, y1) of the starting point in the upper left corner and (x2, y2) in the lower right corner.
+Los primeros cuatro parámetros determinan el tamaño del widget, seguidos de las coordenadas (x1, y1) del punto inicial en la esquina superior izquierda y (x2, y2) en la esquina inferior derecha.
 
-The last three parameters determine its numerical range (min to max) and initial value.
+Los últimos tres parámetros determinan su rango numérico (de min a max) y el valor inicial.
 
-It has two methods, the effect of ``dragPoint()`` is to make the slider draggable and return the slider's current position value.
-
+Tiene dos métodos, el efecto de ``dragPoint()`` es hacer que el deslizador sea arrastrable y devolver el valor de la posición actual del deslizador.
 
 .. code-block:: arduino
 
@@ -188,7 +186,7 @@ It has two methods, the effect of ``dragPoint()`` is to make the slider draggabl
         return value;
     }
 
-Another method ``show()`` is to show the Slider. At the same time, the range value and current value are displayed in the corresponding position.
+Otro método ``show()`` es para mostrar el deslizador. Al mismo tiempo, se muestran los valores de rango y el valor actual en la posición correspondiente.
 
 .. code-block:: arduino
 

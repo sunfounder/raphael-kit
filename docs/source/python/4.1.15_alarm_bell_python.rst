@@ -1,58 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.15_py:
 
-4.1.15 Alarm Bell
+4.1.15 Timbre de Alarma
 ================================
 
-Introduction
+Introducción
 -----------------
 
-In this project, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+En este proyecto, crearemos un dispositivo de alarma manual. Puedes reemplazar el 
+interruptor de palanca con un termistor o un sensor fotosensible para crear una 
+alarma de temperatura o de luz.
 
-Required Components
+Componentes necesarios
 ------------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_Alarm_Bell.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Definitivamente es conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -73,28 +73,28 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Diagrama esquemático
 -------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-============ ======== ======== ===
+============== ========== ======== ===
+Nombre T-Board Pin físico wiringPi BCM
+GPIO17         Pin 11     0        17
+GPIO18         Pin 12     1        18
+GPIO27         Pin 13     2        27
+GPIO22         Pin 15     3        22
+============== ========== ======== ===
 
 .. image:: ../img/Schematic_three_one10.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos experimentales
+------------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construir el circuito.
 
 .. image:: ../img/image266.png
 
-**Step 2:** Change directory.
+**Paso 2:** Cambiar directorio.
 
 .. raw:: html
 
@@ -104,7 +104,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Paso 3:** Ejecutar.
 
 .. raw:: html
 
@@ -114,14 +114,15 @@ Experimental Procedures
 
     sudo python3 4.1.15_AlarmBell.py
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Después de que el programa se inicie, el interruptor de palanca 
+se moverá hacia la derecha, y el buzzer emitirá sonidos de alarma. 
+Al mismo tiempo, los LEDs rojo y verde parpadearán a cierta frecuencia.
 
-**Code**
+
+**Código**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, debes ir a la ruta del código fuente como ``raphael-kit/python``.
 
 .. raw:: html
 
@@ -210,16 +211,16 @@ red and green LEDs will flash at a certain frequency.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     import threading
 
-Here, we import the ``Threading`` module and it allows you to do
-multiple things at once, while normal programs can only execute code
-from top to bottom. With ``Threading`` modules, the LED and the buzzer
-can work separately.
+Aquí, importamos el módulo ``Threading`` que permite realizar múltiples 
+tareas a la vez, mientras que los programas normales solo pueden ejecutar 
+el código de arriba a abajo. Con los módulos ``Threading``, el LED y el 
+buzzer pueden funcionar por separado.
 
 .. code-block:: python
 
@@ -232,9 +233,9 @@ can work separately.
             time.sleep(0.5)
             GPIO.output(BLedPin,GPIO.LOW)
 
-The function ``ledWork()`` helps to set the working state of these 2 LEDs:
-it keeps the green LED lighting up for 0.5s and then turns off;
-similarly, keeps the red LED lighting up for 0.5s and then turns off.
+La función ``ledWork()`` ayuda a establecer el estado de funcionamiento de 
+estos 2 LEDs: mantiene el LED verde encendido durante 0.5s y luego se apaga; 
+de manera similar, mantiene el LED rojo encendido durante 0.5s y luego se apaga.
 
 .. code-block:: python
 
@@ -248,9 +249,9 @@ similarly, keeps the red LED lighting up for 0.5s and then turns off.
             Buzz.ChangeFrequency(note)
             time.sleep(0.01)
 
-The function ``buzzWork()`` is used to set the working state of the buzzer.
-Here we set the frequency as between 130 and 800, to accumulate or decay
-at an interval of 20.
+La función ``buzzWork()`` se utiliza para establecer el estado de funcionamiento del 
+buzzer. Aquí establecemos la frecuencia entre 130 y 800, para acumular o decaer en un 
+intervalo de 20.
 
 .. code-block:: python
 
@@ -263,25 +264,21 @@ at an interval of 20.
         tLed = threading.Thread(target=ledWork) 
         tLed.start()  
 
-In the function ``on()`` :
+En la función ``on()`` :
 
-1) Define the mark “flag=1”, indicating the ending of the control
-   thread.
+1) Definir la marca “flag=1”, indicando el final del hilo de control.
 
-2) Start the Buzz, and set the duty cycle to 50%.
+2) Iniciar el Buzz y establecer el ciclo de trabajo en 50%.
 
-3) Create **2** separate threads so that the LED and the buzzer can work
-   at the same time.
+3) Crear **2** hilos separados para que el LED y el buzzer puedan funcionar al mismo tiempo.
 
-``threading.Thread()`` function is used to create the thread and its prototype is as follows:
+La función ``threading.Thread()`` se utiliza para crear el hilo y su prototipo es el siguiente:
 
    ``class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)``
 
-Among the construction methods, the principal parameter is ``target``,
-we need to assign a callable object (here are the functions ``ledWork``
-and ``BuzzWork``) to ``target``.
+Entre los métodos de construcción, el parámetro principal es ``target``, necesitamos asignar un objeto invocable (aquí están las funciones ``ledWork`` y ``BuzzWork``) a ``target``.
 
-Next ``start()`` is called to start the thread object, ex., ``tBuzz.start()`` is used to start the newly installed ``tBuzz`` thread.
+Luego, se llama a ``start()`` para iniciar el objeto hilo, por ejemplo, ``tBuzz.start()`` se usa para iniciar el hilo ``tBuzz`` recién instalado.
 
 .. code-block:: python
 
@@ -292,8 +289,8 @@ Next ``start()`` is called to start the thread object, ex., ``tBuzz.start()`` is
         GPIO.output(ALedPin,GPIO.LOW)
         GPIO.output(BLedPin,GPIO.LOW)
 
-The function ``Off()`` defines “flag=0” so as to exit the threads
-**ledWork** and **BuzzWork** and then turn off the buzzer and the LED.
+La función ``Off()`` define “flag=0” para salir de los hilos **ledWork** y **BuzzWork** 
+y luego apagar el buzzer y el LED.
 
 .. code-block:: python
 
@@ -307,13 +304,13 @@ The function ``Off()`` defines “flag=0” so as to exit the threads
                 off()
             lastState=currentState
 
-``Main()`` contains the whole process of the program: firstly read the value
-of the slide switch; if the toggle switch is toggled to the right (the
-reading is 1), the function ``on()`` is called, the buzzer is driven to emit
-sounds and the the red and the green LEDs blink. Otherwise, the buzzer
-and the LED don’t work.
+``Main()`` contiene todo el proceso del programa: primero lee el valor del interruptor 
+deslizante; si el interruptor se desliza hacia la derecha (la lectura es 1), se llama a la función ``on()`` para que el buzzer emita sonidos y los LEDs rojo y verde parpadeen. De lo contrario, el buzzer y el LED no funcionan.
 
-Phenomenon Picture
+
+
+
+Imagen del Fenómeno
 ------------------------
 
 .. image:: ../img/image267.jpeg

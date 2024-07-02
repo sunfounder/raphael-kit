@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más profundamente en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.2.1_js:
 
-1.2.1 Active Buzzer
+1.2.1 Zumbador Activo
 ====================
 
-Introduction
-------------
+Introducción
+----------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+En este proyecto, aprenderemos cómo activar un zumbador activo para que emita un pitido 
+utilizando un transistor PNP.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitaremos los siguientes componentes. 
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,29 +64,27 @@ You can also buy them separately from the links below.
         - \-
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
+Diagrama Esquemático
+------------------------
 
-Schematic Diagram
------------------
-
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+En este experimento, se utiliza un zumbador activo, un transistor PNP y una resistencia 
+de 1k entre la base del transistor y el GPIO para proteger el transistor. Cuando el GPIO17 
+de la Raspberry Pi se suministra con un nivel bajo (0V) mediante programación, el transistor 
+conducirá debido a la saturación de corriente y el zumbador emitirá sonidos. Pero cuando se 
+suministra un nivel alto al IO de la Raspberry Pi, el transistor se cortará y el zumbador no 
+emitirá sonidos.
 
 .. image:: ../img/image332.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Paso 1:** Construir el circuito. (El zumbador activo tiene una etiqueta blanca en la superficie y un respaldo negro.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ir a la carpeta del código.
 
 .. raw:: html
 
@@ -96,7 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run.
+**Paso 3**: Ejecutar.
 
 .. raw:: html
 
@@ -106,9 +104,9 @@ Experimental Procedures
 
     sudo node active_buzzer.js
 
-The code run, the buzzer beeps.
+El código se ejecuta y el zumbador emite un pitido.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -124,14 +122,14 @@ The code run, the buzzer beeps.
     process.exit();
   });
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
     const active = new Gpio(17,{mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, and instantiate an object active to control the IO port Gpio17, and the mode is set to output mode.
+Importar el módulo ``pigpio``, e instanciar un objeto active para controlar el puerto IO Gpio17, y el modo se establece en modo de salida.
 
 .. code-block:: js
 
@@ -139,8 +137,8 @@ Import the ``pigpio`` module, and instantiate an object active to control the IO
     active.digitalWrite(!active.digitalRead());
   }, 500);
 
-The active buzzer is similar to the LED in usage and can be controlled with ``digitalWrite()``, and ``digitalRead()`` is used to read the current pin level.
-Here we make the active buzzer change its working state every 500ms.
+El zumbador activo es similar al LED en uso y puede ser controlado con ``digitalWrite()``, y ``digitalRead()`` se utiliza para leer el nivel actual del pin.
+Aquí hacemos que el zumbador activo cambie su estado de funcionamiento cada 500ms.
 
 .. code-block:: js
 
@@ -150,11 +148,11 @@ Here we make the active buzzer change its working state every 500ms.
       process.exit()
   })
 
-Handle Ctrl+C, here is used to stop the buzzer sounding when exiting the program.
+Manejar Ctrl+C, aquí se usa para detener el sonido del zumbador al salir del programa.
 
 `Process - NodeJS <https://nodejs.org/api/process.html>`_
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-------------------------
 
 .. image:: ../img/image105.jpeg

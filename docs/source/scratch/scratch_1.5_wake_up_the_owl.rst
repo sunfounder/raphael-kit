@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.5_scratch:
 
-1.5 Wake up the Owl
-====================
+1.5 Despierta al Búho
+==============================
 
-Today we are going to play a game of waking up the owl.
+Hoy vamos a jugar a un juego para despertar al búho.
 
-When someone approaches the PIR sensor module, the owl will wake up from sleep.
+Cuando alguien se acerque al módulo sensor PIR, el búho se despertará de su sueño.
 
 .. image:: img/1.5_header.png
 
-Required Components
-------------------------------
+Componentes necesarios
+----------------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: img/1.5_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,46 +61,45 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_pir`
         - \-
 
-Build the Circuit
----------------------
+Construir el circuito
+----------------------------
 
 .. image:: img/1.5_fritzing.png
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Hay dos potenciómetros en el módulo PIR: uno es para ajustar la sensibilidad y el otro es para ajustar la distancia de detección. Para que el módulo PIR funcione mejor, necesitas girar ambos en sentido contrario a las agujas del reloj hasta el final.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
     :align: center
 
-Load the Code and See What Happens
----------------------------------------
+Cargar el código y ver qué pasa
+------------------------------------------
 
-Load the code file (``1.5_wake_up_the_owl.sb3``) to Scratch 3.
+Carga el archivo de código (``1.5_wake_up_the_owl.sb3``) en Scratch 3.
 
-When you approach the PIR sensor module, you will see the owl on the stage area open its wings and wake up, and when you leave, the owl will go back to sleep again.
+Cuando te acerques al módulo sensor PIR, verás que el búho en el área del escenario abre sus alas y se despierta, y cuando te alejas, el búho volverá a dormir.
 
 
-Tips on Sprite
-----------------
+Consejos sobre el sprite
+-----------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **owl1.png** and **owl2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **owl**.
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **owl1.png** y **owl2.png** desde la ruta ``~/raphael-kit/scratch/picture`` mediante el botón **Cargar Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite a **búho**.
 
 .. image:: img/1.5_pir1.png
 
-Tips on Codes
---------------
+Consejos sobre los códigos
+--------------------------------
 
 .. image:: img/1.3_title2.png
 
-
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Cuando se hace clic en la bandera verde, el estado inicial de gpio17 se establece en bajo.
 
 .. image:: img/1.5_owl1.png
   :width: 400
 
-When pin17 is low (no one is approaching), switch the costume of the owl sprite to owl1 (sleeping state).
+Cuando pin17 está en bajo (nadie se está acercando), cambia el disfraz del sprite búho a owl1 (estado durmiendo).
 
 .. image:: img/1.5_owl2.png
   :width: 400
 
-When pin17 is high (someone is approaching), we switch the costume of owl sprite to owl2 (wake up state).
+Cuando pin17 está en alto (alguien se está acercando), cambiamos el disfraz del búho a owl2 (estado despierto).

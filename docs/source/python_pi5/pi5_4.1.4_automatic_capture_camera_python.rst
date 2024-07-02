@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.4_py_pi5:
 
-4.1.2 Automatic Capture Camera
-===================================
+4.1.2 Cámara de Captura Automática
+=======================================
 
-Introduction
------------------
+Introducción
+----------------
 
-When you are out, the little squirrels in the woods might visit your windowsill. Let's make a automatic capture camera to leave pictures of these little cuties!
+Cuando estés fuera, las pequeñas ardillas en el bosque podrían visitar tu alféizar. ¡Hagamos una cámara de captura automática para dejar fotos de estas adorables criaturas!
 
-Required Components
-------------------------------
+Componentes Necesarios
+--------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/4.1.4_automatic_capture_list.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - COMPONENTES EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,35 +66,34 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_pir`
         - \-
 
+Diagrama Esquemático
+---------------------
 
-Schematic Diagram
------------------------
-
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-============ ======== ======== ===
+============== ====== ======== ===
+Nombre T-Board físico wiringPi BCM
+GPIO17         Pin 11 0        17
+============== ====== ======== ===
 
 .. image:: ../python_pi5/img/4.1.4_automatic_capture_schematic.png
    :width: 400
    :align: center
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+---------------------------------
 
-Before this project, you need to make sure you complete :ref:`3.1.1_py_pi5` .
+Antes de este proyecto, necesitas asegurarte de completar :ref:`3.1.1_py_pi5` .
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../python_pi5/img/4.1.4_automatic_capture_circuit.png
   :width: 800
   :align: center
 
-**Step 2:** To connect the camera module and complete the configuration, please refer to: :ref:`cpn_camera_module`.
+**Paso 2:** Para conectar el módulo de la cámara y completar la configuración, consulta: :ref:`cpn_camera_module`.
 
-**Step 3:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Paso 3:** Entra en el Escritorio de Raspberry Pi. Es posible que necesites una pantalla para una mejor experiencia, consulta: `Conecta tu Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. O accede al escritorio de Raspberry Pi de forma remota, para un tutorial detallado consulta :ref:`remote_desktop`.
 
-**Step 4:** Open a Terminal and get into the folder of the code.
+**Paso 4:** Abre un Terminal y accede a la carpeta del código.
 
 .. raw:: html
 
@@ -104,7 +103,7 @@ Before this project, you need to make sure you complete :ref:`3.1.1_py_pi5` .
 
     cd ~/raphael-kit/python-pi5
 
-**Step 5:** Run.
+**Paso 5:** Ejecuta.
 
 .. raw:: html
 
@@ -114,10 +113,10 @@ Before this project, you need to make sure you complete :ref:`3.1.1_py_pi5` .
 
     sudo python3 4.1.4_AutomaticCaptureCamera_zero.py
 
-After the code runs, PIR will detect the surrounding environment, and if it senses the little squirrel passing by, the camera will take a photo.
-The photo interval is 3 seconds, and the total number of photos taken will be displayed through the print window.
+Después de ejecutar el código, el PIR detectará el entorno circundante y si detecta que la pequeña ardilla pasa cerca, la cámara tomará una foto. 
+El intervalo entre fotos es de 3 segundos, y el número total de fotos tomadas se mostrará en la ventana de impresión.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Hay dos potenciómetros en el módulo PIR: uno es para ajustar la sensibilidad y el otro para ajustar la distancia de detección. Para que el módulo PIR funcione mejor, necesitas girar ambos en sentido contrario a las agujas del reloj hasta el final.
 
 .. image:: ../python_pi5/img/4.1.4_PIR_TTE.png
     :width: 400
@@ -125,14 +124,12 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-   You can also open ``4.1.4_AutomaticCaptureCamera_zero.py`` in the ``~/raphael-kit/python-pi5/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+   También puedes abrir ``4.1.4_AutomaticCaptureCamera_zero.py`` en la ruta ``~/raphael-kit/python-pi5/`` con un IDE de Python, haz clic en el botón Run para ejecutar y detén el código con el botón Stop.
 
-
-
-**Code**
+**Código**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -146,22 +143,22 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
     import time
     import os
 
-    # Retrieve the current user's login name and home directory
+    # Recupera el nombre de usuario actual y su directorio de inicio
     user = os.getlogin()
     user_home = os.path.expanduser(f'~{user}')
 
-    # Initialize the camera
+    # Inicializa la cámara
     camera = Picamera2()
     camera.start()
 
-    # Initialize the motion sensor on GPIO pin 17
+    # Inicializa el sensor de movimiento en el pin GPIO 17
     pir = MotionSensor(17)
 
     try:
-        i = 1  # Initialize the image count
+        i = 1  # Inicializa el contador de imágenes
         while True:
             if pir.motion_detected:
-                # Capture an image when motion is detected and save it with a unique number
+                # Captura una imagen cuando se detecta movimiento y la guarda con un número único
                 camera.capture_file(f'{user_home}/capture%s.jpg' % i)
                 print('The number is %s' % i)  # Print the image count
                 time.sleep(3)  # Wait for 3 seconds before next detection
@@ -171,14 +168,14 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
                 time.sleep(0.5)  # Check for motion every 0.5 seconds
 
     except KeyboardInterrupt:
-        # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
+        # Detiene la cámara si ocurre un KeyboardInterrupt
         camera.stop_preview()
         pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. Imports the ``Picamera2`` and ``Preview`` classes for camera control, the ``MotionSensor`` class for motion detection, and standard libraries ``time`` and ``os`` for time handling and operating system interactions.
+#. Importa las clases ``Picamera2`` y ``Preview`` para el control de la cámara, la clase ``MotionSensor`` para la detección de movimiento, y las bibliotecas estándar ``time`` y ``os`` para el manejo del tiempo y las interacciones del sistema operativo.
 
    .. code-block:: python
 
@@ -188,44 +185,44 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
        import time
        import os
 
-#. Retrieves the current user's login name and home directory for saving captured images.
+#. Recupera el nombre de usuario actual y el directorio de inicio para guardar las imágenes capturadas.
 
    .. code-block:: python
 
-       # Retrieve the current user's login name and home directory
+       # Recupera el nombre de usuario actual y el directorio de inicio
        user = os.getlogin()
        user_home = os.path.expanduser(f'~{user}')
 
-#. Initializes the camera and starts it.
+#. Inicializa la cámara y la pone en marcha.
 
    .. code-block:: python
 
-       # Initialize the camera
+       # Inicializa la cámara
        camera = Picamera2()
        camera.start()
 
-#. Initializes a PIR motion sensor connected to GPIO pin 17.
+#. Inicializa un sensor de movimiento PIR conectado al pin GPIO 17.
 
    .. code-block:: python
 
-       # Initialize the motion sensor on GPIO pin 17
+       # Inicializa el sensor de movimiento en el pin GPIO 17
        pir = MotionSensor(17)
 
-#. Initializes a counter ``i`` to track the number of images captured. In an infinite loop, checks if motion is detected. If motion is detected, captures an image, saves it with a unique name based on the counter ``i``, prints the image number, and waits for 3 seconds before checking for motion again. The counter ``i`` is incremented after each capture.
+#. Inicializa un contador ``i`` para rastrear el número de imágenes capturadas. En un bucle infinito, verifica si se detecta movimiento. Si se detecta movimiento, captura una imagen, la guarda con un nombre único basado en el contador ``i``, imprime el número de la imagen y espera 3 segundos antes de volver a verificar el movimiento. El contador ``i`` se incrementa después de cada captura.
 
    .. code-block:: python
 
        try:
-           i = 1  # Initialize the image count
+           i = 1  # Inicializa el contador de imágenes
            while True:
                if pir.motion_detected:
-                   # Capture an image when motion is detected and save it with a unique number
+                   # Captura una imagen cuando se detecta movimiento y la guarda con un número único
                    camera.capture_file(f'{user_home}/capture%s.jpg' % i)
                    print('The number is %s' % i)  # Print the image count
                    time.sleep(3)  # Wait for 3 seconds before next detection
                    i += 1  # Increment the image count
 
-#. If no motion is detected, prints ``waiting`` and checks for motion every 0.5 seconds.
+#. Si no se detecta movimiento, imprime ``esperando`` y verifica el movimiento cada 0.5 segundos.
 
    .. code-block:: python
 
@@ -239,12 +236,12 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
                    print('waiting')  # Print 'waiting' when no motion is detected
                    time.sleep(0.5)  # Check for motion every 0.5 seconds
 
-#. Catches a KeyboardInterrupt (like Ctrl+C) to stop the camera preview and exit the script gracefully.
+#. Captura un KeyboardInterrupt (como Ctrl+C) para detener la vista previa de la cámara y salir del script de manera segura.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Stop the camera and turn off the LED if a KeyboardInterrupt occurs
+           # Detiene la cámara si ocurre un KeyboardInterrupt
            camera.stop_preview()
            pass
 

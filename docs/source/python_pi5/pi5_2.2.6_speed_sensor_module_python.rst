@@ -1,57 +1,57 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-.. _2.2.6_py_pi5:
+.. _2.2.5_py_pi5:
 
-2.2.5 Speed Sensor Module
-=========================
+2.2.5 Módulo Sensor de Velocidad
+=====================================
 
-Introduction
+Introducción
 ------------------
 
-In this project, we will learn the use of the speed sensor module. A Speed sensor module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+En este proyecto, aprenderemos el uso del módulo sensor de velocidad. Un módulo sensor de velocidad es un tipo de tacómetro que se utiliza para medir la velocidad de un objeto rotativo como un motor.
 
-Required Components
-------------------------------
+Componentes Necesarios
+----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/2.2.6_photo_interrrupter_list.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,34 +66,33 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_speed_sensor`
         - \-
 
-Schematic Diagram
------------------------
+Diagrama Esquemático
+-------------------------
 
 .. image:: ../python_pi5/img/2.2.6_photo_interrrupter_schematic.png
     :width: 400
     :align: center
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../python_pi5/img/2.2.6_photo_interrrupter_circuit.png
     :width: 700
     :align: center
 
-
-**Step 2:** Change directory.
+**Paso 2:** Cambiar de directorio.
 
 .. raw:: html
 
    <run></run>
 
 .. code-block::
-    
+
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Paso 3:** Ejecutar.
 
 .. raw:: html
 
@@ -103,15 +102,14 @@ Experimental Procedures
 
     sudo python3 2.2.6_speed_sensor_module_zero.py
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+Después de ejecutar el código, el LED verde se encenderá. Si colocas un obstáculo en el hueco del módulo sensor de velocidad, se imprimirá "luz bloqueada" en la pantalla y el LED rojo se encenderá.
+Retira el obstáculo y el LED verde se encenderá de nuevo.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -123,10 +121,10 @@ Remove the obstacle and the green LED will light up again.
    from gpiozero import LED, Button
    from signal import pause
 
-   # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
-   speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
-   green_led = LED(27)                      # Green LED connected to GPIO pin 27
-   red_led = LED(22)                        # Red LED connected to GPIO pin 22
+   # Inicializar pines GPIO para el sensor de velocidad y los LEDs utilizando la biblioteca GPIO Zero
+   speed_sensor = Button(17, pull_up=False)  # Sensor de velocidad conectado al pin GPIO 17 sin pull-up
+   green_led = LED(27)                      # LED verde conectado al pin GPIO 27
+   red_led = LED(22)                        # LED rojo conectado al pin GPIO 22
 
    def update_leds():
        """
@@ -139,24 +137,24 @@ Remove the obstacle and the green LED will light up again.
            red_led.on()     # Turn on red LED
            print('Light was blocked')  # Print message indicating sensor is triggered
        else:
-           green_led.on()   # Turn on green LED
-           red_led.off()    # Turn off red LED
+           green_led.on()   # Encender LED verde
+           red_led.off()    # Apagar LED rojo
 
    try:
-       # Main loop to continuously check sensor state
+       # Bucle principal para verificar continuamente el estado del sensor
        while True:
-           # Update LEDs based on sensor state changes
-           speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
-           speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
+           # Actualizar LEDs basado en cambios en el estado del sensor
+           speed_sensor.when_pressed = update_leds   # Actualizar LEDs cuando el sensor está presionado
+           speed_sensor.when_released = update_leds  # Actualizar LEDs cuando el sensor está liberado
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
+       # Manejar KeyboardInterrupt (Ctrl+C) para una terminación segura del script
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. The ``gpiozero`` library is imported to use its ``LED`` and ``Button`` classes for interacting with the GPIO pins. The ``signal`` library is imported for the ``pause`` function, which is used to keep the script running.
+#. Se importa la biblioteca ``gpiozero`` para usar sus clases ``LED`` y ``Button`` para interactuar con los pines GPIO. Se importa la biblioteca ``signal`` para usar la función ``pause``, que se utiliza para mantener el script en ejecución.
 
    .. code-block:: python
 
@@ -164,16 +162,16 @@ Remove the obstacle and the green LED will light up again.
        from gpiozero import LED, Button
        from signal import pause
 
-#. speed_sensor is set as a ``Button`` on GPIO pin 17. The ``pull_up=False`` parameter indicates that the internal pull-up resistor is not used. ``green_led`` and ``red_led`` are initialized as ``LED`` objects connected to GPIO pins 27 and 22, respectively.
+#. El sensor de velocidad se configura como un ``Button`` en el pin GPIO 17. El parámetro ``pull_up=False`` indica que no se utiliza la resistencia pull-up interna. ``green_led`` y ``red_led`` se inicializan como objetos ``LED`` conectados a los pines GPIO 27 y 22, respectivamente.
 
    .. code-block:: python
 
-       # Initialize GPIO pins for the speed sensor and LEDs using GPIO Zero library
-       speed_sensor = Button(17, pull_up=False)  # Speed sensor connected to GPIO pin 17 without pull-up
-       green_led = LED(27)                      # Green LED connected to GPIO pin 27
-       red_led = LED(22)                        # Red LED connected to GPIO pin 22
+       # Inicializar pines GPIO para el sensor de velocidad y los LEDs utilizando la biblioteca GPIO Zero
+       speed_sensor = Button(17, pull_up=False)  # Sensor de velocidad conectado al pin GPIO 17 sin pull-up
+       green_led = LED(27)                      # LED verde conectado al pin GPIO 27
+       red_led = LED(22)                        # LED rojo conectado al pin GPIO 22
 
-#. The ``update_leds`` function checks the state of the speed sensor. If the sensor is pressed (activated), it turns off the green LED, turns on the red LED, and prints a message. If the sensor is released, it does the opposite.
+#. La función ``update_leds`` verifica el estado del sensor de velocidad. Si el sensor está presionado (activado), apaga el LED verde, enciende el LED rojo e imprime un mensaje. Si el sensor está liberado, hace lo contrario.
 
    .. code-block:: python
 
@@ -188,32 +186,23 @@ Remove the obstacle and the green LED will light up again.
                red_led.on()     # Turn on red LED
                print('Light was blocked')  # Print message indicating sensor is triggered
            else:
-               green_led.on()   # Turn on green LED
-               red_led.off()    # Turn off red LED
+               green_led.on()   # Encender LED verde
+               red_led.off()    # Apagar LED rojo
 
-#. The main loop continuously checks the state of the speed sensor. The ``when_pressed`` and ``when_released`` attributes are event handlers that call the ``update_leds`` function when the sensor state changes. The try-except block is for handling a KeyboardInterrupt for a graceful exit.
+#. El bucle principal verifica continuamente el estado del sensor de velocidad. Los atributos ``when_pressed`` y ``when_released`` son manejadores de eventos que llaman a la función ``update_leds`` cuando el estado del sensor cambia. El bloque try-except se utiliza para manejar una excepción KeyboardInterrupt para una salida limpia.
 
    .. code-block:: python
 
        try:
-           # Main loop to continuously check sensor state
+           # Bucle principal para verificar continuamente el estado del sensor
            while True:
-               # Update LEDs based on sensor state changes
-               speed_sensor.when_pressed = update_leds   # Update LEDs when sensor is pressed
-               speed_sensor.when_released = update_leds  # Update LEDs when sensor is released
+               # Actualizar LEDs basado en cambios en el estado del sensor
+               speed_sensor.when_pressed = update_leds   # Actualizar LEDs cuando el sensor está presionado
+               speed_sensor.when_released = update_leds  # Actualizar LEDs cuando el sensor está liberado
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt (Ctrl+C) for a graceful script termination
+           # Manejar KeyboardInterrupt (Ctrl+C) para una terminación segura del script
            pass
-
-
-
-
-
-
-
-
-
 
 
 

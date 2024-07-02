@@ -1,57 +1,57 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede temprano a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.1.2_py:
 
-2.1.2 Micro Switch
-======================
+2.1.2 Microinterruptor
+==========================
 
-Introduction
---------------------
+Introducción
+---------------
 
-In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+En este proyecto, aprenderemos a usar un microinterruptor. Un microinterruptor es un interruptor pequeño y muy sensible que requiere una mínima compresión para activarse. Debido a que son confiables y sensibles, los microinterruptores se utilizan a menudo como dispositivo de seguridad.
 
-They are used to prevent doors from closing if something or someone is in the way and other applications similar.
+Se utilizan para evitar que las puertas se cierren si algo o alguien está en el camino y en otras aplicaciones similares.
 
-Required Components
-------------------------------
+Componentes necesarios
+----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/2.1.2component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - Nombre
+        - COMPONENTES EN ESTE KIT
+        - ENLACE
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,12 +68,10 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Diagrama esquemático
+--------------------------
 
-Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-move arm of the Micro Switch, you can see the two LEDs light up alternately.
+Conecta el pin izquierdo del microinterruptor al GPIO17, y dos LEDs a los pines GPIO22 y GPIO27 respectivamente. Luego, cuando presiones y sueltes el brazo móvil del microinterruptor, verás que los dos LEDs se encienden alternativamente.
 
 .. image:: ../img/image305.png
 
@@ -81,14 +79,14 @@ move arm of the Micro Switch, you can see the two LEDs light up alternately.
 .. image:: ../img/micro_Schematic.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../img/2.1.4fritzing.png
 
-**Step 2**: Get into the folder of the code.
+**Paso 2:** Ingresar a la carpeta del código.
 
 .. raw:: html
 
@@ -98,7 +96,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Paso 3:** Ejecutar.
 
 .. raw:: html
 
@@ -108,13 +106,13 @@ Experimental Procedures
 
     sudo python3 2.1.2_MicroSwitch.py
 
-While the code is running, press the moving arm, then the yellow LED lights up; release the moving arm, the red LED turns on.
+Mientras el código está en ejecución, presiona el brazo móvil, entonces el LED amarillo se encenderá; suelta el brazo móvil, y el LED rojo se encenderá.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -128,58 +126,59 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
     import RPi.GPIO as GPIO
     import time
 
-    # Set #17 as micro switch pin, #22 as led1 pin, #27 as led2 pin
+    # Configurar #17 como pin del microinterruptor, #22 como pin del led1, #27 como pin del led2
     microPin = 17
     led1Pin = 22
     led2Pin = 27
 
-    # Define a setup function for some setup
+    # Definir una función de configuración para algunas configuraciones
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Establecer los modos GPIO en Numeración BCM
         GPIO.setmode(GPIO.BCM)
-        # Set microPin input
-        # Set ledPin output, 
-        # and initial level to High(3.3v)
+        # Establecer microPin como entrada
+        # Establecer ledPin como salida, 
+        # y nivel inicial en Alto (3.3v)
         GPIO.setup(microPin, GPIO.IN)
         GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.HIGH)
         GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.HIGH)
 
-    # Define a main function for main process
+    # Definir una función principal para el proceso principal
     def main():
         while True:
-            # micro switch high, led1 on
+            # microinterruptor alto, led1 encendido
             if GPIO.input(microPin) == 1:
                 print ('LED1 ON')
                 GPIO.output(led1Pin, GPIO.LOW)
                 GPIO.output(led2Pin, GPIO.HIGH)
 
-            # micro switch low, led2 on
+            # microinterruptor bajo, led2 encendido
             if GPIO.input(microPin) == 0:
                 print ('    LED2 ON')
                 GPIO.output(led2Pin, GPIO.LOW)
                 GPIO.output(led1Pin, GPIO.HIGH)
 
             time.sleep(0.5)
-    # Define a destroy function for clean up everything after
-    # the script finished 
+
+    # Definir una función destroy para limpiar todo después de que
+    # el script termine 
     def destroy():
-        # Turn off LED
+        # Apagar LED
         GPIO.output(led1Pin, GPIO.HIGH)
         GPIO.output(led2Pin, GPIO.HIGH)
-        # Release resource
+        # Liberar recursos
         GPIO.cleanup()                     
 
-    # If run this script directly, do:
+    # Si ejecutas este script directamente, haz:
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program 
-        # destroy() will be  executed.
+        # Cuando se presiona 'Ctrl+C', el programa 
+        # destroy() se ejecutará.
         except KeyboardInterrupt:
             destroy()	
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
@@ -187,7 +186,7 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
                 GPIO.output(led1Pin, GPIO.LOW)
                 GPIO.output(led2Pin, GPIO.HIGH)
 
-When the moving arm of the micro switch is released, the left pin is connected to the right pin; at this time, a high level will be read on GPIO17, and then LED1 will be on and LED2 will be off.
+Cuando se suelta el brazo móvil del microinterruptor, el pin izquierdo se conecta al pin derecho; en este momento, se leerá un nivel alto en GPIO17, y luego el LED1 se encenderá y el LED2 se apagará.
 
 .. code-block:: python
 
@@ -195,9 +194,9 @@ When the moving arm of the micro switch is released, the left pin is connected t
                 GPIO.output(led2Pin, GPIO.LOW)
                 GPIO.output(led1Pin, GPIO.HIGH)
 
-When the move arm is pressed, the left pin and the middle pin are connected. At this point a low level will be read on GPIO17, then turns LED2 on and LED1 off.
+Cuando se presiona el brazo móvil, el pin izquierdo y el pin medio se conectan. En este punto, se leerá un nivel bajo en GPIO17, luego el LED2 se encenderá y el LED1 se apagará.
 
-Phenomenon Picture
+Foto del Fenómeno
 ------------------
 
 .. image:: ../img/2.1.2micro_switch.JPG

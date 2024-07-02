@@ -1,56 +1,55 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.1.5_c:
 
-2.1.5 Tilt Switch
-=======================
+2.1.5 Interruptor de Inclinación
+===================================
 
-Introduction
-------------
+Introducción
+-------------------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Este es un interruptor de inclinación con una bola de metal en su interior. Se utiliza para detectar inclinaciones de un pequeño ángulo.
 
-Required Components
-------------------------------
+Componentes Necesarios
+--------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_2.1.3_tilt_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,8 +64,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch`
         - \-
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+-----------------------
 
 .. image:: ../img/image307.png
 
@@ -74,14 +73,14 @@ Schematic Diagram
 .. image:: ../img/image308.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+-----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../img/image169.png
 
-**Step 2:** Change directory.
+**Paso 2:** Cambiar de directorio.
 
 .. raw:: html
 
@@ -91,7 +90,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.5/
 
-**Step 3:** Compile.
+**Paso 3:** Compilar.
 
 .. raw:: html
 
@@ -101,7 +100,7 @@ Experimental Procedures
 
     gcc 2.1.5_Tilt.c -lwiringPi
 
-**Step 4:** Run.
+**Paso 4:** Ejecutar.
 
 .. raw:: html
 
@@ -111,16 +110,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-Place the tilt vertically, and the green LED will turns on. If you
-tilt it, "Tilt!" will be printed on the screen and the red LED will
-lights on. Place it vertically again, and the green LED will turns on
-again.
+Coloca el interruptor de inclinación verticalmente y el LED verde se encenderá. 
+Si lo inclinas, se imprimirá "¡Inclinación!" en la pantalla y el LED rojo se encenderá. 
+Vuelve a colocar el interruptor verticalmente y el LED verde se encenderá de nuevo.
 
-.. note::
+.. nota::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -177,7 +175,7 @@ again.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -199,9 +197,9 @@ again.
             printf("LED Error");
     }
 
-Define a function ``LED()`` to turn the two LEDs on or off. If the parameter
-color is RED, the red LED lights up; similarly, if the parameter color
-is GREEN, the green LED will turns on.
+Define una función ``LED()`` para encender o apagar los dos LEDs. Si el parámetro
+color es RED, el LED rojo se enciende; de manera similar, si el parámetro color
+es GREEN, el LED verde se encenderá.
 
 .. code-block:: c
 
@@ -221,12 +219,12 @@ is GREEN, the green LED will turns on.
             }
         }
 
-If the read value of tilt switch is 0, it means that the tilt switch is
-tilted then you write the parameter ”RED” into function LED to get the
-red LED lighten up; otherwise, the green LED will lit.
+Si el valor leído del interruptor de inclinación es 0, significa que el interruptor 
+de inclinación está inclinado, luego escribes el parámetro "RED" en la función LED 
+para que el LED rojo se encienda; de lo contrario, el LED verde se encenderá.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image170.jpeg
 

@@ -1,62 +1,62 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y vistas previas.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.18_py_pi5:
 
-4.1.13 GAME - 10 Second
-============================
+4.1.13 JUEGO - 10 Segundos
+===============================
 
-Introduction
--------------------
+Introducción
+----------------------
 
-Next, follow me to make a game device to challenge your concentration.
-Tie the tilt switch to a stick to make a magic wand. Shake the wand, the
-4-digit segment display will start counting, shake again will let it
-stop counting. If you succeed in keeping the displayed count at
-**10.00**, then you win. You can play the game with your friends to see
-who is the time wizard.
+A continuación, sigue mis instrucciones para crear un dispositivo de juego 
+que pondrá a prueba tu concentración. Ata el interruptor de inclinación a 
+un palo para hacer una varita mágica. Agita la varita, la pantalla de 4 dígitos 
+comenzará a contar, agítala de nuevo para detener la cuenta. Si logras mantener 
+el conteo en **10.00**, entonces ganas. Puedes jugar con tus amigos para ver 
+quién es el mago del tiempo.
 
-Required Components
+Componentes necesarios
 ------------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/4.1.18_game_10_second_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -73,32 +73,32 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch`
         - \-
 
-Schematic Diagram
-------------------------
+Diagrama esquemático
+--------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-SPIMOSI      Pin 19   12       10
-GPIO18       Pin 12   1        18
-GPIO23       Pin 16   4        23
-GPIO24       Pin 18   5        24
-GPIO26       Pin 37   25       26
-============ ======== ======== ===
+================== ====== ======== ===
+Nombre del T-Board físico wiringPi BCM
+GPIO17             Pin 11   0      17
+GPIO27             Pin 13   2      27
+GPIO22             Pin 15   3      22
+SPIMOSI            Pin 19   12     10
+GPIO18             Pin 12   1      18
+GPIO23             Pin 16   4      23
+GPIO24             Pin 18   5      24
+GPIO26             Pin 37   25     26
+================== ====== ======== ===
 
 .. image:: ../python_pi5/img/4.1.18_game_10_second_schematic.png
    :align: center
 
-Experimental Procedures
----------------------------------
+Procedimientos experimentales
+-----------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: ../python_pi5/img/4.1.18_game_10_second_circuit.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -108,7 +108,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run the executable file.
+**Paso 3**: Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -118,15 +118,14 @@ Experimental Procedures
 
     sudo python3 4.1.18_GAME_10Second_zero.py
 
-Shake the wand, the 4-digit segment display will start counting, shake
-again will let it stop counting. If you succeed in keeping the displayed
-count at **10.00**, then you win. Shake it one more time to start the
-next round of the game.
+Agita la varita, la pantalla de 4 dígitos comenzará a contar, agítala de nuevo 
+para detener la cuenta. Si logras mantener el conteo en **10.00**, entonces ganas. 
+Agítala una vez más para comenzar la siguiente ronda del juego.
 
-**Code**
+**Código**
 
-.. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+.. nota::
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -140,21 +139,21 @@ next round of the game.
     import time
     import threading
 
-    # Initialize the button connected to GPIO 26
+    # Inicializa el botón conectado al GPIO 26
     sensorPin = Button(26)
 
-    # Define GPIO pins connected to the 74HC595 shift register
-    SDI = OutputDevice(24)   # Serial Data Input
-    RCLK = OutputDevice(23)  # Register Clock
-    SRCLK = OutputDevice(18) # Shift Register Clock
+    # Define los pines GPIO conectados al registro de desplazamiento 74HC595
+    SDI = OutputDevice(24)   # Entrada de datos serial
+    RCLK = OutputDevice(23)  # Reloj de registro
+    SRCLK = OutputDevice(18) # Reloj de registro de desplazamiento
 
-    # Define GPIO pins for digit selection on the 7-segment display
-    placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+    # Define los pines GPIO para la selección de dígitos en la pantalla de 7 segmentos
+    placePin = [OutputDevice(pin) para pin en (10, 22, 27, 17)]
 
-    # Define segment codes for numbers 0 to 9 on the 7-segment display
+    # Define los códigos de segmentos para los números del 0 al 9 en la pantalla de 7 segmentos
     number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-    # Counter and timer variables
+    # Variables del contador y del temporizador
     counter = 0
     timer1 = None
     gameState = 0
@@ -209,7 +208,7 @@ next round of the game.
             counter = 0
             time.sleep(1)
             timer()
-        elif gameState == 1 and timer1 is not None:
+        elif gameState == 1 y timer1 no es None:
             timer1.cancel()
             time.sleep(1)
         gameState = (gameState + 1) % 2
@@ -240,9 +239,9 @@ next round of the game.
             timer1.cancel()
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. The script begins by importing necessary modules. The ``gpiozero`` library is used for interfacing with GPIO devices like buttons, and ``time`` and ``threading`` modules may be used for handling timing-related tasks or concurrent operations.
+#. El script comienza importando los módulos necesarios. La biblioteca ``gpiozero`` se utiliza para interactuar con dispositivos GPIO como botones, y los módulos ``time`` y ``threading`` pueden utilizarse para manejar tareas relacionadas con el tiempo u operaciones concurrentes.
 
    .. code-block:: python
 
@@ -252,33 +251,33 @@ next round of the game.
        import time
        import threading
 
-#. Initializes a ``Button`` object from the GPIO Zero library, connecting it to GPIO pin 26. This setup allows for the detection of button presses.
+#. Inicializa un objeto ``Button`` de la biblioteca GPIO Zero, conectándolo al pin GPIO 26. Esta configuración permite detectar las pulsaciones del botón.
 
    .. code-block:: python
 
-       # Initialize the button connected to GPIO 26
+       # Inicializa el botón conectado al GPIO 26
        sensorPin = Button(26)
 
-#. Initializes GPIO pins connected to the shift register's Serial Data Input (SDI), Register Clock Input (RCLK), and Shift Register Clock Input (SRCLK).
+#. Inicializa los pines GPIO conectados a la entrada de datos en serie (SDI), la entrada del reloj de registro (RCLK) y la entrada del reloj del registro de desplazamiento (SRCLK) del registro de desplazamiento.
 
    .. code-block:: python
 
-       # Define GPIO pins connected to the 74HC595 shift register
-       SDI = OutputDevice(24)   # Serial Data Input
-       RCLK = OutputDevice(23)  # Register Clock
-       SRCLK = OutputDevice(18) # Shift Register Clock
+       # Define los pines GPIO conectados al registro de desplazamiento 74HC595
+       SDI = OutputDevice(24)   # Entrada de datos serial
+       RCLK = OutputDevice(23)  # Reloj de registro
+       SRCLK = OutputDevice(18) # Reloj de registro de desplazamiento
 
-#. Initializes the pins for each digit of the 7-segment display and defines the binary codes for displaying numbers 0-9.
+#. Inicializa los pines para cada dígito de la pantalla de 7 segmentos y define los códigos binarios para mostrar los números del 0 al 9.
 
    .. code-block:: python
 
-       # Define GPIO pins for digit selection on the 7-segment display
-       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+       # Define los pines GPIO para la selección de dígitos en la pantalla de 7 segmentos
+       placePin = [OutputDevice(pin) para pin en (10, 22, 27, 17)]
 
-       # Define segment codes for numbers 0 to 9 on the 7-segment display
+       # Define los códigos de segmentos para los números del 0 al 9 en la pantalla de 7 segmentos
        number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-#. Functions to control the 7-segment display. ``clearDisplay`` turns off all segments, ``hc595_shift`` shifts data into the shift register, and ``pickDigit`` activates a specific digit on the display.
+#. Funciones para controlar la pantalla de 7 segmentos. ``clearDisplay`` apaga todos los segmentos, ``hc595_shift`` desplaza datos al registro de desplazamiento y ``pickDigit`` activa un dígito específico en la pantalla.
 
    .. code-block:: python
 
@@ -306,7 +305,7 @@ next round of the game.
                pin.off()
            placePin[digit].on()
 
-#. Function to display the current value of the counter on the 7-segment display.
+#. Función para mostrar el valor actual del contador en la pantalla de 7 segmentos.
 
    .. code-block:: python
 
@@ -329,7 +328,7 @@ next round of the game.
            pickDigit(3)
            hc595_shift(number[counter % 10000 // 1000])
 
-#. Function to handle state changes (start/stop) of the counter based on button presses.
+#. Función para manejar los cambios de estado (inicio/detención) del contador basados en las pulsaciones del botón.
 
    .. code-block:: python
 
@@ -345,7 +344,7 @@ next round of the game.
                time.sleep(1)
            gameState = (gameState + 1) % 2
 
-#. Main loop that continuously checks the button state and updates the display. It calls ``stateChange`` when the button state changes.
+#. Bucle principal que verifica continuamente el estado del botón y actualiza la pantalla. Llama a ``stateChange`` cuando el estado del botón cambia.
 
    .. code-block:: python
 
@@ -361,7 +360,7 @@ next round of the game.
                    stateChange()
                lastState = currentState
 
-#. Timer function that increments the counter at a regular interval (every 0.01 second).
+#. Función del temporizador que incrementa el contador a intervalos regulares (cada 0.01 segundo).
 
    .. code-block:: python
 
@@ -372,7 +371,7 @@ next round of the game.
            timer1.start()
            counter += 1
 
-#. Executes the main loop and allows for a clean exit from the program using a keyboard interrupt (Ctrl+C).
+#. Ejecuta el bucle principal y permite una salida limpia del programa utilizando una interrupción de teclado (Ctrl+C).
 
    .. code-block:: python
 

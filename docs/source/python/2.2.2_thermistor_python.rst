@@ -1,57 +1,57 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsualizaciones Exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
 
 .. _2.2.2_py:
 
-2.2.2 Thermistor
+2.2.2 Termistor
 ================
 
-Introduction
+Introducción
 ------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Al igual que la fotorresistencia puede detectar la luz, el termistor es 
+un dispositivo electrónico sensible a la temperatura que se puede utilizar 
+para realizar funciones de control de temperatura, como hacer una alarma de calor.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado desde los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,8 +66,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+-------------------------
 
 .. image:: ../img/image323.png
 
@@ -75,14 +75,14 @@ Schematic Diagram
 .. image:: ../img/image324.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+-----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file
+**Paso 3:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -102,15 +102,14 @@ Experimental Procedures
 
     sudo python3 2.2.2_Thermistor.py
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Cuando el código se ejecuta, el termistor detecta la temperatura ambiente, 
+que se imprimirá en la pantalla una vez que termine el cálculo del programa.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -147,20 +146,20 @@ be printed on the screen once it finishes the program calculation.
         except KeyboardInterrupt:
             ADC0834.destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     import math
 
-There is a numerics library which declares a set of functions to compute
-common mathematical operations and transformations.
+Esta es una biblioteca numérica que declara un conjunto de funciones para calcular 
+operaciones matemáticas comunes y transformaciones.
 
 .. code-block:: python
 
     analogVal = ADC0834.getResult()
 
-This function is used to read the value of the thermistor.
+Esta función se usa para leer el valor del termistor.
 
 .. code-block:: python
 
@@ -171,44 +170,42 @@ This function is used to read the value of the thermistor.
     Fah = Cel * 1.8 + 32
     print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
 
-These calculations convert the thermistor values into centigrade degree
-and Fahrenheit degree.
+Estos cálculos convierten los valores del termistor en grados centígrados y grados Fahrenheit.
 
 .. code-block:: python
 
     Vr = 5 * float(analogVal) / 255
     Rt = 10000 * Vr / (5 - Vr)
 
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
+Estas dos líneas de código calculan la distribución de voltaje 
+con el valor leído analógico para obtener Rt (resistencia del termistor).
 
 .. code-block:: python
 
     temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
 
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
+Este código se refiere a enchufar Rt en la fórmula
+**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** para obtener la temperatura en Kelvin.
 
 .. code-block:: python
 
     temp = temp - 273.15
 
-Convert Kelvin temperature into centigrade degree.
+Convierte la temperatura en Kelvin a grados centígrados.
 
 .. code-block:: python
 
     Fah = Cel * 1.8 + 32
 
-Convert the centigrade degree into Fahrenheit degree.
+Convierte los grados centígrados a grados Fahrenheit.
 
 .. code-block:: python
 
     print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
 
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
+Imprime los grados centígrados, los grados Fahrenheit y sus unidades en la pantalla.
 
-Phenomenon Picture
-------------------
+Foto del Fenómeno
+----------------------
 
 .. image:: ../img/image203.jpeg

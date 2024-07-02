@@ -1,23 +1,23 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede temprano a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Check the pigpio
+Revisar pigpio
 ===================
 
-pigpio is a module used to control Raspberry Pi GPIO channels. This package provides some methods to control GPIO on Raspberry Pi. For examples and documentation, please visit: https://www.npmjs.com/package/pigpio.
+pigpio es un módulo utilizado para controlar los canales GPIO de Raspberry Pi. Este paquete proporciona algunos métodos para controlar GPIO en Raspberry Pi. Para ejemplos y documentación, visita: https://www.npmjs.com/package/pigpio.
 
-Enter the following command to install the pigpio library.
+Ingresa el siguiente comando para instalar la biblioteca pigpio.
 
 .. raw:: html
 
@@ -27,7 +27,7 @@ Enter the following command to install the pigpio library.
 
     npm install pigpio
 
-Check if the library is installed successfully, change the directory and enter nodejs:
+Verifica si la biblioteca se ha instalado correctamente, cambia de directorio e ingresa a nodejs:
 
 .. raw:: html
 
@@ -40,7 +40,7 @@ Check if the library is installed successfully, change the directory and enter n
 
 .. image:: img/pigpio1.png
 
-Then enter require('pigpio'):
+Luego ingresa require('pigpio'):
 
 .. raw:: html
 
@@ -52,9 +52,8 @@ Then enter require('pigpio'):
 
 .. image:: img/pigpio2.png   
 
-If the above screen appears, the library installation is successful.
+Si aparece la pantalla anterior, la instalación de la biblioteca fue exitosa.
 
-
-If you want to exit node CLI, please press Ctrl+C twice.
+Si deseas salir del CLI de node, presiona Ctrl+C dos veces.
 
 .. image:: img/pigpio3.png

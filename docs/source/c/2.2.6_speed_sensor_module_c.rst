@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y vistas previas.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.2.6_c:
 
-2.2.6 Speed Sensor Module
+2.2.6 Módulo Sensor de Velocidad
 ===============================
 
-Introduction
+Introducción
 ------------------
 
-In this project, we will learn the use of the speed sensor module. A Speed Sensor Module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+En este proyecto, aprenderemos a usar el módulo sensor de velocidad. Un Módulo Sensor de Velocidad es un tipo de tacómetro que se usa para medir la velocidad de un objeto giratorio como un motor.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitaremos los siguientes componentes. 
 
 .. image:: ../img/2.2.6component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,25 +66,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_speed_sensor`
         - \-
 
-Schematic Diagram
------------------------
+Diagrama Esquemático
+--------------------------
 
 .. image:: ../img/2.2.6circuit.png
     :width: 400
     :align: center
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-
-
-**Step 2:** Change directory.
+**Paso 2:** Cambiar de directorio.
 
 .. raw:: html
 
@@ -94,7 +92,7 @@ Experimental Procedures
     
     cd ~/raphael-kit/c/2.2.6/
 
-**Step 3:** Compile.
+**Paso 3:** Compilar.
 
 .. raw:: html
 
@@ -104,7 +102,7 @@ Experimental Procedures
 
     gcc 2.2.6_speed_sensor_module.c -lwiringPi
 
-**Step 4:** Run.
+**Paso 4:** Ejecutar.
 
 .. raw:: html
 
@@ -114,14 +112,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+Después de ejecutar el código, el LED verde se encenderá. Si colocas un obstáculo en el hueco del módulo sensor de velocidad, se imprimirá "light blocked" en la pantalla y se encenderá el LED rojo. 
+Retira el obstáculo y el LED verde se encenderá nuevamente.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
-**Code**
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
+**Código**
 
 .. code-block:: c
 
@@ -176,7 +173,7 @@ Remove the obstacle and the green LED will light up again.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -194,9 +191,9 @@ Remove the obstacle and the green LED will light up again.
         }
     }    
 
-Set a ``LED()`` function to control the 2 LEDs, the parameter of this function is ``color``.
+Configura una función ``LED()`` para controlar los 2 LEDs, el parámetro de esta función es ``color``.
 
-When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`` to ``LOW`` (turn off the green LED); when ``color`` is 1, then light up the green LED and turn off the red LED. 
+Cuando ``color`` es 0, se establece ``Rpin`` en ``HIGH`` (enciende el LED rojo) y ``Gpin`` en ``LOW`` (apaga el LED verde); cuando ``color`` es 1, entonces enciende el LED verde y apaga el LED rojo.
 
 
 .. code-block:: c
@@ -214,12 +211,11 @@ When ``color`` is 0, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`
         Print(temp);
     }
 
-When you place an obstacle in the gap of the speed sensor module, ``speedPin`` is low level (0), then call ``LED(1)`` function to light up the green LED and "Light was blocked!" is printed.
+Cuando colocas un obstáculo en el espacio del módulo sensor de velocidad, ``speedPin`` está en nivel bajo (0), luego llama a la función ``LED(1)`` para encender el LED verde y se imprime "Light was blocked!".
 
 
-
-**Phenomenon Picture**
------------------------
+**Imagen del Fenómeno**
+----------------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG
    :width: 500

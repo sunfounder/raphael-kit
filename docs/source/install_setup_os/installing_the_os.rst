@@ -1,101 +1,101 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más profundamente en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _install_os:
 
-Installing the OS
-=======================
+Instalación del Sistema Operativo
+=====================================
 
-**Required Components**
+**Componentes Necesarios**
 
 * Raspberry Pi 5B
-* A Personal Computer
-* A Micro SD card 
+* Una Computadora Personal
+* Una tarjeta Micro SD 
 
-**Installation Steps**
+**Pasos de Instalación**
 
-#. Visit the Raspberry Pi software download page at `Raspberry Pi Imager <https://www.raspberrypi.org/software/>`_. Choose the Imager version compatible with your operating system. Download and open the file to initiate installation.
+#. Visita la página de descarga de software de Raspberry Pi en `Raspberry Pi Imager <https://www.raspberrypi.org/software/>`_. Elige la versión de Imager compatible con tu sistema operativo. Descarga y abre el archivo para iniciar la instalación.
 
     .. image:: img/os_install_imager.png
 
-#. A security prompt may appear during installation, depending on your operating system. For example, Windows might display a warning message. In such cases, select **More info** and then **Run anyway**. Follow the on-screen guidance to complete the installation of the Raspberry Pi Imager.
+#. Puede aparecer un aviso de seguridad durante la instalación, dependiendo de tu sistema operativo. Por ejemplo, Windows podría mostrar un mensaje de advertencia. En estos casos, selecciona **Más información** y luego **Ejecutar de todas formas**. Sigue las instrucciones en pantalla para completar la instalación del Raspberry Pi Imager.
 
     .. image:: img/os_info.png
 
-#. Insert your SD card into your computer or laptop's SD card slot.
+#. Inserta tu tarjeta SD en la ranura para tarjetas SD de tu computadora o laptop.
 
-#. Launch the Raspberry Pi Imager application by clicking its icon or typing ``rpi-imager`` in your terminal.
+#. Inicia la aplicación Raspberry Pi Imager haciendo clic en su icono o escribiendo ``rpi-imager`` en tu terminal.
 
     .. image:: img/os_open_imager.png
 
-#. Click **CHOOSE DEVICE** and select your specific Raspberry Pi model from the list.
+#. Haz clic en **CHOOSE DEVICE** y selecciona tu modelo específico de Raspberry Pi de la lista.
 
     .. image:: img/os_choose_device.png
 
-#. Then click on Choose OS and select an operating system for installation.
+#. Luego haz clic en Choose OS y selecciona un sistema operativo para la instalación.
 
     .. image:: img/os_choose_os.png
 
-#. Click **Choose Storage** and select the appropriate storage device for the installation.
+#. Haz clic en **Choose Storage** y selecciona el dispositivo de almacenamiento adecuado para la instalación.
 
     .. note::
 
-        Ensure you select the correct storage device. To avoid confusion, disconnect any additional storage devices if multiple ones are connected.
+        Asegúrate de seleccionar el dispositivo de almacenamiento correcto. Para evitar confusiones, desconecta cualquier dispositivo de almacenamiento adicional si hay varios conectados.
 
     .. image:: img/os_choose_sd.png
 
-#. Click **NEXT** and then **EDIT SETTINGS** to tailor your OS settings. If you have a monitor for your Raspberry Pi, you can skip the next steps and click 'Yes' to begin the installation. Adjust other settings later on the monitor.
+#. Haz clic en **NEXT** y luego en **EDIT SETTINGS** para personalizar la configuración de tu sistema operativo. Si tienes un monitor para tu Raspberry Pi, puedes omitir los siguientes pasos y hacer clic en 'Yes' para comenzar la instalación. Ajusta otras configuraciones más tarde en el monitor.
 
     .. image:: img/os_enter_setting.png
 
-#. Define a **hostname** for your Raspberry Pi.
+#. Define un **nombre de host** para tu Raspberry Pi.
 
     .. note::
 
-        The hostname is your Raspberry Pi's network identifier. You can access your Pi using ``<hostname>.local`` or ``<hostname>.lan``.
+        El nombre de host es el identificador de red de tu Raspberry Pi. Puedes acceder a tu Pi usando ``<hostname>.local`` o ``<hostname>.lan``.
 
     .. image:: img/os_set_hostname.png
 
-#. Create a **Username** and **Password** for the Raspberry Pi's administrator account.
+#. Crea un **Nombre de Usuario** y **Contraseña** para la cuenta de administrador de Raspberry Pi.
 
     .. note::
 
-        Establishing a unique username and password is vital for securing your Raspberry Pi, which lacks a default password.
+        Establecer un nombre de usuario y una contraseña únicos es vital para asegurar tu Raspberry Pi, que no tiene una contraseña predeterminada.
 
     .. image:: img/os_set_username.png
 
-#. Configure the wireless LAN by providing your network's **SSID** and **Password**.
+#. Configura la LAN inalámbrica proporcionando el **SSID** y la **Contraseña** de tu red.
 
     .. note::
 
-        Set the ``Wireless LAN country`` to the two-letter `ISO/IEC alpha2 code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ corresponding to your location.
+        Establece el ``Wireless LAN country`` al código `ISO/IEC alpha2 de dos letras <https://es.wikipedia.org/wiki/ISO_3166-1_alpha-2#Codigos_oficiales_de_la_ISO>`_ correspondiente a tu ubicación.
 
     .. image:: img/os_set_wifi.png
 
-#. Click **SERVICES** and activate **SSH** for secure, password-based remote access. Remember to save your settings.
+#. Haz clic en **SERVICES** y activa **SSH** para el acceso remoto seguro basado en contraseña. Recuerda guardar tu configuración.
 
     .. image:: img/os_enable_ssh.png
 
-#. Confirm your selected settings by clicking **Yes**.
+#. Confirma la configuración seleccionada haciendo clic en **Yes**.
 
     .. image:: img/os_click_yes.png
 
-#. If the SD card contains existing data, ensure you back it up to prevent data loss. Proceed by clicking **Yes** if no backup is needed.
+#. Si la tarjeta SD contiene datos existentes, asegúrate de hacer una copia de seguridad para evitar la pérdida de datos. Procede haciendo clic en **Yes** si no se necesita una copia de seguridad.
 
     .. image:: img/os_continue.png
 
-#. The OS installation process will commence on the SD card. A confirmation dialog will appear upon completion.
+#. El proceso de instalación del sistema operativo comenzará en la tarjeta SD. Aparecerá un cuadro de diálogo de confirmación al finalizar.
 
     .. image:: img/os_finish.png
         :align: center

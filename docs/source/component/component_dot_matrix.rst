@@ -1,48 +1,47 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _cpn_dot_matrix:
 
-LED Matrix Module
+Módulo de Matriz LED
 ==============================
 
 .. image:: img/max7219_module.jpg
     :width: 400
     :align: center
 
-This is a common cathode 8x8 dot matrix module driven by MAX7219, the module operating voltage is 5V, the size is 50mmx32mmx15mm, the left side is input port, the right side is output port, support multiple modules cascade.
+Este es un módulo de matriz de puntos 8x8 de cátodo común impulsado por el MAX7219. El voltaje de operación del módulo es de 5V, el tamaño es de 50mm x 32mm x 15mm. El lado izquierdo es el puerto de entrada, el lado derecho es el puerto de salida, soporta la cascada de múltiples módulos.
 
-* **VCC**: Positive Supply Voltage. Connect to +5V.
-* **GND**: Ground (both GND pins must be connected)
-* **DIN**: Serial-Data Input. Data is loaded into the internal 16-bit shift register on CLK’s rising edge.
-* **CS**: Chip-Select Input. Serial data is loaded into the shift register while CS is low. The last 16 bits of serial data are latched on CS’s rising edge.
-* **CLK**: Serial-Clock Input. 10MHz maximum rate. On CLK’s rising edge, data is shifted into the internal shift register. On CLK’s falling edge, data is clocked out of DOUT. On the MAX7221, the CLK input is active only while CS is low.
+* **VCC**: Voltaje de suministro positivo. Conectar a +5V.
+* **GND**: Tierra (ambos pines GND deben estar conectados).
+* **DIN**: Entrada de datos seriales. Los datos se cargan en el registro de desplazamiento interno de 16 bits en el flanco ascendente de CLK.
+* **CS**: Entrada de selección de chip. Los datos seriales se cargan en el registro de desplazamiento mientras CS está en bajo. Los últimos 16 bits de datos seriales se bloquean en el flanco ascendente de CS.
+* **CLK**: Entrada de reloj serial. Tasa máxima de 10MHz. En el flanco ascendente de CLK, los datos se desplazan hacia el registro de desplazamiento interno. En el flanco descendente de CLK, los datos se desplazan fuera de DOUT. En el MAX7221, la entrada CLK solo está activa mientras CS está en bajo.
 
 **MAX7219**
 
-The MAX7219 is a compact, serial input/output common-cathode display drivers that interface microprocessors (µPs) to 7-segment numeric LED displays of up to 8 digits, bar-graph displays, or 64 individual LEDs. Included on-chip are a BCD code-B
-decoder, multiplex scan circuitry, segment and digit drivers, and an 8x8 static RAM that stores each digit.
+El MAX7219 es un controlador de pantalla de cátodo común de entrada/salida serial compacta que interconecta microprocesadores (µPs) con pantallas LED numéricas de 7 segmentos de hasta 8 dígitos, pantallas de barra gráfica o 64 LEDs individuales. Incluye un decodificador de código BCD en el chip, circuitos de escaneo de multiplex, controladores de segmento y dígito, y una RAM estática de 8x8 que almacena cada dígito.
 
-Only one external resistor is required to set the segment current for all LEDs. The MAX7221 is compatible with SPI™, QSPI™, and MICROWIRE™, and has slewrate-limited segment drivers to reduce EMI.
+Solo se requiere una resistencia externa para establecer la corriente de segmento para todos los LEDs. El MAX7221 es compatible con SPI™, QSPI™ y MICROWIRE™ y tiene controladores de segmento con velocidad de conmutación limitada para reducir EMI.
 
-A convenient 4-wire serial interface connects to all common µPs. Individual digits may be addressed and updated without rewriting the entire display. The MAX7219/MAX7221 also allow the user to select codeB decoding or no-decode for each digit.
+Una interfaz serial de 4 hilos conecta todos los µPs comunes. Los dígitos individuales se pueden direccionar y actualizar sin reescribir toda la pantalla. El MAX7219/MAX7221 también permite al usuario seleccionar decodificación de código B o sin decodificación para cada dígito.
 
 .. image:: img/max7219_sche.png
 
-* `MAX7219 Datasheet <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`_
+* `Hoja de datos del MAX7219 <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`_
 
-**Example**
+**Ejemplo**
 
 * :ref:`1.1.6_c` (C Project)
 * :ref:`3.1.12_c` (C Project)

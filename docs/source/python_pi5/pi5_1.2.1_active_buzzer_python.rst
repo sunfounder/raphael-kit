@@ -1,56 +1,55 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsualizaciones exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.2.1_py_pi5:
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Zumbador Activo
+=========================
 
-Introduction
-------------
+Introducción
+----------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+En este proyecto, aprenderemos a hacer sonar un zumbador activo con un transistor PNP.
 
-Required Components
-------------------------------
+Componentes Necesarios
+---------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitaremos los siguientes componentes.
 
 .. image:: ../python_pi5/img/1.2.1_active_buzzer_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - COMPONENTES EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado desde los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN AL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,16 +65,15 @@ You can also buy them separately from the links below.
         - |link_transistor_buy|
 
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+------------------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with high
-level (3.3V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when low level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+En este experimento, se utiliza un zumbador activo, un transistor PNP y una 
+resistencia de 1k entre la base del transistor y el GPIO para proteger el transistor. 
+Cuando el GPIO17 de la Raspberry Pi se suministra con un nivel alto (3.3V) mediante 
+programación, el transistor conducirá debido a la saturación de corriente y el zumbador 
+emitirá sonidos. Pero cuando se suministra un nivel bajo al IO de la Raspberry Pi, 
+el transistor se cortará y el zumbador no emitirá sonidos.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -85,14 +83,14 @@ GPIO17       Pin 11   0        17
 .. image:: ../python_pi5/img/1.2.1_active_buzzer_schematic.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Paso 1:** Construye el circuito. (El zumbador activo tiene una etiqueta blanca en la superficie y un respaldo negro).
 
 .. image:: ../python_pi5/img/1.2.1_ActiveBuzzer_circuit.png
 
-**Step 2**: Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -102,7 +100,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run.
+**Paso 3:** Ejecuta el archivo.
 
 .. raw:: html
 
@@ -112,14 +110,13 @@ Experimental Procedures
 
     sudo python3 1.2.1_ActiveBuzzer_zero.py
 
-The code run, the buzzer beeps.
+Al ejecutar el código, el zumbador sonará.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -151,9 +148,9 @@ The code run, the buzzer beeps.
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. These statements import the ``Buzzer`` class from the ``gpiozero`` library and the ``sleep`` function from the ``time`` module.
+#. Estas sentencias importan la clase ``Buzzer`` de la biblioteca ``gpiozero`` y la función ``sleep`` del módulo ``time``.
 
    .. code-block:: python
        
@@ -162,7 +159,7 @@ The code run, the buzzer beeps.
        from time import sleep
 
 
-#. This line creates a ``Buzzer`` object connected to GPIO pin 17 on the Raspberry Pi.
+#. Esta línea crea un objeto ``Buzzer`` conectado al pin GPIO 17 de la Raspberry Pi.
     
    .. code-block:: python
        
@@ -171,7 +168,7 @@ The code run, the buzzer beeps.
         
       
 
-#. In an infinite loop (``while True``), the buzzer is turned on and off every 0.1 seconds. ``print`` statements provide a console output for each action.
+#. En un bucle infinito (``while True``), el zumbador se enciende y se apaga cada 0.1 segundos. Las declaraciones ``print`` proporcionan una salida en la consola para cada acción.
       
    .. code-block:: python
        
@@ -187,7 +184,7 @@ The code run, the buzzer beeps.
                buzzer.off()
                sleep(0.1)  # Keep the buzzer off for 0.1 seconds
 
-#. This segment ensures the program can be terminated safely using a keyboard interrupt (Ctrl+C) without throwing an error.
+#. Este segmento asegura que el programa pueda ser terminado de manera segura usando una interrupción del teclado (Ctrl+C) sin arrojar un error.
       
    .. code-block:: python
        

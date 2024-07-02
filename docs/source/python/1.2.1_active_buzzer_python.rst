@@ -1,56 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _1.2.1_py:
 
-1.2.1 Active Buzzer
-===================
+1.2.1 Zumbador Activo
+===========================
 
-Introduction
-------------
+Introducción
+----------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+En este proyecto, aprenderemos a hacer sonar un zumbador activo con un transistor PNP.
 
-Required Components
-------------------------------
+Componentes Requeridos
+-------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,29 +64,27 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
+Diagrama Esquemático
+---------------------
 
-Schematic Diagram
------------------
-
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+En este experimento, se utilizan un zumbador activo, un transistor PNP y una resistencia
+ de 1k entre la base del transistor y el GPIO para proteger el transistor. Cuando el GPIO17
+  de Raspberry Pi se suministra con nivel bajo (0V) mediante programación, el transistor 
+  conducirá debido a la saturación de corriente y el zumbador emitirá sonidos. Pero cuando 
+  se suministra un nivel alto al IO de Raspberry Pi, el transistor se cortará y el zumbador 
+  no emitirá sonidos.
 
 .. image:: ../img/image332.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+-----------------------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Paso 1:** Construir el circuito. (El zumbador activo tiene una etiqueta blanca en la superficie y un respaldo negro.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Open the code file.
+**Paso 2**: Abrir el archivo de código.
 
 .. raw:: html
 
@@ -97,7 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run.
+**Paso 3**: Ejecutar.
 
 .. raw:: html
 
@@ -107,14 +104,13 @@ Experimental Procedures
 
     sudo python3 1.2.1_ActiveBuzzer.py
 
-The code run, the buzzer beeps.
+Al ejecutar el código, el zumbador emite un pitido.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -159,31 +155,31 @@ The code run, the buzzer beeps.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.LOW)
 
-Set the buzzer pin as low level to make the buzzer beep.  
+Establecer el pin del zumbador en nivel bajo para que el zumbador emita un pitido.  
 
 .. code-block:: python
 
     time.sleep(0.1)
 
-Wait for 0.1 second. Change the switching frequency by 
-changing this parameter. 
+Esperar 0.1 segundos. Cambia la frecuencia de conmutación
+modificando este parámetro. 
 
 .. note::
-    Not the sound frequency. Active Buzzer cannot change sound frequency.
+    No es la frecuencia del sonido. El zumbador activo no puede cambiar la frecuencia del sonido.
 
 .. code-block:: python
 
     GPIO.output(BeepPin, GPIO.HIGH)
 
-Close the buzzer. 
+Apagar el zumbador. 
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+------------------------
 
 .. image:: ../img/image105.jpeg

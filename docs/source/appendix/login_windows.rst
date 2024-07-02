@@ -1,57 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _login_windows:
 
 PuTTY
 =========================
 
-If you are a Windows user, you can use some applications of SSH. Here, we recommend `PuTTY <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`_.
+Si eres usuario de Windows, puedes utilizar algunas aplicaciones de SSH. Aquí, te recomendamos `PuTTY <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`_.
 
-**Step 1**
+**Paso 1**
 
-Download PuTTY.
+Descarga PuTTY.
 
-**Step 2**
+**Paso 2**
 
-Open PuTTY and click **Session** on the left tree-alike structure. Enter
-the IP address of the RPi in the text box under **Host Name (or IP
-address)** and **22** under **Port** (by default it is 22).
+Abre PuTTY y haz clic en **Session** en la estructura de árbol a la izquierda. 
+Introduce la dirección IP de la RPi en el cuadro de texto bajo 
+**Host Name (or IP address)** y **22** bajo **Port** (por defecto es 22).
 
 .. image:: img/image25.png
     :align: center
 
-**Step 3**
+**Paso 3**
 
-Click **Open**. Note that when you first log in to the Raspberry Pi with
-the IP address, there prompts a security reminder. Just click **Yes**.
+Haz clic en **Open**. Ten en cuenta que la primera vez que inicies 
+sesión en la Raspberry Pi con la dirección IP, aparecerá un recordatorio 
+de seguridad. Simplemente haz clic en **Yes**.
 
-**Step 4**
+**Paso 4**
 
-When the PuTTY window prompts \"**login as:**\", type in
-\"**pi**\" (the user name of the RPi), and **password**: \"raspberry\"
-(the default one, if you haven't changed it).
+Cuando la ventana de PuTTY solicite \"**login as:**\", escribe \"**pi**\" 
+(el nombre de usuario de la RPi) y **password**: \"raspberry\" (el predeterminado, 
+si no lo has cambiado).
 
 .. note::
 
-    When you input the password, the characters do not display on window accordingly, which is normal. What you need is to input the correct password.
+    Cuando ingreses la contraseña, los caracteres no se mostrarán en la ventana, lo cual es normal. Solo necesitas ingresar la contraseña correcta.
     
-    If inactive appears next to PuTTY, it means that the connection has been broken and needs to be reconnected.
+    Si aparece "inactive" junto a PuTTY, significa que la conexión se ha interrumpido y necesita ser reconectada.
     
 .. image:: img/image26.png
     :align: center
 
-**Step 5**
+**Paso 5**
 
-Here, we get the Raspberry Pi connected and it is time to conduct the next steps.
+Aquí, hemos conectado la Raspberry Pi y es momento de realizar los siguientes pasos.

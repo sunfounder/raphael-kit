@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.1.6_c:
 
-2.1.6 Rotary Encoder Module
-=================================
+2.1.6 Módulo de Encoder Rotatorio
+====================================
 
-Introduction
+Introducción
 -------------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+En este proyecto, aprenderás sobre el encoder rotatorio. Un encoder rotatorio es
+un interruptor electrónico con un conjunto de pulsos regulares en una secuencia 
+estricta de tiempo. Cuando se usa con IC, puede lograr incrementos, decrementos,
+cambio de páginas y otras operaciones como el desplazamiento del ratón, selección 
+de menús, etc.
 
-Required Components
-------------------------------
+Componentes Necesarios
+--------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - COMPONENTES EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,21 +64,21 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rotary_encoder`
         - |link_rotary_encoder_buy|
 
-**Schematic Diagram**
+**Diagrama Esquemático**
 ------------------------
 
 .. image:: ../img/image349.png
    :align: center
+   
+Procedimientos Experimentales
+---------------------------------
 
-Experimental Procedures
------------------------
-
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -88,7 +88,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.6/
 
-**Step 3:** Compile the code.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -98,7 +98,7 @@ Experimental Procedures
 
     gcc 2.1.6_RotaryEncoder.c -lwiringPi
 
-**Step 4:** Run.
+**Paso 4:** Ejecuta.
 
 .. raw:: html
 
@@ -108,13 +108,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+Verás el conteo en la terminal. Cuando gires el encoder rotatorio en el sentido de las agujas del reloj, el conteo aumentará; cuando lo gires en sentido antihorario, el conteo disminuirá. Si presionas el interruptor en el encoder rotatorio, las lecturas volverán a cero.
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -190,20 +190,19 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
       return 0;
    }
 
-**Code Analysis**
+**Análisis del Código**
 
-* Read dtPin value when clkPin is low.
-* When clkPin is high, if dtPin goes from low to high, the count decreases, otherwise the count increases.
-* swPin will output low when the shaft is pressed.
+* Leer el valor de dtPin cuando clkPin está bajo.
+* Cuando clkPin está alto, si dtPin pasa de bajo a alto, la cuenta disminuye, de lo contrario, la cuenta aumenta.
+* swPin emitirá bajo cuando se presione el eje.
 
-From this, the program flow is shown below:
-
+A partir de esto, el flujo del programa se muestra a continuación:
 
 .. image:: ../img/2.1.6_flow.png
    :align: center
 
-**Phenomenon Picture**
--------------------------
+**Imagen del Fenómeno**
+---------------------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG
    :align: center

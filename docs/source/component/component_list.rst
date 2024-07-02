@@ -1,29 +1,27 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Learn about the Components in Your Kit
+Conoce los componentes de tu kit
 ================================================
 
-After opening the package, please check whether the quantity of components is compliance with product description and whether all components are in good condition.
+Después de abrir el paquete, verifica si la cantidad de componentes cumple con la descripción del producto y si todos los componentes están en buen estado.
 
-* :download:`Components List <https://github.com/sunfounder/sf-pdf/raw/master/components_list/a0000672-raphael-kit.pdf>`
+* :download:`Lista de componentes <https://github.com/sunfounder/sf-pdf/raw/master/components_list/a0000672-raphael-kit.pdf>`
 
+A continuación, se presenta una introducción a cada componente, que contiene el principio de funcionamiento del componente y los proyectos correspondientes.
 
-Below is the introduction to each component, which contains the operating principle of the component and the corresponding projects.
-
-
-**Basic**
+**Básico**
 
 .. toctree::
     :maxdepth: 1
@@ -45,9 +43,7 @@ Below is the introduction to each component, which contains the operating princi
     component_l293d
     component_adc0834
 
-
-
-**Display**
+**Pantalla**
 
 .. toctree::
     :maxdepth: 1
@@ -60,8 +56,7 @@ Below is the introduction to each component, which contains the operating princi
     component_dot_matrix
     component_i2c_lcd
 
-
-**Sound**
+**Sonido**
 
 .. toctree::
     :maxdepth: 1
@@ -69,7 +64,7 @@ Below is the introduction to each component, which contains the operating princi
     component_buzzer
     component_audio_speaker
 
-**Driver**
+**Controlador**
 
 .. toctree::
     :maxdepth: 1
@@ -78,9 +73,8 @@ Below is the introduction to each component, which contains the operating princi
     component_servo
     component_power_module
     component_relay
-    
 
-**Controller**
+**Control**
 
 .. toctree::
     :maxdepth: 1

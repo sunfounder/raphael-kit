@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y avances exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _4.1.15_py_pi5:
 
-4.1.10 Alarm Bell
-======================
+4.1.10 Alarma
+=======================
 
-Introduction
------------------
+Introducción
+-------------------
 
-In this project, we will make a manual alarm device. You can replace the
-toggle switch with a thermistor or a photosensitive sensor to make a
-temperature alarm or a light alarm.
+En este proyecto, haremos un dispositivo de alarma manual. Puedes reemplazar 
+el interruptor de palanca con un termistor o un sensor fotosensible para hacer 
+una alarma de temperatura o de luz.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/4.1.15_alarm_bell_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -74,29 +74,29 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
+Diagrama Esquemático
 -------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-============ ======== ======== ===
+============== ====== ======== ===
+Nombre T-Board física WiringPi BCM
+GPIO17         Pin 11   0      17
+GPIO18         Pin 12   1      18
+GPIO27         Pin 13   2      27
+GPIO22         Pin 15   3      22
+============== ====== ======== ===
 
 .. image:: ../python_pi5/img/4.1.15_alarm_bell_schematic.png
     :width: 600
     :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+-------------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: ../python_pi5/img/4.1.15_alarm_bell_circuit.png
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia de directorio.
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta.
 
 .. raw:: html
 
@@ -116,14 +116,14 @@ Experimental Procedures
 
     sudo python3 4.1.15_AlarmBell_zero.py
 
-After the program starts, the toggle switch will be toggled to the
-right, and the buzzer will give out alarm sounds. At the same time, the
-red and green LEDs will flash at a certain frequency.
+Después de que el programa se inicie, el interruptor de palanca se moverá hacia la 
+derecha y el zumbador emitirá sonidos de alarma. Al mismo tiempo, los LED rojo y verde 
+parpadearán a una cierta frecuencia.
 
-**Code**
+**Código**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``.
 
 .. raw:: html
 
@@ -137,17 +137,17 @@ red and green LEDs will flash at a certain frequency.
     import time
     import threading
 
-    # Initialize TonalBuzzer on GPIO pin 22
+    # Inicializar TonalBuzzer en el pin GPIO 22
     BeepPin = TonalBuzzer(22)
 
-    # Initialize LEDs on GPIO pins 17 and 27
+    # Inicializar LEDs en los pines GPIO 17 y 27
     ALedPin = LED(17)
     BLedPin = LED(27)
 
-    # Initialize Button on GPIO pin 18
+    # Inicializar Botón en el pin GPIO 18
     switchPin = Button(18)
 
-    # Global flag to control the buzzer and LED states
+    # Bandera global para controlar los estados del zumbador y los LEDs
     flag = 0
 
     def ledWork():
@@ -157,7 +157,7 @@ red and green LEDs will flash at a certain frequency.
         """
         while True:
             if flag:
-                # Alternate blinking of LEDs
+                # Parpadeo alternado de los LEDs
                 ALedPin.on()
                 time.sleep(0.5)
                 ALedPin.off()
@@ -165,11 +165,11 @@ red and green LEDs will flash at a certain frequency.
                 time.sleep(0.5)
                 BLedPin.off()
             else:
-                # Turn off both LEDs if flag is not set
+                # Apaga ambos LEDs si la bandera no está activada
                 ALedPin.off()
                 BLedPin.off()
 
-    # Define the musical tune as a list of notes and their durations
+    # Definir la melodía musical como una lista de notas y sus duraciones
     tune = [
         ('C4', 0.1), ('E4', 0.1), ('G4', 0.1), 
         (None, 0.1), 
@@ -190,10 +190,10 @@ red and green LEDs will flash at a certain frequency.
             for note, duration in tune:
                 if flag == 0:
                     break
-                print(note)  # Output the current note to the console
-                BeepPin.play(note)  # Play the current note
-                time.sleep(duration)  # Pause for the duration of the note
-            BeepPin.stop()  # Stop the buzzer after playing the tune
+                print(note)  # Muestra la nota actual en la consola
+                BeepPin.play(note)  # Reproduce la nota actual
+                time.sleep(duration)  # Pausa por la duración de la nota
+            BeepPin.stop()  # Detiene el zumbador después de reproducir la melodía
 
     def main():
         """
@@ -205,7 +205,7 @@ red and green LEDs will flash at a certain frequency.
             flag = 1 if switchPin.is_pressed else 0
 
     try:
-        # Initialize and start threads for buzzer and LED control
+        # Inicializa y arranca los hilos para el control del zumbador y los LEDs
         tBuzz = threading.Thread(target=buzzerWork)
         tBuzz.start()
         tLed = threading.Thread(target=ledWork)
@@ -213,15 +213,15 @@ red and green LEDs will flash at a certain frequency.
         main()
 
     except KeyboardInterrupt:
-        # Stop the buzzer and turn off LEDs on program interruption
+        # Detiene el zumbador y apaga los LEDs al interrumpir el programa
         BeepPin.stop()
         ALedPin.off()    
         BLedPin.off()
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This segment includes the import of essential libraries for implementing delays and threading. It also imports the LED, Button, and TonalBuzzer classes from the gpiozero library, crucial for controlling GPIO devices on a Raspberry Pi.
+#. Este segmento incluye la importación de bibliotecas esenciales para implementar retrasos y subprocesos. También importa las clases LED, Button y TonalBuzzer de la biblioteca gpiozero, cruciales para controlar dispositivos GPIO en una Raspberry Pi.
 
    .. code-block:: python
 
@@ -231,24 +231,24 @@ red and green LEDs will flash at a certain frequency.
        import time
        import threading
 
-#. Sets up a buzzer on GPIO pin 22, two LEDs on GPIO pins 17 and 27, and initializes a button on GPIO pin 18. A global flag is also defined to manage the state of the buzzer and LEDs.
+#. Configura un zumbador en el pin GPIO 22, dos LEDs en los pines GPIO 17 y 27, y un botón en el pin GPIO 18. También se define una bandera global para gestionar el estado del zumbador y los LEDs.
 
    .. code-block:: python
 
-       # Initialize TonalBuzzer on GPIO pin 22
+       # Inicializar TonalBuzzer en el pin GPIO 22
        BeepPin = TonalBuzzer(22)
 
-       # Initialize LEDs on GPIO pins 17 and 27
+       # Inicializar LEDs en los pines GPIO 17 y 27
        ALedPin = LED(17)
        BLedPin = LED(27)
 
-       # Initialize Button on GPIO pin 18
+       # Inicializar Botón en el pin GPIO 18
        switchPin = Button(18)
 
-       # Global flag to control the buzzer and LED states
+       # Bandera global para controlar los estados del zumbador y los LEDs
        flag = 0
 
-#. This function controls the blinking of the LEDs based on the flag's state. If the flag is set (1), it alternates between turning on and off each LED. If not set (0), both LEDs are turned off.
+#. Esta función controla el parpadeo de los LEDs según el estado de la bandera. Si la bandera está activada (1), alterna entre encender y apagar cada LED. Si no está activada (0), ambos LEDs se apagan.
 
    .. code-block:: python
 
@@ -259,7 +259,7 @@ red and green LEDs will flash at a certain frequency.
            """
            while True:
                if flag:
-                   # Alternate blinking of LEDs
+                   # Parpadeo alternado de los LEDs
                    ALedPin.on()
                    time.sleep(0.5)
                    ALedPin.off()
@@ -267,15 +267,15 @@ red and green LEDs will flash at a certain frequency.
                    time.sleep(0.5)
                    BLedPin.off()
                else:
-                   # Turn off both LEDs if flag is not set
+                   # Apaga ambos LEDs si la bandera no está activada
                    ALedPin.off()
                    BLedPin.off()
 
-#. The tune is defined as a sequence of notes (frequency) and durations (seconds).
+#. La melodía se define como una secuencia de notas (frecuencia) y duraciones (segundos).
 
    .. code-block:: python
 
-       # Define the musical tune as a list of notes and their durations
+       # Definir la melodía musical como una lista de notas y sus duraciones
        tune = [
            ('C4', 0.1), ('E4', 0.1), ('G4', 0.1), 
            (None, 0.1), 
@@ -287,7 +287,7 @@ red and green LEDs will flash at a certain frequency.
            (None, 0.1)
        ]
 
-#. Plays a predefined tune when the flag is set. The tune stops if the flag is unset during its play.
+#. Reproduce una melodía predefinida cuando la bandera está activada. La melodía se detiene si la bandera se desactiva durante su reproducción.
 
    .. code-block:: python
 
@@ -300,12 +300,12 @@ red and green LEDs will flash at a certain frequency.
                for note, duration in tune:
                    if flag == 0:
                        break
-                   print(note)  # Output the current note to the console
-                   BeepPin.play(note)  # Play the current note
-                   time.sleep(duration)  # Pause for the duration of the note
-               BeepPin.stop()  # Stop the buzzer after playing the tune
+                   print(note)  # Muestra la nota actual en la consola
+                   BeepPin.play(note)  # Reproduce la nota actual
+                   time.sleep(duration)  # Pausa por la duración de la nota
+               BeepPin.stop()  # Detiene el zumbador después de reproducir la melodía
 
-#. Continuously checks the state of the button to set or unset the flag.
+#. Verifica continuamente el estado del botón para activar o desactivar la bandera.
 
    .. code-block:: python
 
@@ -318,24 +318,24 @@ red and green LEDs will flash at a certain frequency.
            while True:
                flag = 1 if switchPin.is_pressed else 0
 
-#. Threads for ``buzzerWork`` and ``ledWork`` are started, allowing them to run concurrently with the main function.
+#. Se inician los hilos para ``buzzerWork`` y ``ledWork``, permitiendo que se ejecuten simultáneamente con la función principal.
 
    .. code-block:: python
 
        try:
-           # Initialize and start threads for buzzer and LED control
+           # Inicializa y arranca los hilos para el control del zumbador y los LEDs
            tBuzz = threading.Thread(target=buzzerWork)
            tBuzz.start()
            tLed = threading.Thread(target=ledWork)
            tLed.start()
            main()
 
-#. Stops the buzzer and turns off LEDs when the program is interrupted, ensuring a clean exit.
+#. Detiene el zumbador y apaga los LEDs cuando se interrumpe el programa, asegurando una salida limpia.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Stop the buzzer and turn off LEDs on program interruption
+           # Detiene el zumbador y apaga los LEDs al interrumpir el programa
            BeepPin.stop()
            ALedPin.off()    
            BLedPin.off()

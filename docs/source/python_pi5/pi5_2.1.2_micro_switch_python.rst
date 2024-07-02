@@ -1,57 +1,57 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _2.1.2_py_pi5:
 
-2.1.2 Micro Switch
-======================
+2.1.2 Microinterruptor
+==========================
 
-Introduction
---------------------
+Introducción
+------------------------
 
-In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+En este proyecto, aprenderemos cómo usar un microinterruptor. Un microinterruptor es un pequeño interruptor muy sensible que requiere una compresión mínima para activarse. Debido a que son fiables y sensibles, los microinterruptores se utilizan a menudo como dispositivos de seguridad. 
 
-They are used to prevent doors from closing if something or someone is in the way and other applications similar.
+Se utilizan para evitar que las puertas se cierren si algo o alguien está en el camino y en otras aplicaciones similares.
 
-Required Components
-------------------------------
+Componentes Necesarios
+---------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/2.1.2_micro_switch_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN AL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,27 +68,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+--------------------------
 
-Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-move arm of the Micro Switch, you can see the two LEDs light up alternately.
+Conecta el pin izquierdo del microinterruptor a GPIO17, y dos LEDs a los 
+pines GPIO22 y GPIO27 respectivamente. Luego, cuando presionas y sueltas 
+el brazo móvil del microinterruptor, puedes ver los dos LEDs encenderse alternativamente.
 
 .. image:: ../python_pi5/img/2.1.2_micro_switch_schematic_1.png
-
 
 .. image:: ../python_pi5/img/2.1.2_micro_switch_schematic_2.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: ../python_pi5/img/2.1.2_micro_switch_circuit.png
 
-**Step 2**: Get into the folder of the code.
+**Paso 2**: Accede a la carpeta del código.
 
 .. raw:: html
 
@@ -98,7 +97,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run.
+**Paso 3**: Ejecuta.
 
 .. raw:: html
 
@@ -108,14 +107,13 @@ Experimental Procedures
 
     sudo python3 2.1.2_MicroSwitch_zero.py
 
-While the code is running, press the moving arm, then the yellow LED lights up; release the moving arm, the red LED turns on.
+Mientras el código se está ejecutando, presiona el brazo móvil, entonces el LED amarillo se enciende; suelta el brazo móvil, el LED rojo se enciende.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -124,18 +122,18 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
 .. code-block:: python
 
    #!/usr/bin/env python3
-   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
-   from time import sleep  # Import sleep function for delays
+   from gpiozero import LED, Button  # Importar clases LED y Button de gpiozero
+   from time import sleep  # Importar función sleep para retrasos
 
-   # Initialize micro switch on GPIO pin 17 with the pull-up resistor disabled
+   # Inicializar el microinterruptor en el pin GPIO 17 sin activar el resistor pull-up
    micro_switch = Button(17, pull_up=False)
-   # Initialize LED1 connected to GPIO pin 22
+   # Inicializar LED1 conectado al pin GPIO 22
    led1 = LED(22)
-   # Initialize LED2 connected to GPIO pin 27
+   # Inicializar LED2 conectado al pin GPIO 27
    led2 = LED(27)
 
    try:
-       # Continuously check the state of the micro switch and control LEDs accordingly
+       # Comprobar continuamente el estado del microinterruptor y controlar los LEDs en consecuencia
        while True:
            if micro_switch.is_pressed:  # If the micro switch is pressed
                print('LED1 ON')  # Print a message to the console
@@ -146,40 +144,40 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
                led1.off()      # Turn off LED1
                led2.on()       # Turn on LED2
 
-           sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
+           sleep(0.5)  # Pausar 0.5 segundos antes de comprobar el interruptor nuevamente
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
+       # Manejar KeyboardInterrupt (Ctrl+C) para salir del bucle de forma segura
        pass
-	
 
-**Code Explanation**
 
-#. This line sets the script to run with Python 3. It imports ``LED`` and ``Button`` from ``gpiozero`` for controlling GPIO devices, and ``sleep`` from ``time`` for delays.
+**Explicación del Código**
+
+#. Esta línea configura el script para ejecutarse con Python 3. Importa ``LED`` y ``Button`` de ``gpiozero`` para controlar dispositivos GPIO, y ``sleep`` de ``time`` para retrasos.
 
    .. code-block:: python
 
        #!/usr/bin/env python3
-       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
-       from time import sleep  # Import sleep function for delays
+       from gpiozero import LED, Button  # Importar las clases LED y Button de gpiozero
+       from time import sleep  # Importar la función sleep para retrasos
 
-#. Initializes a micro switch connected to GPIO pin 17 with the pull-up resistor disabled, and two LEDs connected to GPIO pins 22 and 27.
+#. Inicializa un microinterruptor conectado al pin GPIO 17 con la resistencia pull-up deshabilitada, y dos LEDs conectados a los pines GPIO 22 y 27.
 
    .. code-block:: python
 
-       # Initialize micro switch on GPIO pin 17 with the pull-up resistor disabled
+       # Inicializar el microinterruptor en el pin GPIO 17 sin activar la resistencia pull-up
        micro_switch = Button(17, pull_up=False)
-       # Initialize LED1 connected to GPIO pin 22
+       # Inicializar LED1 conectado al pin GPIO 22
        led1 = LED(22)
-       # Initialize LED2 connected to GPIO pin 27
+       # Inicializar LED2 conectado al pin GPIO 27
        led2 = LED(27)
 
-#. In the main loop, it checks the state of the micro switch. If pressed, LED1 turns on and LED2 off. If not pressed, LED1 turns off and LED2 on. The loop repeats every 0.5 seconds. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination.
+#. En el bucle principal, se verifica el estado del microinterruptor. Si está presionado, el LED1 se enciende y el LED2 se apaga. Si no está presionado, el LED1 se apaga y el LED2 se enciende. El bucle se repite cada 0.5 segundos. Captura un KeyboardInterrupt (como Ctrl+C) para permitir la terminación segura del script.
 
    .. code-block:: python
 
        try:
-           # Continuously check the state of the micro switch and control LEDs accordingly
+           # Comprobar continuamente el estado del microinterruptor y controlar los LEDs en consecuencia
            while True:
                if micro_switch.is_pressed:  # If the micro switch is pressed
                    print('LED1 ON')  # Print a message to the console
@@ -190,8 +188,8 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
                    led1.off()      # Turn off LED1
                    led2.on()       # Turn on LED2
 
-               sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
+               sleep(0.5)  # Pausar por 0.5 segundos antes de verificar el interruptor nuevamente
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
+           # Manejar KeyboardInterrupt (Ctrl+C) para salir del bucle de forma segura
            pass

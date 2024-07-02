@@ -1,57 +1,56 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por Qué Unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _2.2.8_py_pi5:
 
-2.2.7 Ultrasonic Sensor Module
-==============================
+2.2.7 Módulo de Sensor Ultrasónico
+=======================================
 
-Introduction
---------------
+Introducción
+-------------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+El sensor ultrasónico utiliza ultrasonidos para detectar objetos con precisión y medir distancias. 
+Envía ondas ultrasónicas y las convierte en señales electrónicas.
 
-Required Components
-------------------------------
+Componentes Necesarios
+----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/2.2.8_ultrasonic_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,20 +61,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_ultrasonic_sensor`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+-----------------------
 
 .. image:: ../python_pi5/img/2.2.8_ultrasonic_schematic.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+------------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../python_pi5/img/2.2.8_ultrasonic_circuit.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ir a la carpeta del código.
 
 .. raw:: html
 
@@ -85,7 +84,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run the executable file.
+**Paso 3:** Ejecutar el archivo ejecutable.
 
 .. raw:: html
 
@@ -95,16 +94,15 @@ Experimental Procedures
 
     sudo python3 2.2.8_Ultrasonic_zero.py
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Cuando el código se ejecute, el módulo del sensor ultrasónico detectará la distancia 
+entre el obstáculo delante y el propio módulo, luego el valor de la distancia se imprimirá 
+en la pantalla.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -116,25 +114,25 @@ value will be printed on the screen.
    from gpiozero import DistanceSensor
    from time import sleep
 
-   # Initialize the DistanceSensor using GPIO Zero library
-   # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
+   # Inicializar el DistanceSensor usando la biblioteca GPIO Zero
+   # El pin de disparo está conectado a GPIO 23, el pin de eco a GPIO 24
    sensor = DistanceSensor(echo=24, trigger=23)
 
    try:
-       # Main loop to continuously measure and report distance
+       # Bucle principal para medir y reportar continuamente la distancia
        while True:
            dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
            print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
            sleep(0.3)  # Wait for 0.3 seconds before the next measurement
 
    except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
+       # Manejar KeyboardInterrupt (Ctrl+C) para salir del bucle de manera ordenada
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. Imports the ``DistanceSensor`` class from the ``gpiozero`` library for distance measurement, and the ``sleep`` function from the ``time`` module for delays.
+#. Importa la clase ``DistanceSensor`` de la biblioteca ``gpiozero`` para la medición de distancias, y la función ``sleep`` del módulo ``time`` para los retrasos.
 
    .. code-block:: python
 
@@ -142,26 +140,26 @@ value will be printed on the screen.
        from gpiozero import DistanceSensor
        from time import sleep
 
-#. Initializes the ultrasonic distance sensor with the Echo pin connected to GPIO 24 and the Trigger pin to GPIO 23.
+#. Inicializa el sensor de distancia ultrasónico con el pin Echo conectado a GPIO 24 y el pin Trigger a GPIO 23.
 
    .. code-block:: python
 
-       # Initialize the DistanceSensor using GPIO Zero library
-       # Trigger pin is connected to GPIO 23, Echo pin to GPIO 24
+       # Inicializar el DistanceSensor usando la biblioteca GPIO Zero
+       # El pin de disparo está conectado a GPIO 23, el pin de eco a GPIO 24
        sensor = DistanceSensor(echo=24, trigger=23)
 
-#. The main loop continuously measures the distance, converts it from meters to centimeters, and prints it with two decimal precision. Then wait 0.3 seconds and re-measure the distance. Catches a KeyboardInterrupt (like Ctrl+C) to allow for a graceful exit from the script.
+#. El bucle principal mide continuamente la distancia, la convierte de metros a centímetros y la imprime con precisión de dos decimales. Luego espera 0.3 segundos y vuelve a medir la distancia. Captura una KeyboardInterrupt (como Ctrl+C) para permitir una salida ordenada del script.
 
    .. code-block:: python
 
        try:
-           # Main loop to continuously measure and report distance
+           # Bucle principal para medir y reportar continuamente la distancia
            while True:
                dis = sensor.distance * 100  # Measure distance and convert from meters to centimeters
                print('Distance: {:.2f} cm'.format(dis))  # Print the distance with two decimal precision
                sleep(0.3)  # Wait for 0.3 seconds before the next measurement
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt (Ctrl+C) to gracefully exit the loop
+           # Manejar KeyboardInterrupt (Ctrl+C) para salir del bucle de manera ordenada
            pass
 

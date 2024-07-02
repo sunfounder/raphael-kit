@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.16_scratch:
 
-1.16 Fishing Game
-========================
+1.16 Juego de Pesca
+==========================
 
-Today, we will make a fishing game.
+Hoy, haremos un juego de pesca.
 
-Observe the water on the stage area and if you find a fish on the hook, remember to tilt the switch to catch it.
+Observa el agua en el área del escenario y si ves un pez en el anzuelo, recuerda inclinar el interruptor para atraparlo.
 
 .. image:: img/1.16_header.png
 
-Required Components
-------------------------------
+Componentes Necesarios
+----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: img/1.16_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,56 +63,54 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch`
         - \-
 
-Build the Circuit
----------------------
+Construir el Circuito
+-------------------------
 
 .. image:: img/1.16_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Cargar el Código y Ver Qué Pasa
+-----------------------------------
 
-Load the code file (``1.16_fishing_game.sb3``) to Scratch 3.
+Carga el archivo de código (``1.16_fishing_game.sb3``) a Scratch 3.
 
-You will see a child is fishing, after a period of time when the water surface movement, you can shake the tilt switch to catch the fish.
-Remember, if you do not keep shaking the switch, the fish will escape.
+Verás a un niño pescando, después de un tiempo cuando el agua se mueva, puedes agitar el interruptor de inclinación para atrapar el pez.
+Recuerda, si no mantienes agitado el interruptor, el pez escapará.
 
-Tips on Sprite
-----------------
+Consejos sobre el Sprite
+---------------------------
 
-Select Sprite1, click **Costumes** in the upper left corner; upload 6 pictures (**fish1** to **fish6**) from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes and rename the sprite to **fish**.
+Selecciona Sprite1, haz clic en **Disfraces** en la esquina superior izquierda; sube 6 imágenes (**fish1** a **fish6**) desde la ruta ``~/raphael-kit/scratch/picture`` a través del botón **Cargar Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite a **fish**.
 
 .. image:: img/1.16_upload_fish.png
 
-
-Tips on Codes
---------------
+Consejos sobre los Códigos
+------------------------------
 
 .. image:: img/1.16_fish2.png
   :width: 400
 
-Set the initial costume of the **fish** sprite to **fish1** and assign the value of **fish_status** to 0 (when **fish_status=0**, it means the fish is not hooked, when **fish_status=1**, it means the fish is hooked).
+Configura el disfraz inicial del sprite **fish** en **fish1** y asigna el valor de **fish_status** a 0 (cuando **fish_status=0**, significa que el pez no está enganchado, cuando **fish_status=1**, significa que el pez está enganchado).
 
 .. image:: img/1.16_fish3.png
   :width: 400
 
-When **fish_status=0**, i.e. the fish is not hooked yet, start the fishing game. Wait for a random time from 0 to 10 seconds, then assign **fish_status** to 1, which means the fish is hooked, and broadcast a message "The fish is biting".
+Cuando **fish_status=0**, es decir, el pez aún no está enganchado, comienza el juego de pesca. Espera un tiempo aleatorio de 0 a 10 segundos, luego asigna **fish_status** a 1, lo que significa que el pez está enganchado, y envía un mensaje "El pez está mordiendo".
 
 .. note::
 
-  The purpose of the broadcast block is to send a message to other code blocks or other sprites. The message can be either a request or a command.
+  El propósito del bloque de transmisión es enviar un mensaje a otros bloques de código u otros sprites. El mensaje puede ser una solicitud o un comando.
 
 .. image:: img/1.16_fish4.png
   :width: 400
 
-When the message "The fish is biting" is received, let the fish sprite switch between the **fish2** and **fish3** costumes so that we can see the fish biting.
+Cuando se recibe el mensaje "El pez está mordiendo", deja que el sprite del pez cambie entre los disfraces **fish2** y **fish3** para que podamos ver al pez morder.
 
 .. image:: img/1.16_fish5.png
   :width: 400
 
-After switching the costume, if the game is not over, it means that the fish is off the hook and gone, so that we will switch the **fish** sprite costume to **fish6** (fish slipped state).
+Después de cambiar el disfraz, si el juego no ha terminado, significa que el pez se soltó y se fue, por lo que cambiaremos el disfraz del sprite **fish** a **fish6** (estado de pez escapado).
 
 .. image:: img/1.16_fish6.png
   :width: 400
 
-When gpio17 is high (the tilt switch is tilted), it means the fishing rod is pulled up. At this time, the value of fish_status is judged. If it is 1, it means that the fishing rod was pulled up when the fish was hooked and switched to fish4 costume (fish was caught). On the contrary, it means that the fishing rod pulled up when the fish is not hooked is switched to the fish5 costume (nothing is caught).
-
+Cuando gpio17 está alto (el interruptor de inclinación está inclinado), significa que la caña de pescar está siendo levantada. En este momento, se juzga el valor de fish_status. Si es 1, significa que la caña de pescar se levantó cuando el pez estaba enganchado y se cambia al disfraz fish4 (pez atrapado). Por el contrario, significa que la caña de pescar se levantó cuando el pez no estaba enganchado y se cambia al disfraz fish5 (nada atrapado).

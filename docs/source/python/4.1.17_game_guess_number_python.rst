@@ -1,64 +1,64 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsualizaciones exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.17_py:
 
-4.1.17 GAME– Guess Number
+4.1.17 JUEGO – Adivina el Número
 ==============================================
 
-Introduction
+Introducción
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+Adivinar Números es un divertido juego de fiesta donde tú y tus amigos toman 
+turnos para ingresar un número (0~99). El rango será más pequeño con la entrada 
+del número hasta que un jugador responda el acertijo correctamente. Entonces el 
+jugador es derrotado y castigado. Por ejemplo, si el número de la suerte es 51, 
+que los jugadores no pueden ver, y el jugador ① ingresa 50, el rango de números 
+cambia a 50~99; si el jugador ② ingresa 70, el rango de números puede ser 50~70; 
+si el jugador ③ ingresa 51, este jugador es el desafortunado. Aquí, usamos un 
+teclado para ingresar números y una pantalla LCD para mostrar los resultados.
 
-Required Components
+
+Componentes necesarios
 ------------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_GAME_Guess_Number.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -74,36 +74,36 @@ You can also buy them separately from the links below.
         - |link_i2clcd1602_buy|
 
 
-Schematic Diagram
------------------------
+Diagrama esquemático
+-------------------------
 
-============ ======== ======== =======
-T-Board Name physical wiringPi BCM
-GPIO18       Pin 12   1        18
-GPIO23       Pin 16   4        23
-GPIO24       Pin 18   5        24
-GPIO25       Pin 22   6        25
-SPIMOSI      Pin 19   12       10
-GPIO22       Pin 15   3        22
-GPIO27       Pin 13   2        27
-GPIO17       Pin 11   0        17
-SDA1         Pin 3    SDA1(8)  SDA1(2)
-SCL1         Pin 5    SCL1(9)  SDA1(3)
-============ ======== ======== =======
+============== ========== ======== =======
+Nombre T-Board Pin físico wiringPi BCM
+GPIO18         Pin 12     1        18
+GPIO23         Pin 16     4        23
+GPIO24         Pin 18     5        24
+GPIO25         Pin 22     6        25
+SPIMOSI        Pin 19     12       10
+GPIO22         Pin 15     3        22
+GPIO27         Pin 13     2        27
+GPIO17         Pin 11     0        17
+SDA1           Pin 3      SDA1(8)  SDA1(2)
+SCL1           Pin 5      SCL1(9)  SDA1(3)
+============== ========== ======== =======
 
 .. image:: ../img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image273.png
 
-**Step 2**: Setup I2C (see :ref:`i2c_config`.)
+**Paso 2**: Configura I2C (ver :ref:`i2c_config`).
 
-**Step 3**: Change directory.
+**Paso 3**: Cambia de directorio.
 
 .. raw:: html
 
@@ -113,7 +113,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 4**: Run.
+**Paso 4**: Ejecuta.
 
 .. raw:: html
 
@@ -123,45 +123,43 @@ Experimental Procedures
 
     sudo python3 4.1.17_GAME_GuessNumber.py
 
-After the program runs, there displays the initial page on the LCD:
+Después de que el programa se ejecute, se muestra la página inicial en la LCD:
 
 .. code-block:: 
 
    Welcome!
-   Press A to go!
+   Press A to go!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+Presiona 'A' y el juego comenzará y la página del juego aparecerá en la LCD.
 
 .. code-block:: 
 
    Enter number:
-   0 ‹point‹ 99
+   0 ‹punto‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Se produce un número aleatorio 'punto' pero no se muestra en la LCD cuando el 
+juego comienza, y lo que necesitas hacer es adivinarlo. El número que has escrito 
+aparece al final de la primera línea hasta que se finaliza el cálculo. (Presiona 
+'D' para iniciar la comparación, y si el número ingresado es mayor que 10, la 
+comparación automática comenzará).
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
-
-.. note::
-
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+El rango de números de 'punto' se muestra en la segunda línea. Y debes escribir el 
+número dentro del rango. Cuando escribes un número, el rango se reduce; si adivinaste 
+el número de la suerte afortunada o desafortunadamente, aparecerá "¡Lo conseguiste!".
 
 
-**Code**
 
-.. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+.. nota::
+
+    * Si obtienes el error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, necesitas consultar :ref:`i2c_config` para habilitar el I2C.
+    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, por favor ejecuta ``sudo pip3 install smbus2``.
+    * Si aparece el error ``OSError: [Errno 121] Remote I/O error``, significa que el módulo está mal conectado o está dañado.
+    * Si el código y las conexiones están bien, pero la LCD aún no muestra contenido, puedes girar el potenciómetro en la parte posterior para aumentar el contraste.
+
+**Código**
+
+.. nota::
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -176,8 +174,8 @@ appear “You've got it!”
    import LCD1602
    import random
 
-   ##################### HERE IS THE KEYPAD LIBRARY TRANSPLANTED FROM Arduino ############
-   #class Key:Define some of the properties of Key
+   ##################### AQUÍ ESTÁ LA LIBRERÍA DE TECLADO TRANSPLANTADA DESDE Arduino ############
+   #class Key: Define algunas propiedades de Key
    class Keypad():
 
       def __init__(self, rowsPins, colsPins, keys):
@@ -200,7 +198,7 @@ appear “You've got it!”
                GPIO.output(row, GPIO.LOW)
          return pressed_keys
 
-   ################ EXAMPLE CODE START HERE ################  
+   ################ EL CÓDIGO DE EJEMPLO EMPIEZA AQUÍ ################  
 
    count = 0
    pointValue = 0
@@ -282,9 +280,9 @@ appear “You've got it!”
          last_key_pressed = pressed_keys
          time.sleep(0.1)
 
-   # Define a destroy function for clean up everything after the script finished
+   # Define una función destroy para limpiar todo después de que el script termine
    def destroy():
-      # Release resource
+      # Liberar recursos
       GPIO.cleanup()
       LCD1602.clear() 
 
@@ -293,16 +291,16 @@ appear “You've got it!”
          setup()
          while True:
                loop()
-      except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+      except KeyboardInterrupt:   # Cuando se presiona 'Ctrl+C', se ejecutará la función destroy().
          destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in :ref:`1.1.7_py` and :ref:`2.1.8_py`.
+En la parte inicial del código se encuentran las funciones funcionales 
+del **teclado** y del **I2C LCD1602**. Puedes aprender más detalles sobre 
+ellas en :ref:`1.1.7_py` y :ref:`2.1.8_py`.
 
-Here, what we need to know is as follows:
+Aquí, lo que necesitamos saber es lo siguiente:
 
 .. code-block:: python
 
@@ -314,8 +312,7 @@ Here, what we need to know is as follows:
         count = 0
         print('point is %d' %(pointValue))
 
-The function produces the random number ‘\ **point**\ ’ and resets the
-range hint of the point.
+La función produce el número aleatorio ‘\ **point**\ ’ y restablece el rango de pistas del punto.
 
 .. code-block:: python
 
@@ -333,80 +330,76 @@ range hint of the point.
         count = 0
         return 0
 
-``detect_point()`` compares the input number (**count**) with the produced
-“\ **point**\ ”. If the comparing outcome is that they are not same,
-**count** will assign values to **upper** and **lower** and return
-‘\ **0**\ ’; otherwise, if the outcome indicates they are same, there
-returns ‘\ **1**\ ’.
+``detect_point()`` compara el número ingresado (**count**) con el número 
+producido “\ **point**\ ”. Si el resultado de la comparación indica que no 
+son iguales, **count** asignará valores a **upper** y **lower** y devolverá 
+‘\ **0**\ ’; de lo contrario, si el resultado indica que son iguales, se devolverá ‘\ **1**\ ’.
 
 .. code-block:: python
 
     def lcd_show_input(result):
-        LCD1602.clear()
+        LCD1602.clear()
         if result == 1:
             LCD1602.write(0,1,'You have got it!')
-            time.sleep(5)
-            init_new_value()
-            lcd_show_input(0)
-            return
+            time.sleep(5)
+            init_new_value()
+            lcd_show_input(0)
+            return
         LCD1602.write(0,0,'Enter number:')
         LCD1602.write(13,0,str(count))
         LCD1602.write(0,1,str(lower))
         LCD1602.write(3,1,' < Point < ')
         LCD1602.write(13,1,str(upper))
 
-This function works for displaying the game page.
+Esta función se utiliza para mostrar la página del juego.
 
-``str(count)``: Because ``write()`` can only support the data type —
-**string**, ``str()`` is needed to convert the **number** into
-**string**.
+``str(count)``: Debido a que ``write()`` solo puede soportar el tipo de 
+dato — **cadena** , se necesita ``str()`` para convertir el **número** en **cadena**.
 
 .. code-block:: python
 
     def loop():
         global keypad, last_key_pressed,count
-        while(True):
+        while(True):
             result = 0
             pressed_keys = keypad.read()
             if len(pressed_keys) != 0 and last_key_pressed != pressed_keys:
                 if pressed_keys == ["A"]:
-                    init_new_value()
-                    lcd_show_input(0)
+                    init_new_value()
+                    lcd_show_input(0)
                 elif pressed_keys == ["D"]:
                     result = detect_point()
-                    lcd_show_input(result)
+                    lcd_show_input(result)
                 elif pressed_keys[0] in keys:
                     if pressed_keys[0] in list(["A","B","C","D","#","*"]):
-                        continue
+                        continue
                     count = count * 10
                     count += int(pressed_keys[0])
                     if count >= 10:
                         result = detect_point()
-                    lcd_show_input(result)
-                print(pressed_keys)
+                    lcd_show_input(result)
+                print(pressed_keys)
             last_key_pressed = pressed_keys
-            time.sleep(0.1)
-   
+            time.sleep(0.1)
 
-``main()`` contains the whole process of the program, as show below:
+``main()`` contiene todo el proceso del programa, como se muestra a continuación:
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+1) Inicializa **I2C LCD1602** y **Keypad**.
 
-2) Judge whether the button is pressed and get the button reading.
+2) Juzga si se ha presionado el botón y obtiene la lectura del botón.
 
-3) If the button ‘\ **A**\ ’ is pressed, a random number **0-99** will
-   appear then the game starts.
+3) Si se presiona el botón ‘\ **A**\ ’, aparecerá un número aleatorio **0-99** y 
+   luego comenzará el juego.
 
-4) If the button ‘\ **D**\ ’ is detected to have been pressed, the
-   program will enter into the outcome judgement.
+4) Si se detecta que el botón ‘\ **D**\ ’ ha sido presionado, el programa entrará 
+   en el juicio del resultado.
 
-5) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+5) Si se presiona el botón **0-9**, el valor de **count** cambiará; si **count** es 
+   mayor que **10**, entonces comenzará el juicio.
 
-6) The changes of the game and its values are displayed on **LCD1602**.
+6) Los cambios del juego y sus valores se muestran en **LCD1602**.
 
-Phenomenon Picture
+Imagen del Fenómeno
 ------------------------
 
 .. image:: ../img/image274.jpeg

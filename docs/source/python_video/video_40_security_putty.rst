@@ -1,35 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 40: Remotely Run Your Security Project Using Putty
+Video 40: Ejecuta tu Proyecto de Seguridad de Forma Remota Usando Putty
 =======================================================================================
 
+Aprende a acceder y controlar tu Raspberry Pi de forma remota usando SSH y Putty, permitiéndote desarrollar proyectos sin estar atado a un entorno de escritorio.
 
-Learn how to remotely access and control your Raspberry Pi using SSH and Putty, enabling the development of projects untethered from a desktop environment.
-
-
-1. **Enabling SSH on Raspberry Pi**: Enable SSH on your Raspberry Pi through raspi-config to allow remote access.
-2. **Finding the Raspberry Pi's IP address**: Learn how to find your Raspberry Pi's IP address using ifconfig and consider assigning a static IP address for consistent remote access.
-3. **Downloading and installing Putty**: Download and install Putty on your PC to establish SSH connections to your Raspberry Pi.
-4. **Connecting to the Raspberry Pi using Putty**: Connect to your Raspberry Pi remotely via SSH using Putty, login with credentials, and run commands remotely.
-5. **Controlling Raspberry Pi remotely**: Remotely run and interact with programs on your Raspberry Pi through Putty, demonstrating the practicality of remote access for project deployment.
-
+1. **Habilitar SSH en Raspberry Pi**: Activa SSH en tu Raspberry Pi a través de raspi-config para permitir el acceso remoto.
+2. **Encontrar la dirección IP de la Raspberry Pi**: Aprende a encontrar la dirección IP de tu Raspberry Pi usando ifconfig y considera asignar una dirección IP estática para un acceso remoto constante.
+3. **Descargar e instalar Putty**: Descarga e instala Putty en tu PC para establecer conexiones SSH a tu Raspberry Pi.
+4. **Conectar a la Raspberry Pi usando Putty**: Conéctate a tu Raspberry Pi de forma remota a través de SSH usando Putty, inicia sesión con tus credenciales y ejecuta comandos de forma remota.
+5. **Controlar la Raspberry Pi de forma remota**: Ejecuta e interactúa de forma remota con programas en tu Raspberry Pi a través de Putty, demostrando la practicidad del acceso remoto para el despliegue de proyectos.
 
 **Video**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/CMQPxxpxS5U?si=5hkzMaMAPGrRWD6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/CMQPxxpxS5U?si=5hkzMaMAPGrRWD6g" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -1,58 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y avances exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _4.1.10_py_pi5:
 
-4.1.5 Smart Fan
-=========================
+4.1.5 Ventilador Inteligente
+================================
 
-Introduction
------------------
+Introducción
+-------------------
 
-In this project, we will use motors, buttons and thermistors to make a
-manual + automatic smart fan whose wind speed is adjustable.
+En este proyecto, utilizaremos motores, botones y termistores para crear un 
+ventilador inteligente manual y automático cuya velocidad del viento es ajustable.
 
-Required Components
-------------------------------
+Componentes Necesarios
+---------------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -76,39 +76,39 @@ You can also buy them separately from the links below.
         - |link_motor_buy|
 
 
-Schematic Diagram
-------------------------
+Diagrama Esquemático
+----------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-GPIO27       Pin 13   2        27
-GPIO22       Pin 15   3        22
-GPIO5        Pin 29   21       5
-GPIO6        Pin 31   22       6
-GPIO13       Pin 33   23       13
-============ ======== ======== ===
+============== ====== ======== ===
+Nombre T-Board física WiringPi BCM
+GPIO17         Pin 11 0        17
+GPIO18         Pin 12 1        18
+GPIO27         Pin 13 2        27
+GPIO22         Pin 15 3        22
+GPIO5          Pin 29 21       5
+GPIO6          Pin 31 22       6
+GPIO13         Pin 33 23       13
+============== ====== ======== ===
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_schematic.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+-------------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_circuit.png
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    El módulo de alimentación puede usar una batería de 9V con el conector de 
+    batería de 9V incluido en el kit. Inserta el puente del módulo de alimentación 
+    en las tiras de bus de 5V de la placa de pruebas.
 
 .. image:: ../python_pi5/img/4.1.10_smart_fan_battery.jpeg
    :align: center
 
-**Step 2**: Get into the folder of the code.
+**Paso 2**: Accede a la carpeta del código.
 
 .. raw:: html
 
@@ -118,7 +118,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run.
+**Paso 3**: Ejecuta.
 
 .. raw:: html
 
@@ -128,19 +128,20 @@ Experimental Procedures
 
     sudo python3 4.1.10_SmartFan_zero.py
 
-As the code runs, start the fan by pressing the button. Every time you
-press, 1 speed grade is adjusted up or down. There are **5** kinds of
-speed grades: **0~4**. When set to the 4\ :sup:`th` speed grade and you
-press the button, the fan stops working with a **0** wind speed.
+Cuando el código se ejecuta, inicia el ventilador presionando el botón. 
+Cada vez que presionas, se ajusta una velocidad hacia arriba o hacia abajo. 
+Hay **5** niveles de velocidad: **0~4**. Cuando se establece en el nivel 
+4\ :sup:`to` y presionas el botón, el ventilador deja de funcionar con una 
+velocidad de viento de **0**.
 
-Once the temperature goes up or down for more than 2℃, the speed
-automatically gets 1-grade faster or slower.
+Una vez que la temperatura sube o baja más de 2℃, la velocidad automáticamente 
+aumenta o disminuye en 1 nivel.
 
-Code
+Código
 --------
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -155,14 +156,14 @@ Code
    import ADC0834
    import math
 
-   # Initialize GPIO pins for the button and motor control
+   # Inicializar pines GPIO para el botón y control del motor
    BtnPin = Button(22)
    motor = Motor(forward=5, backward=6, enable=13)
 
-   # Initialize the ADC0834 module for temperature sensing
+   # Inicializar el módulo ADC0834 para la detección de temperatura
    ADC0834.setup()
 
-   # Initialize variables to track the motor speed level and temperatures
+   # Inicializar variables para rastrear el nivel de velocidad del motor y las temperaturas
    level = 0
    currentTemp = 0
    markTemp = 0
@@ -173,12 +174,12 @@ Code
        Returns:
            float: The current temperature in Celsius.
        """
-       # Read analog value from the ADC0834 module
+       # Leer valor analógico del módulo ADC0834
        analogVal = ADC0834.getResult()
-       # Convert analog value to voltage and then to resistance
+       # Convertir valor analógico a voltaje y luego a resistencia
        Vr = 5 * float(analogVal) / 255
        Rt = 10000 * Vr / (5 - Vr)
-       # Calculate temperature in Celsius
+       # Calcular temperatura en Celsius
        temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
        Cel = temp - 273.15
        return Cel
@@ -191,14 +192,14 @@ Code
        Returns:
            int: Adjusted motor speed level.
        """
-       # Stop the motor if the level is 0
+       # Detener el motor si el nivel es 0
        if level == 0:
            motor.stop()
            return 0
-       # Cap the level at 4 for maximum speed
+       # Limitar el nivel a 4 para velocidad máxima
        if level >= 4:
            level = 4
-       # Set the motor speed
+       # Configurar la velocidad del motor
        motor.forward(speed=float(level / 4))
        return level
 
@@ -210,10 +211,10 @@ Code
        print("Button pressed")
        # Cycle through levels 0-4
        level = (level + 1) % 5
-       # Update the reference temperature
+       # Actualizar la temperatura de referencia
        markTemp = currentTemp
 
-   # Bind the button press event to changeLevel function
+   # Vincular el evento de presionar el botón a la función changeLevel
    BtnPin.when_pressed = changeLevel
 
    def main():
@@ -221,12 +222,12 @@ Code
        Main function to continuously monitor and respond to temperature changes.
        """
        global level, currentTemp, markTemp
-       # Set initial reference temperature
+       # Establecer la temperatura de referencia inicial
        markTemp = temperature()
        while True:
-           # Continuously read current temperature
+           # Leer continuamente la temperatura actual
            currentTemp = temperature()
-           # Adjust motor level based on temperature difference
+           # Ajustar el nivel del motor según la diferencia de temperatura
            if level != 0:
                if currentTemp - markTemp <= -2:
                    level -= 1
@@ -235,22 +236,22 @@ Code
                    if level < 4:
                        level += 1
                    markTemp = currentTemp
-           # Run the motor at the adjusted level
+           # Ejecutar el motor al nivel ajustado
            level = motor_run(level)
 
-   # Run the main function and handle KeyboardInterrupt
+   # Ejecutar la función principal y manejar KeyboardInterrupt
    try:
        main()
    except KeyboardInterrupt:
-       # Stop the motor when the script is interrupted
+       # Detener el motor cuando se interrumpe el script
        motor.stop()
 
 
 
-Code Explanation
----------------------
+Explicación del Código
+--------------------------
 
-#. Imports classes for managing a motor and a button, and the sleep function for introducing pauses. Additionally, it imports the ADC0834 library for temperature sensing and the math library for mathematical calculations.
+#. Importa clases para gestionar un motor y un botón, y la función sleep para introducir pausas. Además, importa la biblioteca ADC0834 para la detección de temperatura y la biblioteca math para cálculos matemáticos.
 
    .. code-block:: python
 
@@ -261,23 +262,23 @@ Code Explanation
        import ADC0834
        import math
 
-#. Sets up the button on GPIO pin 22 and configures the motor with specific GPIO pins for control. Initializes the ADC0834 module for temperature measurement. Also, initializes variables to monitor the motor speed level and temperatures.
+#. Configura el botón en el pin GPIO 22 y configura el motor con pines GPIO específicos para el control. Inicializa el módulo ADC0834 para la medición de temperatura. También, inicializa variables para monitorear el nivel de velocidad del motor y las temperaturas.
 
    .. code-block:: python
 
-       # Initialize GPIO pins for the button and motor control
+       # Inicializar pines GPIO para el control del botón y el motor
        BtnPin = Button(22)
        motor = Motor(forward=5, backward=6, enable=13)
 
-       # Initialize the ADC0834 module for temperature sensing
+       # Inicializar el módulo ADC0834 para la detección de temperatura
        ADC0834.setup()
 
-       # Initialize variables to track the motor speed level and temperatures
+       # Inicializar variables para rastrear el nivel de velocidad del motor y las temperaturas
        level = 0
        currentTemp = 0
        markTemp = 0
 
-#. Defines a function to read and calculate the temperature from the sensor, converting the readout to Celsius.
+#. Define una función para leer y calcular la temperatura del sensor, convirtiendo la lectura a Celsius.
 
    .. code-block:: python
 
@@ -287,17 +288,17 @@ Code Explanation
            Returns:
                float: The current temperature in Celsius.
            """
-           # Read analog value from the ADC0834 module
+           # Leer valor analógico del módulo ADC0834
            analogVal = ADC0834.getResult()
-           # Convert analog value to voltage and then to resistance
+           # Convertir valor analógico a voltaje y luego a resistencia
            Vr = 5 * float(analogVal) / 255
            Rt = 10000 * Vr / (5 - Vr)
-           # Calculate temperature in Celsius
+           # Calcular temperatura en Celsius
            temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
            Cel = temp - 273.15
            return Cel
 
-#. Introduces a function to adjust the motor speed according to the specified level.
+#. Introduce una función para ajustar la velocidad del motor según el nivel especificado.
 
    .. code-block:: python
 
@@ -309,18 +310,18 @@ Code Explanation
            Returns:
                int: Adjusted motor speed level.
            """
-           # Stop the motor if the level is 0
+           # Detener el motor si el nivel es 0
            if level == 0:
                motor.stop()
                return 0
-           # Cap the level at 4 for maximum speed
+           # Limitar el nivel a 4 para velocidad máxima
            if level >= 4:
                level = 4
-           # Set the motor speed
+           # Configurar la velocidad del motor
            motor.forward(speed=float(level / 4))
            return level
 
-#. Implements a function to change the motor speed level manually using a button, and binds this function to the button's press event.
+#. Implementa una función para cambiar manualmente el nivel de velocidad del motor utilizando un botón, y vincula esta función al evento de presionar el botón.
 
    .. code-block:: python
 
@@ -330,15 +331,15 @@ Code Explanation
            """
            global level, currentTemp, markTemp
            print("Button pressed")
-           # Cycle through levels 0-4
+           # Ciclar a través de los niveles 0-4
            level = (level + 1) % 5
-           # Update the reference temperature
+           # Actualizar la temperatura de referencia
            markTemp = currentTemp
 
-       # Bind the button press event to changeLevel function
+       # Vincular el evento de presionar el botón a la función changeLevel
        BtnPin.when_pressed = changeLevel
 
-#. The main function, designed to continually adjust the motor speed in response to temperature fluctuations, remains to be implemented.
+#. La función principal, diseñada para ajustar continuamente la velocidad del motor en respuesta a las fluctuaciones de temperatura, aún debe ser implementada.
 
    .. code-block:: python
 
@@ -347,12 +348,12 @@ Code Explanation
            Main function to continuously monitor and respond to temperature changes.
            """
            global level, currentTemp, markTemp
-           # Set initial reference temperature
+           # Establecer la temperatura de referencia inicial
            markTemp = temperature()
            while True:
-               # Continuously read current temperature
+               # Leer continuamente la temperatura actual
                currentTemp = temperature()
-               # Adjust motor level based on temperature difference
+               # Ajustar el nivel del motor según la diferencia de temperatura
                if level != 0:
                    if currentTemp - markTemp <= -2:
                        level -= 1
@@ -361,18 +362,18 @@ Code Explanation
                        if level < 4:
                            level += 1
                        markTemp = currentTemp
-               # Run the motor at the adjusted level
+               # Ejecutar el motor al nivel ajustado
                level = motor_run(level)
 
-#. Runs the main function and ensures the motor stops if the script is interrupted.
+#. Ejecuta la función principal y asegura que el motor se detenga si el script es interrumpido.
 
    .. code-block:: python
 
-       # Run the main function and handle KeyboardInterrupt
+       # Ejecutar la función principal y manejar KeyboardInterrupt
        try:
            main()
        except KeyboardInterrupt:
-           # Stop the motor when the script is interrupted
+           # Detener el motor cuando se interrumpe el script
            motor.stop()
 
 

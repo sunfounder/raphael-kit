@@ -1,41 +1,37 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 46: Using the Raspberry Pi Camera in Bullseye with OpenCV
+Video 46: Usando la cámara Raspberry Pi en Bullseye con OpenCV
 =======================================================================================
 
+Este tutorial te guía en la configuración y uso del Módulo de Cámara de Raspberry Pi, cubriendo los pasos esenciales desde el manejo del módulo hasta la escritura de código en Python para la interacción con la cámara. Aprende a configurar la cámara para varios propósitos, mostrar video en vivo usando OpenCV e implementar mecanismos de salida limpia.
 
-This tutorial guides you through setting up and using the Raspberry Pi Camera Module, 
-covering essential steps from handling the module to writing Python code for camera interaction. 
-Learn how to configure the camera for various purposes, display live video using OpenCV, and implement clean exit mechanisms.
-
-1. Handle the camera module with care to prevent electrostatic damage.
-2. Properly connect the camera module to the Raspberry Pi's CSI connector, ensuring correct orientation of the ribbon cable.
-3. Exercise caution when lifting the black plastic piece on the CSI connector to avoid damage.
-4. Boot up the Raspberry Pi without power connected after attaching the camera module.
-5. Understand the transition to the Bullseye 64-bit operating system for compatibility with new features.
-6. Set up camera preview configuration.
-7. Configure the camera for different purposes (preview, video recording, still images).
-8. Start and display the camera preview using OpenCV.
-9. Understand images as arrays of pixel values and use OpenCV for image processing.
-10. Implement a clean exit mechanism with keyboard input.
-11. Explore the potential for advanced image processing between frame grabbing and display.
-
+1. Maneja el módulo de la cámara con cuidado para evitar daños electrostáticos.
+2. Conecta correctamente el módulo de la cámara al conector CSI de la Raspberry Pi, asegurando la orientación correcta del cable de cinta.
+3. Ten precaución al levantar la pieza de plástico negro en el conector CSI para evitar daños.
+4. Enciende la Raspberry Pi sin conectar la energía después de conectar el módulo de la cámara.
+5. Comprende la transición al sistema operativo Bullseye de 64 bits para la compatibilidad con nuevas funciones.
+6. Configura la vista previa de la cámara.
+7. Configura la cámara para diferentes propósitos (vista previa, grabación de video, imágenes fijas).
+8. Inicia y muestra la vista previa de la cámara usando OpenCV.
+9. Comprende las imágenes como matrices de valores de píxeles y usa OpenCV para el procesamiento de imágenes.
+10. Implementa un mecanismo de salida limpia con la entrada del teclado.
+11. Explora el potencial para el procesamiento avanzado de imágenes entre la captura de cuadros y la visualización.
 
 **Video**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/kuJpdAf07WQ?si=Txv85bAdLCvTRtlQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/kuJpdAf07WQ?si=Txv85bAdLCvTRtlQ" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 

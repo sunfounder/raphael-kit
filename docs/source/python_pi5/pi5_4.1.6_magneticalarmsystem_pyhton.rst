@@ -1,57 +1,57 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso temprano a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.6_py_pi5:
 
-4.1.1 Magnetic Induction Alarm System
-============================================
+4.1.1 Sistema de Alarma de Inducción Magnética
+==================================================
 
-Introduction
------------------
+Introducción
+----------------
 
-When you get a precious vase, you can make a magnetic induction alarm system for it, no matter who moves it, you can hear the alarm in time.
+Cuando tengas un jarrón precioso, puedes hacer un sistema de alarma de inducción magnética para él. No importa quién lo mueva, podrás escuchar la alarma a tiempo.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_list.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los siguientes enlaces.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,28 +69,28 @@ You can also buy them separately from the links below.
         - |link_reed_switch_buy|
 
 
-Schematic Diagram
------------------------
+Diagrama Esquemático
+----------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO27       Pin 13   2        27
-============ ======== ======== ===
+============== ====== ======== ===
+Nombre T-Board física wiringPi BCM
+GPIO17         Pin 11   0      17
+GPIO27         Pin 13   2      27
+============== ====== ======== ===
 
 .. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_schematic.png
    :align: center
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+------------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construir el circuito.
 
 .. image:: ../python_pi5/img/4.1.6_magneticalarmsystem_circuit.png
   :width: 800
   :align: center
 
-**Step 2:** Get into the folder of the code.
+**Paso 2:** Ir a la carpeta del código.
 
 .. raw:: html
 
@@ -100,7 +100,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Paso 3:** Ejecutar.
 
 .. raw:: html
 
@@ -110,13 +110,13 @@ Experimental Procedures
 
     sudo python3 4.1.6_MagneticAlarmSystem_zero.py
 
-If the reed switch is affected by the magnet (for example, the reed switch is placed on the base and the magnet is placed in the vase), the object is safe. At this time, the reed switch is in the closed state, and the buzzer is silent.
-After removing the magnet (such as the vase being stolen), the reed switch is not affected by the magnetic, the switch opens, and the buzzer sounds an alarm.
+Si el interruptor de láminas está afectado por el imán (por ejemplo, el interruptor de láminas se coloca en la base y el imán se coloca en el jarrón), el objeto está seguro. En este momento, el interruptor de láminas está en estado cerrado y el zumbador está silencioso.
+Después de retirar el imán (como cuando el jarrón es robado), el interruptor de láminas no se ve afectado por el imán, el interruptor se abre y el zumbador suena una alarma.
 
-**Code**
+**Código**
 
-.. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+.. nota::
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -128,33 +128,33 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
    from gpiozero import Buzzer, Button
    import time
 
-   # Initialize the buzzer on GPIO pin 27
+   # Inicializa el zumbador en el pin GPIO 27
    buzzer = Buzzer(27)
-   # Initialize the reed switch on GPIO pin 17 with pull-up resistor enabled
+   # Inicializa el interruptor de láminas en el pin GPIO 17 con la resistencia pull-up habilitada
    reed_switch = Button(17, pull_up=True)
 
    try:
        while True:
-           # Check if the reed switch is pressed
+           # Verifica si el interruptor de láminas está presionado
            if reed_switch.is_pressed:
-               # Turn off the buzzer if reed switch is pressed
+               # Apaga el zumbador si el interruptor de láminas está presionado
                buzzer.off()
            else:
-               # If reed switch is not pressed, beep the buzzer
+               # Si el interruptor de láminas no está presionado, activa el zumbador
                buzzer.on()
-               time.sleep(0.1)  # Buzzer on for 0.1 seconds
+               time.sleep(0.1)  # Zumbador activado durante 0.1 segundos
                buzzer.off()
-               time.sleep(0.1)  # Buzzer off for 0.1 seconds
+               time.sleep(0.1)  # Zumbador desactivado durante 0.1 segundos
 
    except KeyboardInterrupt:
-       # Turn off the buzzer when the program is interrupted (e.g., keyboard interrupt)
+       # Apaga el zumbador cuando el programa es interrumpido (por ejemplo, con un interruptor de teclado)
        buzzer.off()
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This imports the necessary classes ``Buzzer`` and ``Button`` from the ``gpiozero`` library, and the ``time`` module from Python's standard library.
+#. Esto importa las clases necesarias ``Buzzer`` y ``Button`` de la biblioteca ``gpiozero``, y el módulo ``time`` de la biblioteca estándar de Python.
 
    .. code-block:: python
 
@@ -162,37 +162,37 @@ After removing the magnet (such as the vase being stolen), the reed switch is no
        from gpiozero import Buzzer, Button
        import time
 
-#. The ``Buzzer`` object is linked to GPIO pin 27, and a ``Button`` (acting as a reed switch) is connected to GPIO pin 17 with the ``pull_up=True`` argument, enabling the internal pull-up resistor.
+#. El objeto ``Buzzer`` está vinculado al pin GPIO 27, y un ``Button`` (actuando como interruptor de láminas) está conectado al pin GPIO 17 con el argumento ``pull_up=True``, habilitando la resistencia pull-up interna.
 
    .. code-block:: python
 
-       # Initialize the buzzer on GPIO pin 27
+       # Inicializa el zumbador en el pin GPIO 27
        buzzer = Buzzer(27)
-       # Initialize the reed switch on GPIO pin 17 with pull-up resistor enabled
+       # Inicializa el interruptor de láminas en el pin GPIO 17 con la resistencia pull-up habilitada
        reed_switch = Button(17, pull_up=True)
 
-#. The ``try`` block contains an infinite loop (``while True``) checking the state of the reed switch. If pressed (``is_pressed``), the buzzer is turned off. Otherwise, the buzzer beeps (0.1 seconds on, 0.1 seconds off). 
+#. El bloque ``try`` contiene un bucle infinito (``while True``) que verifica el estado del interruptor de láminas. Si está presionado (``is_pressed``), el zumbador se apaga. De lo contrario, el zumbador suena (0.1 segundos encendido, 0.1 segundos apagado). 
 
    .. code-block:: python
 
        try:
            while True:
-               # Check if the reed switch is pressed
+               # Verifica si el interruptor de láminas está presionado
                if reed_switch.is_pressed:
-                   # Turn off the buzzer if reed switch is pressed
+                   # Apaga el zumbador si el interruptor de láminas está presionado
                    buzzer.off()
                else:
-                   # If reed switch is not pressed, beep the buzzer
+                   # Si el interruptor de láminas no está presionado, activa el zumbador
                    buzzer.on()
-                   time.sleep(0.1)  # Buzzer on for 0.1 seconds
+                   time.sleep(0.1)  # Zumbador activado durante 0.1 segundos
                    buzzer.off()
-                   time.sleep(0.1)  # Buzzer off for 0.1 seconds
+                   time.sleep(0.1)  # Zumbador desactivado durante 0.1 segundos
 
-#. The ``except`` block handles a KeyboardInterrupt (like a Ctrl+C in the terminal) to turn off the buzzer safely.
+#. El bloque ``except`` maneja una interrupción de teclado (como un Ctrl+C en el terminal) para apagar el zumbador de manera segura.
 
    .. code-block:: python
 
        except KeyboardInterrupt:
-           # Turn off the buzzer when the program is interrupted (e.g., keyboard interrupt)
+           # Apaga el zumbador cuando el programa es interrumpido (por ejemplo, con un interruptor de teclado)
            buzzer.off()
            pass

@@ -1,61 +1,60 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _3.1.7_c:
 
-3.1.7 Overheat Monitor
+3.1.7 Monitor de Sobrecalentamiento
 ==================================
 
-Introduction
+Introducción
 -------------------
 
-You may want to make an overheat monitoring device that applies to
-various situations, ex., in the factory, if we want to have an alarm and
-the timely automatic turning off of the machine when there is a circuit
-overheating. In this project, we will use thermistor, joystick, buzzer,
-LED and LCD to make an smart temperature monitoring device whose
-threshold is adjustable.
+Tal vez desees crear un dispositivo de monitoreo de sobrecalentamiento aplicable a diversas 
+situaciones, por ejemplo, en una fábrica, si queremos tener una alarma y el apagado automático 
+de la máquina cuando hay un sobrecalentamiento en el circuito. En este proyecto, utilizaremos 
+un termistor, un joystick, un zumbador, un LED y una pantalla LCD para crear un dispositivo 
+inteligente de monitoreo de temperatura cuyo umbral es ajustable.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_Overheat_Monitor.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -80,32 +79,32 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_buzzer`
         - \-
 
-Schematic Diagram
+Diagrama Esquemático
 --------------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-GPIO27       Pin 13   2        27
-GPIO22       Pin15    3        22
-GPIO23       Pin16    4        23
-GPIO24       Pin18    5        24
-SDA1         Pin 3             
-SCL1         Pin 5             
-============ ======== ======== ===
+============== ========== ======== ===
+Nombre T-Board Pin físico wiringPi BCM
+GPIO17         Pin 11     0        17
+GPIO18         Pin 12     1        18
+GPIO27         Pin 13     2        27
+GPIO22         Pin15      3        22
+GPIO23         Pin16      4        23
+GPIO24         Pin18      5        24
+SDA1           Pin 3             
+SCL1           Pin 5             
+============== ========== ======== ===
 
 .. image:: ../img/Schematic_three_one8.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image258.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -115,7 +114,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.7/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
@@ -125,7 +124,7 @@ Experimental Procedures
 
     gcc 3.1.7_OverheatMonitor.c -lm -lwiringPi
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecuta el archivo compilado.
 
 .. raw:: html
 
@@ -135,24 +134,22 @@ Experimental Procedures
 
     sudo ./a.out
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Cuando el código se ejecuta, la temperatura actual y el umbral de alta temperatura 
+de **40** se muestran en el **I2C LCD1602**. Si la temperatura actual es mayor que 
+el umbral, el zumbador y el LED se activarán para alertarte.
 
-**Joystick** here is for your pressing to adjust the high-temperature
-threshold. Toggling the **Joystick** in the direction of X-axis and
-Y-axis can adjust (turn up or down) the current high-temperature
-threshold. Press the **Joystick** once again to reset the threshold to
-initial value.
+El **joystick** aquí se utiliza para ajustar el umbral de alta temperatura. Mover 
+el **joystick** en la dirección de los ejes X e Y puede ajustar (subir o bajar) el 
+umbral de alta temperatura. Presiona el **joystick** nuevamente para restablecer el 
+umbral al valor inicial.
 
-.. note::
+.. nota::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Si aparece el mensaje de error ``wiringPi.h: No such file or directory``, por favor consulta :ref:`install_wiringpi`.
+    * Si obtienes el error ``Unable to open I2C device: No such file or directory``, necesitas consultar :ref:`i2c_config` para habilitar I2C y verificar si el cableado es correcto.
+    * Si el código y el cableado están bien, pero el LCD aún no muestra contenido, puedes girar el potenciómetro en la parte posterior para aumentar el contraste.
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -178,9 +175,9 @@ initial value.
         }
     }
 
-This function reads values of X and Y. If ``X>200``, there will return
-``1``; ``X<50``, return ``-1``; ``y>200``, return
-``-10``, and ``y<50``, return ``10``.
+Esta función lee los valores de X e Y. Si ``X>200``, devolverá 
+``1``; si ``X<50``, devolverá ``-1``; si ``y>200``, devolverá 
+``-10``; y si ``y<50``, devolverá ``10``.
 
 .. code-block:: c
 
@@ -190,15 +187,14 @@ This function reads values of X and Y. If ``X>200``, there will return
         upperTem = upperTem + change;
         char str[6];
         snprintf(str,3,"%d",upperTem);
-    write(0,1,str);
-    int len;
-      len = strlen(str);
-      write(len,1,"             ");
+        write(0,1,str);
+        int len;
+        len = strlen(str);
+        write(len,1,"             ");
         delay(100);
     }
 
-This function is for adjusting the threshold and displaying it on the
-I2C LCD1602.
+Esta función se utiliza para ajustar el umbral y mostrarlo en el I2C LCD1602.
 
 .. code-block:: c
 
@@ -214,8 +210,8 @@ I2C LCD1602.
         return cel;
     }
 
-Read the analog value of the **CH0** (thermistor) of **ADC0834** and
-then convert it to temperature value.
+Lee el valor analógico del **CH0** (termistor) de **ADC0834** y luego lo 
+convierte en valor de temperatura.
 
 .. code-block:: c
 
@@ -239,10 +235,9 @@ then convert it to temperature value.
         }
     }
 
-As the code runs, the current temperature and the high-temperature
-threshold **40** are displayed on **I2C LCD1602**. If the current
-temperature is larger than the threshold, the buzzer and LED are started
-to alarm you.
+Cuando el código se ejecuta, la temperatura actual y el umbral de alta 
+temperatura **40** se muestran en **I2C LCD1602**. Si la temperatura 
+actual es mayor que el umbral, el zumbador y el LED se activarán para alertarte.
 
 .. code-block:: c
 
@@ -270,20 +265,19 @@ to alarm you.
         return 0;
     }
 
-The function ``main()`` contains the whole program process as shown:
+La función ``main()`` contiene todo el proceso del programa como se muestra:
 
-1) When the program starts, the initial value of **stage** is **0**, and
-   the current temperature and the high-temperature threshold **40** are
-   displayed on **I2C LCD1602**. If the current temperature is larger
-   than the threshold, the buzzer and the LED are started to alarm you.
+1) Cuando el programa comienza, el valor inicial de **stage** es **0**, y la 
+temperatura actual y el umbral de alta temperatura **40** se muestran en **I2C LCD1602**. 
+Si la temperatura actual es mayor que el umbral, el zumbador y el LED se activarán para alertarte.
 
-2) Press the Joystick, and **stage** will be **1** and you can adjust
-   the high-temperature threshold. Toggling the Joystick in the
-   direction of X-axis and Y-axis can adjust (turn up or down) the
-   current threshold. Press the Joystick once again to reset the
-   threshold to initial value.
+2) Presiona el joystick y **stage** será **1** y podrás ajustar el umbral de alta temperatura. 
+Mover el joystick en la dirección de los ejes X e Y puede ajustar (subir o bajar) el umbral 
+actual. Presiona el joystick una vez más para restablecer el umbral al valor inicial.
 
-Phenomenon Picture
+
+
+Imagen del Fenómeno
 -------------------------
 
 .. image:: ../img/image259.jpeg

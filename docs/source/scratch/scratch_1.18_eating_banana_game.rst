@@ -1,112 +1,112 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _1.18_scratch:
 
-1.18 Eating Banana Game
-================================
+1.18 Juego de Comer Plátano
+==================================
 
-Description
----------------
+Descripción
+------------------
 
-Scratch has a Video Sensing expansion module, which can turn on the camera in Scratch and detect the movement of objects on the camera screen.
+Scratch tiene un módulo de expansión de detección de video, que puede activar la cámara en Scratch y detectar el movimiento de objetos en la pantalla de la cámara.
 
-Today, we will use the camera to make a eating banana game. In the stipulated time, help the Monkey eat more bananas.
+Hoy, usaremos la cámara para hacer un juego de comer plátanos. En el tiempo estipulado, ayuda al Mono a comer más plátanos.
 
-To play the game against a white background, click on the green flag to start. Move colored objects in front of the camera to control the Monkey sprite.
+Para jugar el juego contra un fondo blanco, haz clic en la bandera verde para comenzar. Mueve objetos coloreados frente a la cámara para controlar el sprite del Mono.
 
 .. image:: img/1.18_header.png
 
-Required Components
-------------------------------
+Componentes necesarios
+---------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: img/1.18_photo1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ÍTEMS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado desde los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN AL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-
-Build the Circuit
---------------------
+Construir el circuito
+-----------------------------
 
 .. image:: img/1.10_camera.png
 
 .. note::
 
-    You need to refer to :ref:`cpn_camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
+    Debes consultar :ref:`cpn_camera_module` para conectar el módulo de la cámara y habilitar la interfaz de la cámara de Raspberry Pi.
 
-Load the Code and See What Happens
----------------------------------------
+Cargar el código y ver qué pasa
+--------------------------------------------
 
-Load the code file (``1.18_eating_banana_game.sb3``) to Scratch 3.
+Carga el archivo de código (``1.18_eating_banana_game.sb3``) en Scratch 3.
 
-Tips on Codes
-----------------
+Consejos sobre el código
+---------------------------------
 
-Arrange monkeys and bananas
+Organizar monos y plátanos
 
-First, we delete the original sprite, then add Monkey sprite and Bananas sprite, and change their sizes to 50.
+Primero, eliminamos el sprite original, luego agregamos el sprite del Mono y el sprite de Plátanos, y cambiamos sus tamaños a 50.
 
-Let Bananas appear randomly.
+Deja que los Plátanos aparezcan al azar.
 
 .. image:: img/1.18_code1.png
 
-Bananas disappears after encountering the Monkey, which means it was eaten by the Monkey and reappears randomly.
+Los Plátanos desaparecen después de encontrarse con el Mono, lo que significa que fueron comidos por el Mono y reaparecen al azar.
 
 .. image:: img/1.18_code2.png
 
-Let the Monkey appear in the center of the stage and initialize the camera data (transparency is set to 20).
+Haz que el Mono aparezca en el centro del escenario e inicializa los datos de la cámara (la transparencia se establece en 20).
 
 .. image:: img/1.18_code3.png
 
-If the camera detects an object moving, let the Monkey move towards the object.
+Si la cámara detecta un objeto en movimiento, haz que el Mono se mueva hacia el objeto.
 
 .. image:: img/1.18_code4.png
 
-Now, click on the green flag at the top of the stage area to start the game.
+Ahora, haz clic en la bandera verde en la parte superior del área del escenario para comenzar el juego.
 
-Let the Monkey eat bananas, it is very hungry! Try to play this game on a white background to prevent interference from other objects.
+Deja que el Mono coma plátanos, ¡está muy hambriento! Intenta jugar este juego en un fondo blanco para evitar interferencias de otros objetos.
 
-Challenge
--------------
 
-I believe that you will be smart enough to program and implement this game soon. Next, we will add some challenges to enrich our game content.
+Desafío
+----------------
 
-· When Monkey eats banana, we add 1 to the score. Within 30s, see who has the highest score!
+Creo que serás lo suficientemente inteligente como para programar e implementar este juego pronto. A continuación, agregaremos algunos desafíos para enriquecer nuestro contenido del juego.
 
-· When Monkey eats a banana, it emits a suitable sound effect.
+· Cuando el Mono come un plátano, sumamos 1 al puntaje. ¡Dentro de 30 segundos, veamos quién tiene el puntaje más alto!
+
+· Cuando el Mono come un plátano, emite un efecto de sonido adecuado.

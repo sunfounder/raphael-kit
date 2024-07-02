@@ -1,57 +1,57 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _cpn_micro_switch:
 
-Micro Switch
+Microinterruptor
 =====================
 
 .. image:: img/micro_pic.png
     :width: 200
     :align: center
 
-The construction of a micro switch is really simple. The main parts of the switch are:
+La construcción de un microinterruptor es realmente sencilla. Las partes principales del interruptor son:
 
 .. image:: img/micro_switch2.png
     :align: center
 
-* 1.Plunger (Actuator)
-* 2.Cover
-* 3.Moving piece
-* 4.Support
-* 5.Case
-* 6.NO terminal: normally open
-* 7.NC terminal: normally closed
-* 8.Contact
-* 9.Moving arm
+* 1.Émbolo (Actuador)
+* 2.Cubierta
+* 3.Pieza móvil
+* 4.Soporte
+* 5.Carcasa
+* 6.Terminal NO: normalmente abierto
+* 7.Terminal NC: normalmente cerrado
+* 8.Contacto
+* 9.Brazo móvil
 
 
-After a micro switch makes physical contact with an object, its contacts change position. The basic working principle is as follows.
+Después de que un microinterruptor hace contacto físico con un objeto, sus contactos cambian de posición. El principio básico de funcionamiento es el siguiente.
 
-When the plunger is in the released or rest position.
+Cuando el émbolo está en posición liberada o de reposo:
 
-* The normally closed circuit can carry current.
-* The normally open circuit is electrically insulated.
+* El circuito normalmente cerrado puede conducir corriente.
+* El circuito normalmente abierto está aislado eléctricamente.
 
-When the plunger is depressed or switched.
+Cuando el émbolo está presionado o activado:
 
-* The normally closed circuit is open.
-* The normally open circuit is closed.
+* El circuito normalmente cerrado está abierto.
+* El circuito normalmente abierto está cerrado.
 
 .. image:: img/micro_switch1.png
 
-**Example**
+**Ejemplo**
 
 * :ref:`2.1.2_c` (C Project)
 * :ref:`2.1.2_py` (Python Project)

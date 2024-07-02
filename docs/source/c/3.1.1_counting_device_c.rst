@@ -1,35 +1,37 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _3.1.1_c:
 
-3.1.1 Counting Device
+3.1.1 Dispositivo de Conteo
 ============================
 
-Introduction
------------------
+Introducción
+---------------
 
-Here we will make a number-displaying counter system, consisting of a
-PIR sensor and a 4-digit segment display. When the PIR detects that
-someone is passing by, the number on the 4-digit segment display will
-add 1. You can use this counter to count the number of people walking 
-through the passageway.
+Aquí crearemos un sistema contador que muestra números, compuesto por un sensor 
+PIR y una pantalla de 4 dígitos. Cuando el PIR detecta que alguien pasa, el número 
+en la pantalla de 4 dígitos aumentará en 1. Puedes usar este contador para contar 
+el número de personas que pasan por un pasillo.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+
+
+Componentes Necesarios
+--------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_Counting_Device1.png
     :align: center
@@ -37,27 +39,27 @@ In this project, we need the following components.
 .. image:: ../img/list_Counting_Device2.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado desde los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -74,8 +76,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_pir`
         - \-
 
-Schematic Diagram
-----------------------
+Diagrama Esquemático
+-------------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -92,14 +94,14 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one1.png
    :align: center
 
-Experimental Procedures
------------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: ../img/image235.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2**: Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -109,7 +111,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.1/
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
@@ -119,7 +121,7 @@ Experimental Procedures
 
     gcc 3.1.1_CountingDevice.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -129,20 +131,21 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, when the PIR detects that someone is passing by,
-the number on the 4-digit segment display will add 1.
+Después de ejecutar el código, cuando el PIR detecte que alguien está pasando, 
+el número en la pantalla de 4 dígitos aumentará en 1.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Hay dos potenciómetros en el módulo PIR: uno es para ajustar la sensibilidad y el otro 
+para ajustar la distancia de detección. Para que el módulo PIR funcione mejor, debes 
+girar ambos en sentido antihorario hasta el final.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
     :align: center
 
-.. note::
+.. nota::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
-**Code Explanation**
+    Si no funciona después de ejecutar el código, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+**Explicación del Código**
 
 .. code-block:: c
 
@@ -165,11 +168,11 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         hc595_shift(number[counter % 10000 / 1000]);
     }
 
-First, start the fourth segment display, write the single-digit number.
-Then start the third segment display, and type in the tens digit; after
-that, start the second and the first segment display respectively, and
-write the hundreds and thousands digits respectively. Because the
-refreshing speed is very fast, we see a complete four-digit display.
+Primero, inicia la pantalla de cuatro segmentos y escribe el número de un solo dígito.
+Luego, inicia la pantalla del tercer segmento y escribe el dígito de las decenas; después 
+de eso, inicia la segunda y la primera pantalla de segmentos respectivamente y escribe los 
+dígitos de las centenas y millares respectivamente. Debido a que la velocidad de actualización 
+es muy rápida, vemos una pantalla completa de cuatro dígitos.
 
 .. code-block:: c
 
@@ -186,11 +189,11 @@ refreshing speed is very fast, we see a complete four-digit display.
         }
     }
 
-This is the main function: display the number on the 4-digit segment
-display and read the PIR value. When the PIR detects that someone is
-passing by, the number on the 4-digit segment display will add 1.
+Esta es la función principal: muestra el número en la pantalla de segmentos de 4 
+dígitos y lee el valor del PIR. Cuando el PIR detecta que alguien pasa, el número 
+en la pantalla de 4 dígitos aumentará en 1.
 
-Phenomenon Picture
+Imagen del Fenómeno
 -------------------------
 
 .. image:: ../img/image236.jpeg

@@ -1,54 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.9_scratch:
 
-1.9 Drumming
+1.9 Tambores
 ================
 
-In this project, we play the drum with a touch switch module.
+En este proyecto, tocamos el tambor con un módulo de interruptor táctil.
 
 .. image:: img/1.9_header.png
 
-Required Components
+Componentes necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: img/1.9_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,40 +61,38 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_audio_speaker`
         - \-
 
-Build the Circuit
----------------------
+Construir el circuito
+------------------------
 
 .. image:: img/1.9_fritzing.png
 
-
-Load the Code and See What Happens
+Cargar el código y ver qué pasa
 ---------------------------------------
 
-Load the code file (``1.9_drumming.sb3``) to Scratch 3.
+Carga el archivo de código (``1.9_drumming.sb3``) en Scratch 3.
 
-When you tap on the touch switch module, you will hear the sound of drums coming from the speaker.
+Cuando toques el módulo de interruptor táctil, escucharás el sonido de tambores proveniente del altavoz.
 
+Consejos sobre el sprite
+--------------------------------
 
-Tips on Sprite
-----------------
-
-Delete the default sprite, then find the **Drum-snare** sprite and add it, and change the size to 200.
+Elimina el sprite predeterminado, luego busca el sprite **Drum-snare** y agrégalo, cambiando el tamaño a 200.
 
 .. image:: img/1.9_touch1.png
 
-Scratch has a **Music** extension to play instruments and drums, now add it via the **Add Extension** button.
+Scratch tiene una extensión de **Música** para tocar instrumentos y tambores, agrégala ahora a través del botón **Agregar Extensión**.
 
 .. image:: img/1.9_touch2.png
 
-Tips on Codes
---------------
+Consejos sobre los códigos
+--------------------------------
 
 .. image:: img/1.9_touch3.png
   :width: 400
 
-When pin17 is low (not tapped on the touch switch module), switch the **Drum-snare** sprite costume to **drum-snare-a**.
+Cuando pin17 está bajo (no se ha tocado el módulo de interruptor táctil), cambia el disfraz del sprite **Drum-snare** a **drum-snare-a**.
 
 .. image:: img/1.9_touch4.png
   :width: 600
 
-When you tap on the touch switch module, gpio17 is low. At this point, the **Drum-snare** sprite costume is switched to **drum-snare-b** and the drum sound played on speaker.
+Cuando tocas el módulo de interruptor táctil, gpio17 está bajo. En ese momento, el disfraz del sprite **Drum-snare** se cambia a **drum-snare-b** y se reproduce el sonido del tambor en el altavoz.

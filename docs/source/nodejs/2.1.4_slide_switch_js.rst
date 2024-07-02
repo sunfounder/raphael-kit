@@ -1,58 +1,58 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsualizaciones exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y avances exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.1.4_js:
 
-2.1.4 Slide Switch
-==================
+2.1.4 Interruptor Deslizante
+================================
 
-Introduction
-------------
+Introducción
+--------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+En este proyecto, aprenderemos a usar un interruptor deslizante. Normalmente, 
+el interruptor deslizante se suelda en una PCB como interruptor de encendido, 
+pero aquí necesitamos insertarlo en la placa de pruebas, por lo que puede no estar 
+bien ajustado. Lo usamos en la placa de pruebas para mostrar su función.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-----------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí tienes el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,12 +69,12 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+------------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Conecta el pin central del interruptor deslizante a GPIO17, y dos LEDs a los 
+pines GPIO22 y GPIO27 respectivamente. Luego, cuando deslices el interruptor, 
+verás que los dos LEDs se encienden alternativamente.
 
 .. image:: ../img/image305.png
 
@@ -82,14 +82,14 @@ can see the two LEDs light up alternately.
 .. image:: ../img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -99,7 +99,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -109,10 +109,10 @@ Experimental Procedures
 
     sudo node slide_switch.js
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Mientras el código se está ejecutando, conecta el interruptor hacia la izquierda, 
+y el LED amarillo se encenderá; hacia la derecha, se encenderá el LED rojo.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -133,7 +133,7 @@ the yellow LED lights up; to the right, the red light turns on.
     });
 
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -148,8 +148,8 @@ the yellow LED lights up; to the right, the red light turns on.
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, and create three objects led1, led2, slideSwitch, 
-and control the on and off of led1 and led2 by reading the level of the slideSwitch IO port.   
+Importa el módulo pigpio y crea tres objetos led1, led2, slideSwitch,
+y controla el encendido y apagado de led1 y led2 leyendo el nivel del puerto IO de slideSwitch.
 
 .. code-block:: js
 
@@ -158,12 +158,10 @@ and control the on and off of led1 and led2 by reading the level of the slideSwi
         led2.digitalWrite(!level);       
     });
 
-When the read level of the slideSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Cuando el nivel leído del puerto IO de slideSwitch cambia,
+escribe el mismo nivel en led1 y el nivel opuesto en led2.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-----------------------
 
 .. image:: ../img/image162.jpeg
-
-

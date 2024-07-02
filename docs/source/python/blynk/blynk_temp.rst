@@ -1,51 +1,51 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _blynk_temp_py:
 
-Temperature Recorder
-====================
+Registrador de Temperatura
+=================================
 
-In this project, you can see the current temperature and the temperature change line graph from Blynk.
+En este proyecto, puedes ver la temperatura actual y el gráfico de línea de cambio de temperatura desde Blynk.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
+.. nota:: Antes de comenzar este proyecto, te recomendamos que completes :ref:`bk_start_py`. Lo siguiente te dará una comprensión clara de Blynk.
 
-**Required Components**
+**Componentes Requeridos**
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es muy conveniente comprar un kit completo, aquí tienes el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,37 +59,37 @@ You can also buy them separately from the links below.
         - |link_humiture_buy|
 
 
-**1. Wiring**
+**1. Cableado**
 
 .. image:: img/wiring_blynk_temp.png
 
 
-**2. Create Widget and Datastream**
+**2. Crear Widget y Datastream**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Haz clic en el icono del menú en la esquina superior derecha y selecciona editar tablero.
 
     .. image:: img/sp220913_180231.png
 
-2. Add a Gauge widget and a Chart widget to the Dashboard.
+2. Agrega un widget de Medidor y un widget de Gráfico al Tablero.
 
     .. image:: img/sp220914_175437.png
 
-3. Create a Datastream for the Gauge widget (I used V5). It will be used to display the temperature. Set **DATA TYPE** to ``Double``, **DECIMALS** to ``#. #`` (two valid decimal places).
+3. Crea un Datastream para el widget de Medidor (utilicé V5). Se utilizará para mostrar la temperatura. Configura **DATA TYPE** en ``Double``, **DECIMALS** en ``#. #`` (dos decimales válidos).
 
     .. image:: img/sp220914_182300.png
 
-4. Add the V5 Datastream you just created to the Chart widget.
+4. Agrega el Datastream V5 que acabas de crear al widget de Gráfico.
 
     .. image:: img/sp220914_183039.png
 
-#. When finished, click Save And Apply at the top right.
+#. Cuando termines, haz clic en Guardar y Aplicar en la esquina superior derecha.
 
     .. image:: img/sp220913_182300.png
 
 
-**3. Run the Code**
+**3. Ejecutar el Código**
 
-1. Edit the code
+1. Edita el código
 
 .. raw:: html
 
@@ -100,13 +100,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_temp.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. Encuentra la línea a continuación y pega tu ``BLYNK_AUTH_TOKEN``.
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. Ejecuta el código.
 
 .. raw:: html
 
@@ -116,9 +116,10 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_temp.py
 
-4. Go to Blynk. Now you can view the temperature and temperature change line graph on the Dashboard.
+4. Ve a Blynk. Ahora puedes ver la temperatura y el gráfico de línea de cambio de temperatura en el Tablero.
 
     .. image:: img/sp220915_101137.png
 
 
-#. If you want to use Blynk on mobile devices, please refer to :ref:`blynk_mobile`.
+#. Si deseas utilizar Blynk en dispositivos móviles, consulta :ref:`blynk_mobile`.
+

@@ -1,45 +1,44 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en el universo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de Expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Obtén acceso temprano a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 4: Understanding and Using GPIO Pins
+Video 4: Comprender y Usar los Pines GPIO
 =======================================================================================
 
-This comprehensive tutorial covers the basics of Raspberry Pi GPIO pins and their usage with Python programming. Viewers will learn how to set up GPIO pins, control LEDs, introduce delays, and clean up GPIO resources after use. Additionally, a homework assignment is provided to reinforce learning through practical application.
+Este tutorial integral cubre los conceptos básicos de los pines GPIO de Raspberry Pi y su uso con la programación en Python. Los espectadores aprenderán a configurar los pines GPIO, controlar LEDs, introducir retardos y limpiar los recursos GPIO después de su uso. Además, se proporciona una tarea para reforzar el aprendizaje a través de la aplicación práctica.
 
-1. Introduction to Raspberry Pi GPIO pins and their numbering system.
-2. Explanation of breadboard configuration and usage.
-3. Overview of the LED circuit schematic.
-4. Demonstration of translating the schematic to physical components on a breadboard.
-5. Tips for organizing and keeping components neat during projects.
-6. Importance of correctly identifying component orientation, such as LED leg lengths.
-7. Setting up GPIO pins using the ``gpio.setmode()`` and ``gpio.setup()`` functions.
-8. Controlling LEDs with the ``gpio.output()`` function and variables to store state values.
-9. Introducing delays in Python programs using the ``time.sleep()`` function.
-10. Proper resource management with the ``gpio.cleanup()`` function.
-11. Assignment: Writing a Python program to blink an LED based on user input.
-12. Tips for viewers: Emphasize the importance of cleaning up GPIO pins after use and sharing homework solutions for learning validation.
+1. Introducción a los pines GPIO de Raspberry Pi y su sistema de numeración.
+2. Explicación de la configuración y el uso de la placa de pruebas.
+3. Descripción general del esquema del circuito del LED.
+4. Demostración de cómo traducir el esquema a componentes físicos en una placa de pruebas.
+5. Consejos para organizar y mantener los componentes ordenados durante los proyectos.
+6. Importancia de identificar correctamente la orientación de los componentes, como las longitudes de las patas del LED.
+7. Configuración de los pines GPIO utilizando las funciones ``gpio.setmode()`` y ``gpio.setup()``.
+8. Control de los LEDs con la función ``gpio.output()`` y variables para almacenar valores de estado.
+9. Introducción de retardos en los programas de Python utilizando la función ``time.sleep()``.
+10. Gestión adecuada de recursos con la función ``gpio.cleanup()``.
+11. Tarea: Escribir un programa en Python para hacer parpadear un LED basado en la entrada del usuario.
+12. Consejos para los espectadores: Énfasis en la importancia de limpiar los pines GPIO después de su uso y compartir soluciones de tareas para la validación del aprendizaje.
 
 **Video**
 
 .. raw:: html
 
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/az90qK3jmDo?si=_U47tOoNF9-51xtr" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/az90qK3jmDo?si=_U47tOoNF9-51xtr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-
-**Homework Solution**
+**Solución de la Tarea**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/n9v3G0JqTaI?si=P42m5hVv7PhvLrCS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/n9v3G0JqTaI?si=P42m5hVv7PhvLrCS" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

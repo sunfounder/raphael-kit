@@ -1,35 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 55: Tracking An Object of Interest in OpenCV Using Contours
+Video 55: Seguimiento de un Objeto de Interés en OpenCV Usando Contornos
 =======================================================================================
 
+Aprende a rastrear objetos usando OpenCV en Raspberry Pi con el kit Raphael de SunFounder en este tutorial completo.
 
-Learn how to track objects using OpenCV on Raspberry Pi with the SunFounder Raphael kit in this comprehensive tutorial.
-
-
-1. **SunFounder Sponsorship**: Introduction to the SunFounder Raphael kit for Raspberry Pi.
-2. **Trackbar Setup**: Setting up trackbars to define parameters like Hue, Saturation, and Value.
-3. **Function Definitions**: Defining functions to handle trackbar changes and update parameter values.
-4. **Color Space Conversion**: Converting the image to the HSV color space for improved object detection.
-5. **Mask Creation**: Creating masks based on defined HSV ranges to isolate objects of interest.
-6. **Object Display**: Displaying the mask and tracked objects using OpenCV's imshow function.
-
+1. **Patrocinio de SunFounder**: Introducción al kit Raphael de SunFounder para Raspberry Pi.
+2. **Configuración de barras de seguimiento**: Configuración de barras de seguimiento para definir parámetros como Tono, Saturación y Valor.
+3. **Definición de funciones**: Definición de funciones para manejar los cambios en las barras de seguimiento y actualizar los valores de los parámetros.
+4. **Conversión de espacio de color**: Conversión de la imagen al espacio de color HSV para mejorar la detección de objetos.
+5. **Creación de máscaras**: Creación de máscaras basadas en rangos HSV definidos para aislar objetos de interés.
+6. **Visualización de objetos**: Visualización de la máscara y los objetos rastreados utilizando la función imshow de OpenCV.
 
 **Video**
 
 .. raw:: html
 
     <iframe width="700" height="500" src="https://www.youtube.com/embed/r62o500I0MA?si=1FzEQg8-2VUxrclB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-

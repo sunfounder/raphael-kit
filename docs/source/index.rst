@@ -1,52 +1,49 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-SunFounder Raphael Ulimate  Kit for Raspberry Pi
+Kit Ulimate SunFounder Raphael para Raspberry Pi
 =======================================================
 
-
-Thanks for choosing our Ulimate Raphael Kit.
+Gracias por elegir nuestro Ulimate Raphael Kit.
 
 .. note::
-    This document is available in the following languages.
+    Este documento está disponible en los siguientes idiomas.
 
         * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
     
-    Please click on the respective links to access the document in your preferred language.
+    Por favor, haz clic en los enlaces correspondientes para acceder al documento en tu idioma preferido.
 
-Are you new to Raspberry Pi? Are you looking for a clear path to learn Raspberry Pi? 
-Would you like to do more than just copy and paste code, but actually write your own? 
-If you answered yes to any of the above questions, then the Raspberry Pi Education Starter Kit - Raphael Kit is right for you.
+¿Eres nuevo en Raspberry Pi? ¿Buscas un camino claro para aprender Raspberry Pi? 
+¿Te gustaría hacer más que solo copiar y pegar código, sino escribir el tuyo propio? 
+Si respondiste sí a alguna de las preguntas anteriores, entonces el Kit de Inicio Educativo de Raspberry Pi - Raphael Kit es el adecuado para ti.
 
-The kit is unlike other kits that only have a variety of projects. It is a true educational kit designed for beginners, whether you are programming beginners, electronics hobbyists, 
-experienced electrical engineers, students or educators, this kit will meet all your needs.
+El kit es diferente a otros kits que solo tienen una variedad de proyectos. Es un verdadero kit educativo diseñado para principiantes, ya seas un principiante en programación, un aficionado a la electrónica, 
+un ingeniero eléctrico experimentado, estudiante o educador, este kit satisfará todas tus necesidades.
 
-In addition to including all the hardware and software needed for beginners, the kit also offers an online tutorial with 161 interesting projects in 5 programming languages and 45 free video courses (30 hours) on getting started to mastery.
+Además de incluir todo el hardware y software necesario para principiantes, el kit también ofrece un tutorial en línea con 161 proyectos interesantes en 5 lenguajes de programación y 45 cursos en video gratuitos (30 horas) desde los conceptos básicos hasta la maestría.
 
+Este `curso en video <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ muestra a los principiantes cómo configurar el Raspberry Pi, usar los pines GPIO y los sensores, y aprender los conceptos básicos de circuitos y programación. Cada curso tiene proyectos simples e interesantes para que los principiantes practiquen y aprendan, solo necesitas seguir paso a paso y eventualmente podrás dominar el Raspberry Pi y hacer tus propios proyectos.
 
-This `video course <https://www.youtube.com/playlist?list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O>`_ shows beginners how to set up the Raspberry Pi, use the GPIO pins and sensors, and learn the basics of circuits and programming. Each course has simple and interesting projects for beginners to practice and learn, all you need to do is to follow step by step and eventually you will be able to master the Raspberry Pi and make your own projects.
+Después de aprender los tutoriales en video, puedes practicar el uso de cada componente con nuestros tutoriales en línea y jugar con algunos proyectos más avanzados e interesantes.
 
+Alternativamente, puedes usar los componentes para construir proyectos en otros lenguajes, como C, Scratch, Java (processing) y JavaScript (Nodejs).
 
-After learning the video tutorials, you can practice the use of each component from our online tutorials and play with some more advanced and interesting projects.
+Si tienes alguna pregunta, por favor envía un correo electrónico a service@sunfounder.com y responderemos lo antes posible.
 
-Alternatively, you can use the components to build projects in other languages, such as C, Scratch, Java (processing) and JavaScript (Nodejs).
-
-If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
-
-**Contents**
+**Contenidos**
 
 .. toctree::
     :maxdepth: 2
@@ -97,6 +94,6 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
 
 
-**Copyright Notice**
+**Aviso de derechos de autor**
 
-All contents including but not limited to texts, images, and code in this manual are owned by the SunFounder Company. You should only use it for personal study,investigation, enjoyment, or other non-commercial or nonprofit purposes, under therelated regulations and copyrights laws, without infringing the legal rights of the author and relevant right holders. For any individual or organization that uses these for commercial profit without permission, the Company reserves the right to take legal action.
+Todos los contenidos, incluidos pero no limitados a textos, imágenes y códigos en este manual, son propiedad de la empresa SunFounder. Solo debes utilizarlos para estudios personales, investigación, disfrute u otros fines no comerciales o sin fines de lucro, bajo las regulaciones relacionadas y las leyes de derechos de autor, sin infringir los derechos legales del autor y los titulares de los derechos correspondientes. Para cualquier individuo u organización que use estos contenidos para obtener beneficios comerciales sin permiso, la empresa se reserva el derecho de tomar medidas legales.

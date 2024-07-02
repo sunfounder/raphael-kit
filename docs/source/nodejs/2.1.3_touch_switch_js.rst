@@ -1,58 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Obtén acceso temprano a anuncios de nuevos productos y avances.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
 .. _2.1.3_js:
 
-2.1.3 Touch Switch Module
-=================================
+2.1.3 Módulo de Interruptor Táctil
+=====================================
 
-Introduction
+Introducción
 -------------------
 
-In this project, you will learn about touch switch module. It can replace the traditional kinds of switch with these advantages: convenient operation, fine touch sense, precise control and least mechanical wear.
+En este proyecto, aprenderás sobre el módulo de interruptor táctil. Puede reemplazar los tipos tradicionales de interruptores con estas ventajas: operación conveniente, sensación táctil fina, control preciso y menor desgaste mecánico.
 
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/2.1.3component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,23 +67,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+------------------------------
 
 .. image:: ../img/2.1.3circuit.png
     :width: 500
     :align: center
 
-**Experimental Procedures**
-------------------------------
+**Procedimientos Experimentales**
+----------------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/2.1.3fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -93,7 +93,7 @@ Schematic Diagram
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -103,9 +103,9 @@ Schematic Diagram
 
     sudo node touch_switch.js
 
-While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
+Mientras el código se ejecuta, el LED rojo se enciende; cuando tocas el módulo de interruptor táctil, el LED amarillo se enciende. 
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -125,7 +125,7 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         led2.digitalWrite(!level);       
     });   
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -140,9 +140,8 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         edge: Gpio.EITHER_EDGE        
     });
 
-
-Import the ``pigpio`` module and create three objects led1, led2, touchSwitch,
-By reading the level of the touchSwitch IO port, the on and off of led1 and led2 are controlled.
+Importa el módulo ``pigpio`` y crea tres objetos led1, led2, touchSwitch.
+Leyendo el nivel del puerto IO de touchSwitch, se controla el encendido y apagado de led1 y led2.
 
 .. code-block:: js
 
@@ -151,14 +150,12 @@ By reading the level of the touchSwitch IO port, the on and off of led1 and led2
         led2.digitalWrite(!level);       
     });   
 
-When the level of the read touchSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Cuando cambia el nivel del puerto IO de touchSwitch,
+Escribe el mismo nivel en led1 y el nivel opuesto en led2.
 
-
-**Phenomenon Picture**
+**Imagen del Fenómeno**
 ------------------------
 
 .. image:: ../img/2.1.3touch_switch_module.JPG
     :width: 500
     :align: center
-    

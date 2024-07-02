@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.2.2_js:
 
-2.2.2 Thermistor
-================
+2.2.2 Termistor
+====================
 
-Introduction
-------------
+Introducción
+------------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Al igual que el fotorresistor puede detectar la luz, el termistor es un dispositivo 
+electrónico sensible a la temperatura que se puede utilizar para realizar funciones 
+de control de temperatura, como la creación de una alarma de calor.
 
-Required Components
-------------------------------
+Componentes Requeridos
+----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los siguientes enlaces.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN AL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,23 +66,22 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
-------------------
+Diagrama Esquemático
+----------------------------
 
 .. image:: ../img/image323.png
-
 
 .. image:: ../img/image324.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+-------------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Montar el circuito.
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ir a la carpeta del código.
 
 .. raw:: html
 
@@ -92,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecutar el código.
 
 .. raw:: html
 
@@ -102,10 +101,10 @@ Experimental Procedures
 
     sudo node thermistor.js
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Con el código ejecutándose, el termistor detecta la temperatura ambiental que se imprimirá 
+en la pantalla una vez que el programa termine el cálculo.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -129,7 +128,7 @@ be printed on the screen once it finishes the program calculation.
       });
     }, 1000);
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -146,8 +145,7 @@ be printed on the screen once it finishes the program calculation.
       });
     }, 1000);
 
-We can read the ``value`` of the thermistor through the statement ``adc.read(0).then((value) => {...})``
-
+Podemos leer el ``value`` del termistor a través de la declaración ``adc.read(0).then((value) => {...})``
 
 .. code-block:: js
 
@@ -158,41 +156,40 @@ We can read the ``value`` of the thermistor through the statement ``adc.read(0).
     var Fah = (cel * 1.8 + 32).toFixed(2);
     console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
 
-These operations convert the thermistor value to a Celsius temperature value.
+Estas operaciones convierten el valor del termistor a un valor de temperatura en Celsius.
 
 .. code-block:: js
 
     var Vr = 5 * value / 255;
     var Rt = 10000 * Vr / (5 - Vr);
 
-These two lines of code are used to calculate the voltage distribution from the read values, resulting in Rt (resistance of the thermistor).
+Estas dos líneas de código se utilizan para calcular la distribución de voltaje a partir de los valores leídos, resultando en Rt (resistencia del termistor).
 
 .. code-block:: js
 
     var temp = 1 / ((Math.log(Rt/10000) / 3950)+(1 / (273.15 + 25)));  
 
-This code refers to substituting Rt into the formula **TK=1/(ln(RT/RN)/B+1/TN)** to get the temperature in Kelvin.
+Este código se refiere a sustituir Rt en la fórmula **TK=1/(ln(RT/RN)/B+1/TN)** para obtener la temperatura en Kelvin.
 
 .. code-block:: js
 
     var cel = (temp - 273.15).toFixed(2);
 
-This paragraph is to convert the Kelvin temperature to Celsius with two decimal places.
+Este párrafo es para convertir la temperatura de Kelvin a Celsius con dos decimales.
 
 .. code-block:: js
 
     var Fah = (cel * 1.8 + 32).toFixed(2);
 
-This paragraph converts Celsius to Fahrenheit with two decimal places.
+Este párrafo convierte Celsius a Fahrenheit con dos decimales.
 
 .. code-block:: js
 
     console.log(`Celsius: ${cel} C  Fahrenheit: ${Fah} F\n`);
 
-Print Celsius, Fahrenheit and their units on the terminal.  
+Imprime Celsius, Fahrenheit y sus unidades en la terminal.
 
-Phenomenon Picture
-------------------
+Foto del Fenómeno
+---------------------
 
 .. image:: ../img/image203.jpeg
-    

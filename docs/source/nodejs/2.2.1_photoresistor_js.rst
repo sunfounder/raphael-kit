@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _2.2.1_js:
 
-2.2.1 Photoresistor
+2.2.1 Fotoresistor
 =========================
 
-Introduction
-------------
+Introducción
+------------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+El fotoresistor es un componente comúnmente utilizado para medir la intensidad 
+de la luz ambiental en la vida cotidiana. Ayuda al controlador a reconocer el 
+día y la noche y a realizar funciones de control de luz como una lámpara nocturna. 
+Este proyecto es muy similar al del potenciómetro, y podrías pensar que cambia el 
+voltaje para detectar la luz.
 
-Required Components
-------------------------------
+Componentes Necesarios
+---------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_2.2.1_photoresistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN AL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,8 +70,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_photoresistor`
         - |link_photoresistor_buy|
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+-------------------------
 
 .. image:: ../img/image321.png
 
@@ -79,14 +79,14 @@ Schematic Diagram
 .. image:: ../img/image322.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+----------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Montar el circuito.
 
 .. image:: ../img/image198.png
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ir a la carpeta del código.
 
 .. raw:: html
 
@@ -96,7 +96,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecutar el código.
 
 .. raw:: html
 
@@ -106,10 +106,10 @@ Experimental Procedures
 
     sudo node photoresistor.js
 
-When the code is running, 
-the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+Cuando el código se esté ejecutando,
+el brillo del LED cambiará según la intensidad de la luz detectada por el fotorresistor.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -133,12 +133,13 @@ the brightness of the LED will change according to the light intensity sensed by
 
 
 
-**Code Explanation**
+**Explicación del Código**
 
-The codes here are the same as that in 2.1.7 Potentiometer. 
-Please check the code explanation of :ref:`2.1.7_js` for details.
+Los códigos aquí son los mismos que en 2.1.7 Potenciómetro.
+Por favor, consulta la explicación del código de :ref:`2.1.7_js` para más detalles.
 
-Phenomenon Picture
-------------------
+Imagen del Fenómeno
+-------------------------
 
 .. image:: ../img/image199.jpeg
+

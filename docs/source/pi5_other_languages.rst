@@ -1,43 +1,43 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Other Language (for Pi 5)
-============================
+Otros Lenguajes (para Pi 5)
+==============================
 
-The release of the Raspberry Pi 5 has brought us a more powerful model, but it also introduced some changes, most notably to the GPIO.
+El lanzamiento del Raspberry Pi 5 nos ha traído un modelo más potente, pero también ha introducido algunos cambios, especialmente en el GPIO.
 
-Although it retains its standard 40-pin interface, functionality has shifted due to its connection with the newly integrated RP1 southbridge chip. This custom RP1 chip now handles peripherals on the Pi 5 and has resulted in various compatibility concerns.
+Aunque mantiene su interfaz estándar de 40 pines, la funcionalidad ha cambiado debido a su conexión con el nuevo chip RP1 southbridge integrado. Este chip RP1 personalizado ahora maneja los periféricos en el Pi 5 y ha resultado en varias preocupaciones de compatibilidad.
 
-C Language
+Lenguaje C
 -----------
-The C language implementation relies on the wiringPi library. However, the wiringPi community library is now archived and no longer receives updates, rendering it unsuitable for Raspberry Pi 5 projects. For additional information, refer to: https://github.com/WiringPi/WiringPi
+La implementación en lenguaje C depende de la biblioteca wiringPi. Sin embargo, la biblioteca de la comunidad wiringPi ahora está archivada y ya no recibe actualizaciones, lo que la hace inadecuada para proyectos con Raspberry Pi 5. Para más información, consulta: https://github.com/WiringPi/WiringPi
 
 .. image:: img/pi5_c_language.png
 
 Processing
------------
-When using Processing 4 on Raspberry Pi 5, GPIO programming encounters challenges. Errors such as "Invalid argument" and "GPIO pin 17 seems to be unavailable on your platform" arise during the execution of GPIO-related code (as depicted in the accompanying image). For further details, visit: https://github.com/benfry/processing4/issues/807
+-------------
+Al usar Processing 4 en Raspberry Pi 5, la programación GPIO enfrenta desafíos. Errores como "Invalid argument" y "GPIO pin 17 seems to be unavailable on your platform" surgen durante la ejecución de código relacionado con GPIO (como se muestra en la imagen adjunta). Para más detalles, visita: https://github.com/benfry/processing4/issues/807
 
 .. image:: img/pi5_processing.png
 
 Node.js
---------
-Node.js utilizes the pigpio library, which, as of now, does not support Raspberry Pi 5. For more insights, visit: https://github.com/joan2937/pigpio/issues/589
+----------
+Node.js utiliza la biblioteca pigpio, que, por ahora, no es compatible con Raspberry Pi 5. Para más información, visita: https://github.com/joan2937/pigpio/issues/589
 
 .. image:: img/pi5_nodejs.png
     :width: 700
 
 Scratch
---------
-On a 64-bit system, the importation of the Raspberry Pi GPIO library faces issues, leading to unresponsiveness. For more information, visit: https://github.com/raspberrypi/bookworm-feedback/issues/91
+----------
+En un sistema de 64 bits, la importación de la biblioteca GPIO de Raspberry Pi enfrenta problemas, lo que lleva a la falta de respuesta. Para más información, visita: https://github.com/raspberrypi/bookworm-feedback/issues/91

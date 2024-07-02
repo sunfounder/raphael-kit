@@ -1,26 +1,26 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Download the Code
-=================
+Descargar el código
+======================
 
-Before you download the code, please note that the example code is
-**ONLY** test on Raspberry Pi OS. We provide two methods for download:
+Antes de descargar el código, ten en cuenta que el código de ejemplo se prueba
+**ÚNICAMENTE** en Raspberry Pi OS. Proveemos dos métodos para la descarga:
 
-**Method 1: Use git clone (Recommended)**
+**Método 1: Usar git clone (Recomendado)**
 
-Log into Raspberry Pi and then change directory to ``~``.
+Inicia sesión en Raspberry Pi y luego cambia el directorio a ``~``.
 
 .. raw:: html
 
@@ -33,9 +33,9 @@ Log into Raspberry Pi and then change directory to ``~``.
 
 .. note::
 
-   cd to change to the intended directory from the current path. Informally, here is to go to the path ``~/``.
+   cd para cambiar al directorio deseado desde la ruta actual. Informalmente, aquí es para ir a la ruta ``~/``.
 
-Clone the repository from GitHub.
+Clona el repositorio desde GitHub.
 
 .. raw:: html
 
@@ -45,8 +45,8 @@ Clone the repository from GitHub.
 
    git clone https://github.com/sunfounder/raphael-kit.git
 
-**Method 2: Download the code**
+**Método 2: Descargar el código**
 
-Download the source code from github: https://github.com/sunfounder/raphael-kit
+Descarga el código fuente desde GitHub: https://github.com/sunfounder/raphael-kit
 
 .. image:: img/image33.png

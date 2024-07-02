@@ -1,31 +1,27 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Previas Exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 62: Finding and Tracking Faces In OpenCV with Haar Cascades
+Video 62: Encontrando y Rastreamiento de Caras en OpenCV con Haar Cascades
 =======================================================================================
 
+Aprende cómo crear una aplicación de cámara en tu Raspberry Pi usando OpenCV, cubriendo detección de caras y ojos, optimización del rendimiento y seguimiento de caras en tiempo real.
 
-Learn how to create a camera application on your Raspberry Pi using OpenCV, 
-covering face and eye detection, performance optimization, and real-time face tracking.
-
-
-1. Setting up your Raspberry Pi environment with the SunFounder Raspberry Pi kit.
-2. Writing code for capturing video frames and implementing face and eye detection using OpenCV.
-3. Optimizing performance by limiting the region of interest (ROI) for eye detection.
-4. Understanding the concept of ROI and its impact on processing speed.
-5. Real-time face tracking using OpenCV and a pan-tilt servo.
-
+1. Configuración del entorno de tu Raspberry Pi con el kit de Raspberry Pi de SunFounder.
+2. Escribir código para capturar frames de video e implementar la detección de caras y ojos usando OpenCV.
+3. Optimizar el rendimiento limitando la región de interés (ROI) para la detección de ojos.
+4. Entender el concepto de ROI y su impacto en la velocidad de procesamiento.
+5. Seguimiento de caras en tiempo real usando OpenCV y un servo de pan-tilt.
 
 **Video**
 

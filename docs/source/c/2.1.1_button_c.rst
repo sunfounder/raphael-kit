@@ -1,56 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsualizaciones Exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y avances.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _2.1.1_c:
 
-2.1.1 Button
+2.1.1 Botón
 ==================
 
-Introduction
+Introducción
 -----------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+En este proyecto, aprenderemos cómo encender o apagar el LED usando un botón.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_2.1.1_Button.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,19 +64,19 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-Schematic Diagram
----------------------
+Diagrama Esquemático
+------------------------
 
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
+Usa un botón normalmente abierto como la entrada de Raspberry Pi, la conexión
+se muestra en el diagrama esquemático a continuación. Cuando se presiona el botón, el
+GPIO18 se convertirá en nivel bajo (0V). Podemos detectar el estado del
+GPIO18 a través de la programación. Es decir, si el GPIO18 se convierte en nivel bajo,
+significa que el botón está presionado. Puedes ejecutar el código correspondiente cuando
+se presiona el botón, y luego el LED se encenderá.
 
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    El pin más largo del LED es el ánodo y el más corto es
+    el cátodo.
 
 .. image:: ../img/image302.png
 
@@ -85,14 +84,14 @@ the button is pressed, and then the LED will light up.
 .. image:: ../img/image303.png
 
 
-Experimental Procedures
----------------------------
+Procedimientos Experimentales
+-----------------------------------
 
-**Step 1**: Build the circuit.
+**Paso 1**: Construye el circuito.
 
 .. image:: ../img/image152.png
 
-**Step 2**: Open the code file.
+**Paso 2**: Abre el archivo de código.
 
 .. raw:: html
 
@@ -103,9 +102,9 @@ Experimental Procedures
     cd ~/raphael-kit/c/2.1.1/
 
 .. note::
-    Change directory to the path of the code in this experiment via **cd**.
+    Cambia el directorio a la ruta del código en este experimento mediante **cd**.
 
-**Step 3**: Compile the code.
+**Paso 3**: Compila el código.
 
 .. raw:: html
 
@@ -115,7 +114,7 @@ Experimental Procedures
 
     gcc 2.1.1_Button.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Paso 4**: Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -125,14 +124,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, press the button, the LED lights up; otherwise,
-turns off.
+Después de ejecutar el código, presiona el botón, el LED se encenderá; de lo contrario, 
+se apagará.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
 
-**Code**
+**Código**
 
 .. code-block:: c
 
@@ -169,34 +168,33 @@ turns off.
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     #define LedPin      0
 
-Pin GPIO17 in the T_Extension Board is equal to the GPIO0 in the
-wiringPi.
+El pin GPIO17 en la T_Extension Board es equivalente al GPIO0 en wiringPi.
 
 .. code-block:: c
 
     #define ButtonPin   1
 
-ButtonPin is connected to GPIO1.
+ButtonPin está conectado al GPIO1.
 
 .. code-block:: c
 
     pinMode(LedPin, OUTPUT);
 
-Set LedPin as output to assign value to it.
+Configura LedPin como salida para asignarle un valor.
 
 .. code-block:: c
 
     pinMode(ButtonPin, INPUT);
 
-Set ButtonPin as input to read the value of ButtonPin.
+Configura ButtonPin como entrada para leer el valor de ButtonPin.
 
-.. code-block:: C
+.. code-block:: c
 
     while(1){
             // Indicate that button has pressed down
@@ -212,19 +210,18 @@ Set ButtonPin as input to read the value of ButtonPin.
             }
         }
 
+``if (digitalRead(ButtonPin) == 0)``: verifica si el botón ha sido presionado. 
+Ejecuta ``digitalWrite(LedPin, LOW)`` cuando el botón está presionado para encender el LED.
 
-``if (digitalRead (ButtonPin) == 0)`` : check whether the button has been
-pressed. Execute ``digitalWrite(LedPin, LOW)`` when button is pressed to
-light up LED.
+La función ``digitalRead()`` lee el estado ALTO (nivel alto) o BAJO (nivel bajo) 
+del pin de entrada especificado. Devuelve 1 cuando el pin está en ALTO y devuelve 
+0 cuando el pin está en BAJO.
 
-``digitalRead()`` function is to read HIGH (high level) or LOW (low level) of 
-the input parameter word pin, it returns 1 when pin is HIGH and returns 0 
-when pin is LOW.
+La función ``digitalWrite()`` escribe ALTO (nivel alto) o BAJO (nivel bajo) en el 
+pin de entrada especificado.
 
-``digitalWrite()`` function is to write HIGH (high level) or LOW (low level) to 
-the input parameter word pin.
 
-Phenomenon Picture
+Imagen del Fenómeno
 ^^^^^^^^^^^^^^^^^^
 
 .. image:: ../img/image153.jpeg

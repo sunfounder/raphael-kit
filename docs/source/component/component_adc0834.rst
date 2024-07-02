@@ -1,70 +1,59 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _cpn_adc0834:
 
 ADC0834
 ==============
 
-ADC0834 is an 8-bit successive approximation analog-to-digital converter that is equipped with an input-configurable
-multichannel multi-plexer and serial input/output. The serial
-input/output is configured to interface with standard shift registers or
-microprocessors.
+El ADC0834 es un convertidor analógico a digital de aproximación sucesiva de 8 bits, 
+equipado con un multiplexor multicanal configurable de entrada y entrada/salida en serie. 
+La entrada/salida en serie está configurada para interactuar con registros de desplazamiento 
+estándar o microprocesadores.
 
 .. image:: img/image309.png
 
+**Secuencia de Operación**
 
-**Sequence of Operation**
+Una conversión se inicia configurando CS en bajo, lo que habilita todos los circuitos lógicos. 
+CS debe mantenerse en bajo durante todo el proceso de conversión. Luego, se recibe una entrada 
+de reloj del procesador. En cada transición de bajo a alto de la entrada de reloj, los datos 
+en DI se desplazan al registro de dirección del multiplexor. El primer alto lógico en la entrada 
+es el bit de inicio. Una palabra de asignación de 3 a 4 bits sigue al bit de inicio. En cada 
+transición de bajo a alto del reloj de entrada, el bit de inicio y la palabra de asignación se 
+desplazan a través del registro de desplazamiento. Cuando el bit de inicio se desplaza a la 
+ubicación de inicio del registro del multiplexor, se selecciona el canal de entrada y comienza 
+la conversión. La salida de estado de SAR (SARS) se pone en alto para indicar que una conversión 
+está en progreso, y DI del registro de desplazamiento del multiplexor se deshabilita durante la 
+duración de la conversión.
 
-A conversion is initiated by setting CS low, which enables all logic
-circuits. CS must be held low for the complete conversion process. A
-clock input is then received from the processor. On each low-to-high
-transition of the clock input, the data on DI is clocked into the
-multiplexer address shift register. The first logic high on the input is
-the start bit. A 3- to 4-bit assignment word follows the start bit. On
-each successive low-to-high transition of the clock input, the start bit
-and assignment word are shifted through the shift register. When the
-start bit is shifted into the start location of the multiplexer
-register, the input channel is selected and conversion starts. The SAR
-Statu output (SARS) goes high to indicate that a conversion is in
-progress, and DI to the multiplexer shift register is disabled the
-duration of the conversion.
+Se inserta automáticamente un intervalo de un período de reloj para permitir que el canal 
+multiplexado seleccionado se estabilice. La salida de datos DO sale del estado de alta impedancia 
+y proporciona un bajo inicial para este período de reloj de tiempo de estabilización del multiplexor. El comparador SAR compara salidas sucesivas de la escalera resistiva con la señal analógica entrante. La salida del comparador indica si la entrada analógica es mayor o menor que la salida de la escalera resistiva. A medida que avanza la conversión, los datos de conversión se envían simultáneamente desde el pin de salida DO, con el bit más significativo (MSB) primero.
 
-An interval of one clock period is automatically inserted to allow the
-selected multiplexed channel to settle. The data output DO comes out of
-the high-impedance state and provides a leading low for this one clock
-period of multiplexer settling time. The SAR comparator compares
-successive outputs from the resistive ladder with the incoming analog
-signal. The comparator output indicates whether the analog input is
-greater than or less than the resistive ladder output. As the conversion
-proceeds, conversion data is simultaneously output from the DO output
-pin, with the most significant bit (MSB) first.
-
-After eight clock periods, the conversion is complete and the SARS
-output goes low. Finally outputs the least-significant-bit-first data
-after the MSB-first data stream.
-
+Después de ocho períodos de reloj, la conversión se completa y la salida SARS se pone en bajo. 
+Finalmente, se envían los datos con el bit menos significativo primero después de la secuencia de 
+datos con el bit más significativo primero.
 .. image:: img/image175.png
 
-
-**ADC0834 MUX ADDRESS CONTROL LOGIC TABLE**
+**Tabla de Lógica de Control de Dirección MUX del ADC0834**
 
 .. image:: img/image176.png
 
-* `ADC0831 series Datasheet <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
+* `Hoja de datos de la serie ADC0831 <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
 
-**Example**
+**Ejemplo**
 
 * :ref:`2.1.7_c` (C Project)
 * :ref:`2.2.1_c` (C Project)

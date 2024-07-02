@@ -1,36 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 31: Alarm for Detecting Motion in the Dark
+Video 31: Alarma para Detectar Movimiento en la Oscuridad
 =======================================================================================
 
+Este video muestra cómo construir un sistema de alarma contra intrusos usando un Raspberry Pi, sensor de movimiento, sensor de luz y un zumbador, proporcionando una guía paso a paso tanto sobre la configuración del hardware como la programación en Python.
 
-This video demonstrates how to build an intruder alarm system using a Raspberry Pi, motion sensor, light sensor, and buzzer, providing step-by-step guidance on both the hardware setup and Python coding.
-
-
-1. **Introduction to the project**: Building an intruder alarm system using Raspberry Pi.
-2. **Overview of the components used**: Raspberry Pi, PIR motion sensor, light sensor (ADC-0834), active buzzer, and transistor (S8550).
-3. **Explanation of the hardware setup**: Wiring the components together, including connecting the buzzer, motion sensor, and light sensor to the Raspberry Pi GPIO pins.
-4. **Coding the alarm system**: Using Python code to read sensor inputs, detect motion and darkness, and trigger the buzzer alarm accordingly.
-5. **Testing the system**: Demonstrating the functionality of the alarm system by simulating intruder detection in different lighting conditions.
-6. **Discussion of future projects**: Previewing upcoming tutorials on additional components like accelerometers, gyroscopes, RFID, and cameras for further Raspberry Pi projects.
-
-
+1. **Introducción al proyecto**: Construcción de un sistema de alarma contra intrusos utilizando Raspberry Pi.
+2. **Descripción de los componentes utilizados**: Raspberry Pi, sensor de movimiento PIR, sensor de luz (ADC-0834), zumbador activo y transistor (S8550).
+3. **Explicación de la configuración del hardware**: Conexión de los componentes, incluyendo la conexión del zumbador, sensor de movimiento y sensor de luz a los pines GPIO del Raspberry Pi.
+4. **Programación del sistema de alarma**: Uso de código en Python para leer las entradas de los sensores, detectar movimiento y oscuridad, y activar la alarma del zumbador en consecuencia.
+5. **Pruebas del sistema**: Demostración de la funcionalidad del sistema de alarma simulando la detección de intrusos en diferentes condiciones de iluminación.
+6. **Discusión de proyectos futuros**: Vista previa de próximos tutoriales sobre componentes adicionales como acelerómetros, giroscopios, RFID y cámaras para futuros proyectos con Raspberry Pi.
 
 **Video**
 
 .. raw:: html
 
-
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/mc06i-sZ6x0?si=Le6s4O26ltKUpbN9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/mc06i-sZ6x0?si=Le6s4O26ltKUpbN9" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

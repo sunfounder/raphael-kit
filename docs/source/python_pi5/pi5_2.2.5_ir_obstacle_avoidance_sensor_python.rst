@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.2.5_py_pi5:
 
-2.2.4 IR Obstacle Avoidance Sensor
-===================================
+2.2.4 Sensor de Evitación de Obstáculos por IR
+==================================================
 
-Introduction
------------------
+Introducción
+----------------
 
-In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+En este proyecto, aprenderemos sobre el módulo de evitación de obstáculos por IR, que es un módulo sensor que se puede utilizar para detectar obstáculos a distancias cortas, con poca interferencia, fácil de ensamblar, fácil de usar, etc. Puede ser ampliamente utilizado en la evitación de obstáculos de robots, carros de evitación de obstáculos, conteo en líneas de ensamblaje, etc.
 
-Required Components
-------------------------------
+Componentes necesarios
+-----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/2.2.5_ir_obstacle_list.png
    :width: 700
    :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - COMPONENTES EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,33 +62,33 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_avoid_module`
         - |link_obstacle_avoidance_buy|
 
-Schematic Diagram
------------------------
+Diagrama Esquemático
+------------------------
 
 .. image:: ../python_pi5/img/2.2.5_ir_obstacle_list_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
--------------------------
+Procedimientos Experimentales
+---------------------------------
 
-**Step 1:** Build the circuit
+**Paso 1:** Construye el circuito
 
 .. image:: ../python_pi5/img/2.2.5_ir_obstacle_circuit.png
    :width: 700
    :align: center
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia de directorio.
 
 .. raw:: html
 
    <run></run>
 
 .. code-block::
-   
+
    cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta.
 
 .. raw:: html
 
@@ -98,14 +98,15 @@ Experimental Procedures
 
    sudo python3 2.2.5_IrObstacle_zero.py
 
-After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
-repeatedly printed on the screen until the your hand is removed.
+Después de ejecutar el código, cuando pongas tu mano frente a la sonda del módulo, 
+el indicador de salida en el módulo se encenderá y se imprimirá repetidamente en la 
+pantalla "¡Barrera detectada!" hasta que retires tu mano.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+   Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, debes ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -118,25 +119,25 @@ repeatedly printed on the screen until the your hand is removed.
    from gpiozero import Button
    import time
 
-   # Initialize the obstacle sensor connected to GPIO pin 17
-   # The sensor is configured with a pull-up resistor
+   # Inicializar el sensor de obstáculos conectado al pin GPIO 17
+   # El sensor está configurado con una resistencia pull-up
    obstacle_sensor = Button(17, pull_up=True)  
 
    try:
-      # Continuously monitor for obstacles
+      # Monitorear continuamente los obstáculos
       while True:
          if obstacle_sensor.is_pressed:  # Check if the sensor is triggered
                print("Detected Barrier!")  # Print a message when an obstacle is detected
                time.sleep(1)  # Delay for 1 second to avoid repetitive messages
 
    except KeyboardInterrupt:
-      # Handle KeyboardInterrupt (Ctrl+C) for a clean and safe exit
+      # Manejar KeyboardInterrupt (Ctrl+C) para una salida limpia y segura
       pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This line sets the script to run using Python 3. It imports the ``Button`` class from gpiozero (used for the obstacle sensor) and the ``time`` module for delays.
+#. Esta línea configura el script para ejecutarse utilizando Python 3. Importa la clase ``Button`` de gpiozero (utilizada para el sensor de obstáculos) y el módulo ``time`` para retrasos.
 
    .. code-block:: python
 
@@ -144,26 +145,26 @@ repeatedly printed on the screen until the your hand is removed.
       from gpiozero import Button
       import time
 
-#. Initializes an obstacle sensor connected to GPIO pin 17 with an internal pull-up resistor.
+#. Inicializa un sensor de obstáculos conectado al pin GPIO 17 con una resistencia pull-up interna.
 
    .. code-block:: python
 
-      # Initialize the obstacle sensor connected to GPIO pin 17
-      # The sensor is configured with a pull-up resistor
+      # Inicializar el sensor de obstáculos conectado al pin GPIO 17
+      # El sensor está configurado con una resistencia pull-up
       obstacle_sensor = Button(17, pull_up=True)  
 
-#. In a continuous loop, the program checks if the obstacle sensor is activated (``is_pressed``). If an obstacle is detected, it prints "Detected Barrier!" and then waits for one second (to prevent repetitive messages). The ``try-except`` structure is used to handle a KeyboardInterrupt for a clean exit.
+#. En un bucle continuo, el programa verifica si el sensor de obstáculos está activado (``is_pressed``). Si se detecta un obstáculo, imprime "¡Obstáculo detectado!" y luego espera un segundo (para evitar mensajes repetitivos). La estructura ``try-except`` se utiliza para manejar un KeyboardInterrupt y permitir una salida limpia.
 
    .. code-block:: python
 
       try:
-         # Continuously monitor for obstacles
+         # Monitorear continuamente los obstáculos
          while True:
             if obstacle_sensor.is_pressed:  # Check if the sensor is triggered
                   print("Detected Barrier!")  # Print a message when an obstacle is detected
                   time.sleep(1)  # Delay for 1 second to avoid repetitive messages
 
       except KeyboardInterrupt:
-         # Handle KeyboardInterrupt (Ctrl+C) for a clean and safe exit
+         # Manejar KeyboardInterrupt (Ctrl+C) para una salida limpia y segura
          pass
 

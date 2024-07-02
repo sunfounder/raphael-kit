@@ -1,59 +1,58 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
 .. _1.3.3_py_pi5:
 
-1.3.3 Relay
-===========
+1.3.3 Relé
+=============
 
-Introduction
-------------
+Introducción
+-----------------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+En este proyecto, aprenderemos a usar un relé. Es uno de los componentes más 
+utilizados en los sistemas de control automático. Cuando el voltaje, la corriente, 
+la temperatura, la presión, etc., alcanzan, superan o están por debajo del valor 
+predeterminado, el relé conectará o interrumpirá el circuito, para controlar y proteger el equipo.
 
-Required Components
-------------------------------
+Componentes Necesarios
+-------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/1.3.3_relay_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - COMPONENTES EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -72,20 +71,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_diode`
         - |link_diode_buy|
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+------------------------
 
 .. image:: ../python_pi5/img/1.3.3_relay_schematic.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+--------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../python_pi5/img/1.3.3_relay_circuit.png
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -95,8 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-
-**Step 3:** Run.
+**Paso 3:** Ejecuta.
 
 .. raw:: html
 
@@ -106,15 +104,15 @@ Experimental Procedures
 
     sudo python3 1.3.3_Relay_zero.py
 
-While the code is running, the LED lights up. In addition, you can hear
-a ticktock caused by breaking normally close contact and closing
-normally open contact.
+Mientras el código se está ejecutando, el LED se enciende. Además, 
+puedes escuchar un tic-tac causado por la interrupción del contacto 
+normalmente cerrado y el cierre del contacto normalmente abierto.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -147,7 +145,7 @@ normally open contact.
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
 #. It imports ``OutputDevice`` from ``gpiozero`` for controlling GPIO pins and ``sleep`` from ``time`` for adding delays.
 
@@ -157,14 +155,14 @@ normally open contact.
        from gpiozero import OutputDevice  # Import the class for controlling GPIO pins
        from time import sleep  # Import the sleep function for delay
 
-#. Initializes an ``OutputDevice`` object for the relay connected to GPIO pin 17. The ``initial_value=False`` sets the relay to the ``off`` state initially (assuming active low configuration).
+#. Inicializa un objeto ``OutputDevice`` para el relé conectado al pin GPIO 17. El ``initial_value=False`` configura el relé en el estado ``off`` inicialmente (suponiendo configuración de activo bajo).
 
    .. code-block:: python
 
        # Initialize the relay connected to GPIO pin 17, starting in the 'off' state
        relay = OutputDevice(17, initial_value=False)
 
-#. Inside the ``try`` block, a ``while True`` loop continuously toggles the relay's state. The relay is turned on and off with a 1-second delay between each state, accompanied by console print statements.
+#. Dentro del bloque ``try``, un bucle ``while True`` alterna continuamente el estado del relé. El relé se enciende y se apaga con una pausa de 1 segundo entre cada estado, acompañado de declaraciones de impresión en la consola.
 
    .. code-block:: python
 
@@ -179,7 +177,7 @@ normally open contact.
                relay.off()  # Turn off the relay
                sleep(1)   # Maintain the relay in the off state for 1 second
 
-#. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination. The relay is turned off before exiting the script.
+#. Captura una interrupción del teclado (como Ctrl+C) para permitir la terminación del script de manera segura. El relé se apaga antes de salir del script.
 
    .. code-block:: python
       

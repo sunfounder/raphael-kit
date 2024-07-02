@@ -1,51 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _blynk_light_py:
 
-Smart Light
-===========
+Luz Inteligente
+====================
 
-In this project, we use Blynk's Silder to control the brightness of the LED, turning it on and off with Switch.
+En este proyecto, utilizamos el deslizador de Blynk para controlar el brillo del LED, encendiéndolo y apagándolo con el interruptor.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
+.. note:: Antes de comenzar este proyecto, recomendamos que completes :ref:`bk_start_py`. Lo siguiente te dará una comprensión clara de Blynk.
 
-**Required Components**
+**Componentes necesarios**
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado desde los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -58,36 +58,36 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-**1. Wiring**
+**1. Conexión**
 
 .. image:: img/wiring_led1.png
 
-**2. Create Widget and Datastream**
+**2. Crear Widget y Flujo de Datos**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Haz clic en el ícono del menú en la esquina superior derecha y selecciona editar tablero.
 
     .. image:: img/sp220913_180231.png
 
-2. Add a Switch widget and a Slider widget to the Dashboard.
+2. Agrega un widget de Interruptor y un widget de Deslizador al Tablero.
 
     .. image:: img/sp220914_160427.png
 
-3. Create a Datastream for the Switch widget (I used V3). It will be used to control the turning on and off of the LED.
+3. Crea un flujo de datos para el widget de Interruptor (utilicé V3). Se utilizará para controlar el encendido y apagado del LED.
 
     .. image:: img/sp220914_155911.png
 
-4. Create a Datastream for the Slider widget (I used V2), its value range is 0 to 100, it will be used to control the brightness of the LED.
+4. Crea un flujo de datos para el widget de Deslizador (utilicé V2), su rango de valores es de 0 a 100, se utilizará para controlar el brillo del LED.
 
     .. image:: img/sp220914_160234.png
 
-#. When finished, click Save And Apply at the top right.
+#. Cuando termines, haz clic en Guardar y Aplicar en la parte superior derecha.
 
     .. image:: img/sp220913_182300.png
 
 
-**3. Run the Code**
+**3. Ejecutar el Código**
 
-1. Edit the code
+1. Edita el código
 
 .. raw:: html
 
@@ -98,13 +98,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_light.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. Encuentra la línea siguiente y pega tu ``BLYNK_AUTH_TOKEN``.
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. Ejecuta el código.
 
 .. raw:: html
 
@@ -114,6 +114,6 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_light.py
 
-4. Go to Blynk, operate widget on Dashboard. now you click switch widget will turn on/off LED. slide Slider widget will change LED brightness.
+4. Ve a Blynk, opera el widget en el Tablero. ahora al hacer clic en el widget de interruptor encenderás/apagarás el LED. desliza el widget de deslizador para cambiar el brillo del LED.
 
-#. If you want to use Blynk on mobile devices, please refer to :ref:`blynk_mobile`.
+#. Si deseas usar Blynk en dispositivos móviles, consulta :ref:`blynk_mobile`.

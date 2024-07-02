@@ -1,55 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _1.1.6_c:
 
-1.1.6 LED Dot Matrix Module
+1.1.6 Módulo de Matriz de LED
 ==================================
 
-Introduction
+Introducción
 --------------------
 
-In this project, you will learn about LED Matrix Module. LED Matrix Module uses the MAX7219 driver to drive the 8 x 8 LED Matrix.
+En este proyecto, aprenderás sobre el Módulo de Matriz de LED. Este módulo utiliza el controlador MAX7219 para manejar la matriz de LED de 8 x 8.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/list_dot.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí tienes el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,31 +60,30 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_dot_matrix`
         - |link_led_matrix_buy|
 
-Schematic Diagram
+Diagrama Esquemático
 -----------------------
 
-============ ======== ======== ====
-T-Board Name physical wiringPi BCM
-SPIMOSI      Pin 19   12       MOSI
-SPICE0       pin 24   10       CE0
-SPISCLK      Pin 23   14       SCLK
-============ ======== ======== ====
+============== ======== ======== ====
+Nombre T-Board físico   wiringPi BCM
+SPIMOSI        Pin 19   12       MOSI
+SPICE0         Pin 24   10       CE0
+SPISCLK        Pin 23   14       SCLK
+============== ======== ======== ====
 
 .. image:: ../img/schematic_dot.png
 
-Experimental Procedures
-----------------------------
+Procedimientos Experimentales
+-------------------------------
 
-**Step 1:** Build the circuit. 
+**Paso 1:** Construir el circuito.
 
 .. image:: ../img/1.1.6fritzing.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. And the :ref:`BCM2835` library is also needed.
+    Activa el SPI antes de comenzar el experimento, consulta :ref:`SPI Configuration` para más detalles. También se necesita la biblioteca :ref:`BCM2835`.
 
-
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -94,7 +93,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.6/
 
-**Step 3:** Compile the code.
+**Paso 3:** Compila el código.
 
 .. raw:: html
 
@@ -104,7 +103,7 @@ Experimental Procedures
 
     make
 
-**Step 4:**: Run the executable file.
+**Paso 4:** Ejecuta el archivo ejecutable.
 
 .. raw:: html
 
@@ -114,13 +113,12 @@ Experimental Procedures
 
     sudo ./1.1.6_LedMatrix
 
-After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in sequence.
+Después de ejecutar el código, la Matriz de LED muestra en secuencia de 0 a 9 y de A a Z.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
-
-**Code**
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+**Código**
 
 .. code-block:: c
 
@@ -240,35 +238,35 @@ After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in se
         return 0;
     }
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: c
 
     #define Max7219_pinCS  24
 
-The cs pin of the LED Dot Matrix is connected to pin24.
+El pin CS de la Matriz de LED está conectado al pin 24.
 
 .. note::
 
-    When you have multiple devices that need spi communication, just connect the cs pins on different pins.
+    Cuando tienes múltiples dispositivos que necesitan comunicación SPI, solo conecta los pines CS en diferentes pines.
 
 .. code-block:: c
 
     if (!bcm2835_init())
-	{
-		printf("Unable to init bcm2835.\n");
-		return 1;
-	}
+    {
+        printf("Unable to init bcm2835.\n");
+        return 1;
+    }
 
-Check if the bcm2835 library is successfully installed, if not, print the message "Unable to init bcm2835".
+Verifica si la biblioteca bcm2835 se ha instalado correctamente; de lo contrario, imprime el mensaje "Unable to init bcm2835".
 
 .. code-block:: c
 
     Init_BCM2835();
-	Delay_xms(50);
-	Init_MAX7219();
+    Delay_xms(50);
+    Init_MAX7219();
 
-Initialize libraries and module.
+Inicializa las bibliotecas y el módulo.
 
 .. code-block:: c
 
@@ -284,17 +282,22 @@ Initialize libraries and module.
         }
     }
 
+La función ``Write_Max7219()`` te permite mostrar el carácter especificado en la Matriz de LED, 
+donde el primer parámetro indica la fila en la que se muestra, y el segundo parámetro introduce 
+un número binario de 8 bits o un número hexadecimal que indica si la luz está encendida o apagada 
+en esa fila (0 significa apagado, 1 significa encendido).
 
-The ``Write_Max7219()`` function allows you to display the specified character on the LED Dot Matrix, where the first parameter inputs the row in which it is displayed, and the second parameter inputs an 8-bit binary number or a hexadecimal number that indicates the light on or off in that row (0 means off, 1 means lit).
+La variable ``j`` representa las filas en el arreglo ``disp1[]`` (35 filas) y la variable
+ ``i`` representa la columna (8 columnas).
 
-The variable ``j`` represents the rows in the array ``disp1[]`` (35 rows) and the variable ``i`` represents the column (8 columns).
-    
-For example, when j=1 and i=2, the value ``disp1[1][1]`` (0x18) is displayed on the dot matrix. i loops 8 times to display the full 1 on the dot matrix. After 35 cycles of j, 0-9 and A-Z are displayed on the dot matrix.
+Por ejemplo, cuando j=1 e i=2, el valor ``disp1[1][1]`` (0x18) se muestra en la matriz de puntos. 
+i se repite 8 veces para mostrar el 1 completo en la matriz de puntos. Después de 35 ciclos de j, 
+se muestran 0-9 y A-Z en la matriz de puntos.
 
-    .. image:: ../img/led_not.png
-        :width: 400
+.. image:: ../img/led_not.png
+    :width: 400
 
-Phenomenon Picture
+Imagen del Fenómeno
 -----------------------
 
 .. image:: ../img/1.1.6led_dot_matrix.JPG

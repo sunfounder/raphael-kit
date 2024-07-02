@@ -1,54 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.6_scratch:
 
-1.6 Vanishing Vase
-========================
+1.6 Florero Desaparecedor
+===============================
 
-Now let's do a little magic trick, do nothing, and then the vase somehow disappears.
+Ahora hagamos un pequeño truco de magia, no hagas nada y el florero de alguna manera desaparecerá.
 
 .. image:: img/1.6_header.png
 
-Required Components
-------------------------------
+Componentes necesarios
+-------------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: img/1.6_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,34 +59,34 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Build the Circuit
----------------------
+Construir el circuito
+-------------------------
 
 .. image:: img/1.6_fritzing.png
 
-Load the Code and See What Happens
+Cargar el código y ver qué pasa
 ---------------------------------------
 
-Load the code file (``1.6_vanishing_vase.sb3``) to Scratch 3.
+Carga el archivo de código (``1.6_vanishing_vase.sb3``) en Scratch 3.
 
-When you use a magnet near the reed switch module, a vase will appear on the stage, take away the magnet and the vase will disappear.
+Cuando uses un imán cerca del módulo del interruptor de láminas, aparecerá un florero en el escenario, quita el imán y el florero desaparecerá.
 
-Tips on Sprite
-----------------
+Consejos sobre el sprite
+-------------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **desk1.png** and **desk2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **desk**.
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **desk1.png** y **desk2.png** desde la ruta ``~/raphael-kit/scratch/picture`` mediante el botón **Cargar Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite a **desk**.
 
 .. image:: img/1.6_vase.png
 
-Tips on Codes
---------------
+Consejos sobre los códigos
+---------------------------------
 
 .. image:: img/1.6_reed2.png
   :width: 400
 
-When the magnet is close to the reed switch module, gpio17 is low, and the costume of the **desk** sprite is switched to **desk1** (the vase is still on the desk).
+Cuando el imán está cerca del módulo del interruptor de láminas, gpio17 está en bajo, y el disfraz del sprite **desk** se cambia a **desk1** (el florero sigue en el escritorio).
 
 .. image:: img/1.6_reed3.png
   :width: 400
 
-After taking away the magnet, gpio17 is high, at this time the costume of the **desk** sprite is switched to **desk2** (only one desk).
+Después de quitar el imán, gpio17 está en alto, en este momento el disfraz del sprite **desk** se cambia a **desk2** (solo un escritorio).

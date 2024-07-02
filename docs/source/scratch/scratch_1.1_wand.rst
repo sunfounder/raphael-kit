@@ -1,54 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.1_scratch:
 
-1.1 Wand
-=================
+1.1 Varita mágica
+====================
 
-Today we will use LED, Raspberry Pi and Scratch to make a fun game. When we wave the magic wand, the LED will blink.
+Hoy usaremos LED, Raspberry Pi y Scratch para hacer un juego divertido. Cuando agitemos la varita mágica, el LED parpadeará.
 
 .. image:: img/1.1_header.png
 
-Required Components
-------------------------------
+Componentes necesarios
+---------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: img/1.1_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,15 +61,15 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-Build the Circuit
------------------------
+Construir el circuito
+-------------------------
 
 .. image:: img/1.1_image49.png
 
-Add GPIO Extension
----------------------
+Agregar extensión GPIO
+--------------------------
 
-Click on the **Add Extension** button in the bottom left corner，then add the **Raspberry Pi GPIO**, an extension we use for all of our Scratch projects.
+Haz clic en el botón **Agregar Extensión** en la esquina inferior izquierda, luego agrega **Raspberry Pi GPIO**, una extensión que usamos para todos nuestros proyectos de Scratch.
 
 .. image:: img/1.1_scratchled1.png
     :align: center
@@ -80,59 +80,59 @@ Click on the **Add Extension** button in the bottom left corner，then add the *
 .. image:: img/1.1_scratchled3.png
     :align: center
 
-Load the Code and See What Happens
------------------------------------------
+Cargar el código y ver qué pasa
+-------------------------------------------
 
-Load the code file from your computer(``~/raphael-kit/scratch/code``) to Scratch 3.
+Carga el archivo de código desde tu computadora (``~/raphael-kit/scratch/code``) a Scratch 3.
 
 .. image:: img/1.1_scratch_step1.png
 
 .. image:: img/1.1_scratch_step2.png
 
-After clicking the magic wand in the stage area, you will see the LED will blink for two seconds.
+Después de hacer clic en la varita mágica en el área del escenario, verás que el LED parpadea durante dos segundos.
 
 .. image:: img/1.1_step3.png
 
 
-Tips on Sprite
-----------------
+Consejos sobre el sprite
+----------------------------
 
-Click on the **Upload Sprite**.
+Haz clic en **Subir Sprite**.
 
 .. image:: img/1.1_upload_sprite.png
 
-Upload **Wand.png** from the ``~/raphael-kit/scratch/picture`` path to Scratch 3.
+Sube **Wand.png** desde la ruta ``~/raphael-kit/scratch/picture`` a Scratch 3.
 
 .. image:: img/1.1_upload.png
 
-Finally, delete the **Sprite1**.
+Finalmente, elimina **Sprite1**.
 
 .. image:: img/1.1_delete.png
 
-Tips on Codes
---------------
+Consejos sobre los códigos
+---------------------------------
 
 .. image:: img/1.1_LED1.png
   :width: 300
 
-This is an event block whose trigger condition is to click on the green flag on the stage. A trigger event is required at the beginning of all codes, and you can select other trigger events in the **Events** category of the **block palette**.
+Este es un bloque de evento cuya condición de activación es hacer clic en la bandera verde en el escenario. Se requiere un evento de activación al comienzo de todos los códigos, y puedes seleccionar otros eventos de activación en la categoría **Eventos** de la **paleta de bloques**.
 
 .. image:: img/1.1_events.png
   :width: 300
 
-For example, we can now change the trigger event to a click on the sprite.
+Por ejemplo, ahora podemos cambiar el evento de activación a hacer clic en el sprite.
 
 .. image:: img/1.1_LED2.png
   :width: 300
 
-This is a block with a set number of cycles. When we fill in the number 10, the events in the block will be executed 10 times.
+Este es un bloque con un número determinado de ciclos. Cuando llenamos el número 10, los eventos en el bloque se ejecutarán 10 veces.
 
 .. image:: img/1.1_LED4.png
   :width: 300
 
-This block is used to pause the program for a period of time in seconds.
+Este bloque se usa para pausar el programa durante un período de tiempo en segundos.
 
 .. image:: img/1.1_LED3.png
   :width: 500
 
-Since the BCM naming method is used in Scratch, this code is setting GPIO17(BCM17) as 0V (low level). Since the cathode of LED is connected to GPIO17, thus the LED will light up. On the contrary, if you set GPIO(BCM17) as high, the LED will turn off.
+Dado que se utiliza el método de nombrado BCM en Scratch, este código está configurando GPIO17 (BCM17) como 0V (nivel bajo). Dado que el cátodo del LED está conectado a GPIO17, el LED se encenderá. Por el contrario, si configuras GPIO (BCM17) como alto, el LED se apagará.

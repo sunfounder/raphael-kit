@@ -1,49 +1,49 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y avances exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _show_number:
 
-Show Number
-=============================================
+Mostrar Número
+==============================
 
-In this project, we use processing to drive a 7-segment display to show a figure from 0 to 9 and A to F.
+En este proyecto, utilizamos Processing para controlar un display de 7 segmentos y mostrar números del 0 al 9 y letras de la A a la F.
 
-**Required Components**
+**Componentes necesarios**
 
-In this project, we need the following components.
+En este proyecto, necesitamos los siguientes componentes.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -58,133 +58,134 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
-**Wiring**
+**Cableado**
 
 .. image:: img/image125.png
 
-**Sketch**
+**Esquema**
 
 .. code-block:: arduino
 
-	import processing.io.*;
+    import processing.io.*;
 
 	int SDI=17;   //serial data input
 	int RCLK=18;  //memory clock input(STCP)
 	int SRCLK =27;   //shift register clock input(SHCP)
 
 
-	int[] SegCode= {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+    int[] SegCode= {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
-	void hc595_shift(int dat){
-	  int i;
+    void hc595_shift(int dat){
+      int i;
 
-	  for(i=0;i<8;i++){
-		int n=(0x80 & (dat << i)); 
-		if ( n==0){
-		  GPIO.digitalWrite(SDI, 0);
-		} else {
-		  GPIO.digitalWrite(SDI, 1);
-		}
-		GPIO.digitalWrite(SRCLK, 1);
-		delay(1);
-		GPIO.digitalWrite(SRCLK, 0);
-	  }
+      for(i=0;i<8;i++){
+        int n=(0x80 & (dat << i)); 
+        if ( n==0){
+          GPIO.digitalWrite(SDI, 0);
+        } else {
+          GPIO.digitalWrite(SDI, 1);
+        }
+        GPIO.digitalWrite(SRCLK, 1);
+        delay(1);
+        GPIO.digitalWrite(SRCLK, 0);
+      }
 
-		GPIO.digitalWrite(RCLK, 1);
-		delay(1);
-		GPIO.digitalWrite(RCLK, 0);
-	}
+        GPIO.digitalWrite(RCLK, 1);
+        delay(1);
+        GPIO.digitalWrite(RCLK, 0);
+    }
 
-	void setup() {
-		size(400, 200);
-		frameRate(10);
-		
-		GPIO.pinMode(SDI, GPIO.OUTPUT); 
-		GPIO.pinMode(RCLK, GPIO.OUTPUT); 
-		GPIO.pinMode(SRCLK, GPIO.OUTPUT); 
-	  
-		GPIO.digitalWrite(SDI, 0);
-		GPIO.digitalWrite(RCLK, 0);
-		GPIO.digitalWrite(SRCLK, 0);
-		
-		fill(0,25,88);
-		textAlign(CENTER,CENTER);
-		textSize(height*0.8);
-	}
+    void setup() {
+        size(400, 200);
+        frameRate(10);
+        
+        GPIO.pinMode(SDI, GPIO.OUTPUT); 
+        GPIO.pinMode(RCLK, GPIO.OUTPUT); 
+        GPIO.pinMode(SRCLK, GPIO.OUTPUT); 
+      
+        GPIO.digitalWrite(SDI, 0);
+        GPIO.digitalWrite(RCLK, 0);
+        GPIO.digitalWrite(SRCLK, 0);
+        
+        fill(0,25,88);
+        textAlign(CENTER,CENTER);
+        textSize(height*0.8);
+    }
 
-	void draw() {
+    void draw() {
 
-		background(255);
-		int number = (frameCount%100)/10;
-		text(number, width/2, height/2);
-		hc595_shift(SegCode[number]);
-	}
+        background(255);
+        int number = (frameCount%100)/10;
+        text(number, width/2, height/2);
+        hc595_shift(SegCode[number]);
+    }
 
-**How it works?**
+**¿Cómo funciona?**
 
-Import ``processing.io.*`` and use the GPIO function library to control the digital tube pins.
+Importa ``processing.io.*`` y utiliza la biblioteca de funciones GPIO para controlar los pines del tubo digital.
 
-Define array ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}``
-which represents a segment code array from 0 to F in Hexadecimal (Common cathode).
+Define el array ``SegCode = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}``, 
+que representa un array de códigos de segmentos desde 0 hasta F en hexadecimal (cátodo común).
 
-``setup()`` function sets the three pins SDI,RCLK and SRCLK as output, and the initial data as 0.
+La función ``setup()`` configura los tres pines SDI, RCLK y SRCLK como salida, y los datos iniciales como 0.
 
-``hc595_shift(int dat)`` function is used to shift the ``SegCode`` to 74HC595.
+La función ``hc595_shift(int dat)`` se utiliza para desplazar el ``SegCode`` al 74HC595.
  
 .. code:: 
 
-	void hc595_shift(int dat){
-	  int i;
+    void hc595_shift(int dat){
+      int i;
 
-	  for(i=0;i<8;i++){
-		int n=(0x80 & (dat << i));
-		if ( n==0){
-		  GPIO.digitalWrite(SDI, 0);
-		} else {
-		  GPIO.digitalWrite(SDI, 1);
-		}
-		GPIO.digitalWrite(SRCLK, 1);
-		delay(1);
-		GPIO.digitalWrite(SRCLK, 0);
-	  }
+      for(i=0;i<8;i++){
+        int n=(0x80 & (dat << i));
+        if ( n==0){
+          GPIO.digitalWrite(SDI, 0);
+        } else {
+          GPIO.digitalWrite(SDI, 1);
+        }
+        GPIO.digitalWrite(SRCLK, 1);
+        delay(1);
+        GPIO.digitalWrite(SRCLK, 0);
+      }
 
-		GPIO.digitalWrite(RCLK, 1);
-		delay(1);
-		GPIO.digitalWrite(RCLK, 0);
-	}
+        GPIO.digitalWrite(RCLK, 1);
+        delay(1);
+        GPIO.digitalWrite(RCLK, 0);
+    }
  
-``n=(0x80 & (dat << i))`` means to shift dat to the left by ``i`` bits and then do the ``&`` operation with 0x80.
+``n=(0x80 & (dat << i))`` significa desplazar ``dat`` a la izquierda por ``i`` bits y luego hacer la operación ``&`` con 0x80.
 
-The rule of ``&`` operation is that when both sides of ``&`` are 1, the result is 1, otherwise the result is 0.
+La regla de la operación ``&`` es que cuando ambos lados de ``&`` son 1, el resultado es 1, de lo contrario, el resultado es 0.
 
-For example, we assume dat=0x3f,i=2(0011 1111 << 2 shift to 1111 1100), then 1111 1100 & 1000 0000 (0x80)) = 1000 0000.
+Por ejemplo, asumimos dat=0x3f,i=2 (0011 1111 << 2 desplaza a 1111 1100), entonces 1111 1100 & 1000 0000 (0x80)) = 1000 0000.
 
-At last assign the dat data to SDI(DS) by bits.
+Finalmente, asigna los datos de ``dat`` a SDI (DS) por bits.
  
-``digitalWrite(SRCLK, 1)`` when SRCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the DS register to the shift register;
  
-``digitalWrite(RCLK, 1)`` when RCLK generates a rising edge pulse from 0 to 1, the data will be transferred from the shift register to the storage register.
+``digitalWrite(SRCLK, 1)`` cuando SRCLK genera un pulso de flanco ascendente de 0 a 1, los datos se transferirán del registro DS al registro de desplazamiento;
+ 
+``digitalWrite(RCLK, 1)`` cuando RCLK genera un pulso de flanco ascendente de 0 a 1, los datos se transferirán del registro de desplazamiento al registro de almacenamiento.
 
 .. code::
 
-	fill(0,25,88);
-	textAlign(CENTER,CENTER);
-	textSize(height*0.8);
+    fill(0,25,88);
+    textAlign(CENTER,CENTER);
+    textSize(height*0.8);
 
-The ``fill()`` function used in ``setup()`` can fill the text color, ``textAlign(CENTER,CENTER)`` is used to center the text, ``textSize(height*0.8)`` change the text height to 0.8 times the original.
-These functions can customize the text style displayed on the processing
+La función ``fill()`` utilizada en ``setup()`` puede llenar el color del texto, ``textAlign(CENTER,CENTER)`` se usa para centrar el texto, ``textSize(height*0.8)`` cambia la altura del texto a 0.8 veces la original.
+Estas funciones pueden personalizar el estilo del texto mostrado en Processing.
 
 .. code::
 
-	void draw() {
+    void draw() {
 
-		background(255);
-		int number = (frameCount%100)/10;
-		text(number, width/2, height/2);
-		hc595_shift(SegCode[number]);
-	}
+        background(255);
+        int number = (frameCount%100)/10;
+        text(number, width/2, height/2);
+        hc595_shift(SegCode[number]);
+    }
 
-The ``frameCount`` is a seed, which is related to ``frameRate``.
-By default ``frameRate`` is 60, which means that ``frameCount`` will accumulate 60 times per second.
+El ``frameCount`` es una semilla, que está relacionada con ``frameRate``.
+Por defecto, ``frameRate`` es 60, lo que significa que ``frameCount`` se acumulará 60 veces por segundo.
 
-Then we can let processing and 7-segment display to show the figure from 0 to 9 and A to F simultaneously.
+Luego, podemos hacer que Processing y el display de 7 segmentos muestren la cifra de 0 a 9 y de la A a la F simultáneamente.

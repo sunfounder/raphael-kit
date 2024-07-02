@@ -1,43 +1,41 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más profundamente en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _cpn_rotary_encoder:
 
-Rotary Encoder Module
-=============================
+Módulo de Codificador Rotativo
+==================================
 
 .. image:: img/rotary_encoder_pic.png
     :width: 300
     :align: center
 
-A rotary encoder is a position sensor that converts the rotation of a knob into an output signal, indicating the direction in which the knob is turned.
+Un codificador rotativo es un sensor de posición que convierte la rotación de una perilla en una señal de salida, indicando la dirección en la que se gira la perilla.
 
-Rotary encoders are digital versions of potentiometers, offering greater versatility. They can rotate continuously, while potentiometers have limited rotation. Potentiometers indicate exact knob position, while rotary encoders show changes in position.
+Los codificadores rotativos son versiones digitales de los potenciómetros, ofreciendo una mayor versatilidad. Pueden girar continuamente, mientras que los potenciómetros tienen una rotación limitada. Los potenciómetros indican la posición exacta de la perilla, mientras que los codificadores rotativos muestran cambios en la posición.
 
-There are mainly two types of rotary encoders: absolute and incremental (relative) encoders. An incremental one is used in this kit.
+Principalmente hay dos tipos de codificadores rotativos: absolutos e incrementales (relativos). En este kit se utiliza un codificador incremental.
 
-Incremental encoders produce two-phase square waves, with a 90-degree phase difference commonly referred to as the A and B channels.
+Los codificadores incrementales producen ondas cuadradas de dos fases, con una diferencia de fase de 90 grados, comúnmente referidas como los canales A y B.
 
-As illustrated below, when channel A transitions from a high level to a low level, if channel B is at a high level, it indicates that the rotary encoder is rotating clockwise (CW); if at that moment channel B is at a low level, it means the rotation is counterclockwise (CCW). Therefore, by reading the value of channel B when channel A is at a low level, we can determine the direction in which the rotary encoder rotates.
-
-
+Como se ilustra a continuación, cuando el canal A transita de un nivel alto a uno bajo, si el canal B está en un nivel alto, indica que el codificador rotativo está girando en sentido horario (CW); si en ese momento el canal B está en un nivel bajo, significa que la rotación es en sentido antihorario (CCW). Por lo tanto, al leer el valor del canal B cuando el canal A está en un nivel bajo, podemos determinar la dirección en la que gira el codificador rotativo.
 
 .. image:: img/image206.png
     :width: 600
     :align: center
 	
-**Example**
+**Ejemplo**
 
-* :ref:`2.1.6_c` (C Project)
-* :ref:`2.1.6_py` (Python Project)
+* :ref:`2.1.6_c` (Proyecto en C)
+* :ref:`2.1.6_py` (Proyecto en Python)

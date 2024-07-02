@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.8_scratch:
 
-1.8 Service Bell
-===================
+1.8 Timbre de Servicio
+=============================
 
-Today, we will use Micro Switch, speakers, audio amplifier module, Raspberry Pi and scratch to make a service bell.
+Hoy utilizaremos un Micro Interruptor, altavoces, un módulo amplificador de audio, Raspberry Pi y Scratch para hacer un timbre de servicio.
 
-Tap the Micro Switch to make the service bell sound.
+Toca el Micro Interruptor para hacer sonar el timbre de servicio.
 
 .. image:: img/1.8_header.png
 
-Required Components
-------------------------------
+Componentes necesarios
+---------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: img/1.8_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,45 +67,45 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_audio_speaker`
         - \-
 
-Build the Circuit
----------------------
+Construir el circuito
+---------------------------
 
 .. image:: img/1.8_fritzing.png
 
 
-Load the Code and See What Happens
------------------------------------------
+Cargar el código y ver qué pasa
+---------------------------------------------
 
-Load the code file (``1.8_service_bell.sb3``) to Scratch 3.
+Carga el archivo de código (``1.8_service_bell.sb3``) en Scratch 3.
 
-Press the micro switch and the service bell will ring once.
+Presiona el micro interruptor y el timbre de servicio sonará una vez.
 
 .. note::
-  
-  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`change_audio_output` for the solution.
 
-  Also, if you want to adjust the volume level, please refer to :ref:`adjust_volume`.
+  Si tu Raspberry Pi está conectada a una pantalla con altavoces, es posible que no se escuche el sonido desde este altavoz externo. Consulta :ref:`change_audio_output` para la solución.
 
-Tips on Sprite
-----------------
+  Además, si deseas ajustar el nivel de volumen, consulta :ref:`adjust_volume`.
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **bell1.png** and **bell2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **bell**.
+Consejos sobre el sprite
+-------------------------------
+
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **bell1.png** y **bell2.png** desde la ruta ``~/raphael-kit/scratch/picture`` mediante el botón **Cargar Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite a **bell**.
 
 .. image:: img/1.8_travel1.png
 
-In the **Sounds** option, upload the ``bell.wav`` from the ``~/raphael-kit/scratch/sound`` path to Scratch 3.
+En la opción **Sonidos**, sube el archivo ``bell.wav`` desde la ruta ``~/raphael-kit/scratch/sound`` a Scratch 3.
 
 .. image:: img/1.8_travel2.png
 
-Tips on Codes
---------------
+Consejos sobre los códigos
+-------------------------------------
 
 .. image:: img/1.8_travel3.png
   :width: 400
 
-When pin17 is high (the Micro switch is not pressed), switch the costume of the **bell** sprite to **bell1** (released state).
+Cuando pin17 está alto (el micro interruptor no está presionado), cambia el disfraz del sprite **bell** a **bell1** (estado liberado).
 
 .. image:: img/1.8_travel4.png
   :width: 400
 
-Press the micro switch, gpio17 is low level. At this time, switch the costume of the **bell** sprite to **bell2** (press state), and play a sound effect through the speaker.
+Presiona el micro interruptor, gpio17 está en nivel bajo. En ese momento, cambia el disfraz del sprite **bell** a **bell2** (estado presionado) y reproduce un efecto de sonido a través del altavoz.

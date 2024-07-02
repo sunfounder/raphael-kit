@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _1.11_scratch:
 
-1.11 Repelling locusts
-========================
+1.11 Repelente de langostas
+================================
 
 
-Today, we will use IR obstacle avoidance module, Raspberry Pi and Scratch to make a locust repelling game.
+Hoy usaremos un módulo de evasión de obstáculos por IR, Raspberry Pi y Scratch para hacer un juego de repeler langostas.
 
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+Coloca tu mano frente al módulo de evasión de obstáculos y verás a las langostas huyendo.
 
 .. image:: img/1.11_header.png
 
-Required Components
-------------------------------
+Componentes necesarios
+-----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: img/1.11_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,38 +62,37 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_avoid_module`
         - |link_obstacle_avoidance_buy|
 
-Build the Circuit
-----------------------
+Construir el circuito
+---------------------------
 
 .. image:: img/1.11_fritzing.png
     :width: 700
     :align: center
 
-Load the Code and See What Happens
-----------------------------------------
+Cargar el código y ver qué pasa
+------------------------------------------
 
-Load the code file (``1.11_repelling_locusts.sb3``) to Scratch 3.
+Carga el archivo de código (``1.11_repelling_locusts.sb3``) en Scratch 3.
 
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+Coloca tu mano frente al módulo de evasión de obstáculos y verás a las langostas huyendo.
 
 
-Tips on Sprite
-----------------
+Consejos sobre el sprite
+---------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **locust1.png**, **locust1.png** and **locust3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **locust**.
+Selecciona Sprite1 y haz clic en **Disfraces** en la esquina superior izquierda; sube **locust1.png**, **locust2.png** y **locust3.png** desde la ruta ``~/raphael-kit/scratch/picture`` a través del botón **Cargar Disfraz**; elimina los 2 disfraces predeterminados y renombra el sprite a **locust**.
 
 .. image:: img/1.11_ir1.png
 
-Tips on Codes
---------------
+Consejos sobre los códigos
+------------------------------------
 
 .. image:: img/1.11_ir2.png
   :width: 400
 
-When the IR obstacle avoidance module does not detect an obstacle (no hand is placed in front of the probe), the gpio is high.
+Cuando el módulo de evasión de obstáculos por IR no detecta un obstáculo (no hay mano frente a la sonda), el gpio está en alto.
 
 .. image:: img/1.11_ir3.png
   :width: 400
 
-When gpio17 is high (no obstacles go in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust1 (locusts gather in wheat). Conversely when gpio17 is low (put your hand in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust2 (expel locusts), then switch the locust sprite's costume to locust3 (locusts are completely expelled) after 0.5s.
-
+Cuando gpio17 está en alto (no hay obstáculos frente al módulo de evasión de obstáculos por IR), cambia el disfraz del sprite de langosta a locust1 (las langostas se reúnen en el trigo). Por el contrario, cuando gpio17 está en bajo (coloca tu mano frente al módulo de evasión de obstáculos por IR), cambia el disfraz del sprite de langosta a locust2 (expulsar langostas), luego cambia el disfraz del sprite de langosta a locust3 (las langostas están completamente expulsadas) después de 0.5s.

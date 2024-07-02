@@ -1,33 +1,32 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 56: Prepping for the Next Lessons in the Class
+Video 56: Preparativos para las próximas lecciones de la clase
 =======================================================================================
 
-Join Paul McCarter as he introduces the concept of setting up a pan-tilt camera control system on Raspberry Pi using the SunFounder pan-tilt hat and alternative methods.
+Únete a Paul McCarter mientras introduce el concepto de configurar un sistema de control de cámara con paneo e inclinación en Raspberry Pi usando el sombrero de paneo e inclinación de SunFounder y métodos alternativos.
 
-1. Introduction to the SunFounder Raphael kit for Raspberry Pi.
-2. Explanation of the need for a pan-tilt camera control system to track objects of interest.
-3. Overview of the SunFounder pan-tilt hat for Raspberry Pi camera.
-4. Alternative methods for implementing pan-tilt control using servos.
-5. Discussion on designing a custom pan-tilt camera mount using Fusion 360.
-6. Preview of upcoming lessons, including assembly instructions and coding for real-time object tracking.
-
+1. Introducción al kit Raphael de SunFounder para Raspberry Pi.
+2. Explicación de la necesidad de un sistema de control de cámara con paneo e inclinación para rastrear objetos de interés.
+3. Descripción general del sombrero de paneo e inclinación de SunFounder para la cámara Raspberry Pi.
+4. Métodos alternativos para implementar el control de paneo e inclinación usando servos.
+5. Discusión sobre el diseño de un soporte de cámara con paneo e inclinación personalizado usando Fusion 360.
+6. Vista previa de las próximas lecciones, incluyendo instrucciones de ensamblaje y codificación para el seguimiento de objetos en tiempo real.
 
 **Video**
 
 .. raw:: html
 
-
     <iframe width="700" height="500" src="https://www.youtube.com/embed/g6WTDMYE4Z4?si=50YctS5mCEPW0sWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+

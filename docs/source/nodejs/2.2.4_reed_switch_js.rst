@@ -1,61 +1,61 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirte?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.2.4_js:
 
-2.2.4 Reed Switch Module
-========================
+2.2.4 Módulo de Interruptor Reed
+========================================
 
-Introduction
--------------------
+Introducción
+----------------
 
-In this project, we will learn about the reed switch, which is an electrical switch that operates by means of an applied magnetic field.
+En este proyecto, aprenderemos sobre el interruptor reed, que es un interruptor eléctrico que opera mediante un campo magnético aplicado.
 
 .. image:: ../img/2.2.4reed_switch.png
     :width: 300
     :align: center
 
-Required Components
-------------------------------
+Componentes Necesarios
+---------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/2.2.4component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
+    *   - Nombre
         - ITEMS IN THIS KIT
-        - LINK
+        - ENLACE
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,11 +70,12 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Schematic Diagram
------------------------
+Diagrama Esquemático
+--------------------------
 
 ============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+Nombre       físico   wiringPi BCM
+T-Board
 GPIO17       Pin 11   0        17
 GPIO27       Pin 13   2        27
 GPIO22       Pin 15   3        22
@@ -88,16 +89,16 @@ GPIO22       Pin 15   3        22
     :width: 400
     :align: center
 
-Experimental Procedures
+Procedimientos Experimentales
 -------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/2.2.4fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -107,7 +108,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -117,9 +118,9 @@ Experimental Procedures
 
     sudo node reed_switch_module.js
 
-The green LED will light up when the code is run. If a magnet is placed close to the reed switch module, the red LED lights up; take away the magnet and the green LED lights up again.
+El LED verde se encenderá cuando el código se ejecute. Si se coloca un imán cerca del módulo del interruptor reed, el LED rojo se encenderá; al retirar el imán, el LED verde se encenderá nuevamente.
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -139,9 +140,7 @@ The green LED will light up when the code is run. If a magnet is placed close to
         led2.digitalWrite(!level);       
     });
 
-
-
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: js
 
@@ -153,14 +152,14 @@ The green LED will light up when the code is run. If a magnet is placed close to
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, create a ReedPin object to control the IO port, set it to input mode, pull down (initially low level), and set an interrupt.
+Importa el módulo pigpio, crea un objeto ReedPin para controlar el puerto IO, configúralo en modo de entrada, con resistencia pull-down (inicialmente nivel bajo), y establece una interrupción.
 
 .. code-block:: js
 
     const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
     const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
 
-Create two objects led1, led2 to control the IO ports Gpio22 and Gpio27, and set them to output mode.   
+Crea dos objetos led1 y led2 para controlar los puertos IO Gpio22 y Gpio27, y configúralos en modo de salida.
 
 .. code-block:: js
 
@@ -169,15 +168,11 @@ Create two objects led1, led2 to control the IO ports Gpio22 and Gpio27, and set
         led2.digitalWrite(!level);       
     });
 
+Cuando se activa la interrupción, escribe el mismo nivel en led1 y el nivel opuesto en led2.
 
-
-When the interrupt is triggered, write the same level to led1, and write the opposite level to led2.
-
-
-Phenomenon Picture
+Foto del Fenómeno
 ------------------------
 
 .. image:: ../img/2.2.4reed_switch.JPG
     :width: 500
     :align: center
-    

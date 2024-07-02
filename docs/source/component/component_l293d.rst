@@ -1,41 +1,41 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _cpn_l293d:
 
-L293D 
+L293D
 =================
 
-L293D is a 4-channel motor driver integrated by chip with high voltage and high current. 
-It's designed to connect to standard DTL, TTL logic level, and drive inductive loads (such as relay coils, DC, Stepper Motors) and power switching transistors etc. 
-DC Motors are devices that turn DC electrical energy into mechanical energy. They are widely used in electrical drive for their superior speed regulation performance.
+L293D es un controlador de motor de 4 canales integrado en un chip de alto voltaje y alta corriente.
+Está diseñado para conectarse a niveles lógicos estándar DTL, TTL y para manejar cargas inductivas (como bobinas de relés, motores de CC, motores paso a paso) y transistores de conmutación de potencia, etc.
+Los motores de CC son dispositivos que convierten la energía eléctrica de CC en energía mecánica. Son ampliamente utilizados en accionamientos eléctricos por su excelente rendimiento en la regulación de velocidad.
 
-See the figure of pins below. L293D has two pins (Vcc1 and Vcc2) for power supply. 
-Vcc2 is used to supply power for the motor, while Vcc1 to supply for the chip. Since a small-sized DC motor is used here, connect both pins to +5V.
+Vea la figura de los pines a continuación. El L293D tiene dos pines (Vcc1 y Vcc2) para la fuente de alimentación.
+Vcc2 se usa para alimentar el motor, mientras que Vcc1 para alimentar el chip. Dado que se usa un motor de CC de tamaño pequeño, conecte ambos pines a +5V.
 
 .. image:: img/l293d111.png
 
-The following is the internal structure of L293D. 
-Pin EN is an enable pin and only works with high level; A stands for input and Y for output. 
-You can see the relationship among them at the right bottom. 
-When pin EN is High level, if A is High, Y outputs high level; if A is Low, Y outputs Low level. When pin EN is Low level, the L293D does not work.
+La siguiente es la estructura interna del L293D.
+El pin EN es un pin de habilitación y solo funciona con nivel alto; A significa entrada y Y salida.
+Puede ver la relación entre ellos en la parte inferior derecha.
+Cuando el pin EN está en nivel alto, si A está en alto, Y emite nivel alto; si A está en bajo, Y emite nivel bajo. Cuando el pin EN está en nivel bajo, el L293D no funciona.
 
 .. image:: img/l293d334.png
 
 * `L293D Datasheet <https://www.ti.com/lit/ds/symlink/l293d.pdf?ts=1627004062301&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FL293D>`_
 
-**Example**
+**Ejemplo**
 
 * :ref:`1.3.1_c` (C Project)
 * :ref:`3.1.4_c` (C Project)

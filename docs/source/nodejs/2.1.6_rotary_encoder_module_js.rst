@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y vistas previas.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _2.1.6_js:
 
-2.1.6 Rotary Encoder Module
-===========================
+2.1.6 Módulo de Codificador Rotativo
+========================================
 
-Introduction
+Introducción
 ------------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+En este proyecto, aprenderás sobre el Codificador Rotativo. Un codificador 
+rotativo es un interruptor electrónico con un conjunto de pulsos regulares 
+en una secuencia de tiempo estricta. Cuando se usa con IC, puede lograr incrementos, 
+decrementos, cambio de página y otras operaciones como el desplazamiento del ratón, 
+selección de menús, entre otros.
 
-Required Components
-------------------------------
+Componentes necesarios
+----------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,26 +64,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rotary_encoder`
         - |link_rotary_encoder_buy|
 
-chematic Diagram
-------------------------
+Esquema de diagrama
+-------------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
------------------------
+Procedimientos experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
-17.
+En este ejemplo, podemos conectar el pin del Codificador Rotativo directamente al 
+Raspberry Pi usando una placa de pruebas y un cable de 40 pines. Conecta el GND del 
+Codificador Rotativo a GND, 「+」a 5V, SW al GPIO digital 27, DT al GPIO digital 18 
+y CLK al GPIO digital 17.
 
-**Step 2:** Go to the folder of the code.
+**Paso 2:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -93,7 +93,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -103,13 +103,13 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo node rotary_encoder_module.js
 
-You will see the count on the shell. 
-When you turn the rotary encoder clockwise, the count is increased; 
-when turn it counterclockwise, the count is decreased. 
-If you press the switch on the rotary encoder, the readings will return to zero.
+Verás el conteo en la terminal. 
+Cuando giras el codificador rotativo en el sentido de las agujas del reloj, el conteo aumenta; 
+cuando lo giras en sentido contrario a las agujas del reloj, el conteo disminuye. 
+Si presionas el interruptor del codificador rotativo, las lecturas volverán a cero.
 
 
-**Code**
+**Código**
 
 .. code-block:: js
 
@@ -148,9 +148,7 @@ If you press the switch on the rotary encoder, the readings will return to zero.
     });
 
 
-
-**Code Explanation**
-
+**Explicación del código**
 
 .. code-block:: js
 
@@ -166,9 +164,9 @@ If you press the switch on the rotary encoder, the readings will return to zero.
       console.log(`globalCounter = ${globalCounter}`);
     });
 
-When dtPin goes from low to high, if clkPin is high, 
-the count decreases, 
-otherwise the count increases.
+Cuando dtPin pasa de bajo a alto, si clkPin está alto, 
+el conteo disminuye, 
+de lo contrario el conteo aumenta.
 
 
 .. code-block:: js
@@ -178,14 +176,12 @@ otherwise the count increases.
       console.log(`globalCounter = ${globalCounter}`);
     });
 
+swPin dará salida a bajo cuando se presiona el eje. 
+Deja que globalCounter llegue a cero en este punto.
 
-The swPin will output low when the shaft is pressed. 
-Let the globalCounter go to zero at this point
 
-
-Phenomenon Picture
--------------------------
+Imagen del fenómeno
+------------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG
    :align: center
-   

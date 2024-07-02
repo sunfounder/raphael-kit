@@ -1,32 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Video 38: Raspberry Pi Security System
+Video 38: Sistema de Seguridad con Raspberry Pi
 =======================================================================================
 
-Learn how to enhance your portable Raspberry Pi alarm system by adding an audible alarm using Python code and pygame library.
+Aprende cómo mejorar tu sistema de alarma portátil con Raspberry Pi añadiendo una alarma sonora usando código Python y la biblioteca pygame.
 
-
-1. **Portable Project Development**: The video is part of a series teaching viewers how to build deployable projects around the Raspberry Pi.
-2. **Adding Audible Alarm**: Demonstrates adding an audible alert to the alarm system using the pygame library to import and play an MP3 alarm sound.
-3. **Implementation Details**: Provides step-by-step instructions on loading and playing the alarm sound when an intruder is detected by the PIR sensor.
-4. **Customization Options**: Offers guidance on obtaining and saving different alarm sounds for enhanced variety in the alarm system.
-5. **Homework Assignment**: Challenges viewers to program multiple alarm options to further improve the alarm system.
-
+1. **Desarrollo de Proyecto Portátil**: El video es parte de una serie que enseña a los espectadores cómo construir proyectos desplegables alrededor de la Raspberry Pi.
+2. **Añadir Alarma Sonora**: Demuestra cómo agregar una alerta sonora al sistema de alarma usando la biblioteca pygame para importar y reproducir un sonido de alarma en MP3.
+3. **Detalles de Implementación**: Proporciona instrucciones paso a paso sobre cómo cargar y reproducir el sonido de alarma cuando el sensor PIR detecta a un intruso.
+4. **Opciones de Personalización**: Ofrece orientación sobre cómo obtener y guardar diferentes sonidos de alarma para una mayor variedad en el sistema de alarma.
+5. **Tarea**: Desafía a los espectadores a programar múltiples opciones de alarma para mejorar aún más el sistema de alarma.
 
 **Video**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/qDv8fBn0Mqk?si=SmFPuYx6Q9NZVmwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/qDv8fBn0Mqk?si=SmFPuYx6Q9NZVmwW" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

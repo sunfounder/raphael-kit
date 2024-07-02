@@ -1,55 +1,55 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones festivas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _1.2.2_py_pi5:
 
-1.2.2 Passive Buzzer
-=====================
+1.2.2 Zumbador Pasivo
+========================
 
-Introduction
-------------
+Introducción
+----------------
 
-In this project, we will learn how to make a passive buzzer play music.
+En este proyecto, aprenderemos cómo hacer que un zumbador pasivo reproduzca música.
 
-Required Components
+Componentes Necesarios
 ------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los siguientes enlaces.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,32 +64,31 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
------------------
+Diagrama Esquemático
+--------------------------
 
-In this experiment, a passive buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor.
+En este experimento, se utiliza un zumbador pasivo, un transistor PNP y una 
+resistencia de 1k entre la base del transistor y el GPIO para proteger el transistor.
 
-When GPIO17 is given different frequencies, the passive buzzer will emit
-different sounds; in this way, the buzzer plays music.
+Cuando GPIO17 recibe diferentes frecuencias, el zumbador pasivo emitirá diferentes sonidos; 
+de esta manera, el zumbador reproduce música.
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
+================== ====== ======== ===
+Nombre del T-Board físico wiringPi BCM
 GPIO17       Pin 11   0        17
-============ ======== ======== ===
+================== ====== ======== ===
 
 .. image:: ../python_pi5/img/1.2.2_passive_buzzer_schematic.png
 
 
-Experimental Procedures
------------------------
+Procedimientos Experimentales
+----------------------------------
 
-**Step 1**: Build the circuit. (The Passive buzzer with green circuit board on the back.)
+**Paso 1**: Construir el circuito. (El zumbador pasivo con placa de circuito verde en la parte posterior.)
 
 .. image:: ../python_pi5/img/1.2.2_PassiveBuzzer_circuit.png
 
-**Step 2: Change directory.**
+**Paso 2: Cambiar directorio.**
 
 .. raw:: html
 
@@ -99,7 +98,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3: Run.**
+**Paso 3: Ejecutar.**
 
 .. raw:: html
 
@@ -109,14 +108,13 @@ Experimental Procedures
 
     sudo python3 1.2.2_PassiveBuzzer_zero.py
 
-The code run, the buzzer plays a piece of music.
+Al ejecutar el código, el zumbador reproducirá una pieza de música.
 
-**Code**
+**Código**
 
-.. note::
+.. nota::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, debes ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -163,9 +161,9 @@ The code run, the buzzer plays a piece of music.
 
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. These lines import the ``TonalBuzzer`` class from the ``gpiozero`` library for buzzer control and the ``sleep`` function from the ``time`` module for creating delays.
+#. Estas líneas importan la clase ``TonalBuzzer`` de la biblioteca ``gpiozero`` para controlar el zumbador y la función ``sleep`` del módulo ``time`` para crear retardos.
     
    .. code-block:: python  
 
@@ -174,7 +172,7 @@ The code run, the buzzer plays a piece of music.
        from time import sleep
       
 
-#. This line initializes a ``TonalBuzzer`` object on GPIO pin 17.
+#. Esta línea inicializa un objeto ``TonalBuzzer`` en el pin GPIO 17.
     
    .. code-block:: python
        
@@ -182,7 +180,7 @@ The code run, the buzzer plays a piece of music.
        tb = TonalBuzzer(17)  # Update this pin number based on your setup
       
 
-#. The ``play`` function iterates over a list of tuples representing musical notes and their durations. Each note is played for its specified duration, and the buzzer stops after completing the tune.
+#. La función ``play`` itera sobre una lista de tuplas que representan notas musicales y sus duraciones. Cada nota se reproduce durante su duración especificada, y el zumbador se detiene después de completar la melodía.
     
    .. code-block:: python  
 
@@ -197,7 +195,7 @@ The code run, the buzzer plays a piece of music.
                sleep(float(duration))  # Delay for the duration of the note
            tb.stop()  # Stop playing after the tune is complete
 
-#. The tune is defined as a sequence of notes (frequency) and durations (seconds).
+#. La melodía se define como una secuencia de notas (frecuencia) y duraciones (segundos).
     
    .. code-block:: python
 
@@ -213,7 +211,7 @@ The code run, the buzzer plays a piece of music.
            ('A4', 0.2), ('G4', 0.2), ('E4', 0.2), 
            ('D4', 0.2), ('E4', 0.2)]  
 
-#. The ``play(tune)`` function is called inside a ``try`` block. A ``KeyboardInterrupt`` (like Ctrl+C) will stop the program gracefully.
+#. La función ``play(tune)`` se llama dentro de un bloque ``try``. Una ``KeyboardInterrupt`` (como Ctrl+C) detendrá el programa de manera ordenada.
     
    .. code-block:: python  
        

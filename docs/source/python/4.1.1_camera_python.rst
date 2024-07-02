@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más profundamente en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones navideñas.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _4.1.1_py:
 
-4.1.1 Camera
-============================
+4.1.1 Cámara
+==============================
 
-Introduction
------------------
+Introducción
+-------------------
 
-Here we will make a camera with a shutter, when you press the button, the camera shoots while the LED flashes.
+Aquí haremos una cámara con obturador. Cuando presiones el botón, la cámara tomará una foto mientras el LED parpadea.
 
-Required Components
-------------------------------
+Componentes Necesarios
+--------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/3.1.15camera_list.png
   :width: 800
   :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es muy conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,34 +68,33 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
-Schematic Diagram
+Diagrama Esquemático
 -----------------------
 
-============ ======== ======== ===
-T-Board Name physical wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-============ ======== ======== ===
+============== =============== ======== ===
+Nombre T-Board cableado físico wiringPi BCM
+GPIO17         Pin 11          0        17
+GPIO18         Pin 12          1        18
+============== =============== ======== ===
 
 .. image:: ../img/camera_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
-------------------------------
+Procedimientos Experimentales
+----------------------------------
 
-
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/3.1.15camera_fritzing.png
   :width: 800
   :align: center
 
-**Step 2:** To connect the camera module and complete the configuration, please refer to: :ref:`cpn_camera_module`.
+**Paso 2:** Para conectar el módulo de la cámara y completar la configuración, por favor consulta: :ref:`cpn_camera_module`.
 
-**Step 3:** Go into the Raspberry Pi Desktop. You may need a screen for a better experience, refer to: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Or access the Raspberry Pi desktop remotely, for a detailed tutorial please refer to :ref:`remote_desktop`.
+**Paso 3:** Entra en el escritorio de Raspberry Pi. Puede que necesites una pantalla para una mejor experiencia, consulta: `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. O accede al escritorio de Raspberry Pi de forma remota, para un tutorial detallado consulta :ref:`remote_desktop`.
 
-**Step 4:** Open a Terminal and get into the folder of the code.
+**Paso 4:** Abre una terminal y accede a la carpeta del código.
 
 .. raw:: html
 
@@ -105,7 +104,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 5:** Run.
+**Paso 5:** Ejecuta.
 
 .. raw:: html
 
@@ -115,19 +114,18 @@ Experimental Procedures
 
     sudo python3 4.1.1_Camera.py
 
-After the code runs, press the button, the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the ``~`` directory.
+Después de que el código se ejecute, presiona el botón, la Raspberry Pi hará parpadear el LED y tomará una foto. La foto se llamará ``my_photo.jpg`` y se almacenará en el directorio ``~``.
 
 .. note::
 
-    You can also open ``4.1.1_Camera.py`` in the ``~/raphael-kit/python/`` path with a Python IDE, click Run button to run, and stop the code with Stop button.
+    También puedes abrir ``4.1.1_Camera.py`` en la ruta ``~/raphael-kit/python/`` con un IDE de Python, hacer clic en el botón Ejecutar para correrlo y detener el código con el botón Detener.
 
+Si quieres descargar la foto a tu PC, por favor consulta :ref:`filezilla`.
 
-If you want to download the photo to your PC, please refer to :ref:`filezilla`.
-
-**Code**
+**Código**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -191,13 +189,13 @@ If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 		except KeyboardInterrupt:
 			destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
 
-Set the event of ``BtnPin``, when the button is pressed (the level signal changes from high to low) , call the function ``takePhotos()``.
+Configura el evento de ``BtnPin``, cuando se presiona el botón (la señal de nivel cambia de alto a bajo), llama a la función ``takePhotos()``.
 
 .. code-block:: python
 
@@ -205,7 +203,7 @@ Set the event of ``BtnPin``, when the button is pressed (the level signal change
         global status
         status = True
 
-When ``takePhotos()`` is called, modify the ``status`` to ``True``.
+Cuando se llama a ``takePhotos()``, modifica el ``status`` a ``True``.
 
 .. code-block:: python
 
@@ -222,10 +220,9 @@ When ``takePhotos()`` is called, modify the ``status`` to ``True``.
         GPIO.output(LedPin, GPIO.HIGH)
     time.sleep(1)
 
-When ``status`` is ``True``, the Raspberry Pi will flash the LED and take a picture. The photo will be named ``my_photo.jpg`` and stored in the ``~`` directory.
+Cuando ``status`` es ``True``, la Raspberry Pi hará parpadear el LED y tomará una foto. La foto se llamará ``my_photo.jpg`` y se almacenará en el directorio ``~``.
 
-
-Phenomenon Picture
+Imagen del Fenómeno
 ------------------------
 
 .. image:: ../img/4.1.1camera.JPG

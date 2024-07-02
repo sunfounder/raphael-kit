@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
 .. _1.1.2_py_pi5:
 
-1.1.2 RGB LED
-====================
+1.1.2 LED RGB
+======================
 
-Introduction
---------------
+Introducción
+-----------------
 
-In this project, we will control an RGB LED to flash various colors.
+En este proyecto, controlaremos un LED RGB para que parpadee en varios colores.
 
-Required Components
-------------------------------
+Componentes requeridos
+---------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../python_pi5/img/1.1.2_rgb_led_list.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,29 +63,29 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rgb_led`
         - |link_rgb_led_buy|
 
-
-Schematic Diagram
+Diagrama esquemático
 -----------------------
 
-After connecting the pins of R, G, and B to a current limiting resistor, connect them to the GPIO17, GPIO18, and GPIO27 respectively. The longest pin (GND) of the LED connects to the GND of the Raspberry Pi. When the three pins are given different PWM values, the RGB LED will display different colors.
 
-============ ======== ===
-T-Board Name physical BCM
-GPIO17       Pin 11   17
-GPIO18       Pin 12   18
-GPIO27       Pin 13   27
-============ ======== ===
+Después de conectar los pines de R, G y B a una resistencia limitadora de corriente, conéctalos a los GPIO17, GPIO18 y GPIO27 respectivamente. El pin más largo (GND) del LED se conecta al GND de la Raspberry Pi. Cuando los tres pines reciben diferentes valores PWM, el LED RGB mostrará diferentes colores.
+
+============== ======== ===
+Nombre T-Board Física   BCM
+GPIO17         Pin 11   17
+GPIO18         Pin 12   18
+GPIO27         Pin 13   27
+============== ======== ===
 
 .. image:: ../python_pi5/img/1.1.2_rgb_led_schematic.png
 
-Experimental Procedures
-----------------------------
+Procedimientos experimentales
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Monta el circuito.
 
 .. image:: ../python_pi5/img/1.1.2_rgbLed_circuit.png
 
-**Step 2:** Open the code file.
+**Paso 2:** Abre el archivo de código.
 
 .. raw:: html
 
@@ -95,7 +95,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta el código.
 
 .. raw:: html
 
@@ -105,14 +105,13 @@ Experimental Procedures
 
     sudo python3 1.1.2_rgbLed_zero.py
 
-After the code runs, you will see that RGB displays red, green, blue,
-yellow, pink, and cyan.
+Después de ejecutar el código, verás que el LED RGB muestra rojo, verde, azul, amarillo, rosa y cian.
 
-**Code**
+**Código**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta de origen del código como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
 
@@ -148,9 +147,9 @@ yellow, pink, and cyan.
        pass
 
 
-**Code Explanation**
+**Explicación del Código**
 
-#. This imports the ``RGBLED`` class from the ``gpiozero`` library for controlling an RGB LED, and the ``time`` library for implementing delays in the code.
+#. Esto importa la clase ``RGBLED`` de la biblioteca ``gpiozero`` para controlar un LED RGB, y la biblioteca ``time`` para implementar retardos en el código.
 
    .. code-block:: python
 
@@ -161,21 +160,21 @@ yellow, pink, and cyan.
        # Define a list of colors for the RGB LED in RGB format (Red, Green, Blue).
        # Each color component ranges from 0 (off) to 1 (full intensity).
     
-#. The ``COLORS`` list contains tuples representing different colors in RGB format. By assigning different Pulse Width Modulation (PWM) values to each of the R, G, and B pins through the ``rgb_led.color`` attribute, the LED can produce a variety of colors. The PWM values range from 0 to 1, where 0 represents no intensity (off) and 1 represents full intensity for each color component.
-#. For instance, setting ``rgb_led.color = (1, 0, 0)`` turns the LED red, as it sets full intensity for the red component while keeping green and blue off. Similarly, varying combinations of these values result in different colors. This technique of color mixing through PWM allows for the creation of a wide range of colors on the RGB LED.
+#. La lista ``COLORES`` contiene tuplas que representan diferentes colores en formato RGB. Al asignar diferentes valores de Modulación por Ancho de Pulso (PWM) a cada uno de los pines R, G y B a través del atributo ``rgb_led.color``, el LED puede producir una variedad de colores. Los valores PWM varían de 0 a 1, donde 0 representa ninguna intensidad (apagado) y 1 representa la intensidad total para cada componente de color.
+#. Por ejemplo, configurando ``rgb_led.color = (1, 0, 0)`` se enciende el LED en rojo, ya que establece la intensidad total para el componente rojo mientras mantiene apagados el verde y el azul. De manera similar, combinaciones variadas de estos valores resultan en diferentes colores. Esta técnica de mezcla de colores a través de PWM permite la creación de una amplia gama de colores en el LED RGB.
 
    .. code-block:: python    
        
        COLORS = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1)]
 
-#. An RGB LED is initialized with its red, green, and blue components connected to GPIO pins 17, 18, and 27, respectively.
+#. Un LED RGB se inicializa con sus componentes rojo, verde y azul conectados a los pines GPIO 17, 18 y 27, respectivamente.
 
    .. code-block:: python
 
        # Initialize an RGB LED. Connect the red component to GPIO 17, green to GPIO 18, and blue to GPIO 27.
        rgb_led = RGBLED(red=17, green=18, blue=27)
 
-#. The ``while True:`` loop continuously cycles through the colors defined in ``COLORS``. For each color, ``rgb_led.color = color`` sets the LED to that color, and ``sleep(1)`` pauses for 1 second. 
+#. El bucle ``while True:`` cicla continuamente a través de los colores definidos en ``COLORES``. Para cada color, ``rgb_led.color = color`` establece el LED en ese color, y ``sleep(1)`` pausa durante 1 segundo. 
 
    .. code-block:: python
 
@@ -190,7 +189,7 @@ yellow, pink, and cyan.
                    # Wait for 1 second before switching to the next color.
                    sleep(1)
 
-#. This section gracefully handles a ``KeyboardInterrupt`` (such as pressing Ctrl+C). The ``pass`` statement is used as a placeholder to indicate no specific action on interruption, as GPIO Zero handles GPIO cleanup automatically.
+#. Esta sección maneja de manera ordenada una ``KeyboardInterrupt`` (como presionar Ctrl+C). La declaración ``pass`` se utiliza como un marcador de posición para indicar que no se toma ninguna acción específica en caso de interrupción, ya que GPIO Zero maneja la limpieza de los GPIO automáticamente.
 
    .. code-block:: python
 

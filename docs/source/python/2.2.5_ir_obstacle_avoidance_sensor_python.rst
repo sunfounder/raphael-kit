@@ -1,61 +1,61 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte de expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previsualizaciones exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _2.2.5_py:
 
-2.2.5 IR Obstacle Avoidance Sensor
-===================================
+2.2.5 Sensor de evitación de obstáculos por infrarrojos
+===========================================================
 
-Introduction
------------------
+Introducción
+-------------------
 
-In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+En este proyecto, aprenderemos sobre el módulo de evitación de obstáculos por infrarrojos, que es un módulo sensor que puede usarse para detectar obstáculos a cortas distancias, con poca interferencia, fácil de montar y usar, etc. Puede utilizarse ampliamente en robots de evitación de obstáculos, carritos de evitación de obstáculos, conteo en líneas de montaje, etc.
 
 .. image:: ../img/2.2.5IR_Obstacle.png
    :width: 300
    :align: center
 
-Required Components
-------------------------------
+Componentes necesarios
+--------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes.
 
 .. image:: ../img/2.2.5component.png
    :width: 700
    :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,23 +66,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_avoid_module`
         - |link_obstacle_avoidance_buy|
 
-Schematic Diagram
------------------------
+Diagrama esquemático
+-------------------------
 
 .. image:: ../img/IR_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
--------------------------
+Procedimientos experimentales
+---------------------------
 
-**Step 1:** Build the circuit
+**Paso 1:** Monta el circuito.
 
 .. image:: ../img/2.2.5fritzing.png
    :width: 700
    :align: center
 
-**Step 2:** Change directory.
+**Paso 2:** Cambia el directorio.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Experimental Procedures
    
    cd ~/raphael-kit/python
 
-**Step 3:** Run.
+**Paso 3:** Ejecuta.
 
 .. raw:: html
 
@@ -102,14 +102,15 @@ Experimental Procedures
 
    sudo python3 2.2.5_IrObstacle.py
 
-After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
-repeatedly printed on the screen until the your hand is removed.
+Después de ejecutar el código, cuando pongas tu mano frente a la sonda del módulo, 
+el indicador de salida en el módulo se iluminará y "¡Barrera detectada!" se imprimirá 
+repetidamente en la pantalla hasta que retires la mano.
 
-**Code**
+**Código**
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+   Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 
 .. raw:: html
@@ -125,35 +126,34 @@ repeatedly printed on the screen until the your hand is removed.
    ObstaclePin = 17
 
    def setup():
-      GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
+      GPIO.setmode(GPIO.BCM)       # Numeración de GPIOs por ubicación física
       GPIO.setup(ObstaclePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
    def loop():
       while True:
          if (0 == GPIO.input(ObstaclePin)):
             print ("Detected Barrier!")
-			   time.sleep(1)
-            
+            time.sleep(1)
 
    def destroy():
-      GPIO.cleanup()                     # Release resource
+      GPIO.cleanup()                     # Liberar recursos
 
-   if __name__ == '__main__':     # Program start from here
+   if __name__ == '__main__':     # El programa comienza aquí
       setup()
       try:
          loop()
-      except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+      except KeyboardInterrupt:  # Cuando se presiona 'Ctrl+C', se ejecuta el programa destroy().
          destroy()
 
-**Code Explanation**
+**Explicación del Código**
 
 .. code-block:: python
 
    def setup():
-   GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
+   GPIO.setmode(GPIO.BCM)       # Numeración de GPIOs por ubicación física
    GPIO.setup(ObstaclePin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-Set the GPIO mode to BCM Numbering. Set ``ObstaclePin`` to input mode and initial it to High level (3.3v).
+Configura el modo GPIO en Numeración BCM. Configura ``ObstaclePin`` en modo de entrada e inicialízalo a nivel alto (3.3v).
 
 .. code-block:: python
 
@@ -162,9 +162,9 @@ Set the GPIO mode to BCM Numbering. Set ``ObstaclePin`` to input mode and initia
          if (0 == GPIO.input(ObstaclePin)):
             print ("Detected Barrier!")
 
-When ``ObstaclePin`` is low level, print "Detected Barrier!". It means that an obstacle is detected.
+Cuando ``ObstaclePin`` está en nivel bajo, imprime "¡Obstáculo Detectado!". Esto significa que se ha detectado un obstáculo.
 
-Phenomenon Picture
+Foto del Fenómeno
 -----------------------
 
 .. image:: ../img/2.2.5IR.JPG

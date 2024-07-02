@@ -1,63 +1,63 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más profundamente en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Setting Up Your Raspberry Pi
-=====================================
+Configuración de tu Raspberry Pi
+========================================
 
-Setting Up with a Screen
----------------------------
+Configuración con Pantalla
+------------------------------
 
-Having a screen simplifies the process of working with your Raspberry Pi.
+Tener una pantalla simplifica el proceso de trabajar con tu Raspberry Pi.
 
-**Required Components**
+**Componentes Necesarios**
 
 * Raspberry Pi
-* Power Adapter
-* Micro SD card
-* Screen Power Adapter
-* HDMI cable
-* Screen
-* Mouse
-* Keyboard
+* Adaptador de corriente
+* Tarjeta Micro SD
+* Adaptador de corriente para la pantalla
+* Cable HDMI
+* Pantalla
+* Ratón
+* Teclado
 
-**Steps**:
+**Pasos**:
 
-#. Connect the Mouse and Keyboard to the Raspberry Pi.
+#. Conecta el ratón y el teclado a la Raspberry Pi.
 
-#. Use the HDMI cable to connect the screen to the Raspberry Pi's HDMI port. Ensure the screen is plugged into a power source and turned on.
+#. Usa el cable HDMI para conectar la pantalla al puerto HDMI de la Raspberry Pi. Asegúrate de que la pantalla esté conectada a una fuente de alimentación y encendida.
 
-#. Power the Raspberry Pi using the power adapter. The Raspberry Pi OS desktop should appear on the screen after a few seconds.
+#. Alimenta la Raspberry Pi usando el adaptador de corriente. El escritorio del sistema operativo Raspberry Pi debería aparecer en la pantalla después de unos segundos.
 
     .. image:: img/bullseye_desktop.png
         :align: center
 
-Setting Up Without a Screen
+Configuración sin Pantalla
 ------------------------------
 
-If you don't have a monitor, remote login is a viable option.
+Si no tienes un monitor, el inicio de sesión remoto es una opción viable.
 
-**Required Components**
+**Componentes Necesarios**
 
 * Raspberry Pi
-* Power Adapter
-* Micro SD card
+* Adaptador de corriente
+* Tarjeta Micro SD
 
-Using SSH, you can access the Raspberry Pi's Bash shell, which is the default Linux shell. Bash offers a command-line interface for performing various tasks.
+Usando SSH, puedes acceder a la shell Bash de la Raspberry Pi, que es la shell predeterminada de Linux. Bash ofrece una interfaz de línea de comandos para realizar varias tareas.
 
-For those preferring a graphical user interface (GUI), the remote desktop feature is a convenient alternative for managing files and operations.
+Para aquellos que prefieren una interfaz gráfica de usuario (GUI), la función de escritorio remoto es una alternativa conveniente para gestionar archivos y operaciones.
 
-For detailed setup tutorials based on your operating system, refer to the following sections:
+Para tutoriales detallados de configuración basados en tu sistema operativo, consulta las siguientes secciones:
 
 .. toctree::
 

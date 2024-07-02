@@ -1,64 +1,64 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
-    **Why Join?**
+    **¿Por qué unirse?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Previews exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 .. _2.2.10_py:
 
-2.2.10 MFRC522 RFID Module
-==========================
+2.2.10 Módulo RFID MFRC522
+==============================
 
-Introduction
----------------
+Introducción
+-------------------
 
-Radio Frequency Identification (RFID) refers to technologies that use
-wireless communication between an object (or tag) and interrogating
-device (or reader) to automatically track and identify such objects.
+La Identificación por Radiofrecuencia (RFID) se refiere a tecnologías que utilizan 
+comunicación inalámbrica entre un objeto (o etiqueta) y un dispositivo interrogador 
+(o lector) para rastrear e identificar automáticamente dichos objetos.
 
-Some of the most common applications for this technology include retail
-supply chains, military supply chains, automated payment methods,
-baggage tracking and management, document tracking and pharmaceutical
-management, to name a few.
+Algunas de las aplicaciones más comunes de esta tecnología incluyen cadenas de suministro 
+al por menor, cadenas de suministro militares, métodos de pago automatizados, 
+seguimiento y gestión de equipaje, seguimiento de documentos y gestión farmacéutica, 
+por nombrar algunas.
 
-In this project, we will use RFID for reading and writing.
+En este proyecto, utilizaremos RFID para lectura y escritura.
 
-Required Components
-------------------------------
+Componentes necesarios
+-------------------------------
 
-In this project, we need the following components. 
+En este proyecto, necesitamos los siguientes componentes. 
 
 .. image:: ../img/list_2.2.7.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
-        - LINK
-    *   - Raphael Kit
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+También puedes comprarlos por separado en los enlaces a continuación.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,26 +69,24 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_mfrc522`
         - |link_mfrc522_rfid_buy|
 
-Schematic Diagram
------------------
+Diagrama esquemático
+----------------------------
 
 .. image:: ../img/image331.png
 
 
-Experimental Procedures
------------------------
+Procedimientos experimentales
+------------------------------------
 
-**Step 1:** Build the circuit.
+**Paso 1:** Construye el circuito.
 
 .. image:: ../img/image232.png
 
-**Step 2:** Install the :ref:`Spidev and MFRC522` libraries.
+**Paso 2:** Instala las bibliotecas :ref:`Spidev y MFRC522`.
 
-**Step 3:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
-set SPI, skip this step.)
+**Paso 3:** Configura SPI (consulta :ref:`Configuración SPI` para más detalles. Si ya has configurado SPI, omite este paso).
 
-
-**Step 4:** Go to the folder of the code.
+**Paso 4:** Ve a la carpeta del código.
 
 .. raw:: html
 
@@ -98,7 +96,7 @@ set SPI, skip this step.)
 
     cd ~/raphael-kit/python
 
-**Step 5:** After running ``2.2.10_write.py``. You need to write a message first, press ``Enter`` to confirm, then put the card on the MFRC522 module, wait for "Data writing is complete" to appear and take the card away, or rewrite the message to another card and exit by ``Ctrl+C``.
+**Paso 5:** Después de ejecutar ``2.2.10_write.py``. Necesitas escribir un mensaje primero, presiona ``Enter`` para confirmar, luego coloca la tarjeta en el módulo MFRC522, espera a que aparezca "La escritura de datos está completa" y retira la tarjeta, o reescribe el mensaje en otra tarjeta y sal con ``Ctrl+C``.
 
 .. raw:: html
 
@@ -110,7 +108,7 @@ set SPI, skip this step.)
 
 .. image:: ../img/write_card.png
 
-**Step 6:** Now run ``2.2.10_read.py`` to read the information of the tag or card you have written.
+**Paso 6:** Ahora ejecuta ``2.2.10_read.py`` para leer la información de la etiqueta o tarjeta que has escrito.
 
 .. raw:: html
 
@@ -121,28 +119,27 @@ set SPI, skip this step.)
 
     sudo python3 2.2.10_read.py
 
-
-**Code Explanation**
+**Explicación del código**
 
 .. code-block:: python
 
     reader = SimpleMFRC522()
 
-Instantiate ``SimpleMFRC522()`` class.
+Instancia la clase ``SimpleMFRC522()``.
 
 .. code-block:: python
 
     reader.read()
 
-This function is used to read card data. If the reading is successful, id and text will be returned.
+Esta función se utiliza para leer datos de la tarjeta. Si la lectura es exitosa, se devolverán el id y el texto.
 
 .. code-block:: python
 
     reader.write(text)
 
-This function is used to write information to the card, press ``Enter`` key to finish writing. ``text`` is the information to be written to the card.
+Esta función se utiliza para escribir información en la tarjeta, presiona la tecla ``Enter`` para finalizar la escritura. ``text`` es la información que se escribirá en la tarjeta.
 
-Phenomenon Picture
-------------------
+Imagen del fenómeno
+-----------------------
 
 .. image:: ../img/image233.jpeg
