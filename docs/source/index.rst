@@ -56,38 +56,12 @@ Si tienes alguna pregunta, por favor envía un correo electrónico a service@sun
 .. toctree::
     :maxdepth: 3
 
-    python/play_with_python
-    python_pi5/play_with_python_pi5
-    python_video/python_video
+    for_pi5
+    for_other_models
 
 .. toctree::
     :maxdepth: 3
 
-    c/play_with_c
-
-
-
-.. toctree::
-    :maxdepth: 3
-
-    processing/play_with_processing
-
-.. toctree::
-    :maxdepth: 3
-
-    nodejs/play_with_nodejs
-
-.. toctree::
-    :maxdepth: 3
-    
-    scratch/play_with_scratch
-
-
-
-.. toctree::
-    :maxdepth: 2
-
-    pi5_other_languages
     component/component_list
     appendix/appendix
     thank-learning

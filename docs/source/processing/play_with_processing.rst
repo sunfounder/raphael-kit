@@ -14,7 +14,7 @@
 
 .. _play_with_processing:
 
-Juega con Processing (no para Pi 5)
+Juega con Processing 
 =======================================
 
 ¿Qué es Processing?

@@ -12,7 +12,7 @@
 
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Juega con C (no para Pi 5)
+Juega con C 
 =============================
 
 .. toctree::

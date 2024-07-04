@@ -12,7 +12,7 @@
 
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Play with Scratch (not for Pi 5)
+Play with Scratch 
 ======================================
 
 Scratch es un lenguaje de programación visual basado en bloques y un sitio web dirigido principalmente a niños de 8 a 16 años como una herramienta educativa para la programación. Los usuarios del sitio pueden crear proyectos en la web utilizando una interfaz similar a bloques. El servicio es desarrollado por el MIT Media Lab, ha sido traducido a más de 70 idiomas y se utiliza en la mayoría de las partes del mundo.

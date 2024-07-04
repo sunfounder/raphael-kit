@@ -12,7 +12,7 @@
 
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Curso de Video en Python (no para Pi 5)
+Curso de Video en Python 
 ==============================================
 
 Sumérgete en el universo de Raspberry Pi con nuestro conciso Curso de Video en Python, perfecto tanto para principiantes como para aficionados. 

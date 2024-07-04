@@ -12,7 +12,7 @@
 
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
-Play with Nodejs (not for Pi 5)
+Play with Nodejs 
 ===================================
 
 .. toctree::

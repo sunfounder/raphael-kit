@@ -25,10 +25,10 @@ Si eres un usuario de Python en Raspberry Pi 5, puedes programar los GPIOs con l
     pi5_input_python
 
 
-.. .. toctree::
-..     :maxdepth: 2
+.. toctree::
+    :maxdepth: 2
 
-..     pi5_audiovisual_python
+    pi5_audiovisual_python
 
 
 .. toctree::
