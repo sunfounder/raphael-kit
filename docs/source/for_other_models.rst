@@ -12,8 +12,8 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-for Pi 4, 3 and Other All Pi Models
-=======================================
+For Pi 4, 3, and All Other Pi Models
+==========================================
 
 .. toctree::
     :maxdepth: 4
