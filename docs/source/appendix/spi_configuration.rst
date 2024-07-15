@@ -20,9 +20,9 @@ not, please continue).
 .. image:: img/image282.png
    :align: center
 
-**P4 SPI**
+**I3 SPI**
 
-.. image:: img/image285.png
+.. image:: img/i3spi.png
    :align: center
 
 **<YES>, then click <OK> and <Finish>.**

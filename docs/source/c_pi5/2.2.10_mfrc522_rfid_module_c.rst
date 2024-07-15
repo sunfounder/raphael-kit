@@ -1,0 +1,161 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+.. _2.2.10_c:
+
+2.2.10 MFRC522 RFID Module
+================================
+
+Introduction
+---------------
+
+Radio Frequency Identification (RFID) refers to technologies that use
+wireless communication between an object (or tag) and interrogating
+device (or reader) to automatically track and identify such objects.
+
+Some of the most common applications for this technology include retail
+supply chains, military supply chains, automated payment methods,
+baggage tracking and management, document tracking and pharmaceutical
+management, to name a few.
+
+In this project, we will use RFID for reading and writing.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../img/list_2.2.7.png
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_mfrc522`
+        - |link_mfrc522_rfid_buy|
+
+Schematic Diagram
+-----------------
+
+.. image:: ../img/image331.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../img/image232.png
+
+
+**Step 2:** Set up SPI (refer to :ref:`SPI Configuration` for more details. If you have
+set SPI, skip this step.)
+
+**Step 3:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/2.2.10/
+
+**Step 4:** Compile the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    make read
+    make write
+
+
+**Step 5:** After running ``./write``, enter the information, such as the name of the person, and then put the tag or card on the MRC522 module and wait for the writing to be completed.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./write
+
+**Step 6:** Now run ``./read`` to read the information of the tag or card you have written.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./read
+
+.. note::
+
+    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+
+**Code Explanation**
+
+.. code-block:: c
+
+    InitRc522();
+
+This function is used to initialize the RFID RC522 module.
+
+.. code-block:: c
+
+    uint8_t read_card_data();
+
+This function is used to read the data of the card, and if 
+the read is successful, it will return "1".
+
+.. code-block:: c
+
+    uint8_t write_card_data(uint8_t *data);
+
+This function is used to write the data of card and returns "1" if 
+the write is successful. ``*data`` is the information that will be written 
+to the card.
+
+Phenomenon Picture
+------------------
+
+.. image:: ../img/image233.jpeg

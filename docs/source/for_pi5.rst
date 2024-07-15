@@ -26,20 +26,11 @@ specifically focused on this library.
     :maxdepth: 1
     
     python_pi5/play_with_python_pi5
-
+    c_pi5/play_with_c
+    scratch_pi5/play_with_scratch
 
 For compatibility issues with other programming languages, please see the detailed information below:
 
-**C language**
-
-.. note::
-
-    * The wiringPi library has been compatible with the Raspberry Pi 5 starting from version 3.0. However, as of the latest version, the PWM functionality is still under development.
-    * We are currently using the latest version of wiringPi to update our courses for compatibility with the Raspberry Pi 5. Please stay tuned for updates.
-
-The C language implementation relies on the wiringPi library. However, the wiringPi community library is now archived and no longer receives updates, rendering it unsuitable for Raspberry Pi 5 projects. For additional information, refer to: https://github.com/WiringPi/WiringPi.
-
-.. image:: img/pi5_c_language.png
 
 **Processing**
 
@@ -53,13 +44,6 @@ Node.js utilizes the pigpio library, which, as of now, does not support Raspberr
 
 .. image:: img/pi5_nodejs.png
     :width: 700
-
-**Scratch**
-
-.. note::
- 
-    * Version 3.30.8 of Scratch 3 is now compatible with the Raspberry Pi 5. 
-    * We are also in the process of updating our courses to be compatible with the Raspberry Pi 5. Please wait for these updates.
 
 
 On a 64-bit system, the importation of the Raspberry Pi GPIO library faces issues, leading to unresponsiveness. For more information, visit: https://github.com/raspberrypi/bookworm-feedback/issues/91.
