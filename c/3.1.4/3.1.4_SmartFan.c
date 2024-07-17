@@ -21,6 +21,11 @@ uchar get_ADC_Result(uint channel)
     int sel = channel > 1 & 1;
     int odd = channel & 1;
 
+    digitalWrite(ADC_CLK, 1);
+    delayMicroseconds(2);
+    digitalWrite(ADC_CLK, 0);
+    delayMicroseconds(2);
+
     pinMode(ADC_DIO, OUTPUT);
     digitalWrite(ADC_CS, 0);
     // Start bit
@@ -42,7 +47,7 @@ uchar get_ADC_Result(uint channel)
 
     delayMicroseconds(2);
     digitalWrite(ADC_CLK,0);
-    delayMicroseconds(2)
+    delayMicroseconds(2);
 
     for(i=0;i<8;i++)
     {
