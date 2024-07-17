@@ -145,14 +145,20 @@ x, y, Btn are displayed on screen.
         uchar i;
         uchar dat1=0, dat2=0;
         int sel = channel > 1 & 1;
-    int odd = channel & 1;
+        int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-    //Single End mode
+        //Single End mode
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -163,10 +169,12 @@ x, y, Btn are displayed on screen.
         //Select
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
-    digitalWrite(ADC_CLK,1);
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        delayMicroseconds(2);
         digitalWrite(ADC_CLK,0);
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        delayMicroseconds(2);
+
         for(i=0;i<8;i++)
         {
             digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -230,7 +238,7 @@ x, y, Btn are displayed on screen.
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-The working process of the function is detailed in 2.1.4 Potentiometer.
+The working process of the function is detailed in 2.1.7 Potentiometer.
 
 .. code-block:: c
 
