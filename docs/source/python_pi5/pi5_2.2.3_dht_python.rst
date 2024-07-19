@@ -114,7 +114,7 @@ You will need to activate the virtual environment every time the Pi is rebooted.
 
 You’ll see that your prompt is now prepended with (env) to indicate that you’re no longer using the system Python. Instead, you’re using the version of Python contained inside your virtual environment. Any changes you make here won’t cause problems for your system Python; nor will any new modules you install into your environment.
 
-.. image:: img/07_activate_env.png
+.. image:: ../img/07_activate_env.png
 
 To deactivate, you can use ``deactivate``, but leave it active for now.
 
@@ -130,7 +130,7 @@ When activated in the virtual environment (you will see ``(env)`` at the beginni
 
 It may take a few minutes to run. When it finishes, it will ask you if you would like to reboot. Press Enter directly to reboot, or if you want to reboot later, enter "n" and then press Enter. When you are ready, manually reboot your raspberry pi.
 
-.. image:: img/07_after_install_blinka.png
+.. image:: ../img/07_after_install_blinka.png
 
 Once it reboots, the connection will close. After a couple of minutes, you can reconnect.
 
@@ -175,7 +175,7 @@ Then run the following command in the command line:
 
 You should see the following, indicating digital i/o, I2C and SPI all worked.
 
-.. image:: img/07_check_blinka.png
+.. image:: ../img/07_check_blinka.png
 
 
 Install Library
