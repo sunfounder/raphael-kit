@@ -125,7 +125,15 @@ When activated in the virtual environment (you will see ``(env)`` at the beginni
 .. code-block:: bash
 
    pip3 install --upgrade adafruit-python-shell
+
+
+.. code-block:: bash
+   
    wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+
+
+.. code-block:: bash
+   
    sudo -E env PATH=$PATH python3 raspi-blinka.py
 
 It may take a few minutes to run. When it finishes, it will ask you if you would like to reboot. Press Enter directly to reboot, or if you want to reboot later, enter "n" and then press Enter. When you are ready, manually reboot your raspberry pi.
@@ -135,54 +143,58 @@ It may take a few minutes to run. When it finishes, it will ask you if you would
 Once it reboots, the connection will close. After a couple of minutes, you can reconnect.
 
 
-**Blinka Test**
+.. **Blinka Test**
 
-Create a new file called ``blinkatest.py`` with nano or your favorite text editor and put the following in:
+.. Create a new file called ``blinkatest.py`` with nano or your favorite text editor and put the following in:
 
-.. code-block:: python
+.. .. code-block:: python
 
-   import board
-   import digitalio
-   import busio
+..    import board
+..    import digitalio
+..    import busio
    
-   print("Hello blinka!")
+..    print("Hello blinka!")
    
-   # Try to great a Digital input
-   pin = digitalio.DigitalInOut(board.17)
-   print("Digital IO ok!")
+..    # Try to great a Digital input
+..    pin = digitalio.DigitalInOut(board.17)
+..    print("Digital IO ok!")
    
-   # Try to create an I2C device
-   i2c = busio.I2C(board.SCL, board.SDA)
-   print("I2C ok!")
+..    # Try to create an I2C device
+..    i2c = busio.I2C(board.SCL, board.SDA)
+..    print("I2C ok!")
    
-   # Try to create an SPI device
-   spi = busio.SPI(board.SCLK, board.MOSI, board.MISO)
-   print("SPI ok!")
+..    # Try to create an SPI device
+..    spi = busio.SPI(board.SCLK, board.MOSI, board.MISO)
+..    print("SPI ok!")
    
-   print("done!")
+..    print("done!")
 
-Before running the code, please make sure that you have activated the virtual python environment with blinka installed:
+.. Before running the code, please make sure that you have activated the virtual python environment with blinka installed:
 
-.. code-block:: bash
+.. .. code-block:: bash
 
-   source ~/env/bin/activate
+..    source ~/env/bin/activate
 
-Then run the following command in the command line:
+.. Then run the following command in the command line:
 
-.. code-block:: bash
+.. .. code-block:: bash
 
-   python blinkatest.py
+..    python blinkatest.py
 
-You should see the following, indicating digital i/o, I2C and SPI all worked.
+.. You should see the following, indicating digital i/o, I2C and SPI all worked.
 
-.. image:: ../img/07_check_blinka.png
+.. .. image:: ../img/07_check_blinka.png
 
 
 Install Library
 ---------------------------
 
-.. note:: 
-    Before installing the library, please make sure that the virtual Python environment is activated.
+
+Before installing the library, please make sure that the virtual Python environment is activated.
+
+.. code-block:: bash
+
+   source ~/env/bin/activate
 
 Install adafruit-circuitpython-dht library:
 
@@ -206,6 +218,16 @@ Experimental Procedures
 .. code-block::
 
     cd ~/raphael-kit/python-pi5
+
+**Step 2:** Before running the code, please make sure that you have activated the virtual Python environment with blinka installed. 
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    source ~/env/bin/activate
 
 **Step 3:** Run the executable file.
 
