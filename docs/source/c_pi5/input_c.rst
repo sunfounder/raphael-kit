@@ -39,7 +39,6 @@ Eingabe
 
     2.2.1_photoresistor_c
     2.2.2_thermistor_c
-    2.2.3_dht-11_c
     2.2.4_reed_switch_c
     2.2.5_ir_obstacle_avoidance_sensor_c
     2.2.6_speed_sensor_module_c
