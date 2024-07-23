@@ -1,0 +1,260 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.2.8_c:
+
+2.2.8 Ultraschallsensor Modul
+=============================
+
+Einführung
+----------
+
+Das Ultraschallsensor-Modul verwendet Ultraschall, um Objekte präzise zu erkennen und 
+Entfernungen zu messen. Es sendet Ultraschallwellen aus und wandelt diese in 
+elektronische Signale um.
+
+Benötigte Komponenten
+---------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list_2.2.5.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_ultrasonic_sensor`
+        - |link_ultrasonic_buy|
+
+Schaltplan
+----------
+
+.. image:: ../img/image329.png
+
+Experimentelle Verfahren
+------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image220.png
+
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.8/
+
+**Schritt 3:** Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.8_Ultrasonic.c -lwiringPi
+
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensor-Modul die Entfernung
+zwischen dem vorausliegenden Hindernis und dem Modul selbst, und der Entfernungswert 
+wird auf dem Bildschirm angezeigt.
+
+.. note::
+
+    Wenn es nach dem Ausführen nicht funktioniert oder die Fehlermeldung "wiringPi.h: No such file or directory" erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <sys/time.h>
+
+    #define Trig    4
+    #define Echo    5
+
+    void ultraInit(void)
+    {
+        pinMode(Echo, INPUT);
+        pinMode(Trig, OUTPUT);
+    }
+
+    float disMeasure(void)
+    {
+        struct timeval tv1;
+        struct timeval tv2;
+        long time1, time2;
+    float dis;
+
+        digitalWrite(Trig, LOW);
+        delayMicroseconds(2);
+
+        digitalWrite(Trig, HIGH);
+        delayMicroseconds(10);      
+        digitalWrite(Trig, LOW);
+                                    
+        while(!(digitalRead(Echo) == 1));   
+        gettimeofday(&tv1, NULL);           
+
+        while(!(digitalRead(Echo) == 0));   
+        gettimeofday(&tv2, NULL);           
+
+        time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;   
+        time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
+
+        dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
+
+        return dis;
+    }
+
+    int main(void)
+    {
+        float dis;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        ultraInit();
+        
+        while(1){
+            dis = disMeasure();
+            printf("%0.2f cm\n\n",dis);
+            delay(300);
+        }
+
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    void ultraInit(void)
+    {
+        pinMode(Echo, INPUT);
+        pinMode(Trig, OUTPUT);
+    }
+
+Initialisierung des Ultraschall-Pins; dabei wird Echo auf Eingang und Trig auf 
+Ausgang gesetzt.
+
+.. code-block:: c
+
+    float disMeasure(void){};
+
+Diese Funktion dient zur Realisierung der Funktion des Ultraschallsensors durch 
+Berechnung der zurückgegebenen Erfassungsentfernung.
+
+.. code-block:: c
+
+    struct timeval tv1;
+    struct timeval tv2;
+
+Struct timeval ist eine Struktur zur Speicherung der aktuellen Zeit. Die 
+vollständige Struktur lautet wie folgt:
+
+.. code-block:: c
+
+    struct timeval
+    {
+    __time_t tv_sec;        /* Seconds. */
+    __suseconds_t tv_usec;  /* Microseconds. */
+    };
+
+Hierbei steht tv_sec für die Sekunden, die Epoch bei der Erstellung von 
+struct timeval verbracht hat. Tv_usec steht für Mikrosekunden oder einen Bruchteil 
+von Sekunden.
+
+.. code-block:: c
+
+    digitalWrite(Trig, HIGH);
+    delayMicroseconds(10);     
+    digitalWrite(Trig, LOW);
+
+Ein 10us Ultraschallimpuls wird ausgesendet.
+
+.. code-block:: c
+
+    while(!(digitalRead(Echo) == 1));
+    gettimeofday(&tv1, NULL);
+
+Diese leere Schleife dient dazu sicherzustellen, dass beim Senden des Trigger-Signals 
+kein störendes Echo-Signal vorhanden ist und dann die aktuelle Zeit zu erfassen.
+
+.. code-block:: c
+
+    while(!(digitalRead(Echo) == 0)); 
+    gettimeofday(&tv2, NULL);
+
+Diese leere Schleife stellt sicher, dass der nächste Schritt nicht durchgeführt wird, 
+bis das Echo-Signal empfangen wird und dann die aktuelle Zeit erfasst wird.
+
+.. code-block:: c
+
+    time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;
+    time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
+
+Umwandlung der von struct timeval gespeicherten Zeit in eine vollständige Mikrosekunden-Zeit.
+
+.. code-block:: c
+
+    dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
+
+Die Entfernung wird anhand des Zeitintervalls und der Schallgeschwindigkeit berechnet. 
+Die Schallgeschwindigkeit in der Luft beträgt: 34000cm/s.
+
+Phänomen-Bild
+--------------------
+
+.. image:: ../img/image221.jpeg

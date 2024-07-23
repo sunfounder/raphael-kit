@@ -1,0 +1,201 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _3.1.13_c:
+
+3.1.13 GAME - NichtNicht
+===========================
+
+Einführung
+-------------------
+
+In diesem Projekt werden wir ein interessantes Spielgerät erstellen, das wir "Nicht Nicht" nennen.
+
+Während des Spiels wird das Punktmatrix zufällig einen Pfeil aktualisieren. Ihre Aufgabe ist es, innerhalb einer begrenzten Zeit die Taste in die entgegengesetzte Richtung des Pfeils zu drücken. Wenn die Zeit abgelaufen ist oder die Taste in die gleiche Richtung wie der Pfeil gedrückt wird, sind Sie aus dem Spiel.
+
+Dieses Spiel kann wirklich Ihr umgekehrtes Denken schulen. Sollen wir es mal versuchen?
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list_GAME_14_NotNot.png
+    :align: center
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTEN BESCHREIBUNG
+        - KAUF LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_dot_matrix`
+        - |link_led_matrix_buy|
+    *   - :ref:`cpn_button`
+        - |link_button_buy|
+
+Schaltplan
+------------------------
+
+============ ======== ======== ====
+T-Board Name physical wiringPi BCM
+GPIO22       Pin 15   3        22
+GPIO23       Pin 16   4        23
+SPIMOSI      Pin 19   12       MOSI
+SPICE0       pin 24   10       CE0
+SPISCLK      Pin 23   14       SCLK
+============ ======== ======== ====
+
+.. image:: ../img/Schematic_notnot.png
+   :align: center
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1**: Schalten Sie die Schaltung.
+
+.. image:: ../img/3.1.14game_notnot.png
+
+.. note::
+
+    Aktivieren Sie das SPI, bevor Sie das Experiment starten. Weitere Details finden Sie unter :ref:`spi_configuration`.
+    Auch die :ref:`BCM2835` Bibliothek wird benötigt.
+
+**Schritt 2**: Navigieren Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.13/
+
+**Schritt 3**: Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    make
+
+**Schritt 4**: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./3.1.13_GAME_NotNot
+
+Nachdem das Programm gestartet ist, wird auf dem Punktmatrix zufällig ein linker oder rechter Pfeil angezeigt. Ihre Aufgabe ist es, die Taste in die entgegengesetzte Richtung des Pfeils zu drücken. Dann erscheint ein "√" auf dem Punktmatrix. Wenn Sie die Taste in die gleiche Richtung wie der Pfeil drücken, sind Sie aus dem Spiel und das Punktmatrix zeigt ein "x" an. Sie können auch 2 neue Tasten hinzufügen oder sie durch Joystick-Tasten für oben, unten, links und rechts - 4 Richtungen ersetzen, um die Schwierigkeit des Spiels zu erhöhen.
+
+.. note::
+
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beachten Sie bitte :ref:`install_wiringpi`.
+
+**Code-Erklärung**
+
+Basierend auf :ref:`1.1.6_c` fügt dieses Projekt 2 Tasten hinzu, um ein amüsantes Spielgerät zu erstellen.
+
+Der gesamte Programmablauf ist wie folgt:
+
+#. Verwenden Sie die Systemzeit, um eine zufällige 0 oder 1 zu generieren.
+#. Zeigen Sie ein zufälliges linkes oder rechtes Pfeilmuster an.
+#. Drücken Sie die Taste und bestimmen Sie das Ergebnis.
+#. Zeigen Sie das richtige oder falsche Muster an.
+
+.. image:: ../img/3.1.14_notnot1.png
+
+.. code-block:: c
+
+    int get_index()
+    {
+        srand((unsigned)time(NULL));
+        return rand()%2;
+    }
+
+Der Seed des Systems wird durch die Systemzeit geändert, d.h. ``srand((unsigned)time(NULL))``, so dass jedes Mal, wenn die rand-Funktion aufgerufen wird, der erhaltene Wert völlig zufällig ist. Schließlich wird das erhaltene Ergebnis durch 2 geteilt, sodass die erhaltenen Werte 0 und 1 sind.
+
+.. code-block:: c
+
+    int get_key(uint num)
+    {
+        while (1)
+        {
+            if (1 == bcm2835_gpio_lev(AButtonPin) && num == 0){
+                return 1;
+            }
+            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 1){
+                return 1;
+            }
+            else if (1 == bcm2835_gpio_lev(AButtonPin) && num == 1){
+                return 0;
+            }
+            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 0){
+                return 0;
+            }
+        }
+    }
+
+Es wird bestimmt, welche Taste gedrückt wurde und dies mit der Richtung des Pfeils auf der Punktmatrix verglichen, wodurch das endgültige Ergebnis von 0 oder 1 ermittelt wird.
+
+.. image:: ../img/3.1.14_getkey.png
+
+.. code-block:: c
+
+    void display(uint index){
+        uchar i;
+        if (stage == 0){
+            for(i=1;i<9;i++)
+            {
+                Write_Max7219(i,arrow[index][i-1]);
+            }
+        }
+        else if(stage == 1){
+            for(i=1;i<9;i++)
+            {
+                Write_Max7219(i,check[index][i-1]);
+            }
+        }
+    }
+
+Je nach Wert von ``stage`` und ``index`` wird der ``left or right`` Pfeil oder das Muster ``right or wrong`` angezeigt.
+
+.. image:: ../img/3.1.14_display.png

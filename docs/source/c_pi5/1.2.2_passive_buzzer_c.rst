@@ -1,0 +1,270 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _1.2.2_c:
+
+1.2.2 Passiver Summer
+==========================
+
+Einführung
+------------
+
+In diesem Projekt werden wir lernen, wie man einen passiven Summer Musik spielen lässt.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/list_1.2.2.png
+
+Es ist definitiv praktisch, ein gesamtes Set zu kaufen, hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - KOMPONENTEN IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_Buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+Schaltplan
+-----------------
+
+In diesem Experiment wird ein passiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet. Der Widerstand liegt zwischen der Basis des Transistors und GPIO, um den Transistor zu schützen.
+
+Wenn GPIO17 verschiedene Frequenzen zugewiesen bekommt, gibt der passive Summer unterschiedliche Töne aus; auf diese Weise spielt der Summer Musik.
+
+.. image:: ../img/image333.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1**: Schaltkreis aufbauen. (Der passive Summer hat eine grüne Platine auf der Rückseite.)
+
+.. image:: ../img/image106.png
+
+**Schritt 2**: Verzeichnis wechseln.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.2.2/
+
+**Schritt 3**: Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.2_PassiveBuzzer.c -lwiringPi
+
+**Schritt 4**: Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Wenn der Code ausgeführt wird, spielt der Summer ein Musikstück.
+
+.. note::
+
+    Wenn es nach dem Ausführen nicht funktioniert oder die Fehlermeldung "wiringPi.h: No such file or directory" angezeigt wird, beachten Sie bitte :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softTone.h>
+    #include <stdio.h>
+
+    #define BuzPin    0
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+    #define  CM3  330
+    #define  CM4  350
+    #define  CM5  393
+    #define  CM6  441
+    #define  CM7  495
+
+    #define  CH1  525
+    #define  CH2  589
+    #define  CH3  661
+    #define  CH4  700
+    #define  CH5  786
+    #define  CH6  882
+    #define  CH7  990
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+
+    int song_2[] = {CM1,CM1,CM1,CL5,CM3,CM3,CM3,CM1,CM1,CM3,CM5,CM5,CM4,CM3,CM2,
+                    CM2,CM3,CM4,CM4,CM3,CM2,CM3,CM1,CM1,CM3,CM2,CL5,CL7,CM2,CM1
+                    };
+
+    int beat_2[] = {1,1,1,3,1,1,1,3,1,1,1,1,1,1,3,1,1,1,2,1,1,1,3,1,1,1,3,3,2,3};
+
+    int main(void)
+    {
+        int i, j;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+        }
+
+        while(1){
+            printf("music is being played...\n");
+
+            for(i=0;i<sizeof(song_1)/4;i++){
+                softToneWrite(BuzPin, song_1[i]);   
+                delay(beat_1[i] * 500);
+            }
+
+            for(i=0;i<sizeof(song_2)/4;i++){
+                softToneWrite(BuzPin, song_2[i]);   
+                delay(beat_2[i] * 500);
+            }   
+        }
+
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+
+
+Die Frequenzen jeder Note sind wie folgt dargestellt. CL steht für tiefe Noten, 
+CM für mittlere Noten, CH für hohe Noten, 1-7 entsprechen den Noten C, D, E, F, G, A, B.
+
+.. code-block:: c
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+Das Array ``song_1[]`` speichert eine Notenfolge eines Liedes, in dem ``beat_1[]`` 
+den Takt jeder Note im Lied bezeichnet (0.5s für jeden Takt).
+
+.. code-block:: c
+
+    if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+    }
+
+Dies erstellt einen softwaregesteuerten Ton-Pin. Sie können jeden GPIO-Pin verwenden,
+und die Pin-Nummerierung ist diejenige der ``wiringPiSetup()``-Funktion, die Sie 
+verwendet haben. Der Rückgabewert ist 0 bei Erfolg. Alles andere und Sie sollten 
+die globale errnovariable überprüfen, um herauszufinden, was schief gelaufen ist.
+
+.. code-block:: c
+
+    for(i=0;i<sizeof(song_1)/4;i++){
+        softToneWrite(BuzPin, song_1[i]);   
+        delay(beat_1[i] * 500);
+    }
+
+Verwenden Sie eine for-Anweisung, um song_1 abzuspielen.
+
+In der Bedingung **i<sizeof(song_1)/4**\ ，wird „durch 4 teilen“ verwendet,
+da das Array ``song_1[]`` ein Array des Datentyps Integer ist und jedes Element 
+vier Bytes belegt.
+
+Die Anzahl der Elemente in ``song_1`` (die Anzahl der Musiknoten) wird erhalten,
+indem ``sizeof(song_1)`` durch 4 geteilt wird.
+
+Um jede Note für beat \* 500ms abspielen zu lassen, wird die Funktion
+``delay(beat_1[i] \* 500)`` aufgerufen.
+
+Der Prototyp von ``softToneWrite(BuzPin, song_1[i])`` lautet:
+
+.. code-block:: c
+
+    void softToneWrite (int pin, int freq);
+
+Dies aktualisiert den Tonfrequenzwert am gegebenen Pin. Der Ton 
+hört nicht auf zu spielen, bis Sie die Frequenz auf 0 setzen.
+
+Phänomen-Bild
+------------------
+
+.. image:: ../img/image107.jpeg

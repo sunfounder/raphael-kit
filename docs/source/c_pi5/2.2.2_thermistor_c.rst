@@ -1,0 +1,275 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.2.2_c:
+
+2.2.2 Thermistor
+======================
+
+Einführung
+----------
+
+Genauso wie der Fotowiderstand Licht erfassen kann, ist ein Thermistor ein temperaturempfindliches elektronisches Bauelement, das zur Umsetzung von Temperatursteuerungsfunktionen verwendet werden kann, wie beispielsweise für einen Hitzemelder.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list_2.2.2_thermistor.png
+
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch separat über die folgenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_adc0834`
+        - \-
+
+Schaltplan
+---------------------
+
+.. image:: ../img/image323.png
+
+.. image:: ../img/image324.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Schalten Sie den Schaltkreis.
+
+.. image:: ../img/image202.png
+
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.2/
+
+**Schritt 3:** Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.2_Thermistor.c -lwiringPi -lm
+
+.. note::
+    -lm dient zum Laden der Mathematik-Bibliothek. Nicht weglassen, sonst gibt es einen Fehler.
+
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nachdem der Code ausgeführt wurde, erfasst der Thermistor die Umgebungstemperatur, die nach Abschluss der Programmberechnung auf dem Bildschirm angezeigt wird.
+
+.. note::
+
+    Wenn es nach dem Ausführen nicht funktioniert oder die Fehlermeldung "wiringPi.h: Datei oder Verzeichnis nicht gefunden" angezeigt wird, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <math.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        unsigned char analogVal;
+        double Vr, Rt, temp, cel, Fah;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            Vr = 5 * (double)(analogVal) / 255;
+            Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+            temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+            cel = temp - 273.15;
+            Fah = cel * 1.8 +32;
+            printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    #include <math.h>
+
+Es gibt eine C-Numerik-Bibliothek, die eine Reihe von Funktionen deklariert, um gängige mathematische Operationen und Transformationen durchzuführen.
+
+.. code-block:: c
+
+    analogVal = get_ADC_Result(0);
+
+Diese Funktion dient dazu, den Wert des Thermistors zu lesen.
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+    cel = temp - 273.15;
+    Fah = cel * 1.8 +32;
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+Diese Berechnungen wandeln die Thermistorwerte in Celsiuswerte um.
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+
+Diese beiden Codezeilen berechnen die Spannungsverteilung anhand des gelesenen Analogwerts, um Rt (Widerstand des Thermistors) zu erhalten.
+
+.. code-block:: c
+
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+
+Dieser Code bezieht sich darauf, Rt in die Formel 
+**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** einzufügen, um die Kelvin-Temperatur zu erhalten.
+
+.. code-block:: c
+
+    temp = temp - 273.15;
+
+Umwandlung der Kelvin-Temperatur in Grad Celsius.
+
+.. code-block:: c
+
+    Fah = cel * 1.8 +32;
+
+Umwandlung von Grad Celsius in Fahrenheit.
+
+.. code-block:: c
+
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+Anzeige von Grad Celsius, Grad Fahrenheit und deren Einheiten.
+
+Phänomen-Bild
+------------------
+
+.. image:: ../img/image203.jpeg

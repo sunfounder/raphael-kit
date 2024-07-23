@@ -1,0 +1,174 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _1.3.3_c:
+
+1.3.3 Relais
+=================
+
+Einführung
+----------
+
+In diesem Projekt lernen wir, ein Relais zu verwenden. Es gehört zu den häufig 
+verwendeten Komponenten in automatischen Steuerungssystemen. Wenn Spannung, Strom, 
+Temperatur, Druck usw. einen vorbestimmten Wert erreichen, überschreiten oder 
+darunter liegen, schaltet das Relais den Stromkreis ein oder unterbricht ihn, um 
+die Ausrüstung zu steuern und zu schützen.
+
+Benötigte Komponenten
+---------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/list_1.3.4.png
+
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_relay`
+        - |link_relay_buy|
+    *   - :ref:`cpn_diode`
+        - |link_diode_buy|
+
+Schaltplan
+----------
+
+.. image:: ../img/image345.png
+
+Experimentelle Verfahren
+------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image144.png
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.3.3
+
+**Schritt 3:** Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.3_Relay.c -lwiringPi
+
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nachdem der Code ausgeführt wurde, leuchtet die LED auf. Zusätzlich können Sie 
+ein Ticktack-Geräusch hören, das durch das Trennen des normal geschlossenen Kontakts 
+und das Schließen des normal geöffneten Kontakts verursacht wird.
+
+.. note::
+
+    Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", ziehen Sie bitte :ref:`install_wiringpi` zu Rate.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define RelayPin 0
+
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(RelayPin, OUTPUT);   //set GPIO17(GPIO0) output
+        while(1){
+            // Tick
+            printf("Relay Open......\n");
+            digitalWrite(RelayPin, LOW);
+            delay(1000);
+            // Tock
+            printf("......Relay Close\n");
+            digitalWrite(RelayPin, HIGH);
+            delay(1000);
+        }
+
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, LOW);
+
+Setzen Sie den I/O-Port auf niedriges Niveau (0V), sodass der Transistor nicht bestromt 
+wird und die Spule nicht mit Strom versorgt wird. Es gibt keine elektromagnetische Kraft, 
+also öffnet das Relais, die LED schaltet sich nicht ein.
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, HIGH);
+
+Setzen Sie den I/O-Port auf hohes Niveau (5V), um den Transistor zu bestromen. Die Spule 
+des Relais wird mit Strom versorgt und erzeugt eine elektromagnetische Kraft, das 
+Relais schließt und die LED leuchtet auf.
+
+Phänomen-Bild
+---------------
+
+.. image:: ../img/image145.jpeg

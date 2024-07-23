@@ -1,0 +1,207 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _3.1.2_c:
+
+3.1.2 Willkommen
+=======================
+
+Einführung
+-------------
+
+In diesem Projekt werden wir PIR verwenden, um die Bewegung von Fußgängern zu erfassen und mit Servos, LEDs und Summer die Funktion einer Sensorschutztür eines Convenience-Stores zu simulieren. Wenn ein Fußgänger im Erfassungsbereich des PIR erscheint, leuchtet die Kontrolllampe auf, die Tür öffnet sich und der Summer gibt das Öffnungssignal wieder.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list_Welcome.png
+    :align: center
+
+Es ist sicherlich praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch separat über die unten stehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_pir`
+        - \-
+    *   - :ref:`cpn_servo`
+        - |link_servo_buy|
+    *   - :ref:`cpn_Buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+Schaltplan
+-------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one2.png
+   :align: center
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image239.png
+    :align: center
+
+**Schritt 2:** Wechseln Sie das Verzeichnis.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.2/
+
+**Schritt 3:** Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.2_Welcome.c -lwiringPi
+
+**Schritt 4:** Starten.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Nachdem der Code ausgeführt wurde und der PIR-Sensor jemanden erkennt, der vorbeigeht, wird die Tür automatisch geöffnet (simuliert durch den Servo), die Anzeige eingeschaltet und die Türklingel-Musik abgespielt. Nachdem die Türklingelmusik gespielt wurde, schließt das System automatisch die Tür, schaltet die Anzeige aus und wartet auf das nächste Vorbeigehen einer Person.
+
+Am PIR-Modul befinden sich zwei Potentiometer: eines zur Einstellung der Empfindlichkeit und eines zur Einstellung der Erfassungsentfernung. Damit das PIR-Modul optimal funktioniert, müssen Sie beide im Uhrzeigersinn bis zum Anschlag drehen.
+
+.. image:: ../img/PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+    Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code Erklärung**
+
+.. code-block:: c
+
+    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+        if(angle < 0)
+            angle = 0;
+        if(angle > 180)
+            angle = 180;
+        softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
+    } 
+
+Erstellen Sie eine Funktion namens setAngle, um den Winkel des Servos im Bereich von 0 bis 180 Grad zu definieren.
+
+.. code-block:: c
+
+    void doorbell(){
+    for(int i=0;i<sizeof(song)/4;i++){
+            softToneWrite(BuzPin, song[i]); 
+            delay(beat[i] * 250);
+        }
+
+Erstellen Sie eine Funktion namens doorbell, um den Summer Musik spielen zu lassen.
+
+.. code-block:: c
+
+    void closedoor(){
+    digitalWrite(ledPin, LOW);   //led off
+    for(int i=180;i>-1;i--){  //make servo rotate from maximum angle to minimum angle
+        setAngle(servoPin,i);
+        delay(1);
+        }
+    }
+
+Erstellen Sie eine Funktion namens closedoor, die das Schließen der Tür simuliert, die LED ausschaltet und den Servo von 180 Grad auf 0 Grad dreht.
+
+.. code-block:: c
+
+    void opendoor(){
+        digitalWrite(ledPin, HIGH);   //led on
+        for(int i=0;i<181;i++){  //make servo rotate from minimum angle to maximum angle
+            setAngle(servoPin,i);
+            delay(1);
+        }
+        doorbell();
+        closedoor();
+    }
+
+Die Funktion opendoor() beinhaltet mehrere Teile: das Einschalten der Kontrollleuchte, das Drehen des Servos (simuliert das Öffnen der Tür), das Abspielen der Türklingelmusik des Convenience-Stores und das Aufrufen der Funktion closedoor() nach dem Abspielen der Musik.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+    ......
+
+In der Funktion main() wird die Bibliothek wiringPi initialisiert und softTone eingerichtet. Dann wird ledPin auf den Ausgabezustand und pirPin auf den Eingabezustand gesetzt. Wenn der PIR-Sensor jemanden erkennt, der vorbeigeht, wird die Funktion opendoor aufgerufen, um das Öffnen der Tür zu simulieren.
+
+Phänomen-Bild
+--------------------
+
+.. image:: ../img/image240.jpeg
+   :align: center

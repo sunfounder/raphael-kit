@@ -21,20 +21,11 @@ Die Veröffentlichung des Raspberry Pi 5 hat uns ein leistungsstärkeres Modell 
     :maxdepth: 1
     
     python_pi5/play_with_python_pi5
-
+    c_pi5/play_with_c
+    scratch_pi5/play_with_scratch
 
 Bei Kompatibilitätsproblemen mit anderen Programmiersprachen finden Sie unten detaillierte Informationen:
 
-**C-Sprache**
-
-.. note::
-
-    * Die wiringPi-Bibliothek ist ab Version 3.0 mit dem Raspberry Pi 5 kompatibel. Allerdings befindet sich die PWM-Funktionalität in der neuesten Version noch in der Entwicklung.
-    * Wir verwenden derzeit die neueste Version von wiringPi, um unsere Kurse für die Kompatibilität mit dem Raspberry Pi 5 zu aktualisieren. Bitte bleiben Sie dran für Updates.
-
-Die Implementierung der C-Sprache basiert auf der wiringPi-Bibliothek. Allerdings ist die wiringPi-Community-Bibliothek jetzt archiviert und erhält keine Updates mehr, was sie für Raspberry Pi 5-Projekte ungeeignet macht. Weitere Informationen finden Sie unter: https://github.com/WiringPi/WiringPi.
-
-.. image:: img/pi5_c_language.png
 
 **Processing**
 
@@ -48,12 +39,5 @@ Node.js verwendet die pigpio-Bibliothek, die derzeit den Raspberry Pi 5 nicht un
 
 .. image:: img/pi5_nodejs.png
     :width: 700
-
-**Scratch**
-
-.. note::
- 
-    * Version 3.30.8 von Scratch 3 ist nun mit dem Raspberry Pi 5 kompatibel.
-    * Wir sind auch dabei, unsere Kurse auf die Kompatibilität mit dem Raspberry Pi 5 zu aktualisieren. Bitte warten Sie auf diese Updates.
 
 Auf einem 64-Bit-System treten bei der Einfuhr der Raspberry Pi GPIO-Bibliothek Probleme auf, die zu einer Unempfindlichkeit führen. Weitere Informationen finden Sie unter: https://github.com/raspberrypi/bookworm-feedback/issues/91.

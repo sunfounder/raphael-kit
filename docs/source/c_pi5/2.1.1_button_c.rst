@@ -1,0 +1,221 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.1.1_c:
+
+2.1.1 Knopf
+==================
+
+Einführung
+-----------------
+
+In diesem Projekt lernen wir, wie wir eine LED mit einem Knopf ein- oder ausschalten können.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/list_2.1.1_Button.png
+
+Es ist definitiv praktisch, ein gesamtes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_button`
+        - |link_button_buy|
+
+Schaltplan
+---------------------
+
+Verwenden Sie einen normalerweise offenen Knopf als Eingang für den Raspberry Pi. Die Verbindung ist im folgenden Schaltplan dargestellt. Wenn der Knopf gedrückt wird, wechselt GPIO18 auf ein niedriges Niveau (0V). Über die Programmierung können wir den Zustand von GPIO18 erkennen. Das bedeutet, wenn GPIO18 auf ein niedriges Niveau wechselt, wurde der Knopf gedrückt. Sie können den entsprechenden Code ausführen, wenn der Knopf gedrückt wird, und dann leuchtet die LED auf.
+
+.. note::
+    Der längere Pin der LED ist die Anode und der kürzere ist die Kathode.
+
+.. image:: ../img/image302.png
+
+.. image:: ../img/image303.png
+
+Experimentelle Verfahren
+---------------------------
+
+**Schritt 1**: Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image152.png
+
+**Schritt 2**: Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.1/
+
+.. note::
+    Wechseln Sie mit **cd** zum Pfad des Codes in diesem Experiment.
+
+**Schritt 3**: Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.1_Button.c -lwiringPi
+
+**Schritt 4**: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nachdem der Code ausgeführt wurde, drücken Sie den Knopf, die LED leuchtet auf; andernfalls schaltet sie sich aus.
+
+.. note::
+
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", ziehen Sie bitte :ref:`install_wiringpi` zu Rate.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define LedPin      0
+    #define ButtonPin   1
+
+    int main(void){
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(LedPin, OUTPUT);
+        pinMode(ButtonPin, INPUT);
+        digitalWrite(LedPin, HIGH);
+        
+        while(1){
+            // Indicate that button has pressed down
+            if(digitalRead(ButtonPin) == 0){
+                // Led on
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED on\n");
+            }
+            else{
+                // Led off
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED off...\n");
+            }
+        }
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    #define LedPin      0
+
+Pin GPIO17 auf dem T_Extension Board entspricht dem GPIO0 in der 
+wiringPi.
+
+.. code-block:: c
+
+    #define ButtonPin   1
+
+ButtonPin ist mit GPIO1 verbunden.
+
+.. code-block:: c
+
+    pinMode(LedPin, OUTPUT);
+
+Legen Sie LedPin als Ausgang fest, um ihm einen Wert zuzuweisen.
+
+.. code-block:: c
+
+    pinMode(ButtonPin, INPUT);
+
+Legen Sie ButtonPin als Eingang fest, um den Wert von ButtonPin zu lesen.
+
+.. code-block:: C
+
+    while(1){
+            // Indicate that button has pressed down
+            if(digitalRead(ButtonPin) == 0){
+                // Led on
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED on\n");
+            }
+            else{
+                // Led off
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED off...\n");
+            }
+        }
+
+``if (digitalRead (ButtonPin) == 0)`` : Überprüfen Sie, ob der Knopf 
+gedrückt wurde. Führen Sie ``digitalWrite(LedPin, LOW)`` aus, wenn der 
+Knopf gedrückt ist, um die LED einzuschalten.
+
+Die Funktion ``digitalRead()`` dient zum Lesen von HIGH (Hochpegel) oder LOW 
+(Tiefpegel) des Eingabeparameterpins. Sie gibt 1 zurück, wenn der Pin HIGH ist 
+und gibt 0 zurück, wenn der Pin LOW ist.
+
+Die Funktion ``digitalWrite()`` dient dazu, HIGH (Hochpegel) oder LOW 
+(Tiefpegel) an den Eingabeparameterpin zu schreiben.
+
+Phänomen-Bild
+--------------------
+
+.. image:: ../img/image153.jpeg
+
+

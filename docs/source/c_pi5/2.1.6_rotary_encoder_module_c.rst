@@ -1,0 +1,207 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.1.6_c:
+
+2.1.6 Drehgeber-Modul
+=================================
+
+Einführung
+-------------------
+
+In diesem Projekt werden Sie den Drehgeber kennenlernen. Ein Drehgeber ist
+ein elektronischer Schalter mit einer Reihe von regelmäßigen Impulsen in einer streng getakteten
+Reihenfolge. In Kombination mit einem IC kann er Erhöhungen, Verringerungen, Seitenumbrüche
+und andere Vorgänge wie Mausscrollen, Menüauswahl usw. ausführen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/Part_two_25.png
+
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_rotary_encoder`
+        - |link_rotary_encoder_buy|
+
+Schaltplan
+------------------------
+
+.. image:: ../img/image349.png
+   :align: center
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Bauen Sie die Schaltung.
+
+.. image:: ../img/2.1.6_fritzing.png
+   :align: center
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.6/
+
+**Schritt 3:** Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.6_RotaryEncoder.c -lwiringPi
+
+**Schritt 4:** Start.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Sie werden den Zählerstand im Shell sehen. Wenn Sie den Drehgeber im Uhrzeigersinn drehen, wird der Zähler erhöht; wenn Sie ihn gegen den Uhrzeigersinn drehen, wird der Zähler verringert. Wenn Sie den Schalter am Drehgeber drücken, wird der Zählerstand auf null zurückgesetzt.
+
+.. note::
+
+   Wenn es nach dem Starten nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", ziehen Sie bitte :ref:`install_wiringpi` zurate.
+
+**Code**
+
+.. code-block:: c
+
+   #include <stdio.h>
+   #include <string.h>
+   #include <errno.h>
+   #include <stdlib.h>
+   #include <wiringPi.h>
+
+   #define  clkPin    0
+   #define  dtPin    1
+   #define  swPin     2
+
+   static volatile int globalCounter = 0 ;
+
+   unsigned char flag;
+   unsigned char Last_dtPin_Status;
+   unsigned char Current_dtPin_Status;
+
+   void btnISR(void)
+   {
+      globalCounter = 0;
+   }
+
+   void rotaryDeal(void)
+   {
+      Last_dtPin_Status = digitalRead(dtPin);
+
+      while(!digitalRead(clkPin)){
+         Current_dtPin_Status = digitalRead(dtPin);
+         flag = 1;
+      }
+
+      if(flag == 1){
+         flag = 0;
+         if((Last_dtPin_Status == 0)&&(Current_dtPin_Status == 1)){
+            globalCounter --;	
+         }
+         if((Last_dtPin_Status == 1)&&(Current_dtPin_Status == 0)){
+            globalCounter ++;
+         }
+      }
+   }
+
+   int main(void)
+   {
+      if(wiringPiSetup() < 0){
+         fprintf(stderr, "Unable to setup wiringPi:%s\n",strerror(errno));
+         return 1;
+      }
+
+      pinMode(swPin, INPUT);
+      pinMode(clkPin, INPUT);
+      pinMode(dtPin, INPUT);
+
+      pullUpDnControl(swPin, PUD_UP);
+
+      if(wiringPiISR(swPin, INT_EDGE_FALLING, &btnISR) < 0){
+         fprintf(stderr, "Unable to init ISR\n",strerror(errno));	
+         return 1;
+      }
+      
+      int tmp = 0;
+
+      while(1){
+         rotaryDeal();
+         if (tmp != globalCounter){
+            printf("%d\n", globalCounter);
+            tmp = globalCounter;
+         }
+      }
+
+      return 0;
+   }
+
+**Code-Erklärung**
+
+* Den Wert von dtPin lesen, wenn clkPin niedrig ist.
+* Wenn clkPin hoch ist und dtPin von niedrig zu hoch wechselt, verringert sich der Zählwert; andernfalls erhöht er sich.
+* swPin gibt einen niedrigen Wert aus, wenn die Achse gedrückt wird.
+
+Daraus ergibt sich der folgende Programmablauf:
+
+.. image:: ../img/2.1.6_flow.png
+   :align: center
+
+Phänomen-Bild
+-------------------------
+
+.. image:: ../img/2.1.6rotary_ecoder.JPG
+   :align: center

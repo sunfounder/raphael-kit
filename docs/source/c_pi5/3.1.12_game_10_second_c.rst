@@ -1,0 +1,179 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _3.1.12_c:
+
+3.1.12 SPIEL - 10 Sekunden
+================================
+
+Einführung
+-------------------
+
+Folgen Sie mir und erstellen Sie ein Spielgerät, um Ihre Konzentration herauszufordern.
+Befestigen Sie den Neigungsschalter an einem Stock, um einen Zauberstab zu machen. Schütteln Sie den Zauberstab, beginnt das 4-stellige Segment-Display mit dem Zählen, erneutes Schütteln stoppt den Zähler. Wenn es Ihnen gelingt, den angezeigten Zähler bei 
+**10,00** zu halten, dann haben Sie gewonnen. Spielen Sie das Spiel mit Ihren Freunden und finden Sie heraus, wer der Zeitmagier ist.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../img/list_GAME_10_Second.png
+    :align: center
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+    *   - :ref:`cpn_tilt_switch`
+        - \-
+
+Schaltplan
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one13.png
+   :align: center
+
+Experimentelle Verfahren
+---------------------------------
+
+**Schritt 1**: Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image277.png
+
+**Schritt 2**: Navigieren Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.12/
+
+**Schritt 3**: Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.12_GAME_10Second.c -lwiringPi
+
+**Schritt 4**: Starten Sie die ausführbare Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Schütteln Sie den Zauberstab, das 4-stellige Segment-Display beginnt zu zählen, erneutes Schütteln stoppt den Zähler. Wenn Sie es schaffen, den angezeigten Zähler bei **10,00** zu halten, dann haben Sie gewonnen. Schütteln Sie ihn erneut, um die nächste Runde des Spiels zu starten.
+
+.. note::
+
+    Wenn es nach dem Start nicht funktioniert oder die Fehlermeldung "wiringPi.h: No such file or directory" erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code Erklärung**
+
+.. code-block:: c
+
+    void stateChange(){
+        if (gameState == 0){
+            counter = 0;
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
+        gameState = (gameState + 1)%2;
+    }
+
+Das Spiel ist in zwei Modi unterteilt:
+
+gameState=0 ist der "Start"-Modus, in dem die Zeit gemessen und auf dem Segmentdisplay angezeigt wird. Schütteln Sie den Neigungsschalter, um in den "Show"-Modus zu wechseln.
+
+GameState=1 ist der "Show"-Modus, der das Timing stoppt und die Zeit auf dem Segmentdisplay anzeigt. Ein erneutes Schütteln des Neigungsschalters setzt den Timer zurück und startet das Spiel neu.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                stateChange();
+            }
+            lastState=currentState;
+        }
+    }
+
+Loop() ist die Hauptfunktion. Zuerst wird die Zeit auf dem 4-stelligen Segment-Display angezeigt und der Wert des Neigungsschalters gelesen. Wenn sich der Zustand des Neigungsschalters geändert hat, wird stateChange() aufgerufen.
+
+Phänomen-Bild
+--------------------
+
+.. image:: ../img/image278.jpeg
+   :align: center
+
+
+

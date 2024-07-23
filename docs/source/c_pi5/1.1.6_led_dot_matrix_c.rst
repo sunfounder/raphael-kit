@@ -1,0 +1,298 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _1.1.6_c:
+
+1.1.6 LED Dot Matrix Modul
+==================================
+
+Einführung
+--------------------
+
+In diesem Projekt werden Sie das LED Matrix Modul kennenlernen. Das LED Matrix Modul verwendet den MAX7219 Treiber, um die 8 x 8 LED Matrix zu steuern.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/list_dot.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_dot_matrix`
+        - |link_led_matrix_buy|
+
+Schaltplan
+-----------------------
+
+============ ======== ======== ====
+T-Board Name physical wiringPi BCM
+SPIMOSI      Pin 19   12       MOSI
+SPICE0       pin 24   10       CE0
+SPISCLK      Pin 23   14       SCLK
+============ ======== ======== ====
+
+.. image:: ../img/schematic_dot.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Bauen Sie die Schaltung. 
+
+.. image:: ../img/1.1.6fritzing.png
+
+.. note::
+
+    Schalten Sie das SPI vor Beginn des Experiments ein. Siehe :ref:`spi_configuration` für Details. Auch die :ref:`BCM2835` Bibliothek wird benötigt.
+
+**Schritt 2:** Navigieren Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/1.1.6/
+
+**Schritt 3:** Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    make
+
+**Schritt 4:** Starten Sie die ausführbare Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./1.1.6_LedMatrix
+
+Nachdem der Code ausgeführt wurde, zeigt die LED Dot Matrix nacheinander Zahlen von 0 bis 9 und Buchstaben von A bis Z an.
+
+.. note::
+
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: No such file or directory\", bitte beziehen Sie sich auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <bcm2835.h>
+    #include <stdio.h>
+    #include <string.h>
+    #include <ctype.h>
+
+    #define uchar unsigned char
+    #define uint unsigned int
+
+    #define Max7219_pinCS  RPI_GPIO_P1_24
+
+    uchar disp1[36][8]={
+    {0x3C,0x42,0x42,0x42,0x42,0x42,0x42,0x3C},//0
+    {0x08,0x18,0x28,0x08,0x08,0x08,0x08,0x08},//1
+    {0x7E,0x2,0x2,0x7E,0x40,0x40,0x40,0x7E},//2
+    {0x3E,0x2,0x2,0x3E,0x2,0x2,0x3E,0x0},//3
+    {0x8,0x18,0x28,0x48,0xFE,0x8,0x8,0x8},//4
+    {0x3C,0x20,0x20,0x3C,0x4,0x4,0x3C,0x0},//5
+    {0x3C,0x20,0x20,0x3C,0x24,0x24,0x3C,0x0},//6
+    {0x3E,0x22,0x4,0x8,0x8,0x8,0x8,0x8},//7
+    {0x0,0x3E,0x22,0x22,0x3E,0x22,0x22,0x3E},//8
+    {0x3E,0x22,0x22,0x3E,0x2,0x2,0x2,0x3E},//9
+    {0x8,0x14,0x22,0x3E,0x22,0x22,0x22,0x22},//A
+    {0x3C,0x22,0x22,0x3E,0x22,0x22,0x3C,0x0},//B
+    {0x3C,0x40,0x40,0x40,0x40,0x40,0x3C,0x0},//C
+    {0x7C,0x42,0x42,0x42,0x42,0x42,0x7C,0x0},//D
+    {0x7C,0x40,0x40,0x7C,0x40,0x40,0x40,0x7C},//E
+    {0x7C,0x40,0x40,0x7C,0x40,0x40,0x40,0x40},//F
+    {0x3C,0x40,0x40,0x40,0x40,0x44,0x44,0x3C},//G
+    {0x44,0x44,0x44,0x7C,0x44,0x44,0x44,0x44},//H
+    {0x7C,0x10,0x10,0x10,0x10,0x10,0x10,0x7C},//I
+    {0x3C,0x8,0x8,0x8,0x8,0x8,0x48,0x30},//J
+    {0x0,0x24,0x28,0x30,0x20,0x30,0x28,0x24},//K
+    {0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x7C},//L
+    {0x81,0xC3,0xA5,0x99,0x81,0x81,0x81,0x81},//M
+    {0x0,0x42,0x62,0x52,0x4A,0x46,0x42,0x0},//N
+    {0x3C,0x42,0x42,0x42,0x42,0x42,0x42,0x3C},//O
+    {0x3C,0x22,0x22,0x22,0x3C,0x20,0x20,0x20},//P
+    {0x1C,0x22,0x22,0x22,0x22,0x26,0x22,0x1D},//Q
+    {0x3C,0x22,0x22,0x22,0x3C,0x24,0x22,0x21},//R
+    {0x0,0x1E,0x20,0x20,0x3E,0x2,0x2,0x3C},//S
+    {0x0,0x3E,0x8,0x8,0x8,0x8,0x8,0x8},//T
+    {0x42,0x42,0x42,0x42,0x42,0x42,0x22,0x1C},//U
+    {0x42,0x42,0x42,0x42,0x42,0x42,0x24,0x18},//V
+    {0x0,0x49,0x49,0x49,0x49,0x2A,0x1C,0x0},//W
+    {0x0,0x41,0x22,0x14,0x8,0x14,0x22,0x41},//X
+    {0x41,0x22,0x14,0x8,0x8,0x8,0x8,0x8},//Y
+    {0x0,0x7F,0x2,0x4,0x8,0x10,0x20,0x7F},//Z
+    };
+
+    void Delay_xms(uint x)
+    {
+        bcm2835_delay(x);
+    }
+    //------------------------
+
+    void Write_Max7219_byte(uchar DATA)
+    {
+        bcm2835_gpio_write(Max7219_pinCS,LOW);
+        bcm2835_spi_transfer(DATA);
+    }
+
+    void Write_Max7219(uchar address1,uchar dat1)
+    {
+        bcm2835_gpio_write(Max7219_pinCS,LOW);
+        Write_Max7219_byte(address1);
+        Write_Max7219_byte(dat1); 
+        bcm2835_gpio_write(Max7219_pinCS,HIGH);
+    }
+
+    void Init_MAX7219()
+    {
+        Write_Max7219(0x09,0x00);
+        Write_Max7219(0x0a,0x03);
+        Write_Max7219(0x0b,0x07);
+        Write_Max7219(0x0c,0x01);
+        Write_Max7219(0x0f,0x00);
+    }
+
+    void Init_BCM2835()
+    {
+        bcm2835_spi_begin();
+        bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
+        bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);
+        bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);
+        bcm2835_gpio_fsel(Max7219_pinCS, BCM2835_GPIO_FSEL_OUTP);
+        bcm2835_gpio_write(disp1[0][0],HIGH);
+    }
+
+    int main(void)
+    {
+        uchar i,j;
+
+        if (!bcm2835_init())
+        {
+            printf("Unable to init bcm2835.\n");
+            return 1;
+        }
+        Init_BCM2835();
+        Delay_xms(50);
+        Init_MAX7219();
+        while(1)
+        {
+            for(j=0;j<36;j++)
+            {
+                for(i=1;i<9;i++)
+                {
+                    Write_Max7219(i,disp1[j][i-1]);
+                }
+                Delay_xms(1000);
+            }
+        }
+        // bcm2835_spi_end();
+        // bcm2835_close();
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    #define Max7219_pinCS  24
+
+Der CS-Pin des LED Dot Matrix ist mit Pin24 verbunden.
+
+.. note::
+
+    Wenn Sie mehrere Geräte haben, die eine SPI-Kommunikation benötigen, verbinden Sie einfach die CS-Pins mit unterschiedlichen Pins.
+
+.. code-block:: c
+
+    if (!bcm2835_init())
+	{
+		printf("Unable to init bcm2835.\n");
+		return 1;
+	}
+
+Überprüfen Sie, ob die bcm2835-Bibliothek erfolgreich installiert wurde. Wenn nicht, geben Sie die Nachricht "Unable to init bcm2835" aus.
+
+.. code-block:: c
+
+    Init_BCM2835();
+	Delay_xms(50);
+	Init_MAX7219();
+
+Initialisieren Sie die Bibliotheken und das Modul.
+
+.. code-block:: c
+
+    while(1)
+    {
+        for(j=0;j<36;j++)
+        {
+            for(i=1;i<9;i++)
+            {
+                Write_Max7219(i,disp1[j][i-1]);
+            }
+            Delay_xms(1000);
+        }
+    }
+
+Die Funktion ``Write_Max7219()`` ermöglicht es Ihnen, das angegebene Zeichen auf dem LED Dot Matrix anzuzeigen. Der erste Parameter gibt die Zeile an, in der es angezeigt wird, und der zweite Parameter gibt eine 8-Bit-Binärzahl oder eine hexadezimale Zahl an, die das Licht in dieser Zeile anzeigt (0 bedeutet aus, 1 bedeutet an).
+
+Die Variable ``j`` repräsentiert die Zeilen im Array ``disp1[]`` (35 Zeilen) und die Variable ``i`` repräsentiert die Spalte (8 Spalten).
+
+Zum Beispiel, wenn j=1 und i=2 ist, wird der Wert ``disp1[1][1]`` (0x18) auf der Punktmatrix angezeigt. i durchläuft 8 Schleifen, um die vollständige 1 auf der Punktmatrix anzuzeigen. Nach 35 Zyklen von j werden 0-9 und A-Z auf der Punktmatrix angezeigt.
+
+    .. image:: ../img/led_not.png
+        :width: 400
+
+Phänomen-Bild
+--------------------
+
+.. image:: ../img/1.1.6led_dot_matrix.JPG

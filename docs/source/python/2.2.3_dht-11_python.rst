@@ -18,27 +18,18 @@
 ============
 
 Einführung
-----------
+--------------
 
-Der digitale Temperatur- und Feuchtigkeitssensor DHT11 ist ein Verbundsensor, 
-der einen kalibrierten digitalen Signal-Ausgang für Temperatur und 
-Feuchtigkeit enthält. Die Technologie einer speziellen digitalen Modulsammlung 
-sowie die Technologie der Temperatur- und Feuchtigkeitserfassung werden 
-angewendet, um sicherzustellen, dass das Produkt eine hohe Zuverlässigkeit 
-und hervorragende Stabilität aufweist.
+In dieser Lektion lernen Sie, wie Sie einen DHT11 Temperatur- und Feuchtigkeitssensor mit einem Raspberry Pi verbinden und Daten davon ablesen. Sie werden erfahren, wie Sie den Sensor einrichten, die Temperatur sowohl in Celsius als auch in Fahrenheit ablesen und Feuchtigkeitsmessungen durchführen können. Dieses Projekt führt Sie in die Arbeit mit externen Sensoren, die Handhabung von Echtzeitdaten und die Grundlagen der Ausnahmebehandlung in Python ein.
 
-Die Sensoren beinhalten einen feuchteempfindlichen Widerstandssensor und einen 
-NTC-Temperatursensor, die an einen leistungsstarken 8-Bit-Mikrocontroller 
-angeschlossen sind.
-
-Benötigte Komponenten
----------------------
+Erforderliche Komponenten
+------------------------------
 
 Für dieses Projekt benötigen wir die folgenden Komponenten.
 
 .. image:: ../img/list_2.2.3_dht-11.png
 
-Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link:
 
 .. list-table::
     :widths: 20 20 20
@@ -51,16 +42,16 @@ Es ist definitiv praktisch, ein ganzes Kit zu kaufen. Hier ist der Link:
         - 337
         - |link_Raphael_kit|
 
-Sie können diese auch einzeln über die untenstehenden Links kaufen.
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - KOMPONENTENBESCHREIBUNG
+    *   - KOMPONENTENÜBERSICHT
         - KAUF-LINK
 
-    *   - :ref:`cpn_gpio_board`
+    *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -72,18 +63,102 @@ Sie können diese auch einzeln über die untenstehenden Links kaufen.
         - |link_humiture_buy|
 
 Schaltplan
-----------
+-----------------
 
 .. image:: ../img/image326.png
 
-Experimentelle Verfahren
-----------------------------
+Installation von ``Adafruit_Blinka`` (CircuitPython)
+----------------------------------------------------------------
 
-**Schritt 1:** Schalten Sie den Schaltkreis.
+Die Bibliothek adafruit-circuitpython-dht basiert auf Blinka. Bitte installieren Sie zuerst Blinka.
+
+Das besondere Merkmal von Blinka ist seine Fähigkeit, Code, der für CircuitPython geschrieben wurde, nahtlos und mühelos auf Linux-Computern wie dem Raspberry Pi laufen zu lassen.
+
+Diese Bibliothek vereinfacht die Nutzung komplexer Module wie BMP280, VL53L0X und OLED und beschleunigt den Entwicklungsprozess Ihrer Projekte. Mit CircuitPython wird das Programmieren zugänglicher, sodass Sie sich auf die Erstellung robuster Anwendungen konzentrieren können, ohne umfangreiches Hardwarewissen zu benötigen.
+
+Zusätzlich profitieren Sie von einer großen Unterstützungsgemeinschaft und einer Vielzahl von Ressourcen, die Ihre Lern- und Entwicklungsprozesse unterstützen.
+
+Wir führen Sie durch den einfachen Prozess der Installation von Adafruit_Blinka, um Ihnen einen schnellen Start in Ihre Projekte zu ermöglichen.
+
+**Aktualisieren Sie Ihren Raspberry Pi und Python**
+
+Bevor Sie Blinka installieren, verwenden Sie bitte die folgenden Befehle, um sicherzustellen, dass Ihr Raspberry Pi und Ihre Python-Versionen auf dem neuesten Stand sind:
+
+.. code-block:: bash
+
+   sudo apt-get update
+   sudo apt-get upgrade
+
+**Einrichtung der virtuellen Umgebung**
+
+Ab Bookworm (Betriebssystemversion) müssen mit ``pip`` installierte Pakete in einer Python-Virtualumgebung mit ``venv`` installiert werden. Eine virtuelle Umgebung ist ein sicherer Behälter, in dem Sie Drittanbietermodule installieren können, ohne Ihr System-Python zu beeinträchtigen oder zu stören.
+
+Der folgende Befehl erstellt ein Verzeichnis "env" in Ihrem Benutzerverzeichnis (``~``) für die virtuelle Python-Umgebung.
+
+.. code-block:: bash
+
+   cd ~
+   python -m venv env --system-site-packages
+
+Sie müssen die virtuelle Umgebung jedes Mal aktivieren, wenn der Pi neu gestartet wird. Um sie zu aktivieren:
+
+.. code-block:: bash
+
+   source ~/env/bin/activate
+
+Sie werden sehen, dass Ihre Eingabeaufforderung jetzt mit (env) vorangestellt ist, um anzuzeigen, dass Sie nicht mehr das System-Python verwenden, sondern die Python-Version in Ihrer virtuellen Umgebung. Änderungen, die Sie hier vornehmen, verursachen keine Probleme für Ihr System-Python; auch neue Module, die Sie in Ihre Umgebung installieren, werden Ihr System nicht beeinträchtigen.
+
+.. image:: ../img/07_activate_env.png
+
+Zum Deaktivieren können Sie ``deactivate`` verwenden, aber lassen Sie es vorerst aktiv.
+
+**Automatische Installation**
+
+Wenn sie in der virtuellen Umgebung aktiviert ist (Sie sehen ``(env)`` am Anfang der Terminalbefehle), führen Sie den folgenden Code der Reihe nach aus. Dieser Code führt das Installations-Skript von adafruit aus und vervollständigt automatisch die verbleibenden Installationsschritte.
+
+.. code-block:: bash
+
+   pip3 install --upgrade adafruit-python-shell
+
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+
+
+.. code-block:: bash
+
+   sudo -E env PATH=$PATH python3 raspi-blinka.py
+
+Die Ausführung kann einige Minuten dauern. Nach Abschluss wird gefragt, ob Sie neu starten möchten. Drücken Sie direkt Enter, um neu zu starten, oder wenn Sie später neu starten möchten, geben Sie "n" ein und drücken Sie Enter. Wenn Sie bereit sind, starten Sie Ihren Raspberry Pi manuell neu.
+
+.. image:: ../img/07_after_install_blinka.png
+
+Nach dem Neustart wird die Verbindung geschlossen. Nach ein paar Minuten können Sie sich wieder verbinden.
+
+Bibliothek installieren
+---------------------------
+
+Bevor Sie die Bibliothek installieren, stellen Sie bitte sicher, dass die virtuelle Python-Umgebung aktiviert ist.
+
+.. code-block:: bash
+
+   source ~/env/bin/activate
+
+Installieren Sie die adafruit-circuitpython-dht-Bibliothek:
+
+.. code-block:: bash
+
+   pip install adafruit-circuitpython-dht
+
+Experimentelle Verfahren
+-----------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
 
 .. image:: ../img/image207.png
 
-**Schritt 2:** Navigieren Sie zu dem Ordner mit dem Code.
+**Schritt 2:** Gehen Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -91,7 +166,17 @@ Experimentelle Verfahren
 
 .. code-block::
 
-    cd ~/raphael-kit/python/
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 2:** Bevor Sie den Code ausführen, stellen Sie bitte sicher, dass Sie die virtuelle Python-Umgebung mit installiertem Blinka aktiviert haben.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    source ~/env/bin/activate
 
 **Schritt 3:** Führen Sie die ausführbare Datei aus.
 
@@ -103,202 +188,134 @@ Experimentelle Verfahren
 
     sudo python3 2.2.3_DHT.py
 
-Nachdem der Code ausgeführt wurde, wird das Programm die von DHT11 erfasste 
-Temperatur und Feuchtigkeit auf dem Computerbildschirm anzeigen.
+Nachdem der Code ausgeführt wurde, wird das Programm die von DHT11 erkannte Temperatur und Feuchtigkeit auf dem Computerbildschirm anzeigen.
 
 **Code**
 
 .. note::
 
-    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. 
-    Bevor Sie das tun, müssen Sie jedoch zum Quellcode-Pfad wie ``raphael-kit/python`` navigieren. 
-    Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
-
-
-.. raw:: html
-
-    <run></run>
+    Sie können den untenstehenden Code **modifizieren/zurücksetzen/kopieren/ausführen/stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcodepfad wie ``raphael-kit/python`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um den Effekt zu sehen.
 
 .. code-block:: python
 
-    import RPi.GPIO as GPIO
     import time
+    import board
+    import adafruit_dht
 
-    dhtPin = 17
+    # Initialisiere das dht-Gerät mit dem Datenpin verbunden zu:
+    dhtDevice = adafruit_dht.DHT11(board.D17)
 
-    GPIO.setmode(GPIO.BCM)
-
-    MAX_UNCHANGE_COUNT = 100
-
-    STATE_INIT_PULL_DOWN = 1
-    STATE_INIT_PULL_UP = 2
-    STATE_DATA_FIRST_PULL_DOWN = 3
-    STATE_DATA_PULL_UP = 4
-    STATE_DATA_PULL_DOWN = 5
-
-    def readDht11():
-        GPIO.setup(dhtPin, GPIO.OUT)
-        GPIO.output(dhtPin, GPIO.HIGH)
-        time.sleep(0.05)
-        GPIO.output(dhtPin, GPIO.LOW)
-        time.sleep(0.02)
-        GPIO.setup(dhtPin, GPIO.IN, GPIO.PUD_UP)
-
-        unchanged_count = 0
-        last = -1
-        data = []
-        while True:
-            current = GPIO.input(dhtPin)
-            data.append(current)
-            if last != current:
-                unchanged_count = 0
-                last = current
-            else:
-                unchanged_count += 1
-                if unchanged_count > MAX_UNCHANGE_COUNT:
-                    break
-
-        state = STATE_INIT_PULL_DOWN
-
-        lengths = []
-        current_length = 0
-
-        for current in data:
-            current_length += 1
-
-            if state == STATE_INIT_PULL_DOWN:
-                if current == GPIO.LOW:
-                    state = STATE_INIT_PULL_UP
-                else:
-                    continue
-            if state == STATE_INIT_PULL_UP:
-                if current == GPIO.HIGH:
-                    state = STATE_DATA_FIRST_PULL_DOWN
-                else:
-                    continue
-            if state == STATE_DATA_FIRST_PULL_DOWN:
-                if current == GPIO.LOW:
-                    state = STATE_DATA_PULL_UP
-                else:
-                    continue
-            if state == STATE_DATA_PULL_UP:
-                if current == GPIO.HIGH:
-                    current_length = 0
-                    state = STATE_DATA_PULL_DOWN
-                else:
-                    continue
-            if state == STATE_DATA_PULL_DOWN:
-                if current == GPIO.LOW:
-                    lengths.append(current_length)
-                    state = STATE_DATA_PULL_UP
-                else:
-                    continue
-        if len(lengths) != 40:
-            #print ("Data not good, skip")
-            return False
-
-        shortest_pull_up = min(lengths)
-        longest_pull_up = max(lengths)
-        halfway = (longest_pull_up + shortest_pull_up) / 2
-        bits = []
-        the_bytes = []
-        byte = 0
-
-        for length in lengths:
-            bit = 0
-            if length > halfway:
-                bit = 1
-            bits.append(bit)
-        #print ("bits: %s, length: %d" % (bits, len(bits)))
-        for i in range(0, len(bits)):
-            byte = byte << 1
-            if (bits[i]):
-                byte = byte | 1
-            else:
-                byte = byte | 0
-            if ((i + 1) % 8 == 0):
-                the_bytes.append(byte)
-                byte = 0
-        #print (the_bytes)
-        checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
-        if the_bytes[4] != checksum:
-            #print ("Data not good, skip")
-            return False
-
-        return the_bytes[0], the_bytes[2]
-
-    def main():
-
-        while True:
-            result = readDht11()
-            if result:
-                humidity, temperature = result
-                print ("humidity: %s %%,  Temperature: %s ℃" % (humidity, temperature))
-            time.sleep(1)
-
-    def destroy():
-        GPIO.cleanup()
-
-    if __name__ == '__main__':
+    while True:
         try:
-            main()
-        except KeyboardInterrupt:
-            destroy() 
+            # Die Werte auf die serielle Schnittstelle drucken
+            temperature_c = dhtDevice.temperature
+            temperature_f = temperature_c * (9 / 5) + 32
+            humidity = dhtDevice.humidity
+            print(
+                "Temp: {:.1f} F / {:.1f} C    Feuchtigkeit: {}% ".format(
+                    temperature_f, temperature_c, humidity
+                )
+            )
 
-**Code-Erklärung**
+        except RuntimeError as error:
+            # Fehler treten recht häufig auf, DHTs sind schwer zu lesen, einfach weitermachen
+            print(error.args[0])
+            time.sleep(2.0)
+            continue
+        except Exception as error:
+            dhtDevice.exit()
+            raise error
 
-.. code-block:: python
+        time.sleep(2.0)
 
-    def readDht11():
-        GPIO.setup(dhtPin, GPIO.OUT)
-        GPIO.output(dhtPin, GPIO.HIGH)
-        time.sleep(0.05)
-        GPIO.output(dhtPin, GPIO.LOW)
-        time.sleep(0.02)
-        GPIO.setup(dhtPin, GPIO.IN, GPIO.PUD_UP)
-        unchanged_count = 0
-        last = -1
-        data = []
-        #...
 
-Diese Funktion dient zur Implementierung der Funktionen des DHT11. Die 
-detektierten Daten werden im Array the_bytes[] gespeichert. Der DHT11 
-überträgt jeweils 40 Bits an Daten. Die ersten 16 Bits beziehen sich auf 
-die Feuchtigkeit, die mittleren 16 Bits beziehen sich auf die Temperatur 
-und die letzten acht Bits werden zur Überprüfung verwendet. Das 
-Datenformat lautet:
 
-**8bit Feuchtigkeits-Ganzzahldaten** +\ **8bit Feuchtigkeits-Nachkommadaten**
-+\ **8bit Temperatur-Ganzzahldaten** + **8bit Temperatur-Nachkommadaten**
-+ **8bit Prüfbit**.
 
-Wenn die Gültigkeit über das Prüfbit erkannt wird, gibt die Funktion 
-zwei Ergebnisse zurück: 1. Fehler; 2. Feuchtigkeit und Temperatur.
+**Codeerklärung**
 
-.. code-block:: python
+#. Bibliotheken importieren:
 
-    checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
-    if the_bytes[4] != checksum:
-        #print ("Data not good, skip")
-        return False
+   Der Code beginnt mit dem Import der notwendigen Bibliotheken. ``time`` für das Handling von Verzögerungen, ``board`` für den Zugriff auf die GPIO-Pins des Raspberry Pi und ``adafruit_dht`` für die Interaktion mit dem DHT11-Sensor. Für weitere Informationen zur Bibliothek ``adafruit_dht``, siehe |Adafruit_CircuitPython_DHT|.
 
-    return the_bytes[0], the_bytes[2]
+   .. code-block:: python
+    
+      import time
+      import board
+      import adafruit_dht
 
-Beispielsweise, wenn das empfangene Datum 00101011 (8-Bit-Wert der 
-Feuchtigkeitsganzzahl) 00000000 (8-Bit-Wert der Feuchtigkeits-Nachkommazahl) 
-00111100 (8-Bit-Wert der Temperaturganzzahl) 00000000 (8-Bit-Wert der 
-Temperatur-Nachkommazahl) 01100111 (Prüfbit) ist.
+#. Sensor initialisieren:
 
-**Berechnung:**
+   Der DHT11-Sensor wird mit dem Datenpin, der mit GPIO 17 des Raspberry Pi verbunden ist, initialisiert. Diese Konfiguration ist entscheidend für die Kommunikation des Sensors mit dem Raspberry Pi.
 
-00101011+00000000+00111100+00000000=01100111.
+   .. code-block:: python
 
-Wenn das Endergebnis mit den Prüfbitdaten übereinstimmt, ist die 
-Datenübertragung abnormal: Rückgabe False.
+      dhtDevice = adafruit_dht.DHT11(board.D17)
 
-Wenn das Endergebnis mit den Prüfbitdaten übereinstimmt, sind die 
-empfangenen Daten korrekt, dann wird the_bytes[0] und the_bytes[2] 
-zurückgegeben und "Luftfeuchtigkeit =43%, Temperatur =60C" ausgegeben.
+#. Sensordaten in einer Schleife lesen:
+
+   Die Schleife ``while True`` ermöglicht es dem Programm, kontinuierlich den Sensor auf neue Daten zu überprüfen.
+
+   .. code-block:: python
+
+      while True:
+
+#. Try-Except-Blöcke:
+
+   Innerhalb der Schleife wird ein Try-Except-Block verwendet, um mögliche Laufzeitfehler zu behandeln. Das Lesen von DHT-Sensoren kann oft aufgrund von Timing-Problemen oder Eigenarten des Sensors zu Fehlern führen.
+
+   .. code-block:: python
+
+      try:
+          # Hier steht der Code zum Lesen der Sensordaten
+      except RuntimeError as error:
+          # Behandlung häufiger Sensorlesefehler
+          print(error.args[0])
+          time.sleep(2.0)
+          continue
+      except Exception as error:
+          # Behandlung anderer Ausnahmen und Beenden
+          dhtDevice.exit()
+          raise error
+
+#. Sensordaten lesen und drucken:
+
+   Die Temperatur und Feuchtigkeit werden vom Sensor gelesen und in lesbare Formate umgewandelt. Die Temperatur wird auch von Celsius in Fahrenheit umgerechnet.
+
+   .. code-block:: python
+
+      temperature_c = dhtDevice.temperature
+      temperature_f = temperature_c * (9 / 5) + 32
+      humidity = dhtDevice.humidity
+      print("Temp: {:.1f} F / {:.1f} C    Feuchtigkeit: {}% ".format(temperature_f, temperature_c, humidity))
+
+#. Lesefehler behandeln:
+
+   Der DHT11-Sensor kann oft Fehler zurückgeben, daher verwendet der Code einen Try-Except-Block, um diese zu behandeln. Tritt ein Fehler auf, wartet das Programm 2 Sekunden, bevor es erneut versucht, vom Sensor zu lesen.
+
+   .. code-block:: python
+
+      except RuntimeError as error:
+          print(error.args[0])
+          time.sleep(2.0)
+          continue
+
+#. Allgemeine Ausnahmebehandlung:
+
+   Alle anderen möglichen Ausnahmen werden durch sicheres Beenden des Sensors und erneutes Auslösen des Fehlers behandelt. Dies stellt sicher, dass das Programm nicht in einem instabilen Zustand weiterläuft.
+
+   .. code-block:: python
+
+      except Exception as error:
+          dhtDevice.exit()
+          raise error
+
+#. Verzögerung zwischen den Ablesungen:
+
+   Am Ende der Schleife wird eine 2-sekündige Verzögerung hinzugefügt, um ständiges Abfragen des Sensors zu vermeiden, was zu fehlerhaften Ablesungen führen kann.
+
+   .. code-block:: python
+
+      time.sleep(2.0)
 
 Phänomen-Bild
 --------------------

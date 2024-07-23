@@ -1,0 +1,232 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.1.5_c:
+
+2.1.5 Neigungsschalter
+=======================
+
+Einführung
+------------
+
+Dies ist ein Neigungsschalter mit einer Metallkugel im Inneren. Er wird verwendet, um
+Neigungen von kleinem Winkel zu erkennen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/list_2.1.3_tilt_switch.png
+
+Es ist definitiv praktisch, ein komplettes Set zu kaufen. Hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_tilt_switch`
+        - \-
+
+Schaltplan
+-----------------
+
+.. image:: ../img/image307.png
+
+
+.. image:: ../img/image308.png
+
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Schaltung aufbauen.
+
+.. image:: ../img/image169.png
+
+**Schritt 2:** Verzeichnis wechseln.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.5/
+
+**Schritt 3:** Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.5_Tilt.c -lwiringPi
+
+**Schritt 4:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Stellen Sie den Neigungsschalter vertikal auf, und die grüne LED wird leuchten. Wenn Sie
+ihn neigen, wird "Neigung!" auf dem Bildschirm ausgedruckt und die rote LED wird
+leuchten. Stellen Sie ihn wieder vertikal auf, und die grüne LED wird erneut leuchten.
+
+.. note::
+
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define TiltPin     0
+    #define Gpin        2
+    #define Rpin        3
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        pinMode(TiltPin, INPUT);
+        LED("GREEN");
+        
+        while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+Definieren Sie eine Funktion ``LED()`` um die beiden LEDs ein- oder auszuschalten. Wenn der Parameter
+color ROT ist, leuchtet die rote LED; ebenso leuchtet die grüne LED, wenn der Parameter
+color GRÜN ist.
+
+.. code-block:: c
+
+    while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+
+Wenn der gelesene Wert des Neigungsschalters 0 ist, bedeutet dies, dass der Neigungsschalter
+geneigt ist. Dann geben Sie den Parameter "ROT" in die Funktion LED ein, damit die
+rote LED leuchtet; andernfalls wird die grüne LED leuchten.
+
+Phänomen-Bild
+------------------
+
+.. image:: ../img/image170.jpeg
+
+

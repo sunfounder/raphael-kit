@@ -1,0 +1,238 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _1.1.2_c:
+
+1.1.2 RGB LED
+====================
+
+Einführung
+--------------
+
+In diesem Projekt steuern wir eine RGB-LED, um verschiedene Farben blinken zu lassen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten.
+
+.. image:: ../img/list_rgb_led.png
+    :align: center
+
+Es ist sicherlich praktisch, ein ganzes Set zu kaufen. Hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_rgb_led`
+        - |link_rgb_led_buy|
+
+Schaltplan
+-----------------------
+
+Nachdem die Pins von R, G und B mit einem strombegrenzenden Widerstand verbunden wurden, schließen Sie sie an GPIO17, GPIO18 und GPIO27 an. Der längste Pin (GND) der LED wird mit dem GND des Raspberry Pi verbunden. Wenn den drei Pins unterschiedliche PWM-Werte gegeben werden, zeigt die RGB-LED verschiedene Farben an.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+============ ======== ======== ===
+
+.. image:: ../img/rgb_led_schematic.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image61.png
+
+**Schritt 2:** Wechseln Sie in den Ordner mit dem Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.1.2/
+
+**Schritt 3:** Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.2_rgbLed.c -lwiringPi
+
+.. note::
+
+    Wird der Befehl ``gcc`` ausgeführt und ``-o`` nicht aufgerufen, wird die ausführbare Datei ``a.out`` genannt.
+
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Nachdem der Code ausgeführt wurde, werden Sie sehen, dass das RGB rot, grün, blau, gelb, rosa und cyan anzeigt.
+
+.. note::
+
+   Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softPwm.h>
+    #include <stdio.h>
+    #define uchar unsigned char
+    #define LedPinRed    0
+    #define LedPinGreen  1
+    #define LedPinBlue   2
+
+    void ledInit(void){
+        softPwmCreate(LedPinRed,  0, 100);
+        softPwmCreate(LedPinGreen,0, 100);
+        softPwmCreate(LedPinBlue, 0, 100);
+    }
+
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(LedPinRed,   r_val);
+        softPwmWrite(LedPinGreen, g_val);
+        softPwmWrite(LedPinBlue,  b_val);
+    }
+
+    int main(void){
+
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, printf messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        ledInit();
+        while(1){
+            printf("Red\n");
+            ledColorSet(0xff,0x00,0x00);   //red     
+            delay(500);
+            printf("Green\n");
+            ledColorSet(0x00,0xff,0x00);   //green
+            delay(500);
+            printf("Blue\n");
+            ledColorSet(0x00,0x00,0xff);   //blue
+            delay(500);
+            printf("Yellow\n");
+            ledColorSet(0xff,0xff,0x00);   //yellow
+            delay(500);
+            printf("Purple\n");
+            ledColorSet(0xff,0x00,0xff);   //purple
+            delay(500);
+            printf("Cyan\n");
+            ledColorSet(0xc0,0xff,0x3e);   //cyan
+            delay(500);
+        }
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    #include <softPwm.h>
+
+Bibliothek, die zur Realisierung der PWM-Funktion der Software verwendet wird.
+
+.. code-block:: c
+
+    void ledInit(void){
+        softPwmCreate(LedPinRed,  0, 100);
+        softPwmCreate(LedPinGreen,0, 100);
+        softPwmCreate(LedPinBlue, 0, 100);
+    }
+
+Die Funktion dient dazu, mit der Software einen PWM-Pin zu erstellen und dessen Periode zwischen 0x100us und 100x100us festzulegen.
+
+Das Prototyp der Funktion softPwmCreate(LedPinRed, 0, 100) ist wie folgt:
+
+.. code-block:: c
+
+    int softPwmCreate(int pin,int initialValue,int pwmRange);
+
+* **Parameter pin:** Jeder GPIO-Pin des Raspberry Pi kann als PWM-Pin festgelegt werden.
+* **Parameter initialValue:** Die anfängliche Impulsbreite entspricht dem initialValue multipliziert mit 100us.
+* **Parameter pwmRange:** Die Periode von PWM entspricht dem pwmRange multipliziert mit 100us.
+
+.. code-block:: c
+
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(LedPinRed,   r_val);
+        softPwmWrite(LedPinGreen, g_val);
+        softPwmWrite(LedPinBlue,  b_val);
+    }
+
+Diese Funktion dient dazu, die Farben der LED einzustellen. Mit RGB stellt der formale Parameter **r_val** die Leuchtkraft des roten, **g_val** des grünen und **b_val** des blauen dar.
+
+Das Prototyp der Funktion softPwmWrite(LedPinBlue, b_val) ist wie folgt:
+
+.. code-block:: c
+
+    void softPwmWrite (int pin, int value) ;
+
+* **Parameter pin:** Jeder GPIO-Pin des Raspberry Pi kann als PWM-Pin festgelegt werden.
+* **Parameter Value:** Die Impulsbreite von PWM ist value multipliziert mit 100us. Beachten Sie, dass value nur kleiner als das zuvor definierte pwmRange sein kann. Ist es größer als pwmRange, wird value einen festen Wert erhalten, nämlich pwmRange.
+
+.. code-block:: c
+
+    ledColorSet(0xff,0x00,0x00);
+
+Rufen Sie die zuvor definierte Funktion auf. Schreiben Sie 0xff in LedPinRed und 0x00 in LedPinGreen und LedPinBlue. Nachdem dieser Code ausgeführt wurde, leuchtet nur die rote LED. Wenn Sie LEDs in anderen Farben leuchten lassen möchten, ändern Sie einfach die Parameter.
+
+Phänomen-Bild
+------------------------
+
+.. image:: ../img/image62.jpeg

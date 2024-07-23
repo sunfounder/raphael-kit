@@ -1,0 +1,193 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.1.4_c:
+
+2.1.4 Schiebeschalter
+========================
+
+Einführung
+------------
+
+In diesem Projekt lernen wir, wie man einen Schiebeschalter verwendet. Üblicherweise wird
+der Schiebeschalter auf einer PCB als Ein-/Ausschalter gelötet, aber hier müssen wir ihn
+in das Steckbrett einsetzen, sodass er möglicherweise nicht fest sitzt. Auf dem Steckbrett verwenden wir ihn, um seine Funktion zu demonstrieren.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Bauteile. 
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+Schaltplan
+-----------------
+
+Verbinden Sie den mittleren Pin des Schiebeschalters mit GPIO17 und zwei LEDs jeweils mit
+den Pins GPIO22 und GPIO27. Wenn Sie den Schalter betätigen, können Sie sehen, wie die beiden LEDs abwechselnd leuchten.
+
+.. image:: ../img/image305.png
+
+.. image:: ../img/image306.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Schaltung aufbauen.
+
+.. image:: ../img/image161.png
+
+**Schritt 2**: Navigieren Sie zum Verzeichnis des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.4
+
+**Schritt 3**: Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.4_Slider.c -lwiringPi 
+
+**Schritt 4**: Führen Sie die oben erstellte ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Während der Code läuft, verbinden Sie den Schalter mit der linken Seite, dann
+leuchtet die gelbe LED; wenn nach rechts verbunden, leuchtet die rote LED.
+
+.. note::
+
+    Wenn es nach dem Start nicht funktioniert oder eine Fehlermeldung erscheint: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beachten Sie bitte :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define slidePin        0
+    #define led1            3
+    #define led2            2
+
+    int main(void)
+    {
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(slidePin, INPUT);
+        pinMode(led1, OUTPUT);
+        pinMode(led2, OUTPUT);
+        while(1){
+            // slide switch high, led1 on
+            if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+            }
+            // slide switch low, led2 on
+            if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+        }
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+        }
+
+Wenn der Schiebeschalter nach rechts gezogen wird, sind der mittlere und der rechte Pin
+verbunden; der Raspberry Pi liest am mittleren Pin ein hohes Signal, sodass
+LED1 eingeschaltet und LED2 ausgeschaltet ist.
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+
+Wenn der Schiebeschalter nach links gezogen wird, sind der mittlere und der linke Pin
+verbunden; der Raspberry Pi liest ein niedriges Signal, sodass
+LED2 eingeschaltet und LED1 ausgeschaltet ist.
+
+Phänomen-Bild
+------------------
+
+.. image:: ../img/image162.jpeg
+
+

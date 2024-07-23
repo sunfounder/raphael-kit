@@ -1,0 +1,193 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.1.2_c:
+
+2.1.2 Mikroschalter
+=======================
+
+Einleitung
+--------------------
+
+In diesem Projekt werden wir lernen, wie man einen Mikroschalter verwendet. Ein Mikroschalter ist ein kleiner, sehr empfindlicher Schalter, der minimalen Druck zum Aktivieren benötigt. Aufgrund ihrer Zuverlässigkeit und Empfindlichkeit werden Mikroschalter oft als Sicherheitsvorrichtung verwendet. 
+
+Sie werden beispielsweise verwendet, um Türen daran zu hindern, sich zu schließen, wenn etwas oder jemand im Weg ist, und in ähnlichen Anwendungen.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/2.1.2component.png
+
+
+Es ist definitiv praktisch, ein komplettes Set zu kaufen, hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_micro_switch`
+        - \-
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+Schaltplan
+-----------------
+
+Verbinden Sie den linken Pin des Mikroschalters mit GPIO17 und zwei LEDs jeweils mit den Pins GPIO22 und GPIO27. Wenn Sie dann den beweglichen Arm des Mikroschalters drücken und loslassen, leuchten die beiden LEDs abwechselnd auf.
+
+.. image:: ../img/image305.png
+
+
+.. image:: ../img/micro_Schematic.png
+
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Bauen Sie die Schaltung.
+
+.. image:: ../img/2.1.4fritzing.png
+
+**Schritt 2**: Navigieren Sie zu dem Ordner mit dem Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.2
+
+**Schritt 3**: Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.2_MicroSwitch.c -lwiringPi 
+
+**Schritt 4**: Führen Sie die obenstehende ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Während der Code läuft, drücken Sie den Mikroschalter, dann leuchtet die gelbe LED auf; lassen Sie den beweglichen Arm los, schaltet sich die rote LED ein.
+
+.. note::
+
+    Wenn es nach dem Ausführen nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define microPin		0
+    #define led1			3
+    #define led2 			2
+
+    int main(void)
+    {
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        
+        pinMode(microPin, INPUT);
+        pinMode(led1, OUTPUT);
+        pinMode(led2, OUTPUT);
+        
+        while(1){
+            // micro switch high, led1 on
+            if(digitalRead(microPin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+            }
+            // micro switch low, led2 on
+            if(digitalRead(microPin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+            delay(500);
+        }
+
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+        }
+
+Wenn der bewegliche Arm des Mikroschalters losgelassen wird, wird der linke Pin mit dem rechten Pin verbunden; zu diesem Zeitpunkt wird ein hohes Signalniveau an GPIO17 gelesen, und dann wird LED1 eingeschaltet und LED2 ausgeschaltet.
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+
+Wenn der bewegliche Arm gedrückt wird, werden der linke Pin und der mittlere Pin verbunden. Zu diesem Zeitpunkt wird ein niedriges Signalniveau an GPIO17 gelesen, wodurch LED2 eingeschaltet und LED1 ausgeschaltet wird.
+
+Phänomen-Bild
+--------------------
+
+.. image:: ../img/2.1.2micro_switch.JPG

@@ -1,0 +1,162 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _1.2.1_c:
+
+1.2.1 Aktiver Summer
+=========================
+
+Einführung
+------------
+
+In diesem Projekt lernen wir, wie man mit einem PNP-Transistor einen aktiven Summer zum Piepen bringt.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/list_1.2.1.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - KOMPONENTEN IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch über die untenstehenden Links einzeln kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+Schaltplan
+-----------------
+
+In diesem Experiment werden ein aktiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet, der zwischen der Basis des Transistors und GPIO liegt, um den Transistor zu schützen. Wenn der GPIO17 des Raspberry Pi durch Programmierung mit einem niedrigen Pegel (0V) versorgt wird, wird der Transistor aufgrund von Stromsättigung leiten und der Summer wird tönen. Wenn jedoch ein hoher Pegel am IO des Raspberry Pi anliegt, wird der Transistor abgeschnitten und der Summer gibt keinen Ton von sich.
+
+.. image:: ../img/image332.png
+
+Experimentelle Verfahren
+---------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis. (Der aktive Summer hat einen weißen Tischaufkleber auf der Oberfläche und eine schwarze Rückseite.)
+
+.. image:: ../img/image104.png
+
+**Schritt 2**: Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.2.1/
+
+**Schritt 3**: Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.1_ActiveBuzzer.c -lwiringPi
+
+**Schritt 4**: Führen Sie die oben genannte ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Wenn der Code läuft, piept der Summer.
+
+.. note::
+
+    Wenn es nach dem Laufen nicht funktioniert oder eine Fehlermeldung angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", verweisen Sie bitte auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define BeepPin 0
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        while(1){
+            //beep on
+            printf("Buzzer on\n");
+            digitalWrite(BeepPin, LOW);
+            delay(100);
+            printf("Buzzer off\n");
+            //beep off
+            digitalWrite(BeepPin, HIGH);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, LOW);
+
+In diesem Experiment verwenden wir einen aktiven Summer, sodass er beim Anschluss an den Gleichstrom automatisch einen Ton abgibt. Dieser Sketch soll den I/O-Port auf niedrigem Pegel (0V) setzen, um den Transistor zu steuern und den Summer piepen zu lassen. 
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, HIGH);
+
+Damit wird der I/O-Port auf hohen Pegel (3,3V) gesetzt, sodass der Transistor nicht bestromt wird und der Summer nicht piept. 
+
+Phänomen-Bild
+------------------
+
+.. image:: ../img/image105.jpeg

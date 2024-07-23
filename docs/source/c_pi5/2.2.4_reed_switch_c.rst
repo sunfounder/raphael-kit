@@ -1,0 +1,258 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.2.4_c:
+
+2.2.4 Reed-Schalter-Modul
+==============================
+
+Einführung
+-------------------
+
+In diesem Projekt werden wir den Reed-Schalter kennenlernen, einen elektrischen Schalter, der mittels eines angelegten Magnetfelds funktioniert.
+
+.. image:: ../img/2.2.4reed_switch.png
+    :width: 300
+    :align: center
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/2.2.4component.png
+    :width: 700
+    :align: center
+
+Es ist definitiv praktisch, ein ganzes Set zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_reed_switch`
+        - |link_reed_switch_buy|
+
+Schaltplan
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../img/reed_schematic.png
+    :width: 400
+    :align: center
+
+.. image:: ../img/reed_schematic2.png
+    :width: 400
+    :align: center
+
+Experimentelle Verfahren
+-------------------------------
+
+**Schritt 1:** Schaltung aufbauen.
+
+.. image:: ../img/2.2.4fritzing.png
+    :width: 700
+    :align: center
+
+**Schritt 2:** Verzeichnis wechseln.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.4/
+
+**Schritt 3:** Kompilieren.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.4_ReedSwitch.c -lwiringPi
+
+**Schritt 4:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Die grüne LED leuchtet, wenn der Code ausgeführt wird. Wenn ein Magnet in die Nähe des Reed-Schalter-Moduls gebracht wird, leuchtet die rote LED auf; entfernen Sie den Magneten und die grüne LED leuchtet erneut.
+
+.. note::
+
+    Wenn es nach dem Ausführen nicht funktioniert oder ein Fehlerhinweis angezeigt wird: \"wiringPi.h: Datei oder Verzeichnis nicht gefunden\", beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define ReedPin		0
+    #define Gpin		2
+    #define Rpin		3
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+
+        pinMode(ReedPin, INPUT);
+        LED("GREEN");
+        
+        while(1){
+            if(0 == digitalRead(ReedPin)){
+                delay(10);
+                if(0 == digitalRead(ReedPin)){
+                    LED("RED");	
+                    printf("Detected Magnetic Material!\n");	
+                }
+            }
+            else if(1 == digitalRead(ReedPin)){
+                delay(10);
+                if(1 == digitalRead(ReedPin)){
+                    while(!digitalRead(ReedPin));
+                    LED("GREEN");
+                }
+            }
+        }
+        return 0;
+    }
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    #define ReedPin		0
+    #define Gpin		2
+    #define Rpin		3
+
+Die Pins GPIO17, GPIO27 und GPIO22 des T_Extension-Boards entsprechen 
+den GPIO0, GPIO2 und GPIO3 in wiringPi. Weise GPIO0, GPIO2 und GPIO3 den 
+Variablen ``ReedPin``, ``Gpin`` und ``Rpin`` zu.
+
+.. code-block:: c
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+Erstelle eine Funktion ``LED()`` zur Steuerung der beiden LEDs. Das Parameter dieser Funktion ist ``color``.
+
+Wenn ``color`` gleich ``"RED"`` ist, setze ``Rpin`` auf ``HIGH`` (rote LED einschalten) und ``Gpin`` auf ``LOW`` (grüne LED ausschalten); wenn ``color`` gleich ``"GREEN"`` ist, dann schalte die grüne LED ein und die rote LED aus.
+
+.. code-block:: c
+
+    while(1){
+            if(0 == digitalRead(ReedPin)){
+                delay(10);
+                if(0 == digitalRead(ReedPin)){
+                    LED("RED");	
+                    printf("Detected Magnetic Material!\n");		
+                }
+            }
+            else if(1 == digitalRead(ReedPin)){
+                delay(10);
+                if(1 == digitalRead(ReedPin)){
+                    while(!digitalRead(ReedPin));
+                    LED("GREEN");
+                }
+            }
+        }
+
+Lese den Wert des Reed-Schalter-Moduls aus. Wenn der 2-mal gelesene Wert 0 ist, rufe ``LED("RED")`` auf, um die rote LED einzuschalten und drucke ``"Magnetisches Material erkannt!"``.
+
+Wenn der Wert 1 ist, wird die grüne LED eingeschaltet.
+
+Phänomen-Bild
+------------------------
+
+.. image:: ../img/2.2.4reed_switch.JPG
+    :width: 500
+    :align: center

@@ -1,0 +1,277 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _3.1.7_c:
+
+3.1.7 Überhitzungsüberwachung
+===================================
+
+Einführung
+-------------------
+
+Möglicherweise möchten Sie ein Überhitzungsüberwachungsgerät herstellen, das für verschiedene Situationen geeignet ist, z.B. in der Fabrik, wenn wir einen Alarm haben möchten und das rechtzeitige automatische Abschalten der Maschine, wenn es zu einer Schaltungserhitzung kommt. In diesem Projekt werden wir einen Thermistor, einen Joystick, eine Hupe, eine LED und ein LCD verwenden, um ein intelligentes Temperaturüberwachungsgerät herzustellen, dessen Schwellenwert einstellbar ist.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list_Overheat_Monitor.png
+    :align: center
+
+Es ist definitiv praktisch, ein komplettes Kit zu kaufen, hier ist der Link:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch separat über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_adc0834`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_i2c_lcd1602`
+        - |link_i2clcd1602_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+
+Schaltplan
+--------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin15    3        22
+GPIO23       Pin16    4        23
+GPIO24       Pin18    5        24
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one8.png
+   :align: center
+
+Experimentelle Verfahren
+-----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image258.png
+
+**Schritt 2**: Gehen Sie zum Ordner des Codes.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.7/
+
+**Schritt 3**: Kompilieren Sie den Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.7_Überhitzungsüberwachung.c -lm -lwiringPi
+
+**Schritt 4**: Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Wenn der Code ausgeführt wird, werden die aktuelle Temperatur und der Hochtemperaturschwellenwert **40** auf **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur höher als der Schwellenwert ist, werden die Hupe und die LED gestartet, um Sie zu alarmieren.
+
+Der **Joystick** dient hier zum Drücken, um den Hochtemperaturschwellenwert anzupassen. Durch das Umschalten des **Joysticks** in Richtung der X- und Y-Achse können Sie den aktuellen Hochtemperaturschwellenwert erhöhen oder verringern. Drücken Sie den **Joystick** erneut, um den Schwellenwert auf den Ausgangswert zurückzusetzen.
+
+.. note::
+
+    * Wenn die Fehlermeldung ``wiringPi.h: No such file or directory`` angezeigt wird, verweisen Sie bitte auf :ref:`install_wiringpi`.
+    * Wenn Sie den Fehler ``Unable to open I2C device: No such file or directory`` erhalten, müssen Sie sich auf :ref:`i2c_config` beziehen, um I2C zu aktivieren und zu überprüfen, ob die Verdrahtung korrekt ist.
+    * Wenn der Code und die Verdrahtung in Ordnung sind, das LCD jedoch immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
+
+**Code-Erklärung**
+
+.. code-block:: c
+
+    int get_joystick_value(){
+        uchar x_val;
+        uchar y_val;
+        x_val = get_ADC_Result(1);
+        y_val = get_ADC_Result(2);
+        if (x_val > 200){
+            return 1;
+        }
+        else if(x_val < 50){
+            return -1;
+        }
+        else if(y_val > 200){
+            return -10;
+        }
+        else if(y_val < 50){
+            return 10;
+        }
+        else{
+            return 0;
+        }
+    }
+
+Diese Funktion liest Werte von X und Y. Wenn ``X>200``, wird 
+``1`` zurückgegeben; ``X<50``, gibt ``-1`` zurück; ``y>200``, gibt 
+``-10`` zurück, und ``y<50``, gibt ``10`` zurück.
+
+.. code-block:: c
+
+    void upper_tem_setting(){
+        write(0, 0, "Upper Adjust:");
+        int change = get_joystick_value();
+        upperTem = upperTem + change;
+        char str[6];
+        snprintf(str,3,"%d",upperTem);
+    write(0,1,str);
+    int len;
+      len = strlen(str);
+      write(len,1,"             ");
+        delay(100);
+    }
+
+Diese Funktion dient zur Anpassung des Schwellenwertes und zur Anzeige auf dem 
+I2C LCD1602.
+
+.. code-block:: c
+
+    double temperature(){
+        unsigned char temp_value;
+        double Vr, Rt, temp, cel, Fah;
+        temp_value = get_ADC_Result(0);
+        Vr = 5 * (double)(temp_value) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        return cel;
+    }
+
+Liest den analogen Wert des **CH0** (Thermistor) des **ADC0834** und 
+konvertiert ihn in einen Temperaturwert.
+
+.. code-block:: c
+
+    void monitoring_temp(){
+        char str[6];
+        double cel = temperature();
+        snprintf(str,6,"%.2f",cel);
+        write(0, 0, "Temp: ");
+        write(6, 0, str);
+        snprintf(str,3,"%d",upperTem);
+        write(0, 1, "Upper: ");
+        write(7, 1, str);
+        delay(100);
+        if(cel >= upperTem){
+            digitalWrite(buzzPin, HIGH);
+            digitalWrite(LedPin, HIGH);
+        }
+        else if(cel < upperTem){
+            digitalWrite(buzzPin, LOW);
+            digitalWrite(LedPin, LOW);
+        }
+    }
+
+Während der Code läuft, werden die aktuelle Temperatur und der Hochtemperatur-
+Schwellenwert **40** auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle 
+Temperatur höher als der Schwellenwert ist, werden Buzzer und LED aktiviert, um Sie zu warnen.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        setup();
+        int lastState =1;
+        int stage=0;
+        while (1)
+        {
+            int currentState = digitalRead(Joy_BtnPin);
+            if(currentState==1 && lastState == 0){
+                stage=(stage+1)%2;
+                delay(100);
+                lcd_clear();
+            }
+            lastState=currentState;
+            if (stage==1){
+                upper_tem_setting();
+            }
+            else{
+                monitoring_temp();
+            }
+        }
+        return 0;
+    }
+
+Die Funktion ``main()`` beinhaltet den gesamten Programmablauf:
+
+1) Bei Programmstart ist der Anfangswert von **stage** **0**, und 
+   die aktuelle Temperatur sowie der Hochtemperatur-Schwellenwert **40** werden 
+   auf dem **I2C LCD1602** angezeigt. Wenn die aktuelle Temperatur den Schwellenwert 
+   überschreitet, werden Buzzer und LED aktiviert, um Sie zu warnen.
+
+2) Drücken Sie den Joystick, wird **stage** auf **1** gesetzt und Sie können 
+   den Hochtemperatur-Schwellenwert anpassen. Durch Kippen des Joysticks in X- 
+   und Y-Richtung kann der aktuelle Schwellenwert angepasst (erhöht oder 
+   verringert) werden. Ein erneutes Drücken des Joysticks setzt den Schwellenwert 
+   auf den Ausgangswert zurück.
+
+Phänomen-Bild
+-------------------------
+
+.. image:: ../img/image259.jpeg
+   :align: center
