@@ -1,0 +1,190 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _2.2.5_c_pi5:
+
+2.2.5 Módulo de Evitación de Obstáculos IR
+=============================================
+
+Introducción
+---------------
+
+En este proyecto, aprenderemos sobre el módulo de evitación de obstáculos IR, que es un módulo sensor que se puede usar para detectar obstáculos a cortas distancias, con poca interferencia, fácil de ensamblar, fácil de usar, etc. Se puede usar ampliamente en robots de evitación de obstáculos, carritos de evitación de obstáculos, conteo en líneas de ensamblaje, etc.
+
+
+Componentes Necesarios
+-------------------------
+
+En este proyecto, necesitaremos los siguientes componentes.
+
+.. image:: ../img/2.2.5component.png
+   :width: 700
+   :align: center
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN AL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_avoid_module`
+        - |link_obstacle_avoidance_buy|
+
+Diagrama Esquemático
+------------------------
+
+.. image:: ../img/IR_schematic.png
+   :width: 500
+   :align: center
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: ../img/2.2.5fritzing.png
+   :width: 700
+   :align: center
+
+**Paso 2:** Cambiar directorio.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+   
+   cd ~/raphael-kit/c/2.2.5/
+
+**Paso 3:** Compilar.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   gcc 2.2.5_IrObstacle.c -lwiringPi
+
+**Paso 4:** Ejecutar.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo ./a.out
+
+Después de ejecutar el código, cuando pongas tu mano frente a la sonda del módulo, 
+el indicador de salida en el módulo se encenderá y "Detected Barrier!" se imprimirá 
+repetidamente en la pantalla.
+
+.. note::
+
+   Si no funciona después de ejecutarlo, o hay un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+   #include <wiringPi.h>
+   #include <stdio.h>
+
+   #define ObstaclePin      0
+
+   void myISR(void)
+   {
+      printf("Detected Barrier !\n");
+   }
+
+   int main(void)
+   {
+      if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+         printf("setup wiringPi failed !\n");
+         return 1; 
+      }
+      
+      if(wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR) < 0){
+         printf("Unable to setup ISR !!!\n");
+         return 1;
+      }
+      
+      while(1){
+         ;
+      }
+
+      return 0;
+   }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+   void myISR(void)
+   {
+      printf("Detected Barrier !\n");
+   }
+
+Define una función ``myISR()`` para imprimir ``Detected Barrier !``, indicando que se ha detectado un obstáculo.
+
+.. code-block:: c
+
+   if(wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR) < 0){
+      printf("Unable to setup ISR !!!\n");
+      return 1;
+   }
+
+Esta función ``wiringPiISR()`` registra una función ``myISR()`` para recibir interrupciones en el ``ObstaclePin`` especificado.
+
+Cuando el ObstaclePin cambia de alto a bajo, significa que se ha detectado un obstáculo. En ese momento, llama a la función ``myISR()`` para imprimir "Detected Barrier !".
+
+El prototipo de esta función ``wiringPiISR()`` se muestra a continuación.
+
+.. code-block:: c
+
+   int wiringPiISR (int pin, int edgeType,  void (*function)(void)) ;
+
+El parámetro edgeType es ``INT_EDGE_FALLING``, ``INT_EDGE_RISING``, ``INT_EDGE_BOTH`` o ``INT_EDGE_SETUP``. Si es ``INT_EDGE_SETUP``, no se realizará la inicialización del pin; se asume que ya has configurado el pin en otro lugar (por ejemplo, con el programa gpio), pero si especificas uno de los otros tipos, entonces el pin se exportará y se inicializará según lo especificado.
+
+Para más información, consulta: `wiringPi-Functions (API) <https://projects.drogon.net/raspberry-pi/wiringpi/functions/>`_.
+
+Imagen del Fenómeno
+-----------------------
+
+.. image:: ../img/2.2.5IR.JPG
+   :width: 500
+   :align: center

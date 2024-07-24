@@ -1,0 +1,246 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
+
+.. _1.1.4_c_pi5:
+
+1.1.4 Pantalla de 7 Segmentos
+================================
+
+Introducción
+-----------------
+
+Vamos a intentar controlar una pantalla de 7 segmentos para mostrar números del 0 al 9 y letras de la A a la F.
+
+Componentes Necesarios
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../img/list_7_segment.png
+
+Es definitivamente conveniente comprar un kit completo, aquí tienes el enlace:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_7_segment`
+        - |link_7segment_buy|
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
+Diagrama Esquemático
+---------------------
+
+Conecta el pin ST_CP del 74HC595 al GPIO18 de la Raspberry Pi, SH_CP al GPIO27, DS al GPIO17, 
+y los puertos de salida paralela a los 8 segmentos de la pantalla de LED. Introduce datos en 
+el pin DS al registro de desplazamiento cuando SH_CP (la entrada de reloj del registro de 
+desplazamiento) esté en el flanco ascendente, y al registro de memoria cuando ST_CP 
+(la entrada de reloj de la memoria) esté en el flanco ascendente. Luego, puedes controlar los 
+estados de SH_CP y ST_CP a través de los GPIOs de la Raspberry Pi para transformar la entrada 
+de datos seriales en salida de datos paralelos, ahorrando así los GPIOs de la Raspberry Pi y 
+controlando la pantalla.
+
+============== ======== ======== ===
+Nombre T-Board físico   wiringPi BCM
+GPIO17         Pin 11   0        17
+GPIO18         Pin 12   1        18
+GPIO27         Pin 13   2        27
+============== ======== ======== ===
+
+.. image:: ../img/schematic_7_segment.png
+
+Procedimientos Experimentales
+------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: ../img/image73.png
+
+**Paso 2:** Accede a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/1.1.4/
+
+**Paso 3:** Compila.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 1.1.4_7-Segment.c -lwiringPi
+
+**Paso 4:** Ejecuta el archivo ejecutable anterior.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Después de ejecutar el código, verás que la pantalla de 7 segmentos muestra de 0 a 9 y de A a F.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define   SDI   0   //serial data input
+    #define   RCLK  1   //memory clock input(STCP)
+    #define   SRCLK 2   //shift register clock input(SHCP)
+    unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+
+    void init(void){
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT);
+        pinMode(SRCLK, OUTPUT); 
+        digitalWrite(SDI, 0);
+        digitalWrite(RCLK, 0);
+        digitalWrite(SRCLK, 0);
+    }
+
+    void hc595_shift(unsigned char dat){
+        int i;
+        for(i=0;i<8;i++){
+            digitalWrite(SDI, 0x80 & (dat << i));
+            digitalWrite(SRCLK, 1);
+            delay(1);
+            digitalWrite(SRCLK, 0);
+        }
+            digitalWrite(RCLK, 1);
+            delay(1);
+            digitalWrite(RCLK, 0);
+    }
+
+    int main(void){
+        int i;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        init();
+        while(1){
+            for(i=0;i<16;i++){
+                printf("Print %1X on Segment\n", i); // %X means hex output
+                hc595_shift(SegCode[i]);
+                delay(500);
+            }
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+
+.. code-block:: c
+
+    unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+
+Un arreglo de códigos de segmentos de 0 a F en Hexadecimal (cátodo común).
+
+.. code-block:: c
+
+    void init(void){
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT); 
+        pinMode(SRCLK, OUTPUT); 
+        digitalWrite(SDI, 0);
+        digitalWrite(RCLK, 0);
+        digitalWrite(SRCLK, 0);
+    }
+
+Configura los pines ds, st_cp, sh_cp como OUTPUT, y el estado inicial como 0.
+
+.. code-block:: c
+
+    void hc595_shift(unsigned char dat){}
+
+Asigna un valor de 8 bits al registro de desplazamiento del 74HC595.
+
+.. code-block:: c
+
+    digitalWrite(SDI, 0x80 & (dat << i));
+
+Asigna los datos de dat a SDI(DS) por bits. Aquí asumimos dat=0x3f (0011 1111), cuando i=2, 0x3f se desplazará a la izquierda (<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, es verdadero.
+
+.. code-block:: c
+
+    digitalWrite(SRCLK, 1);
+
+El valor inicial de SRCLK se configuró en 0, y aquí se establece en 1, lo que genera un pulso de flanco ascendente, luego desplaza los datos de DS al registro de desplazamiento.
+
+.. code-block:: c
+
+    digitalWrite(RCLK, 1);
+
+El valor inicial de RCLK se configuró en 0, y aquí se establece en 1, lo que genera un flanco ascendente, luego desplaza los datos del registro de desplazamiento al registro de almacenamiento.
+
+.. code-block:: c
+
+    while(1){
+            for(i=0;i<16;i++){
+                printf("Print %1X on Segment\n", i); // %X means hex output
+                hc595_shift(SegCode[i]);
+                delay(500);
+            }
+        }
+
+En este bucle for, usamos ``%1X`` para mostrar i como un número hexadecimal. Aplicamos i para encontrar el código de segmento correspondiente en el arreglo ``SegCode[]``, y empleamos ``hc595_shift()`` para pasar el SegCode al registro de desplazamiento del 74HC595.
+
+.. note::
+    El formato hexadecimal de los números 0~15 es (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+
+**Imagen del Fenómeno**
+
+.. image:: ../img/image74.jpeg
+
+

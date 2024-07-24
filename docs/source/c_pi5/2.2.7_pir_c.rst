@@ -1,0 +1,206 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte de Expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso temprano a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _2.2.7_c_pi5:
+
+2.2.7 PIR
+===============
+
+Introducción
+---------------
+
+En este proyecto, crearemos un dispositivo utilizando sensores piroeléctricos de 
+infrarrojos del cuerpo humano. Cuando alguien se acerque al LED, este se encenderá 
+automáticamente. Si no hay nadie cerca, la luz se apagará. Este sensor de movimiento 
+por infrarrojos puede detectar el infrarrojo emitido por humanos y animales.
+
+
+Componentes Necesarios
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes. 
+
+.. image:: ../img/list_2.2.4_pir2.png
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_rgb_led`
+        - |link_rgb_led_buy|
+    *   - :ref:`cpn_pir`
+        - \-
+
+Diagrama Esquemático
+---------------------------
+
+.. image:: ../img/image327.png
+
+
+Procedimientos Experimentales
+--------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: ../img/image214.png
+
+**Paso 2:** Ir a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.7/
+
+**Paso 3:** Compilar el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.7_PIR.c -lwiringPi
+
+**Paso 4:** Ejecutar el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, el sensor PIR detectará el entorno y hará que el LED RGB se encienda en amarillo si detecta a alguien pasando cerca.
+
+Hay dos potenciómetros en el módulo PIR: uno para ajustar la sensibilidad y otro para ajustar la distancia de detección. Para que el módulo PIR funcione mejor, debes girar ambos en sentido antihorario hasta el final.
+
+.. image:: ../img/PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: ``wiringPi.h No such file or directory``, por favor consulta :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softPwm.h>
+    #include <stdio.h>
+    #define uchar unsigned char
+
+    #define pirPin    0     //the pir connect to GPIO0
+    #define redPin    1
+    #define greenPin  2
+    #define bluePin   3
+
+    void ledInit(void){
+        softPwmCreate(redPin,  0, 100);
+        softPwmCreate(greenPin,0, 100);
+        softPwmCreate(bluePin, 0, 100);
+    }
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(redPin,   r_val);
+        softPwmWrite(greenPin, g_val);
+        softPwmWrite(bluePin,  b_val);
+    }
+    int main(void)
+    {
+        int pir_val;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        ledInit();
+        pinMode(pirPin, INPUT);
+        while(1){
+        pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //if read pir is HIGH level
+                ledColorSet(0xff,0xff,0x00); 
+            }
+            else {
+            ledColorSet(0x00,0x00,0xff); 
+            }
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    void ledInit(void);
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
+
+Estos códigos se utilizan para configurar el color del LED RGB, y para más detalles 
+consulta :ref:`1.1.2_c`.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        int pir_val;
+        //……
+        pinMode(pirPin, INPUT);
+        while(1){
+        pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //if read pir is HIGH level
+                ledColorSet(0xff,0xff,0x00); 
+            }
+            else {
+            ledColorSet(0x00,0x00,0xff); 
+            }
+        }
+        return 0;
+    }
+
+Cuando el PIR detecta el espectro infrarrojo humano, el LED RGB emite una luz amarilla; 
+si no, emite una luz azul.
+
+Imagen del Fenómeno
+-----------------------
+
+.. image:: ../img/image215.jpeg

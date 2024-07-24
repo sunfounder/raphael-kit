@@ -1,0 +1,201 @@
+.. nota::
+
+    ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
+
+.. _1.3.2_c_pi5:
+
+1.3.2 Servo
+===================
+
+Introducción
+----------------
+
+En este proyecto, aprenderemos a hacer que el servo gire.
+
+Componentes Necesarios
+--------------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../img/list_1.3.2.png
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_servo`
+        - |link_servo_buy|
+
+Diagrama Esquemático
+-----------------------
+
+.. image:: ../img/image337.png
+
+
+Procedimientos Experimentales
+--------------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: ../img/image125.png
+
+**Paso 2**: Ve a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.3.2
+
+**Paso 3**: Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.2_Servo.c -lwiringPi
+
+**Paso 4**: Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el programa, el servo rotará de 
+0 grados a 180 grados, y luego de 180 grados a 0 grados, en un ciclo continuo.
+
+.. nota::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softPwm.h>
+    #include <stdio.h>
+
+    #define ServoPin    1       //define the servo to GPIO1
+    long Map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
+        return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
+    }
+    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+        if(angle < 0)
+            angle = 0;
+        if(angle > 180)
+            angle = 180;
+        softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
+    } 
+
+    int main(void)
+    {
+        int i;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        softPwmCreate(ServoPin, 0, 200);       //initialize PMW pin of servo
+        while(1){
+            for(i=0;i<181;i++){     // Let servo rotate from 0 to 180.            	setAngle(ServoPin,i);
+                delay(2);
+            }
+            delay(1000);
+            for(i=181;i>-1;i--){        // Let servo rotate from 180 to 0.            	setAngle(ServoPin,i);
+                delay(2);
+            }
+            delay(1000);
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    long Map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
+        return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
+    }
+
+Crea una función ``Map()`` para mapear valores en el siguiente código.
+
+.. code-block:: c
+
+    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+        if(angle < 0)
+            angle = 0;
+        if(angle > 180)
+            angle = 180;
+        softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
+    } 
+
+Crea una función, ``setAngle()`` para escribir el ángulo en el servo.
+
+.. code-block:: c
+
+    softPwmWrite(pin, Map(angle, 0, 180, 5, 25));  
+
+Esta función puede cambiar el ciclo de trabajo del PWM.
+
+Para hacer que el servo gire de 0 a 180 °, el ancho de pulso debe cambiar
+dentro del rango de 0.5ms a 2.5ms cuando el período es de 20ms; en la
+función, ``softPwmCreate()``, hemos establecido que el período es
+200x100us = 20ms, por lo que necesitamos mapear 0 a 180 a 5x100us a 25x100us.
+
+El prototipo de esta función se muestra a continuación.
+
+.. code-block::
+
+    int softPwmCreate(int pin, int initialValue, int pwmRange);
+
+* ``pin``: Cualquier pin GPIO de Raspberry Pi puede configurarse como pin PWM.
+* ``initialValue``: El ancho de pulso inicial es ese initialValue multiplicado por 100us.
+* ``pwmRange``: el período del PWM es ese pwmRange multiplicado por 100us.
+
+Imagen del Fenómeno
+-------------------------
+
+.. image:: ../img/image126.jpeg
+

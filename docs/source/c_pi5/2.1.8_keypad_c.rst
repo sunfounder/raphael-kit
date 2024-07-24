@@ -1,0 +1,365 @@
+.. nota::
+
+    ¡Hola! Bienvenidos a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _2.1.8_c_pi5:
+
+2.1.8 Teclado
+====================
+
+Introducción
+---------------
+
+Un teclado es una matriz rectangular de botones. En este proyecto, lo utilizaremos para introducir caracteres.
+
+Componentes necesarios
+--------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../img/list_2.1.5_keypad.png
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los siguientes enlaces.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_keypad`
+        - \-
+
+Diagrama esquemático
+------------------------
+
+.. image:: ../img/image315.png
+
+
+.. image:: ../img/image316.png
+
+
+Procedimientos Experimentales
+--------------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: ../img/image186.png
+
+**Paso 2:** Abre el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.8/
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.8_Keypad.cpp -lwiringPi
+
+**Paso 4:** Ejecuta.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, los valores de los botones presionados
+ en el teclado (button Value) se imprimirán en la pantalla.
+
+.. note::
+
+    Si no funciona después de ejecutar el código, o hay un mensaje de error: \"wiringPi.h: No such file or directory\", por favor, consulta :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define ROWS  4 
+    #define COLS  4
+    #define BUTTON_NUM (ROWS * COLS)
+
+    unsigned char KEYS[BUTTON_NUM] {  
+    '1','2','3','A',
+    '4','5','6','B',
+    '7','8','9','C',
+    '*','0','#','D'};
+
+    unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
+    unsigned char colPins[COLS] = {12, 3, 2, 0};
+
+    void keyRead(unsigned char* result);
+    bool keyCompare(unsigned char* a, unsigned char* b);
+    void keyCopy(unsigned char* a, unsigned char* b);
+    void keyPrint(unsigned char* a);
+    void keyClear(unsigned char* a);
+    int keyIndexOf(const char value);
+
+    void init(void) {
+        for(int i=0 ; i<4 ; i++) {
+            pinMode(rowPins[i], OUTPUT);
+            pinMode(colPins[i], INPUT);
+        }
+    }
+
+    int main(void){
+        unsigned char pressed_keys[BUTTON_NUM];
+        unsigned char last_key_pressed[BUTTON_NUM];
+
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        init();
+        while(1){
+            keyRead(pressed_keys);
+            bool comp = keyCompare(pressed_keys, last_key_pressed);
+            if (!comp){
+                keyPrint(pressed_keys);
+                keyCopy(last_key_pressed, pressed_keys);
+            }
+            delay(100);
+        }
+        return 0;  
+    }
+
+    void keyRead(unsigned char* result){
+        int index;
+        int count = 0;
+        keyClear(result);
+        for(int i=0 ; i<ROWS ; i++ ){
+            digitalWrite(rowPins[i], HIGH);
+            for(int j =0 ; j < COLS ; j++){
+                index = i * ROWS + j;
+                if(digitalRead(colPins[j]) == 1){
+                    result[count]=KEYS[index];
+                    count += 1;
+                }
+            }
+            delay(1);
+            digitalWrite(rowPins[i], LOW);
+        }
+    }
+
+    bool keyCompare(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            if (a[i] != b[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void keyCopy(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            a[i] = b[i];
+        }
+    }
+
+    void keyPrint(unsigned char* a){
+        if (a[0] != 0){
+            printf("%c",a[0]);
+        }
+        for (int i=1; i<BUTTON_NUM; i++){
+            if (a[i] != 0){
+                printf(", %c",a[i]);
+            }
+        }
+        printf("\n");
+    }
+
+    void keyClear(unsigned char* a){
+        for (int i=0; i<BUTTON_NUM; i++){
+            a[i] = 0;
+        }
+    }
+
+    int keyIndexOf(const char value){
+        for (int i=0; i<BUTTON_NUM; i++){
+            if ((const char)KEYS[i] == value){
+                return i;
+            }
+        }
+        return -1;
+    }
+**Explicación del Código**
+
+.. code-block:: c
+
+    unsigned char KEYS[BUTTON_NUM] {  
+    '1','2','3','A',
+    '4','5','6','B',
+    '7','8','9','C',
+    '*','0','#','D'};
+
+    unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
+    unsigned char colPins[COLS] = {12, 3, 2, 0};
+
+Declara cada tecla del teclado matricial en el array ``keys[]`` y define los 
+pines en cada fila y columna.
+
+.. code-block:: c
+
+    while(1){
+            keyRead(pressed_keys);
+            bool comp = keyCompare(pressed_keys, last_key_pressed);
+            if (!comp){
+                keyPrint(pressed_keys);
+                keyCopy(last_key_pressed, pressed_keys);
+            }
+            delay(100);
+        }
+
+Esta es la parte de la función principal que lee e imprime el valor del botón.
+
+La función ``keyRead()`` leerá el estado de cada botón.
+
+``keyCompare()`` y ``keyCopy()`` se utilizan para juzgar si el estado de un 
+botón ha cambiado (es decir, si se ha presionado o liberado un botón).
+
+``keyPrint()`` imprimirá el valor del botón cuyo nivel actual es alto (el botón está presionado).
+
+.. code-block:: c
+
+    void keyRead(unsigned char* result){
+        int index;
+        int count = 0;
+        keyClear(result);
+        for(int i=0 ; i<ROWS ; i++ ){
+            digitalWrite(rowPins[i], HIGH);
+            for(int j =0 ; j < COLS ; j++){
+                index = i * ROWS + j;
+                if(digitalRead(colPins[j]) == 1){
+                    result[count]=KEYS[index];
+                    count += 1;
+                }
+            }
+            delay(1);
+            digitalWrite(rowPins[i], LOW);
+        }
+    }
+
+Esta función asigna un nivel alto a cada fila por turno, y cuando se presiona 
+la tecla en la columna, la columna en la que se encuentra la tecla obtiene un 
+nivel alto. Después del juicio del bucle de dos capas, la compilación del estado 
+de la tecla generará un array (``result[]``).
+
+Al presionar el botón 3:
+
+.. image:: ../img/image187.png
+
+
+``RowPin [0]`` escribe en el nivel alto, y colPin[2] obtiene el nivel alto. ``ColPin [0]``, 
+colPin[1], colPin[3] obtienen el nivel bajo.
+
+Esto nos da 0,0,1,0. Cuando rowPin[1], rowPin[2] y rowPin[3] se escriben en nivel alto, 
+colPin[0]~colPin[4] obtendrán nivel bajo.
+
+Después de que se complete el juicio del bucle, se generará un array:
+
+.. code-block:: c
+
+    result[BUTTON_NUM] {  
+    0, 0, 1, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0};
+
+.. code-block:: c
+
+    bool keyCompare(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            if (a[i] != b[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void keyCopy(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            a[i] = b[i];
+        }
+    }
+
+Estas dos funciones se utilizan para juzgar si el estado de la tecla ha cambiado, 
+por ejemplo, cuando sueltas la mano al presionar '3' o presionas '2', keyCompare() 
+devuelve falso.
+
+KeyCopy() se utiliza para reescribir el valor del botón actual para el array a 
+(last_key_pressed[BUTTON_NUM]) después de cada comparación. Así podemos compararlos 
+la próxima vez.
+
+.. code-block:: c
+
+    void keyPrint(unsigned char* a){
+    //printf("{");
+        if (a[0] != 0){
+            printf("%c",a[0]);
+        }
+        for (int i=1; i<BUTTON_NUM; i++){
+            if (a[i] != 0){
+                printf(", %c",a[i]);
+            }
+        }
+        printf("\n");
+    }
+
+Esta función se utiliza para imprimir el valor de la tecla presionada actualmente. 
+Si se presiona el botón '1', se imprimirá '1'. Si se presionan el botón '1' y el botón '3', 
+se imprimirá '1, 3'.
+
+
+Imagen del Fenómeno
+----------------------------
+
+.. image:: ../img/image188.jpeg
+
+

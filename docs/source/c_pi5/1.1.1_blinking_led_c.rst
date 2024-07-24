@@ -1,0 +1,319 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
+
+.. _1.1.1_c_pi5:
+
+1.1.1 LED Parpadeante
+===========================
+
+Introducción
+------------------
+
+En este proyecto, aprenderemos cómo hacer que un LED parpadee mediante programación. 
+Con tus configuraciones, tu LED puede producir una serie de fenómenos interesantes. 
+¡Adelante!
+
+Componentes Necesarios
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../img/blinking_led_list.png
+    :width: 800
+    :align: center
+
+Es definitivamente conveniente comprar un kit completo, aquí tienes el enlace:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+
+Diagrama Esquemático
+---------------------
+
+En este experimento, conecta una resistencia de 220Ω al ánodo (el pin largo del LED), 
+luego la resistencia a 3.3 V, y conecta el cátodo (el pin corto) del LED al GPIO17 de la 
+Raspberry Pi. Por lo tanto, para encender un LED, necesitamos poner el GPIO17 en nivel bajo (0V). 
+Podemos lograr este fenómeno mediante programación.
+
+.. note::
+
+    **Pin11** se refiere al pin 11 de la Raspberry Pi de izquierda a derecha, y sus números de 
+    pin correspondientes en **wiringPi** y **BCM** se muestran en la siguiente tabla.
+
+En el contenido relacionado con el lenguaje C, hacemos que GPIO0 sea equivalente a 0 en wiringPi. 
+Entre el contenido relacionado con el lenguaje Python, BCM 17 es 17 en la columna BCM de la 
+siguiente tabla. Al mismo tiempo, son iguales al pin 11 en la Raspberry Pi, Pin 11.
+
+============ ======== ======== ===
+Nombre T-Board físico wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../img/image48.png
+    :width: 800
+    :align: center
+
+Procedimientos Experimentales
+-----------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: ../img/image49.png
+    :width: 800
+    :align: center
+
+**Paso 2:** Ve a la carpeta del código.
+
+1) Si usas una pantalla, se recomienda seguir los siguientes pasos.
+
+Ve a **~/** y encuentra la carpeta **raphael-kit**.
+
+Encuentra **C** en la carpeta, haz clic derecho sobre ella y selecciona **Abrir en Terminal**.
+
+.. image:: ../img/image50.png
+    :width: 800
+    :align: center
+
+Luego aparecerá una ventana como se muestra a continuación. Ahora has ingresado a la ruta del código **1.1.1_BlinkingLed.c**.
+
+.. image:: ../img/image51.png
+    :width: 800
+    :align: center
+
+En los siguientes proyectos, usaremos comandos para ingresar al archivo de código en lugar
+ de hacer clic derecho. Pero puedes elegir el método que prefieras.
+
+2) Si inicias sesión en la Raspberry Pi de forma remota, usa ``cd`` para cambiar de directorio:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd ~/raphael-kit/c/1.1.1/
+
+.. note::
+    Cambia de directorio a la ruta del código en este experimento mediante cd.
+
+De cualquier manera, ahora estás en la carpeta C. Los procedimientos subsecuentes basados
+ en estos dos métodos son los mismos. Continuemos.
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   gcc 1.1.1_BlinkingLed.c -o BlinkingLed -lwiringPi
+
+.. note::
+    gcc es la Colección de Compiladores GNU. Aquí, funciona como compilador del 
+    archivo de lenguaje C ``1.1.1_BlinkingLed.c`` y genera un archivo ejecutable.
+
+En el comando, ``-o`` significa salida (el carácter inmediatamente posterior a -o es el 
+nombre del archivo de salida después de la compilación, y aquí se generará un ejecutable 
+llamado ``BlinkingLed``) y ``-lwiringPi`` es para cargar la biblioteca wiringPi (``l`` es 
+la abreviatura de library).
+
+**Paso 4:** Ejecuta el archivo ejecutable generado en el paso anterior.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo ./BlinkingLed
+
+.. note::
+
+   Si no funciona después de ejecutarlo, o aparece un mensaje de 
+   error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+
+Para controlar el GPIO, necesitas ejecutar el programa con el comando 
+``sudo`` (superuser do). El comando ``./`` indica el directorio actual. 
+El comando completo es para ejecutar ``BlinkingLed`` en el directorio actual.
+
+Después de ejecutar el código, verás el LED parpadeando.
+
+Si deseas editar el archivo de código ``1.1.1_BlinkingLed.c``, detén el código y luego escribe el siguiente comando para abrirlo:
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano 1.1.1_BlinkingLed.c
+
+Presiona ``Ctrl+X`` para salir. Si has modificado el código, aparecerá un mensaje 
+preguntando si deseas guardar los cambios o no. Escribe ``Y`` (guardar) o ``N`` (no guardar). 
+Luego presiona ``Enter`` para salir. Repite ``Paso 3`` y ``Paso 4`` para ver el efecto después 
+de modificar.
+
+.. image:: ../img/image53.png
+    :width: 800
+    :align: center
+
+**Código**
+
+El código del programa se muestra a continuación:
+
+.. code-block:: c
+
+   #include <wiringPi.h>  
+   #include <stdio.h>
+   #define LedPin      0
+   int main(void)
+   {
+      // When initialize wiring failed, print message to screen
+      if(wiringPiSetup() == -1){
+         printf("setup wiringPi failed !");
+         return 1;
+      }
+      pinMode(LedPin, OUTPUT);// Set LedPin as output to write value to it.
+      while(1){
+         // LED on
+         digitalWrite(LedPin, LOW);
+         printf("...LED on\n");
+         delay(500);
+         // LED off
+         digitalWrite(LedPin, HIGH);
+         printf("LED off...\n");
+         delay(500);
+      }
+      return 0;
+   }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+   #include <wiringPi.h>
+
+La biblioteca de control de hardware está diseñada para el lenguaje C de Raspberry Pi. 
+Agregar esta biblioteca es beneficioso para la inicialización del hardware y la salida 
+de los puertos I/O, PWM, etc.
+
+.. code-block:: c
+
+   #include <stdio.h>
+
+Biblioteca estándar de I/O. La función printf utilizada para imprimir los datos mostrados 
+en la pantalla se realiza mediante esta biblioteca. Hay muchas otras funciones disponibles 
+para explorar.
+
+.. code-block:: c
+
+   #define LedPin 0
+
+El pin GPIO17 de la Placa de Extensión T corresponde al GPIO0 en wiringPi. Asigna GPIO0 a LedPin, 
+LedPin representa GPIO0 en el código posterior.
+
+.. code-block:: c
+
+   if(wiringPiSetup() == -1){
+      printf("setup wiringPi failed !");
+      return 1;
+
+Esto inicializa wiringPi y asume que el programa que llama va a usar el esquema de numeración 
+de pines de wiringPi.
+
+Esta función necesita ser llamada con privilegios de root. Cuando la inicialización de wiring 
+falla, imprime un mensaje en la pantalla. La función ``return`` se utiliza para salir de la 
+función actual. Usar return en la función ``main()`` finalizará el programa.
+
+.. code-block:: c
+
+   pinMode(LedPin, OUTPUT);
+
+Configura ``LedPin`` como salida para escribir valores en él.
+
+.. code-block:: c
+
+   digitalWrite(LedPin, LOW);
+
+Configura GPIO0 como 0V (nivel bajo). Dado que el cátodo del LED está conectado a GPIO0, 
+el LED se encenderá si GPIO0 se configura en nivel bajo. Por el contrario, configura GPIO0 
+en nivel alto, el LED se apagará.
+
+.. code-block:: c
+
+   printf("...LED apagado\n");
+
+La función printf es una función de biblioteca estándar y su prototipo de función 
+está en el archivo de encabezado ``stdio.h``.
+
+La forma general de la llamada es: ``printf("cadena de control de formato", columnas de la tabla de salida)``. 
+La cadena de control de formato se utiliza para especificar el formato de salida, que se divide en 
+cadena de formato y cadena sin formato. La cadena de formato comienza con ``%`` seguida de 
+caracteres de formato, como ``%d`` para salida de entero decimal. Las cadenas sin formato se 
+imprimen tal como son. Aquí se utiliza una cadena sin formato, seguida de ``\n`` que es un carácter 
+de nueva línea, representando un salto de línea automático después de imprimir una cadena.
+
+.. code-block:: c
+
+   delay(500);
+
+Mantiene el estado HIGH o LOW actual durante 500 ms.
+
+Esta es una función que suspende el programa por un período de tiempo. Y la velocidad del programa 
+está determinada por nuestro hardware. Aquí encendemos o apagamos el LED. Si no hay función de 
+retraso, el programa ejecutará todo el programa muy rápido y en un bucle continuo. 
+Así que necesitamos la función de retraso para ayudarnos a escribir y depurar el programa.
+
+.. code-block:: c
+
+   return 0;
+
+Generalmente, se coloca al final de la función principal, indicando que la función devuelve 0 al 
+ejecutarse correctamente.
+
+Imagen del Fenómeno
+------------------------
+
+.. image:: ../img/image54.jpeg
+    :width: 800
+    :align: center

@@ -1,0 +1,175 @@
+.. nota::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones durante las festividades.
+
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
+
+.. _1.3.3_c_pi5:
+
+1.3.3 Relé
+=================
+
+Introducción
+---------------
+
+En este proyecto, aprenderemos a usar un relé. Es uno de los componentes más utilizados 
+en los sistemas de control automático. Cuando el voltaje, corriente, temperatura, presión, etc., 
+alcanza, supera o es inferior al valor predeterminado, el relé conectará o interrumpirá el 
+circuito para controlar y proteger el equipo.
+
+Componentes Requeridos
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes. 
+
+.. image:: ../img/list_1.3.4.png
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_relay`
+        - |link_relay_buy|
+    *   - :ref:`cpn_diode`
+        - |link_diode_buy|
+
+Diagrama Esquemático
+---------------------------
+
+.. image:: ../img/image345.png
+
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: ../img/image144.png
+
+**Paso 2:** Abrir el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.3.3
+
+**Paso 3:** Compilar el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.3_Relay.c -lwiringPi
+
+
+**Paso 4:** Ejecutar el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, el LED se encenderá. Además, se puede
+escuchar un tic-tac causado por la ruptura del contacto normalmente cerrado y 
+el cierre del contacto normalmente abierto.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulte :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define RelayPin 0
+
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(RelayPin, OUTPUT);   //set GPIO17(GPIO0) output
+        while(1){
+            // Tick
+            printf("Relay Open......\n");
+            digitalWrite(RelayPin, LOW);
+            delay(1000);
+            // Tock
+            printf("......Relay Close\n");
+            digitalWrite(RelayPin, HIGH);
+            delay(1000);
+        }
+
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, LOW);
+
+Establecer el puerto I/O a nivel bajo (0V), por lo tanto, el transistor no está energizado
+y la bobina no está alimentada. No hay fuerza electromagnética, por lo que
+el relé se abre y el LED no se enciende.
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, HIGH);
+
+Establecer el puerto I/O a nivel alto (5V) para energizar el transistor. La bobina
+del relé está alimentada y genera fuerza electromagnética, y el
+relé se cierra y el LED se enciende.
+
+Imagen del Fenómeno
+-------------------------
+
+.. image:: ../img/image145.jpeg

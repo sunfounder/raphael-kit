@@ -1,0 +1,170 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
+
+.. _1.2.1_c_pi5:
+
+1.2.1 Zumbador Activo
+==========================
+
+Introducción
+---------------
+
+En este proyecto, aprenderemos a activar un zumbador activo para que emita un pitido utilizando un transistor PNP.
+
+Componentes Necesarios
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../img/list_1.2.1.png
+
+Es definitivamente conveniente comprar un kit completo, aquí tienes el enlace:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+Diagrama Esquemático
+---------------------------
+
+En este experimento, utilizamos un zumbador activo, un transistor PNP y una resistencia 
+de 1k entre la base del transistor y el GPIO para proteger el transistor. Cuando el GPIO17 
+de Raspberry Pi se alimenta con nivel bajo (0V) mediante programación, el transistor conducirá 
+debido a la saturación de corriente y el zumbador emitirá sonidos. Pero cuando se suministra un 
+nivel alto al IO de Raspberry Pi, el transistor se cortará y el zumbador no emitirá sonidos.
+
+.. image:: ../img/image332.png
+
+
+Procedimientos Experimentales
+------------------------------------
+
+**Paso 1:** Construir el circuito. (El zumbador activo tiene una etiqueta blanca en la superficie y un respaldo negro.)
+
+.. image:: ../img/image104.png
+
+**Paso 2**: Abrir el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/1.2.1/
+
+**Paso 3**: Compilar el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 1.2.1_ActiveBuzzer.c -lwiringPi
+
+**Paso 4**: Ejecutar el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Al ejecutar el código, el zumbador emitirá un pitido.
+
+.. note::
+
+    Si no funciona después de ejecutar, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define BeepPin 0
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        while(1){
+            //beep on
+            printf("Buzzer on\n");
+            digitalWrite(BeepPin, LOW);
+            delay(100);
+            printf("Buzzer off\n");
+            //beep off
+            digitalWrite(BeepPin, HIGH);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, LOW);
+
+Usamos un zumbador activo en este experimento, por lo que emitirá sonido automáticamente 
+cuando se conecte a la corriente continua. Este sketch configura el puerto I/O en nivel 
+bajo (0V), manejando así el transistor y haciendo que el zumbador emita un pitido.
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, HIGH);
+
+Configura el puerto I/O en nivel alto (3.3V), por lo que el transistor no recibe energía y el 
+zumbador no emite sonido.
+
+Imagen del Fenómeno
+-----------------------
+
+.. image:: ../img/image105.jpeg

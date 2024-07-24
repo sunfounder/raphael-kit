@@ -1,0 +1,206 @@
+.. nota::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
+
+.. _3.1.13_c_pi5:
+
+3.1.13 JUEGO– NotNot
+===========================
+
+Introducción
+-------------------
+
+En este proyecto, crearemos un dispositivo de juego interesante, y lo llamamos “Not Not”.
+
+Durante el juego, la matriz de puntos mostrará una flecha al azar. Lo que debes hacer es presionar el botón en la dirección opuesta a la flecha dentro de un tiempo limitado. Si se acaba el tiempo o presionas el botón en la misma dirección que la flecha, estás fuera.
+
+Este juego realmente puede practicar tu pensamiento inverso, ¿te animas a intentarlo?
+
+Componentes Requeridos
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../img/list_GAME_14_NotNot.png
+    :align: center
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_dot_matrix`
+        - |link_led_matrix_buy|
+    *   - :ref:`cpn_button`
+        - |link_button_buy|
+Diagrama Esquemático
+--------------------------
+
+================= ========== ======== ====
+Nombre de T-Board Pin físico wiringPi BCM
+GPIO22            Pin 15     3        22
+GPIO23            Pin 16     4        23
+SPIMOSI           Pin 19     12       MOSI
+SPICE0            Pin 24     10       CE0
+SPISCLK           Pin 23     14       SCLK
+================= ========== ======== ====
+
+.. image:: ../img/Schematic_notnot.png
+   :align: center
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1**: Construir el circuito.
+
+.. image:: ../img/3.1.14game_notnot.png
+
+.. nota::
+
+    Activa el SPI antes de comenzar el experimento, consulta :ref:`Configuración SPI` para más detalles.
+    También se necesita la biblioteca :ref:`BCM2835`.
+
+**Paso 2**: Ve a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.13/
+
+**Paso 3**: Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    make
+
+**Paso 4**: Ejecuta el archivo compilado.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./3.1.13_GAME_NotNot
+
+Después de iniciar el programa, una flecha hacia la izquierda o hacia la derecha se 
+refrescará al azar en la matriz de puntos. Lo que necesitas hacer es presionar el 
+botón en la dirección opuesta a la flecha, entonces aparecerá “√” en la matriz de puntos. 
+Si se presiona el botón en la misma dirección que la flecha, estás fuera y la matriz de 
+puntos mostrará “x”. También puedes agregar 2 nuevos botones o reemplazarlos con teclas 
+de joystick para arriba, abajo, izquierda y derecha— 4 direcciones para aumentar la 
+dificultad del juego.
+
+.. nota::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`instalación de wiringpi`.
+**Explicación del Código**
+
+Basado en :ref:`1.1.6_c`, este proyecto agrega 2 botones para crear un dispositivo de juego divertido.
+
+El proceso completo del programa es el siguiente:
+
+#. Utiliza la hora del sistema para generar un 0 o 1 aleatorio.
+#. Muestra un patrón de flecha hacia la izquierda o hacia la derecha de manera aleatoria.
+#. Presiona la tecla y determina el resultado.
+#. Muestra el patrón correcto o incorrecto.
+
+.. image:: ../img/3.1.14_notnot1.png
+
+.. code-block:: c
+
+    int get_index()
+    {
+        srand((unsigned)time(NULL));
+        return rand()%2;
+    }
+
+La semilla del sistema se cambia según la hora del sistema, es decir, ``srand((unsigned)time(NULL))``, para que cada vez que se llame a la función rand, el valor obtenido sea completamente aleatorio, y finalmente, el resultado obtenido se divide por 2, de modo que los valores obtenidos son 0 y 1.
+
+
+.. code-block:: c
+
+    int get_key(uint num)
+    {
+        while (1)
+        {
+            if (1 == bcm2835_gpio_lev(AButtonPin) && num == 0){
+                return 1;
+            }
+            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 1){
+                return 1;
+            }
+            else if (1 == bcm2835_gpio_lev(AButtonPin) && num == 1){
+                return 0;
+            }
+            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 0){
+                return 0;
+            }
+        }
+    }
+
+Determina qué botón se presionó y lo compara con la dirección de la flecha en la matriz de puntos y da el resultado final de 0 o 1.
+
+.. image:: ../img/3.1.14_getkey.png
+
+.. code-block:: c
+
+    void display(uint index){
+        uchar i;
+        if (stage == 0){
+            for(i=1;i<9;i++)
+            {
+                Write_Max7219(i,arrow[index][i-1]);
+            }
+        }
+        else if(stage == 1){
+            for(i=1;i<9;i++)
+            {
+                Write_Max7219(i,check[index][i-1]);
+            }
+        }
+    }
+
+Dependiendo del valor de ``stage`` y ``index``, muestra la flecha hacia la ``izquierda o derecha`` o el patrón de ``correcto o incorrecto``.
+
+.. image:: ../img/3.1.14_display.png

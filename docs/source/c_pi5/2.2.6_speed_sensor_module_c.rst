@@ -1,0 +1,222 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y vistas previas.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _2.2.6_c_pi5:
+
+2.2.6 Módulo Sensor de Velocidad
+===============================
+
+Introducción
+------------------
+
+En este proyecto, aprenderemos a usar el módulo sensor de velocidad. Un Módulo Sensor de Velocidad es un tipo de tacómetro que se usa para medir la velocidad de un objeto giratorio como un motor.
+
+Componentes Necesarios
+------------------------------
+
+En este proyecto, necesitaremos los siguientes componentes. 
+
+.. image:: ../img/2.2.6component.png
+    :width: 700
+    :align: center
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces a continuación.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_speed_sensor`
+        - \-
+
+Diagrama Esquemático
+--------------------------
+
+.. image:: ../img/2.2.6circuit.png
+    :width: 400
+    :align: center
+
+Procedimientos Experimentales
+--------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: ../img/2.2.6fritzing.png
+    :width: 700
+    :align: center
+
+**Paso 2:** Cambiar de directorio.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+    
+    cd ~/raphael-kit/c/2.2.6/
+
+**Paso 3:** Compilar.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.6_speed_sensor_module.c -lwiringPi
+
+**Paso 4:** Ejecutar.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, el LED verde se encenderá. Si colocas un obstáculo en el hueco del módulo sensor de velocidad, se imprimirá "light blocked" en la pantalla y se encenderá el LED rojo. 
+Retira el obstáculo y el LED verde se encenderá nuevamente.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define speedPin		0  
+    #define Gpin		2
+    #define Rpin		3
+
+    void LED(int color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == 0){
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == 1){
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+    }
+
+    void Print(int x){
+        if ( x == 0 ){
+            printf("Light was blocked\n");
+        }
+    }
+
+    int main(void){
+
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+
+        pinMode(speedPin, INPUT);
+        int temp;
+        while(1){
+            //Reverse the input of speedPin
+            if ( digitalRead(speedPin) == 0 ){  
+                temp = 1;
+            }
+            if ( digitalRead(speedPin) == 1 ){
+                temp = 0;
+            }
+
+            LED(temp);
+            Print(temp);
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    void LED(int color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == 0){
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == 1){
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+    }    
+
+Configura una función ``LED()`` para controlar los 2 LEDs, el parámetro de esta función es ``color``.
+
+Cuando ``color`` es 0, se establece ``Rpin`` en ``HIGH`` (enciende el LED rojo) y ``Gpin`` en ``LOW`` (apaga el LED verde); cuando ``color`` es 1, entonces enciende el LED verde y apaga el LED rojo.
+
+
+.. code-block:: c
+
+    while(1){
+        //Reverse the input of speedPin
+        if ( digitalRead(speedPin) == 0 ){  
+            temp = 1;
+        }
+        if ( digitalRead(speedPin) == 1 ){
+            temp = 0;
+        }
+
+        LED(temp);
+        Print(temp);
+    }
+
+Cuando colocas un obstáculo en el espacio del módulo sensor de velocidad, ``speedPin`` está en nivel bajo (0), luego llama a la función ``LED(1)`` para encender el LED verde y se imprime "Light was blocked!".
+
+
+**Imagen del Fenómeno**
+----------------------------
+
+.. image:: ../img/2.2.6photo_interrrupter.JPG
+   :width: 500
+   :align: center

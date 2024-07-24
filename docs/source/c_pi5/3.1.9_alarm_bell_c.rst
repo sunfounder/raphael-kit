@@ -1,0 +1,261 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones festivas.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _3.1.9_c_pi5:
+
+3.1.9 Timbre de Alarma
+===========================
+
+Introducción
+----------------
+
+En este proyecto, haremos un dispositivo de alarma manual. Puedes reemplazar el 
+interruptor de palanca con un termistor o un sensor fotosensible para crear una 
+alarma de temperatura o de luz.
+
+Componentes Necesarios
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../img/list_Alarm_Bell.png
+    :align: center
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - COMPONENTES EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los siguientes enlaces.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DE COMPONENTES
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+Diagrama Esquemático
+-----------------------
+
+============== ======== ======== ===
+Nombre T-Board físico   wiringPi BCM
+GPIO17         Pin 11   0        17
+GPIO18         Pin 12   1        18
+GPIO27         Pin 13   2        27
+GPIO22         Pin 15   3        22
+============== ======== ======== ===
+
+.. image:: ../img/Schematic_three_one10.png
+   :align: center
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1**: Construye el circuito.
+
+.. image:: ../img/image266.png
+
+**Paso 2**: Cambia de directorio.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.9/
+
+**Paso 3**: Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.9_AlarmBell.c -lwiringPi -lpthread
+
+**Paso 4**: Ejecuta el programa.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de iniciar el programa, coloca el interruptor de palanca a la derecha y 
+el zumbador emitirá sonidos de alarma. Al mismo tiempo, los LED rojos y verdes 
+parpadearán a una cierta frecuencia.
+
+.. note::
+
+    Si no funciona después de ejecutar el programa, o aparece un mensaje de 
+    error: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    #include <pthread.h>
+
+En este código, utilizaremos una nueva biblioteca, ``pthread.h``, que es un conjunto de bibliotecas comunes de hilos y puede realizar multihilos. Añadimos el parámetro ``-lpthread`` en el momento de la compilación para el trabajo independiente del LED y el zumbador.
+
+.. code-block:: c
+
+    void *ledWork(void *arg){       
+        while(1)    
+        {   
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            digitalWrite(ALedPin,HIGH);
+            delay(500);
+            digitalWrite(ALedPin,LOW);
+            digitalWrite(BLedPin,HIGH);
+            delay(500);
+            digitalWrite(BLedPin,LOW);
+        }
+    }
+
+La función ``ledWork()`` ayuda a establecer el estado de funcionamiento de estos 2 LEDs: 
+mantiene el LED verde encendido durante 0,5s y luego se apaga; 
+de manera similar, mantiene el LED rojo encendido durante 0,5s y luego se apaga.
+
+.. code-block:: c
+
+    void *buzzWork(void *arg){
+        while(1)
+        {
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            if((note>=800)||(note<=130)){
+                pitch = -pitch;
+            }
+            note=note+pitch;
+            softToneWrite(BeepPin,note);
+            delay(10);
+        }
+    }
+
+La función ``buzzWork()`` se utiliza para establecer el estado de funcionamiento del zumbador. 
+Aquí establecemos la frecuencia entre 130 y 800, para acumular o disminuir en un intervalo de 20.
+
+.. code-block:: c
+
+    void on(){
+        flag = 1;
+        if(softToneCreate(BeepPin) == -1){
+            printf("setup softTone failed !");
+            return; 
+        }    
+        pthread_t tLed;     
+        pthread_create(&tLed,NULL,ledWork,NULL);    
+        pthread_t tBuzz;  
+        pthread_create(&tBuzz,NULL,buzzWork,NULL);      
+    }
+
+En la función on():
+
+1) Define la marca ``flag=1``, indicando el final del hilo de control.
+
+2) Crea un pin de tono controlado por software ``BeepPin``.
+
+3) Crea dos hilos separados para que el LED y el zumbador puedan funcionar al mismo tiempo.
+
+* ``pthread_t tLed``: Declara un hilo ``tLed``.
+* ``pthread_create(&tLed,NULL,ledWork,NULL)``: Crea el hilo y su prototipo es el siguiente:
+
+.. code-block:: 
+
+    int pthread_create(pthread_t *restrict tidp,const pthread_attr_t*restrict_attr,void*（*start_rtn)(void*),void *restrict arg);
+
+Si tiene éxito, devuelve 0; de lo contrario, devuelve el número de error -1.
+
+* El primer parámetro es un puntero al identificador del hilo.
+* El segundo se utiliza para configurar el atributo del hilo.
+* El tercero es la dirección de inicio de la función de ejecución del hilo.
+* El último es el argumento que se pasa a la función de ejecución.
+
+.. code-block:: c
+
+    void off(){
+        flag = 0;
+        softToneStop(BeepPin);
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BLedPin,LOW);
+    }
+
+La función ``Off()`` define “flag=0” para salir de los hilos
+ **ledWork** y **buzzWork** y luego apaga el zumbador y el LED.
+
+.. code-block:: c
+
+    int main(){       
+        setup(); 
+        int lastState = 0;
+        while(1){
+            int currentState = digitalRead(switchPin);
+            if ((currentState == 1)&&(lastState==0)){
+                on();
+            }
+            else if((currentState == 0)&&(lastState==1)){
+                off();
+            }
+            lastState=currentState;
+        }
+        return 0;
+    }
+
+Main() contiene todo el proceso del programa: primero lee el valor del interruptor 
+deslizante; si el interruptor deslizante se mueve hacia la derecha (la lectura es 1), 
+se llama a la función ``on()``, se activa el zumbador para emitir sonidos y los LEDs 
+rojo y verde parpadean. De lo contrario, el zumbador y el LED no funcionan.
+
+
+Imagen del Fenómeno
+------------------------
+
+.. image:: ../img/image267.jpeg
+   :align: center
