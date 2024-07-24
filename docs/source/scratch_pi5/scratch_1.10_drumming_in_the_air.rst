@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-.. _1.10_scratch:
+.. _1.10_scratch_pi5:
 
 1.10 Trommeln in der Luft
 ==========================

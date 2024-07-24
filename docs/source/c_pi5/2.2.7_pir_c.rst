@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-.. _2.2.7_c:
+.. _2.2.7_c_pi5:
 
 2.2.7 PIR
 ===============
@@ -170,7 +170,7 @@ Am PIR-Modul befinden sich zwei Potentiometer: eines zur Einstellung der Empfind
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-Diese Codes werden verwendet, um die Farbe der RGB-LED einzustellen. Für weitere Details verweisen Sie bitte auf :ref:`1.1.2_c`.
+Diese Codes werden verwendet, um die Farbe der RGB-LED einzustellen. Für weitere Details verweisen Sie bitte auf :ref:`1.1.2_c_pi5`.
 
 .. code-block:: c
 

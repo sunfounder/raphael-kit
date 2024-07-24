@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-.. _quick_quide_on_scratch:
+.. _quick_quide_on_scratch_pi5:
 
 Kurzanleitung zu Scratch
 ==========================

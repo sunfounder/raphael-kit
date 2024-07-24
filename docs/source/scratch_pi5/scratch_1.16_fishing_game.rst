@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-.. _1.16_scratch:
+.. _1.16_scratch_pi5:
 
 1.16 Angelspiel
 ========================
