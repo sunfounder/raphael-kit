@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-.. _1.15_scratch:
+.. _1.15_scratch_pi5:
 
 1.15 Inflating the Balloon
 ==========================

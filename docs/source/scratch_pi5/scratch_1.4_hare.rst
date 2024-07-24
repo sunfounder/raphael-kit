@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-.. _1.4_scratch:
+.. _1.4_scratch_pi5:
 
 1.4 Hare
 ==============

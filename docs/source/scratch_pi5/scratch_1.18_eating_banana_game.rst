@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-.. _1.18_scratch:
+.. _1.18_scratch_pi5:
 
 1.18 Eating Banana Game
 ================================

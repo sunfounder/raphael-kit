@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-.. _1.14_scratch:
+.. _1.14_scratch_pi5:
 
 1.14 123 Wooden Man
 ===========================

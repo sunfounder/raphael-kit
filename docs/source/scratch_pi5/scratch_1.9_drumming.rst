@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-.. _1.9_scratch:
+.. _1.9_scratch_pi5:
 
 1.9 Drumming
 ================

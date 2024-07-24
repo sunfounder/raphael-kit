@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-.. _1.13_scratch:
+.. _1.13_scratch_pi5:
 
 1.13 Doorbell
 ==================
