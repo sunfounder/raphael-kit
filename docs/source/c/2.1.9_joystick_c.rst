@@ -145,13 +145,19 @@ Btn se mostrarán en la pantalla.
         uchar dat1=0, dat2=0;
         int sel = channel > 1 & 1;
         int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-    //Single End mode
+        //Single End mode
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -163,9 +169,11 @@ Btn se mostrarán en la pantalla.
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        
+        delayMicroseconds(2);
         digitalWrite(ADC_CLK,0);
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        delayMicroseconds(2);
+        
         for(i=0;i<8;i++)
         {
             digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -229,7 +237,7 @@ Btn se mostrarán en la pantalla.
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-El proceso de trabajo de la función se detalla en 2.1.4 Potenciómetro.
+El proceso de trabajo de la función se detalla en 2.1.7 Potenciómetro.
 
 .. code-block:: c
 

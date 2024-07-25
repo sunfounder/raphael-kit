@@ -145,6 +145,11 @@ de luz detectada por el fotoresistor.
         int sel = channel > 1 & 1;
         int odd = channel & 1;
 
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
@@ -212,7 +217,7 @@ de luz detectada por el fotoresistor.
 **Explicación del Código**
 
 El código aquí es el mismo que en 2.1.4 Potenciómetro. Si tienes alguna otra pregunta, 
-por favor revisa la explicación del código de :ref:`2.1.7_c` para más detalles.
+por favor revisa la explicación del código de :ref:`2.1.7_c_pi5` para más detalles.
 
 Imagen del Fenómeno
 -------------------------

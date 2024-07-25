@@ -14,7 +14,7 @@
 
 .. _2.2.7_c_pi5:
 
-2.2.7 PIR
+2.2.6 PIR
 ===============
 
 Introducción
@@ -176,7 +176,7 @@ Hay dos potenciómetros en el módulo PIR: uno para ajustar la sensibilidad y ot
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
 Estos códigos se utilizan para configurar el color del LED RGB, y para más detalles 
-consulta :ref:`1.1.2_c`.
+consulta :ref:`1.1.2_c_pi5`.
 
 .. code-block:: c
 

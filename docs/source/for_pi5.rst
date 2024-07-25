@@ -26,7 +26,8 @@ cursos específicamente enfocados en esta biblioteca.
     :maxdepth: 1
     
     python_pi5/play_with_python_pi5
-
+    c_pi5/play_with_c
+    scratch_pi5/play_with_scratch
 
 Para problemas de compatibilidad con otros lenguajes de programación, consulte la información detallada a continuación:
 

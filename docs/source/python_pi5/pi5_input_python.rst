@@ -38,6 +38,7 @@ Input
 
     pi5_2.2.1_photoresistor_python
     pi5_2.2.2_thermistor_python
+    pi5_2.2.3_dht_python.rst
     pi5_2.2.4_reed_switch_python
     pi5_2.2.5_ir_obstacle_avoidance_sensor_python
     pi5_2.2.6_speed_sensor_module_python

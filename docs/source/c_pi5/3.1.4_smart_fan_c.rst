@@ -176,13 +176,18 @@ Código
         int sel = channel > 1 & 1;
         int odd = channel & 1;
 
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
-    //Single End mode
+        //Single End mode
         digitalWrite(ADC_CLK,0);
         digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
@@ -195,9 +200,9 @@ Código
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
 
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        delayMicroseconds(2);
         digitalWrite(ADC_CLK,0);
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        delayMicroseconds(2);
 
         for(i=0;i<8;i++)
         {
@@ -308,7 +313,7 @@ Explicación del Código
     }
 
 Temperture() convierte los valores del termistor leídos por ADC0834 en valores de temperatura. 
-Consulte :ref:`2.2.2_c` para más detalles.
+Consulte :ref:`2.2.2_c_pi5` para más detalles.
 
 .. code-block:: c
 

@@ -46,4 +46,3 @@ Entrada
     2.2.7_pir_c
     2.2.8_ultrasonic_sensor_module_c
     2.2.9_mpu6050_module_c
-    2.2.10_mfrc522_rfid_module_c 
