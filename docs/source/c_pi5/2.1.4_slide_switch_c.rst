@@ -1,0 +1,186 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _2.1.4_c_pi5:
+
+2.1.4 Interrupteur à glissière
+=====================================
+
+Introduction
+---------------
+
+Dans ce projet, nous allons apprendre à utiliser un interrupteur à glissière. Habituellement, l'interrupteur à glissière est soudé sur un PCB comme interrupteur d'alimentation, mais ici, nous devons l'insérer dans la plaque d'essai, il peut donc ne pas être bien fixé. Nous l'utilisons sur la plaque d'essai pour montrer son fonctionnement.
+
+Composants Nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants. 
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément aux liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+Schéma de Câblage
+---------------------
+
+Connectez la broche centrale de l'interrupteur à glissière au GPIO17 et deux LEDs aux broches GPIO22 et GPIO27 respectivement. Ensuite, lorsque vous déplacez le glisseur, vous pouvez voir les deux LEDs s'allumer alternativement.
+
+.. image:: ../img/image305.png
+
+.. image:: ../img/image306.png
+
+Procédures Expérimentales
+---------------------------
+
+**Étape 1:** Construisez le circuit.
+
+.. image:: ../img/image161.png
+
+**Étape 2**: Allez dans le répertoire du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.4
+
+**Étape 3**: Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.4_Slider.c -lwiringPi 
+
+**Étape 4**: Exécutez le fichier exécutable ci-dessus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Pendant l'exécution du code, connectez l'interrupteur à gauche, puis la LED jaune s'allume ; 
+à droite, la LED rouge s'allume.
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : "wiringPi.h : No such file or directory", veuillez consulter :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define slidePin        0
+    #define led1            3
+    #define led2            2
+
+    int main(void)
+    {
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(slidePin, INPUT);
+        pinMode(led1, OUTPUT);
+        pinMode(led2, OUTPUT);
+        while(1){
+            // slide switch high, led1 on
+            if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+            }
+            // slide switch low, led2 on
+            if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+        }
+        return 0;
+    }
+
+**Explication du Code**
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+        }
+
+Lorsque le glisseur est tiré vers la droite, la broche du milieu et celle de droite sont 
+connectées; le Raspberry Pi lit un niveau haut sur la broche du milieu, donc la LED1 est 
+allumée et la LED2 éteinte.
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+
+Lorsque le glisseur est tiré vers la gauche, la broche du milieu et celle de gauche sont connectées; le Raspberry Pi lit un niveau bas, donc la LED2 est allumée et la LED1 éteinte.
+
+Photo du Phénomène
+------------------
+
+.. image:: ../img/image162.jpeg

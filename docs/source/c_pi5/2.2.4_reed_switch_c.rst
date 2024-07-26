@@ -1,0 +1,260 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _2.2.4_c_pi5:
+
+2.2.4 Module à interrupteur Reed
+==============================
+
+Introduction
+-------------------
+
+Dans ce projet, nous allons découvrir l'interrupteur Reed, qui est un interrupteur électrique fonctionnant au moyen d'un champ magnétique appliqué.
+
+.. image:: ../img/2.2.4reed_switch.png
+    :width: 300
+    :align: center
+
+Composants nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants. 
+
+.. image:: ../img/2.2.4component.png
+    :width: 700
+    :align: center
+
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_reed_switch`
+        - |link_reed_switch_buy|
+
+Diagramme Schématique
+-----------------------
+
+============== ========= ========= ===
+Nom de T-Board  physique  wiringPi BCM
+GPIO17          Broche 11 0        17
+GPIO27          Broche 13 2        27
+GPIO22          Broche 15 3        22
+============    ========= ======== ===
+
+.. image:: ../img/reed_schematic.png
+    :width: 400
+    :align: center
+
+.. image:: ../img/reed_schematic2.png
+    :width: 400
+    :align: center
+
+Procédures Expérimentales
+-------------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/2.2.4fritzing.png
+    :width: 700
+    :align: center
+
+**Étape 2 :** Changer de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.4/
+
+**Étape 3 :** Compiler.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.4_ReedSwitch.c -lwiringPi
+
+**Étape 4 :** Exécuter.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+La LED verte s'allumera lorsque le code sera exécuté. Si un aimant est placé près du module de l'interrupteur Reed, la LED rouge s'allume ; retirez l'aimant et la LED verte s'allume à nouveau.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou s'il y a une erreur indiquant : \"wiringPi.h: Aucun fichier ou répertoire de ce type\", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define ReedPin		0
+    #define Gpin		2
+    #define Rpin		3
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+
+        pinMode(ReedPin, INPUT);
+        LED("GREEN");
+        
+        while(1){
+            if(0 == digitalRead(ReedPin)){
+                delay(10);
+                if(0 == digitalRead(ReedPin)){
+                    LED("RED");	
+                    printf("Detected Magnetic Material!\n");	
+                }
+            }
+            else if(1 == digitalRead(ReedPin)){
+                delay(10);
+                if(1 == digitalRead(ReedPin)){
+                    while(!digitalRead(ReedPin));
+                    LED("GREEN");
+                }
+            }
+        }
+        return 0;
+    }
+
+
+**Explication du Code**
+
+.. code-block:: c
+
+    #define ReedPin		0
+    #define Gpin		2
+    #define Rpin		3
+
+Les broches GPIO17, GPIO27 et GPIO22 de la carte d'extension T sont correspondantes aux GPIO0, 
+GPIO2 et GPIO3 dans wiringPi. Attribuez les GPIO0, GPIO2 et GPIO3 à ``ReedPin``, ``Gpin`` et ``Rpin``.
+
+.. code-block:: c
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+Définissez une fonction ``LED()`` pour contrôler les 2 LED, le paramètre de cette fonction est ``color``.
+
+Lorsque ``color`` est ``"RED"``, définissez ``Rpin`` sur ``HIGH`` (allumer la LED rouge) et ``Gpin`` sur ``LOW`` (éteindre la LED verte) ; lorsque ``color`` est ``"GREEN"``, allumez la LED verte et éteignez la LED rouge. 
+
+.. code-block:: c
+
+    while(1){
+            if(0 == digitalRead(ReedPin)){
+                delay(10);
+                if(0 == digitalRead(ReedPin)){
+                    LED("RED");	
+                    printf("Detected Magnetic Material!\n");	
+                }
+            }
+            else if(1 == digitalRead(ReedPin)){
+                delay(10);
+                if(1 == digitalRead(ReedPin)){
+                    while(!digitalRead(ReedPin));
+                    LED("GREEN");
+                }
+            }
+        }
+
+Lisez la valeur du module d'interrupteur à lames, si la valeur lue deux fois est 0, appelez ``LED("RED")`` pour allumer la LED rouge et imprimez ``"Matériau magnétique détecté !"``.
+
+Si la valeur est 1, la LED verte s'allume.
+
+
+Photo du Phénomène
+------------------------
+
+.. image:: ../img/2.2.4reed_switch.JPG
+    :width: 500
+    :align: center

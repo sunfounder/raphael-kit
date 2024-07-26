@@ -1,0 +1,390 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.6_c_pi5:
+
+3.1.6 Feu de signalisation
+===========================
+
+Introduction
+---------------
+
+Dans ce projet, nous allons utiliser des LED de trois couleurs pour simuler le changement des
+ feux de signalisation et un afficheur à sept segments à quatre chiffres sera utilisé pour 
+ afficher le compte à rebours de chaque état de signalisation.
+
+Composants nécessaires
+----------------------------
+
+Pour ce projet, nous avons besoin des composants suivants :
+
+.. image:: ../img/list_Traffic_Light.png
+    :align: center
+
+Il est définitivement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément aux liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
+Schéma de câblage
+---------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPICE0       Pin 24   10       8
+SPICE1       Pin 26   11       7
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one7.png
+   :align: center
+Procédures expérimentales
+------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/image254.png
+
+**Étape 2 :** Changez de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.6/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.6_TrafficLight.c -lwiringPi
+
+**Étape 4 :** Exécutez le fichier compilé.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, les LED simuleront le changement de couleur des feux de circulation.
+ D'abord, la LED rouge s'allume pendant 60 secondes, puis la LED verte s'allume pendant 30 secondes ;
+  ensuite, la LED jaune s'allume pendant 5 secondes. Après cela, la LED rouge s'allume de nouveau pendant 
+  60 secondes. Cette série d'actions sera répétée en boucle.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+Code
+---------
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <wiringShift.h>
+    #include <signal.h>
+    #include <unistd.h>
+    #define     SDI     5 
+    #define     RCLK    4  
+    #define     SRCLK    1   
+
+    const int ledPin[]={6,10,11};  
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    int greenLight = 30;
+    int yellowLight = 5;
+    int redLight = 60;
+    int colorState = 0;
+    char *lightColor[]={"Red","Green","Yellow"};
+    int counter = 60;
+
+    void lightup()
+    {
+        for(int i=0;i<3;i++){
+            digitalWrite(ledPin[i],HIGH);
+        }
+        digitalWrite(ledPin[colorState],LOW);    
+    }
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+    void hc595_shift(int8_t data)
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 0x80 & (data << i));
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void clearDisplay()
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 1);
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void display()
+    {
+        int a,b,c;
+        
+        a = counter % 10000 / 1000 + counter % 1000 / 100;
+        b = counter % 10000 / 1000 + counter % 1000 / 100 + counter % 100 / 10;
+        c = counter % 10000 / 1000 + counter % 1000 / 100 + counter % 100 / 10 + counter % 10;
+
+        if (counter % 10000 / 1000 == 0){
+            clearDisplay();
+        }
+        else{
+            clearDisplay();
+            pickDigit(3);
+            hc595_shift(number[counter % 10000 / 1000]);
+        }
+        if (a == 0){
+            clearDisplay();
+        }
+        else{
+            clearDisplay();
+            pickDigit(2);
+            hc595_shift(number[counter % 1000 / 100]);
+        }
+        if (b == 0){
+            clearDisplay();
+        }
+        else{
+            clearDisplay();
+            pickDigit(1);
+            hc595_shift(number[counter % 100 / 10]);
+        }
+        if(c == 0){
+            clearDisplay();
+        }
+
+        else{
+            clearDisplay();
+            pickDigit(0);
+            hc595_shift(number[counter % 10]);
+        }
+    }
+
+    void loop()
+    {
+        while(1){
+        display();
+        lightup(); 
+        }
+    }
+
+
+    void timer(int  timer1){       //Timer function
+        if(timer1 == SIGALRM){   
+            counter --;         
+            alarm(1); 
+            if(counter == 0){
+                if(colorState == 0) counter = greenLight;
+                if(colorState == 1) counter = yellowLight;
+                if(colorState == 2) counter = redLight;
+                colorState = (colorState+1)%3; 
+            }
+            printf("counter : %d \t light color: %s \n",counter,lightColor[colorState]);
+        }
+    }
+
+    int main(void)
+    {
+        int i;
+        if(wiringPiSetup() == -1){ 
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        pinMode(SDI,OUTPUT);        
+        pinMode(RCLK,OUTPUT);
+        pinMode(SRCLK,OUTPUT);
+        for(i=0;i<4;i++){       
+            pinMode(placePin[i],OUTPUT);
+            digitalWrite(placePin[i],HIGH);
+        }
+        for(i=0;i<3;i++){       
+            pinMode(ledPin[i],OUTPUT);
+            digitalWrite(ledPin[i],HIGH);
+        }
+        signal(SIGALRM,timer);  
+        alarm(1); 
+        loop();
+        return 0;
+    }
+
+
+Explication du code
+--------------------
+
+.. code-block:: c
+
+    #define     SDI     5 
+    #define     RCLK    4  
+    #define     SRCLK    1   
+
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    void pickDigit(int digit);
+    void hc595_shift(int8_t data);
+    void clearDisplay();
+    void display();
+
+Ces codes sont utilisés pour réaliser la fonction d'affichage des nombres sur les écrans à 4 chiffres 7 segments. 
+Consultez le chapitre 1.1.5 du document pour plus de détails. Ici, nous utilisons les codes pour afficher le compte 
+à rebours du temps des feux de circulation.
+
+.. code-block:: c
+
+    const int ledPin[]={6,10,11};  
+
+    int colorState = 0;
+
+    void lightup()
+    {
+        for(int i=0;i<3;i++){
+            digitalWrite(ledPin[i],HIGH);
+        }
+        digitalWrite(ledPin[colorState],LOW);    
+    }
+
+Ces codes sont utilisés pour allumer et éteindre les LED.
+
+.. code-block:: c
+
+    int greenLight = 30;
+    int yellowLight = 5;
+    int redLight = 60;
+    int colorState = 0;
+    char *lightColor[]={"Red","Green","Yellow"};
+    int counter = 60;
+
+    void timer(int  timer1){       //Timer function
+        if(timer1 == SIGALRM){   
+            counter --;         
+            alarm(1); 
+            if(counter == 0){
+                if(colorState == 0) counter = greenLight;
+                if(colorState == 1) counter = yellowLight;
+                if(colorState == 2) counter = redLight;
+                colorState = (colorState+1)%3; 
+            }
+            printf("counter : %d \t light color: %s \n",counter,lightColor[colorState]);
+        }
+    }
+
+Ces codes sont utilisés pour activer et désactiver la minuterie. Consultez le chapitre 1.1.5 
+pour plus de détails. Ici, lorsque la minuterie revient à zéro, colorState sera changé pour 
+basculer les LED, et la minuterie sera réassignée à une nouvelle valeur.
+
+.. code-block:: c
+
+    void loop()
+    {
+        while(1){
+        display();
+        lightup(); 
+        }
+    }
+
+    int main(void)
+    {
+        //…
+        signal(SIGALRM,timer);  
+        alarm(1); 
+        loop();
+        return 0;
+    }
+
+La minuterie est démarrée dans la fonction main(). Dans la fonction loop(), 
+utilisez la boucle **while(1)** et appelez les fonctions des écrans à 4 chiffres 7 segments et des LED.
+
+Image du phénomène
+-------------------
+
+.. image:: ../img/IMG_8319.jpg
+   :align: center

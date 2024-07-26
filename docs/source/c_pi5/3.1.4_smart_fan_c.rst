@@ -1,0 +1,372 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.4_c_pi5:
+
+3.1.4 Ventilateur Intelligent
+===================================
+
+Introduction
+----------------
+
+Dans ce projet, nous allons utiliser des moteurs, des boutons et des thermistances pour fabriquer un ventilateur intelligent manuel + automatique dont la vitesse du vent est réglable.
+
+Composants Nécessaires
+--------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_Smart_Fan.png
+    :align: center
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    * - Nom
+      - ÉLÉMENTS DANS CE KIT
+      - LIEN
+    * - Kit Raphael
+      - 337
+      - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    * - INTRODUCTION DES COMPOSANTS
+      - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+      - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+      - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+      - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+      - |link_resistor_buy|
+    *   - :ref:`cpn_power_module`
+      - \-
+    *   - :ref:`cpn_thermistor`
+      - |link_thermistor_buy|
+    *   - :ref:`cpn_l293d`
+      - \-
+    *   - :ref:`cpn_adc0834`
+      - \-
+    *   - :ref:`cpn_button`
+      - |link_button_buy|
+    *   - :ref:`cpn_motor`
+      - |link_motor_buy|
+
+Schéma de Câblage
+-----------------
+
+============ ========= ========= ===
+Nom T-Board   physique wiringPi  BCM
+GPIO17        Pin 11   0         17
+GPIO18        Pin 12   1         18
+GPIO27        Pin 13   2         27
+GPIO22        Pin 15   3         22
+GPIO5         Pin 29   21        5
+GPIO6         Pin 31   22        6
+GPIO13        Pin 33   23        13
+============ ========= ========= ===
+
+.. image:: ../img/Schematic_three_one4.png
+   :align: center
+
+Procédures Expérimentales
+------------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image245.png
+    :align: center
+
+.. note::
+    Le module d'alimentation peut utiliser une batterie de 9V avec la boucle de batterie de 9V dans
+     le kit. Insérez le capuchon du module d'alimentation dans les bandes de bus de 5V de la planche à pain.
+
+.. image:: ../img/image118.jpeg
+    :align: center
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.4/
+
+**Étape 3 :** Compiler.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.4_SmartFan.c -lwiringPi -lm
+
+**Étape 4 :** Exécuter le fichier exécutable ci-dessus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, démarrez le ventilateur en appuyant sur le bouton. 
+Chaque fois que vous appuyez, une vitesse est ajustée vers le haut ou vers le bas. 
+Il y a **5** niveaux de vitesse : **0~4**. Lorsqu'il est réglé sur le 4\ :sup:`ème` niveau de 
+vitesse et que vous appuyez sur le bouton, le ventilateur s'arrête de fonctionner avec une vitesse de vent de **0**.
+
+Une fois que la température augmente ou diminue de plus de 2℃, la vitesse augmente ou diminue 
+automatiquement d'un niveau.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
+Code
+--------
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+    #include <math.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define ADC_CS      0
+    #define ADC_CLK     1
+    #define ADC_DIO     2
+    #define MotorPin1   21
+    #define MotorPin2   22
+    #define MotorEnable 23
+    #define BtnPin      3
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+    //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int temperture(){
+        unsigned char analogVal;
+        double Vr, Rt, temp, cel, Fah;
+        analogVal = get_ADC_Result(0);
+        Vr = 5 * (double)(analogVal) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        int t=cel;
+        return t;
+    }
+
+    int motor(int level){
+        if(level==0){
+            digitalWrite(MotorEnable,LOW);
+            return 0;
+        }
+        if (level>=4){
+            level =4;
+        }
+        digitalWrite(MotorEnable,HIGH);
+        softPwmWrite(MotorPin1, level*25);
+        return level;    
+    }
+    void setup(){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return;
+        }
+        softPwmCreate(MotorPin1,  0, 100);
+        softPwmCreate(MotorPin2,  0, 100);
+        pinMode(MotorEnable,OUTPUT);
+        pinMode(BtnPin,INPUT);
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+    }
+
+    int main(void)
+    {
+        setup();
+        int currentState,lastState=0;
+        int level = 0;
+        int currentTemp,markTemp=0;
+        while(1){
+            currentState=digitalRead(BtnPin);
+            currentTemp=temperture();
+            if (currentTemp<=0){continue;}
+            if (currentState==1&&lastState==0){
+                level=(level+1)%5;
+                markTemp=currentTemp;
+                delay(500);
+            }
+            lastState=currentState;
+            if (level!=0){
+                if (currentTemp-markTemp<=-2){
+                    level=level-1;
+                    markTemp=currentTemp;
+                }
+                if (currentTemp-markTemp>=2){
+                    level=level+1;
+                    markTemp=currentTemp;
+                }
+            }
+            level=motor(level);
+        }
+        return 0;
+    }
+
+Code Explanation
+----------------------
+
+.. code-block:: c
+
+    int temperture(){
+        unsigned char analogVal;
+        double Vr, Rt, temp, cel, Fah;
+        analogVal = get_ADC_Result(0);
+        Vr = 5 * (double)(analogVal) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        int t=cel;
+        return t;
+    }
+
+La fonction temperture() convertit les valeurs du thermistor lues par l'ADC0834 
+en valeurs de température. Consultez :ref:`2.2.2_c_pi5` pour plus de détails.
+
+.. code-block:: c
+
+    int motor(int level){
+        if(level==0){
+            digitalWrite(MotorEnable,LOW);
+            return 0;
+        }
+        if (level>=4){
+            level =4;
+        }
+        digitalWrite(MotorEnable,HIGH);
+        softPwmWrite(MotorPin1, level*25);
+        return level;    
+    }
+
+Cette fonction contrôle la vitesse de rotation du moteur. La plage de niveaux est de **0-4**
+(le niveau **0** arrête le moteur). Chaque niveau représente un changement de **25 %** de la vitesse 
+du vent.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        setup();
+        int currentState,lastState=0;
+        int level = 0;
+        int currentTemp,markTemp=0;
+        while(1){
+            currentState=digitalRead(BtnPin);
+            currentTemp=temperture();
+            if (currentTemp<=0){continue;}
+            if (currentState==1&&lastState==0){
+                level=(level+1)%5;
+                markTemp=currentTemp;
+                delay(500);
+            }
+            lastState=currentState;
+            if (level!=0){
+                if (currentTemp-markTemp<=-2){
+                    level=level-1;
+                    markTemp=currentTemp;
+                }
+                if (currentTemp-markTemp>=2){
+                    level=level+1;
+                    markTemp=currentTemp;
+                }
+            }
+            level=motor(level);
+        }
+        return 0;
+    }
+
+La fonction **main()** contient l'ensemble du processus du programme comme suit :
+
+1) Lire constamment l'état du bouton et la température actuelle.
+
+2) Chaque pression fait augmenter le niveau de **+1**, en même temps, la température est mise à jour. Le niveau varie de **1~4**.
+
+3) Lorsque le ventilateur fonctionne (le niveau **n'est pas 0**), la température est sous surveillance. Un changement de **2℃ ou plus** provoque l'augmentation ou la diminution du niveau.
+
+4) Le moteur change la vitesse de rotation en fonction du **niveau**.

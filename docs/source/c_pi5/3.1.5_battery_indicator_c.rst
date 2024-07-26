@@ -1,0 +1,190 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.5_c_pi5:
+
+3.1.5 Indicateur de Batterie
+==================================
+
+Introduction
+--------------
+
+Dans ce projet, nous allons fabriquer un dispositif indicateur de batterie qui peut afficher visuellement le niveau de la batterie sur le bargraphe LED.
+
+Composants Nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_Battery_Indicator.png
+    :align: center
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
+    *   - :ref:`cpn_adc0834`
+        - \-
+
+Schéma de Connexion
+-------------------
+
+============ ======== ======== ===
+Nom T-Board  physique wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO25       Pin 22   6        25
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       20
+GPIO21       Pin 40   29       21
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+GPIO19       Pin 35   24       19
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one5.png
+   :align: center
+Procédures Expérimentales
+-------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image248.png
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.5/
+
+**Étape 3 :** Compiler le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.5_BatteryIndicator.c -lwiringPi
+
+**Étape 4 :** Exécuter le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Après avoir exécuté le programme, connectez un fil de sortie au 3ème pin de l'ADC0834 et à la GND,
+ puis reliez-les aux deux pôles d'une batterie. Vous verrez que les LED correspondantes sur le 
+ Bargraphe LED s'allument pour afficher le niveau de la batterie (plage de mesure : 0-5V).
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+
+
+
+**Explication du Code**
+
+
+.. code-block:: c
+
+    void LedBarGraph(int value){
+        for(int i=0;i<10;i++){
+            digitalWrite(pins[i],HIGH);
+        }
+        for(int i=0;i<value;i++){
+            digitalWrite(pins[i],LOW);
+        }
+    }
+
+Cette fonction contrôle l'allumage ou l'extinction des 10 LED sur le Bargraphe LED. 
+Nous attribuons d'abord un niveau élevé à ces 10 LED pour les éteindre, puis nous 
+décidons combien de LED seront allumées en changeant la valeur analogique reçue.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        uchar analogVal;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+        for(int i=0;i<10;i++){       //make led pins' mode is output
+            pinMode(pins[i], OUTPUT);
+            digitalWrite(pins[i],HIGH);
+        }
+        while(1){
+            analogVal = get_ADC_Result(0);
+            LedBarGraph(analogVal/25);
+            delay(100);
+        }
+        return 0;
+    }
+
+analogVal produit des valeurs (**0-255**) avec des variations de tension (**0-5V**), 
+par exemple, si une tension de 3V est détectée sur une batterie, la valeur correspondante
+ **152** s'affiche sur le voltmètre.
+
+Les **10** LED sur le Bargraphe LED sont utilisées pour afficher les lectures de **analogVal**. 
+255/10=25, donc tous les **25** que la valeur analogique augmente, une LED supplémentaire s'allume,
+ par exemple, si "analogVal=150 (environ 3V), il y a 6 LED allumées."
+
+**Photo du Phénomène**
+
+.. image:: ../img/image249.jpeg
+   :align: center

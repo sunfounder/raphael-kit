@@ -1,0 +1,154 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _2.2.10_c_pi5:
+
+2.2.10 Module RFID MFRC522
+================================
+
+Introduction
+---------------
+
+L'identification par radiofréquence (RFID) désigne les technologies utilisant
+la communication sans fil entre un objet (ou tag) et un dispositif
+interrogateur (ou lecteur) pour suivre et identifier automatiquement ces objets.
+
+Certaines des applications les plus courantes de cette technologie incluent les chaînes d'approvisionnement au détail,
+les chaînes d'approvisionnement militaires, les méthodes de paiement automatisées,
+le suivi et la gestion des bagages, le suivi des documents et la gestion pharmaceutique, pour ne citer que quelques exemples.
+
+Dans ce projet, nous utiliserons le RFID pour lire et écrire.
+
+Composants requis
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_2.2.7.png
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément en utilisant les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_mfrc522`
+        - |link_mfrc522_rfid_buy|
+
+Schéma de câblage
+-----------------
+
+.. image:: ../img/image331.png
+
+Procédures expérimentales
+-----------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image232.png
+
+**Étape 2 :** Configurer SPI (référez-vous à :ref:`Configuration SPI` pour plus de détails. Si vous avez déjà configuré SPI, passez cette étape.)
+
+**Étape 3 :** Aller au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/2.2.10/
+
+**Étape 4 :** Compiler le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    make read
+    make write
+
+**Étape 5 :** Après avoir exécuté ``./write``, entrez les informations, telles que le nom de la personne, puis placez le tag ou la carte sur le module MRC522 et attendez que l'écriture soit terminée.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./write
+
+**Étape 6 :** Maintenant, exécutez ``./read`` pour lire les informations du tag ou de la carte que vous avez écrites.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./read
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Explication du code**
+
+.. code-block:: c
+
+    InitRc522();
+
+Cette fonction est utilisée pour initialiser le module RFID RC522.
+
+.. code-block:: c
+
+    uint8_t read_card_data();
+
+Cette fonction est utilisée pour lire les données de la carte et si la lecture réussit, elle retournera "1".
+
+.. code-block:: c
+
+    uint8_t write_card_data(uint8_t *data);
+
+Cette fonction est utilisée pour écrire les données de la carte et retourne "1" si l'écriture réussit. ``*data`` est l'information qui sera écrite sur la carte.
+
+Image du phénomène
+------------------
+
+.. image:: ../img/image233.jpeg

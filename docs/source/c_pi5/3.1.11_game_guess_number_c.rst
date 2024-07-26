@@ -1,0 +1,323 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.11_c_pi5:
+
+3.1.11 JEU – Devinez le nombre
+======================================
+
+Introduction
+------------------
+
+Deviner les nombres est un jeu amusant où vous et vos amis tour à tour entrez un nombre (0~99). 
+La plage sera réduite à chaque entrée de nombre jusqu'à ce qu'un joueur trouve la bonne réponse. 
+Ensuite, le joueur est éliminé et puni. Par exemple, si le nombre chanceux est 51 que les joueurs 
+ne peuvent pas voir, et que le joueur ① entre 50, la plage de nombres change à 50~99 ; si le joueur
+ ② entre 70, la plage devient 50~70 ; si le joueur ③ entre 51, ce joueur est le perdant. Ici, nous utilisons un clavier pour entrer les nombres et un écran LCD pour afficher les résultats.
+
+
+
+
+
+Composants nécessaires
+------------------------------
+
+Pour ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_GAME_Guess_Number.png
+    :align: center
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément aux liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_keypad`
+        - \-
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+
+Schéma de câblage
+-----------------------
+
+=============== ======== ======== =======
+Nom de la carte  Physique WiringPi BCM
+GPIO18           Pin 12   1        18
+GPIO23           Pin 16   4        23
+GPIO24           Pin 18   5        24
+GPIO25           Pin 22   6        25
+SPIMOSI          Pin 19   12       10
+GPIO22           Pin 15   3        22
+GPIO27           Pin 13   2        27
+GPIO17           Pin 11   0        17
+SDA1             Pin 3    SDA1(8)  SDA1(2)
+SCL1             Pin 5    SCL1(9)  SDA1(3)
+=============== ======== ======== =======
+
+.. image:: ../img/Schematic_three_one12.png
+   :align: center
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/image273.png
+
+**Étape 2 :** Configurez l'I2C (voir l'appendice :ref:`i2c_config`. Si vous avez déjà configuré l'I2C, passez cette étape.)
+
+**Étape 3 :** Changez de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.11/
+
+**Étape 4 :** Compilez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.11_GAME_GuessNumber.c -lwiringPi
+
+**Étape 5 :** Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Après l'exécution du programme, la page initiale s'affiche sur l'écran LCD :
+
+.. note::
+
+    * Si un message d'erreur ``wiringPi.h: No such file or directory`` s'affiche, veuillez consulter :ref:`install_wiringpi`.
+    * Si vous recevez l'erreur ``Unable to open I2C device: No such file or directory``, vous devez vous référer à :ref:`i2c_config` pour activer l'I2C et vérifier si le câblage est correct.
+    * Si le code et le câblage sont corrects, mais que l'écran LCD ne s'affiche toujours pas, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
+
+.. code-block:: 
+
+   Welcome!
+   Press A to go!
+
+Appuyez sur « A », et le jeu commencera et la page de jeu apparaîtra sur l'écran LCD.
+
+.. code-block:: 
+
+   Enter number:
+   0 ‹point‹ 99
+
+Un nombre aléatoire ‘\ **point**\ ’ est généré mais non affiché sur l'écran LCD au début du jeu, 
+et votre tâche est de le deviner. Le nombre que vous avez entré apparaît à la fin de la première 
+ligne jusqu'à ce que le calcul final soit terminé. (Appuyez sur « D » pour lancer la comparaison, 
+et si le nombre entré est supérieur à **10**, la comparaison automatique commencera.)
+
+La plage de nombres de ‘point’ est affichée sur la deuxième ligne. Vous devez entrer un nombre dans
+ cette plage. Lorsque vous tapez un nombre, la plage se réduit ; si vous trouvez le nombre chanceux,
+  il s'affichera « You've got it! ».
+
+**Explication du code**
+
+Au début du code se trouvent les fonctions de base du **clavier** et de l'**I2C LCD1602**. 
+Vous pouvez en apprendre plus sur eux dans :ref:`1.1.7_c_pi5` et :ref:`2.1.8_c_pi5`.
+
+
+
+
+
+Voici ce que vous devez savoir :
+
+.. code-block:: c
+
+    /****************************************/
+    //Start from here
+    /****************************************/
+    void init(void){
+        fd = wiringPiI2CSetup(LCDAddr);
+        lcd_init();
+        lcd_clear();
+        for(int i=0 ; i<4 ; i++) {
+            pinMode(rowPins[i], OUTPUT);
+            pinMode(colPins[i], INPUT);
+        }
+        lcd_clear();
+        write(0, 0, "Welcome!");
+        write(0, 1, "Press A to go!");
+    }
+    
+Cette fonction est utilisée pour initialiser l'**I2C LCD1602** et le **clavier**, et pour afficher « Welcome! » et « Press A to go! ».
+
+.. code-block:: c
+
+    void init_new_value(void){
+        srand(time(0));
+        pointValue = rand()%100;
+        upper = 99;
+        lower = 0;
+        count = 0;
+        printf("point is %d\n",pointValue);
+    }
+
+Cette fonction génère le nombre aléatoire ‘\ **point**\ ’ et réinitialise l'indice de plage du point.
+
+.. code-block:: c
+
+    bool detect_point(void){
+        if(count > pointValue){
+            if(count < upper){
+                upper = count;
+            }
+        }
+        else if(count < pointValue){
+            if(count > lower){
+                lower = count;
+            }
+        }
+        else if(count = pointValue){
+            count = 0;
+            return 1;
+        }
+        count = 0;
+        return 0;
+    }
+
+detect_point() compare le nombre entré avec le nombre généré “point”. Si le résultat de la 
+comparaison indique qu'ils ne sont pas identiques, **count** assignera des valeurs à **upper** 
+et **lower** et retournera ‘\ **0**\ ’ ; sinon, s'ils sont identiques, la fonction retournera 
+‘\ **1**\ ’.
+
+.. code-block:: c
+
+    void lcd_show_input(bool result){
+        char *str=NULL;
+        str =(char*)malloc(sizeof(char)*3);
+        lcd_clear();
+        if (result == 1){
+            write(0,1,"You've got it!");
+            delay(5000);
+            init_new_value();
+            lcd_show_input(0);
+            return;
+        }
+        write(0,0,"Enter number:");
+        Int2Str(str,count);
+        write(13,0,str);
+        Int2Str(str,lower);
+        write(0,1,str);
+        write(3,1,"<Point<");
+        Int2Str(str,upper);
+        write(12,1,str);
+    }
+
+Cette fonction permet d'afficher la page de jeu. Faites attention à la fonction 
+**Int2Str(str,count)**, elle convertit les variables **count**, **lower** et **upper** 
+de **integer** à **character string** pour un affichage correct sur l'**lcd**.
+
+.. code-block:: c
+
+    int main(){
+        unsigned char pressed_keys[BUTTON_NUM];
+        unsigned char last_key_pressed[BUTTON_NUM];
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        init();
+        init_new_value();
+        while(1){
+            keyRead(pressed_keys);
+            bool comp = keyCompare(pressed_keys, last_key_pressed);
+            if (!comp){
+                if(pressed_keys[0] != 0){
+                    bool result = 0;
+                    if(pressed_keys[0] == 'A'){
+                        init_new_value();
+                        lcd_show_input(0);
+                    }
+                    else if(pressed_keys[0] == 'D'){
+                        result = detect_point();
+                        lcd_show_input(result);
+                    }
+                    else if(pressed_keys[0] >='0' && pressed_keys[0] <= '9'){
+                        count = count * 10;
+                        count = count + (pressed_keys[0] - 48);
+                        if (count>=10){
+                            result = detect_point();
+                        }
+                        lcd_show_input(result);
+                    }
+                }
+                keyCopy(last_key_pressed, pressed_keys);
+            }
+            delay(100);
+        }
+        return 0;   
+    }
+
+Main() contient l'ensemble du processus du programme, comme montré ci-dessous :
+
+1) Initialiser l'**I2C LCD1602** et le **clavier**.
+
+2) Utiliser **init_new_value()** pour créer un nombre aléatoire **0-99**.
+
+3) Vérifier si un bouton est appuyé et lire l'état du bouton.
+
+4) Si le bouton ‘\ **A**\ ’ est appuyé, un nombre aléatoire **0-99** apparaîtra et le jeu commencera.
+
+5) Si le bouton ‘\ **D**\ ’ est détecté comme étant appuyé, le programme entrera dans le jugement du résultat et affichera le résultat sur l'écran LCD. Cette étape permet également de juger le résultat lorsque vous appuyez sur un seul nombre puis sur le bouton ‘\ **D**\ ’.
+
+6) Si un bouton **0-9** est appuyé, la valeur de **count** sera modifiée ; si **count** est supérieur à **10**, alors le jugement commence.
+
+7) Les changements du jeu et ses valeurs sont affichés sur l'**LCD1602**.
+
+Image du phénomène
+------------------------
+
+.. image:: ../img/image274.jpeg
+   :align: center

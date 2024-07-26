@@ -1,0 +1,209 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _2.1.6_c_pi5:
+
+2.1.6 Module Encodeur Rotatif
+=============================
+
+Introduction
+------------
+
+Dans ce projet, vous allez découvrir l'encodeur rotatif. Un encodeur rotatif est un 
+interrupteur électronique avec une série d'impulsions régulières dans une séquence 
+temporelle stricte. Lorsqu'il est utilisé avec un circuit intégré (CI), 
+il peut réaliser des opérations d'incrémentation, de décrémentation, de changement 
+de page et d'autres opérations telles que le défilement de la souris, la sélection de menu, etc.
+
+Composants Nécessaires
+----------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/Part_two_25.png
+
+Il est très pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_rotary_encoder`
+        - |link_rotary_encoder_buy|
+
+**Schéma de Câblage**
+------------------------
+
+.. image:: ../img/image349.png
+   :align: center
+
+Procédures Expérimentales
+-----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/2.1.6_fritzing.png
+   :align: center
+
+**Étape 2 :** Ouvrez le fichier de code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.6/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.6_RotaryEncoder.c -lwiringPi
+
+**Étape 4 :** Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Vous verrez le compteur dans le terminal. Lorsque vous tournez l'encodeur rotatif dans le sens horaire, le compteur augmente ; lorsque vous le tournez dans le sens antihoraire, le compteur diminue. Si vous appuyez sur l'interrupteur de l'encodeur rotatif, les relevés reviendront à zéro.
+
+.. note::
+
+   Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+   #include <stdio.h>
+   #include <string.h>
+   #include <errno.h>
+   #include <stdlib.h>
+   #include <wiringPi.h>
+
+   #define  clkPin    0
+   #define  dtPin    1
+   #define  swPin     2
+
+   static volatile int globalCounter = 0 ;
+
+   unsigned char flag;
+   unsigned char Last_dtPin_Status;
+   unsigned char Current_dtPin_Status;
+
+   void btnISR(void)
+   {
+      globalCounter = 0;
+   }
+
+   void rotaryDeal(void)
+   {
+      Last_dtPin_Status = digitalRead(dtPin);
+
+      while(!digitalRead(clkPin)){
+         Current_dtPin_Status = digitalRead(dtPin);
+         flag = 1;
+      }
+
+      if(flag == 1){
+         flag = 0;
+         if((Last_dtPin_Status == 0)&&(Current_dtPin_Status == 1)){
+            globalCounter --;	
+         }
+         if((Last_dtPin_Status == 1)&&(Current_dtPin_Status == 0)){
+            globalCounter ++;
+         }
+      }
+   }
+
+   int main(void)
+   {
+      if(wiringPiSetup() < 0){
+         fprintf(stderr, "Unable to setup wiringPi:%s\n",strerror(errno));
+         return 1;
+      }
+
+      pinMode(swPin, INPUT);
+      pinMode(clkPin, INPUT);
+      pinMode(dtPin, INPUT);
+
+      pullUpDnControl(swPin, PUD_UP);
+
+      if(wiringPiISR(swPin, INT_EDGE_FALLING, &btnISR) < 0){
+         fprintf(stderr, "Unable to init ISR\n",strerror(errno));	
+         return 1;
+      }
+      
+      int tmp = 0;
+
+      while(1){
+         rotaryDeal();
+         if (tmp != globalCounter){
+            printf("%d\n", globalCounter);
+            tmp = globalCounter;
+         }
+      }
+
+      return 0;
+   }
+
+**Analyse du Code**
+
+* Lire la valeur de dtPin lorsque clkPin est bas.
+* Lorsque clkPin est haut, si dtPin passe de bas à haut, le compteur diminue, sinon le compteur augmente.
+* swPin sera en niveau bas lorsque l'arbre est pressé.
+
+À partir de cela, le flux du programme est montré ci-dessous :
+
+.. image:: ../img/2.1.6_flow.png
+   :align: center
+
+**Image du Phénomène**
+--------------------------
+
+.. image:: ../img/2.1.6rotary_ecoder.JPG
+   :align: center

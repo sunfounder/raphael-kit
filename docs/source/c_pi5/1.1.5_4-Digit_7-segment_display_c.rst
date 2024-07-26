@@ -1,0 +1,340 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _1.1.5_c_pi5:
+
+1.1.5 Affichage 7 segments à 4 chiffres
+===========================================
+
+Introduction
+-----------------
+
+Ensuite, suivez-moi pour essayer de contrôler l'affichage 7 segments à 4 chiffres.
+
+Composants nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_4_digit.png
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
+.. note::
+    Dans ce projet, pour l'affichage 7 segments à 4 chiffres, nous devons utiliser le modèle BS. Si vous utilisez le modèle AS, il se peut qu'il ne s'allume pas.
+
+Schéma de câblage
+--------------------------
+
+============ ======== ======== ===
+Nom T-Board  Physique wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+============ ======== ======== ===
+
+.. image:: ../img/schmatic_4_digit.png
+
+Procédures expérimentales
+-----------------------------------
+
+**Étape 1** : Construisez le circuit.
+
+.. image:: ../img/image80.png
+
+**Étape 2** : Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.1.5/
+
+**Étape 3** : Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.5_4-Digit.c -lwiringPi
+
+**Étape 4** : Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Après l'exécution du code, le programme effectue un comptage, augmentant de 1 par seconde, et l'affichage 7 segments à 4 chiffres affiche le comptage.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <wiringShift.h>
+    #include <signal.h>
+    #include <unistd.h>
+
+    #define SDI 5
+    #define RCLK 4
+    #define SRCLK 1
+
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    int counter = 0;
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+    void hc595_shift(int8_t data)
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 0x80 & (data << i));
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void clearDisplay()
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 1);
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void loop()
+    {
+        while(1){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+    
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+        }
+    }
+
+    void timer(int timer1)
+    { 
+        if (timer1 == SIGALRM)
+        { 
+            counter++;
+            alarm(1); 
+            printf("%d\n", counter);
+        }
+    }
+
+    int main(void)
+    {
+        if (wiringPiSetup() == -1)
+        { 
+            printf("setup wiringPi failed !");
+            return;
+        }
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT);
+        pinMode(SRCLK, OUTPUT);
+        
+        for (int i = 0; i < 4; i++)
+        {
+            pinMode(placePin[i], OUTPUT);
+            digitalWrite(placePin[i], HIGH);
+        }
+        signal(SIGALRM, timer); 
+        alarm(1);               
+        loop(); 
+    }
+
+
+
+**Explication du code**
+
+.. code-block:: c
+
+    const int placePin[] = {12, 3, 2, 0};
+
+Ces quatre broches contrôlent les broches anodiques communes de l'affichage à 7 segments à quatre chiffres.
+
+.. code-block:: c
+
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+Un tableau de codes segments de 0 à 9 en hexadécimal (anode commune).
+
+.. code-block:: c
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+Sélectionnez l'emplacement de la valeur. Il n'y a qu'un seul emplacement qui doit être activé à chaque fois. L'emplacement activé sera écrit à l'état haut.
+
+.. code-block:: c
+
+    void loop()
+    {
+        while(1){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+    
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+        }
+    }
+
+La fonction est utilisée pour définir le numéro affiché sur l'affichage à 7 segments à 4 chiffres.
+
+* ``clearDisplay()``：écrit 11111111 pour éteindre les huit LEDs sur l'affichage à 7 segments afin de vider le contenu affiché.
+* ``pickDigit(0)``：sélectionne le quatrième affichage à 7 segments.
+* ``hc595_shift(number[counter%10])``：le nombre du chiffre unique de counter sera affiché sur le quatrième segment.
+
+.. code-block:: c
+
+    signal(SIGALRM, timer); 
+
+C'est une fonction fournie par le système, le prototype du code est :
+
+.. code-block:: c
+
+    sig_t signal(int signum,sig_t handler);
+
+Après l'exécution de ``signal()``, une fois que le processus reçoit le signum correspondant (dans ce cas SIGALRM), il interrompt immédiatement la tâche en cours et traite la fonction définie (dans ce cas ``timer(sig)``).
+
+.. code-block:: c
+
+    alarm(1);
+
+C'est également une fonction fournie par le système. Le prototype du code est :
+
+.. code-block:: c
+
+    unsigned int alarm (unsigned int seconds);
+
+Elle génère un signal SIGALRM après un certain nombre de secondes.
+
+.. code-block:: c
+
+    void timer(int timer1)
+    { 
+        if (timer1 == SIGALRM)
+        { 
+            counter++;
+            alarm(1); 
+            printf("%d\n", counter);
+        }
+    }
+
+Nous utilisons les fonctions ci-dessus pour implémenter la fonction de minuterie.
+Après que ``alarm()`` génère le signal SIGALRM, la fonction de minuterie est appelée. Ajoutez 1 à counter, et la fonction ``alarm(1)`` sera appelée de manière répétée après 1 seconde.
+
+Image du phénomène
+-----------------------
+
+.. image:: ../img/image81.jpeg

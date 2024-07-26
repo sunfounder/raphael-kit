@@ -1,0 +1,275 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _2.2.2_c_pi5:
+
+2.2.2 Thermistance
+======================
+
+Introduction
+------------
+
+Tout comme la photorésistance peut détecter la lumière, la thermistance est un dispositif électronique sensible à la température qui peut être utilisé pour réaliser des fonctions de contrôle de la température, telles que la création d'une alarme thermique.
+
+Composants requis
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_2.2.2_thermistor.png
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_adc0834`
+        - \-
+
+Schéma de câblage
+-----------------
+
+.. image:: ../img/image323.png
+
+
+.. image:: ../img/image324.png
+
+
+Procédures expérimentales
+-----------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/image202.png
+
+**Étape 2 :** Allez dans le dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.2/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.2_Thermistor.c -lwiringPi -lm
+
+.. note::
+    -lm est pour charger la bibliothèque mathématique. Ne pas omettre, sinon vous ferez une erreur.
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, la thermistance détecte la température ambiante qui sera 
+imprimée à l'écran une fois que le programme aura terminé le calcul.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur indiquant : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <math.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        unsigned char analogVal;
+        double Vr, Rt, temp, cel, Fah;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            Vr = 5 * (double)(analogVal) / 255;
+            Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+            temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+            cel = temp - 273.15;
+            Fah = cel * 1.8 +32;
+            printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+            delay(100);
+        }
+        return 0;
+    }
+**Explication du code**
+
+.. code-block:: c
+
+    #include <math.h>
+
+Il existe une bibliothèque numérique en C qui déclare un ensemble de fonctions 
+pour effectuer des opérations et transformations mathématiques courantes.
+
+.. code-block:: c
+
+    analogVal = get_ADC_Result(0);
+
+Cette fonction est utilisée pour lire la valeur de la thermistance.
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+    cel = temp - 273.15;
+    Fah = cel * 1.8 +32;
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+Ces calculs convertissent les valeurs de la thermistance en valeurs Celsius.
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+
+Ces deux lignes de code calculent la distribution de la tension avec la valeur 
+analogique lue afin d'obtenir Rt (résistance de la thermistance).
+
+.. code-block:: c
+
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+
+Ce code fait référence à l'insertion de Rt dans la formule
+ **T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** pour obtenir la température en Kelvin.
+
+.. code-block:: c
+
+    temp = temp - 273.15;
+
+Convertit la température en Kelvin en degrés Celsius.
+
+.. code-block:: c
+
+    Fah = cel * 1.8 +32;
+
+Convertit les degrés Celsius en Fahrenheit.
+    
+.. code-block:: c
+
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+Affiche les degrés Celsius, les degrés Fahrenheit et leurs unités à l'écran.
+
+Image du phénomène
+------------------
+
+.. image:: ../img/image203.jpeg

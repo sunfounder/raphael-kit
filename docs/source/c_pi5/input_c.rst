@@ -1,0 +1,49 @@
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+Entrée
+=============
+
+2.1 Contrôleurs
+--------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    2.1.1_button_c
+    2.1.2_micro_switch_c
+    2.1.3_touch_switch_module_c
+    2.1.4_slide_switch_c
+    2.1.5_tilt_switch_c
+    2.1.6_rotary_encoder_module_c
+    2.1.7_potentiometer_c
+    2.1.8_keypad_c
+    2.1.9_joystick_c
+
+2.2 Capteurs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    2.2.1_photoresistor_c
+    2.2.2_thermistor_c
+    2.2.3_dht-11_c
+    2.2.4_reed_switch_c
+    2.2.5_ir_obstacle_avoidance_sensor_c
+    2.2.6_speed_sensor_module_c
+    2.2.7_pir_c
+    2.2.8_ultrasonic_sensor_module_c
+    2.2.9_mpu6050_module_c
+    2.2.10_mfrc522_rfid_module_c 

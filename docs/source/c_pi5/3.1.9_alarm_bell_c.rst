@@ -1,0 +1,255 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.9_c_pi5:
+
+3.1.9 Cloche d'alarme
+========================
+
+Introduction
+---------------
+
+Dans ce projet, nous allons fabriquer un dispositif d'alarme manuel. Vous pouvez remplacer l'interrupteur à bascule par une thermistance ou un capteur photosensible pour créer une alarme de température ou de lumière.
+
+Composants nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_Alarm_Bell.png
+    :align: center
+
+Il est très pratique d'acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+Schéma de câblage
+-------------------
+
+============ ======== ======== ===
+Nom T-Board  physique wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one10.png
+   :align: center
+
+Procédures expérimentales
+-------------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/image266.png
+
+**Étape 2 :** Changez de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.9/
+
+**Étape 3 :** Compilez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.9_AlarmBell.c -lwiringPi -lpthread
+
+**Étape 4 :** Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Après le démarrage du programme, mettez l'interrupteur à bascule à droite, et le buzzer émettra des sons d'alarme. En même temps, les LED rouges et vertes clignoteront à une certaine fréquence.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Explication du code**
+
+.. code-block:: c
+
+    #include <pthread.h>
+
+Dans ce code, vous utiliserez une nouvelle bibliothèque, ``pthread.h``, qui est un ensemble de bibliothèques de threads courantes et peut réaliser le multithreading. Nous ajoutons le paramètre ``-lpthread`` lors de la compilation pour le fonctionnement indépendant de la LED et du buzzer.
+
+.. code-block:: c
+
+    void *ledWork(void *arg){       
+        while(1)    
+        {   
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            digitalWrite(ALedPin,HIGH);
+            delay(500);
+            digitalWrite(ALedPin,LOW);
+            digitalWrite(BLedPin,HIGH);
+            delay(500);
+            digitalWrite(BLedPin,LOW);
+        }
+    }
+
+La fonction ``ledWork()`` permet de définir l'état de fonctionnement de ces 2 LED : elle garde la 
+LED verte allumée pendant 0,5s puis l'éteint ; de même, elle garde la LED rouge allumée pendant 
+0,5s puis l'éteint.
+
+.. code-block:: c
+
+    void *buzzWork(void *arg){
+        while(1)
+        {
+            if(flag==0){
+                pthread_exit(NULL);
+            }
+            if((note>=800)||(note<=130)){
+                pitch = -pitch;
+            }
+            note=note+pitch;
+            softToneWrite(BeepPin,note);
+            delay(10);
+        }
+    }
+
+La fonction ``buzzWork()`` sert à définir l'état de fonctionnement du buzzer. Ici, nous réglons la fréquence entre 130 et 800, pour accumuler ou diminuer à un intervalle de 20.
+
+.. code-block:: c
+
+    void on(){
+        flag = 1;
+        if(softToneCreate(BeepPin) == -1){
+            printf("setup softTone failed !");
+            return; 
+        }    
+        pthread_t tLed;     
+        pthread_create(&tLed,NULL,ledWork,NULL);    
+        pthread_t tBuzz;  
+        pthread_create(&tBuzz,NULL,buzzWork,NULL);      
+    }
+
+Dans la fonction on() :
+
+1) Définir le marqueur ``flag=1``, indiquant la fin du thread de contrôle.
+
+2) Créer une broche de tonalité contrôlée par logiciel ``BeepPin``.
+
+3) Créer deux threads séparés pour que la LED et le buzzer puissent fonctionner en même temps.
+
+* ``pthread_t tLed`` : Déclarer un thread ``tLed``.
+* ``pthread_create(&tLed,NULL,ledWork,NULL)`` : Créer le thread et son prototype est le suivant :
+
+.. code-block:: 
+
+    int pthread_create(pthread_t *restrict tidp,const pthread_attr_t*restrict_attr,void*（*start_rtn)(void*),void *restrict arg);
+
+Si cela réussit, retourne 0 ; sinon, retourne le numéro d'erreur -1.
+
+* Le premier paramètre est un pointeur vers l'identifiant du thread.
+* Le deuxième est utilisé pour définir l'attribut du thread.
+* Le troisième est l'adresse de départ de la fonction d'exécution du thread.
+* Le dernier est celui qui exécute la fonction.
+
+.. code-block:: c
+
+    void off(){
+        flag = 0;
+        softToneStop(BeepPin);
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BLedPin,LOW);
+    }
+
+La fonction ``Off()`` définit ``flag=0`` afin de quitter les threads **ledWork** et **BuzzWork** puis d'éteindre le buzzer et la LED.
+
+.. code-block:: c
+
+    int main(){       
+        setup(); 
+        int lastState = 0;
+        while(1){
+            int currentState = digitalRead(switchPin);
+            if ((currentState == 1)&&(lastState==0)){
+                on();
+            }
+            else if((currentState == 0)&&(lastState==1)){
+                off();
+            }
+            lastState=currentState;
+        }
+        return 0;
+    }
+
+Main() contient tout le processus du programme : lire d'abord la valeur de l'interrupteur à 
+glissière ; si l'interrupteur est basculé vers la droite (la lecture est 1), la fonction ``on()`` 
+est appelée, le buzzer émet des sons et les LED rouges et vertes clignotent. Sinon, le buzzer et les LED ne fonctionnent pas.
+
+
+
+Image du phénomène
+------------------------
+
+.. image:: ../img/image267.jpeg
+   :align: center

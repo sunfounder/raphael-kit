@@ -1,0 +1,162 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _1.1.7_c_pi5:
+
+1.1.7 LCD1602 I2C
+=======================
+
+Introduction
+------------------
+
+Le LCD1602 est un affichage à cristaux liquides de type caractère, capable d'afficher 32 caractères (16*2) simultanément.
+
+Composants nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants. 
+
+.. image:: ../img/list_i2c_lcd.png
+
+Il est certainement pratique d'acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+
+Schéma de câblage
+---------------------
+
+============ ========
+Nom T-Board  Physique
+SDA1         Pin 3
+SCL1         Pin 5
+============ ========
+
+.. image:: ../img/schematic_i2c_lcd.png
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image96.png
+
+
+**Étape 2 :** Configurer l'I2C (voir :ref:`I2C Configuration`. Si vous avez déjà configuré l'I2C, passez cette étape.)
+
+**Étape 3 :** Changer de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.1.7/
+
+**Étape 4 :** Compiler.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.7_Lcd1602.c -lwiringPi
+
+**Étape 5 :** Exécuter.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Après l'exécution du code, vous pouvez voir ``Greetings!, From SunFounder`` s'afficher sur le LCD.
+
+.. note::
+
+    * Si une erreur ``wiringPi.h: No such file or directory`` apparaît, veuillez vous référer à :ref:`install_wiringpi`.
+    * Si vous obtenez l'erreur ``Unable to open I2C device: No such file or directory``, vous devez vous référer à :ref:`i2c_config` pour activer l'I2C et vérifier si le câblage est correct.
+    * Si le code et le câblage sont corrects, mais que le LCD ne s'affiche toujours pas, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
+
+**Code**
+
+* `1.1.7_Lcd1602.c <https://github.com/sunfounder/raphael-kit/blob/master/c/1.1.7/1.1.7_Lcd1602.c>`_
+
+**Explication du code**
+
+.. code-block::
+
+    void write_word(int data){……}
+    void send_command(int comm){……}
+    void send_data(int data){……}
+    void init(){……}
+    void clear(){……}
+    void write(int x, int y, char data[]){……}
+
+Ces fonctions sont utilisées pour contrôler le code source ouvert I2C LCD1602. Elles nous permettent d'utiliser facilement l'I2C LCD1602.
+Parmi ces fonctions, ``init()`` est utilisée pour l'initialisation, ``clear()`` est utilisée pour effacer l'écran, ``write()`` est utilisée pour écrire ce qui est affiché, et d'autres fonctions soutiennent les fonctions ci-dessus.
+
+.. code-block:: c
+
+    fd = wiringPiI2CSetup(LCDAddr);
+
+Cette fonction initialise le système I2C avec le symbole de périphérique spécifié. Le prototype de la fonction :
+
+.. code-block:: c
+
+    int wiringPiI2CSetup(int devId);
+
+Le paramètre devId est l'adresse du périphérique I2C, elle peut être trouvée via la commande i2cdetect (voir Annexe) et le devId de l'I2C LCD1602 est généralement 0x27.
+
+.. code-block:: c
+
+    void write(int x, int y, char data[]){}
+
+Dans cette fonction, ``data[]`` est le caractère à imprimer sur le LCD, et les paramètres x et y déterminent la position d'impression (la ligne y+1, la colonne x+1 est la position de départ du caractère à imprimer).
+
+Image du phénomène
+--------------------------
+
+.. image:: ../img/image97.jpeg

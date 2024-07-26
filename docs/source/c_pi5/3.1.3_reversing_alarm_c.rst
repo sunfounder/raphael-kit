@@ -1,0 +1,317 @@
+ 
+
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.3_c_pi5:
+
+3.1.3 Alarme de Recul
+==============================
+
+Introduction
+-------------
+
+Dans ce projet, nous allons utiliser un écran LCD, un buzzer et des capteurs ultrasoniques 
+pour créer un système d'assistance au recul. Nous pouvons le placer sur un véhicule télécommandé 
+pour simuler le processus réel de recul d'une voiture dans un garage.
+
+Composants Nécessaires
+------------------------------
+
+Pour ce projet, nous avons besoin des composants suivants. 
+
+.. image:: ../img/list_Reversing_Alarm.png
+    :align: center
+
+Il est très pratique d'acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_ultrasonic_sensor`
+        - |link_ultrasonic_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+
+Schéma de Câblage
+--------------------
+
+Le capteur ultrasonique détecte la distance entre lui-même et l'obstacle qui sera affichée sur 
+l'écran LCD sous forme de code. En même temps, le capteur ultrasonique fait émettre au buzzer 
+un son d'avertissement de fréquence différente en fonction de la valeur de distance.
+
+===============  ======== =========  ===
+Nom de la Carte  physique  wiringPi  BCM
+GPIO23           Pin 16    4         23
+GPIO24           Pin 18    5         24
+GPIO17           Pin 11    0         17
+SDA1             Pin 3              
+SCL1             Pin 5              
+=============== ======== =========  ===
+
+.. image:: ../img/Schematic_three_one3.png
+   :align: center
+
+Procédures Expérimentales
+-----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image242.png
+
+**Étape 2 :** Changer de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.3/
+
+**Étape 3 :** Compiler.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.3_ReversingAlarm.c -lwiringPi
+
+**Étape 4 :** Exécuter.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, le module de capteur ultrasonique détecte la distance 
+jusqu'à l'obstacle et affiche les informations sur la distance sur le LCD1602; 
+de plus, le buzzer émet un son d'avertissement dont la fréquence change en fonction de la distance.
+.. note::
+
+    * Si une erreur ``wiringPi.h : No such file or directory`` apparaît, veuillez consulter :ref:`install_wiringpi`.
+    * Si une erreur ``Unable to open I2C device : No such file or directory`` apparaît, vous devez consulter :ref:`i2c_config` pour activer l'I2C et vérifier le câblage.
+    * Si le code et le câblage sont corrects, mais que l'écran LCD ne s'affiche toujours pas, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
+
+
+**Code**
+
+.. note::
+    Les codes suivants sont incomplets. Si vous souhaitez vérifier les codes complets,
+    il est suggéré d'utiliser la commande nano 3.1.1_ReversingAlarm.c.
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <sys/time.h>
+    #include <wiringPi.h>
+    #include <wiringPiI2C.h>
+    #include <string.h>
+
+    #define Trig    4
+    #define Echo    5
+    #define Buzzer  0
+
+    int LCDAddr = 0x27;
+    int BLEN = 1;
+    int fd;
+
+    //here is the function of LCD
+    void write_word(int data){...}
+
+    void send_command(int comm){...}
+
+    void send_data(int data){...}
+
+    void lcdInit(){...}
+
+    void clear(){...}
+
+    void write(int x, int y, char data[]){...}
+
+    //here is the function of Ultrasonic
+    void ultraInit(void){...}
+
+    float disMeasure(void){...}
+
+    //here is the main function
+    int main(void)
+    {
+        float dis;
+        char result[10];
+        if(wiringPiSetup() == -1){ 
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        pinMode(Buzzer,OUTPUT);
+        fd = wiringPiI2CSetup(LCDAddr);
+        lcdInit();
+        ultraInit();
+
+        clear();
+        write(0, 0, "Ultrasonic Starting"); 
+        write(1, 1, "By Sunfounder");   
+
+        while(1){
+            dis = disMeasure();
+            printf("%.2f cm \n",dis);
+            digitalWrite(Buzzer,LOW);
+            if (dis > 400){
+                clear();
+                write(0, 0, "Error");
+                write(3, 1, "Out of range");    
+                delay(500);
+            }
+            else
+            {
+                clear();
+                write(0, 0, "Distance is");
+                sprintf(result,"%.2f cm",dis);
+                write(5, 1, result);
+
+                if(dis>=50)
+                {delay(500);}
+                else if(dis<50 & dis>20) {
+                    for(int i=0;i<2;i++){
+                    digitalWrite(Buzzer,HIGH);
+                    delay(50);
+                    digitalWrite(Buzzer,LOW);
+                    delay(200);
+                    }
+                }
+                else if(dis<=20){
+                    for(int i=0;i<5;i++){
+                    digitalWrite(Buzzer,HIGH);
+                    delay(50);
+                    digitalWrite(Buzzer,LOW);
+                    delay(50);
+                    }
+                }
+            }   
+        }
+
+        return 0;
+    }
+**Explication du Code**
+
+.. code-block:: c
+
+    pinMode(Buzzer,OUTPUT);
+    fd = wiringPiI2CSetup(LCDAddr);
+    lcdInit();
+    ultraInit();
+
+Dans ce programme, nous appliquons des composants précédents de manière synthétique. Ici,
+ nous utilisons des buzzers, un écran LCD et un capteur ultrasonique. Nous les initialisons
+  de la même manière que précédemment.
+
+.. code-block:: c
+
+    dis = disMeasure();
+     printf("%.2f cm \n",dis);
+    digitalWrite(Buzzer,LOW);
+    if (dis > 400){
+         write(0, 0, "Error");
+         write(3, 1, "Out of range");    
+    }
+    else
+    {
+        write(0, 0, "Distance is");
+        sprintf(result,"%.2f cm",dis);
+        write(5, 1, result);
+	}
+
+Ici, nous obtenons la valeur du capteur ultrasonique et calculons la distance.
+
+Si la valeur de la distance est supérieure à la plage à détecter, un message 
+d'erreur est affiché sur l'écran LCD. Et si la valeur de la distance est dans la plage, 
+les résultats correspondants seront affichés.
+
+.. code-block:: c
+
+    sprintf(result,"%.2f cm",dis);
+
+Étant donné que le mode de sortie de l'écran LCD ne supporte que le type caractère, 
+et que la variable dis stocke la valeur de type float, nous devons utiliser sprintf(). 
+Cette fonction convertit la valeur de type float en caractère et la stocke dans la variable 
+chaîne result[]. %.2f signifie conserver deux décimales.
+
+.. code-block:: c
+
+    if(dis>=50)
+    {delay(500);}
+    else if(dis<50 & dis>20) {
+        for(int i=0;i<2;i++){
+        digitalWrite(Buzzer,HIGH);
+        delay(50);
+        digitalWrite(Buzzer,LOW);
+        delay(200);
+        }
+    }
+    else if(dis<=20){
+        for(int i=0;i<5;i++){
+        digitalWrite(Buzzer,HIGH);
+        delay(50);
+        digitalWrite(Buzzer,LOW);
+        delay(50);
+        }
+    }
+
+Cette condition de jugement est utilisée pour contrôler le son du buzzer. 
+En fonction de la différence de distance, il peut être divisé en trois cas, 
+dans lesquels il y aura différentes fréquences sonores. Comme la valeur totale 
+du délai est de 500, tous les cas peuvent fournir un intervalle de 500 ms pour 
+le capteur ultrasonique.
+
+Photo du Phénomène
+-----------------------
+
+.. image:: ../img/image243.jpeg
+   :align: center

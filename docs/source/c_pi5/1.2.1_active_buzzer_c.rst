@@ -1,0 +1,173 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _1.2.1_c_pi5:
+
+1.2.1 Buzzer Actif
+=========================
+
+Introduction
+------------
+
+Dans ce projet, nous allons apprendre à faire sonner un buzzer actif à l'aide d'un transistor PNP.
+
+Composants nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_1.2.1.png
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+Schéma de câblage
+-----------------
+
+Dans cette expérience, un buzzer actif, un transistor PNP et une résistance de 1k sont utilisés
+ entre la base du transistor et le GPIO pour protéger le transistor. Lorsque le GPIO17 de la 
+ Raspberry Pi est alimenté en niveau bas (0V) par programmation, le transistor sera conducteur 
+ en raison de la saturation du courant et le buzzer émettra des sons. Mais lorsque le GPIO de 
+ la Raspberry Pi est alimenté en niveau haut, le transistor sera coupé et le buzzer n'émettra 
+ pas de sons.
+
+.. image:: ../img/image332.png
+
+Procédures expérimentales
+-----------------------
+
+**Étape 1 :** Construire le circuit. (Le buzzer actif a un autocollant blanc sur la surface et un dos noir.)
+
+.. image:: ../img/image104.png
+
+**Étape 2 :** Ouvrir le fichier de code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.2.1/
+
+**Étape 3 :** Compiler le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.1_ActiveBuzzer.c -lwiringPi
+
+**Étape 4 :** Exécuter le fichier exécutable ci-dessus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Une fois le code exécuté, le buzzer émet un bip.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define BeepPin 0
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        while(1){
+            //beep on
+            printf("Buzzer on\n");
+            digitalWrite(BeepPin, LOW);
+            delay(100);
+            printf("Buzzer off\n");
+            //beep off
+            digitalWrite(BeepPin, HIGH);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Explication du code**
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, LOW);
+
+Nous utilisons un buzzer actif dans cette expérience, 
+donc il émettra automatiquement un son lorsqu'il est 
+connecté au courant continu. Ce programme consiste 
+à configurer le port I/O à un niveau bas (0V), 
+afin de gérer le transistor et de faire sonner le buzzer.
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, HIGH);
+
+Pour configurer le port I/O à un niveau haut (3,3V), ainsi le transistor 
+n'est pas alimenté et le buzzer ne sonne pas.
+
+Image du phénomène
+------------------
+
+.. image:: ../img/image105.jpeg

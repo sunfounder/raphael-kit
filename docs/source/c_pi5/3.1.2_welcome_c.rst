@@ -1,0 +1,222 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.2_c_pi5:
+
+3.1.2 Bienvenue
+=================================
+
+Introduction
+-------------
+
+Dans ce projet, nous utiliserons un capteur PIR pour détecter le mouvement des piétons et des servos,
+ une LED et un buzzer pour simuler le fonctionnement de la porte automatique d'un magasin de proximité. 
+ Lorsque le piéton entre dans la zone de détection du capteur PIR, le voyant s'allume, la porte s'ouvre
+  et le buzzer émet un signal sonore d'ouverture.
+
+Composants Nécessaires
+------------------------------
+
+Pour ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_Welcome.png
+    :align: center
+
+Il est vraiment pratique d'acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION AUX COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_pir`
+        - \-
+    *   - :ref:`cpn_servo`
+        - |link_servo_buy|
+    *   - :ref:`cpn_buzzer`
+        - |link_passive_buzzer_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+Schéma de Câblage
+-------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one2.png
+   :align: center
+
+Procédures Expérimentales
+-----------------------------
+
+**Étape 1:** Construire le circuit.
+
+.. image:: ../img/image239.png
+    :align: center
+
+**Étape 2:** Changer de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.2/
+
+**Étape 3 :** Compiler.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.2_Welcome.c -lwiringPi
+
+**Étape 4 :** Exécuter.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Après l'exécution du code, si le capteur PIR détecte une personne passant à proximité, 
+la porte s'ouvrira automatiquement (simulée par le servo), allumera l'indicateur et 
+jouera la musique de la sonnette. Une fois la musique de la sonnette jouée, le système 
+fermera automatiquement la porte et éteindra l'indicateur lumineux, attendant la prochaine 
+personne passant à proximité.
+
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité et l'autre 
+pour ajuster la distance de détection. Pour que le module PIR fonctionne mieux, vous devez 
+les tourner complètement dans le sens inverse des aiguilles d'une montre.
+
+.. image:: ../img/PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur indiquant : "wiringPi.h : Aucun fichier ou répertoire de ce type", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Explication du Code**
+
+.. code-block:: c
+
+    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+        if(angle < 0)
+            angle = 0;
+        if(angle > 180)
+            angle = 180;
+        softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
+    } 
+
+Créer une fonction, setAngle, pour définir l'angle du servo de 0 à 180 degrés.
+
+.. code-block:: c
+
+    void doorbell(){
+    for(int i=0;i<sizeof(song)/4;i++){
+            softToneWrite(BuzPin, song[i]); 
+            delay(beat[i] * 250);
+        }
+
+Créer une fonction, doorbell, pour faire jouer de la musique au buzzer.
+
+.. code-block:: c
+
+    void closedoor(){
+    digitalWrite(ledPin, LOW);   //led off
+    for(int i=180;i>-1;i--){  //make servo rotate from maximum angle to minimum angle
+        setAngle(servoPin,i);
+        delay(1);
+        }
+    }
+
+Créer une fonction, closedoor, pour simuler la fermeture de la porte, éteindre la LED et faire tourner le servo de 180 degrés à 0 degré.
+
+.. code-block:: c
+
+    void opendoor(){
+        digitalWrite(ledPin, HIGH);   //led on
+        for(int i=0;i<181;i++){  //make servo rotate from minimum angle to maximum angle
+            setAngle(servoPin,i);
+            delay(1);
+        }
+        doorbell();
+        closedoor();
+    }
+
+La fonction opendoor() comprend plusieurs parties : allumer l'indicateur lumineux, 
+faire tourner le servo (simuler l'ouverture de la porte), jouer la musique de la 
+sonnette du magasin et appeler la fonction closedoor() après avoir joué la musique.
+
+.. code-block:: c
+
+        int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+    ......
+
+Dans la fonction main(), initialiser la bibliothèque wiringPi et configurer softTone, 
+puis définir ledPin en mode sortie et pirPin en mode entrée. Si le capteur PIR détecte 
+une personne passant à proximité, la fonction opendoor sera appelée pour simuler 
+l'ouverture de la porte.
+
+Image du Phénomène
+--------------------
+
+.. image:: ../img/image240.jpeg
+   :align: center

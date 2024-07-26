@@ -1,0 +1,191 @@
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _2.1.2_c_pi5:
+
+2.1.2 Micro-interrupteur
+============================
+
+Introduction
+--------------------
+
+Dans ce projet, nous allons apprendre à utiliser un micro-interrupteur. Un micro-interrupteur est un petit interrupteur très sensible qui nécessite une compression minimale pour être activé. En raison de leur fiabilité et de leur sensibilité, les micro-interrupteurs sont souvent utilisés comme dispositifs de sécurité.
+
+Ils sont utilisés pour empêcher les portes de se fermer si quelque chose ou quelqu'un se trouve sur le passage, ainsi que dans d'autres applications similaires.
+
+Composants Nécessaires
+------------------------------
+
+Dans ce projet, nous avons besoin des composants suivants :
+
+.. image:: ../img/2.1.2component.png
+
+Il est très pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_micro_switch`
+        - \-
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+Schéma de Câblage
+-----------------
+
+Connectez la broche gauche du micro-interrupteur au GPIO17 et deux LED aux 
+broches GPIO22 et GPIO27. Ensuite, lorsque vous appuyez et relâchez le bras 
+mobile du micro-interrupteur, vous verrez les deux LED s'allumer alternativement.
+
+.. image:: ../img/image305.png
+
+.. image:: ../img/micro_Schematic.png
+
+Procédures Expérimentales
+-----------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/2.1.4fritzing.png
+
+**Étape 2 :** Accédez au répertoire du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.2
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.2_MicroSwitch.c -lwiringPi 
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Pendant l'exécution du code, appuyez sur le micro-interrupteur, puis la LED jaune s'allume ; relâchez le bras mobile, la LED rouge s'allume.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur prompt:\"wiringPi.h: No such file or directory » s'affiche, veuillez consulter :ref:`install_wiringpi`.
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define microPin		0
+    #define led1			3
+    #define led2 			2
+
+    int main(void)
+    {
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        
+        pinMode(microPin, INPUT);
+        pinMode(led1, OUTPUT);
+        pinMode(led2, OUTPUT);
+        
+        while(1){
+            // micro switch high, led1 on
+            if(digitalRead(microPin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+            }
+            // micro switch low, led2 on
+            if(digitalRead(microPin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+            delay(500);
+        }
+
+        return 0;
+    }
+
+**Explication du Code**
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+        }
+
+Lorsque le bras mobile du micro-interrupteur est relâché, la broche gauche est connectée à la broche droite ; à ce moment, un niveau haut sera lu sur GPIO17, et alors LED1 sera allumée et LED2 éteinte.
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+
+Lorsque le bras mobile est enfoncé, la broche gauche et la broche centrale sont connectées. À ce moment, un niveau bas sera lu sur GPIO17, alors LED2 sera allumée et LED1 éteinte.
+
+Image du Phénomène
+----------------------
+
+.. image:: ../img/2.1.2micro_switch.JPG

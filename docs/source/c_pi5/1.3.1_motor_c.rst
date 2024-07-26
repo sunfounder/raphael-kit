@@ -1,0 +1,226 @@
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _1.3.1_c_pi5:
+
+1.3.1 Moteur
+=================
+
+Introduction
+-----------------
+
+Dans ce projet, nous allons apprendre à utiliser le L293D pour piloter un moteur à courant continu et le faire tourner dans le sens horaire et antihoraire. Étant donné que le moteur à courant continu nécessite un courant plus élevé, pour des raisons de sécurité, nous utilisons ici le module d'alimentation pour alimenter les moteurs.
+
+Composants nécessaires
+------------------------------
+
+Pour ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_1.3.1.png
+
+Il est très pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ARTICLES DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément aux liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_power_module`
+        - \-
+    *   - :ref:`cpn_l293d`
+        - \-
+    *   - :ref:`cpn_motor`
+        - |link_motor_buy|
+
+Schéma de câblage
+------------------
+
+Branchez le module d'alimentation dans la plaque d'essai et insérez le cavalier 
+sur la broche 5V, il fournira alors une tension de 5V. Connectez la broche 1 du 
+L293D au GPIO22 et réglez-la en niveau haut. Connectez la broche 2 au GPIO27 et 
+la broche 7 au GPIO17, puis réglez une broche en niveau haut et l'autre en niveau bas. 
+Ainsi, vous pouvez changer la direction de rotation du moteur.
+
+.. image:: ../img/image336.png
+
+
+**Procédures expérimentales**
+
+**Étape 1 :** Montez le circuit.
+
+.. image:: ../img/image117.png
+
+
+.. note::
+    Le module d'alimentation peut utiliser une batterie de 9V avec l'attache de batterie 
+    de 9V du kit. Insérez le cavalier du module d'alimentation dans les bandes de bus 5V 
+    de la plaque d'essai.
+
+.. image:: ../img/image118.jpeg
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.3.1/
+
+**Étape 3 :** Compilez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.1_Motor.c -lwiringPi
+
+**Étape 4 :** Exécutez le fichier exécutable ci-dessus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, le moteur tourne d'abord dans le sens horaire pendant 5s 
+puis s'arrête pendant 5s, après cela, il tourne dans le sens antihoraire pendant 5s ; 
+ensuite, le moteur s'arrête pendant 5s. Cette série d'actions sera exécutée de manière répétée.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a une erreur indiquant : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define MotorPin1       0
+    #define MotorPin2       2
+    #define MotorEnable     3
+
+    int main(void){
+        int i;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(MotorPin1, OUTPUT);
+        pinMode(MotorPin2, OUTPUT);
+        pinMode(MotorEnable, OUTPUT);
+        while(1){
+            printf("Clockwise\n");
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, HIGH);
+            digitalWrite(MotorPin2, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Anti-clockwise\n");
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, LOW);
+            digitalWrite(MotorPin2, HIGH);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+        }
+        return 0;
+    }
+
+**Explication du code**
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, HIGH);
+
+Activer le L239D.
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, HIGH);
+    digitalWrite(MotorPin2, LOW);
+
+Définir un niveau haut pour 2A (broche 7); puisque 1,2EN (broche 1) est en niveau haut, 
+2Y sortira un niveau haut.
+
+Définir un niveau bas pour 1A, alors 1Y sortira un niveau bas, et le moteur tournera.
+
+.. code-block:: c
+
+    for(i=0;i<3;i++){
+        delay(1000);
+    }
+
+Cette boucle permet de retarder de 3*1000ms.
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, LOW)
+
+Si 1,2EN (broche 1) est en niveau bas, L293D ne fonctionne pas. Le moteur cesse de tourner.
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, LOW)
+    digitalWrite(MotorPin2, HIGH)
+
+Inverser le sens du courant du moteur, puis le moteur tournera en sens inverse.
+
+Image du phénomène
+------------------
+
+.. image:: ../img/image119.jpeg

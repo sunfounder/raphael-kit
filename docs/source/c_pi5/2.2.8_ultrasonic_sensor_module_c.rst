@@ -1,0 +1,255 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _2.2.8_c_pi5:
+
+2.2.8 Module de Capteur Ultrasonique
+=========================================
+
+Introduction
+---------------
+
+Le capteur ultrasonique utilise des ultrasons pour détecter avec précision des objets et mesurer des distances. Il émet des ondes ultrasonores et les convertit en signaux électroniques.
+
+Composants Nécessaires
+-------------------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_2.2.5.png
+
+Il est définitivement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    * - Nom
+      - ARTICLES DANS CE KIT
+      - LIEN
+    * - Kit Raphael
+      - 337
+      - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément à partir des liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    * - INTRODUCTION DES COMPOSANTS
+      - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+      - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+      - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+      - |link_wires_buy|
+    *   - :ref:`cpn_ultrasonic_sensor`
+      - |link_ultrasonic_buy|
+
+Schéma de Câblage
+-----------------
+
+.. image:: ../img/image329.png
+
+
+Procédures Expérimentales
+-----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image220.png
+
+**Étape 2 :** Aller dans le dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.8/
+
+**Étape 3 :** Compiler le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.8_Ultrasonic.c -lwiringPi
+
+**Étape 4 :** Exécuter le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Lorsque le code est exécuté, le module capteur ultrasonique détecte la distance entre
+l'obstacle devant lui et le module lui-même, puis la valeur de la distance sera affichée à l'écran.
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <sys/time.h>
+
+    #define Trig    4
+    #define Echo    5
+
+    void ultraInit(void)
+    {
+        pinMode(Echo, INPUT);
+        pinMode(Trig, OUTPUT);
+    }
+
+    float disMeasure(void)
+    {
+        struct timeval tv1;
+        struct timeval tv2;
+        long time1, time2;
+    float dis;
+
+        digitalWrite(Trig, LOW);
+        delayMicroseconds(2);
+
+        digitalWrite(Trig, HIGH);
+        delayMicroseconds(10);      
+        digitalWrite(Trig, LOW);
+                                    
+        while(!(digitalRead(Echo) == 1));   
+        gettimeofday(&tv1, NULL);           
+
+        while(!(digitalRead(Echo) == 0));   
+        gettimeofday(&tv2, NULL);           
+
+        time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;   
+        time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
+
+        dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
+
+        return dis;
+    }
+
+    int main(void)
+    {
+        float dis;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        ultraInit();
+        
+        while(1){
+            dis = disMeasure();
+            printf("%0.2f cm\n\n",dis);
+            delay(300);
+        }
+
+        return 0;
+    }
+
+**Explication du Code**
+
+.. code-block:: c
+
+    void ultraInit(void)
+    {
+        pinMode(Echo, INPUT);
+        pinMode(Trig, OUTPUT);
+    }
+
+Initialiser la broche ultrasonique; en même temps, régler Echo sur entrée, Trig sur sortie.
+
+.. code-block:: c
+
+    float disMeasure(void){};
+
+Cette fonction est utilisée pour réaliser la fonction du capteur ultrasonique en calculant la distance de détection de retour.
+
+.. code-block:: c
+
+    struct timeval tv1;
+    struct timeval tv2;
+
+La structure timeval est utilisée pour stocker l'heure actuelle. La structure complète est la suivante :
+
+.. code-block:: c
+
+    struct timeval
+    {
+    __time_t tv_sec;        /* Seconds. */
+    __suseconds_t tv_usec;  /* Microseconds. */
+    };
+
+Ici, tv_sec représente les secondes écoulées depuis l'époque lors de la création de la 
+structure timeval. Tv_usec représente les microsecondes ou une fraction de secondes.
+
+.. code-block:: c
+
+    digitalWrite(Trig, HIGH);
+    delayMicroseconds(10);     
+    digitalWrite(Trig, LOW);
+
+Une impulsion ultrasonique de 10us est envoyée.
+
+.. code-block:: c
+
+    while(!(digitalRead(Echo) == 1));
+    gettimeofday(&tv1, NULL);
+
+Cette boucle vide est utilisée pour s'assurer que lorsqu'un signal 
+de déclenchement est envoyé, il n'y a pas de signal d'écho interférent, 
+puis obtenir l'heure actuelle.
+
+.. code-block:: c
+
+    while(!(digitalRead(Echo) == 0)); 
+    gettimeofday(&tv2, NULL);
+
+Cette boucle vide est utilisée pour s'assurer que l'étape suivante n'est pas 
+exécutée tant que le signal d'écho n'est pas reçu, puis obtenir l'heure actuelle.
+
+.. code-block:: c
+
+    time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;
+    time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
+
+Convertir le temps stocké par la structure timeval en temps total en microsecondes.
+
+.. code-block:: c
+
+    dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
+
+La distance est calculée par l'intervalle de temps et la vitesse de propagation du 
+son. La vitesse du son dans l'air : 34000 cm/s.
+
+Image du Phénomène
+------------------
+
+.. image:: ../img/image221.jpeg

@@ -1,0 +1,196 @@
+ 
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.1_c_pi5:
+
+3.1.1 Compteur
+============================
+
+Introduction
+-----------------
+
+Ici, nous allons créer un système de comptage avec affichage numérique, composé d'un capteur
+ PIR et d'un afficheur à segments 4 chiffres. Lorsque le capteur PIR détecte le passage de 
+ quelqu'un, le chiffre sur l'afficheur à segments 4 chiffres augmentera de 1. Vous pouvez 
+ utiliser ce compteur pour compter le nombre de personnes traversant un passage.
+
+Composants requis
+------------------------------
+
+Pour ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_Counting_Device1.png
+    :align: center
+
+.. image:: ../img/list_Counting_Device2.png
+    :align: center
+
+Il est certainement pratique d'acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+    *   - :ref:`cpn_pir`
+        - \-
+
+Schéma
+----------------------
+
+============ ======== ======== ===
+Nom T-Board  Physique wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one1.png
+   :align: center
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1** : Construisez le circuit.
+
+.. image:: ../img/image235.png
+**Étape 2** : Allez dans le dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.1/
+
+**Étape 3** : Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.1_CountingDevice.c -lwiringPi
+
+**Étape 4** : Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Après l'exécution du code, lorsque le capteur PIR détecte le passage de quelqu'un, le nombre sur l'afficheur à segments 4 chiffres augmentera de 1.
+
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité et l'autre pour ajuster la distance de détection. Pour que le module PIR fonctionne mieux, vous devez les tourner tous les deux dans le sens antihoraire jusqu'à la fin.
+
+.. image:: ../img/PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h : Aucun fichier ou répertoire de ce type", veuillez vous référer à :ref:`install_wiringpi`.
+
+**Explication du code**
+
+.. code-block:: c
+
+    void display()
+    {
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+     
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+    }
+
+Tout d'abord, commencez par l'afficheur du quatrième segment, écrivez le chiffre des 
+unités. Ensuite, commencez par l'afficheur du troisième segment et saisissez le chiffre 
+des dizaines ; après cela, commencez respectivement par les afficheurs du deuxième et du 
+premier segment et saisissez les chiffres des centaines et des milliers respectivement. 
+Grâce à la vitesse de rafraîchissement très rapide, nous voyons un affichage complet à 
+quatre chiffres.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                counter +=1;
+            }
+            lastState=currentState;
+        }
+    }
+
+Il s'agit de la fonction principale : afficher le nombre sur l'afficheur à segments 4 chiffres
+et lire la valeur du capteur PIR. Lorsque le capteur PIR détecte le passage de quelqu'un, le 
+nombre sur l'afficheur à segments 4 chiffres augmentera de 1.
+
+Image du phénomène
+-------------------------
+
+.. image:: ../img/image236.jpeg
+   :align: center

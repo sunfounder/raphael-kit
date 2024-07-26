@@ -1,0 +1,191 @@
+.. note::
+
+    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+
+.. _3.1.12_c_pi5:
+
+3.1.12 JEU - 10 Secondes
+==============================
+
+Introduction
+-------------------
+
+Suivez-moi pour créer un dispositif de jeu afin de tester votre concentration. 
+Attachez l'interrupteur à bascule à un bâton pour en faire une baguette magique. 
+Secouez la baguette, l'affichage à 4 chiffres commencera à compter ; secouez à nouveau
+ pour arrêter le comptage. Si vous réussissez à maintenir le compte affiché à **10.00**, 
+ vous gagnez. Vous pouvez jouer avec vos amis pour voir qui est le maître du temps.
+
+
+Composants nécessaires
+------------------------------
+
+Pour ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../img/list_GAME_10_Second.png
+    :align: center
+
+Il est très pratique d'acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément aux liens ci-dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DES COMPOSANTS
+        - LIEN D'ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+    *   - :ref:`cpn_tilt_switch`
+        - \-
+
+Schéma de câblage
+------------------------
+
+================ ======== ======== ===
+Nom de la carte  Physique WiringPi BCM
+GPIO17           Pin 11   0        17
+GPIO27           Pin 13   2        27
+GPIO22           Pin 15   3        22
+SPIMOSI          Pin 19   12       10
+GPIO18           Pin 12   1        18
+GPIO23           Pin 16   4        23
+GPIO24           Pin 18   5        24
+GPIO26           Pin 37   25       26
+================ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one13.png
+   :align: center
+
+Procédures expérimentales
+---------------------------------
+
+**Étape 1** : Construisez le circuit.
+
+.. image:: ../img/image277.png
+
+
+**Étape 2** : Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.12/
+
+**Étape 3** : Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.12_GAME_10Second.c -lwiringPi
+
+**Étape 4** : Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Secouez la baguette, l'affichage à 4 chiffres commencera à compter ; 
+secouez à nouveau pour arrêter le comptage. Si vous réussissez à maintenir 
+le compte affiché à **10.00**, vous gagnez. Secouez-la une fois de plus pour 
+commencer la prochaine partie.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez consulter :ref:`install_wiringpi`.
+
+**Explication du code**
+
+.. code-block:: c
+
+    void stateChange(){
+        if (gameState == 0){
+            counter = 0;
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
+        gameState = (gameState + 1)%2;
+    }
+
+Le jeu est divisé en deux modes :
+
+gameState=0 est le mode "démarrer", où le temps est chronométré et affiché sur l'afficheur à 
+segments, et l'interrupteur à bascule est secoué pour entrer dans le mode "afficher".
+
+gameState=1 est le mode "afficher", qui arrête le chronométrage et affiche le temps sur 
+l'afficheur à segments. Secouer à nouveau l'interrupteur à bascule réinitialise le chronomètre 
+et redémarre le jeu.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                stateChange();
+            }
+            lastState=currentState;
+        }
+    }
+
+Loop() est la fonction principale. Tout d'abord, le temps est affiché sur l'afficheur à 4 chiffres 
+et la valeur de l'interrupteur à bascule est lue. Si l'état de l'interrupteur à bascule a changé, 
+stateChange() est appelé.
+
+Image du phénomène
+-----------------------
+
+.. image:: ../img/image278.jpeg
+   :align: center
+
+
+
