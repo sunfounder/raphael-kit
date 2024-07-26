@@ -268,9 +268,18 @@ rst_epilog += """
 
     <a href="https://docs.sunfounder.com/projects/raphael-kit/ja/latest/" target="_blank">日本語オンライン教材</a>
 
+.. |link_es_tutorials| raw:: html
+
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/es/latest/" target="_blank">Tutoriales en línea de español</a>
+
+.. |link_fr_tutorials| raw:: html
+
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/fr/latest/" target="_blank">Tutoriels de français en ligne</a>
+
 .. |link_en_tutorials| raw:: html
 
     <a href="https://docs.sunfounder.com/projects/raphael-kit/en/latest/" target="_blank">English Online-tutorials</a>
+
 
 .. |Adafruit_CircuitPython_DHT| raw:: html
 
