@@ -21,7 +21,8 @@ Raspberry Pi 5の発売により、より強力なモデルが登場しました
     :maxdepth: 1
     
     python_pi5/play_with_python_pi5
-
+    c_pi5/play_with_c
+    scratch_pi5/play_with_scratch
 
 他のプログラミング言語との互換性の問題については、以下の詳細情報をご覧ください：
 

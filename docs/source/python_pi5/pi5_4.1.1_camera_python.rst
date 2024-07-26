@@ -89,11 +89,9 @@ GPIO18       Pin 12   1        18
   :width: 800
   :align: center
 
-**ステップ 2:** カメラモジュールを接続し、設定を完了してください。詳細は、 :ref:`cpn_camera_module` を参照してください。
+**ステップ 2:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`remote_desktop` の詳細なチュートリアルを参照してください。
 
-**ステップ 3:** Raspberry Piデスクトップに入ります。より良い体験のために画面が必要な場合は、 `Connect your Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_ を参照してください。または、リモートでRaspberry Piデスクトップにアクセスするには、 :ref:`remote_desktop` の詳細なチュートリアルを参照してください。
-
-**ステップ 4:** ターミナルを開き、コードのフォルダに入ります。
+**ステップ 3:** ターミナルを開き、コードのフォルダに入ります。
 
 .. raw:: html
 
@@ -103,7 +101,7 @@ GPIO18       Pin 12   1        18
 
     cd ~/raphael-kit/python-pi5
 
-**ステップ 5:** 実行します。
+**ステップ 4:** 実行します。
 
 .. raw:: html
 

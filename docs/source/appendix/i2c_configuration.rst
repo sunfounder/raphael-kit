@@ -32,7 +32,7 @@ I2C設定
 .. image:: img/image282.png
     :align: center
 
-**P5 I2C**
+**I4 I2C**
 
 .. image:: img/image283.png
     :align: center
