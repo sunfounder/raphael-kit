@@ -1,0 +1,239 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _1.1.2_c_pi5:
+
+1.1.2 RGB LED
+====================
+
+はじめに
+--------------
+
+このプロジェクトでは、RGB LEDを制御してさまざまな色を点滅させる方法を学びます。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要な部品は以下のとおりです。
+
+.. image:: ../img/list_rgb_led.png
+    :align: center
+
+全体のキットを購入するのは非常に便利です、リンクはこちらです:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`RGB LED`
+        - |link_rgb_led_buy|
+
+回路図
+-----------------------
+
+R, G, Bのピンを電流制限抵抗に接続した後、それらをそれぞれGPIO17, GPIO18, GPIO27に接続します。LEDの最も長いピン(GND)は、Raspberry PiのGNDに接続します。3つのピンに異なるPWM値が与えられると、RGB LEDは異なる色を表示します。
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+============ ======== ======== ===
+
+.. image:: ../img/rgb_led_schematic.png
+
+実験手順
+----------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image61.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.1.2/
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.2_rgbLed.c -lwiringPi
+
+.. note::
+
+    ``gcc`` 命令が実行されると、 ``-o`` が呼び出されない場合、実行可能ファイルの名前は ``a.out`` になります。
+
+**ステップ4:** 前のステップで出力された実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行されると、RGBは赤、緑、青、黄、ピンク、シアンの順に表示されます。
+
+.. note::
+
+   実行後に動作しない、またはエラープロンプトが表示される場合：「wiringPi.h: No such file or directory」、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softPwm.h>
+    #include <stdio.h>
+    #define uchar unsigned char
+    #define LedPinRed    0
+    #define LedPinGreen  1
+    #define LedPinBlue   2
+
+    void ledInit(void){
+        softPwmCreate(LedPinRed,  0, 100);
+        softPwmCreate(LedPinGreen,0, 100);
+        softPwmCreate(LedPinBlue, 0, 100);
+    }
+
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(LedPinRed,   r_val);
+        softPwmWrite(LedPinGreen, g_val);
+        softPwmWrite(LedPinBlue,  b_val);
+    }
+
+    int main(void){
+
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, printf messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        ledInit();
+        while(1){
+            printf("Red\n");
+            ledColorSet(0xff,0x00,0x00);   //red     
+            delay(500);
+            printf("Green\n");
+            ledColorSet(0x00,0xff,0x00);   //green
+            delay(500);
+            printf("Blue\n");
+            ledColorSet(0x00,0x00,0xff);   //blue
+            delay(500);
+            printf("Yellow\n");
+            ledColorSet(0xff,0xff,0x00);   //yellow
+            delay(500);
+            printf("Purple\n");
+            ledColorSet(0xff,0x00,0xff);   //purple
+            delay(500);
+            printf("Cyan\n");
+            ledColorSet(0xc0,0xff,0x3e);   //cyan
+            delay(500);
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    #include <softPwm.h>
+
+ソフトウェアのpwm機能を実現するためのライブラリ。
+
+.. code-block:: c
+
+    void ledInit(void){
+        softPwmCreate(LedPinRed,  0, 100);
+        softPwmCreate(LedPinGreen,0, 100);
+        softPwmCreate(LedPinBlue, 0, 100);
+    }
+
+この関数は、ソフトウェアを使用してPWMピンを作成し、その周期を0x100us〜100x100usの間に設定するものです。
+
+関数softPwmCreate(LedPinRed, 0, 100)のプロトタイプは以下の通りです。
+
+.. code-block:: c
+
+    int softPwmCreate(int pin,int initialValue,int pwmRange);
+
+* **パラメータpin:** Raspberry Piの任意のGPIOピンをPWMピンとして設定できます。
+* **パラメータinitialValue:** 初期パルス幅は、initialValue倍の100usです。
+* **パラメータpwmRange:** PWMの周期は、pwmRange倍の100usです。
+
+.. code-block:: c
+
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(LedPinRed,   r_val);
+        softPwmWrite(LedPinGreen, g_val);
+        softPwmWrite(LedPinBlue,  b_val);
+    }
+
+この関数はLEDの色を設定するためのものです。RGBを使用して、フォーマルパラメータ **r_val** は赤の輝度を、 **g_val** は緑の輝度を、 **b_val** は青の輝度を表します。
+
+関数softPwmWrite(LedPinBlue, b_val)のプロトタイプは以下の通りです。
+
+.. code-block:: c
+
+    void softPwmWrite (int pin, int value) ;
+
+* **パラメータpin:** Raspberry Piの任意のGPIOピンをPWMピンとして設定できます。
+* **パラメータValue:** PWMのパルス幅は、value倍の100usです。valueは以前に定義されたpwmRangeよりも小さくなければならないことに注意してください。もしpwmRangeよりも大きい場合、valueは固定値、pwmRangeとして与えられます。
+
+.. code-block:: c
+
+    ledColorSet(0xff,0x00,0x00);
+
+以前に定義された関数を呼び出します。0xffをLedPinRedに、0x00をLedPinGreenとLedPinBlueに書き込みます。このコードを実行すると、赤のLEDだけが点灯します。他の色のLEDを点灯させたい場合は、パラメータを修正するだけです。
+
+現象の画像
+------------------------
+
+
+.. image:: ../img/image62.jpeg

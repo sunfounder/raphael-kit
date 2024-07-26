@@ -1,0 +1,217 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _1.3.1_c_pi5:
+
+1.3.1 モーター
+=================
+
+はじめに
+-----------------
+
+このプロジェクトでは、L293Dを使ってDCモーターを駆動し、それを時計回りおよび反時計回りに回転させる方法を学びます。DCモーターは大きな電流を必要とするため、安全のために、ここでは電源供給モジュールを使用してモーターに電力を供給します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_1.3.1.png
+
+全体のキットを購入するのが確実に便利です。リンクはこちらです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_power_module`
+        - \-
+    *   - :ref:`cpn_l293d`
+        - \-
+    *   - :ref:`cpn_motor`
+        - |link_motor_buy|
+
+回路図
+------------------
+
+電源供給モジュールをブレッドボードに接続し、ジャンパーキャップを5Vのピンに挿入すると、5Vの電圧が出力されます。L293Dのピン1をGPIO22に接続し、高レベルに設定します。ピン2をGPIO27、ピン7をGPIO17に接続し、一方のピンを高に、もう一方を低に設定します。これにより、モーターの回転方向を変更できます。
+
+.. image:: ../img/image336.png
+
+
+実験手順
+------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image117.png
+
+.. note::
+    キットの9Vバッテリーバックルを使用して、電源モジュールで9Vのバッテリーを使用できます。電源モジュールのジャンパーキャップをブレッドボードの5Vバスストリップに挿入します。
+
+.. image:: ../img/image118.jpeg
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.3.1/
+
+**ステップ3**: コンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.1_Motor.c -lwiringPi
+
+**ステップ4**: 上記の実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行されると、モーターはまず5秒間時計回りに回転し、その後5秒間停止します。その後、モーターは5秒間反時計回りに回転します。その後、モーターは5秒間停止します。この一連のアクションは繰り返し実行されます。
+
+.. note::
+
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define MotorPin1       0
+    #define MotorPin2       2
+    #define MotorEnable     3
+
+    int main(void){
+        int i;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(MotorPin1, OUTPUT);
+        pinMode(MotorPin2, OUTPUT);
+        pinMode(MotorEnable, OUTPUT);
+        while(1){
+            printf("Clockwise\n");
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, HIGH);
+            digitalWrite(MotorPin2, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Anti-clockwise\n");
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, LOW);
+            digitalWrite(MotorPin2, HIGH);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, HIGH);
+
+L239Dを有効にします。
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, HIGH);
+    digitalWrite(MotorPin2, LOW);
+
+2A（ピン7）に高いレベルを設定します。1,2EN（ピン1）が高いレベルにあるので、2Yは高いレベルを出力します。
+
+1Aに低いレベルを設定すると、1Yは低いレベルを出力し、モーターが回転します。
+
+.. code-block:: c
+
+    for(i=0;i<3;i++){
+        delay(1000);
+    }
+
+このループは3*1000msの遅延のためのものです。
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, LOW)
+
+1,2EN（ピン1）が低いレベルにある場合、L293Dは動作しません。モーターの回転が停止します。
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, LOW)
+    digitalWrite(MotorPin2, HIGH)
+
+モーターの電流の流れを逆にすると、モーターは逆方向に回転します。
+
+現象の画像
+------------------
+
+.. image:: ../img/image119.jpeg

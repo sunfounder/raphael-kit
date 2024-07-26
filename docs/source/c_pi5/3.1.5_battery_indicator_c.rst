@@ -1,0 +1,181 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _3.1.5_c_pi5:
+
+3.1.5 バッテリーインジケータ
+==================================
+
+はじめに
+--------------
+
+このプロジェクトでは、LEDバーグラフ上でバッテリーレベルを視覚的に表示できるバッテリーインジケータデバイスを作成します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_Battery_Indicator.png
+    :align: center
+
+すべてを一つのキットで購入するのが便利です。以下がリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
+    *   - :ref:`cpn_adc0834`
+        - \-
+
+回路図
+-------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO25       Pin 22   6        25
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       20
+GPIO21       Pin 40   29       21
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+GPIO19       Pin 35   24       19
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one5.png
+   :align: center
+
+実験手順
+-------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image248.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.5/
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.5_BatteryIndicator.c -lwiringPi
+
+**ステップ4:** 実行可能ファイルを起動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+プログラムを実行した後、ADC0834の3番ピンとGNDにそれぞれリードワイヤを取り付け、それらをバッテリーの二極にそれぞれ接続します。LEDバーグラフ上の対応するLEDが点灯し、電源レベル（測定範囲: 0-5V）を表示します。
+
+.. note::
+
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合、 :ref:`install_wiringpi` を参照してください。
+
+**コード説明**
+
+.. code-block:: c
+
+    void LedBarGraph(int value){
+        for(int i=0;i<10;i++){
+            digitalWrite(pins[i],HIGH);
+        }
+        for(int i=0;i<value;i++){
+            digitalWrite(pins[i],LOW);
+        }
+    }
+
+この関数はLEDバーグラフ上の10個のLEDの点灯または消灯を制御するためのものです。まず、これらの10個のLEDに高レベルを与えて最初に消灯させ、受け取ったアナログ値を変更することで点灯するLEDの数を決定します。
+
+.. code-block:: c
+
+    int main(void)
+    {
+        uchar analogVal;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+        for(int i=0;i<10;i++){       //make led pins' mode is output
+            pinMode(pins[i], OUTPUT);
+            digitalWrite(pins[i],HIGH);
+        }
+        while(1){
+            analogVal = get_ADC_Result(0);
+            LedBarGraph(analogVal/25);
+            delay(100);
+        }
+        return 0;
+    }
+
+analogValは、異なる電圧値(**0-5V**)で値(**0-255**)を生成します。例えば、バッテリーで3Vが検出されると、ボルトメーターに対応する値 **152** が表示されます。
+
+LEDバーグラフ上の **10** 個のLEDは、 **analogVal** の読み取り値を表示するために使用されます。255/10=25なので、アナログ値が **25** 増加するたびに、1つ多くのLEDが点灯します。例えば、「analogVal=150（約3V）」の場合、6つのLEDが点灯します。
+
+
+現象の画像
+-------------------------
+
+.. image:: ../img/image249.jpeg
+   :align: center

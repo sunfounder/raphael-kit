@@ -1,0 +1,190 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _3.1.1_c_pi5:
+
+3.1.1 計数装置
+============================
+
+はじめに
+-----------------
+
+ここでは、PIRセンサーと4桁のセグメントディスプレイで構成される数字表示カウンターシステムを作成します。PIRが通り過ぎる人を検出すると、4桁のセグメントディスプレイの数字が1増えます。このカウンターは、通路を通る人数を数えるために使用できます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_Counting_Device1.png
+    :align: center
+
+.. image:: ../img/list_Counting_Device2.png
+    :align: center
+
+一式を購入するのは間違いなく便利です、以下がリンクです:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクからそれぞれ購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+    *   - :ref:`cpn_pir`
+        - \-
+
+回路図
+----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one1.png
+   :align: center
+
+実験手順
+-----------------------------
+
+**ステップ1**: 回路を作成します。
+
+.. image:: ../img/image235.png
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.1/
+
+**ステップ3**: コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.1_CountingDevice.c -lwiringPi
+
+**ステップ4**: 実行ファイルを起動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードを実行した後、PIRが通り過ぎる人を検出すると、4桁のセグメントディスプレイの数字が1増えます。
+
+PIRモジュールには2つのポテンショメータがあります：1つは感度を調整するため、もう1つは検出距離を調整するためです。PIRモジュールをより良く動作させるために、それらの両方を反時計回りに最後まで回す必要があります。
+
+.. image:: ../img/PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+    実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合、 :ref:`install_wiringpi` を参照してください。
+
+**コード説明**
+
+.. code-block:: c
+
+    void display()
+    {
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+     
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+    }
+
+最初、第4のセグメントディスプレイを開始し、1桁の数字を書きます。
+次に、第3のセグメントディスプレイを開始し、10の位を入力します。その後、
+それぞれ第2と第1のセグメントディスプレイを開始し、それぞれ100の位と1000の位を書きます。
+リフレッシュ速度が非常に速いため、完全な4桁のディスプレイが表示されると思います。
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                counter +=1;
+            }
+            lastState=currentState;
+        }
+    }
+
+これは主要な機能です：4桁のセグメント表示に数字を表示し、PIRの値を読み取ります。
+PIRが通り過ぎる人を検出すると、4桁のセグメントディスプレイの数字が1増えます。
+
+現象の画像
+-------------------------
+
+.. image:: ../img/image236.jpeg
+   :align: center

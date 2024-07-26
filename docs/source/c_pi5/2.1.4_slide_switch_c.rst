@@ -1,0 +1,185 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.1.4_c_pi5:
+
+2.1.4 スライドスイッチ
+========================
+
+はじめに
+------------
+
+このプロジェクトでは、スライドスイッチの使用方法を学びます。通常、スライドスイッチはPCBに電源スイッチとしてはんだ付けされますが、ここではブレッドボードに挿入する必要がありますので、固定されていないかもしれません。そして、その機能を示すために、ブレッドボード上で使用します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+一式を購入するのは非常に便利です、以下はリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから各部品を別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_slide_switch`
+        - |link_slide_switch_buy|
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+回路図
+-----------------
+
+スライドスイッチの中央のピンをGPIO17に接続し、二つのLEDをそれぞれGPIO22とGPIO27のピンに接続します。その後、スライドを引っ張ると、二つのLEDが交互に点灯するのが見えます。
+
+.. image:: ../img/image305.png
+
+.. image:: ../img/image306.png
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を作成します。
+
+.. image:: ../img/image161.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.4
+
+**ステップ3:** コンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.4_Slider.c -lwiringPi 
+
+**ステップ4:** 上記の実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行中の間、スイッチを左に接続すると、黄色のLEDが点灯します。右にすると、赤い光が点灯します。
+
+.. note::
+
+    実行後に動作しない場合や、「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define slidePin        0
+    #define led1            3
+    #define led2            2
+
+    int main(void)
+    {
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(slidePin, INPUT);
+        pinMode(led1, OUTPUT);
+        pinMode(led2, OUTPUT);
+        while(1){
+            // slide switch high, led1 on
+            if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+            }
+            // slide switch low, led2 on
+            if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+        }
+
+スライドが右に引かれると、中央のピンと右のピンが接続されます。Raspberry Piは中央のピンで高いレベルを読み取るため、LED1は点灯し、LED2は消灯します。
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+
+スライドが左に引かれると、中央のピンと左のピンが接続されます。Raspberry Piは低いレベルを読み取るので、LED2は点灯し、LED1は消灯します。
+
+現象の画像
+------------------
+
+.. image:: ../img/image162.jpeg
+
+

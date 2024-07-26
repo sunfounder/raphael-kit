@@ -1,0 +1,260 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _3.1.10_c_pi5:
+
+3.1.10 モールス信号ジェネレータ
+=================================
+
+はじめに
+-----------------
+
+このプロジェクトでは、Raspberry Piに英字のシリーズを入力して、それをモールス信号として表示するモールス信号ジェネレータを作成します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_Morse_Code_Generator.png
+    :align: center
+
+全体のキットを購入することは確かに便利です。以下はリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+また、以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+回路図
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one11.png
+   :align: center
+
+実験手順
+----------------------------
+
+**ステップ 1:** 回路を組み立てます。（ブザーの極性に注意してください：+ラベルが付いている方が正極で、もう一方が負極です。）
+
+.. image:: ../img/image269.png
+
+**ステップ 2**: コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.10/
+
+**ステップ 3**: コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.10_MorseCodeGenerator.c -lwiringPi
+
+**ステップ 4**: 上記の実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+プログラムを実行した後、文字のシリーズを入力し、ブザーとLEDは対応するモールス信号を送信します。
+
+.. note::
+
+    実行後に動作しない場合、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コードの説明**
+
+.. code-block:: c
+
+    struct MORSE{
+        char word;
+        unsigned char *code;
+    };
+
+    struct MORSE morseDict[]=
+    {
+        {'A',"01"}, {'B',"1000"}, {'C',"1010"}, {'D',"100"}, {'E',"0"}, 
+        {'F',"0010"}, {'G',"110"}, {'H',"0000"}, {'I',"00"}, {'J',"0111"}, 
+        {'K',"101"}, {'L',"0100"}, {'M',"11"}, {'N',"10"}, {'O',"111"}, 
+        {'P',"0110"}, {'Q',"1101"}, {'R',"010"}, {'S',"000"}, {'T',"1"},
+        {'U',"001"}, {'V',"0001"}, {'W',"011"}, {'X',"1001"}, {'Y',"1011"}, 
+        {'Z',"1100"},{'1',"01111"}, {'2',"00111"}, {'3',"00011"}, {'4',"00001"}, 
+        {'5',"00000"},{'6',"10000"}, {'7',"11000"}, {'8',"11100"}, {'9',"11110"},
+        {'0',"11111"},{'?',"001100"}, {'/',"10010"}, {',',"110011"}, {'.',"010101"},
+        {';',"101010"},{'!',"101011"}, {'@',"011010"}, {':',"111000"}
+    };
+
+この「MORSE」という構造体は、モールス符号の辞書で、A-Zの文字、0-9の数字、および記号「?」「/」「:」「,」「.」「;」「!」「@」を含んでいます。
+
+.. code-block:: c
+
+    char *lookup(char key,struct MORSE *dict,int length)
+    {
+        for (int i=0;i<length;i++)
+        {
+            if(dict[i].word==key){
+                return dict[i].code;
+            }
+        }    
+    }
+
+``lookup()`` 関数は「辞書を調べる」という方法で動作します。 ``key`` を定義し、構造体 ``morseDict`` 内の ``key`` と同じ単語を検索し、特定の単語の ``code`` を返します。
+
+.. code-block:: c
+
+    void on(){
+        digitalWrite(ALedPin,HIGH);
+        digitalWrite(BeepPin,HIGH);     
+    }
+
+``on()`` 関数を作成して、ブザーとLEDを起動します。
+
+.. code-block:: c
+
+    void off(){
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BeepPin,LOW);
+    }
+
+``off()`` 関数はブザーとLEDをオフにします。
+
+.. code-block:: c
+
+    void beep(int dt){
+        on();
+        delay(dt);
+        off();
+        delay(dt);
+    }
+
+ブザーと LED を音を鳴らし、 **dt** の一定間隔で点滅させる関数 ``beep()`` を定義します。
+
+.. code-block:: c
+
+    void morsecode(char *code){
+        int pause = 250;
+        char *point = NULL;
+        int length = sizeof(morseDict)/sizeof(morseDict[0]);
+        for (int i=0;i<strlen(code);i++)
+        {
+            point=lookup(code[i],morseDict,length);
+            for (int j=0;j<strlen(point);j++){
+                if (point[j]=='0')
+                {
+                    beep(pause/2);
+                }else if(point[j]=='1')
+                {
+                    beep(pause);
+                }
+                delay(pause);
+            }
+        }
+    }
+
+``morsecode()`` 関数は、入力文字のモールス符号を処理するために使用され、コードの「1」は音や光を短く発信し、コードの「0」は音や光を一時的に発信します。例えば、「SOS」と入力すると、「 · · · - - - · · · 」という信号が生成されます。
+
+.. code-block:: c
+
+    int toupper(int c)
+    {
+        if ((c >= 'a') && (c <= 'z'))
+            return c + ('A' - 'a');
+        return c;
+    }
+    char *strupr(char *str)
+    {
+        char *orign=str;
+        for (; *str!='\0'; str++)
+            *str = toupper(*str);
+    return orign;
+    }
+
+コーディング前に、文字を大文字に統一する必要があります。
+
+.. code-block:: c
+
+    void main(){
+        setup();
+        char *code;
+        int length=8;
+        code = (char*)malloc(sizeof(char)*length);
+        while (1){
+            printf("Please input the messenger:");
+            scanf("%s",code);
+            code=strupr(code);
+            printf("%s\n",code);
+            morsecode(code);
+        }
+    }
+
+キーボードで関連する文字を入力すると、 ``code=strupr(code)`` が入力文字を大文字に変換します。
+
+``Printf()`` はコンピュータ画面に明確なテキストを表示し、 ``morsecod()`` 関数はブザーとLEDにモールス信号を発信させます。
+
+入力文字の長さが **length** を超えてはいけないことに注意してください（必要に応じて変更できます）。
+
+現象の画像
+-----------------------
+
+.. image:: ../img/image270.jpeg
+   :align: center

@@ -1,0 +1,204 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.1.6_c_pi5:
+
+2.1.6 ロータリーエンコーダモジュール
+=====================================
+
+はじめに
+-------------------
+
+このプロジェクトでは、ロータリーエンコーダについて学びます。ロータリーエンコーダは、厳格なタイミングのシーケンスで一定のパルスのセットを持つ電子スイッチです。ICと組み合わせて使用することで、インクリメント、デクリメント、ページのターンなどの操作を実現することができます。マウスのスクロール、メニューの選択などの操作も含まれます。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../img/Part_two_25.png
+
+全てのキットを購入するのは非常に便利です。以下がリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクからそれぞれ別々に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_rotary_encoder`
+        - |link_rotary_encoder_buy|
+
+回路図
+------------------------
+
+.. image:: ../img/image349.png
+   :align: center
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/2.1.6_fritzing.png
+   :align: center
+
+**ステップ2:** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.6/
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.6_RotaryEncoder.c -lwiringPi
+
+**ステップ4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+シェル上でカウントが表示されます。ロータリーエンコーダを時計回りに回すと、カウントが増えます。反時計回りに回すと、カウントが減少します。ロータリーエンコーダのスイッチを押すと、読み取り値がゼロにリセットされます。
+
+.. note::
+
+   実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+   #include <stdio.h>
+   #include <string.h>
+   #include <errno.h>
+   #include <stdlib.h>
+   #include <wiringPi.h>
+
+   #define  clkPin    0
+   #define  dtPin    1
+   #define  swPin     2
+
+   static volatile int globalCounter = 0 ;
+
+   unsigned char flag;
+   unsigned char Last_dtPin_Status;
+   unsigned char Current_dtPin_Status;
+
+   void btnISR(void)
+   {
+      globalCounter = 0;
+   }
+
+   void rotaryDeal(void)
+   {
+      Last_dtPin_Status = digitalRead(dtPin);
+
+      while(!digitalRead(clkPin)){
+         Current_dtPin_Status = digitalRead(dtPin);
+         flag = 1;
+      }
+
+      if(flag == 1){
+         flag = 0;
+         if((Last_dtPin_Status == 0)&&(Current_dtPin_Status == 1)){
+            globalCounter --;	
+         }
+         if((Last_dtPin_Status == 1)&&(Current_dtPin_Status == 0)){
+            globalCounter ++;
+         }
+      }
+   }
+
+   int main(void)
+   {
+      if(wiringPiSetup() < 0){
+         fprintf(stderr, "Unable to setup wiringPi:%s\n",strerror(errno));
+         return 1;
+      }
+
+      pinMode(swPin, INPUT);
+      pinMode(clkPin, INPUT);
+      pinMode(dtPin, INPUT);
+
+      pullUpDnControl(swPin, PUD_UP);
+
+      if(wiringPiISR(swPin, INT_EDGE_FALLING, &btnISR) < 0){
+         fprintf(stderr, "Unable to init ISR\n",strerror(errno));	
+         return 1;
+      }
+      
+      int tmp = 0;
+
+      while(1){
+         rotaryDeal();
+         if (tmp != globalCounter){
+            printf("%d\n", globalCounter);
+            tmp = globalCounter;
+         }
+      }
+
+      return 0;
+   }
+
+**コード説明**
+
+* clkPinが低いときにdtPinの値を読み取ります。
+* clkPinが高い場合、dtPinが低から高になると、カウントは減少します。それ以外の場合はカウントが増加します。
+* シャフトが押されるとswPinは低を出力します。
+
+これに基づいて、以下のプログラムフローが示されます。
+
+.. image:: ../img/2.1.6_flow.png
+   :align: center
+
+現象の画像
+-------------------------
+
+.. image:: ../img/2.1.6rotary_ecoder.JPG
+   :align: center

@@ -1,0 +1,285 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _1.1.1_c_pi5:
+
+1.1.1 LEDの点滅
+=========================
+
+はじめに
+-----------------
+
+このプロジェクトでは、プログラミングによってLEDを点滅させる方法を学びます。
+設定によって、LEDは一連の興味深い現象を生み出すことができます。さあ、始めましょう。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/blinking_led_list.png
+    :width: 800
+    :align: center
+
+一式をまとめて購入すると便利です。以下はリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+
+
+回路図
+---------------------
+
+この実験では、LEDのアノード（LEDの長いピン）に220Ωの抵抗を接続し、この抵抗を3.3 Vに、LEDのカソード（短いピン）をRaspberry PiのGPIO17に接続します。したがって、LEDを点灯させるには、GPIO17を低（0V）レベルにする必要があります。これはプログラミングによって得られる現象です。
+
+.. note::
+
+    **Pin11** はRaspberry Piの左から右に11番目のピンを指し、対応する **wiringPi** と **BCM** のピン番号は以下の表に示されています。
+
+C言語の関連コンテンツでは、wiringPiの中でGPIO0を0としています。Python言語の関連コンテンツでは、以下の表のBCM列のBCM 17は17です。同時に、Raspberry Piの11番目のピン、Pin 11としても同じです。
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../img/image48.png
+    :width: 800
+    :align: center
+
+実験手順
+-----------------------------
+
+**ステップ1:** 回路を組み立てる。
+
+.. image:: ../img/image49.png
+    :width: 800
+    :align: center
+
+**ステップ2:** コードのフォルダに移動する。
+
+1) スクリーンを使用する場合は、以下の手順をおすすめします。
+
+``~/`` に移動し、 ``raphael-kit`` フォルダを見つけます。
+
+フォルダ内の **C** を右クリックし、 **Open in Terminal** を選択します。
+
+.. image:: ../img/image50.png
+    :width: 800
+    :align: center
+
+すると、以下のようなウィンドウが表示されます。これで、コード ``1.1.1_BlinkingLed.c`` のパスに入りました。
+
+.. image:: ../img/image51.png
+    :width: 800
+    :align: center
+
+次のプロジェクトでは、右クリックする代わりにコマンドを使用してコードファイルに入る予定です。ただし、好きな方法を選択できます。
+
+
+
+2) Raspberry Piにリモートでログインする場合、 ``cd`` を使用してディレクトリを変更します：
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd ~/raphael-kit/c/1.1.1/
+
+.. note::
+    この実験のコードのパスにcdを使ってディレクトリを変更します。
+
+どちらの方法でも、今、Cフォルダにいます。これら2つの方法に基づく後続の手順は同じです。進めましょう。
+
+**ステップ3:** コードをコンパイルする
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   gcc 1.1.1_BlinkingLed.c -o BlinkingLed -lwiringPi
+
+.. note::
+    gccはGNU Compiler Collectionです。ここでは、C言語のファイル ``1.1.1_BlinkingLed.c`` をコンパイルし、実行可能ファイルを出力するように機能しています。
+
+コマンド内の ``-o`` は出力を意味し（-oの直後の文字はコンパイル後の出力ファイル名であり、ここで ``BlinkingLed`` という名前の実行可能ファイルが生成される） ``-lwiringPi`` はwiringPiライブラリをロードするためのものです（ ``l`` はlibraryの略）。
+
+**ステップ4:** 前のステップで出力された実行可能ファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo ./BlinkingLed
+
+.. note::
+
+   実行後に動作しない、またはエラープロンプトが表示される場合: ``wiringPi.h\: No such file or directory``、 :ref:`install_wiringpi` を参照してください。
+
+GPIOを制御するには、 ``sudo`` コマンド（スーパーユーザー実行）でプログラムを実行する必要があります。 ``./`` コマンドは現在のディレクトリを示しています。全体のコマンドは、現在のディレクトリの ``BlinkingLed`` を実行するものです。
+
+コードを実行すると、LEDが点滅するのが見えるでしょう。
+
+コードファイル ``1.1.1_BlinkingLed.c`` を編集したい場合、コードを停止して次のコマンドを入力して開きます：
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano 1.1.1_BlinkingLed.c
+
+``Ctrl+X`` を押して終了します。コードを変更した場合、変更を保存するかどうかを尋ねるプロンプトが表示されます。 ``Y`` （保存）または ``N`` （保存しない）を入力してください。その後、 ``Enter`` キーを押して終了します。変更後の効果を確認するには、 ``ステップ3`` と ``ステップ4`` を繰り返します。
+
+.. image:: ../img/image53.png
+    :width: 800
+    :align: center
+
+**コード**
+
+プログラムコードは以下の通りです：
+
+.. code-block:: c
+
+   #include <wiringPi.h>  
+   #include <stdio.h>
+   #define LedPin      0
+   int main(void)
+   {
+      // When initialize wiring failed, print message to screen
+      if(wiringPiSetup() == -1){
+         printf("setup wiringPi failed !");
+         return 1;
+      }
+      pinMode(LedPin, OUTPUT);// Set LedPin as output to write value to it.
+      while(1){
+         // LED on
+         digitalWrite(LedPin, LOW);
+         printf("...LED on\n");
+         delay(500);
+         // LED off
+         digitalWrite(LedPin, HIGH);
+         printf("LED off...\n");
+         delay(500);
+      }
+      return 0;
+   }
+
+**コード説明**
+
+.. code-block:: c
+
+   #include <wiringPi.h>
+
+Raspberry PiのC言語用に設計されたハードウェアドライブライブラリは、ハードウェアの初期化、I/Oポート、PWMなどの出力を促進するためのものです。
+
+.. code-block:: c
+
+   #include <stdio.h>
+
+標準I/Oライブラリ。画面に表示されるデータを印刷するために使用されるpintf関数は、このライブラリによって実現されます。他にも多くのパフォーマンス関数が探索できます。
+
+.. code-block:: c
+
+   #define LedPin 0
+
+T_Extension BoardのPin GPIO17は、wiringPiのGPIO0に対応しています。GPIO0をLedPinに割り当て、以降のコードでLedPinはGPIO0を表します。
+
+.. code-block:: c
+
+   if(wiringPiSetup() == -1){
+      printf("setup wiringPi failed !");
+      return 1;
+
+この関数は、wiringPiを初期化し、呼び出しプログラムがwiringPiのピン番号付けスキームを使用することを前提としています。
+
+この関数は、root権限で呼び出す必要があります。
+wiringの初期化に失敗した場合、メッセージを画面に表示します。 ``return`` 関数は、現在の関数からジャンプアウトするために使用されます。 ``main()`` 関数でreturnを使用すると、プログラムが終了します。
+
+.. code-block:: c
+
+   pinMode(LedPin, OUTPUT);
+
+``LedPin`` を出力として設定し、その値を書き込みます。
+
+.. code-block:: c
+
+   digitalWrite(LedPin, LOW);
+
+GPIO0を0V（ローレベル）に設定します。LEDのカソードがGPIO0に接続されているため、GPIO0が低く設定されるとLEDが点灯します。逆に、GPIO0を高レベルに設定すると、LEDは消灯します。
+
+.. code-block:: c
+
+   printf("...LED off\n");
+
+printf関数は標準ライブラリ関数であり、その関数プロトタイプはヘッダーファイル ``stdio.h`` にあります。
+
+呼び出しの一般的な形式は、 ``printf(" format control string ", output table columns)`` です。フォーマット制御文字列は出力フォーマットを指定するためのもので、フォーマット文字列と非フォーマット文字列に分かれます。フォーマット文字列は ``%`` で始まり、フォーマット文字の後に続きます。たとえば、 ``%d`` は10進整数出力のためのものです。非フォーマット文字列はプロトタイプとして印刷されます。ここで使用されているのは非フォーマット文字列で、その後には ``\n`` 、すなわち改行文字が続き、文字列を印刷した後に自動的に行が折り返されることを示しています。
+
+.. code-block:: c
+
+   delay(500);
+
+現在のHIGHまたはLOW状態を500ms保持します。
+
+これは、プログラムを一定期間中断する関数です。そして、プログラムの速度は私たちのハードウェアによって決まります。ここでは、LEDをオンまたはオフにします。delay関数がなければ、プログラムは非常に速く全体のプログラムを実行し、連続してループします。そのため、私たちはプログラムの記述とデバッグを支援するためのdelay関数が必要です。
+
+.. code-block:: c
+
+   return 0;
+
+通常、これはmain関数の後に置かれ、関数が正常に実行された場合に0を返すことを示しています。
+
+現象の画像
+--------------------
+
+
+.. image:: ../img/image54.jpeg
+   :width: 800
+   :align: center

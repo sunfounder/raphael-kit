@@ -1,0 +1,381 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _3.1.6_c_pi5:
+
+3.1.6 交通信号機
+=====================
+
+はじめに
+---------------
+
+このプロジェクトでは、3色のLEDライトを使用して交通信号機の変化を実現し、4桁の7セグメント表示器を使用して各交通状態のタイミングを表示します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_Traffic_Light.png
+    :align: center
+
+すべてのキットをまとめて購入するのは非常に便利です。以下がリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクからも個別に購入することができます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
+回路図
+--------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPICE0       Pin 24   10       8
+SPICE1       Pin 26   11       7
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one7.png
+   :align: center
+
+実験手順
+------------------------
+
+**ステップ1:** 回路を作成します。
+
+.. image:: ../img/image254.png
+
+**ステップ2:** ディレクトリを変更します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.6/
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.6_TrafficLight.c -lwiringPi
+
+**ステップ4:** 実行。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードが実行されると、LEDは交通信号の色の変化をシミュレートします。まず、赤いLEDが60秒間点灯し、次に緑のLEDが30秒間点灯します。その後、黄色のLEDが5秒間点灯します。それに続いて、赤いLEDが再び60秒間点灯します。この一連のアクションは繰り返し実行されます。
+
+.. note::
+
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合、 :ref:`install_wiringpi` を参照してください。
+
+コード
+---------
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <wiringShift.h>
+    #include <signal.h>
+    #include <unistd.h>
+    #define     SDI     5 
+    #define     RCLK    4  
+    #define     SRCLK    1   
+
+    const int ledPin[]={6,10,11};  
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    int greenLight = 30;
+    int yellowLight = 5;
+    int redLight = 60;
+    int colorState = 0;
+    char *lightColor[]={"Red","Green","Yellow"};
+    int counter = 60;
+
+    void lightup()
+    {
+        for(int i=0;i<3;i++){
+            digitalWrite(ledPin[i],HIGH);
+        }
+        digitalWrite(ledPin[colorState],LOW);    
+    }
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+    void hc595_shift(int8_t data)
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 0x80 & (data << i));
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void clearDisplay()
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 1);
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void display()
+    {
+        int a,b,c;
+        
+        a = counter % 10000 / 1000 + counter % 1000 / 100;
+        b = counter % 10000 / 1000 + counter % 1000 / 100 + counter % 100 / 10;
+        c = counter % 10000 / 1000 + counter % 1000 / 100 + counter % 100 / 10 + counter % 10;
+
+        if (counter % 10000 / 1000 == 0){
+            clearDisplay();
+        }
+        else{
+            clearDisplay();
+            pickDigit(3);
+            hc595_shift(number[counter % 10000 / 1000]);
+        }
+        if (a == 0){
+            clearDisplay();
+        }
+        else{
+            clearDisplay();
+            pickDigit(2);
+            hc595_shift(number[counter % 1000 / 100]);
+        }
+        if (b == 0){
+            clearDisplay();
+        }
+        else{
+            clearDisplay();
+            pickDigit(1);
+            hc595_shift(number[counter % 100 / 10]);
+        }
+        if(c == 0){
+            clearDisplay();
+        }
+
+        else{
+            clearDisplay();
+            pickDigit(0);
+            hc595_shift(number[counter % 10]);
+        }
+    }
+
+    void loop()
+    {
+        while(1){
+        display();
+        lightup(); 
+        }
+    }
+
+
+    void timer(int  timer1){       //Timer function
+        if(timer1 == SIGALRM){   
+            counter --;         
+            alarm(1); 
+            if(counter == 0){
+                if(colorState == 0) counter = greenLight;
+                if(colorState == 1) counter = yellowLight;
+                if(colorState == 2) counter = redLight;
+                colorState = (colorState+1)%3; 
+            }
+            printf("counter : %d \t light color: %s \n",counter,lightColor[colorState]);
+        }
+    }
+
+    int main(void)
+    {
+        int i;
+        if(wiringPiSetup() == -1){ 
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        pinMode(SDI,OUTPUT);        
+        pinMode(RCLK,OUTPUT);
+        pinMode(SRCLK,OUTPUT);
+        for(i=0;i<4;i++){       
+            pinMode(placePin[i],OUTPUT);
+            digitalWrite(placePin[i],HIGH);
+        }
+        for(i=0;i<3;i++){       
+            pinMode(ledPin[i],OUTPUT);
+            digitalWrite(ledPin[i],HIGH);
+        }
+        signal(SIGALRM,timer);  
+        alarm(1); 
+        loop();
+        return 0;
+    }
+
+
+コード説明
+--------------------
+
+.. code-block:: c
+
+    #define     SDI     5 
+    #define     RCLK    4  
+    #define     SRCLK    1   
+
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    void pickDigit(int digit);
+    void hc595_shift(int8_t data);
+    void clearDisplay();
+    void display();
+
+これらのコードは、4桁7セグメントディスプレイの数値表示機能を実現するために使用されます。詳細については、ドキュメントの1.1.5章を参照してください。ここでは、これらのコードを使用して、交通信号の時間のカウントダウンを表示します。
+
+.. code-block:: c
+
+    const int ledPin[]={6,10,11};  
+
+    int colorState = 0;
+
+    void lightup()
+    {
+        for(int i=0;i<3;i++){
+            digitalWrite(ledPin[i],HIGH);
+        }
+        digitalWrite(ledPin[colorState],LOW);    
+    }
+
+これらのコードは、LEDをオンおよびオフに切り替えるために使用されます。
+
+.. code-block:: c
+
+    int greenLight = 30;
+    int yellowLight = 5;
+    int redLight = 60;
+    int colorState = 0;
+    char *lightColor[]={"Red","Green","Yellow"};
+    int counter = 60;
+
+    void timer(int  timer1){       //Timer function
+        if(timer1 == SIGALRM){   
+            counter --;         
+            alarm(1); 
+            if(counter == 0){
+                if(colorState == 0) counter = greenLight;
+                if(colorState == 1) counter = yellowLight;
+                if(colorState == 2) counter = redLight;
+                colorState = (colorState+1)%3; 
+            }
+            printf("counter : %d \t light color: %s \n",counter,lightColor[colorState]);
+        }
+    }
+
+これらのコードは、タイマーをオンおよびオフに切り替えるために使用されます。詳細については、1.1.5章を参照してください。ここでは、タイマーがゼロに戻ると、colorStateが切り替わり、LEDを切り替え、タイマーに新しい値が割り当てられます。
+
+.. code-block:: c
+
+    void loop()
+    {
+        while(1){
+        display();
+        lightup(); 
+        }
+    }
+
+    int main(void)
+    {
+        //…
+        signal(SIGALRM,timer);  
+        alarm(1); 
+        loop();
+        return 0;
+    }
+
+タイマーはmain()関数で開始されます。loop()関数では、 **while(1)** ループを使用し、4桁7セグメントとLEDの関数を呼び出します。
+
+現象の画像
+-------------------
+
+.. image:: ../img/IMG_8319.jpg
+   :align: center

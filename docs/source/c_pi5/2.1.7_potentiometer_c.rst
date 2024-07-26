@@ -1,0 +1,392 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.1.7_c_pi5:
+
+2.1.7 ポテンショメーター
+=========================
+
+はじめに
+------------
+
+ADC機能を使用すると、アナログ信号をデジタル信号に変換できます。この実験では、ADC0834を使用してADCに関する機能を取得します。ここでは、ポテンショメーターを使用してこのプロセスを実装します。ポテンショメーターは物理的な量である電圧を変化させ、これはADC機能によって変換されます。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_2.1.4_potentiometer.png
+
+キット全体を購入すると非常に便利です。リンクは以下のとおりです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_adc0834`
+        - \-
+
+回路図
+-----------------
+
+.. image:: ../img/image311.png
+
+.. image:: ../img/image312.png
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image180.png
+
+.. note::
+    画像で示されている対応する位置を参照して、チップを配置してください。チップの溝は、配置時に左になるようにしてください。
+
+**ステップ2:** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.7/
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.7_Potentiometer.c -lwiringPi
+
+**ステップ4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードを実行した後、ポテンショメーターのノブを回すと、LEDの強度がそれに応じて変わります。
+
+.. note::
+
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+    #define     LedPin    3
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+    //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        uchar analogVal;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        softPwmCreate(LedPin,  0, 100);
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            printf("Current analogVal : %d\n", analogVal);
+            softPwmWrite(LedPin, analogVal);
+            delay(100);
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+    #define     LedPin    3
+
+ADC0834のCS、CLK、DIOを定義し、GPIO0、GPIO1、およびGPIOに接続します。
+それぞれGPIO2。 次にGPIO3にLEDを取り付けます。
+
+.. code-block:: c
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+    //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+ADC0834のアナログからデジタルへの変換を取得する機能があります。
+具体的なワークフローは以下の通りです。
+
+.. code-block:: c
+
+    digitalWrite(ADC_CS, 0);
+
+CSを低レベルに設定し、AD変換を有効にします。
+
+.. code-block:: c
+
+    // Start bit
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+
+クロック入力の低から高への遷移が初めて発生するとき、DIOを1に設定してスタートビットとします。次の3つのステップでは、3つの代入語があります。
+
+.. code-block:: c
+
+    //Single End mode
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+
+クロック入力の低から高への遷移が2回目に発生するとすぐに、DIOを1に設定し、SGLモードを選択します。
+
+.. code-block:: c
+
+    // ODD
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+
+3回目に発生すると、DIOの値は変数 **odd** によって制御されます。
+
+.. code-block:: c
+
+    //Select
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);
+
+CLKのパルスが4回目に低レベルから高レベルに変換されると、DIOの値は変数 **sel** によって制御されます。
+
+channel=0, sel=0, odd=0の条件の下で、 **sel** と **odd** に関する操作式は以下の通りです。
+
+.. code-block:: c
+
+    int sel = channel > 1 & 1;
+    int odd = channel & 1;
+
+channel=1, sel=0, odd=1の条件が満たされた場合、以下のアドレス制御ロジックテーブルを参照してください。ここではCH1が選択され、スタートビットが多重器レジスタのスタート位置にシフトされ、変換が開始されます。
+
+.. image:: ../img/image313.png
+
+
+.. code-block:: c
+
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+ここで、DIOを2回1に設定しますが、無視してください。
+
+.. code-block:: c
+
+    for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+最初のfor()文では、CLKの5回目のパルスが高レベルから低レベルに変換されるとすぐに、DIOを入力モードに設定します。そして変換が開始され、変換された値は変数dat1に格納されます。8つのクロック周期の後、変換は完了します。
+
+.. code-block:: c
+
+    for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+2つ目のfor()文では、他の8つのクロック周期の後、変換された値をDO経由で出力し、変数dat2に格納します。
+
+.. code-block:: c
+
+    digitalWrite(ADC_CS,1);
+    pinMode(ADC_DIO, OUTPUT);
+    return(dat1==dat2) ? dat1 : 0;
+
+return(dat1==dat2) ? dat1 : 0は、変換中に取得された値と出力値を比較するために使用されます。両方が等しい場合は、変換値dat1を出力し、そうでない場合は0を出力します。ここで、ADC0834のワークフローは完了します。
+
+.. code-block:: c
+
+    softPwmCreate(LedPin,  0, 100);
+
+この関数は、ソフトウェアを使用してPWMピン、LedPinを作成するためのものです。その後、初期のパルス幅は0に設定され、PWMの周期は100 x 100usとなります。
+
+.. code-block:: c
+
+    while(1){
+            analogVal = get_ADC_Result(0);
+            printf("Current analogVal : %d\n", analogVal);
+            softPwmWrite(LedPin, analogVal);
+            delay(100);
+        }
+
+メインプログラムでは、ポテンショメーターに接続されたチャンネル0の値を読み取ります。そして、その値を変数analogValに格納し、LedPinに書き込みます。これで、ポテンショメーターの値に応じてLEDの明るさが変わるのがわかります。
+
+現象の画像
+------------------
+
+.. image:: ../img/image181.jpeg
+
+

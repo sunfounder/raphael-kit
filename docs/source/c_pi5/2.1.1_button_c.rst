@@ -1,0 +1,216 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.1.1_c_pi5:
+
+2.1.1 ボタン
+==================
+
+はじめに
+-----------------
+
+このプロジェクトでは、ボタンを使用してLEDを点灯または消灯する方法を学びます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_2.1.1_Button.png
+
+一式をまとめて購入すると便利です。こちらがリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することも可能です。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_button`
+        - |link_button_buy|
+
+回路図
+---------------------
+
+Raspberry Piの入力として通常開いているボタンを使用し、下の回路図に示される接続を行います。ボタンが押されると、GPIO18は低レベル（0V）になります。プログラムを通してGPIO18の状態を検出することができます。つまり、GPIO18が低レベルになった場合、ボタンが押されたことを意味します。ボタンが押されたときに対応するコードを実行すると、LEDが点灯します。
+
+.. note::
+    LEDの長いピンはアノード、短いピンはカソードです。
+
+.. image:: ../img/image302.png
+
+.. image:: ../img/image303.png
+
+実験手順
+---------------------------
+
+**ステップ1**: 回路を組み立てる。
+
+.. image:: ../img/image152.png
+
+**ステップ2**: コードファイルを開く。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.1/
+
+.. note::
+    **cd** を使って、この実験のコードのパスにディレクトリを変更します。
+
+**ステップ3**: コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.1_Button.c -lwiringPi
+
+**ステップ4**: 実行可能ファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードを実行後、ボタンを押すとLEDが点灯し、そうでない場合は消灯します。
+
+.. note::
+
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define LedPin      0
+    #define ButtonPin   1
+
+    int main(void){
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(LedPin, OUTPUT);
+        pinMode(ButtonPin, INPUT);
+        digitalWrite(LedPin, HIGH);
+        
+        while(1){
+            // Indicate that button has pressed down
+            if(digitalRead(ButtonPin) == 0){
+                // Led on
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED on\n");
+            }
+            else{
+                // Led off
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED off...\n");
+            }
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    #define LedPin      0
+
+T_Extension BoardのGPIO17は、wiringPiのGPIO0と同等です。
+
+.. code-block:: c
+
+    #define ButtonPin   1
+
+ButtonPinはGPIO1に接続されています。
+
+.. code-block:: c
+
+    pinMode(LedPin, OUTPUT);
+
+LedPinを出力として設定し、値を割り当てる。
+
+.. code-block:: c
+
+    pinMode(ButtonPin, INPUT);
+
+ButtonPinを入力として設定し、ButtonPinの値を読み取る。
+
+.. code-block:: C
+
+    while(1){
+            // Indicate that button has pressed down
+            if(digitalRead(ButtonPin) == 0){
+                // Led on
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED on\n");
+            }
+            else{
+                // Led off
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED off...\n");
+            }
+        }
+
+``if (digitalRead(ButtonPin) == 0)`` : ボタンが押されたかどうかを確認します。ボタンが押された場合、LEDを点灯させるために ``digitalWrite(LedPin, LOW)`` を実行します。
+
+``digitalRead()`` 関数は、入力パラメータのピンのHIGH（高レベル）またはLOW（低レベル）を読み取るためのもので、ピンがHIGHの場合は1を、LOWの場合は0を返します。
+
+``digitalWrite()`` 関数は、入力パラメータのピンにHIGH（高レベル）またはLOW（低レベル）を書き込むためのものです。
+
+現象の画像
+---------------------------
+
+.. image:: ../img/image153.jpeg
+
+

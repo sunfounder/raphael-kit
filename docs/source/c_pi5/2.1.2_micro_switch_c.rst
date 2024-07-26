@@ -1,0 +1,190 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.1.2_c_pi5:
+
+2.1.2 マイクロスイッチ
+=======================
+
+はじめに
+--------------------
+
+このプロジェクトでは、マイクロスイッチの使用方法を学びます。マイクロスイッチは、非常に感度が高く、最小の圧縮で動作する小型のスイッチです。信頼性が高く、感度が良いため、マイクロスイッチはしばしば安全装置として使用されます。
+
+これは、何かや誰かが邪魔になってドアが閉まらないようにするためや、それに類似した他のアプリケーションに使用されます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/2.1.2component.png
+
+一式をまとめて購入すると便利です。こちらがリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品の紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_micro_switch`
+        - \-
+    *   - :ref:`cpn_capacitor`
+        - |link_capacitor_buy|
+
+回路図
+-----------------
+
+マイクロスイッチの左ピンをGPIO17に、2つのLEDをそれぞれGPIO22とGPIO27に接続します。そして、マイクロスイッチの動くアームを押して離すと、2つのLEDが交互に点灯するのが見られます。
+
+.. image:: ../img/image305.png
+
+.. image:: ../img/micro_Schematic.png
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てる。
+
+.. image:: ../img/2.1.4fritzing.png
+
+**ステップ2**: コードのフォルダに移動する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.2
+
+**ステップ3**: コンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.2_MicroSwitch.c -lwiringPi 
+
+**ステップ4**: 上記の実行可能ファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行されている間、マイクロスイッチを押すと、黄色のLEDが点灯します。動くアームを離すと、赤いLEDが点灯します。
+
+.. note::
+
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define microPin		0
+    #define led1			3
+    #define led2 			2
+
+    int main(void)
+    {
+        // When initialize wiring failed, print message to screen
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        
+        pinMode(microPin, INPUT);
+        pinMode(led1, OUTPUT);
+        pinMode(led2, OUTPUT);
+        
+        while(1){
+            // micro switch high, led1 on
+            if(digitalRead(microPin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+            }
+            // micro switch low, led2 on
+            if(digitalRead(microPin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+            delay(500);
+        }
+
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+        }
+
+マイクロスイッチの動くアームが放されると、左のピンは右のピンに接続されます。この時、GPIO17には高レベルが読み取られ、その結果、LED1が点灯し、LED2が消灯します。
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+
+アームが押されると、左のピンと中央のピンが接続されます。この時点でGPIO17には低レベルが読み取られ、LED2が点灯し、LED1が消灯します。
+
+現象の画像
+------------------
+
+.. image:: ../img/2.1.2micro_switch.JPG

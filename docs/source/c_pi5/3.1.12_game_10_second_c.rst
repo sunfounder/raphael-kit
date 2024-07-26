@@ -1,0 +1,175 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _3.1.12_c_pi5:
+
+3.1.12 ゲーム - 10秒
+=========================
+
+はじめに
+-------------------
+
+次に、集中力を試すためのゲームデバイスを作成しましょう。傾斜スイッチを棒に取り付けて魔法の杖を作ります。杖を振ると、4桁のセグメントディスプレイがカウントを開始し、再び振るとカウントが停止します。表示されているカウントを **10.00** に保つことに成功すれば、勝利です。友達と一緒にプレイして、誰が時間の魔法使いかを競ってみましょう。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_GAME_10_Second.png
+    :align: center
+
+便利なキット全体を購入することもできます。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+    *   - :ref:`cpn_tilt_switch`
+        - \-
+
+回路図
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one13.png
+   :align: center
+
+実験手順
+---------------------------------
+
+**ステップ1**: 回路を組み立てます。
+
+.. image:: ../img/image277.png
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.12/
+
+**ステップ3**: コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.12_GAME_10Second.c -lwiringPi
+
+**ステップ4**: 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+杖を振ると、4桁のセグメントディスプレイがカウントを開始し、再び振るとカウントが停止します。表示されているカウントを **10.00** に保つことに成功すれば、勝利です。もう一度振ってゲームの次のラウンドを開始します。
+
+.. note::
+
+    実行後に動作しない場合、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+.. code-block:: c
+
+    void stateChange(){
+        if (gameState == 0){
+            counter = 0;
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
+        gameState = (gameState + 1)%2;
+    }
+
+このゲームは2つのモードに分かれています：
+
+gameState=0 は「開始」モードで、時間が計測され、セグメントディスプレイに表示され、傾斜スイッチを振ることで「表示」モードに入ります。
+
+GameState=1 は「表示」モードで、時間の計測を停止し、セグメントディスプレイに時間を表示します。再び傾斜スイッチを振ると、タイマーがリセットされ、ゲームが再開されます。
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                stateChange();
+            }
+            lastState=currentState;
+        }
+    }
+
+Loop() はメインの関数です。まず、時間が4桁のセグメントディスプレイに表示され、傾斜スイッチの値が読み取られます。傾斜スイッチの状態が変化した場合、stateChange() が呼び出されます。
+
+現象の画像
+-----------------------
+
+.. image:: ../img/image278.jpeg
+   :align: center
+
+
+

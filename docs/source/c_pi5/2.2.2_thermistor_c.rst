@@ -1,0 +1,269 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.2_c_pi5:
+
+2.2.2 サーミスタ
+======================
+
+はじめに
+------------
+
+フォトレジスタが光を感知できるように、サーミスタは温度に敏感な電子デバイスであり、ヒートアラームの作成など、温度制御の機能を実現するために使用できます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_2.2.2_thermistor.png
+
+全てのキットを購入するのは非常に便利です、リンクはこちら： 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットの内容
+        - リンク
+    *   - ラファエルキット
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから、個別にも購入できます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_adc0834`
+        - \-
+
+回路図
+-----------------
+
+.. image:: ../img/image323.png
+
+.. image:: ../img/image324.png
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組む。
+
+.. image:: ../img/image202.png
+
+**ステップ2:** コードのフォルダに移動する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.2/
+
+**ステップ3:** コードをコンパイルする。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.2_Thermistor.c -lwiringPi -lm
+
+.. note::
+    -lmはmathライブラリをロードするためのものです。省略しないでください、そうしないとエラーになります。
+
+**ステップ4:** 実行ファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードを実行すると、サーミスタは周囲の温度を検出し、プログラム計算が完了すると画面に表示されます。
+
+.. note::
+
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <math.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        unsigned char analogVal;
+    double Vr, Rt, temp, cel, Fah;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            Vr = 5 * (double)(analogVal) / 255;
+            Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+            temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+            cel = temp - 273.15;
+            Fah = cel * 1.8 +32;
+            printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+            delay(100);
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    #include <math.h>
+
+Cの数値ライブラリには、共通の数学的操作と変換を計算するための関数群が宣言されています。
+
+.. code-block:: c
+
+    analogVal = get_ADC_Result(0);
+
+この関数は、サーミスタの値を読み取るために使用されます。
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+    cel = temp - 273.15;
+    Fah = cel * 1.8 +32;
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+これらの計算は、サーミスタの値をセルシウス度に変換しています。
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+
+これらの2行のコードは、読み取られた値analogとともに電圧分布を計算し、サーミスタの抵抗Rtを取得するためのものです。
+
+.. code-block:: c
+
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+
+このコードは、Rtを式 **T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** に代入して、ケルビン温度を取得するものです。
+
+.. code-block:: c
+
+    temp = temp - 273.15;
+
+ケルビン温度を摂氏に変換します。
+
+.. code-block:: c
+
+    Fah = cel * 1.8 +32;
+
+摂氏を華氏に変換します。
+    
+.. code-block:: c
+
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+表示器に摂氏、華氏、およびそれらの単位を表示します。
+
+現象の画像
+------------------
+
+.. image:: ../img/image203.jpeg

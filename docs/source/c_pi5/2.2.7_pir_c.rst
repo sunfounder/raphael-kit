@@ -1,0 +1,200 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.7_c_pi5:
+
+2.2.7 PIR
+===============
+
+はじめに
+------------
+
+このプロジェクトでは、人体赤外線焦電センサーを使用してデバイスを作成します。誰かがLEDに近づくと、LEDは自動的に点灯します。そうでなければ、光は消えます。この赤外線モーションセンサーは、人や動物が放出する赤外線を検出できるセンサーの一種です。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下の部品が必要です。
+
+.. image:: ../img/list_2.2.4_pir2.png
+
+キット全体を購入するのは確かに便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`RGB LED`
+        - |link_rgb_led_buy|
+    *   - :ref:`cpn_pir`
+        - \-
+
+回路図
+-----------------
+
+.. image:: ../img/image327.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image214.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.7/
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.7_PIR.c -lwiringPi
+
+**ステップ4:** 実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行されると、PIRは周囲を検出し、通り過ぎる人を感知した場合はRGB LEDを黄色に点灯させます。
+
+PIRモジュールには2つのポテンショメータがあります。1つは感度を調整するためのもの、もう1つは検出距離を調整するためのものです。PIRモジュールをよりよく動作させるためには、両方を反時計回りに最後まで回す必要があります。
+
+.. image:: ../img/PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. note::
+
+    実行後に動作しない、またはエラーメッセージ「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softPwm.h>
+    #include <stdio.h>
+    #define uchar unsigned char
+
+    #define pirPin    0     //the pir connect to GPIO0
+    #define redPin    1
+    #define greenPin  2
+    #define bluePin   3
+
+    void ledInit(void){
+        softPwmCreate(redPin,  0, 100);
+        softPwmCreate(greenPin,0, 100);
+        softPwmCreate(bluePin, 0, 100);
+    }
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(redPin,   r_val);
+        softPwmWrite(greenPin, g_val);
+        softPwmWrite(bluePin,  b_val);
+    }
+    int main(void)
+    {
+        int pir_val;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        ledInit();
+        pinMode(pirPin, INPUT);
+        while(1){
+        pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //if read pir is HIGH level
+                ledColorSet(0xff,0xff,0x00); 
+            }
+            else {
+            ledColorSet(0x00,0x00,0xff); 
+            }
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    void ledInit(void);
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
+
+これらのコードはRGB LEDの色を設定するために使用されます。詳細については :ref:`1.1.2_c_pi5` を参照してください。
+
+.. code-block:: c
+
+    int main(void)
+    {
+        int pir_val;
+        //…… 
+        pinMode(pirPin, INPUT);
+        while(1){
+        pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //if read pir is HIGH level
+                ledColorSet(0xff,0xff,0x00); 
+            }
+            else {
+            ledColorSet(0x00,0x00,0xff); 
+            }
+        }
+        return 0;
+    }
+
+PIRが人間の赤外線スペクトルを検出すると、RGB LEDは黄色の光を放出します。そうでなければ、青色の光を放出します。
+
+現象の画像
+------------------
+
+.. image:: ../img/image215.jpeg

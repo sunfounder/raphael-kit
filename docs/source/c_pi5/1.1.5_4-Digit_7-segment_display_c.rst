@@ -1,0 +1,340 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _1.1.5_c_pi5:
+
+1.1.5 4桁の7セグメントディスプレイ
+====================================
+
+はじめに
+-----------------
+
+次に、4桁の7セグメントディスプレイの制御方法を一緒に試してみましょう。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../img/list_4_digit.png
+
+全てのキットを購入するのは確かに便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_4_digit`
+        - \-
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
+.. note::
+    このプロジェクトでは、4桁の7セグメントディスプレイにはBSモデルを使用する必要があります。ASモデルを使用すると、点灯しない場合があります。
+
+回路図
+--------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+============ ======== ======== ===
+
+.. image:: ../img/schmatic_4_digit.png
+
+
+実験手順
+-----------------------------------
+
+**ステップ1**: 回路を組み立てます。
+
+.. image:: ../img/image80.png
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.1.5/
+
+**ステップ3**: コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.5_4-Digit.c -lwiringPi
+
+**ステップ4**: 上記の実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードを実行すると、プログラムがカウントを取得し、1秒ごとに1つ増加し、4桁の7セグメントディスプレイがカウントを表示します。
+
+.. note::
+
+    実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <wiringShift.h>
+    #include <signal.h>
+    #include <unistd.h>
+
+    #define SDI 5
+    #define RCLK 4
+    #define SRCLK 1
+
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    int counter = 0;
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+    void hc595_shift(int8_t data)
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 0x80 & (data << i));
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void clearDisplay()
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 1);
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void loop()
+    {
+        while(1){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+    
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+        }
+    }
+
+    void timer(int timer1)
+    { 
+        if (timer1 == SIGALRM)
+        { 
+            counter++;
+            alarm(1); 
+            printf("%d\n", counter);
+        }
+    }
+
+    void main(void)
+    {
+        if (wiringPiSetup() == -1)
+        { 
+            printf("setup wiringPi failed !");
+            return;
+        }
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT);
+        pinMode(SRCLK, OUTPUT);
+        
+        for (int i = 0; i < 4; i++)
+        {
+            pinMode(placePin[i], OUTPUT);
+            digitalWrite(placePin[i], HIGH);
+        }
+        signal(SIGALRM, timer); 
+        alarm(1);               
+        loop(); 
+    }
+
+
+
+**コード説明**
+
+.. code-block:: c
+
+    const int placePin[] = {12, 3, 2, 0};
+
+これらの4つのピンは、4桁の7セグメントディスプレイの共通アノードピンを制御します。
+
+.. code-block:: c
+
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+16進数で0から9までのセグメントコード配列（共通アノード）。
+
+.. code-block:: c
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+表示する位置を選択します。1回のみ有効にするべき位置があります。有効な場所はハイに書き込まれます。
+
+.. code-block:: c
+
+    void loop()
+    {
+        while(1){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+    
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+        }
+    }
+
+この関数は、4桁の7セグメントディスプレイに表示される数字を設定するために使用されます。
+
+* ``clearDisplay()``：7セグメントディスプレイのこれらの8つのLEDに11111111を書き込むことで、表示内容をクリアします。
+* ``pickDigit(0)``：4番目の7セグメントディスプレイを選択します。
+* ``hc595_shift(number[counter%10])``：counterの一桁の数字が4つ目のセグメントに表示されます。
+
+.. code-block:: c
+
+    signal(SIGALRM, timer); 
+
+これはシステムが提供する関数で、コードのプロトタイプは：
+
+.. code-block:: c
+
+    sig_t signal(int signum,sig_t handler);
+
+``signal()`` を実行した後、プロセスが対応するsignum（この場合はSIGALRM）を受信すると、現在のタスクがすぐに一時停止し、設定された関数（この場合は ``timer(sig)`` ）が処理されます。
+
+.. code-block:: c
+
+    alarm(1);
+
+これもシステムが提供する関数です。コードのプロトタイプは：
+
+.. code-block:: c
+
+    unsigned int alarm (unsigned int seconds);
+
+特定の秒数の後にSIGALRM信号を生成します。
+
+.. code-block:: c
+
+    void timer(int timer1)
+    { 
+        if (timer1 == SIGALRM)
+        { 
+            counter++;
+            alarm(1); 
+            printf("%d\n", counter);
+        }
+    }
+
+上記の関数を使用して、タイマー関数を実装します。
+``alarm()`` がSIGALRM信号を生成した後、timer関数が呼び出されます。counterに1を追加し、 ``alarm(1)`` 関数は1秒後に繰り返し呼び出されます。
+
+現象の画像
+-----------------------
+
+.. image:: ../img/image81.jpeg

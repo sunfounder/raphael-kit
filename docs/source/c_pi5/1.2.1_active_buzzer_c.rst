@@ -1,0 +1,162 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _1.2.1_c_pi5:
+
+1.2.1 アクティブブザー
+=========================
+
+はじめに
+------------
+
+このプロジェクトでは、PNPトランジスタを使用してアクティブブザーを鳴らす方法を学びます。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、以下の部品が必要です。
+
+.. image:: ../img/list_1.2.1.png
+
+全体のキットを購入するのは非常に便利です。以下がリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+
+回路図
+-----------------
+
+この実験では、アクティブブザー、PNPトランジスタ、トランジスタのベースとGPIO間の1kの抵抗が使用されます。プログラムでRaspberry PiのGPIO17出力に低レベル(0V)が供給されると、トランジスタは電流飽和のために伝導し、ブザーが音を発します。しかし、Raspberry PiのIOに高レベルが供給されると、トランジスタが遮断され、ブザーは音を出さなくなります。
+
+.. image:: ../img/image332.png
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てます。（アクティブブザーには表面に白いテーブルステッカーがあり、裏面が黒いです。）
+
+.. image:: ../img/image104.png
+
+**ステップ2**: コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.2.1/
+
+**ステップ3**: コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.1_ActiveBuzzer.c -lwiringPi
+
+**ステップ4**: 上記の実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行されると、ブザーが鳴ります。
+
+.. note::
+
+    実行後に動作しないか、エラーメッセージ「wiringPi.h: No such file or directory」が表示される場合、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define BeepPin 0
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(BeepPin, OUTPUT);   //set GPIO0 output
+        while(1){
+            //beep on
+            printf("Buzzer on\n");
+            digitalWrite(BeepPin, LOW);
+            delay(100);
+            printf("Buzzer off\n");
+            //beep off
+            digitalWrite(BeepPin, HIGH);
+            delay(100);
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, LOW);
+
+この実験ではアクティブブザーを使用しているので、直流電源に接続すると自動的に音がします。このスケッチは、I/Oポートを低レベル(0V)に設定することで、トランジスタを制御してブザーを鳴らすものです。
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, HIGH);
+
+I/Oポートを高レベル(3.3V)に設定することで、トランジスタが励起されず、ブザーが鳴らないようにします。
+
+現象の画像
+------------------
+
+.. image:: ../img/image105.jpeg

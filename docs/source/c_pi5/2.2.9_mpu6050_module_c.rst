@@ -1,0 +1,289 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.9_c_pi5:
+
+2.2.9 MPU6050モジュール
+===========================
+
+はじめに
+------------
+
+MPU-6050は、世界初かつ唯一の6軸モーショントラッキングデバイス（3軸ジャイロスコープおよび3軸加速度センサー）で、スマートフォン、タブレット、ウェアラブルセンサー向けに設計されています。これらの特性、低消費電力、低コスト、高性能の要件を含みます。
+
+この実験では、I2Cを使用してMPU6050の三軸加速センサーと三軸ジャイロスコープの値を取得し、画面に表示します。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要なコンポーネントは以下の通りです。
+
+.. image:: ../img/list_2.2.6.png
+
+全体キットを購入するのは確かに便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_mpu6050`
+        - |link_mpu6050_buy|
+
+回路図
+-----------------
+
+MPU6050は、I2Cバスインターフェースを介してマイクロコントローラーと通信します。SDA1とSCL1は、対応するピンに接続する必要があります。
+
+.. image:: ../img/image330.png
+
+実験手順
+----------------------------------
+
+**ステップ1:** 回路を作成します。
+
+.. image:: ../img/image227.png
+
+**ステップ2**: I2Cを設定します（詳細は付録 :ref:`i2c_config` を参照してください。すでにI2Cを設定している場合は、この手順をスキップします。）
+
+**ステップ3:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.9/
+
+**ステップ4:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.9_mpu6050.c -lwiringPi -lm
+
+**ステップ5:** 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードを実行すると、MPU6050で読み取ったx軸、y軸の偏角、各軸上の加速度と角速度が計算されて画面に表示されます。
+
+.. note::
+
+    * エラープロンプト ``wiringPi.h: No such file or directory`` がある場合は、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` エラーが発生した場合は、 :ref:`i2c_config` を参照してI2Cを有効にし、配線が正しいか確認する必要があります。
+
+**コード**
+
+.. code-block:: c
+
+    #include  <wiringPiI2C.h>
+    #include <wiringPi.h>
+    #include  <stdio.h>
+    #include  <math.h>
+    int fd;
+    int acclX, acclY, acclZ;
+    int gyroX, gyroY, gyroZ;
+    double acclX_scaled, acclY_scaled, acclZ_scaled;
+    double gyroX_scaled, gyroY_scaled, gyroZ_scaled;
+
+    int read_word_2c(int addr)
+    {
+    int val;
+    val = wiringPiI2CReadReg8(fd, addr);
+    val = val << 8;
+    val += wiringPiI2CReadReg8(fd, addr+1);
+    if (val >= 0x8000)
+        val = -(65536 - val);
+    return val;
+    }
+
+    double dist(double a, double b)
+    {
+    return sqrt((a*a) + (b*b));
+    }
+
+    double get_y_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(x, dist(y, z));
+    return -(radians * (180.0 / M_PI));
+    }
+
+    double get_x_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(y, dist(x, z));
+    return (radians * (180.0 / M_PI));
+    }
+
+    int main()
+    {
+    fd = wiringPiI2CSetup (0x68);
+    wiringPiI2CWriteReg8 (fd,0x6B,0x00);//disable sleep mode 
+    printf("set 0x6B=%X\n",wiringPiI2CReadReg8 (fd,0x6B));
+    
+    while(1) {
+
+        gyroX = read_word_2c(0x43);
+        gyroY = read_word_2c(0x45);
+        gyroZ = read_word_2c(0x47);
+
+        gyroX_scaled = gyroX / 131.0;
+        gyroY_scaled = gyroY / 131.0;
+        gyroZ_scaled = gyroZ / 131.0;
+
+        //Print values for the X, Y, and Z axes of the gyroscope sensor.
+        printf("My gyroX_scaled: %f\n", gyroY X_scaled);
+        printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
+        printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+
+        acclX = read_word_2c(0x3B);
+        acclY = read_word_2c(0x3D);
+        acclZ = read_word_2c(0x3F);
+
+        acclX_scaled = acclX / 16384.0;
+        acclY_scaled = acclY / 16384.0;
+        acclZ_scaled = acclZ / 16384.0;
+        
+        //Print the X, Y, and Z values of the acceleration sensor.
+        printf("My acclX_scaled: %f\n", acclX_scaled);
+        printf("My acclY_scaled: %f\n", acclY_scaled);
+        printf("My acclZ_scaled: %f\n", acclZ_scaled);
+
+        printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+        printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+        
+        delay(100);
+    }
+    return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    int read_word_2c(int addr)
+    {
+    int val;
+    val = wiringPiI2CReadReg8(fd, addr);
+    val = val << 8;
+    val += wiringPiI2CReadReg8(fd, addr+1);
+    if (val >= 0x8000)
+        val = -(65536 - val);
+    return val;
+    }
+
+MPU6050から送信されるセンサーデータを読み取ります。
+
+.. code-block:: c
+
+    double get_y_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(x, dist(y, z));
+    return -(radians * (180.0 / M_PI));
+    }
+
+Y軸上の偏角を取得します。
+
+.. code-block:: c
+
+    double get_x_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(y, dist(x, z));
+    return (radians * (180.0 / M_PI));
+    }
+
+X軸の偏角を計算します。
+
+.. code-block:: c
+
+    gyroX = read_word_2c(0x43);
+    gyroY = read_word_2c(0x45);
+    gyroZ = read_word_2c(0x47);
+
+    gyroX_scaled = gyroX / 131.0;
+    gyroY_scaled = gyroY / 131.0;
+    gyroZ_scaled = gyroZ / 131.0;
+
+    //Print values for the X, Y, and Z axes of the gyroscope sensor.
+    printf("My gyroX_scaled: %f\n", gyroY X_scaled);
+    printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
+    printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+
+ジャイロスコープセンサーのx軸、y軸、z軸の値を読み取り、
+メタデータを角速度の値に変換して、それらを出力します。
+
+.. code-block:: c
+
+    acclX = read_word_2c(0x3B);
+    acclY = read_word_2c(0x3D);
+    acclZ = read_word_2c(0x3F);
+
+    acclX_scaled = acclX / 16384.0;
+    acclY_scaled = acclY / 16384.0;
+    acclZ_scaled = acclZ / 16384.0;
+
+    //Print the X, Y, and Z values of the acceleration sensor.
+    printf("My acclX_scaled: %f\n", acclX_scaled);
+    printf("My acclY_scaled: %f\n", acclY_scaled);
+    printf("My acclZ_scaled: %f\n", acclZ_scaled);
+
+加速度センサーのx軸、y軸、z軸の値を読み取り、
+メタデータを加速度の値（重力単位）に変換して、それらを出力します。
+
+.. code-block:: c
+
+    printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+    printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+
+x軸とy軸の偏角を出力します。
+
+現象の画像
+------------------
+
+.. image:: ../img/image228.jpeg

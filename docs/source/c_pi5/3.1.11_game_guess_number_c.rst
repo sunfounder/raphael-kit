@@ -1,0 +1,300 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _3.1.11_c_pi5:
+
+3.1.11 ゲーム - 数当て
+=========================
+
+はじめに
+------------------
+
+数当ては、楽しいパーティーゲームで、友達と交互に数字（0〜99）を入力していくゲームです。数字を入力するたびに、範囲は狭くなり、プレイヤーが謎を正しく解答するまで続きます。その後、プレイヤーは敗北し、罰せられます。例えば、ラッキーナンバーが51で、プレイヤーたちが見ることができない場合、プレイヤー①が50を入力すると、数字の範囲は50〜99に変わります。プレイヤー②が70を入力すると、数字の範囲は50〜70になります。プレイヤー③が51を入力すると、このプレイヤーが不運なプレイヤーとなります。ここでは、キーパッドを使用して数字を入力し、LCDを使用して結果を表示します。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_GAME_Guess_Number.png
+    :align: center
+
+すべてのキットを購入するのは確かに便利です。以下はリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+また、以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_keypad`
+        - \-
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+
+回路図
+-----------------------
+
+============ ======== ======== =======
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPIMOSI      Pin 19   12       10
+GPIO22       Pin 15   3        22
+GPIO27       Pin 13   2        27
+GPIO17       Pin 11   0        17
+SDA1         Pin 3    SDA1(8)  SDA1(2)
+SCL1         Pin 5    SCL1(9)  SDA1(3)
+============ ======== ======== =======
+
+.. image:: ../img/Schematic_three_one12.png
+   :align: center
+
+実験手順
+-----------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image273.png
+
+**ステップ2:** I2C をセットアップします（詳細は付録 :ref:`i2c_config` を参照してください。I2C を設定済みの場合、このステップはスキップします）。
+
+**ステップ3:** ディレクトリを変更します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.11/
+
+**ステップ4:** コンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.11_GAME_GuessNumber.c -lwiringPi
+
+**ステップ5:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+プログラムの実行後、LCDに初期ページが表示されます：
+
+.. note::
+
+    * エラーメッセージ ``wiringPi.h: No such file or directory`` が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` エラーが表示される場合は、I2C を有効にするために :ref:`i2c_config` を参照し、配線が正しいか確認してください。
+    * コードと配線が正常であるにもかかわらず、LCDにコンテンツが表示されない場合は、バックにあるポテンショメーターを回してコントラストを上げることができます。
+
+.. code-block:: 
+
+   Welcome!
+   Press A to go!
+
+'A' を押すと、ゲームが開始され、ゲームページがLCDに表示されます。
+
+.. code-block:: 
+
+   Enter number:
+   0 ‹point‹ 99
+
+ゲーム開始時に乱数「 **point** 」が生成されますが、LCD には表示されません。これを推測する必要があります。 入力した数値は、最終計算が完了するまで最初の行の末尾に表示されます。 (「D」を押すと比較が開始され、入力数値が **10** より大きい場合、自動比較が開始されます。)
+
+2行目には「point」の数値範囲が表示されます。そして、範囲内の数値を入力する必要があります。数値を入力すると範囲が狭くなります。幸か不幸かラッキーナンバーを手に入れた場合は、「You’re got it!」と表示されます。
+
+**コード説明**
+
+コードの最初の部分には **keypad** と **I2C LCD1602** の機能的な機能があります。これらについての詳細は、 :ref:`1.1.7_c_pi5` および :ref:`2.1.8_c_pi5` で詳しく学ぶことができます。
+
+ここで知っておくべきことは次の通りです：
+
+.. code-block:: c
+
+    /****************************************/
+    //Start from here
+    /****************************************/
+    void init(void){
+        fd = wiringPiI2CSetup(LCDAddr);
+        lcd_init();
+        lcd_clear();
+        for(int i=0 ; i<4 ; i++) {
+            pinMode(rowPins[i], OUTPUT);
+            pinMode(colPins[i], INPUT);
+        }
+        lcd_clear();
+        write(0, 0, "Welcome!");
+        write(0, 1, "Press A to go!");
+    }
+    
+この関数は、 **I2C LCD1602** と **Keypad** を最初に定義し、「Welcome!」と「Press A to go!”」を表示するために使用されます。
+
+.. code-block:: c
+
+    void init_new_value(void){
+        srand(time(0));
+        pointValue = rand()%100;
+        upper = 99;
+        lower = 0;
+        count = 0;
+        printf("point is %d\n",pointValue);
+    }
+
+この関数はランダムな数字「 **point** 」を生成し、ポイントの範囲ヒントをリセットします。
+
+.. code-block:: c
+
+    bool detect_point(void){
+        if(count > pointValue){
+            if(count < upper){
+                upper = count;
+            }
+        }
+        else if(count < pointValue){
+            if(count > lower){
+                lower = count;
+            }
+        }
+        else if(count = pointValue){
+            count = 0;
+            return 1;
+        }
+        count = 0;
+        return 0;
+    }
+
+detect_point() は入力された数字を生成された 「point」と比較します。比較の結果、同じでない場合、 **count** は **upper** と **lower** に値を割り当て「 **0** 」を返します。同様に、結果が同じである場合、「 **1** 」を返します。
+
+.. code-block:: c
+
+    void lcd_show_input(bool result){
+        char *str=NULL;
+        str =(char*)malloc(sizeof(char)*3);
+        lcd_clear();
+        if (result == 1){
+            write(0,1,"You've got it!");
+            delay(5000);
+            init_new_value();
+            lcd_show_input(0);
+            return;
+        }
+        write(0,0,"Enter number:");
+        Int2Str(str,count);
+        write(13,0,str);
+        Int2Str(str,lower);
+        write(0,1,str);
+        write(3,1,"<Point<");
+        Int2Str(str,upper);
+        write(12,1,str);
+    }
+
+この関数はゲームページを表示するためのものです。関数 **Int2Str(str,count)** に注意してください。これはこれらの変数 **count**、**lower**、**upper** を **integer** から **character string** に変換し、 **lcd** の正しい表示を行います。
+
+.. code-block:: c
+
+    int main(){
+        unsigned char pressed_keys[BUTTON_NUM];
+        unsigned char last_key_pressed[BUTTON_NUM];
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        init();
+        init_new_value();
+        while(1){
+            keyRead(pressed_keys);
+            bool comp = keyCompare(pressed_keys, last_key_pressed);
+            if (!comp){
+                if(pressed_keys[0] != 0){
+                    bool result = 0;
+                    if(pressed_keys[0] == 'A'){
+                        init_new_value();
+                        lcd_show_input(0);
+                    }
+                    else if(pressed_keys[0] == 'D'){
+                        result = detect_point();
+                        lcd_show_input(result);
+                    }
+                    else if(pressed_keys[0] >='0' && pressed_keys[0] <= '9'){
+                        count = count * 10;
+                        count = count + (pressed_keys[0] - 48);
+                        if (count>=10){
+                            result = detect_point();
+                        }
+                        lcd_show_input(result);
+                    }
+                }
+                keyCopy(last_key_pressed, pressed_keys);
+            }
+            delay(100);
+        }
+        return 0;   
+    }
+
+
+Main() 関数はプログラムの全体的なプロセスを含んでおり、以下のように示されています：
+
+1) **I2C LCD1602** と **Keypad** を初期化します。
+
+2) **init_new_value()** を使用してランダムな数値 **0-99** を生成します。
+
+3) ボタンが押されたかどうかを判断し、ボタンの読み取りを取得します。
+
+4) ボタン「 **A** 」が押された場合、ランダムな数値 **0-99** が表示され、ゲームが開始します。
+
+5) ボタン「 **D** 」が押されたことが検出されると、プログラムは結果の判定に入り、結果をLCDに表示します。このステップにより、1つの数字を押してからボタン「 **D** 」を押すだけで結果を判断できます。
+
+6) ボタン **0-9** が押されると、 **count** の値が変更されます。 **count** が **10** より大きい場合、判定が開始されます。
+
+7) ゲームの変化とその値は **LCD1602** に表示されます。
+
+現象の画像
+------------------------
+
+.. image:: ../img/image274.jpeg
+   :align: center

@@ -1,0 +1,288 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.3_c_pi5:
+
+2.2.3 DHT-11
+==================
+
+はじめに
+--------------
+
+デジタル温度湿度センサーDHT11は、温度と湿度のキャリブレートされたデジタル信号出力を含む複合センサーです。専用のデジタルモジュール収集技術と温度湿度検知技術が適用されており、製品が高い信頼性と優れた安定性を持っていることを確保します。
+
+センサーには、湿式抵抗センサーとNTC温度センサーが含まれており、高性能の8ビットマイクロコントローラーに接続されています。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_2.2.3_dht-11.png
+
+全キットを購入することは確かに便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_humiture_sensor`
+        - |link_humiture_buy|
+
+回路図
+-----------------
+
+.. image:: ../img/image326.png
+
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を作成します。
+
+.. image:: ../img/image207.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.3/
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.3_DHT.c -lwiringPi
+
+**ステップ4:** 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行されると、プログラムはコンピュータの画面にDHT11で検出された温度と湿度を表示します。
+
+.. note::
+
+    実行後に動作しない、またはエラーメッセージが表示される場合「wiringPi.h: No such file or directory」は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdint.h>
+
+    #define maxTim 85
+    #define dhtPin 0
+
+    int dht11_dat[5] = {0,0,0,0,0};
+
+    void readDht11() {
+        uint8_t laststate = HIGH;
+        uint8_t counter = 0;
+        uint8_t j = 0, i;
+        float Fah; // fahrenheit
+        dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
+        // pull pin down for 18 milliseconds
+        pinMode(dhtPin, OUTPUT);
+        digitalWrite(dhtPin, LOW);
+        delay(18);
+        // then pull it up for 40 microseconds
+        digitalWrite(dhtPin, HIGH);
+        delayMicroseconds(40); 
+        // prepare to read the pin
+        pinMode(dhtPin, INPUT);
+
+        // detect change and read data
+        for ( i=0; i< maxTim; i++) {
+            counter = 0;
+            while (digitalRead(dhtPin) == laststate) {
+                counter++;
+                delayMicroseconds(1);
+                if (counter == 255) {
+                    break;
+                }
+            }
+            laststate = digitalRead(dhtPin);
+
+            if (counter == 255) break;
+            // ignore first 3 transitions
+            if ((i >= 4) && (i%2 == 0)) {
+                // shove each bit into the storage bytes
+                dht11_dat[j/8] <<= 1;
+                if (counter > 50)
+                    dht11_dat[j/8] |= 1;
+                j++;
+            }
+        }
+        // check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
+        // print it out if data is good
+        if ((j >= 40) && 
+                (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
+            Fah = dht11_dat[2] * 9. / 5. + 32;
+            printf("Humidity = %d.%d %% Temperature = %d.%d *C (%.1f *F)\n", 
+                    dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
+        }
+    }
+
+    int main (void) {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        while (1) {
+            readDht11();
+            delay(500); // wait 1sec to refresh
+        }
+        return 0 ;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    void readDht11() {
+        uint8_t laststate = HIGH;
+        uint8_t counter = 0;
+        uint8_t j = 0, i;
+        float Fah; // fahrenheit
+        dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
+        // ...
+    }
+
+この関数はDHT11の機能を実現するために使用されます。
+
+主に3つの部分に分けられます：
+
+1. ピンの読み取り準備:
+
+.. code-block:: c
+
+    // pull pin down for 18 milliseconds
+    pinMode(dhtPin, OUTPUT);
+    digitalWrite(dhtPin, LOW);
+    delay(18);
+    // then pull it up for 40 microseconds
+    digitalWrite(dhtPin, HIGH);
+    delayMicroseconds(40); 
+    // prepare to read the pin
+    pinMode(dhtPin, INPUT);
+
+その通信の流れは、動作タイミングによって決まります。
+
+.. image:: ../img/image208.png
+
+
+DHT11が起動すると、MCUは低レベルの信号を送信し、その後40usの間に高レベルの信号を維持します。その後、外部環境の条件の検出が始まります。
+
+2. データ読み取り:
+
+.. code-block:: c
+
+    // detect change and read data  
+    for ( i=0; i< maxTim; i++) {
+            counter = 0;
+            while (digitalRead(dhtPin) == laststate) {
+                counter++;
+                delayMicroseconds(1);
+                if (counter == 255) {
+                    break;
+                }
+            }
+            laststate = digitalRead(dhtPin);
+            if (counter == 255) break;
+            // ignore first 3 transitions
+            if ((i >= 4) && (i%2 == 0)) {
+                // shove each bit into the storage bytes
+                dht11_dat[j/8] <<= 1;
+                if (counter > 50)
+                    dht11_dat[j/8] |= 1;
+                j++;
+            }
+        }
+
+このループは、検出されたデータをdht11_dat[]配列に格納します。DHT11は一度に40ビットのデータを送信します。最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用されます。データフォーマットは：
+
+**8ビットの湿度整数データ** + **8ビットの湿度小数データ** + **8ビットの温度整数データ** + **8ビットの温度小数データ** + **8ビットのチェックビット**。
+
+3. 湿度 & 温度の印刷
+
+.. code-block:: c
+
+    // check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
+    // print it out if data is good
+    if ((j >= 40) && 
+            (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) {
+        Fah = dht11_dat[2] * 9. / 5. + 32;
+        printf("Humidity = %d.%d %% Temperature = %d.%d *C (%.1f *F)\n", 
+                dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], Fah);
+    }
+
+データが40ビットに達したら、 **チェックビット(dht11_dat[4])** を通じてデータの有効性をチェックし、その後、温度と湿度を印刷します。
+
+例として、受け取ったデータが00101011(湿度整数の8ビット値) 00000000 (湿度小数の8ビット値) 00111100 (温度整数の8ビット値) 00000000 (温度小数の8ビット値) 01100111 (チェックビット)の場合、
+
+**計算:**
+
+00101011+00000000+00111100+00000000=01100111。
+
+最終結果がチェックビットデータと等しい場合、受信データは正確です。
+
+湿度=43%，温度=60°C。
+
+それがチェックビットデータと等しくない場合、データの伝送が正常ではなく、データは再び受信されます。
+
+現象の画像
+------------------
+
+.. image:: ../img/image209.jpeg

@@ -1,0 +1,187 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.5_c_pi5:
+
+2.2.5 IR障害物回避モジュール
+========================================
+
+はじめに
+-----------------
+
+このプロジェクトでは、IR障害物回避モジュールについて学びます。これは、短い距離での障害物を検出できるセンサーモジュールであり、干渉が少なく、組み立てやすく、使用が簡単などの特長があります。ロボットの障害物回避、回避カート、組み立てラインのカウントなど、幅広く使用されています。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、以下の部品が必要です。
+
+.. image:: ../img/2.2.5component.png
+   :width: 700
+   :align: center
+
+キット全体を購入するのは非常に便利です。リンクは以下のとおりです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_avoid_module`
+        - |link_obstacle_avoidance_buy|
+
+回路図
+-----------------------
+
+.. image:: ../img/IR_schematic.png
+   :width: 500
+   :align: center
+
+実験手順
+-----------------------------
+
+**ステップ1:** 回路を組む。
+
+.. image:: ../img/2.2.5fritzing.png
+   :width: 700
+   :align: center
+
+**ステップ2:** ディレクトリを変更します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+   
+   cd ~/raphael-kit/c/2.2.5/
+
+**ステップ3:** コンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   gcc 2.2.5_IrObstacle.c -lwiringPi
+
+**ステップ4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo ./a.out
+
+コードが実行されると、モジュールのプローブの前に手を置くと、モジュール上の出力インジケータが点灯し、「Detected Barrier!」が画面に繰り返し表示されます。
+
+.. note::
+
+   実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+   #include <wiringPi.h>
+   #include <stdio.h>
+
+   #define ObstaclePin      0
+
+   void myISR(void)
+   {
+      printf("Detected Barrier !\n");
+   }
+
+   int main(void)
+   {
+      if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+         printf("setup wiringPi failed !\n");
+         return 1; 
+      }
+      
+      if(wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR) < 0){
+         printf("Unable to setup ISR !!!\n");
+         return 1;
+      }
+      
+      while(1){
+         ;
+      }
+
+      return 0;
+   }
+
+**コード説明**
+
+.. code-block:: c
+
+   void myISR(void)
+   {
+      printf("Detected Barrier !\n");
+   }
+
+``myISR()`` 関数を定義し、「障害物を検出」を表示して、障害物が検出されたことを示します。
+
+.. code-block:: c
+
+   if(wiringPiISR(ObstaclePin, INT_EDGE_FALLING, &myISR) < 0){
+      printf("Unable to setup ISR !!!\n");
+      return 1;
+   }
+
+この ``wiringPiISR()`` 関数は、指定された ``ObstaclePin`` で割り込みを受け取るための ``myISR()`` 関数を登録します。
+
+ObstaclePinが高から低に変わると、障害物が検出されたことを意味します。この時、「Detected Barrier !」を表示するために ``myISR()`` 関数を呼び出します。
+
+この ``wiringPiISR()`` 関数のプロトタイプは以下の通りです。
+
+.. code-block:: c
+
+   int wiringPiISR (int pin, int edgeType,  void (*function)(void)) ;
+
+edgeTypeパラメータは ``INT_EDGE_FALLING``、 ``INT_EDGE_RISING``、 ``INT_EDGE_BOTH``、または ``INT_EDGE_SETUP`` のいずれかです。もし ``INT_EDGE_SETUP`` の場合、ピンの初期化は行われません。ピンの設定はすでに他の場所（例：gpioプログラム）で行われていると想定されます。しかし、他のタイプのいずれかを指定した場合、ピンは指定された通りにエクスポートおよび初期化されます。
+
+詳細については、以下を参照してください: `wiringPi-Functions (API) <https://projects.drogon.net/raspberry-pi/wiringpi/functions/>`_。
+
+現象の画像
+-----------------------
+
+.. image:: ../img/2.2.5IR.JPG
+   :width: 500
+   :align: center

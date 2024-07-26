@@ -1,0 +1,265 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _3.1.7_c_pi5:
+
+3.1.7 過熱モニター
+=========================
+
+はじめに
+-------------------
+
+さまざまな状況に適用できる過熱モニタリングデバイスを作成したい場合、例えば、工場で回路の過熱があるとアラームを鳴らし、適時に機械を自動的にオフにしたい場合などです。このプロジェクトでは、サーミスタ、ジョイスティック、ブザー、LED、およびLCDを使用して、閾値が調整可能なスマートな温度モニタリングデバイスを作成します。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_Overheat_Monitor.png
+    :align: center
+
+全体のキットを購入するのが確実に便利です。リンクはこちらです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_adc0834`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+
+**配線図**
+--------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin15    3        22
+GPIO23       Pin16    4        23
+GPIO24       Pin18    5        24
+SDA1         Pin 3             
+SCL1         Pin 5           
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one8.png
+   :align: center
+
+**実験手順**
+-----------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image258.png
+
+**ステップ2**: コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.7/
+
+**ステップ3**: コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.7_OverheatMonitor.c -lm -lwiringPi
+
+**ステップ4**: 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードが実行されると、現在の温度と高温閾値 **40** が **I2C LCD1602** に表示されます。現在の温度が閾値を超えると、ブザーとLEDがアラームを鳴らします。
+
+ここでの **ジョイスティック** は、高温閾値を調整するための押しボタンです。X軸およびY軸方向に **ジョイスティック** を切り替えると、現在の高温閾値を上げたり下げたりできます。再度 **ジョイスティック** を押すと、閾値が初期値にリセットされます。
+
+.. note::
+
+    * エラーメッセージ ``wiringPi.h: No such file or directory`` が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+    * ``Unable to open I2C device: No such file or directory`` というエラーが表示された場合、 :ref:`i2c_config` を参照してI2Cを有効にし、配線が正しいか確認してください。
+    * コードと配線が正常であるが、LCDにコンテンツが表示されない場合、背面のポテンショメーターを回してコントラストを上げることができます。
+
+**コード説明**
+
+.. code-block:: c
+
+    int get_joystick_value(){
+        uchar x_val;
+        uchar y_val;
+        x_val = get_ADC_Result(1);
+        y_val = get_ADC_Result(2);
+        if (x_val > 200){
+            return 1;
+        }
+        else if(x_val < 50){
+            return -1;
+        }
+        else if(y_val > 200){
+            return -10;
+        }
+        else if(y_val < 50){
+            return 10;
+        }
+        else{
+            return 0;
+        }
+    }
+
+この関数は、XとYの値を読み取ります。 ``X>200`` の場合、 ``1`` が返ります。 ``X<50`` の場合、 ``-1`` が返ります。 ``y>200`` の場合、 ``-10`` が、そして ``y<50`` の場合、 ``10`` が返ります。
+
+.. code-block:: c
+
+    void upper_tem_setting(){
+        write(0, 0, "Upper Adjust:");
+        int change = get_joystick_value();
+        upperTem = upperTem + change;
+        char str[6];
+        snprintf(str,3,"%d",upperTem);
+        write(0,1,str);
+        int len;
+        len = strlen(str);
+        write(len,1,"             ");
+        delay(100);
+    }
+
+この関数は、閾値を調整し、それをI2C LCD1602に表示するためのものです。
+
+.. code-block:: c
+
+    double temperature(){
+        unsigned char temp_value;
+        double Vr, Rt, temp, cel, Fah;
+        temp_value = get_ADC_Result(0);
+        Vr = 5 * (double)(temp_value) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        return cel;
+    }
+
+**ADC0834** の **CH0** (サーミスタ) のアナログ値を読み取り、
+次に、それを温度値に変換します。
+
+.. code-block:: c
+
+    void monitoring_temp(){
+        char str[6];
+        double cel = temperature();
+        snprintf(str,6,"%.2f",cel);
+        write(0, 0, "Temp:");
+        write(6, 0, str);
+        snprintf(str,3,"%d",upperTem);
+        write(0, 1, "Upper:");
+        write(7, 1, str);
+        delay(100);
+        if(cel >= upperTem){
+            digitalWrite(buzzPin, HIGH);
+            digitalWrite(LedPin, HIGH);
+        }
+        else if(cel < upperTem){
+            digitalWrite(buzzPin, LOW);
+            digitalWrite(LedPin, LOW);
+        }
+    }
+
+コードが実行されると、現在の温度と高温閾値 **40** が **I2C LCD1602** に表示されます。現在の温度が閾値を超えると、ブザーとLEDがアラームを鳴らします。
+
+.. code-block:: c
+
+    int main(void)
+    {
+        setup();
+        int lastState =1;
+        int stage=0;
+        while (1)
+        {
+            int currentState = digitalRead(Joy_BtnPin);
+            if(currentState==1 && lastState == 0){
+                stage=(stage+1)%2;
+                delay(100);
+                lcd_clear();
+            }
+            lastState=currentState;
+            if (stage==1){
+                upper_tem_setting();
+            }
+            else{
+                monitoring_temp();
+            }
+        }
+        return 0;
+    }
+
+``main()`` 関数には、以下のようなプログラム全体のプロセスが含まれています：
+
+1) プログラムが開始すると、 **stage** の初期値は **0** で、現在の温度と高温閾値 **40** が **I2C LCD1602** に表示されます。現在の温度が閾値を超えると、ブザーとLEDがアラームを鳴らします。
+
+2) ジョイスティックを押すと、 **stage** が **1** になり、高温閾値を調整できます。ジョイスティックをX軸およびY軸の方向に切り替えると、現在の閾値を上げたり下げたりできます。ジョイスティックをもう一度押すと、閾値が初期値にリセットされます。
+
+現象の画像
+-------------------------
+
+.. image:: ../img/image259.jpeg
+   :align: center

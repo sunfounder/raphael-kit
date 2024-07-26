@@ -1,0 +1,241 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _1.1.4_c_pi5:
+
+1.1.4 7セグメントディスプレイ
+=============================
+
+はじめに
+-----------------
+
+0から9、AからFまでの数字や文字を7セグメントディスプレイに表示しましょう。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../img/list_7_segment.png
+
+全てのキットを購入するのは確かに便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_7_segment`
+        - |link_7segment_buy|
+    *   - :ref:`cpn_74hc595`
+        - |link_74hc595_buy|
+
+回路図
+---------------------
+
+74HC595のST_CPピンをRaspberry PiのGPIO18に、SH_CPをGPIO27に、DSをGPIO17に接続します。そして、並列出力ポートをLEDセグメントディスプレイの8セグメントに接続します。SH_CP（シフトレジスタのクロック入力）が立ち上がりエッジのときにDSピンのデータをシフトレジスタに入力し、ST_CP（メモリのクロック入力）が立ち上がりエッジのときにメモリレジスタに入力します。その後、Raspberry PiのGPIOを使用してSH_CPとST_CPの状態を制御し、シリアルデータ入力を並列データ出力に変換することで、Raspberry PiのGPIOを節約し、ディスプレイを駆動します。
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+============ ======== ======== ===
+
+.. image:: ../img/schematic_7_segment.png
+
+
+実験手順
+------------------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image73.png
+
+**ステップ2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.1.4/
+
+**ステップ3:** コンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.4_7-Segment.c -lwiringPi
+
+**ステップ4:** 上記の実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードを実行すると、7セグメントディスプレイに0-9、A-Fが表示されます。
+
+.. note::
+
+    実行後に動作しない、または「wiringPi.h: No such file or directory」というエラープロンプトが表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define   SDI   0   //serial data input
+    #define   RCLK  1   //memory clock input(STCP)
+    #define   SRCLK 2   //shift register clock input(SHCP)
+    unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+
+    void init(void){
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT);
+        pinMode(SRCLK, OUTPUT); 
+        digitalWrite(SDI, 0);
+        digitalWrite(RCLK, 0);
+        digitalWrite(SRCLK, 0);
+    }
+
+    void hc595_shift(unsigned char dat){
+        int i;
+        for(i=0;i<8;i++){
+            digitalWrite(SDI, 0x80 & (dat << i));
+            digitalWrite(SRCLK, 1);
+            delay(1);
+            digitalWrite(SRCLK, 0);
+        }
+            digitalWrite(RCLK, 1);
+            delay(1);
+            digitalWrite(RCLK, 0);
+    }
+
+    int main(void){
+        int i;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        init();
+        while(1){
+            for(i=0;i<16;i++){
+                printf("Print %1X on Segment\n", i); // %X means hex output
+                hc595_shift(SegCode[i]);
+                delay(500);
+            }
+        }
+        return 0;
+    }
+
+**コード説明**
+
+
+.. code-block:: c
+
+    unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+
+16進数の0からFまでのセグメントコード配列（共通カソード）。
+
+.. code-block:: c
+
+    void init(void){
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT); 
+        pinMode(SRCLK, OUTPUT); 
+        digitalWrite(SDI, 0);
+        digitalWrite(RCLK, 0);
+        digitalWrite(SRCLK, 0);
+    }
+
+ds、st_cp、sh_cpの3つのピンをOUTPUTに設定し、初期状態を0にします。
+
+.. code-block:: c
+
+    void hc595_shift(unsigned char dat){}
+
+74HC595のシフトレジスタに8ビットの値を代入します。
+
+.. code-block:: c
+
+    digitalWrite(SDI, 0x80 & (dat << i));
+
+ビット毎にdatデータをSDI(DS)に代入します。ここでは、dat=0x3f(0011 1111)と仮定しています。i=2のとき、0x3fは2ビット左にシフトされます。1111 1100（0x3f << 2）& 1000 0000（0x80）= 1000 0000となり、真となります。
+
+.. code-block:: c
+
+    digitalWrite(SRCLK, 1);
+
+SRCLKの初期値は0に設定されていましたが、ここで1に設定しています。これは、DSのデータをシフトレジスタにシフトするための立ち上がりエッジパルスを生成するためです。
+
+.. code-block:: c
+
+    digitalWrite(RCLK, 1);
+
+RCLKの初期値は0に設定されていましたが、ここで1に設定しています。これは、シフトレジスタからストレージレジスタへのデータのシフトのための立ち上がりエッジを生成するためです。
+
+.. code-block:: c
+
+    while(1){
+            for(i=0;i<16;i++){
+                printf("Print %1X on Segment\n", i); // %X means hex output
+                hc595_shift(SegCode[i]);
+                delay(500);
+            }
+        }
+
+このforループでは、 ``%1X`` を使用してiを16進数で出力しています。iを使用して ``SegCode[]`` 配列内の対応するセグメントコードを見つけ、 ``hc595_shift()`` を使用してそのSegCodeを74HC595のシフトレジスタに渡します。
+
+.. note::
+    数字の0〜15の16進数形式は（0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F）です。
+
+現象の画像
+--------------------
+
+.. image:: ../img/image74.jpeg
+
+

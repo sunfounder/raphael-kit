@@ -276,4 +276,9 @@ rst_epilog += """
 
     <a href="https://docs.sunfounder.com/projects/raphael-kit/en/latest/" target="_blank">English Online-tutorials</a>
 
+.. |Adafruit_CircuitPython_DHT| raw:: html
+
+    <a href="https://github.com/adafruit/Adafruit_CircuitPython_DHT" target="_blank">adafruit/Adafruit_CircuitPython_DHT</a>    
+    
+
 """

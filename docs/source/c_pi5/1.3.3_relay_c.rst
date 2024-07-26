@@ -1,0 +1,165 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _1.3.3_c_pi5:
+
+1.3.3 リレー
+=================
+
+はじめに
+------------
+
+このプロジェクトでは、リレーの使用方法を学びます。これは自動制御システムで一般的に使用されるコンポーネントの一つです。電圧、電流、温度、圧力などが、予定された値に達する、それを超える、またはそれより低くなると、リレーは回路を接続するか、または遮断することで、装置の制御と保護を行います。
+
+必要な部品
+------------------------------
+
+このプロジェクトには、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_1.3.4.png
+
+キット全体を購入するのは確かに便利です。こちらがリンクです：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_relay`
+        - |link_relay_buy|
+    *   - :ref:`cpn_diode`
+        - |link_diode_buy|
+
+回路図
+-----------------
+
+.. image:: ../img/image345.png
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てます。
+
+.. image:: ../img/image144.png
+
+**ステップ2**: コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/1.3.3
+
+**ステップ3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.3_Relay.c -lwiringPi
+
+**ステップ4:** 上記の実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードが実行された後、LEDが点灯します。また、通常閉じている接点を切断し、通常開いている接点を閉じることによるカチカチという音も聞こえます。
+
+.. note::
+
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: そのようなファイルやディレクトリはありません」が表示される場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define RelayPin 0
+
+    int main(void){
+        if(wiringPiSetup() == -1){ //when initialize wiring failed, print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(RelayPin, OUTPUT);   //set GPIO17(GPIO0) output
+        while(1){
+            // Tick
+            printf("Relay Open......\n");
+            digitalWrite(RelayPin, LOW);
+            delay(1000);
+            // Tock
+            printf("......Relay Close\n");
+            digitalWrite(RelayPin, HIGH);
+            delay(1000);
+        }
+
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, LOW);
+
+I/Oポートを低レベル（0V）に設定すると、トランジスタは通電せず、コイルにも電力が供給されません。電磁力がないため、リレーは開き、LEDは点灯しません。
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, HIGH);
+
+I/Oポートを高レベル（5V）に設定してトランジスタを通電します。リレーのコイルに電力が供給され、電磁力が発生します。そして、リレーは閉じ、LEDが点灯します。
+
+現象の画像
+------------------
+
+
+.. image:: ../img/image145.jpeg

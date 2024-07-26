@@ -1,0 +1,224 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.1.5_c_pi5:
+
+2.1.5 傾斜スイッチ
+=======================
+
+はじめに
+------------
+
+これは、内部に金属のボールが入った傾斜スイッチです。少しの角度の傾斜を検出するために使用されます。
+
+必要な部品
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。
+
+.. image:: ../img/list_2.1.3_tilt_switch.png
+
+全てのキットを購入することは非常に便利です。以下はリンクです:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - このキットのアイテム
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下のリンクから個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - コンポーネントの紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_tilt_switch`
+        - \-
+
+回路図
+-----------------
+
+.. image:: ../img/image307.png
+
+.. image:: ../img/image308.png
+
+実験手順
+-----------------------
+
+**ステップ1:** 回路を組み立てる。
+
+.. image:: ../img/image169.png
+
+**ステップ2:** ディレクトリを変更する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.5/
+
+**ステップ3:** コンパイル。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.5_Tilt.c -lwiringPi
+
+**ステップ4:** 上記の実行可能ファイルを実行。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+傾斜スイッチを垂直に置くと、緑のLEDが点灯します。傾けると、画面に「Tilt!」と表示され、赤いLEDが点灯します。再び垂直に置くと、緑のLEDが再び点灯します。
+
+.. note::
+
+    実行後に動作しない、またはエラープロンプト「wiringPi.h: No such file or directory」が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define TiltPin     0
+    #define Gpin        2
+    #define Rpin        3
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        pinMode(TiltPin, INPUT);
+        LED("GREEN");
+        
+        while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+        return 0;
+    }
+
+**コード説明**
+
+.. code-block:: c
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+2つのLEDをオンまたはオフにする ``LED()`` という関数を定義します。パラメータcolorがREDの場合、赤いLEDが点灯します。同様に、パラメータcolorがGREENの場合、緑のLEDが点灯します。
+
+.. code-block:: c
+
+    while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+
+傾斜スイッチの読み取り値が0である場合、傾斜スイッチが傾いていることを意味します。その後、関数LEDにパラメータ”RED”を書き込むと、赤いLEDが点灯します。それ以外の場合は、緑のLEDが点灯します。
+
+現象の画像
+------------------
+
+.. image:: ../img/image170.jpeg
+
+
