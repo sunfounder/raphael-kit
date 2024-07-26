@@ -23,6 +23,9 @@ SunFounder Raphael Ulimate Kit for Raspberry Pi
         * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
+        * |link_es_tutorials|
+        * |link_fr_tutorials|
+
 
 ラズベリーパイに初めて挑戦する方はいますか？ラズベリーパイを学ぶ明確な方法をお探しですか？
 コードを単にコピーアンドペーストするだけでなく、自分自身で書きたいと思っていますか？
