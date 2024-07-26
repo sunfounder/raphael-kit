@@ -23,7 +23,9 @@ Gracias por elegir nuestro Ulimate Raphael Kit.
         * |link_german_tutorials|
         * |link_jp_tutorials|
         * |link_en_tutorials|
-    
+        * |link_es_tutorials|
+        * |link_fr_tutorials|
+            
     Por favor, haz clic en los enlaces correspondientes para acceder al documento en tu idioma preferido.
 
 ¿Eres nuevo en Raspberry Pi? ¿Buscas un camino claro para aprender Raspberry Pi? 
