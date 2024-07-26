@@ -141,6 +141,12 @@ correspondantes de x, y, Btn seront affichées à l'écran.
         uchar dat1=0, dat2=0;
         int sel = channel > 1 & 1;
         int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
@@ -213,6 +219,12 @@ correspondantes de x, y, Btn seront affichées à l'écran.
         uchar dat1=0, dat2=0;
         int sel = channel > 1 & 1;
         int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
@@ -225,7 +237,7 @@ correspondantes de x, y, Btn seront affichées à l'écran.
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-Le processus de fonctionnement de cette fonction est détaillé dans 2.1.4 Potentiomètre.
+Le processus de fonctionnement de cette fonction est détaillé dans 2.1.7 Potentiomètre.
 
 .. code-block:: c
 

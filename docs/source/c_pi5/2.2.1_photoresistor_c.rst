@@ -142,6 +142,11 @@ Lorsque le code s'exécute, la luminosité de la LED changera en fonction de l'i
         int sel = channel > 1 & 1;
         int odd = channel & 1;
 
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
         pinMode(ADC_DIO, OUTPUT);
         digitalWrite(ADC_CS, 0);
         // Start bit
@@ -208,7 +213,7 @@ Lorsque le code s'exécute, la luminosité de la LED changera en fonction de l'i
 
 **Explication du Code**
 
-Les codes ici sont les mêmes que ceux de la section 2.1.4 Potentiomètre. Si vous avez d'autres questions, veuillez consulter l'explication du code de :ref:`2.1.7_c_pi5` pour plus de détails.
+Les codes ici sont les mêmes que ceux de la section 2.1.7 Potentiomètre. Si vous avez d'autres questions, veuillez consulter l'explication du code de :ref:`2.1.7_c_pi5` pour plus de détails.
 
 Image du Phénomène
 ------------------

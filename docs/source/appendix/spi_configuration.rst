@@ -34,7 +34,7 @@ veuillez continuer).
 .. image:: img/image282.png
    :align: center
 
-**P4 SPI**
+**I3 SPI**
 
 .. image:: img/image285.png
    :align: center
