@@ -167,7 +167,7 @@ Procédures expérimentales
 
     cd ~/raphael-kit/python-pi5
 
-**Étape 2 :** Avant d'exécuter le code, assurez-vous d'avoir activé l'environnement Python virtuel avec blinka installé.
+**Étape 3 :** Avant d'exécuter le code, assurez-vous d'avoir activé l'environnement Python virtuel avec blinka installé.
 
 .. raw:: html
 
@@ -177,7 +177,7 @@ Procédures expérimentales
 
     source ~/env/bin/activate
 
-**Étape 3 :** Exécutez le fichier exécutable.
+**Étape 4 :** Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -193,7 +193,7 @@ Après l'exécution du code, le programme affichera la température et l'humidit
 
 .. note::
 
-    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre au chemin du code source comme ``raphael-kit/python``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre au chemin du code source comme ``raphael-kit/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir l'effet.
 
 .. code-block:: python
 
