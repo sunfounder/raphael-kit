@@ -13,17 +13,18 @@
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
 
 .. _2.2.3_py:
+
 2.2.3 DHT-11
-============
+=============================
 
 Introducción
---------------
+-----------------------------
 
 En esta lección, aprenderás a conectar y leer datos de un sensor de temperatura y humedad DHT11 usando una Raspberry Pi. Aprenderás a configurar el sensor, leer la temperatura tanto en grados Celsius como en Fahrenheit, y obtener lecturas de humedad. Este proyecto te introducirá a trabajar con sensores externos, manejar datos en tiempo real y la gestión básica de excepciones en Python.
 
 
 Componentes Necesarios
-------------------------------
+---------------------------------------------
 
 En este proyecto, necesitaremos los siguientes componentes.
 
@@ -63,7 +64,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
         - |link_humiture_buy|
 
 Diagrama Esquemático
------------------
+-------------------------------------
 
 .. image:: ../img/image326.png
 
@@ -142,7 +143,7 @@ Una vez que se reinicie, la conexión se cerrará. Después de un par de minutos
 
 
 Instalación de la Biblioteca
----------------------------
+-----------------------------------------------------
 
 
 Antes de instalar la biblioteca, asegúrate de que el entorno virtual de Python esté activado.
@@ -158,7 +159,7 @@ Instala la biblioteca adafruit-circuitpython-dht:
    pip install adafruit-circuitpython-dht
 
 Procedimientos Experimentales
------------------------
+--------------------------------------------------------
 
 **Paso 1:** Construye el circuito.
 
