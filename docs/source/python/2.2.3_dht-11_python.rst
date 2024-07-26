@@ -143,49 +143,6 @@ It may take a few minutes to run. When it finishes, it will ask you if you would
 Once it reboots, the connection will close. After a couple of minutes, you can reconnect.
 
 
-.. **Blinka Test**
-
-.. Create a new file called ``blinkatest.py`` with nano or your favorite text editor and put the following in:
-
-.. .. code-block:: python
-
-..    import board
-..    import digitalio
-..    import busio
-   
-..    print("Hello blinka!")
-   
-..    # Try to great a Digital input
-..    pin = digitalio.DigitalInOut(board.17)
-..    print("Digital IO ok!")
-   
-..    # Try to create an I2C device
-..    i2c = busio.I2C(board.SCL, board.SDA)
-..    print("I2C ok!")
-   
-..    # Try to create an SPI device
-..    spi = busio.SPI(board.SCLK, board.MOSI, board.MISO)
-..    print("SPI ok!")
-   
-..    print("done!")
-
-.. Before running the code, please make sure that you have activated the virtual python environment with blinka installed:
-
-.. .. code-block:: bash
-
-..    source ~/env/bin/activate
-
-.. Then run the following command in the command line:
-
-.. .. code-block:: bash
-
-..    python blinkatest.py
-
-.. You should see the following, indicating digital i/o, I2C and SPI all worked.
-
-.. .. image:: ../img/07_check_blinka.png
-
-
 Install Library
 ---------------------------
 
@@ -217,9 +174,9 @@ Experimental Procedures
 
 .. code-block::
 
-    cd ~/raphael-kit/python-pi5
+    cd ~/raphael-kit/python
 
-**Step 2:** Before running the code, please make sure that you have activated the virtual Python environment with blinka installed. 
+**Step 3:** Before running the code, please make sure that you have activated the virtual Python environment with blinka installed. 
 
 .. raw:: html
 
@@ -229,7 +186,7 @@ Experimental Procedures
 
     source ~/env/bin/activate
 
-**Step 3:** Run the executable file.
+**Step 4:** Run the executable file.
 
 .. raw:: html
 
