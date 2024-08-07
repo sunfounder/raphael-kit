@@ -219,7 +219,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 2:** Before running the code, please make sure that you have activated the virtual Python environment with blinka installed. 
+**Step 3:** Before running the code, please make sure that you have activated the virtual Python environment with blinka installed. 
 
 .. raw:: html
 
@@ -229,7 +229,7 @@ Experimental Procedures
 
     source ~/env/bin/activate
 
-**Step 3:** Run the executable file.
+**Step 4:** Run the executable file.
 
 .. raw:: html
 
@@ -237,7 +237,7 @@ Experimental Procedures
 
 .. code-block::
 
-    sudo python3 2.2.3_DHT.py
+    python3 2.2.3_DHT.py
 
 After the code runs, the program will print the temperature and humidity
 detected by DHT11 on the computer screen.
