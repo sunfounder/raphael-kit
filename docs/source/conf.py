@@ -100,6 +100,10 @@ rst_epilog = """
 
     <a href="https://www.sunfounder.com/products/raphael-kit?_pos=1&_sid=e78196ab0&_ss=r" target="_blank">Raphael Kit</a>
 
+.. |link_Raphael| raw:: html
+
+    <a href="https://www.sunfounder.com/products/raphael-kit?_pos=1&_sid=e78196ab0&_ss=r" target="_blank">Purchase link for Raphael Kit</a>
+
 .. |link_picow_buy| raw:: html
 
     <a href="https://www.sunfounder.com/products/raspberry-pi-pico-w" target="_blank">BUY</a>
