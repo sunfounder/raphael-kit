@@ -25,6 +25,7 @@ Gracias por elegir nuestro Ulimate Raphael Kit.
         * |link_en_tutorials|
         * |link_es_tutorials|
         * |link_fr_tutorials|
+        * |link_it_tutorials|
             
     Por favor, haz clic en los enlaces correspondientes para acceder al documento en tu idioma preferido.
 
