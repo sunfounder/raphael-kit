@@ -1,63 +1,63 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci il tuo viaggio con Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e concorsi festivi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-Setting Up Your Raspberry Pi
-=====================================
+Configurare il tuo Raspberry Pi
+========================================
 
-Setting Up with a Screen
----------------------------
+Configurazione con schermo
+------------------------------
 
-Having a screen simplifies the process of working with your Raspberry Pi.
+Disporre di uno schermo semplifica il processo di utilizzo del Raspberry Pi.
 
-**Required Components**
+**Componenti necessari**
 
 * Raspberry Pi
-* Power Adapter
-* Micro SD card
-* Screen Power Adapter
-* HDMI cable
-* Screen
+* Alimentatore
+* Scheda Micro SD
+* Alimentatore per lo schermo
+* Cavo HDMI
+* Schermo
 * Mouse
-* Keyboard
+* Tastiera
 
-**Steps**:
+**Passaggi**:
 
-#. Connect the Mouse and Keyboard to the Raspberry Pi.
+#. Collega il mouse e la tastiera al Raspberry Pi.
 
-#. Use the HDMI cable to connect the screen to the Raspberry Pi's HDMI port. Ensure the screen is plugged into a power source and turned on.
+#. Usa il cavo HDMI per collegare lo schermo alla porta HDMI del Raspberry Pi. Assicurati che lo schermo sia collegato a una fonte di alimentazione e acceso.
 
-#. Power the Raspberry Pi using the power adapter. The Raspberry Pi OS desktop should appear on the screen after a few seconds.
+#. Alimenta il Raspberry Pi utilizzando l'adattatore di corrente. Dopo pochi secondi, dovrebbe apparire il desktop del sistema operativo Raspberry Pi sullo schermo.
 
     .. image:: img/bullseye_desktop.png
         :align: center
 
-Setting Up Without a Screen
-------------------------------
+Configurazione senza schermo
+--------------------------------
 
-If you don't have a monitor, remote login is a viable option.
+Se non hai un monitor, l'accesso remoto è un'opzione valida.
 
-**Required Components**
+**Componenti necessari**
 
 * Raspberry Pi
-* Power Adapter
-* Micro SD card
+* Alimentatore
+* Scheda Micro SD
 
-Using SSH, you can access the Raspberry Pi's Bash shell, which is the default Linux shell. Bash offers a command-line interface for performing various tasks.
+Usando SSH, puoi accedere alla shell Bash del Raspberry Pi, che è la shell predefinita di Linux. Bash offre un'interfaccia a riga di comando per eseguire varie operazioni.
 
-For those preferring a graphical user interface (GUI), the remote desktop feature is a convenient alternative for managing files and operations.
+Per chi preferisce un'interfaccia grafica (GUI), la funzione di desktop remoto è un'alternativa conveniente per gestire file e operazioni.
 
-For detailed setup tutorials based on your operating system, refer to the following sections:
+Per tutorial dettagliati sulla configurazione in base al tuo sistema operativo, consulta le sezioni seguenti:
 
 .. toctree::
 

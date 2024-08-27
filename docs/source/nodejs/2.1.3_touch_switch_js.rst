@@ -1,58 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.3_js:
 
-2.1.3 Touch Switch Module
-=================================
+2.1.3 Modulo Interruttore a Tocco
+====================================
 
-Introduction
--------------------
+Introduzione
+----------------------
 
-In this project, you will learn about touch switch module. It can replace the traditional kinds of switch with these advantages: convenient operation, fine touch sense, precise control and least mechanical wear.
+In questo progetto, imparerai a conoscere il modulo interruttore a tocco. Questo modulo può sostituire i tradizionali tipi di interruttore, offrendo vantaggi come: funzionamento conveniente, ottima sensibilità al tocco, controllo preciso e minima usura meccanica.
 
 
-Required Components
-------------------------------
+Componenti necessari
+------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.1.3component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,23 +67,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+--------------------
 
 .. image:: ../img/2.1.3circuit.png
     :width: 500
     :align: center
 
-**Experimental Procedures**
-------------------------------
+Procedure sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.1.3fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -93,7 +93,7 @@ Schematic Diagram
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -103,9 +103,9 @@ Schematic Diagram
 
     sudo node touch_switch.js
 
-While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
+Mentre il codice è in esecuzione, il LED rosso si accende; quando tocchi il modulo interruttore a tocco, il LED giallo si accenderà.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -125,7 +125,8 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         led2.digitalWrite(!level);       
     });   
 
-**Code Explanation**
+Spiegazione del Codice
+--------------------------
 
 .. code-block:: js
 
@@ -140,9 +141,8 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         edge: Gpio.EITHER_EDGE        
     });
 
-
-Import the ``pigpio`` module and create three objects led1, led2, touchSwitch,
-By reading the level of the touchSwitch IO port, the on and off of led1 and led2 are controlled.
+Importa il modulo ``pigpio`` e crea tre oggetti: led1, led2 e touchSwitch.
+Leggendo il livello della porta IO del touchSwitch, viene controllata l'accensione e lo spegnimento di led1 e led2.
 
 .. code-block:: js
 
@@ -151,14 +151,13 @@ By reading the level of the touchSwitch IO port, the on and off of led1 and led2
         led2.digitalWrite(!level);       
     });   
 
-When the level of the read touchSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Quando il livello della porta IO del touchSwitch cambia, lo stesso livello 
+viene scritto su led1 e il livello opposto su led2.
 
-
-**Phenomenon Picture**
-------------------------
+Immagine del fenomeno
+----------------------------
 
 .. image:: ../img/2.1.3touch_switch_module.JPG
     :width: 500
     :align: center
-    
+

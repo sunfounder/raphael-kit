@@ -1,62 +1,61 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.9_js:
 
-2.2.9 MPU6050 Module
-====================
+2.2.9 Modulo MPU6050
+========================
 
-Introduction
-------------
+Introduzione
+-----------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+Il MPU-6050 è il primo e unico dispositivo di tracciamento del movimento a 6 assi al 
+mondo (giroscopio a 3 assi e accelerometro a 3 assi) progettato per smartphone, tablet 
+e sensori indossabili che richiedono queste caratteristiche, tra cui basso consumo 
+energetico, basso costo e alte prestazioni.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+In questo esperimento, utilizziamo I2C per ottenere i valori del sensore di accelerazione 
+a tre assi e del giroscopio a tre assi del MPU6050 e visualizzarli sullo schermo.
 
-Required Components
-------------------------------
+Componenti necessari
+-------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.2.6.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,28 +66,27 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_mpu6050`
         - |link_mpu6050_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+--------------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+MPU6050 comunica con il microcontrollore tramite l'interfaccia bus I2C. 
+SDA1 e SCL1 devono essere collegati al pin corrispondente.
 
 .. image:: ../img/image330.png
 
 
-Experimental Procedures
--------------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image227.png
 
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**Passo 2:** Configura I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato 
+I2C, salta questo passaggio).
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -98,7 +96,7 @@ step.)
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Install dependencies.
+**Passo 3:** Installa le dipendenze.
 
 .. raw:: html
 
@@ -108,7 +106,7 @@ step.)
 
     sudo npm install mpu6050-gyro
 
-**Step 4:** Run the code.
+**Passo 4:** Esegui il codice.
 
 .. raw:: html
 
@@ -118,21 +116,19 @@ step.)
 
     sudo node mpu6050_module.js
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Con l'esecuzione del codice, l'angolo di deviazione degli assi x e y e l'accelerazione 
+e la velocità angolare su ciascun asse letti dal MPU6050 verranno stampati sullo schermo 
+dopo essere stati calcolati.
 
-
-
-**Code**
+**Codice**
 
 .. code-block:: js
 
     var gyro = require("mpu6050-gyro");
     
-    var address = 0x68; //MPU6050 address
-    var bus = 1; //i2c bus used   
-    var gyro = new gyro( bus,address );
+    var address = 0x68; // Indirizzo MPU6050
+    var bus = 1; // Bus I2C utilizzato   
+    var gyro = new gyro( bus, address );
     
     async function update_telemetry() {
         
@@ -154,21 +150,21 @@ printed on the screen after being calculating.
         update_telemetry();
     }
 
-**Code Explanation**
+**Spiegazione del codice**
 
 .. code-block:: js
 
     var gyro = require("mpu6050-gyro");
     
-    var address = 0x68; //MPU6050 address
-    var bus = 1; //i2c bus used   
-    var gyro = new gyro( bus,address );
+    var address = 0x68; // Indirizzo MPU6050
+    var bus = 1; // Bus I2C utilizzato   
+    var gyro = new gyro( bus, address );
 
-Import the ``mpu6050-gyro`` module, determine the MPU6050 address and the bus creation object gyro,
-It is convenient to call the encapsulated functions in the module.
+Importa il modulo ``mpu6050-gyro``, determina l'indirizzo del MPU6050 e il bus e 
+crea l'oggetto gyro, rendendo conveniente chiamare le funzioni incapsulate nel modulo.
 
 .. note:: 
-    About this module, please refer to: https://www.npmjs.com/package/mpu6050-gyro
+    Per maggiori informazioni su questo modulo, consulta: https://www.npmjs.com/package/mpu6050-gyro
 
 .. code-block:: js
 
@@ -185,16 +181,15 @@ It is convenient to call the encapsulated functions in the module.
     
     setTimeout(update_telemetry, 500);
 
-The module encapsulates three available functions:
+Il modulo incapsula tre funzioni disponibili:
 
-``gyro.get_gyro_xyz()``: Returns JSON object with raw x,y,z datas from gyroscope.
+``gyro.get_gyro_xyz()``: Restituisce un oggetto JSON con i dati grezzi x, y, z dal giroscopio.
 
-``gyro.get_accel_xyz()``: Returns JSON object with raw x,y,z datas from accelerometer.
+``gyro.get_accel_xyz()``: Restituisce un oggetto JSON con i dati grezzi x, y, z dall'accelerometro.
 
-``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: Returns JSON object with roll and pitch in degrees.
+``gyro.get_roll_pitch( gyro_xyz, accel_xyz )``: Restituisce un oggetto JSON con rollio e beccheggio in gradi.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+-------------------------
 
 .. image:: ../img/image228.jpeg
-    

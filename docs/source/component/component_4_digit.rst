@@ -1,55 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _cpn_4_digit:
 
-4-Digit 7-Segment Display
-==================================
+Display a 7 Segmenti da 4 Cifre
+====================================
 
-4-Digit 7-segment display consists of four 7- segment displays working
-together.
+Il display a 7 segmenti da 4 cifre è composto da quattro display a 7 segmenti che 
+lavorano insieme.
 
 .. image:: img/4-digit-sche.png
 
-The 4-digtal 7-segment display works independently. It uses the
-principle of human visual persistence to quickly display the characters
-of each 7-segment in a loop to form continuous strings.
+Il display a 7 segmenti da 4 cifre funziona in modo indipendente. Utilizza il principio 
+della persistenza visiva umana per visualizzare rapidamente i caratteri di ciascun 
+segmento in un ciclo, formando stringhe continue.
 
-For example, when "1234" is displayed on the display, "1" is displayed
-on the first 7-segment, and "234" is not displayed. After a period of
-time, the second 7-segment shows "2", the 1st 3th 4th of 7-segment does
-not show, and so on, the four digital display show in turn. This process
-is very short (typically 5ms), and because of the optical afterglow
-effect and the principle of visual residue, we can see four characters
-at the same time.
+Ad esempio, quando sul display appare "1234", il primo segmento visualizza "1", mentre 
+gli altri tre non mostrano nulla. Dopo un breve intervallo, il secondo segmento mostra "2",
+ e così via. Questo processo è molto veloce (tipicamente 5ms) e, grazie all'effetto 
+ dell'afterglow ottico e al principio del residuo visivo, siamo in grado di vedere tutti 
+ e quattro i caratteri contemporaneamente.
 
 .. image:: img/image78.png
 
+**Codici di visualizzazione**
 
-**Display Codes**
-
-To help you get to know how 7-segment displays(Common Anode) display
-Numbers, we have drawn the following table. Numbers are the number 0-F
-displayed on the 7-segment display; (DP) GFEDCBA refers to the
-corresponding LED set to 0 or 1, For example, 11000000 means that DP and
-G are set to 1, while others are set to 0. Therefore, the number 0 is
-displayed on the 7-segment display, while HEX Code corresponds to
-hexadecimal number.
+Per aiutarti a comprendere come i display a 7 segmenti (Anodo comune) mostrano i numeri, 
+abbiamo disegnato la seguente tabella. I numeri rappresentano i valori da 0 a F visualizzati 
+sul display; (DP) GFEDCBA si riferisce al set di LED corrispondenti impostato su 0 o 1. Ad 
+esempio, 11000000 indica che DP e G sono impostati su 1, mentre gli altri sono impostati 
+su 0. Quindi, il numero 0 viene visualizzato sul display a 7 segmenti, mentre il Codice 
+HEX corrisponde al numero esadecimale.
 
 .. image:: img/common_anode.png
 
-**Example**
+**Esempio**
 
 * :ref:`1.1.5_c` (C Project)
 * :ref:`3.1.1_c` (C Project)

@@ -1,61 +1,61 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.4_py:
 
-2.2.4 Reed Switch Module
-========================
+2.2.4 Modulo Interruttore Reed
+====================================
 
-Introduction
--------------------
+Introduzione
+----------------
 
-In this project, we will learn about the reed switch, which is an electrical switch that operates by means of an applied magnetic field.
+In questo progetto, impareremo a conoscere l'interruttore reed, che è un interruttore elettrico che funziona grazie a un campo magnetico applicato.
 
 .. image:: ../img/2.2.4reed_switch.png
     :width: 300
     :align: center
 
-Required Components
-------------------------------
+Componenti Necessari
+------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.2.4component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,8 +70,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Schematic Diagram
------------------------
+Schema Elettrico
+-------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -88,16 +88,16 @@ GPIO22       Pin 15   3        22
     :width: 400
     :align: center
 
-Experimental Procedures
--------------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.2.4fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Change directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -107,7 +107,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -117,14 +117,13 @@ Experimental Procedures
 
     sudo python3 2.2.4_ReedSwitch.py
 
-The green LED will light up when the code is run. If a magnet is placed close to the reed switch module, the red LED lights up; take away the magnet and the green LED lights up again.
+Quando il codice è in esecuzione, il LED verde si accenderà. Se un magnete viene avvicinato al modulo reed, il LED rosso si accenderà; allontanando il magnete, si accenderà di nuovo il LED verde.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
-
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 .. raw:: html
 
@@ -141,10 +140,10 @@ The green LED will light up when the code is run. If a magnet is placed close to
     Rpin    = 22
 
     def setup():
-        GPIO.setmode(GPIO.BCM)       # 
-        GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
-        GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
-        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set ReedPin's mode is input, and pull up to high level(3.3V)
+        GPIO.setmode(GPIO.BCM)       
+        GPIO.setup(Gpin, GPIO.OUT)     # Imposta il pin LED verde in modalità output
+        GPIO.setup(Rpin, GPIO.OUT)     # Imposta il pin LED rosso in modalità output
+        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Imposta ReedPin in modalità input e lo tira su al livello alto (3,3V)
         GPIO.add_event_detect(ReedPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
     def Led(x):
@@ -163,19 +162,19 @@ The green LED will light up when the code is run. If a magnet is placed close to
             pass
 
     def destroy():
-        GPIO.output(Gpin, GPIO.HIGH)       # Green led on
-        GPIO.output(Rpin, GPIO.LOW)       # Red led off
-        GPIO.cleanup()                     # Release resource
+        GPIO.output(Gpin, GPIO.HIGH)       # Accende il LED verde
+        GPIO.output(Rpin, GPIO.LOW)       # Spegne il LED rosso
+        GPIO.cleanup()                     # Libera le risorse
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # Il programma parte da qui
         setup()
         detect()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+        except KeyboardInterrupt:  # Quando viene premuto 'Ctrl+C', il programma distrugge() sarà eseguito.
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -184,15 +183,15 @@ The green LED will light up when the code is run. If a magnet is placed close to
     Rpin    = 22
 
     def setup():
-        GPIO.setmode(GPIO.BCM)       # 
-        GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
-        GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
-        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set ReedPin's mode is input, and pull up to high level(3.3V)
+        GPIO.setmode(GPIO.BCM)       
+        GPIO.setup(Gpin, GPIO.OUT)     # Imposta il pin LED verde in modalità output
+        GPIO.setup(Rpin, GPIO.OUT)     # Imposta il pin LED rosso in modalità output
+        GPIO.setup(ReedPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Imposta ReedPin in modalità input e lo tira su al livello alto (3,3V)
         GPIO.add_event_detect(ReedPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
-Set the GPIO modes to BCM Numbering. ``ReedPin``, ``Gpin`` and ``Rpin`` connects to the GPIO17, GPIO27 and GPIO22.
+Imposta la numerazione dei GPIO in modalità BCM. ``ReedPin``, ``Gpin`` e ``Rpin`` sono collegati rispettivamente ai GPIO17, GPIO27 e GPIO22.
 
-``GPIO.add_event_detect()`` is used to add an event that is triggered by a change in the value (level) of ``ReedPin``, at which point the callback function ``detect()`` is called.
+``GPIO.add_event_detect()`` viene utilizzato per aggiungere un evento che viene attivato da una variazione del valore (livello) di ``ReedPin``, a quel punto viene chiamata la funzione di callback ``detect()``.
 
 .. code-block:: python
 
@@ -204,18 +203,18 @@ Set the GPIO modes to BCM Numbering. ``ReedPin``, ``Gpin`` and ``Rpin`` connects
             GPIO.output(Rpin, 0)
             GPIO.output(Gpin, 1)
 
-Define a function ``Led()`` to turn the two LEDs on or off. If ``x=0``, the red LED lights up; otherwise, the green LED will be lit.
+Definisci una funzione ``Led()`` per accendere o spegnere i due LED. Se ``x=0``, si accende il LED rosso; altrimenti, si accenderà il LED verde.
 
 .. code-block:: python
 
     def detect(self):
     Led(GPIO.input(ReedPin))
 
-In this callback function, the value of the reed switch is used to control the 2 LEDs.
+In questa funzione di callback, il valore dell'interruttore reed viene utilizzato per controllare i 2 LED.
 
  
-Phenomenon Picture
-------------------------
+Immagine del Fenomeno
+--------------------------------
 
 .. image:: ../img/2.2.4reed_switch.JPG
     :width: 500

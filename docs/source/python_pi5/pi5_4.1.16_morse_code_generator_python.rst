@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _4.1.16_py_pi5:
 
-4.1.13 Morse Code Generator
+4.1.13 Generatore di Codice Morse
 =========================================
 
-Introduction
+Introduzione
 -----------------
 
-In this project, we'll make a Morse code generator, where you type in a
-series of English letters in the Raspberry Pi to make it appear as Morse
-code.
+In questo progetto, realizzeremo un generatore di codice Morse, 
+dove puoi digitare una serie di lettere inglesi nel Raspberry Pi 
+per trasformarle in codice Morse.
 
-Required Components
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components.
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: ../python_pi5/img/4.1.16_morse_code_generator_list.png
     :width: 800
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - OGGETTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE DEI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,7 +70,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
+Schema elettrico
 -----------------------
 
 ============ ======== ======== ===
@@ -82,16 +82,15 @@ GPIO22       Pin 15   3        22
 .. image:: ../python_pi5/img/4.1.16_morse_code_generator_schematic.png
    :align: center
 
-Experimental Procedures
+Procedure sperimentali
 ----------------------------
 
-**Step 1:** Build the circuit. (Pay attention to poles of the buzzer:
-The one with + label is the positive pole and the other is the
-negative.)
+**Step 1:** Monta il circuito. (Fai attenzione ai poli del cicalino: 
+Quello con l'etichetta + è il polo positivo, l'altro è il polo negativo.)
 
 .. image:: ../python_pi5/img/4.1.16_morse_code_generator_circuit.png
 
-**Step 2**: Open the code file.
+**Step 2**: Apri il file di codice.
 
 .. raw:: html
 
@@ -101,7 +100,7 @@ negative.)
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run.
+**Step 3**: Esegui.
 
 .. raw:: html
 
@@ -111,10 +110,10 @@ negative.)
 
     sudo python3 4.1.16_MorseCodeGenerator_zero.py
 
-After the program runs, type a series of characters, and the buzzer and
-the LED will send the corresponding Morse code signals.
+Dopo l'avvio del programma, digita una serie di caratteri e il cicalino e il LED 
+invieranno i segnali corrispondenti in codice Morse.
 
-**Code**
+**Codice**
 
 .. code-block:: python
 
@@ -122,11 +121,11 @@ the LED will send the corresponding Morse code signals.
    from gpiozero import Buzzer, LED
    import time
 
-   # Initialize Buzzer and LED to GPIO pins
+   # Inizializza il cicalino e il LED sui pin GPIO
    BeepPin = Buzzer(22)
    ALedPin = LED(17)
 
-   # Morse code representation for characters
+   # Rappresentazione in codice Morse per i caratteri
    MORSECODE = {
        'A': '01', 'B': '1000', 'C': '1010', 'D': '100', 'E': '0', 'F': '0010', 'G': '110',
        'H': '0000', 'I': '00', 'J': '0111', 'K': '101', 'L': '0100', 'M': '11', 'N': '10',
@@ -148,7 +147,7 @@ the LED will send the corresponding Morse code signals.
        BeepPin.off()
        ALedPin.off()
 
-   def beep(dt):  # dt for delay time.
+   def beep(dt):  # dt per il tempo di ritardo.
        """
        Produce a beep sound and LED flash for the specified duration.
        :param dt: Duration for the beep and flash.
@@ -167,10 +166,10 @@ the LED will send the corresponding Morse code signals.
        for letter in code:
            for tap in MORSECODE[letter]:
                if tap == '0':
-                   beep(pause / 2)  # Short beep for dot
+                   beep(pause / 2)  # Beep breve per punto
                if tap == '1':
-                   beep(pause)      # Long beep for dash
-           time.sleep(pause)  # Pause between letters
+                   beep(pause)      # Beep lungo per linea
+           time.sleep(pause)  # Pausa tra le lettere
 
    def destroy():
        """ Clean up resources on script termination. """
@@ -181,16 +180,16 @@ the LED will send the corresponding Morse code signals.
    try:
        while True:
            code = input("Please input the messenger:")
-           code = code.upper()  # Convert to uppercase for Morse code lookup
+           code = code.upper()  # Converti in maiuscolo per la ricerca nel codice Morse
            print(code)
            morsecode(code)
    except KeyboardInterrupt:
        destroy()
 
+       
+**Spiegazione del Codice**
 
-**Code Explanation**
-
-#. This code imports the Buzzer and LED classes from the gpiozero library. These classes are essential for controlling the corresponding GPIO devices on the Raspberry Pi.
+#. Questo codice importa le classi Buzzer e LED dalla libreria gpiozero. Queste classi sono essenziali per il controllo dei dispositivi GPIO su Raspberry Pi.
 
    .. code-block:: python
 
@@ -198,19 +197,19 @@ the LED will send the corresponding Morse code signals.
        from gpiozero import Buzzer, LED
        import time
 
-#. Initializes the buzzer on GPIO pin 22 and the LED on GPIO pin 17, facilitating the control of these components.
+#. Inizializza il cicalino sul pin GPIO 22 e il LED sul pin GPIO 17, facilitando il controllo di questi componenti.
 
    .. code-block:: python
 
-       # Initialize Buzzer and LED to GPIO pins
+       # Inizializza il cicalino e il LED sui pin GPIO
        BeepPin = Buzzer(22)
        ALedPin = LED(17)
 
-#. Defines the ``MORSE`` structure, a dictionary containing Morse code representations for characters A-Z, numbers 0-9, and symbols like “?”, “/”, “:”, “,”, “.”, “;”, “!”, “@”, with ``0`` signifying a dot and ``1`` indicating a dash.
+#. Definisce la struttura ``MORSECODE``, un dizionario contenente le rappresentazioni in codice Morse per i caratteri da A a Z, i numeri da 0 a 9, e simboli come “?”, “/”, “:”, “,”, “.”, “;”, “!”, “@”, dove ``0`` rappresenta un punto e ``1`` una linea.
 
    .. code-block:: python
 
-       # Morse code representation for characters
+       # Rappresentazione in codice Morse per i caratteri
        MORSECODE = {
            'A': '01', 'B': '1000', 'C': '1010', 'D': '100', 'E': '0', 'F': '0010', 'G': '110',
            'H': '0000', 'I': '00', 'J': '0111', 'K': '101', 'L': '0100', 'M': '11', 'N': '10',
@@ -222,7 +221,7 @@ the LED will send the corresponding Morse code signals.
            '!': '101011', '@': '011010', ':': '111000',
        }
 
-#. The function ``on()`` starts the buzzer and the LED. The function ``off()`` is used to turn off the buzzer and the LED. 
+#. La funzione ``on()`` accende il cicalino e il LED. La funzione ``off()`` spegne il cicalino e il LED.
 
    .. code-block:: python
 
@@ -236,11 +235,11 @@ the LED will send the corresponding Morse code signals.
            BeepPin.off()
            ALedPin.off()
 
-#. Define a function ``beep()`` to make the buzzer and the LED emit sounds and blink in a certain interval of ``dt``.
+#. Definisce una funzione ``beep()`` per far emettere suoni e lampeggiare il LED ad intervalli stabiliti da ``dt``.
 
    .. code-block:: python
 
-       def beep(dt):  # dt for delay time.
+       def beep(dt):  # dt per la durata.
            """
            Produce a beep sound and LED flash for the specified duration.
            :param dt: Duration for the beep and flash.
@@ -250,7 +249,7 @@ the LED will send the corresponding Morse code signals.
            off()
            time.sleep(dt)
 
-#. The function ``morsecode()`` is used to process the Morse code of input characters by making the “1” of the code keep emitting sounds or lights and the “0”shortly emit sounds or lights, ex., input “SOS”, and there will be a signal containing three short three long and then three short segments “ · · · - - - · · · ”.
+#. La funzione ``morsecode()`` elabora il codice Morse dei caratteri in ingresso facendo emettere suoni o luci lunghi per il “1” del codice e brevi per lo “0”. Ad esempio, inserendo “SOS” il segnale emetterà tre punti brevi, tre linee lunghe e di nuovo tre punti brevi " · · · - - - · · · ".
 
    .. code-block:: python
 
@@ -263,12 +262,12 @@ the LED will send the corresponding Morse code signals.
            for letter in code:
                for tap in MORSECODE[letter]:
                    if tap == '0':
-                       beep(pause / 2)  # Short beep for dot
+                       beep(pause / 2)  # Beep breve per punto
                    if tap == '1':
-                       beep(pause)      # Long beep for dash
-               time.sleep(pause)  # Pause between letters
+                       beep(pause)      # Beep lungo per linea
+               time.sleep(pause)  # Pausa tra le lettere
 
-#. Defines a function named ``destroy`` that turns off both the buzzer and the LED. This function is intended to be called when the script is terminated to ensure that the GPIO pins are not left in an active state.
+#. Definisce una funzione chiamata ``destroy`` che spegne sia il cicalino che il LED. Questa funzione viene chiamata alla chiusura dello script per assicurarsi che i pin GPIO non rimangano attivi.
 
    .. code-block:: python
 
@@ -278,14 +277,14 @@ the LED will send the corresponding Morse code signals.
            BeepPin.off()
            ALedPin.off()
 
-#. When you type the relevant characters with the keyboard, ``upper()`` will convert the input letters to their capital form. ``printf()`` then prints the clear text on the computer screen, and the ``morsecod()`` function causes the buzzer and the LED to emit Morse code.
+#. Quando digiti i caratteri rilevanti sulla tastiera, ``upper()`` convertirà le lettere inserite in maiuscolo. ``print()`` quindi visualizza il testo in chiaro sullo schermo, e la funzione ``morsecode()`` fa sì che il cicalino e il LED emettano il codice Morse.
 
    .. code-block:: python
 
        try:
            while True:
                code = input("Please input the messenger:")
-               code = code.upper()  # Convert to uppercase for Morse code lookup
+               code = code.upper()  # Converti in maiuscolo per la ricerca nel codice Morse
                print(code)
                morsecode(code)
        except KeyboardInterrupt:

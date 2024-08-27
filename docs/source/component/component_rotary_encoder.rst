@@ -1,35 +1,35 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _cpn_rotary_encoder:
 
-Rotary Encoder Module
+Modulo Encoder Rotativo
 =============================
 
 .. image:: img/rotary_encoder_pic.png
     :width: 300
     :align: center
 
-A rotary encoder is a position sensor that converts the rotation of a knob into an output signal, indicating the direction in which the knob is turned.
+Un encoder rotativo è un sensore di posizione che converte la rotazione di una manopola in un segnale di uscita, indicando la direzione in cui la manopola viene ruotata.
 
-Rotary encoders are digital versions of potentiometers, offering greater versatility. They can rotate continuously, while potentiometers have limited rotation. Potentiometers indicate exact knob position, while rotary encoders show changes in position.
+Gli encoder rotativi sono versioni digitali dei potenziometri, offrendo una maggiore versatilità. Possono ruotare continuamente, mentre i potenziometri hanno una rotazione limitata. I potenziometri indicano la posizione esatta della manopola, mentre gli encoder rotativi mostrano le variazioni di posizione.
 
-There are mainly two types of rotary encoders: absolute and incremental (relative) encoders. An incremental one is used in this kit.
+Esistono principalmente due tipi di encoder rotativi: assoluti e incrementali (relativi). In questo kit viene utilizzato un encoder incrementale.
 
-Incremental encoders produce two-phase square waves, with a 90-degree phase difference commonly referred to as the A and B channels.
+Gli encoder incrementali producono onde quadre bifase, con una differenza di fase di 90 gradi comunemente indicata come canali A e B.
 
-As illustrated below, when channel A transitions from a high level to a low level, if channel B is at a high level, it indicates that the rotary encoder is rotating clockwise (CW); if at that moment channel B is at a low level, it means the rotation is counterclockwise (CCW). Therefore, by reading the value of channel B when channel A is at a low level, we can determine the direction in which the rotary encoder rotates.
+Come illustrato di seguito, quando il canale A passa da un livello alto a un livello basso, se il canale B è a un livello alto, significa che l'encoder rotativo sta ruotando in senso orario (CW); se in quel momento il canale B è a un livello basso, significa che la rotazione è in senso antiorario (CCW). Pertanto, leggendo il valore del canale B quando il canale A è a un livello basso, possiamo determinare la direzione in cui l'encoder rotativo ruota.
 
 
 
@@ -37,7 +37,8 @@ As illustrated below, when channel A transitions from a high level to a low leve
     :width: 600
     :align: center
 	
-**Example**
+**Esempi**
+
 
 * :ref:`2.1.6_c` (C Project)
 * :ref:`2.1.6_py` (Python Project)

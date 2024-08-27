@@ -1,51 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _drag_number:
 
-Drag Number
-================================================
+Numero Trascinabile
+======================
 
-Let\'s draw a slider bar to control the 7-segment Display.
+Disegniamo una barra di scorrimento per controllare il display a 7 segmenti.
 
 .. image:: img/drag_servo.png
 
-**Required Components**
+**Componenti Necessari**
 
-In this project, we need the following components.
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,7 +60,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_74hc595`
         - |link_74hc595_buy|
 
-**Wiring**
+**Cablatura**
 
 .. image:: img/image125.png
 
@@ -82,19 +82,19 @@ You can also buy them separately from the links below.
     int[] SegCode= {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 
     void hc595_shift(int dat){
-    int i;
+        int i;
 
     for(i=0;i<8;i++){
         int n=(0x80 & (dat << i)); 
         if ( n==0){
-        GPIO.digitalWrite(SDI, 0);
-        } else {
-        GPIO.digitalWrite(SDI, 1);
+                GPIO.digitalWrite(SDI, 0);
+            } else {
+                GPIO.digitalWrite(SDI, 1);
+            }
+            GPIO.digitalWrite(SRCLK, 1);
+            delay(1);
+            GPIO.digitalWrite(SRCLK, 0);
         }
-        GPIO.digitalWrite(SRCLK, 1);
-        delay(1);
-        GPIO.digitalWrite(SRCLK, 0);
-    }
 
         GPIO.digitalWrite(RCLK, 1);
         delay(1);
@@ -173,7 +173,6 @@ You can also buy them separately from the links below.
         }
     }
 
-**How it works?**
+**Come funziona?**
 
-This project integrates the Slider and 7-segment Display of the previous project. For specific knowledge points, please refer to :ref:`show_number` and :ref:`metronome`.  
-
+Questo progetto integra lo Slider e il display a 7 segmenti del progetto precedente. Per i punti di conoscenza specifici, fai riferimento a :ref:`show_number` e :ref:`metronome`.

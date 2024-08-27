@@ -1,16 +1,16 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _cpn_led:
 
@@ -20,24 +20,24 @@ LED
 .. image:: img/LED.png
     :width: 400
 
-Semiconductor light-emitting diode is a type of component which can turn electric energy into light energy via PN junctions. By wavelength, it can be categorized into laser diode, infrared light-emitting diode and visible light-emitting diode which is usually known as light-emitting diode (LED). 
+Il diodo emettitore di luce a semiconduttore è un tipo di componente che può convertire l'energia elettrica in energia luminosa tramite giunzioni PN. In base alla lunghezza d'onda, può essere categorizzato in diodo laser, diodo a emissione di infrarossi e diodo a emissione di luce visibile, comunemente noto come diodo a emissione di luce (LED). 
                     
-Diode has unidirectional conductivity, so the current flow will be as the arrow indicates in figure circuit symbol. You can only provide the anode with a positive power and the cathode with a negative. Thus the LED will light up. 
+Il diodo ha una conduttività unidirezionale, quindi la corrente fluirà come indicato dalla freccia nel simbolo del circuito. È possibile fornire energia positiva solo all'anodo e negativa al catodo. In questo modo, l'LED si accenderà.
 
 .. image:: img/led_symbol.png
 
 
-An LED has two pins. The longer one is the anode, and shorter one, the cathode. Pay attention not to connect them inversely. There is fixed forward voltage drop in the LED, so it cannot be connected with the circuit directly because the supply voltage can outweigh this drop and cause the LED to be burnt. The forward voltage of the red, yellow, and green LED is 1.8 V and that of the white one is 2.6 V. Most LEDs can withstand a maximum current of 20 mA, so we need to connect a current limiting resistor in series.                   
+Un LED ha due pin. Quello più lungo è l'anodo, quello più corto è il catodo. Assicurati di non collegarli in modo inverso. C'è una caduta di tensione diretta fissa nell'LED, quindi non può essere collegato direttamente al circuito perché la tensione di alimentazione potrebbe superare questa caduta e causare la bruciatura dell'LED. La tensione diretta degli LED rossi, gialli e verdi è di 1,8 V, mentre quella degli LED bianchi è di 2,6 V. La maggior parte degli LED può sopportare una corrente massima di 20 mA, quindi è necessario collegare una resistenza limitatrice di corrente in serie.
 
-The formula of the resistance value is as follows:
+La formula per calcolare il valore della resistenza è la seguente:
 
     R = (Vsupply – VD)/I
 
-**R** stands for the resistance value of the current limiting resistor, **Vsupply** for voltage supply, **VD** for voltage drop and **I** for the working current of the LED.
+**R** rappresenta il valore della resistenza limitatrice di corrente, **Vsupply** la tensione di alimentazione, **VD** la caduta di tensione e **I** la corrente di lavoro dell'LED.
 
-Here is the detailed introduction for the LED: `LED - Wikipedia <https://en.wikipedia.org/wiki/Light-emitting_diode>`_.
+Qui trovi una presentazione dettagliata sull'LED: `LED - Wikipedia <https://en.wikipedia.org/wiki/Light-emitting_diode>`_.
 
-**Example**
+**Esempi**
 
 * :ref:`1.1.1_c` (C Project)
 * :ref:`3.1.6_c` (C Project)

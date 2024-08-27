@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.5_py:
 
-2.1.5 Tilt Switch
-=================
+2.1.5 Interruttore a Inclinazione
+=========================================
 
-Introduction
-------------
+Introduzione
+-----------------
 
-This is a ball tilt-switch with a metal ball inside. It is used to
-detect inclinations of a small angle.
+Questo è un interruttore a inclinazione con una sfera metallica all'interno. 
+Viene utilizzato per rilevare inclinazioni di piccolo angolo.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.1.3_tilt_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,8 +65,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch`
         - \-
 
-Schematic Diagram
------------------
+Schema Elettrico
+---------------------
 
 .. image:: ../img/image307.png
 
@@ -74,14 +74,14 @@ Schematic Diagram
 .. image:: ../img/image308.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image169.png
 
-**Step 2:** Change directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -91,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -101,15 +101,15 @@ Experimental Procedures
 
     sudo python3 2.1.5_Tilt.py
 
-Place the tilt vertically, and the green LED will turns on. If you
-tilt it, "Tilt!" will be printed on the screen and the red LED will
-turns on. Place it vertically again, and the green LED will lights on.
+Posiziona l'interruttore a inclinazione in verticale e il LED verde si accenderà. 
+Se lo inclini, verrà stampato "Inclinato!" sullo schermo e il LED rosso si accenderà. 
+Rimettilo in verticale e il LED verde si riaccenderà.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -125,10 +125,10 @@ turns on. Place it vertically again, and the green LED will lights on.
     Rpin   = 22
 
     def setup():
-        GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
-        GPIO.setup(Gpin, GPIO.OUT)     # Set Green Led Pin mode to output
-        GPIO.setup(Rpin, GPIO.OUT)     # Set Red Led Pin mode to output
-        GPIO.setup(TiltPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Set BtnPin's mode is input, and pull up to high level(3.3V)
+        GPIO.setmode(GPIO.BCM)       # Numerazione GPIO in base alla posizione fisica
+        GPIO.setup(Gpin, GPIO.OUT)     # Imposta il Pin LED Verde come output
+        GPIO.setup(Rpin, GPIO.OUT)     # Imposta il Pin LED Rosso come output
+        GPIO.setup(TiltPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Imposta BtnPin come input, con pull-up a livello alto (3.3V)
         GPIO.add_event_detect(TiltPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
     def Led(x):
@@ -154,24 +154,24 @@ turns on. Place it vertically again, and the green LED will lights on.
             pass
 
     def destroy():
-        GPIO.output(Gpin, GPIO.HIGH)       # Green led off
-        GPIO.output(Rpin, GPIO.HIGH)       # Red led off
-        GPIO.cleanup()                     # Release resource
+        GPIO.output(Gpin, GPIO.HIGH)       # Spegni il LED Verde
+        GPIO.output(Rpin, GPIO.HIGH)       # Spegni il LED Rosso
+        GPIO.cleanup()                     # Rilascia le risorse
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # Il programma inizia qui
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the program destroy() will be  executed.
+        except KeyboardInterrupt:  # Quando viene premuto 'Ctrl+C', il programma destroy() verrà eseguito.
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     GPIO.add_event_detect(TiltPin, GPIO.BOTH, callback=detect, bouncetime=200)
 
-Set up a detect on TiltPin, and callback function to detect.
+Imposta un rilevamento su TiltPin, con funzione di callback "detect".
 
 .. code-block:: python
 
@@ -183,8 +183,7 @@ Set up a detect on TiltPin, and callback function to detect.
             GPIO.output(Rpin, 0)
             GPIO.output(Gpin, 1)
 
-Define a function Led() to turn the two LEDs on or off. If x=0, the red
-LED lights up; otherwise, the green LED will be lit.
+Definisci una funzione Led() per accendere o spegnere i due LED. Se x=0, si accende il LED rosso; altrimenti, si accende il LED verde.
 
 .. code-block:: python
 
@@ -194,7 +193,7 @@ LED lights up; otherwise, the green LED will be lit.
             print ('    *   Tilt!   *')
             print ('    *************')
 
-Create a function, Print() to print the characters above on the screen.
+Crea una funzione Print() per stampare i caratteri sopra sullo schermo.
 
 .. code-block:: python
 
@@ -202,12 +201,12 @@ Create a function, Print() to print the characters above on the screen.
         Led(GPIO.input(TiltPin))
         Print(GPIO.input(TiltPin))
 
-Define a callback function for tilt callback. Get the read value of the
-tilt switch then the function Led() controls the turning on or off of
-the two LEDs that is depended on the read value of the tilt switch.
+Definisci una funzione di callback per l'interruttore a inclinazione. Ottieni il valore 
+letto dall'interruttore a inclinazione, e poi la funzione Led() controlla l'accensione o 
+lo spegnimento dei due LED, in base al valore letto.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+--------------------------
 
 .. image:: ../img/image170.jpeg
 

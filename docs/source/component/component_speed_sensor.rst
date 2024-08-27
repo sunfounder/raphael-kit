@@ -1,36 +1,36 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _cpn_speed_sensor:
 
-Speed Sensor Module
-========================
+Modulo Sensore di Velocità
+=============================
 
 .. image:: img/speed_sensor1.png
     :width: 300
     :align: center
 
-The speed sensor consists of two parts: a transmitter and a receiver. The transmitter emits light, which then enters the receiver.
+Il sensore di velocità è composto da due parti: un trasmettitore e un ricevitore. Il trasmettitore emette luce, che poi entra nel ricevitore.
 
-If the light beam between the emitter and receiver is interrupted by an obstacle, the receiver will not detect the incident light, then the D0 pin will output low level.
+Se il fascio di luce tra l'emettitore e il ricevitore viene interrotto da un ostacolo, il ricevitore non rileverà la luce incidente e il pin D0 emetterà un livello basso.
 
 .. note::
-    The A0 pin on this module is empty and there is no circuit.
+    Il pin A0 su questo modulo è vuoto e non è collegato a nessun circuito.
 
 .. image:: img/speed_sensor2.png
 
-**Example**
+**Esempi**
 
 * :ref:`2.2.6_c` (C Project)
 * :ref:`2.2.6_py` (Python Project)

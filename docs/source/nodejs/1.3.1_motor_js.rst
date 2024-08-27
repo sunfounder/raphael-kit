@@ -1,58 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci il tuo viaggio con Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e concorsi festivi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.3.1_js:
 
-1.3.1 Motor
-=================
+1.3.1 Motore
+===================
 
-Introduction
------------------
+Introduzione
+-------------------
 
-In this project, we will learn to how to use L293D to drive a DC motor
-and make it rotate clockwise and counterclockwise. Since the DC Motor
-needs a larger current, for safety purpose, here we use the Power Supply
-Module to supply motors.
+In questo progetto, impareremo a utilizzare L293D per pilotare un motore DC e farlo 
+ruotare in senso orario e antiorario. Poiché il motore DC richiede una corrente maggiore, 
+per motivi di sicurezza utilizziamo il modulo di alimentazione per fornire energia ai motori.
 
-Required Components
+
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_1.3.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,33 +67,33 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_motor`
         - |link_motor_buy|
 
-Schematic Diagram
-------------------
+Schema elettrico
+--------------------
 
-Plug the power supply module in breadboard, and insert the jumper cap to
-pin of 5V, then it will output voltage of 5V. Connect pin 1 of L293D to
-GPIO22, and set it as high level. Connect pin2 to GPIO27, and pin7 to
-GPIO17, then set one pin high, while the other low. Thus you can change
-the motor’s rotation direction.
+Collega il modulo di alimentazione alla breadboard e inserisci il ponticello 
+nel pin da 5V, in modo che eroghi una tensione di 5V. Collega il pin 1 del 
+L293D a GPIO22 e impostalo su alto livello. Collega il pin 2 a GPIO27 e il pin 
+7 a GPIO17, quindi imposta un pin su alto e l'altro su basso. In questo modo, 
+puoi cambiare la direzione di rotazione del motore.
 
 .. image:: ../img/image336.png
 
 
-**Experimental Procedures**
+**Procedure Sperimentali**
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image117.png
 
 
 .. note::
-    The power module can apply a 9V battery with the 9V Battery
-    Buckle in the kit. Insert the jumper cap of the power module into the 5V
-    bus strips of the breadboard.
+    Il modulo di alimentazione può essere alimentato da una batteria da 9V con la 
+    clip per batteria inclusa nel kit. Inserisci il ponticello del modulo di 
+    alimentazione nella striscia di bus a 5V della breadboard.
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -103,7 +103,7 @@ the motor’s rotation direction.
 
     cd ~/raphael-kit/nodejs/
 
-**Step 4**: Run the code.
+**Passo 4**: Esegui il codice.
 
 .. raw:: html
 
@@ -113,12 +113,12 @@ the motor’s rotation direction.
 
     sudo node motor.js
 
-As the code runs, the motor first rotates clockwise for 1s then stops for 1s, 
-after that, it rotates anticlockwise for 1s; subsequently, the motor stops 
-for 1s. This series of actions will be executed repeatedly.  
+Quando il codice viene eseguito, il motore ruota prima in senso orario per 1s, poi 
+si ferma per 1s, successivamente ruota in senso antiorario per 1s; successivamente 
+il motore si ferma per 1s. Questa serie di azioni sarà ripetuta continuamente.
 
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -170,7 +170,7 @@ for 1s. This series of actions will be executed repeatedly.
     }, 1000)    
  
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: js
 
@@ -179,7 +179,7 @@ for 1s. This series of actions will be executed repeatedly.
     MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
 
 
-Import the pigpio module and create three Gpio class objects to control the three IO ports of Gpio17, Gpio27, and Gpio22.
+Importa il modulo pigpio e crea tre oggetti della classe Gpio per controllare le tre porte IO Gpio17, Gpio27 e Gpio22.
 
 
 .. code-block:: js
@@ -211,11 +211,12 @@ Import the pigpio module and create three Gpio class objects to control the thre
     }
 
 
-Define a motor() function to control the motor,
+Definisci una funzione motor() per controllare il motore,
 
-#. When the direction is equal to 2, the MotorPin1 port writes a high level, the MotorPin2 port writes a low level, and the enable port MotorEnable writes a high level, and the motor rotates clockwise.
-#. When the direction is equal to 1, the MotorPin1 port writes a low level, the MotorPin2 port writes a high level, and the enable port MotorEnable writes a high level, and the motor rotates counterclockwise.
-#. When the direction is equal to 0, the enable port MotorEnable is written to a low level, and the motor stops rotating.  
+#. Quando la direzione è uguale a 2, la porta MotorPin1 scrive un livello alto, la porta MotorPin2 scrive un livello basso e la porta di abilitazione MotorEnable scrive un livello alto, facendo ruotare il motore in senso orario.
+#. Quando la direzione è uguale a 1, la porta MotorPin1 scrive un livello basso, la porta MotorPin2 scrive un livello alto e la porta di abilitazione MotorEnable scrive un livello alto, facendo ruotare il motore in senso antiorario.
+#. Quando la direzione è uguale a 0, la porta di abilitazione MotorEnable è scritta a livello basso, e il motore si ferma.
+
 
 .. code-block:: js
 
@@ -225,7 +226,7 @@ Define a motor() function to control the motor,
         motor(index)
     }, 1000)    
 
-Let the motor rotate clockwise and counterclockwise alternately, with an interval of 1 second.
+Fai ruotare il motore in senso orario e antiorario alternativamente, con un intervallo di 1 secondo.
 
 
 .. code-block:: js
@@ -236,10 +237,10 @@ Let the motor rotate clockwise and counterclockwise alternately, with an interva
     })
 
 
-When it is detected that **ctrl+c is** pressed,
-MotorEnable is written low to stop the motor from spinning.
+Quando viene rilevata la pressione di **ctrl+c is**, 
+MotorEnable viene scritto su basso per fermare la rotazione del motore.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+----------------------------
 
 .. image:: ../img/image119.jpeg

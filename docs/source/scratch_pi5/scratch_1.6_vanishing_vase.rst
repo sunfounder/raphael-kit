@@ -1,54 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e affronta sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
 .. _1.6_scratch_pi5:
 
-1.6 Vanishing Vase
+1.6 Vaso Magico
 ========================
 
-Now let's do a little magic trick, do nothing, and then the vase somehow disappears.
+Ora facciamo un piccolo trucco di magia: senza fare nulla, il vaso sparirà improvvisamente.
 
 .. image:: img/1.6_header.png
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: img/1.6_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -59,34 +59,35 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Build the Circuit
----------------------
+Costruire il Circuito
+------------------------
 
 .. image:: img/1.6_fritzing.png
 
-Load the Code and See What Happens
----------------------------------------
+Carica il Codice e Vedi Cosa Succede
+----------------------------------------
 
-Load the code file (``1.6_vanishing_vase.sb3``) to Scratch 3.
+Carica il file di codice (``1.6_vanishing_vase.sb3``) in Scratch 3.
 
-When you use a magnet near the reed switch module, a vase will appear on the stage, take away the magnet and the vase will disappear.
+Quando avvicini un magnete al modulo reed switch, sul palco apparirà un vaso; togli il magnete e il vaso scomparirà.
 
-Tips on Sprite
-----------------
+Suggerimenti sugli Sprite
+--------------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **desk1.png** and **desk2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **desk**.
+Seleziona Sprite1 e clicca su **Costumi** nell'angolo in alto a sinistra; carica **desk1.png** e **desk2.png** dal percorso ``~/raphael-kit/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi predefiniti e rinomina lo sprite in **desk**.
 
 .. image:: img/1.6_vase.png
 
-Tips on Codes
---------------
+Suggerimenti sul Codice
+---------------------------
 
 .. image:: img/1.6_reed2.png
   :width: 400
 
-When the magnet is close to the reed switch module, gpio17 is low, and the costume of the **desk** sprite is switched to **desk1** (the vase is still on the desk).
+Quando il magnete è vicino al modulo reed switch, gpio17 è basso e il costume dello sprite **desk** viene cambiato in **desk1** (il vaso è ancora sulla scrivania).
 
 .. image:: img/1.6_reed3.png
   :width: 400
 
-After taking away the magnet, gpio17 is high, at this time the costume of the **desk** sprite is switched to **desk2** (only one desk).
+Dopo aver tolto il magnete, gpio17 è alto; a questo punto, il costume dello sprite **desk** viene cambiato in **desk2** (solo la scrivania).
+

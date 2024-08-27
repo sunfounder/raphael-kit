@@ -1,55 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.3.2_js:
 
 1.3.2 Servo
-============
+===============
 
-Introduction
---------------
+Introduzione
+-----------------
 
-In this project, we will learn how to make the servo rotate.
+In questo progetto, impareremo a far ruotare un servo motore.
 
-Required Components
-------------------------------
+Componenti necessari
+--------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_1.3.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,20 +60,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_servo`
         - |link_servo_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+--------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -83,7 +83,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Passo 3**: Esegui il codice.
 
 .. raw:: html
 
@@ -93,10 +93,10 @@ Experimental Procedures
 
     sudo node servo.js
 
-After the program is executed, the servo will rotate from 0 degrees 
-to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Dopo l'esecuzione del programma, il servo ruoterà da 0 gradi a 180 gradi, 
+e poi da 180 gradi a 0 gradi, in modo ciclico.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -128,7 +128,7 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
     }, 20);
 
 
-**Code Explanation**
+**Spiegazione del codice**
 
 .. code-block:: js
 
@@ -136,7 +136,7 @@ to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
 
     ServoPin = new Gpio(18,{mode: Gpio.OUTPUT})
 
-Import the pigpio module and create an object of class Gpio, ServoPin, to control the output of Gpio18.    
+Importa il modulo pigpio e crea un oggetto della classe Gpio, ServoPin, per controllare l'uscita di Gpio18.    
   
 
 .. code-block:: js
@@ -154,9 +154,9 @@ Import the pigpio module and create an object of class Gpio, ServoPin, to contro
         return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
     }
 
-The function that maps the angle to the pulse width is defined here.
-This is because the servo control function ``servoWrite(pulseWidth)`` encapsulated in the Gpio class needs to write pulse width instead of angle.
-The angle range of the servo we use is 0~180, which needs to be mapped to the range of pulseWidth, 500~2500.
+Qui viene definita una funzione che mappa l'angolo alla larghezza dell'impulso.
+Questo perché la funzione di controllo del servo ``servoWrite(pulseWidth)`` incapsulata nella classe Gpio deve scrivere la larghezza dell'impulso anziché l'angolo.
+L'intervallo di angoli del servo che utilizziamo è 0~180, che deve essere mappato all'intervallo di pulseWidth, 500~2500.
 
 .. code-block:: js
 
@@ -170,11 +170,10 @@ The angle range of the servo we use is 0~180, which needs to be mapped to the ra
         ServoPin.servoWrite(angle2pulse(angle));
     }, 20);
 
-Let the servo angle deflect back and forth from 0 to 180.
+Fa sì che l'angolo del servo si muova avanti e indietro da 0 a 180 gradi.
 
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+---------------------------------
 
 .. image:: ../img/image126.jpeg
-

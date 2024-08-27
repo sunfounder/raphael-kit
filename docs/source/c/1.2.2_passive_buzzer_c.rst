@@ -1,55 +1,55 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 .. _1.2.2_c:
 
-1.2.2 Passive Buzzer
-==========================
+1.2.2 Buzzer Passivo
+===========================
 
-Introduction
-------------
+Introduzione
+-------------
 
-In this project, we will learn how to make a passive buzzer play music.
+In questo progetto, impareremo come far suonare un buzzer passivo per riprodurre musica.
 
-Required Components
-------------------------------
+Componenti Necessari
+-------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_1.2.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI NEL KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link seguenti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,27 +64,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
------------------
+Schema Elettrico
+---------------------
 
-In this experiment, a passive buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor.
+In questo esperimento, utilizziamo un buzzer passivo, un transistor PNP e una 
+resistenza da 1kΩ tra la base del transistor e il GPIO per proteggere il transistor.
 
-When GPIO17 is given different frequencies, the passive buzzer will emit
-different sounds; in this way, the buzzer plays music.
+Quando a GPIO17 vengono assegnate frequenze diverse, il buzzer passivo emetterà suoni 
+differenti; in questo modo, il buzzer riproduce musica.
 
 .. image:: ../img/image333.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+---------------------------
 
-**Step 1**: Build the circuit. (The Passive buzzer with green circuit board on the back.)
+**Step 1:** Costruisci il circuito. (Il buzzer passivo ha un circuito stampato verde sul retro.)
 
 .. image:: ../img/image106.png
 
-**Step 2**: Change directory.
+**Step 2:** Cambia la directory.
 
 .. raw:: html
 
@@ -94,7 +93,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.2.2/
 
-**Step 3**: Compile.
+**Step 3:** Compila.
 
 .. raw:: html
 
@@ -104,7 +103,7 @@ Experimental Procedures
 
     gcc 1.2.2_PassiveBuzzer.c -lwiringPi
 
-**Step 4**: Run.
+**Step 4:** Esegui.
 
 .. raw:: html
 
@@ -114,13 +113,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-The code run, the buzzer plays a piece of music.
+Dopo l'esecuzione del codice, il buzzer riprodurrà un brano musicale.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se il codice non funziona dopo l'esecuzione o appare l'errore: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`install_wiringpi`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -171,7 +170,7 @@ The code run, the buzzer plays a piece of music.
     int main(void)
     {
         int i, j;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //quando l'inizializzazione di wiring fallisce, stampa messaggio a schermo
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -198,7 +197,7 @@ The code run, the buzzer plays a piece of music.
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -214,8 +213,8 @@ The code run, the buzzer plays a piece of music.
     #define  CM2  294
 
 
-These frequencies of each note are as shown. CL refers to low note, 
-CM middle note, CH high note, 1-7 correspond to the notes C, D, E, F, G, A, B.
+Queste sono le frequenze di ciascuna nota, come indicato. CL si riferisce alla nota bassa, 
+CM alla nota media, CH alla nota alta, 1-7 corrispondono alle note C, D, E, F, G, A, B.
 
 .. code-block:: c
 
@@ -225,8 +224,8 @@ CM middle note, CH high note, 1-7 correspond to the notes C, D, E, F, G, A, B.
     int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
                     1,1,1,1,1,1,3};
 
-The array, ``song_1[]`` stores a musical score of a song in which ``beat_1[]`` 
-refers to the beat of each note in the song (0.5s for each beat).
+L'array ``song_1[]`` memorizza uno spartito musicale di una canzone, mentre ``beat_1[]`` 
+si riferisce al ritmo di ciascuna nota nella canzone (0,5 secondi per ogni battito).
 
 .. code-block:: c
 
@@ -236,10 +235,8 @@ refers to the beat of each note in the song (0.5s for each beat).
     }
 
 
-This creates a software controlled tone pin. You can use any GPIO pin 
-and the pin numbering will be that of the ``wiringPiSetup()`` function 
-you used. The return value is 0 for success. Anything else and you 
-should check the global errnovariable to see what went wrong.
+Questa funzione crea un tono controllato via software sul pin. Puoi utilizzare qualsiasi pin GPIO, 
+e la numerazione del pin sarà quella della funzione ``wiringPiSetup()`` utilizzata. Il valore restituito è 0 per il successo. In caso contrario, è necessario controllare la variabile globale ``errno`` per vedere cosa è andato storto.
 
 .. code-block:: c
 
@@ -248,28 +245,28 @@ should check the global errnovariable to see what went wrong.
         delay(beat_1[i] * 500);
     }
 
-Employ a for statement to play song_1.
+Utilizzare un ciclo ``for`` per riprodurre ``song_1``.
 
-In the judgment condition, **i<sizeof(song_1)/4**\ ，“devide by 4” is
-used because the array ``song_1[]`` is an array of the data type of integer,
-and each element takes up four bytes.
+Nella condizione di giudizio, **i<sizeof(song_1)/4**, "dividere per 4" viene 
+utilizzato perché l'array ``song_1[]`` è un array di tipo intero e ogni elemento 
+occupa quattro byte.
 
-The number of elements in ``song_1`` (the number of musical notes) is gotten
-by deviding ``sizeof(song_1)`` by 4.
+Il numero di elementi in ``song_1`` (il numero di note musicali) viene ottenuto 
+dividendo ``sizeof(song_1)`` per 4.
 
-To enable each note to play for beat \* 500ms, the function
-``delay(beat_1[i] \* 500)`` is called.
+Per fare in modo che ogni nota suoni per ``beat * 500ms``, viene chiamata la funzione 
+``delay(beat_1[i] * 500)``.
 
-The prototype of ``softToneWrite(BuzPin, song_1[i])`` is：
+Il prototipo della funzione ``softToneWrite(BuzPin, song_1[i])`` è:
 
 .. code-block:: c
 
     void softToneWrite (int pin, int freq);
 
-This updates the tone frequency value on the given pin. The tone 
-does not stop playing until you set the frequency to 0.
+Questa funzione aggiorna la frequenza del tono sul pin specificato. Il tono 
+continua a suonare fino a quando non si imposta la frequenza su 0.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+---------------------------
 
 .. image:: ../img/image107.jpeg

@@ -1,51 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _clickable_dot:
 
-Clickable Dot
-==================
+Punto Cliccabile
+=====================
 
-We've tried drawing motion graphic, responding to mouse event, and controlling LED.  So, we might as well combine these functions, draw a clickable dot, to control the LED!  
+Abbiamo già provato a disegnare grafica in movimento, rispondere agli eventi del mouse e controllare il LED. Quindi, perché non combinare queste funzioni e disegnare un punto cliccabile per controllare il LED?
 
 .. image:: img/clickable_dot_on.png
 
-**Required Components**
+**Componenti Necessari**
 
-In this project, we need the following components.
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -56,7 +56,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_led`
         - |link_led_buy|
 
-**Wiring**
+**Cablatura**
 
 .. image:: img/image49.png
 
@@ -90,9 +90,10 @@ You can also buy them separately from the links below.
             {state = !state;}
     }
 
-**How it works?**
+**Come funziona?**
 
-This project has a lot in common with :ref:`blinking_dot`, the difference is that it puts the toggle state in the mouse event.
-This causes the LED to not blink automatically, but to light up and go off with a mouse click.
+Questo progetto ha molto in comune con :ref:`blinking_dot`, ma con la differenza che qui lo stato viene alternato nell'evento del mouse.
 
-And in the ``mouseClicked()`` event, the ``dist()`` function is used to determine the position of the mouse at the time of the click, and the dot is considered clicked only if the distance between the mouse and the center of the dot is less than the radius.
+Ciò fa sì che il LED non lampeggi automaticamente, ma si accenda e si spenga con un clic del mouse.
+
+Nell'evento ``mouseClicked()``, la funzione ``dist()`` viene utilizzata per determinare la posizione del mouse al momento del clic, e il punto viene considerato cliccato solo se la distanza tra il mouse e il centro del punto è inferiore al raggio.

@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.3.3_py:
 
-1.3.3 Relay
-===========
+1.3.3 Relè
+==============
 
-Introduction
-------------
+Introduzione
+--------------
 
-In this project, we will learn to use a relay. It is one of the commonly
-used components in automatic control system. When the voltage, current,
-temperature, pressure, etc., reaches, exceeds or is lower than the
-predetermined value, the relay will connect or interrupt the circuit, to
-control and protect the equipment.
+In questo progetto, impareremo a utilizzare un relè. È uno dei componenti più comuni 
+nei sistemi di controllo automatico. Quando tensione, corrente, temperatura, pressione,
+ ecc. raggiungono, superano o sono inferiori al valore prestabilito, il relè si attiva 
+ o si disattiva, controllando e proteggendo l'apparecchiatura.
 
-Required Components
+
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_1.3.4.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -72,20 +72,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_diode`
         - |link_diode_buy|
 
-Schematic Diagram
------------------
+Schema Elettrico
+---------------------
 
 .. image:: ../img/image345.png
 
 
-Experimental Procedures
+Procedure Sperimentali
 -----------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image144.png
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -96,7 +96,7 @@ Experimental Procedures
     cd ~/raphael-kit/python
 
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -106,15 +106,15 @@ Experimental Procedures
 
     sudo python3 1.3.3_Relay.py
 
-While the code is running, the LED lights up. In addition, you can hear
-a ticktock caused by breaking normally close contact and closing
-normally open contact.
+Durante l'esecuzione del codice, il LED si accende. Inoltre, puoi sentire un ticchettio 
+causato dall'interruzione del contatto normalmente chiuso e dall'attivazione del contatto 
+normalmente aperto.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -128,18 +128,18 @@ normally open contact.
     import RPi.GPIO as GPIO
     import time
 
-    # Set GPIO17 as control pin
+    # Imposta GPIO17 come pin di controllo
     relayPin = 17
 
-    # Define a setup function for some setup
+    # Definisci una funzione di configurazione per alcune impostazioni
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Imposta la modalità BCM per il GPIO
         GPIO.setmode(GPIO.BCM)
-        # Set relayPin's mode to output,
-        # and initial level to High(3.3v)
+        # Imposta il pin relayPin come output,
+        # e il livello iniziale su High (3.3V)
         GPIO.setup(relayPin, GPIO.OUT, initial=GPIO.HIGH)
 
-    # Define a main function for main process
+    # Definisci una funzione principale per il processo principale
     def main():
         while True:
             print ('Relay open...')
@@ -151,46 +151,45 @@ normally open contact.
             GPIO.output(relayPin, GPIO.HIGH)
             time.sleep(1)
 
-    # Define a destroy function for clean up everything after
-    # the script finished
+    # Definisci una funzione di distruzione per pulire tutto dopo
+    # la fine dello script
     def destroy():
-        # Turn off LED
+        # Spegni il LED
         GPIO.output(relayPin, GPIO.HIGH)
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup()                    
 
-    # If run this script directly, do:
+    # Se esegui questo script direttamente, fai:
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the child program
-        # destroy() will be  executed.
+        # Quando viene premuto 'Ctrl+C', il programma figlio
+        # destroy() verrà eseguito.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     GPIO.output(relayPin, GPIO.LOW)
 
-Set the pins of transistor as low level to let the relay open, LED does not turn on.
+Imposta il pin del transistor su livello basso per aprire il relè, il LED non si accende.
 
 .. code-block:: python
 
     time.sleep(1)
 
-wait for 1 second. 
+Attendi 1 secondo. 
 
 .. code-block:: python
 
     GPIO.output(relayPin, GPIO.HIGH)
 
-Set the pins of the transistor as low level to actuate the relay, LED
-lights up.
+Imposta il pin del transistor su livello alto per attivare il relè, il LED si accende.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+----------------------------
 
 .. image:: ../img/image145.jpeg

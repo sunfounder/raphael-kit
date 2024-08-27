@@ -1,64 +1,64 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _3.1.11_c_pi5:
 
-3.1.11 GAME– Guess Number
+3.1.11 GIOCO– Indovina il Numero
 ======================================
 
-Introduction
+Introduzione
 ------------------
 
-Guessing Numbers is a fun party game where you and your friends take
-turns inputting a number (0~99). The range will be smaller with the
-inputting of the number till a player answers the riddle correctly. Then
-the player is defeated and punished. For example, if the lucky number is
-51 which the players cannot see, and the player ① inputs 50, the prompt
-of number range changes to 50~99; if the player ② inputs 70, the range
-of number can be 50~70; if the player ③ inputs 51, this player is the
-unlucky one. Here, we use keypad to input numbers and use LCD to output
-outcomes.
+"Indovina il Numero" è un divertente gioco di società in cui tu e i tuoi 
+amici vi alternate a inserire un numero (0~99). L'intervallo si ridurrà man 
+mano che si inseriscono numeri fino a quando un giocatore non indovinerà 
+correttamente l'enigma. A quel punto, il giocatore viene sconfitto e punito. 
+Ad esempio, se il numero fortunato è 51, che i giocatori non possono vedere, 
+e il giocatore ① inserisce 50, l'intervallo cambia a 50~99; se il giocatore 
+② inserisce 70, l'intervallo diventa 50~70; se il giocatore ③ inserisce 51, 
+questo giocatore è il sfortunato. Qui, utilizziamo una tastiera per inserire 
+i numeri e un LCD per visualizzare i risultati.
 
-Required Components
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components.
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_GAME_Guess_Number.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -73,7 +73,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_i2c_lcd`
         - |link_i2clcd1602_buy|
 
-Schematic Diagram
+Schema elettrico
 -----------------------
 
 ============ ======== ======== =======
@@ -93,17 +93,16 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 .. image:: ../img/Schematic_three_one12.png
    :align: center
 
-Experimental Procedures
+Procedure sperimentali
 -----------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image273.png
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**Passo 2**: Configura I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato I2C, salta questo passo.)
 
-**Step 3**: Change directory.
+**Passo 3**: Cambia directory.
 
 .. raw:: html
 
@@ -113,7 +112,7 @@ step.)
 
     cd ~/raphael-kit/c/3.1.11/
 
-**Step 4**: Compile.
+**Passo 4**: Compila.
 
 .. raw:: html
 
@@ -123,7 +122,7 @@ step.)
 
     gcc 3.1.11_GAME_GuessNumber.c -lwiringPi
 
-**Step 5**: Run.
+**Passo 5**: Esegui.
 
 .. raw:: html
 
@@ -133,51 +132,47 @@ step.)
 
     sudo ./a.out
 
-After the program runs, there displays the initial page on the LCD:
+Dopo l'esecuzione del programma, apparirà la pagina iniziale sull'LCD:
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
-    * If the code and wiring are fine, but the LCD still does not display content, you can turn the potentiometer on the back to increase the contrast.
+    * Se appare il messaggio di errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Se ottieni l'errore ``Unable to open I2C device: No such file or directory``, devi consultare :ref:`i2c_config` per abilitare I2C e controllare che il cablaggio sia corretto.
+    * Se il codice e il cablaggio sono corretti ma l'LCD non visualizza ancora il contenuto, puoi regolare il contrasto con il potenziometro sul retro.
 
 .. code-block:: 
 
-   Welcome!
-   Press A to go!
+   Benvenuto!
+   Premi A per iniziare!
 
-Press ‘A’, and the game will start and the game page will appear on the
-LCD.
+Premi 'A', e il gioco inizierà e la schermata di gioco apparirà sull'LCD.
 
 .. code-block:: 
 
-   Enter number:
+   Inserisci numero:
    0 ‹point‹ 99
 
-A random number ‘\ **point**\ ’ is produced but not displayed on the LCD
-when the game starts, and what you need to do is to guess it. The number
-you have typed appears at the end of the first line till the final
-calculation is finished. (Press ‘D’ to start the comparation, and if the
-input number is larger than **10**, the automatic comparation will
-start.)
+Viene generato un numero casuale '\ **point**\ ' che non viene visualizzato 
+sull'LCD all'inizio del gioco, e quello che devi fare è indovinarlo. Il numero 
+digitato apparirà alla fine della prima riga fino a quando il calcolo finale 
+non sarà completato. (Premi 'D' per avviare la comparazione, e se il numero 
+inserito è maggiore di **10**, la comparazione automatica inizierà.)
 
-The number range of ‘point’ is displayed on the second line. And you
-must type the number within the range. When you type a number, the range
-narrows; if you got the lucky number luckily or unluckily, there will
-appear “You've got it!”
+L'intervallo del numero 'point' viene visualizzato sulla seconda riga. Devi 
+digitare il numero entro l'intervallo. Quando digiti un numero, l'intervallo 
+si restringe; se ottieni il numero fortunato, comparirà "Hai indovinato!"
 
-**Code Explanation**
 
-At the beginning part of the code are the functional functions of
-**keypad** and **I2C LCD1602**. You can learning more details about them
-in :ref:`1.1.7_c_pi5` and :ref:`2.1.8_c_pi5`.
+**Spiegazione del codice**
 
-Here, what we need to know is as follows:
+All'inizio del codice ci sono le funzioni di base della **keypad** e dell'**I2C LCD1602**. Puoi approfondire maggiori dettagli su di loro in :ref:`1.1.7_c_pi5` e :ref:`2.1.8_c_pi5`.
+
+Ecco cosa dobbiamo sapere:
 
 .. code-block:: c
 
     /****************************************/
-    //Start from here
+    //Inizia da qui
     /****************************************/
     void init(void){
         fd = wiringPiI2CSetup(LCDAddr);
@@ -192,8 +187,7 @@ Here, what we need to know is as follows:
         write(0, 1, "Press A to go!");
     }
     
-This function is used to initially define **I2C LCD1602** and **Keypad**
-and to display “Welcome!” and “Press A to go!”.
+Questa funzione viene utilizzata per definire inizialmente l'**I2C LCD1602** e la **keypad** e per visualizzare "Benvenuto!" e "Premi A per iniziare!".
 
 .. code-block:: c
 
@@ -206,8 +200,7 @@ and to display “Welcome!” and “Press A to go!”.
         printf("point is %d\n",pointValue);
     }
 
-The function produces the random number ‘\ **point**\ ’ and resets the
-range hint of the point.
+La funzione genera il numero casuale '\ **point**\ ' e reimposta l'intervallo di suggerimento del numero.
 
 .. code-block:: c
 
@@ -230,10 +223,10 @@ range hint of the point.
         return 0;
     }
 
-detect_point() compares the input number with the produced “point”. If
-the comparing outcome is that they are not same, **count** will assign
-values to **upper** and **lower** and return ‘\ **0**\ ’; otherwise, if
-the outcome indicates they are same, there returns ‘\ **1**\ ’.
+``detect_point()`` confronta il numero inserito con il numero generato “point”. 
+Se l'esito del confronto non è uguale, **count** assegnerà valori a **upper** e 
+**lower** e restituirà '0'; altrimenti, se il risultato indica che sono uguali, 
+restituirà '1'.
 
 .. code-block:: c
 
@@ -258,17 +251,17 @@ the outcome indicates they are same, there returns ‘\ **1**\ ’.
         write(12,1,str);
     }
 
-This function works for displaying the game page. Pay attention to the
-function **Int2Str(str,count)**, it converts these variables **count**,
-**lower**, and **upper** from **integer** to **character string** for
-the correct display of **lcd**.
+Questa funzione serve per visualizzare la pagina di gioco. 
+Presta attenzione alla funzione **Int2Str(str,count)**, 
+che converte queste variabili **count**, **lower**, e **upper** 
+da **intero** a **stringa di caratteri** per la corretta visualizzazione sull'**lcd**.
 
 .. code-block:: c
 
     int main(){
         unsigned char pressed_keys[BUTTON_NUM];
         unsigned char last_key_pressed[BUTTON_NUM];
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ //quando l'inizializzazione di wiringPi fallisce, stampa messaggio sullo schermo
             printf("setup wiringPi failed !");
             return 1; 
         }
@@ -304,32 +297,28 @@ the correct display of **lcd**.
         return 0;   
     }
 
+Main() contiene l'intero processo del programma, come mostrato di seguito:
 
-Main() contains the whole process of the program, as show below:
+1) Inizializza **I2C LCD1602** e **Keypad**.
 
-1) Initialize **I2C LCD1602** and **Keypad**.
+2) Usa **init_new_value()** per creare un numero casuale **0-99**.
 
-2) Use **init_new_value()** to create a random number **0-99**.
+3) Verifica se un pulsante è stato premuto e leggi il valore del pulsante.
 
-3) Judge whether the button is pressed and get the button reading.
+4) Se viene premuto il pulsante ‘A’, verrà generato un numero casuale **0-99** 
+e il gioco inizierà.
 
-4) If the button ‘\ **A**\ ’ is pressed, a random number **0-99** will
-   appear then the game starts.
+5) Se viene rilevata la pressione del pulsante ‘D’, il programma entrerà nel giudizio 
+   del risultato e lo visualizzerà sull'LCD. Questo passaggio consente di giudicare il 
+   risultato anche quando viene premuto un solo numero e poi il pulsante ‘D’.
 
-5) If the button ‘\ **D**\ ’ is detected to have been pressed, the
-   program will enter into the outcome judgement and will display the
-   outcome on the LCD. This step helps that you can also judge the
-   outcome when you press only one number and then the button
-   ‘\ **D**\ ’.
+6) Se viene premuto il pulsante **0-9**, il valore di **count** cambierà; se il **count**
+    è maggiore di **10**, inizia il giudizio.
 
-6) If the button **0-9** is pressed, the value of **count** will be
-   changed; if the **count** is larger than **10**, then the judgement
-   starts.
+7) Le modifiche del gioco e i suoi valori vengono visualizzati su **LCD1602**.
 
-7) The changes of the game and its values are displayed on **LCD1602**.
-
-Phenomenon Picture
-------------------------
+Immagine del fenomeno
+--------------------------
 
 .. image:: ../img/image274.jpeg
    :align: center

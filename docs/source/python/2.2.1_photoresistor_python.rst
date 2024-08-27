@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.1_py:
 
-2.2.1 Photoresistor
-===================
+2.2.1 Fotoresistore
+======================
 
-Introduction
-------------
+Introduzione
+---------------
 
-Photoresistor is a commonly used component of ambient light intensity in
-life. It helps the controller to recognize day and night and realize
-light control functions such as night lamp. This project is very similar
-to potentiometer, and you might think it changing the voltage to sensing
-light.
+Il fotoresistore è un componente comunemente utilizzato per rilevare l'intensità della 
+luce ambientale. Aiuta il controllore a riconoscere il giorno e la notte e a realizzare 
+funzioni di controllo della luce come le lampade notturne. Questo progetto è molto simile 
+a quello del potenziometro, ma in questo caso il cambiamento di tensione è legato alla 
+rilevazione della luce.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_2.2.1_photoresistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,8 +70,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_photoresistor`
         - |link_photoresistor_buy|
 
-Schematic Diagram
------------------
+Schema Elettrico
+---------------------
 
 .. image:: ../img/image321.png
 
@@ -79,14 +79,14 @@ Schematic Diagram
 .. image:: ../img/image322.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image198.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -96,7 +96,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file.
+**Passo 3:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -106,13 +106,13 @@ Experimental Procedures
 
     sudo python3 2.2.1_Photoresistor.py
 
-When the code is running, the brightness of the LED will change according to the light intensity sensed by the photoresistor.
+Quando il codice è in esecuzione, la luminosità del LED cambierà in base all'intensità della luce rilevata dal fotoresistore.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -128,19 +128,19 @@ When the code is running, the brightness of the LED will change according to the
     LedPin = 22
     def setup():
         global led_val
-        # Set the GPIO modes to BCM Numbering
+        # Imposta le modalità GPIO sulla numerazione BCM
         GPIO.setmode(GPIO.BCM)
-        # Set all LedPin's mode to output and initial level to High(3.3v)
+        # Imposta la modalità di LedPin come output e livello iniziale su High (3.3v)
         GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
         ADC0834.setup()
-        # Set led as pwm channel and frequece to 2KHz
+        # Imposta Led come canale pwm e frequenza a 2KHz
         led_val = GPIO.PWM(LedPin, 2000)
-        # Set all begin with value 0
+        # Inizializza con il valore 0
         led_val.start(0)
     def destroy():
-        # Stop all pwm channel
+        # Ferma tutti i canali pwm
         led_val.stop()
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup()
     def loop():
         while True:
@@ -152,10 +152,10 @@ When the code is running, the brightness of the LED will change according to the
         setup()
         try:
             loop()
-        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt: # Quando viene premuto 'Ctrl+C', il programma destroy() verrà eseguito.
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -166,16 +166,16 @@ When the code is running, the brightness of the LED will change according to the
             led_val.ChangeDutyCycle(analogVal*100/255)
             time.sleep(0.2)
 
-Read the analog value of CH0 of ADC0834. By default, the function
-``getResult()`` is used to read the value of CH0, so if you want to read
-other channels, please input 1, 2, or 3 into () of the function
-``getResult()``. Next, what you need is to print the value via the print
-function. Because the changing element is the duty cycle of ``LedPin``, the
-computational formula, ``analogVal*100/255`` is needed to convert analogVal
-into percentage. Finally, ``ChangeDutyCycle()`` is called to write the
-percentage into ``LedPin``.
+Leggi il valore analogico di CH0 di ADC0834. Per impostazione predefinita, la funzione
+``getResult()`` è utilizzata per leggere il valore di CH0, quindi se desideri leggere
+altri canali, inserisci 1, 2 o 3 all'interno delle parentesi della funzione
+``getResult()``. Successivamente, è necessario stampare il valore utilizzando la funzione print.
+Poiché l'elemento che cambia è il ciclo di lavoro di ``LedPin``, la formula di calcolo
+``analogVal*100/255`` è necessaria per convertire analogVal in percentuale.
+Infine, ``ChangeDutyCycle()`` viene chiamata per scrivere la percentuale in ``LedPin``.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+----------------------------
 
 .. image:: ../img/image199.jpeg
+

@@ -1,59 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.7_py:
 
-2.1.7 Potentiometer
-===================
+2.1.7 Potenziometro
+======================
 
-Introduction
-------------
+Introduzione
+--------------
 
-The ADC function can be used to convert analog signals to digital
-signals, and in this experiment, ADC0834 is used to get the function
-involving ADC. Here, we implement this process by using potentiometer.
-Potentiometer changes the physical quantity -- voltage, which is
-converted by the ADC function.
+La funzione ADC può essere utilizzata per convertire segnali analogici in segnali digitali, 
+e in questo esperimento viene utilizzato l'ADC0834 per ottenere la funzione ADC. In questo 
+progetto, implementiamo questo processo utilizzando un potenziometro. Il potenziometro 
+modifica la quantità fisica - la tensione, che viene convertita dalla funzione ADC.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_2.1.4_potentiometer.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -71,8 +70,8 @@ You can also buy them separately from the links below.
         - \-
 
 
-Schematic Diagram
------------------
+Schema Elettrico
+--------------------
 
 .. image:: ../img/image311.png
 
@@ -80,20 +79,20 @@ Schematic Diagram
 .. image:: ../img/image312.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image180.png
 
 
 .. note::
-    Please place the chip by referring to the corresponding position
-    depicted in the picture. Note that the grooves on the chip should be on
-    the left when it is placed.
+    Posiziona il chip facendo riferimento alla posizione corrispondente indicata 
+    nell'immagine. Nota che le scanalature sul chip dovrebbero essere sul lato sinistro 
+    quando è posizionato.
 
-**Step 2:** Open the code file
+**Passo 2:** Apri il file del codice
 
 .. raw:: html
 
@@ -103,7 +102,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -113,14 +112,14 @@ Experimental Procedures
 
     sudo python3 2.1.7_Potentiometer.py
 
-After the code runs, rotate the knob on the potentiometer, the intensity
-of LED will change accordingly.
+Dopo l'esecuzione del codice, ruota la manopola del potenziometro e 
+l'intensità del LED cambierà di conseguenza.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -139,25 +138,25 @@ of LED will change accordingly.
 
     def setup():
         global led_val
-        # Set the GPIO modes to BCM Numbering
+        # Imposta la modalità di numerazione GPIO su BCM
         GPIO.setmode(GPIO.BCM)
-        # Set all LedPin's mode to output and initial level to High(3.3v)
+        # Imposta tutte le modalità dei LedPin come output e il livello iniziale su Alto (3.3V)
         GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
         ADC0834.setup()
-        # Set led as pwm channel and frequece to 2KHz
+        # Imposta il led come canale PWM e la frequenza a 2KHz
         led_val = GPIO.PWM(LedPin, 2000)
 
-        # Set all begin with value 0
+        # Imposta tutti i valori iniziali a 0
         led_val.start(0)
 
-    # Define a MAP function for mapping values.  Like from 0~255 to 0~100
+    # Definisci una funzione MAP per mappare i valori, ad esempio da 0~255 a 0~100
     def MAP(x, in_min, in_max, out_min, out_max):
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
     def destroy():
-        # Stop all pwm channel
+        # Ferma tutti i canali PWM
         led_val.stop()
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup()
 
     def loop():
@@ -172,38 +171,37 @@ of LED will change accordingly.
         setup()
         try:
             loop()
-        except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt: # Quando viene premuto 'Ctrl+C', il programma destroy() verrà eseguito.
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     import ADC0834
 
-import ADC0834 library. You can check the content of the library by
-calling the command nano ADC0834.py.
+Importa la libreria ADC0834. Puoi verificare il contenuto della libreria chiamando il comando nano ADC0834.py.
 
 .. code-block:: python
 
     def setup():
         global led_val
-        # Set the GPIO modes to BCM Numbering
+        # Imposta la modalità di numerazione GPIO su BCM
         GPIO.setmode(GPIO.BCM)
-        # Set all LedPin's mode to output and initial level to High(3.3v)
+        # Imposta tutte le modalità dei LedPin come output e il livello iniziale su Alto (3.3v)
         GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
         ADC0834.setup()
-        # Set led as pwm channel and frequece to 2KHz
+        # Imposta il led come canale PWM e la frequenza a 2KHz
         led_val = GPIO.PWM(LedPin, 2000)
 
-        # Set all begin with value 0
+        # Imposta tutti i valori iniziali a 0
         led_val.start(0)
 
-In setup(), define the naming method as BCM, set LedPin as PWM channel
-and render it a frequency of 2Khz.
+In setup(), definisci il metodo di numerazione come BCM, imposta LedPin 
+come canale PWM e assegna una frequenza di 2Khz.
 
-**ADC0834.setup():** Initialize ADC0834, and connect the defined CS,
-CLK, DIO of ADC0834 to GPIO17, GPIO18 and GPIO27 respectively.
+**ADC0834.setup():** Inizializza ADC0834 e collega i pin definiti CS, CLK, DIO di 
+ADC0834 rispettivamente a GPIO17, GPIO18 e GPIO27.
 
 .. code-block:: python
 
@@ -215,21 +213,19 @@ CLK, DIO of ADC0834 to GPIO17, GPIO18 and GPIO27 respectively.
             led_val.ChangeDutyCycle(R_val)
             time.sleep(0.2)
 
-The function getResult() is used to read the analog values of the four
-channels of ADC0834. By default, the function reads the value of CH0,
-and if you want to read other channels, please input the channel number
-in **( )**, ex. getResult(1).
+La funzione getResult() viene utilizzata per leggere i valori analogici dei quattro 
+canali di ADC0834. Per impostazione predefinita, la funzione legge il valore di CH0, 
+e se desideri leggere altri canali, inserisci il numero del canale in **( )**, es. getResult(1).
 
-The function loop() first reads the value of CH0, then assign the value
-to the variable res. After that, call the function MAP to map the read
-value of potentiometer to 0~100. This step is used to control the duty
-cycle of LedPin. Now, you may see that the brightness of LED is changing
-with the value of potentiometer.
+La funzione loop() prima legge il valore di CH0 e lo assegna alla variabile res. 
+Successivamente, chiama la funzione MAP per mappare il valore letto del potenziometro 
+a 0~100. Questo passaggio viene utilizzato per controllare il ciclo di lavoro di LedPin. 
+Ora, puoi vedere che la luminosità del LED cambia con il valore del potenziometro.
 
 
-Phenomenon Picture
-------------------
+
+
+Immagine del Fenomeno
+------------------------
 
 .. image:: ../img/image181.jpeg
-
-

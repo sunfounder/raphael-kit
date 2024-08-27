@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.6_py:
 
-2.1.6 Rotary Encoder Module
-===========================
+2.1.6 Modulo Encoder Rotativo
+==================================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+In questo progetto, imparerai come funziona un Encoder Rotativo. Un encoder rotativo 
+è un interruttore elettronico che genera una sequenza regolare di impulsi temporizzati. 
+Quando viene utilizzato con un IC, può essere impiegato per operazioni come incremento, 
+decremento, scorrimento di pagine e altre azioni come lo scorrimento del mouse o la 
+selezione dei menu.
 
-Required Components
-------------------------------
+Componenti Necessari
+---------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/Part_two_25.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,26 +64,25 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rotary_encoder`
         - |link_rotary_encoder_buy|
 
-Schematic Diagram
+Schema Elettrico
 ------------------------
 
 .. image:: ../img/image349.png
    :align: center
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+----------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.1.6_fritzing.png
    :align: center
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
-17.
+In questo esempio, colleghiamo i pin dell'Encoder Rotativo direttamente al Raspberry Pi 
+usando una breadboard e un cavo a 40 pin. Collega il GND dell'Encoder Rotativo a GND, 
+「+」a 5V, SW al GPIO27, DT al GPIO18 e CLK al GPIO17.
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -93,7 +92,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -103,14 +102,15 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo python3 2.1.6_RotaryEncoder.py
 
-You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+Vedrai il conteggio nella shell. Quando ruoti l'encoder in senso orario, il conteggio 
+aumenta; quando lo ruoti in senso antiorario, il conteggio diminuisce. Se premi 
+l'interruttore sull'encoder rotativo, le letture torneranno a zero.
 
-
-**Code**
+**Codice**
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+   Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -123,9 +123,9 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
    import RPi.GPIO as GPIO
    import time
 
-   clkPin = 17    # CLK Pin
-   dtPin = 18    # DT Pin
-   swPin = 27    # Button Pin
+   clkPin = 17    # Pin CLK
+   dtPin = 18    # Pin DT
+   swPin = 27    # Pin del pulsante
 
    globalCounter = 0
 
@@ -134,8 +134,8 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
    Current_dt_Status = 0
 
    def setup():
-      GPIO.setmode(GPIO.BCM)       # Numbers GPIOs by physical location
-      GPIO.setup(clkPin, GPIO.IN)    # input mode
+      GPIO.setmode(GPIO.BCM)       # Numerazione dei GPIO in base alla posizione fisica
+      GPIO.setup(clkPin, GPIO.IN)    # Modalità input
       GPIO.setup(dtPin, GPIO.IN)
       GPIO.setup(swPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -161,7 +161,7 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
 
    def loop():
       global globalCounter
-      tmp = 0	# Rotary Temperary
+      tmp = 0	# Temporaneo per l'encoder
 
       GPIO.add_event_detect(swPin, GPIO.FALLING, callback=swISR)
       while True:
@@ -171,29 +171,27 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
             tmp = globalCounter
 
    def destroy():
-      GPIO.cleanup()             # Release resource
+      GPIO.cleanup()             # Rilascia le risorse
 
-   if __name__ == '__main__':     # Program start from here
+   if __name__ == '__main__':     # Il programma inizia qui
       setup()
       try:
          loop()
-      except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+      except KeyboardInterrupt:  # Quando viene premuto 'Ctrl+C', il programma destroy() verrà eseguito.
          destroy()
 
+**Analisi del Codice**
 
-**Code Analysis**
+* Legge il valore di dtPin quando clkPin è basso.
+* Quando clkPin è alto, se dtPin passa da basso ad alto, il conteggio diminuisce, altrimenti aumenta.
+* swPin emette un segnale basso quando viene premuto l'albero dell'encoder.
 
-* Read dtPin value when clkPin is low.
-* When clkPin is high, if dtPin goes from low to high, the count decreases, otherwise the count increases.
-* swPin will output low when the shaft is pressed.
-
-From this, the program flow is shown below:
-
+Da questo, il flusso del programma è illustrato di seguito:
 
 .. image:: ../img/2.1.6_flow.png
    :align: center
 
-Phenomenon Picture
+Immagine del Fenomeno
 -------------------------
 
 .. image:: ../img/2.1.6rotary_ecoder.JPG

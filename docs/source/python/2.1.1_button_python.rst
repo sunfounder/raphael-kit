@@ -1,56 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.1_py:
 
-2.1.1 Button
-===============
+2.1.1 Pulsante
+==================
 
-Introduction
------------------
+Introduzione
+-------------------
 
-In this project, we will learn how to turn on or off the LED by using a
-button.
+In questo progetto, impareremo come accendere o spegnere un LED utilizzando un pulsante.
 
-Required Components
-------------------------------
+Componenti Necessari
+--------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_2.1.1_Button.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,19 +64,16 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-Schematic Diagram
+Schema Elettrico
 ---------------------
 
-Use a normally open button as the input of Raspberry Pi, the connection
-is shown in the schematic diagram below. When the button is pressed, the
-GPIO18 will turn into low level (0V). We can detect the state of the
-GPIO18 through programming. That is, if the GPIO18 turns into low level,
-it means the button is pressed. You can run the corresponding code when
-the button is pressed, and then the LED will light up.
-
+Usa un pulsante normalmente aperto come ingresso per Raspberry Pi, la connessione è 
+mostrata nello schema elettrico qui sotto. Quando il pulsante viene premuto, il GPIO18 
+si porterà a livello basso (0V). Possiamo rilevare lo stato del GPIO18 tramite programmazione. 
+In pratica, se il GPIO18 si porta a livello basso, significa che il pulsante è stato premuto.
+ Puoi eseguire il codice corrispondente quando il pulsante viene premuto, facendo così accendere il LED.
 .. note::
-    The longer pin of the LED is the anode and the shorter one is
-    the cathode.
+    Il pin più lungo del LED è l'anodo e quello più corto è il catodo.
 
 .. image:: ../img/image302.png
 
@@ -85,14 +81,14 @@ the button is pressed, and then the LED will light up.
 .. image:: ../img/image303.png
 
 
-Experimental Procedures
+Procedure Sperimentali
 ---------------------------
 
-**Step 1**: Build the circuit.
+**Passo 1**: Costruisci il circuito.
 
 .. image:: ../img/image152.png
 
-**Step 2**: Open the code file.
+**Passo 2**: Apri il file del codice.
 
 .. raw:: html
 
@@ -102,7 +98,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python
 
-**Step 3**: Run the code.
+**Passo 3**: Esegui il codice.
 
 .. raw:: html
 
@@ -112,15 +108,16 @@ Experimental Procedures
 
     sudo python3 2.1.1_Button.py
 
-Now, press the button, and the LED will light up; press the button
-again, and the LED will go out. At the same time, the state of the LED
-will be printed on the screen.
+Ora, premi il pulsante e il LED si accenderà; premi di nuovo il pulsante e il LED 
+si spegnerà. Allo stesso tempo, lo stato del LED sarà stampato sullo schermo.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. 
+    Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver 
+    modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -131,28 +128,28 @@ will be printed on the screen.
 
     import RPi.GPIO as GPIO
     import time
-    LedPin = 17  # Set GPIO17 as LED pin
-    BtnPin = 18  # Set GPIO18 as button pin
+    LedPin = 17  # Imposta GPIO17 come pin del LED
+    BtnPin = 18  # Imposta GPIO18 come pin del pulsante
 
-    # Set Led status to True(OFF)
+    # Imposta lo stato del LED su True (SPENTO)
     Led_status = True
 
-    # Define a setup function for some setup
+    # Definisci una funzione di setup per alcune impostazioni iniziali
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Imposta la modalità GPIO su BCM
         GPIO.setmode(GPIO.BCM)
-        # Set LedPin's mode to output,
-        # and initial level to high (3.3v)
+        # Imposta la modalità di LedPin su output,
+        # e il livello iniziale su alto (3.3v)
         GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
-        # Set BtnPin's mode to input,
-        # and pull up to high (3.3V)
+        # Imposta la modalità di BtnPin su input,
+        # e collegamento a 3.3V (pull-up)
         GPIO.setup(BtnPin, GPIO.IN)
     
 
-    # Define a callback function for button callback
+    # Definisci una funzione di callback per il pulsante
     def swLed(ev=None):
         global Led_status
-        # Switch led status(on-->off; off-->on)
+        # Cambia lo stato del LED (acceso-->spento; spento-->acceso)
         Led_status = not Led_status
         GPIO.output(LedPin, Led_status)
         if Led_status:
@@ -160,72 +157,73 @@ will be printed on the screen.
         else:
             print ('...LED ON')
 
-    # Define a main function for main process
+    # Definisci una funzione main per il processo principale
     def main():
-    # Set up a falling detect on BtnPin,
-        # and callback function to swLed
+    # Imposta una rilevazione del fronte di discesa su BtnPin,
+        # e funzione di callback su swLed
         GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=swLed)
         while True:
-            # Don't do anything.
+            # Non fare nulla.
             time.sleep(1)
 
-    # Define a destroy function for clean up everything after
-    # the script finished
+    # Definisci una funzione destroy per pulire tutto dopo
+    # la fine dello script
     def destroy():
-        # Turn off LED
+        # Spegni il LED
         GPIO.output(LedPin, GPIO.HIGH)
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup()
 
-    # If run this script directly, do:
+    # Se esegui questo script direttamente, fai:
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program
-        # destroy() will be executed.
+        # Quando viene premuto 'Ctrl+C', il programma
+        # destroy() verrà eseguito.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     LedPin = 17
 
-Set GPIO17 as LED pin
+Imposta GPIO17 come pin del LED.
 
 .. code-block:: python
 
     BtnPin = 18
 
-Set GPIO18 as button pin
+Imposta GPIO18 come pin del pulsante.
 
 .. code-block:: python
 
     GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=swLed)
 
-Set up a falling detect on BtnPin, and then when the value of BtnPin
-changes from a high level to a low level, it means that the button is
-pressed. The next step is calling the function, swled.
+Imposta una rilevazione del fronte di discesa su BtnPin, quindi quando il valore di 
+BtnPin cambia da alto a basso, significa che il pulsante è stato premuto. Il passo 
+successivo è chiamare la funzione swLed.
 
 .. code-block:: python
 
     def swLed(ev=None):
     global Led_status
-    # Switch led status(on-->off; off-->on)
+    # Cambia lo stato del LED (acceso-->spento; spento-->acceso)
     Led_status = not Led_status
     GPIO.output(LedPin, Led_status)
 
-Define a callback function as button callback. When the button is
-pressed at the first time，and the condition, not Led_status is false,
-GPIO.output() function is called to light up the LED. As the button is
-pressed once again, the state of LED will be converted from false to
-true, thus the LED will turn off.
+Definisci una funzione di callback come callback del pulsante. Quando il pulsante viene 
+premuto per la prima volta e la condizione, not Led_status, è falsa, viene chiamata la 
+funzione GPIO.output() per accendere il LED. Quando il pulsante viene premuto nuovamente, 
+lo stato del LED passerà da falso a vero, spegnendo così il LED.
 
-Phenomenon Picture
-^^^^^^^^^^^^^^^^^^
+
+Immagine del Fenomeno
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: ../img/image153.jpeg
+
 
 

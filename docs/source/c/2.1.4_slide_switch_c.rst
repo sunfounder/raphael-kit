@@ -1,58 +1,58 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 .. _2.1.4_c:
 
-2.1.4 Slide Switch
-========================
+2.1.4 Interruttore a Scorrimento
+========================================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+In questo progetto, impareremo a utilizzare un interruttore a scorrimento. 
+Solitamente, l'interruttore a scorrimento è saldato su PCB come interruttore 
+di alimentazione, ma qui lo inseriremo nella breadboard, quindi potrebbe non 
+essere fissato saldamente. Lo useremo sulla breadboard per mostrarne la funzione.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link seguenti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,12 +69,12 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Schema Elettrico
+----------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Collega il pin centrale dell'interruttore a scorrimento a GPIO17, e due LED 
+ai pin GPIO22 e GPIO27 rispettivamente. Quindi, quando sposti l'interruttore, 
+puoi vedere i due LED accendersi alternativamente.
 
 .. image:: ../img/image305.png
 
@@ -82,14 +82,14 @@ can see the two LEDs light up alternately.
 .. image:: ../img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+---------------------------
 
-**Step 1:** Build the circuit.
+**Step 1:** Costruisci il circuito.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Step 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -99,7 +99,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.4
 
-**Step 3**: Compile.
+**Step 3:** Compila.
 
 .. raw:: html
 
@@ -109,7 +109,7 @@ Experimental Procedures
 
     gcc 2.1.4_Slider.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**Step 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -119,14 +119,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Mentre il codice è in esecuzione, collega l'interruttore verso sinistra e il LED giallo si accenderà; verso destra, il LED rosso si accenderà.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione o viene visualizzato un errore come: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`install_wiringpi`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -138,7 +137,7 @@ the yellow LED lights up; to the right, the red light turns on.
 
     int main(void)
     {
-        // When initialize wiring failed, print message to screen
+        // Se l'inizializzazione di wiring fallisce, stampa il messaggio a schermo
         if(wiringPiSetup() == -1){
             printf("setup wiringPi failed !");
             return 1;
@@ -147,13 +146,13 @@ the yellow LED lights up; to the right, the red light turns on.
         pinMode(led1, OUTPUT);
         pinMode(led2, OUTPUT);
         while(1){
-            // slide switch high, led1 on
+            // interruttore a scorrimento alto, led1 acceso
             if(digitalRead(slidePin) == 1){
                 digitalWrite(led1, LOW);
                 digitalWrite(led2, HIGH);
                 printf("LED1 on\n");
             }
-            // slide switch low, led2 on
+            // interruttore a scorrimento basso, led2 acceso
             if(digitalRead(slidePin) == 0){
                 digitalWrite(led2, LOW);
                 digitalWrite(led1, HIGH);
@@ -163,7 +162,7 @@ the yellow LED lights up; to the right, the red light turns on.
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -173,9 +172,7 @@ the yellow LED lights up; to the right, the red light turns on.
                 printf("LED1 on\n");
         }
 
-When the slide is pulled to the right, the middle pin and right one are
-connected; the Raspberry Pi reads a high level at the middle pin, so the
-LED1 is on and LED2 off
+Quando l'interruttore è spostato a destra, il pin centrale e quello destro sono collegati; il Raspberry Pi legge un livello alto sul pin centrale, quindi il LED1 è acceso e il LED2 è spento.
 
 .. code-block:: c
 
@@ -185,11 +182,10 @@ LED1 is on and LED2 off
                 printf(".....LED2 on\n");
             }
 
-When the slide is pulled to the left, the middle pin and left one are
-connected; the Raspberry Pi reads a low, so the LED2 is on and LED1 off
+Quando l'interruttore è spostato a sinistra, il pin centrale e quello sinistro sono collegati; il Raspberry Pi legge un livello basso, quindi il LED2 è acceso e il LED1 è spento.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+---------------------------
 
 .. image:: ../img/image162.jpeg
 

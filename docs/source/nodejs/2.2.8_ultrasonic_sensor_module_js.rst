@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.8_js:
 
-2.2.8 Ultrasonic Sensor Module
-==============================
+2.2.8 Modulo Sensore Ultrasonico
+====================================
 
-Introduction
---------------
+Introduzione
+----------------
 
-The ultrasonic sensor uses ultrasonic to accurately detect objects and
-measure distances. It sends out ultrasonic waves and converts them into
-electronic signals.
+Il sensore ultrasonico utilizza gli ultrasuoni per rilevare con precisione gli 
+oggetti e misurare le distanze. Emette onde ultrasoniche e le converte in segnali 
+elettronici.
 
-Required Components
-------------------------------
+Componenti necessari
+----------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.2.5.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,20 +62,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_ultrasonic_sensor`
         - |link_ultrasonic_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+---------------------
 
 .. image:: ../img/image329.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image220.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -85,7 +85,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -95,11 +95,11 @@ Experimental Procedures
 
     sudo node ultrasonic_sensor.js
 
-With the code run, the ultrasonic sensor module detects the distance
-between the obstacle ahead and the module itself, then the distance
-value will be printed on the screen.
+Con l'esecuzione del codice, il modulo sensore ultrasonico rileva la distanza tra 
+l'ostacolo davanti e il modulo stesso, quindi il valore della distanza verrà 
+stampato sullo schermo.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -134,17 +134,14 @@ value will be printed on the screen.
       trigger.trigger(10, 1); // Set trigger high for 10 microseconds
     }, 1000);
 
+**Spiegazione del codice**
 
+La funzione ``trigger`` può essere utilizzata per generare un impulso su un 
+GPIO e gli ``alert`` possono essere utilizzati per determinare il tempo di 
+cambio stato di un GPIO con precisione di pochi microsecondi.
 
-
-**Code Explanation**
-
-The ``trigger`` function can be used to generate a pulse on a GPIO and 
-``alerts`` can be used to determine the time of a GPIO state change 
-accurate to a few microseconds. 
-
-These two features can be combined to measure distance using a HC-SR04 
-ultrasonic sensor.
+Queste due caratteristiche possono essere combinate per misurare la distanza 
+utilizzando un sensore ultrasonico HC-SR04.
 
 .. code-block:: js
 
@@ -152,7 +149,7 @@ ultrasonic sensor.
       trigger.trigger(10, 1); // Set trigger high for 10 microseconds
     }, 1000);
 
-This is to periodically send out a 10us ultrasonic pulse.
+Questo invia periodicamente un impulso ultrasonico di 10 microsecondi.
 
 .. code-block:: js
 
@@ -163,21 +160,20 @@ This is to periodically send out a 10us ultrasonic pulse.
           startTick = tick;
         } else {
           const endTick = tick;
-          const diff = (endTick >> 0) - (startTick >> 0); // Unsigned 32 bit arithmetic
+          const diff = (endTick >> 0) - (startTick >> 0); // Aritmetica su 32 bit senza segno
           console.log(diff / 2 / MICROSECDONDS_PER_CM);
         }    
     });
   };
 
-This function sets an alert that will record the time between sending the pulse (level is 1) and receiving the echo (level is 0).
-By multiplying the time difference by the speed of sound (and dividing by 2), you can get the distance to the obstacle ahead.
-
-
+Questa funzione imposta un allarme che registra il tempo tra l'invio dell'impulso 
+(quando il livello è 1) e la ricezione dell'eco (quando il livello è 0). Moltiplicando 
+la differenza di tempo per la velocità del suono (e dividendo per 2), si ottiene la 
+distanza dall'ostacolo.
 
 .. https://github.com/fivdi/pigpio
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+--------------------------
 
 .. image:: ../img/image221.jpeg
-    

@@ -1,61 +1,61 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.5_js:
 
-2.2.5 IR Obstacle Avoidance Sensor
-===================================
+2.2.5 Sensore IR per l'Evitamento degli Ostacoli
+=====================================================
 
-Introduction
------------------
+Introduzione
+---------------
 
-In this project, we will learn IR obstacle avoidance module, which is a sensor module that can be used to detect obstacles at short distances, with small interference, easy to assemble, easy to use, etc. It can be widely used in robot obstacle avoidance, obstacle avoidance trolley, assembly line counting, etc.
+In questo progetto, impareremo a conoscere il modulo sensore IR per l'evitamento degli ostacoli. Questo modulo sensore può essere utilizzato per rilevare ostacoli a brevi distanze, con bassa interferenza, facile da assemblare e da utilizzare. Può essere ampiamente impiegato in robot per evitare ostacoli, carrelli con evitamento ostacoli, conteggio su linee di assemblaggio, e molto altro.
 
 .. image:: ../img/2.2.5IR_Obstacle.png
    :width: 300
    :align: center
 
-Required Components
-------------------------------
+Componenti necessari
+-----------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.2.5component.png
    :width: 700
    :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,33 +66,33 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_avoid_module`
         - |link_obstacle_avoidance_buy|
 
-Schematic Diagram
------------------------
+Schema elettrico
+-------------------
 
 .. image:: ../img/IR_schematic.png
    :width: 500
    :align: center
 
-Experimental Procedures
+Procedure sperimentali
 -------------------------
 
-**Step 1:** Build the circuit
+**Passo 1:** Costruisci il circuito
 
 .. image:: ../img/2.2.5fritzing.png
    :width: 700
    :align: center
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
    <run></run>
 
 .. code-block::
-   
+
    cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -102,10 +102,11 @@ Experimental Procedures
 
    sudo node ir_obstacle.js
 
-After the code runs, when you put your hand in front of the module's probe, the output indicator on the module lights up and the "Detected Barrier!" will be 
-repeatedly printed on the screen until the your hand is removed.
+Dopo l'esecuzione del codice, quando metti la mano davanti alla sonda del modulo, 
+l'indicatore di uscita sul modulo si accende e "Detected Barrier!" verrà stampato 
+ripetutamente sullo schermo fino a quando non rimuovi la mano.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -121,10 +122,7 @@ repeatedly printed on the screen until the your hand is removed.
       console.log('Detected Barrier!');        
    });
 
-
-
-
-**Code Explanation**
+**Spiegazione del codice**
 
 .. code-block:: js
 
@@ -136,8 +134,8 @@ repeatedly printed on the screen until the your hand is removed.
       edge: Gpio.FALLING_EDGE        
    });
 
-Import the pigpio module, create an object to control the IO port Gpio17,
-Set it to input mode and interrupt on falling edge.
+Importa il modulo pigpio, crea un oggetto per controllare la porta IO Gpio17, 
+impostala in modalità input e configura un interrupt su bordo discendente.
 
 .. code-block:: js
 
@@ -145,12 +143,10 @@ Set it to input mode and interrupt on falling edge.
       console.log('Detected Barrier!');        
    });
 
-When an interrupt is triggered, meaning an obstacle is detected, print "Detected Barrier!".
+Quando viene attivato un interrupt, ovvero viene rilevato un ostacolo, stampa "Detected Barrier!".
 
-
-Phenomenon Picture
------------------------
+Immagine del fenomeno
+--------------------------
 
 .. image:: ../img/2.2.5IR.JPG
    :width: 500
-   

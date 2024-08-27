@@ -1,61 +1,61 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Immergiti più a fondo nel mondo di Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _3.1.12_c:
 
-3.1.12 GAME - 10 Second
+3.1.12 GIOCO - 10 Secondi
 ==============================
 
-Introduction
+Introduzione
 -------------------
 
-Next, follow me to make a game device to challenge your concentration.
-Tie the tilt switch to a stick to make a magic wand. Shake the wand, the
-4-digit segment display will start counting, shake again will let it
-stop counting. If you succeed in keeping the displayed count at
-**10.00**, then you win. You can play the game with your friends to see
-who is the time wizard.
+Ora, segui me per creare un dispositivo di gioco per sfidare la tua concentrazione. 
+Fissa l'interruttore inclinabile a un bastone per creare una bacchetta magica. Agita 
+la bacchetta e il display a 4 cifre inizierà a contare, agita di nuovo per fermare il 
+conteggio. Se riesci a mantenere il conteggio visualizzato su **10.00**, hai vinto. 
+Puoi giocare con i tuoi amici per vedere chi è il mago del tempo.
 
-Required Components
+
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components.
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_GAME_10_Second.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un intero kit, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - OGGETTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTI
+        - LINK ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -72,7 +72,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch`
         - \-
 
-Schematic Diagram
+Schema Elettrico
 ------------------------
 
 ============ ======== ======== ===
@@ -90,15 +90,15 @@ GPIO26       Pin 37   25       26
 .. image:: ../img/Schematic_three_one13.png
    :align: center
 
-Experimental Procedures
+Procedure Sperimentali
 ---------------------------------
 
-**Step 1**: Build the circuit.
+**Step 1**: Costruisci il circuito.
 
 .. image:: ../img/image277.png
 
 
-**Step 2**: Go to the folder of the code.
+**Step 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -108,7 +108,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.12/
 
-**Step 3**: Compile the code.
+**Step 3**: Compila il codice.
 
 .. raw:: html
 
@@ -118,7 +118,7 @@ Experimental Procedures
 
     gcc 3.1.12_GAME_10Second.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Step 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -128,16 +128,19 @@ Experimental Procedures
 
     sudo ./a.out
 
-Shake the wand, the 4-digit segment display will start counting, shake
-again will let it stop counting. If you succeed in keeping the displayed
-count at **10.00**, then you win. Shake it one more time to start the
-next round of the game.
+Agita la bacchetta e il display a 4 cifre inizierà a contare, agita di
+nuovo per fermare il conteggio. Se riesci a mantenere il conteggio
+visualizzato su **10.00**, hai vinto. Agitala un'altra volta per
+iniziare un nuovo round del gioco.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se dopo l'esecuzione non funziona o compare un messaggio di errore
+    : \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`install_wiringpi`.
 
-**Code Explanation**
+
+**Spiegazione del Codice**
+
 
 .. code-block:: c
 
@@ -153,15 +156,15 @@ next round of the game.
         gameState = (gameState + 1)%2;
     }
 
-The game is divided into two modes:
+Il gioco è suddiviso in due modalità:
 
-gameState=0 is the "start" mode, in which the time is timed and
-displayed on the segment display, and the tilting switch is shaken to
-enter the "show" mode.
+gameState=0 è la modalità "start", in cui il tempo viene cronometrato e
+visualizzato sul display a segmenti, e scuotendo l'interruttore inclinabile si entra
+nella modalità "show".
 
-GameState =1 is the "show" mode, which stops the timing and displays the
-time on the segment display. Shaking the tilt switch again will reset
-the timer and restart the game.
+GameState =1 è la modalità "show", che interrompe il cronometraggio e visualizza il
+tempo sul display a segmenti. Scuotendo nuovamente l'interruttore inclinabile, il timer
+si resetta e il gioco ricomincia.
 
 .. code-block:: c
 
@@ -178,15 +181,12 @@ the timer and restart the game.
         }
     }
 
-Loop() is the main function. First, the time is displayed on the 4-bit
-segment display and the value of the tilt switch is read. If the state
-of the tilt switch has changed, stateChange() is called.
+Loop() è la funzione principale. Prima viene visualizzato il tempo sul display
+a 4 cifre e viene letto il valore dell'interruttore inclinabile. Se lo stato
+dell'interruttore inclinabile è cambiato, viene chiamata la funzione stateChange().
 
-Phenomenon Picture
+Immagine del fenomeno
 -----------------------
 
 .. image:: ../img/image278.jpeg
    :align: center
-
-
-

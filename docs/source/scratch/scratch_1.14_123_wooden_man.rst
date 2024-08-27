@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e affronta le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue abilità.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.14_scratch:
 
-1.14 123 Wooden Man
-===========================
+1.14 Gioco del Manichino
+==============================
 
-Today, we are going to play a game of 123 wooden man.
+Oggi giocheremo al gioco del manichino 123.
 
-Click on the green flag to start the game, hold down the right arrow key on the keyboard to make the sprite go right. If the green light is on, the sprite can move; but when the red LED is on, you have to stop the sprite from moving; otherwise the buzzer will keep ringing.
+Clicca sulla bandiera verde per iniziare il gioco, tieni premuto il tasto freccia destra sulla tastiera per far camminare lo sprite verso destra. Se la luce verde è accesa, lo sprite può muoversi; ma quando il LED rosso è acceso, devi fermare lo sprite; altrimenti il buzzer continuerà a suonare.
 
 .. image:: img/1.14_header.png
 
-Required Components
-------------------------------
+Componenti Necessari
+----------------------------------
 
-In this project, we need the following components. 
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: img/1.14_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - ELEMENTI NEL KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,50 +68,50 @@ You can also buy them separately from the links below.
         - |link_transistor_buy|
 
 
-Build the Circuit
----------------------
+Costruisci il Circuito
+---------------------------
 
 .. image:: img/1.14_fritzing.png
 
 
-Load the Code and See What Happens
----------------------------------------
+Carica il Codice e Guarda Cosa Succede
+------------------------------------------
 
-Load the code file (``1.14_123_wooden_man.sb3``) to Scratch 3.
+Carica il file di codice (``1.14_123_wooden_man.sb3``) su Scratch 3.
 
-When the green LED is on, you can use the right arrow key to control **Avery** to walk to the right; when the red LED is on, if you continue to let **Avery** move to the right, then an alarm will sound.
+Quando il LED verde è acceso, puoi usare il tasto freccia destra per controllare **Avery** che cammina verso destra; quando il LED rosso è acceso, se continui a far muovere **Avery**, un allarme suonerà.
 
-Tips on Sprite
-----------------
-Delete the default sprite, then choose the **Avery Walking** sprite.
+Suggerimenti sugli Sprite
+------------------------------
+Elimina lo sprite predefinito, quindi scegli lo sprite **Avery che Cammina**.
 
 .. image:: img/1.14_wooden1.png
   :width: 400
 
-Tips on Codes
---------------
+Suggerimenti sui Codici
+-------------------------------
 
 .. image:: img/1.14_wooden2.png
   :width: 400
 
-Initialize all pins to high.
+Inizializza tutti i pin su alto.
 
 .. image:: img/1.14_wooden3.png
   :width: 400
 
-When the game starts, assign the status variable to 1, indicating that the Avery Walking sprite is movable, and then set gpio18 to low, which lights up the green LED for 5s.
+Quando il gioco inizia, assegna la variabile **status** a 1, indicando che lo sprite Avery può muoversi, quindi imposta gpio18 su basso, che accenderà il LED verde per 5 secondi.
 
 .. image:: img/1.14_wooden4.png
   :width: 400
 
-Set gpio18 to high, then set gpio27 to low, which means turn off the green LED and light up the yellow LED for 0.5s.
+Imposta gpio18 su alto, poi imposta gpio27 su basso, il che significa spegnere il LED verde e accendere il LED giallo per 0,5 secondi.
 
 .. image:: img/1.14_wooden5.png
   :width: 400
 
-Assign the status variable to 0, which means the Avery Walking sprite is not moving; then set gpio27 to low and gpio17 to high, which turns off the yellow LED and then lights up the red LED for 3s. Finally, set gpio17 to high to turn off the red LED.
+Assegna la variabile **status** a 0, il che significa che lo sprite Avery non può muoversi; poi imposta gpio27 su basso e gpio17 su alto, che spegnerà il LED giallo e accenderà il LED rosso per 3 secondi. Infine, imposta gpio17 su alto per spegnere il LED rosso.
 
 .. image:: img/1.14_wooden6.png
   :width: 400
 
-When we press the right arrow key on the keyboard, we need to switch the **Avery Walking** sprite to the next costume so that we can see Avery walking to the right. Then we need to determine the value of the **status** variable. If it is 0, it means that the Avery Walking sprite is not moving at this moment, and the buzzer will sound to warn you that you cannot press the right arrow key again.
+Quando premi il tasto freccia destra sulla tastiera, dobbiamo cambiare il costume dello sprite **Avery che Cammina** al prossimo costume in modo da vedere Avery camminare verso destra. Poi dobbiamo determinare il valore della variabile **status**. Se è 0, significa che lo sprite Avery non si muove in questo momento e il buzzer suonerà per avvertirti che non puoi premere di nuovo il tasto freccia destra.

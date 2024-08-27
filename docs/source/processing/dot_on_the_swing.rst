@@ -1,52 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _dot_on_the_swing:
 
-Dot on the Swing
-==============================
+Punto sull'Altalena
+========================
 
-In this project, 3 buttons are connected, one to change the size of the dot, one to change the position and the last one to change the color. If you press all 3 buttons at the same time, you will get a dot that is swinging and has a variable color.
-
+In questo progetto, sono collegati 3 pulsanti: uno per cambiare la dimensione del punto, uno per cambiare la posizione e l'ultimo per cambiare il colore. Se premi tutti e 3 i pulsanti contemporaneamente, otterrai un punto che oscilla e ha un colore variabile.
 
 .. image:: img/dancing_dot.png
 
-**Required Components**
+**Componenti Necessari**
 
-In this project, we need the following components.
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -57,7 +56,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-**Wiring**
+**Cablatura**
 
 .. image:: img/circuit_dancing_dot.png
 
@@ -67,15 +66,15 @@ You can also buy them separately from the links below.
 
     import processing.io.*;
 
-    // Define an instance of the Dot object
+    // Definisci un'istanza dell'oggetto Dot
     Dot myDot;
 
-    // Define the pins that will be reading button presses
+    // Definisci i pin che leggeranno le pressioni dei pulsanti
     int[] pins = { 18, 23, 24 };
 
     void setup() {
         size(400, 400);
-        // Change the color mode of the sketch to HSB
+        // Modifica la modalità colore dello sketch a HSB
         colorMode(HSB, 360, 100, 100);
         noStroke();
 
@@ -83,21 +82,21 @@ You can also buy them separately from the links below.
             GPIO.pinMode(pins[i], GPIO.INPUT_PULLUP);
         }
 
-        // Create a Dot in the middle of the screen 
+        // Crea un Dot al centro dello schermo 
         myDot = new Dot(width / 2, height / 2, 100, 255);
     }
 
     void draw() {
         background(0); 
 
-        // Modify attributes of the Dot depending on which buttons are pressed
+        // Modifica gli attributi del Dot in base a quali pulsanti sono premuti
         if (GPIO.digitalRead(pins[0]) == GPIO.LOW) {myDot.setSize();} 
         if (GPIO.digitalRead(pins[1]) == GPIO.LOW) {myDot.setPosition();} 
         if (GPIO.digitalRead(pins[2]) == GPIO.LOW) {myDot.setColor();} 
 
-        // Update the Dot state
+        // Aggiorna lo stato del Dot
         myDot.update();
-        // And draw it to the screen
+        // E disegnalo sullo schermo
         myDot.show();
     }
 
@@ -155,30 +154,28 @@ You can also buy them separately from the links below.
         }
     }
 
-**How it works?**
+**Come funziona?**
 
-Instead of drawing dot directly, we create a ``Dot`` class here.
-Then, declare the object (in this case ``myDot``).
+Invece di disegnare direttamente il punto, creiamo qui una classe ``Dot``.
+Poi, dichiariamo l'oggetto (in questo caso ``myDot``).
 
-This is a simple way to draw dots with multiple identical properties.
-For example, if we add three functions to the dot in this project - change size, change position and change color - then each dot we declare will have the same function.
-We can use the same button to make them do the same thing, or we can use different buttons to control each dot separately.
+Questo è un modo semplice per disegnare punti con proprietà identiche multiple.
+Ad esempio, se aggiungiamo tre funzioni al punto in questo progetto - cambiare dimensione, cambiare posizione e cambiare colore - allora ogni punto che dichiariamo avrà la stessa funzione.
+Possiamo usare lo stesso pulsante per far fare loro la stessa cosa, o possiamo usare pulsanti diversi per controllare ogni punto separatamente.
 
-Using **classes** makes your sketch beautiful, powerful and flexible.
+Usare le **classi** rende il tuo sketch elegante, potente e flessibile.
 
 `Class (computer programming) - Wikipedia <https://en.wikipedia.org/wiki/Class_(computer_programming)>`_
 
-Next, let's take a closer look at the ``Dot`` class. 
-
+Successivamente, diamo un'occhiata più da vicino alla classe ``Dot``.
 
 .. code-block:: arduino
 
     Dot(float x, float y, float s, int c)
 
-In the declaration, it needs to pass in four parameters, which are the X  and Y coordinate value of the position, the size, and the color (here it is set to the `HSB color mode <https://en.wikipedia.org/wiki/HSL_and_HSV>`_ ).
+Nella dichiarazione, è necessario passare quattro parametri, che sono il valore delle coordinate X e Y della posizione, la dimensione e il colore (qui è impostato in modalità colore `HSB <https://it.wikipedia.org/wiki/HSB>`_ ).
 
-Each parameter will be assigned to 2 sets of values ​​(initial value and current value).
-
+Ogni parametro sarà assegnato a 2 serie di valori (valore iniziale e valore corrente).
 
 .. code-block:: arduino
 
@@ -196,9 +193,9 @@ Each parameter will be assigned to 2 sets of values ​​(initial value and cur
     int currentColor;
     int ColorRange = 80;
 
-In addition to the initial value and the current value, there is also a set of range values. It is not difficult to understand that the initial value is used to determine the initial state of the dot (determined by the incoming parameters), while the current value will change within the range to make the dot move.
+Oltre al valore iniziale e al valore corrente, c'è anche una serie di valori di intervallo. Non è difficile capire che il valore iniziale viene utilizzato per determinare lo stato iniziale del punto (determinato dai parametri in ingresso), mentre il valore corrente cambierà all'interno dell'intervallo per far muovere il punto.
 
-Therefore, except for the X coordinate value, the current values of the other three parameters are calculated as follows:
+Pertanto, ad eccezione del valore della coordinata X, i valori correnti degli altri tre parametri sono calcolati come segue:
 
 .. code-block:: arduino
 
@@ -214,10 +211,9 @@ Therefore, except for the X coordinate value, the current values of the other th
         currentColor = int(initColor + ColorRange * sin( timer ));
     }
 
+Se hai familiarità con le funzioni trigonometriche, non sarà difficile comprendere `sine and cosine <https://en.wikipedia.org/wiki/Sine>`_,  che forniscono una variazione periodica liscia (da -1 a 1) del valore corrente del punto.
 
-If you are familiar with trigonometric functions, it should not be difficult to understand `sine and cosine <https://en.wikipedia.org/wiki/Sine>`_, which gives a smooth periodic change (from -1 to 1) of the current value of the dot.
-
-We also need to add a seed, ``timer``, for the periodic variation. It adds the fixed value in the method ``update()`` and is called in ``draw()``.
+Abbiamo anche bisogno di aggiungere un seme, ``timer``, per la variazione periodica. Aggiunge il valore fisso nel metodo ``update()`` e viene chiamato in ``draw()``.
 
 .. code-block:: arduino
 
@@ -225,7 +221,7 @@ We also need to add a seed, ``timer``, for the periodic variation. It adds the f
         timer += speed;
     }
 
-Finally, the dot is displayed according to the current value using the method ``show()``, which is also called in ``draw()``.
+Infine, il punto viene visualizzato in base al valore corrente utilizzando il metodo ``show()``, che viene anche chiamato in ``draw()``.
 
 .. code-block:: arduino
 
@@ -234,9 +230,7 @@ Finally, the dot is displayed according to the current value using the method ``
         ellipse(currentX, currentY, currentSize, currentSize);
     }
 
-**What more?**
+**E adesso?**
 
-Having mastered the use of classes, you can already draw multiple dots with the same properties, so why not try to do something cooler.
-For example, how about drawing a stable binary star system, or making a 'DUET' game?
-
-
+Una volta padroneggiato l'uso delle classi, sarai già in grado di disegnare più punti con le stesse proprietà, quindi perché non provare a fare qualcosa di più interessante.
+Ad esempio, perché non disegnare un sistema binario stabile, o creare un gioco simile a 'DUET'?

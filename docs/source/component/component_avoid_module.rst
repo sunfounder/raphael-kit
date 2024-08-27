@@ -1,39 +1,38 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _cpn_avoid_module:
 
-Obstacle Avoidance Module
+Modulo di evitamento ostacoli
 ===========================================
-
 
 .. image:: img/2.2.5IR_Obstacle.png
    :width: 400
    :align: center
 
-The IR obstacle avoidance module has strong adaptability to environmental light, it has a pair of infrared transmitting and receiving tubes.
+Il modulo IR per l'evitamento degli ostacoli ha una forte adattabilità alla luce ambientale e dispone di una coppia di tubi di trasmissione e ricezione a infrarossi.
 
-The transmitting tube emits infrared frequency, when the detection direction encounters an obstacle, the infrared radiation is received by the receiving tube, 
-after the comparator circuit processing, the green indicator will light up and output low level signal.
+Il tubo trasmittente emette una frequenza a infrarossi e, quando la direzione di rilevamento incontra un ostacolo, la radiazione infrarossa viene ricevuta dal tubo ricevente. 
+Dopo l'elaborazione del circuito del comparatore, l'indicatore verde si accenderà e verrà emesso un segnale di basso livello.
 
-The detection distance can be adjusted by potentiometer, the effective distance range 2-30cm.
+La distanza di rilevamento può essere regolata tramite un potenziometro, con un raggio di distanza effettiva compreso tra 2 e 30 cm.
 
 .. image:: img/IR_module.png
     :width: 600
     :align: center
 
-**Example**
+**Esempio**
 
 * :ref:`2.2.5_c` (C Project)
 * :ref:`2.2.5_py` (Python Project)

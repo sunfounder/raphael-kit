@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.8_js:
 
-2.1.8 Keypad
-============
+2.1.8 Tastiera
+=================
 
-Introduction
-------------
+Introduzione
+---------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Una tastiera è una matrice rettangolare di pulsanti. In questo progetto, 
+utilizzeremo la tastiera per inserire caratteri.
 
-Required Components
-------------------------------
+Componenti necessari
+-------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,8 +63,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_keypad`
         - \-
 
-Schematic Diagram
------------------
+Schema elettrico
+----------------------
 
 .. image:: ../img/image315.png
 
@@ -72,14 +72,14 @@ Schematic Diagram
 .. image:: ../img/image316.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+---------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -89,7 +89,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -99,10 +99,10 @@ Experimental Procedures
 
     sudo node keypad.js
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Dopo l'esecuzione del codice, i valori dei pulsanti premuti sulla 
+tastiera (valore pulsante) verranno stampati sullo schermo.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -150,7 +150,8 @@ Value) will be printed on the screen.
     }, 10);
 
 
-**Code Explanation**
+
+**Spiegazione del Codice**
 
 .. code-block:: js
 
@@ -174,24 +175,29 @@ Value) will be printed on the screen.
         })
     }
 
+Nello stile della tastiera, dichiara due set di pin e una matrice.
 
+Quattro dei pin rappresentano le righe della tastiera, impostali in 
+modalità OUTPUT; gli altri quattro pin rappresentano le colonne della tastiera, 
+impostali in modalità INPUT e configura l'interrupt sul fronte di salita.
 
-In the style of the keypad, declare two sets of pins and a matrix.
+Il principio per cui il controllore principale può ottenere il valore del tasto è 
+il seguente: 
+I quattro pin delle righe forniscono livelli alti a turno, e se un pulsante viene premuto,
+il pin della colonna corrispondente riceverà il livello alto rilasciato dal pin della riga, 
+il che innescherà l'interrupt sul fronte di salita.
 
-Four of the pins are the row of the keypad, set these pins to OUTPUT mode;
-The other four pins are the columns of the keypad, set these pins to INPUT mode, and set the rising edge interrupt for them.
+Ad esempio, se premo il pulsante **3**, quando i pin delle righe 2, 3 e 4 rilasciano il 
+livello alto, non ci saranno effetti;
+Quando il pin della prima riga rilascia il livello alto, il terzo pin della colonna sarà 
+in grado di ottenere il livello alto e innescare l'interrupt sul fronte di salita. A questo 
+punto, i pin delle colonne 1, 2 e 4 non innescheranno alcun evento.
 
-The principle that the main controller can obtain the key value is as follows:
-The four row pins provide high level in turn, if a button is pressed,
-The corresponding column pin will get the high level released by the row pin, which will trigger the rising edge interrupt.
-
-For example, if I press the button **3** , when the 2nd, 3rd, and 4th row pins release the high level, there is no effect;
-When the row pin in the first position releases the high level, the third column pin will be able to obtain the high level and trigger the rising edge interrupt. At this time, the 1st, 2nd, and 4th column pins do not trigger any events.
-
-Then, according to the 1st row pin that releases the high level and the 3rd column pin that gets the high level, the main controller will be able to know that the position of the pressed button is (1,3), which is the button **3**.
+Poi, secondo il pin della prima riga che rilascia il livello alto e il terzo pin della 
+colonna che riceve il livello alto, il controllore principale sarà in grado di sapere 
+che la posizione del pulsante premuto è (1,3), ovvero il pulsante **3**.
 
 .. image:: ../img/image187.png
-
 
 .. code-block:: js
 
@@ -204,7 +210,7 @@ Then, according to the 1st row pin that releases the high level and the 3rd colu
         rowsPins[row].digitalWrite(1);
     }, 10);
 
-The four row pins are periodically supplied high, and the variable ``row`` is used to locate the currently working row pin.
+I quattro pin delle righe vengono forniti periodicamente con il livello alto, e la variabile ``row`` viene utilizzata per localizzare il pin della riga attualmente in funzione.
 
 .. code-block:: js
 
@@ -220,9 +226,8 @@ The four row pins are periodically supplied high, and the variable ``row`` is us
         });
     }
 
-Set up interrupt functions for the four column pins, 
-and the variable ``col`` is used to locate the column pins that trigger the rising edge interrupt event.
-
+Imposta funzioni di interrupt per i quattro pin delle colonne,
+e la variabile ``col`` viene utilizzata per localizzare i pin delle colonne che innescano l'evento di interrupt sul fronte di salita.
 
 .. code-block:: js
 
@@ -232,12 +237,11 @@ and the variable ``col`` is used to locate the column pins that trigger the risi
     }
     last_key_pressed = pressed_keys;
 
-There is also a piece of code in the break function to get the specific key value from the ``keys`` matrix according to ``row`` and ``col``.
-And every time you get a new key value, print the value.
+C'è anche un pezzo di codice nella funzione di interruzione che ottiene il valore specifico del tasto dalla matrice ``keys`` in base a ``row`` e ``col``.
+E ogni volta che si ottiene un nuovo valore, il valore viene stampato.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+--------------------------
 
 .. image:: ../img/image188.jpeg
-
 

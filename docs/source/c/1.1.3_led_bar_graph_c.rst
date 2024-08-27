@@ -1,32 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci la tua esperienza con Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 .. _1.1.3_c:
 
-1.1.3 LED Bar Graph
+1.1.3 Barra LED
 =========================
 
-Introduction
--------------
+Introduzione
+----------------
 
-In this project, we sequentially illuminate the lights on the LED Bar
-Graph.
+In questo progetto, accenderemo in sequenza i LED della Barra LED.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_led_bar.png
 
@@ -34,21 +33,21 @@ In this project, we need the following components.
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI NEL KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai seguenti link.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,7 +60,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_bar_graph`
         - \-
 
-Schematic Diagram
+Schema Elettrico
 -------------------------
 
 ============ ======== ======== ===
@@ -80,20 +79,18 @@ SPICE0       Pin 24   10       8
 
 .. image:: ../img/schematic_led_bar.png
 
-
-Experimental Procedures
+Procedure Sperimentali
 ------------------------------
 
-**Step 1**: Build the circuit.
+**Step 1**: Costruisci il circuito.
 
-.. note::
+.. nota::
 
-    Pay attention to the direction when connecting. If you connect it backwards, it will not light up.
+    Fai attenzione alla direzione durante il collegamento. Se lo colleghi al contrario, non si accenderà.
 
 .. image:: ../img/image66.png
 
-
-**Step 2**: Go to the folder of the code.
+**Step 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -103,7 +100,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.3/
 
-**Step 3**: Compile the code.
+**Step 3**: Compila il codice.
 
 .. raw:: html
 
@@ -113,7 +110,7 @@ Experimental Procedures
 
     gcc 1.1.3_LedBarGraph.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Step 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -123,15 +120,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, you will see the LEDs on the LED bar turn on and off regularly.
+Dopo aver eseguito il codice, vedrai i LED della barra LED accendersi e spegnersi regolarmente.
 
 .. note::
 
-   If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+   Se non funziona dopo l'esecuzione o appare un messaggio di errore: \"wiringPi.h: No such file or directory\", 
+   fai riferimento a :ref:`install_wiringpi`.
 
-
-
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -164,11 +160,11 @@ After the code runs, you will see the LEDs on the LED bar turn on and off regula
     }
     int main(void)
     {
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //quando l'inizializzazione di wiring fallisce, stampa il messaggio a schermo
             printf("setup wiringPi failed !");
             return 1;
         }
-        for(int i=0;i<10;i++){       //make led pins' mode is output
+        for(int i=0;i<10;i++){       //imposta la modalità dei pin dei led su output
             pinMode(pins[i], OUTPUT);
             digitalWrite(pins[i],LOW);
         }
@@ -183,15 +179,14 @@ After the code runs, you will see the LEDs on the LED bar turn on and off regula
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
     int pins[10] = {0,1,2,3,4,5,6,8,9,10};
 
-Create an array and assign it to the pin number corresponding to the LED
-Bar Graph (0,1,2,3,4,5,6,8,9,10) and the array will be used to control
-the LED.
+Crea un array e lo assegna al numero di pin corrispondente alla Barra LED 
+(0,1,2,3,4,5,6,8,9,10). L'array verrà utilizzato per controllare i LED.
 
 .. code-block:: c
 
@@ -204,7 +199,7 @@ the LED.
         }
     }
 
-Let the LED on the odd digit of the LED Bar Graph light on in turn.
+Accende in sequenza i LED sui numeri dispari della Barra LED.
 
 .. code-block:: c
 
@@ -217,7 +212,7 @@ Let the LED on the odd digit of the LED Bar Graph light on in turn.
         }
     }
 
-Make the LED on the even digit of the LED Bar Graph light on in turn.
+Accende in sequenza i LED sui numeri pari della Barra LED.
 
 .. code-block:: c
 
@@ -229,8 +224,9 @@ Make the LED on the even digit of the LED Bar Graph light on in turn.
         }
     }
 
-Let the LED on the LED Bar Graph light on one by one.
+Accende uno alla volta tutti i LED della Barra LED.
 
-**Phenomenon Picture**
+**Immagine del Fenomeno**
 
 .. image:: ../img/image67.jpeg
+

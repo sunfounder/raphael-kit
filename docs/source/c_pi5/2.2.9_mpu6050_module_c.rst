@@ -1,62 +1,62 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Immergiti più a fondo in Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.9_c_pi5:
 
-2.2.8 MPU6050 Module
-===========================
+2.2.8 Modulo MPU6050
+====================
 
-Introduction
+Introduzione
 ------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+Il MPU-6050 è il primo e unico dispositivo di tracciamento del movimento a 6 
+assi al mondo (giroscopio a 3 assi e accelerometro a 3 assi) progettato per 
+smartphone, tablet e sensori indossabili che richiedono queste caratteristiche, 
+tra cui basso consumo, basso costo e alte prestazioni.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+In questo esperimento, utilizziamo l'I2C per ottenere i valori dell'accelerometro 
+a tre assi e del giroscopio a tre assi dell'MPU6050 e li visualizziamo sullo schermo.
 
-Required Components
-------------------------------
 
-In this project, we need the following components. 
+Componenti necessari
+------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_2.2.6.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,28 +67,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_mpu6050`
         - |link_mpu6050_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+--------------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+Il MPU6050 comunica con il microcontrollore tramite l'interfaccia bus I2C. 
+I pin SDA1 e SCL1 devono essere collegati al pin corrispondente.
 
 .. image:: ../img/image330.png
 
 
-Experimental Procedures
-----------------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image227.png
 
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**Passo 2**: Configura I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato I2C, salta questo passaggio.)
 
-**Step 3:** Go to the folder of the code.
+**Passo 3:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -98,7 +96,7 @@ step.)
 
     cd ~/raphael-kit/c/2.2.9/
 
-**Step 4:** Compile the code.
+**Passo 4:** Compila il codice.
 
 .. raw:: html
 
@@ -108,7 +106,7 @@ step.)
 
     gcc 2.2.9_mpu6050.c -lwiringPi -lm
 
-**Step 5:** Run the executable file.
+**Passo 5:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -118,17 +116,15 @@ step.)
 
     sudo ./a.out
 
-With the code run, deflection angle of x axis, y axis and the
-acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Dopo aver eseguito il codice, l'angolo di deviazione sugli assi x, y e l'accelerazione, la velocità angolare su ciascun asse letti dall'MPU6050 verranno stampati sullo schermo dopo essere stati calcolati.
 
 .. note::
 
-    * If there is an error prompt ``wiringPi.h: No such file or directory``, please refer to :ref:`install_wiringpi`.
-    * If you get ``Unable to open I2C device: No such file or directory`` error, you need to refer to :ref:`i2c_config` to enable I2C and check if the wiring is correct.
+    * Se viene visualizzato l'errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Se ricevi l'errore ``Unable to open I2C device: No such file or directory``, consulta :ref:`i2c_config` per abilitare I2C e verifica se i collegamenti sono corretti.
 
+**Codice**
 
-**Code**
 
 .. code-block:: c
 
@@ -175,7 +171,7 @@ printed on the screen after being calculating.
     int main()
     {
     fd = wiringPiI2CSetup (0x68);
-    wiringPiI2CWriteReg8 (fd,0x6B,0x00);//disable sleep mode 
+    wiringPiI2CWriteReg8 (fd,0x6B,0x00);//disabilita la modalità sleep 
     printf("set 0x6B=%X\n",wiringPiI2CReadReg8 (fd,0x6B));
     
     while(1) {
@@ -188,10 +184,10 @@ printed on the screen after being calculating.
         gyroY_scaled = gyroY / 131.0;
         gyroZ_scaled = gyroZ / 131.0;
 
-        //Print values for the X, Y, and Z axes of the gyroscope sensor.
-        printf("My gyroX_scaled: %f\n", gyroY X_scaled);
-        printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
-        printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+        //Stampa i valori sugli assi X, Y e Z del sensore giroscopico.
+        printf("Il mio gyroX_scaled: %f\n", gyroX_scaled);
+        printf("Il mio gyroY_scaled: %f\n", gyroY_scaled);
+        printf("Il mio gyroZ_scaled: %f\n", gyroZ_scaled);
 
         acclX = read_word_2c(0x3B);
         acclY = read_word_2c(0x3D);
@@ -201,20 +197,21 @@ printed on the screen after being calculating.
         acclY_scaled = acclY / 16384.0;
         acclZ_scaled = acclZ / 16384.0;
         
-        //Print the X, Y, and Z values of the acceleration sensor.
-        printf("My acclX_scaled: %f\n", acclX_scaled);
-        printf("My acclY_scaled: %f\n", acclY_scaled);
-        printf("My acclZ_scaled: %f\n", acclZ_scaled);
+        //Stampa i valori sugli assi X, Y e Z del sensore di accelerazione.
+        printf("Il mio acclX_scaled: %f\n", acclX_scaled);
+        printf("Il mio acclY_scaled: %f\n", acclY_scaled);
+        printf("Il mio acclZ_scaled: %f\n", acclZ_scaled);
 
-        printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
-        printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+        printf("La mia rotazione X: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+        printf("La mia rotazione Y: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
         
         delay(100);
     }
     return 0;
     }
 
-**Code Explanation**
+Spiegazione del Codice
+--------------------------
 
 .. code-block:: c
 
@@ -229,7 +226,7 @@ printed on the screen after being calculating.
     return val;
     }
 
-Read sensor data sent from MPU6050.
+Legge i dati del sensore inviati dall'MPU6050.
 
 .. code-block:: c
 
@@ -240,7 +237,7 @@ Read sensor data sent from MPU6050.
     return -(radians * (180.0 / M_PI));
     }
 
-We get the deflection angle on the Y-axis.
+Otteniamo l'angolo di deviazione sull'asse Y.
 
 .. code-block:: c
 
@@ -251,7 +248,7 @@ We get the deflection angle on the Y-axis.
     return (radians * (180.0 / M_PI));
     }
 
-Calculate the deflection angle of the X-axis.
+Calcola l'angolo di deviazione dell'asse X.
 
 .. code-block:: c
 
@@ -268,8 +265,8 @@ Calculate the deflection angle of the X-axis.
     printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
     printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
 
-Read the values of the x axis, y axis and z axis on the gyroscope sensor, 
-convert the metadata to angular velocity values, and then print them.
+Legge i valori degli assi X, Y e Z del sensore giroscopico, 
+converte i dati grezzi in valori di velocità angolare e poi li stampa.
 
 .. code-block:: c
 
@@ -286,18 +283,17 @@ convert the metadata to angular velocity values, and then print them.
     printf("My acclY_scaled: %f\n", acclY_scaled);
     printf("My acclZ_scaled: %f\n", acclZ_scaled);
 
-Read the values of the x axis, y axis and z axis on the acceleration sensor,
-convert the metadata to accelerated speed values (gravity unit), and then 
-print them.
+Legge i valori degli assi X, Y e Z del sensore di accelerazione,
+converte i dati grezzi in valori di accelerazione (in unità di gravità) e poi li stampa.
 
 .. code-block:: c
 
     printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
     printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
 
-Print the deflection angles of the x-axis and y-axis.
+Stampa gli angoli di deviazione degli assi X e Y.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+-------------------------
 
 .. image:: ../img/image228.jpeg

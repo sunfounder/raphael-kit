@@ -1,56 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Immergiti più a fondo in Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.9_c_pi5:
 
 2.1.9 Joystick
 ===================
 
-Introduction
-------------
+Introduzione
+----------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+In questo progetto, impareremo come funziona il joystick. Manipoleremo il joystick e mostreremo i risultati sullo schermo.
 
-Required Components
-------------------------------
+Componenti necessari
+--------------------------
 
-In this project, we need the following components. 
+In questo progetto abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/image317.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,13 +64,13 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
------------------
+Schema elettrico
+-------------------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Quando i dati del joystick vengono letti, ci sono alcune differenze tra gli 
+assi: i dati degli assi X e Y sono analogici e devono essere convertiti in 
+valori digitali tramite l'ADC0834. I dati dell'asse Z sono digitali, quindi 
+è possibile leggerli direttamente tramite GPIO oppure utilizzare l'ADC per leggerli.
 
 .. image:: ../img/image319.png
 
@@ -79,14 +78,14 @@ you can directly use the GPIO to read, or you can also use ADC to read.
 .. image:: ../img/image320.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image193.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -96,7 +95,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.9/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -106,7 +105,7 @@ Experimental Procedures
 
     gcc 2.1.9_Joystick.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -116,15 +115,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
-
+Dopo l'esecuzione del codice, ruota il joystick e i valori corrispondenti 
+di x, y e Btn verranno visualizzati sullo schermo.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-**Code**
+Codice
+---------
 
 .. code-block:: c
 
@@ -197,7 +196,7 @@ x, y, Btn are displayed on screen.
         uchar x_val;
         uchar y_val;
         uchar btn_val;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio sullo schermo
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -216,7 +215,8 @@ x, y, Btn are displayed on screen.
         return 0;
     }
 
-**Code Explanation**
+Spiegazione del Codice
+--------------------------
 
 .. code-block:: c
 
@@ -238,7 +238,7 @@ x, y, Btn are displayed on screen.
         digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
         ......
 
-The working process of the function is detailed in 2.1.7 Potentiometer.
+Il processo di funzionamento della funzione è dettagliato in 2.1.7 Potenziometro.
 
 .. code-block:: c
 
@@ -250,16 +250,13 @@ The working process of the function is detailed in 2.1.7 Potentiometer.
             delay(100);
         }
 
-VRX and VRY of Joystick are connected to CH0, CH1 of ADC0834
-respectively. So the function getResult() is called to read the values
-of CH0 and CH1. Then the read values should be stored in the variables
-x_val and y_val. In addition, read the value of SW of joystick and store
-it into the variable Btn_val. Finally, the values of x_val, y_val and
-Btn_val shall be printed with print() function.
+VRX e VRY del Joystick sono collegati rispettivamente a CH0 e CH1 di ADC0834. 
+Quindi la funzione getResult() viene chiamata per leggere i valori di CH0 e CH1. 
+Successivamente, i valori letti vengono memorizzati nelle variabili x_val e y_val. 
+Inoltre, il valore di SW del joystick viene letto e memorizzato nella variabile btn_val. 
+Infine, i valori di x_val, y_val e btn_val vengono stampati tramite la funzione printf().
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+-------------------------
 
 .. image:: ../img/image194.jpeg
-
-

@@ -1,31 +1,30 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella comunità SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anticipo agli annunci di nuovi prodotti e anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a promozioni festive e omaggi.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _audio_configuration:
 
-Audio Configuration
-=========================
+Configurazione Audio
+===========================
 
 .. _change_audio_output:
 
-Change Audio Output
-----------------------------
+Modificare l'Uscita Audio
+------------------------------
 
-If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output, the correct one should be **Headphones**. You can change the audio output by following these steps.
+Se il tuo altoparlante non emette suoni, potrebbe essere che il Raspberry Pi abbia selezionato l'uscita audio sbagliata; quella corretta dovrebbe essere **Cuffie**. Puoi modificare l'uscita audio seguendo questi passaggi.
 
-
-Enter the following command.
+Inserisci il seguente comando.
 
 .. raw:: html
 
@@ -35,24 +34,24 @@ Enter the following command.
 
     sudo raspi-config
 
-Select **1 System Options**.
+Seleziona **1 Opzioni di Sistema**.
 
 .. image:: img/audio1.jpg
 
-Then **S2 Audio**.
+Poi **S2 Audio**.
 
 .. image:: img/audio2.jpg
 
-After selecting **1 Headphones**, press ``Enter`` to confirm and select ``Finish`` to exit.
+Dopo aver selezionato **1 Cuffie**, premi ``Invio`` per confermare e seleziona ``Finish`` per uscire.
 
 .. image:: img/audio3.jpg
 
 .. _adjust_volume:
 
-Adjust Volume 
----------------
+Regolare il Volume
+-------------------------
 
-If you feel that the volume of the speakers is too low, you can adjust it by entering the following command.
+Se ritieni che il volume degli altoparlanti sia troppo basso, puoi regolarlo inserendo il seguente comando.
 
 .. raw:: html
 
@@ -64,14 +63,14 @@ If you feel that the volume of the speakers is too low, you can adjust it by ent
 
 .. image:: img/faq1.png
 
-The default page is shown below.
+La pagina predefinita è mostrata di seguito.
 
 .. image:: img/faq2.png
 
-Press ``F6`` to select **Headphones** mode.
+Premi ``F6`` per selezionare la modalità **Cuffie**.
 
 .. image:: img/faq3.png
 
-Then press the arrow keys up and down to adjust the volume level, and press ``ESC`` to exit.
+Poi premi i tasti freccia su e giù per regolare il livello del volume e premi ``ESC`` per uscire.
 
 .. image:: img/faq4.png

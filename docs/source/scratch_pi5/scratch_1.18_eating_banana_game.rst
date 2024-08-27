@@ -1,112 +1,114 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e affronta le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa ai giveaway e alle promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
 .. _1.18_scratch_pi5:
 
-1.18 Eating Banana Game
-================================
+1.18 Gioco della Banana
+===========================
 
-Description
----------------
+Descrizione
+--------------
 
-Scratch has a Video Sensing expansion module, which can turn on the camera in Scratch and detect the movement of objects on the camera screen.
+Scratch ha un modulo di espansione per il Video Sensing, che può attivare la fotocamera in Scratch e rilevare il movimento degli oggetti sullo schermo della fotocamera.
 
-Today, we will use the camera to make a eating banana game. In the stipulated time, help the Monkey eat more bananas.
+Oggi utilizzeremo la fotocamera per creare un gioco in cui bisogna far mangiare più banane possibile alla scimmia entro il tempo stabilito.
 
-To play the game against a white background, click on the green flag to start. Move colored objects in front of the camera to control the Monkey sprite.
+Gioca in un ambiente con sfondo bianco, clicca sulla bandiera verde per iniziare. Muovi oggetti colorati davanti alla fotocamera per controllare lo sprite della scimmia.
 
 .. image:: img/1.18_header.png
 
-Required Components
-------------------------------
+Componenti Necessari
+---------------------------
 
-In this project, we need the following components. 
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: img/1.18_photo1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_camera_module`
         - |link_camera_buy|
 
 
-Build the Circuit
---------------------
+Costruisci il Circuito
+------------------------
 
 .. image:: img/1.10_camera.png
 
 .. note::
 
-    You need to refer to :ref:`cpn_camera_module` to connect the camera module and enable the Raspberry Pi camera interface.
+    Devi fare riferimento a :ref:`cpn_camera_module` per collegare il modulo fotocamera e abilitare l'interfaccia della fotocamera Raspberry Pi.
 
-Load the Code and See What Happens
----------------------------------------
+Carica il Codice e Guarda Cosa Succede
+-----------------------------------------
 
-Load the code file (``1.18_eating_banana_game.sb3``) to Scratch 3.
+Carica il file di codice (``1.18_eating_banana_game.sb3``) su Scratch 3.
 
-Tips on Codes
-----------------
+Suggerimenti sul Codice
+---------------------------
 
-Arrange monkeys and bananas
+Sistema la scimmia e le banane
 
-First, we delete the original sprite, then add Monkey sprite and Bananas sprite, and change their sizes to 50.
+Per prima cosa, elimina lo sprite originale, poi aggiungi lo sprite Scimmia e lo sprite Banane, e modifica la loro dimensione a 50.
 
-Let Bananas appear randomly.
+Fai apparire le banane in modo casuale.
 
 .. image:: img/1.18_code1.png
 
-Bananas disappears after encountering the Monkey, which means it was eaten by the Monkey and reappears randomly.
+Le banane scompaiono dopo essere state incontrate dalla scimmia, il che significa che sono state mangiate e ricompaiono in modo casuale.
 
 .. image:: img/1.18_code2.png
 
-Let the Monkey appear in the center of the stage and initialize the camera data (transparency is set to 20).
+Fai apparire la scimmia al centro del palco e inizializza i dati della fotocamera (trasparenza impostata a 20).
 
 .. image:: img/1.18_code3.png
 
-If the camera detects an object moving, let the Monkey move towards the object.
+Se la fotocamera rileva un oggetto in movimento, fai muovere la scimmia verso di esso.
 
 .. image:: img/1.18_code4.png
 
-Now, click on the green flag at the top of the stage area to start the game.
+Ora clicca sulla bandiera verde nella parte superiore dell'area del palco per iniziare il gioco.
 
-Let the Monkey eat bananas, it is very hungry! Try to play this game on a white background to prevent interference from other objects.
+Fai mangiare banane alla scimmia, è molto affamata! Prova a giocare su uno sfondo bianco per evitare interferenze da altri oggetti.
 
-Challenge
--------------
 
-I believe that you will be smart enough to program and implement this game soon. Next, we will add some challenges to enrich our game content.
 
-· When Monkey eats banana, we add 1 to the score. Within 30s, see who has the highest score!
+Sfida
+---------
 
-· When Monkey eats a banana, it emits a suitable sound effect.
+Credo che sarai abbastanza ingegnoso da programmare e realizzare presto questo gioco. Ora, aggiungeremo qualche sfida per arricchire il contenuto del gioco.
+
+· Quando la scimmia mangia una banana, aggiungiamo 1 punto al punteggio. Entro 30 secondi, chi ottiene il punteggio più alto?
+
+· Quando la scimmia mangia una banana, emettiamo un effetto sonoro appropriato.

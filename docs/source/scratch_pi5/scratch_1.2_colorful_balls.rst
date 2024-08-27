@@ -1,55 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e affronta le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa ai giveaway e alle promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
 .. _1.2_scratch_pi5:
 
-1.2 Colorful Balls
-=====================
+1.2 Palline Colorate
+========================
 
-
-Clicking on different colored balls on the stage area will cause the RGB LED to light up in different colors.
+Cliccando sulle palline colorate nell'area di scena, il LED RGB si accenderà con colori diversi.
 
 .. image:: img/1.2_header.png
 
-Required Components
-------------------------------
+Componenti Necessari
+-------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: img/1.2_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,53 +61,50 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rgb_led`
         - |link_rgb_led_buy|
 
-Build the Circuit
----------------------
+Costruire il Circuito
+-------------------------
 
 .. image:: img/1.2_image61.png
 
-
-Load the Code and See What Happens
+Carica il Codice e Vedi Cosa Succede
 -----------------------------------------
 
-After loading the code file (``1.2_colorful_balls.sb3``) into Scratch 3, the RGB LED will light up yellow, blue, red, green or purple respectively when you click on the corresponding ball.
+Dopo aver caricato il file di codice (``1.2_colorful_balls.sb3``) in Scratch 3, il LED RGB si accenderà di giallo, blu, rosso, verde o viola rispettivamente quando clicchi sulla pallina corrispondente.
 
-Tips on Sprites
-----------------
+Suggerimenti sugli Sprite
+-----------------------------
 
-Delete the default sprite, then choose the **Ball** sprite.
+Elimina lo sprite predefinito, poi seleziona lo sprite **Ball**.
 
 .. image:: img/1.2_ball.png
 
-And duplicate it 5 times.
+E duplicalo 5 volte.
 
 .. image:: img/1.2_duplicate_ball.png
 
-Choose different costumes for these 5 **Ball** sprites and move them to the corresponding positions.
+Scegli costumi diversi per questi 5 sprite **Ball** e spostali nelle posizioni corrispondenti.
 
 .. image:: img/1.2_rgb1.png
 
-Tips on Codes
---------------
-Before understanding the code, we need to understand the `RGB color model <https://en.wikipedia.org/wiki/RGB_color_model>`_.
+Suggerimenti sul Codice
+------------------------------
+Prima di comprendere il codice, dobbiamo capire il `RGB color model <https://en.wikipedia.org/wiki/RGB_color_model>`_.
 
-The RGB color model is an additive color model in which red, green, and blue light are added together in various ways to reproduce a broad array of colors. 
+Il modello di colore RGB è un modello di colore additivo in cui la luce rossa, verde e blu viene combinata in vari modi per riprodurre un'ampia gamma di colori.
 
-Additive color mixing: adding red to green yields yellow; adding green to blue yields cyan; adding blue to red yields magenta; adding all three primary colors together yields white.
+Miscelazione dei colori additiva: aggiungendo rosso al verde si ottiene il giallo; aggiungendo verde al blu si ottiene il ciano; aggiungendo blu al rosso si ottiene il magenta; aggiungendo tutti e tre i colori primari si ottiene il bianco.
 
 .. image:: img/1.2_rgb_addition.png
   :width: 400
 
-An RGB LED is a combination of 3 LEDs(red LED, green LED, blue LED ) in just one package, you can produce almost any color by combining those three colors.
-It has 4 pins, one of which is GND, and the other 3 pins control 3 LEDs respectively.
+Un LED RGB è una combinazione di 3 LED (LED rosso, LED verde, LED blu) in un unico pacchetto; puoi produrre quasi qualsiasi colore combinando questi tre colori.
+Ha 4 pin, uno dei quali è GND, mentre gli altri 3 controllano i 3 LED rispettivamente.
 
-So the code to make the RGB LED light yellow is as follows.
+Quindi il codice per accendere il LED RGB di colore giallo è il seguente.
 
 .. image:: img/1.2_rgb3.png
 
+Quando si clicca sullo sprite Ball (pallina gialla), impostiamo gpio17 su alto (LED rosso acceso), gpio18 su alto (LED verde acceso) e gpio27 su basso (LED blu spento), così il LED RGB si accenderà di giallo.
 
-When the Ball sprite (yellow ball) is clicked, we set gpio17 high (red LED on), gpio18 high (green LED on) and gpio27 low (blue LED off) so that the RGB LED will light yellow.
-
-You can Write codes to other sprites in the same way to make the RGB LEDs light up in the corresponding colors.
-
+Puoi scrivere codici simili per altri sprite per far accendere i LED RGB nei colori corrispondenti.
 

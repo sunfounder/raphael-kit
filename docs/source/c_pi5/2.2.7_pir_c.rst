@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Immergiti più a fondo in Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.7_c_pi5:
 
 2.2.6 PIR
-===============
+================
 
-Introduction
-------------
+Introduzione
+----------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+In questo progetto realizzeremo un dispositivo utilizzando sensori piroelettrici 
+a infrarossi per il corpo umano. Quando qualcuno si avvicina al LED, il LED si 
+accenderà automaticamente. Se non rileva movimento, la luce si spegnerà. Questo 
+sensore di movimento a infrarossi è un tipo di sensore in grado di rilevare gli 
+infrarossi emessi da persone e animali.
 
-Required Components
-------------------------------
+Componenti necessari
+------------------------
 
-In this project, we need the following components. 
+In questo progetto abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,20 +68,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_pir`
         - \-
 
-Schematic Diagram
------------------
+Schema elettrico
+--------------------
 
 .. image:: ../img/image327.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -91,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.7/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -101,7 +101,7 @@ Experimental Procedures
 
     gcc 2.2.7_PIR.c -lwiringPi
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -111,9 +111,9 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+Dopo l'esecuzione del codice, il sensore PIR rileva l'ambiente circostante e accende il LED RGB in giallo se rileva qualcuno che passa vicino. 
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Ci sono due potenziometri sul modulo PIR: uno per regolare la sensibilità e l'altro per regolare la distanza di rilevamento. Per far funzionare meglio il modulo PIR, è necessario ruotarli entrambi in senso antiorario fino in fondo.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
@@ -121,10 +121,11 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: ``wiringPi.h No such file or directory``, please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: ``wiringPi.h No such file or directory``, consulta :ref:`install_wiringpi`.
 
 
-**Code**
+Codice
+---------
 
 .. code-block:: c
 
@@ -133,7 +134,7 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
     #include <stdio.h>
     #define uchar unsigned char
 
-    #define pirPin    0     //the pir connect to GPIO0
+    #define pirPin    0     //il pir è connesso a GPIO0
     #define redPin    1
     #define greenPin  2
     #define bluePin   3
@@ -151,33 +152,33 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
     int main(void)
     {
         int pir_val;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio sullo schermo
             printf("setup wiringPi failed !");
             return 1;
         }
         ledInit();
         pinMode(pirPin, INPUT);
         while(1){
-        pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
+            pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //se il sensore pir rileva un livello ALTO
                 ledColorSet(0xff,0xff,0x00); 
             }
             else {
-            ledColorSet(0x00,0x00,0xff); 
+                ledColorSet(0x00,0x00,0xff); 
             }
         }
         return 0;
     }
 
-**Code Explanation**
+Spiegazione del Codice
+--------------------------
 
 .. code-block:: c
 
     void ledInit(void);
     void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2_c_pi5` for more details.
+Questi codici sono usati per impostare il colore del LED RGB. Per ulteriori dettagli, consulta :ref:`1.1.2_c_pi5`.
 
 .. code-block:: c
 
@@ -187,21 +188,20 @@ to :ref:`1.1.2_c_pi5` for more details.
         //…… 
         pinMode(pirPin, INPUT);
         while(1){
-        pir_val = digitalRead(pirPin);
-            if(pir_val== 1){ //if read pir is HIGH level
+            pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ //se il sensore pir rileva un livello ALTO
                 ledColorSet(0xff,0xff,0x00); 
             }
             else {
-            ledColorSet(0x00,0x00,0xff); 
+                ledColorSet(0x00,0x00,0xff); 
             }
         }
         return 0;
     }
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+Quando il sensore PIR rileva lo spettro infrarosso umano, il LED RGB emette luce gialla; in caso contrario, emette luce blu.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+---------------------------
 
 .. image:: ../img/image215.jpeg

@@ -1,28 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e anteprime.
+    - **Sconti Esclusivi**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni e giveaway durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 27: Build a Temperature and Humidity System with LCD Display
-=======================================================================================
+Video 27: Costruire un Sistema di Rilevamento della Temperatura e dell'Umidità con Display LCD
+======================================================================================================
 
-In this tutorial, viewers learn how to construct a temperature and humidity sensing device using a Raspberry Pi, a DHT11 sensor, an LCD display, and a push button. The video provides detailed guidance on both the hardware setup and Python coding required for the project. 
+In questo tutorial, gli spettatori imparano a costruire un dispositivo di rilevamento della temperatura e dell'umidità utilizzando un Raspberry Pi, un sensore DHT11, un display LCD e un pulsante. Il video fornisce una guida dettagliata sia sull'installazione dell'hardware che sulla programmazione in Python necessaria per il progetto. 
 
-1. Introduction to building a temperature and humidity sensing device with Raspberry Pi.
-2. Components required including Raspberry Pi, DHT11 sensor, LCD display, push button, female to male wires, and jumper wires.
-3. Hardware setup involves connecting Raspberry Pi to the SunFounder breakout board, and then connecting the DHT11 sensor, LCD display, and push button using jumper wires.
-4. Setting up necessary libraries such as LCD1602, GPIO, DHT11, and time.
-5. Initialization of components including setting up GPIO mode, initializing the DHT11 sensor, LCD display, and push button.
-6. Reading button state through GPIO input to toggle between Fahrenheit and Celsius readings on the LCD display.
+1. Introduzione alla costruzione di un dispositivo di rilevamento della temperatura e dell'umidità con Raspberry Pi.
+2. Componenti richiesti, tra cui Raspberry Pi, sensore DHT11, display LCD, pulsante, cavi da femmina a maschio e cavi jumper.
+3. L'installazione hardware prevede il collegamento del Raspberry Pi alla scheda breakout SunFounder, quindi il collegamento del sensore DHT11, del display LCD e del pulsante utilizzando cavi jumper.
+4. Configurazione delle librerie necessarie come LCD1602, GPIO, DHT11 e time.
+5. Inizializzazione dei componenti, inclusa la configurazione della modalità GPIO, l'inizializzazione del sensore DHT11, del display LCD e del pulsante.
+6. Lettura dello stato del pulsante tramite input GPIO per alternare le letture Fahrenheit e Celsius sul display LCD.
 
 **Video**
 

@@ -1,62 +1,62 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci l'esplorazione del Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima agli annunci di nuovi prodotti e alle anticipazioni esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e omaggi festivi**: Partecipa a omaggi e promozioni speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.9_py:
 
-2.2.9 MPU6050 Module
-====================
+2.2.9 Modulo MPU6050
+========================
 
-Introduction
-------------
+Introduzione
+----------------
 
-The MPU-6050 is the world’s first and only 6-axis motion tracking
-devices (3-axis Gyroscope and 3-axis Accelerometer) designed for
-smartphones, tablets and wearable sensors that have these features,
-including the low power, low cost, and high performance requirements.
+L'MPU-6050 è il primo e unico dispositivo di tracciamento del movimento a 6 
+assi al mondo (giroscopio a 3 assi e accelerometro a 3 assi), progettato per 
+smartphone, tablet e sensori indossabili che richiedono queste caratteristiche, 
+inclusi basso consumo energetico, basso costo e alte prestazioni.
 
-In this experiment, use I2C to obtain the values of the three-axis
-acceleration sensor and three-axis gyroscope for MPU6050 and display
-them on the screen.
+In questo esperimento, utilizzeremo I2C per ottenere i valori del sensore di 
+accelerazione a tre assi e del giroscopio a tre assi dell'MPU6050 e li 
+visualizzeremo sullo schermo.
 
-Required Components
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto avremo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.2.6.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,28 +67,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_mpu6050`
         - |link_mpu6050_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+---------------------
 
-MPU6050 communicates with the microcontroller through the I2C bus
-interface. The SDA1 and SCL1 need to be connected to the corresponding
-pin.
+L'MPU6050 comunica con il microcontrollore tramite l'interfaccia del bus I2C. 
+SDA1 e SCL1 devono essere collegati ai pin corrispondenti.
 
 .. image:: ../img/image330.png
 
 
-Experimental Procedures
+Procedura sperimentale
 -------------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image227.png
 
 
-**Step 2**: Setup I2C (see Appendix :ref:`i2c_config`. If you have set I2C, skip this
-step.)
+**Passo 2**: Configura I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato I2C, salta questo passaggio.)
 
-**Step 3:** Go to the folder of the code.
+**Passo 3:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -98,7 +96,7 @@ step.)
 
     cd ~/raphael-kit/python
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -108,22 +106,22 @@ step.)
 
     sudo python3 2.2.9_mpu6050.py
 
-With the code run, the angle of deflection of the x-axis and y-axis and
-the acceleration, angular velocity on each axis read by MPU6050 will be
-printed on the screen after being calculating.
+Una volta eseguito il codice, l'angolo di deflessione degli assi x e y, nonché 
+l'accelerazione e la velocità angolare su ciascun asse letti dall'MPU6050 
+verranno calcolati e stampati sullo schermo.
 
 .. note::
 
-    * If you get the error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, you need to refer to :ref:`i2c_config` to enable the I2C.
-    * If you get ``ModuleNotFoundError: No module named 'smbus2'`` error, please run ``sudo pip3 install smbus2``.
-    * If the error ``OSError: [Errno 121] Remote I/O error`` appears, it means the module is miswired or the module is broken.
+    * Se ricevi l'errore ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, consulta :ref:`i2c_config` per abilitare l'I2C.
+    * Se ricevi l'errore ``ModuleNotFoundError: No module named 'smbus2'``, esegui il comando ``sudo pip3 install smbus2``.
+    * Se compare l'errore ``OSError: [Errno 121] Remote I/O error``, significa che il modulo è cablato in modo errato o è danneggiato.
 
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. Ma prima di farlo, devi andare nel percorso del codice sorgente, come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -136,7 +134,7 @@ printed on the screen after being calculating.
     import math
     import time
 
-    # Power management registers
+    # Registri di gestione dell'alimentazione
     power_mgmt_1 = 0x6b
     power_mgmt_2 = 0x6c
 
@@ -168,10 +166,10 @@ printed on the screen after being calculating.
         return math.degrees(radians)
 
 
-    bus = smbus.SMBus(1) # or bus = smbus.SMBus(1) for Revision 2 boards
-    address = 0x68       # This is the address value read via the i2cdetect command
+    bus = smbus.SMBus(1) # o bus = smbus.SMBus(1) per le schede Revision 2
+    address = 0x68       # Questo è il valore dell'indirizzo letto tramite il comando i2cdetect
 
-    # Now wake the 6050 up as it starts in sleep mode
+    # Ora riattiva il 6050 poiché inizia in modalità sleep
     bus.write_byte_data(address, power_mgmt_1, 0)
 
     while True:
@@ -201,7 +199,7 @@ printed on the screen after being calculating.
 
         time.sleep(1)
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -218,7 +216,7 @@ printed on the screen after being calculating.
         else:
             return val
 
-Read sensor data sent from MPU6050.
+Lettura dei dati del sensore inviati dall'MPU6050.
 
 
 .. code-block:: python
@@ -227,7 +225,7 @@ Read sensor data sent from MPU6050.
         radians = math.atan2(x, dist(y,z))
         return -math.degrees(radians)
 
-Calculate the deflection angle of the y-axis.
+Calcolo dell'angolo di deflessione dell'asse y.
 
 .. code-block:: python
 
@@ -235,7 +233,7 @@ Calculate the deflection angle of the y-axis.
         radians = math.atan2(y, dist(x,z))
         return math.degrees(radians)
 
-Calculate the deflection angle of the x-axis.
+Calcolo dell'angolo di deflessione dell'asse x.
 
 .. code-block:: python
 
@@ -247,8 +245,7 @@ Calculate the deflection angle of the x-axis.
     print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
     print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
 
-Read the values of the x axis, y axis and z axis on the gyroscope sensor, 
-convert the metadata to angular velocity values, and then print them.
+Lettura dei valori degli assi x, y e z del sensore giroscopico, conversione dei metadati in valori di velocità angolare e stampa dei risultati.
 
 .. code-block:: python
 
@@ -264,18 +261,17 @@ convert the metadata to angular velocity values, and then print them.
     print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
     print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
 
-Read the values of the x axis, y axis and z axis on the acceleration sensor, 
-convert the elements to accelerated speed value (gravity unit), and print 
-them.
+Lettura dei valori degli assi x, y e z del sensore di accelerazione, conversione degli 
+elementi in valori di velocità accelerata (unità di gravità) e stampa dei risultati.
 
 .. code-block:: python
 
     print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
     print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
 
-Print the deflection angles of the x-axis and y-axis.
+Stampa degli angoli di deflessione degli assi x e y.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+----------------------------
 
 .. image:: ../img/image228.jpeg

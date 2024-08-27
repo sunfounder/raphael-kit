@@ -1,37 +1,39 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _cpn_touch_switch:
 
-Touch Switch Module
-==================================
+Modulo Interruttore a Sfioramento
+======================================
 
 .. image:: img/touch168.png
     :width: 300
     :align: center
 
-Touch switch module works by detecting a change in capacitance due to influence of an external object. The touch plate is covered with insulating material, and the user does not come in contact with the electrical circuit.
+Il modulo interruttore a sfioramento funziona rilevando un cambiamento di capacità dovuto all'influenza di un oggetto esterno. La piastra a sfioramento è coperta da materiale isolante e l'utente non entra in contatto con il circuito elettrico.
 
-A capacitive touch switch has different layers—top insulating face plate followed by touch plate, another insulating layer and then ground plate.
+Un interruttore capacitivo ha diversi strati: la piastra superiore isolante seguita dalla piastra a sfioramento, un altro strato isolante e poi la piastra di massa.
 
 .. image:: img/touch169.jpeg
 
-In practice, a capacitive sensor can be made on a double-sided PCB by regarding one side as the touch sensor and the opposite side as ground plate of the capacitor. When power is applied across these plates, the two plates get charged. In equilibrium state, the plates have the same voltage as the power source.
+In pratica, un sensore capacitivo può essere realizzato su un PCB a doppia faccia considerando un lato come il sensore a sfioramento e il lato opposto come la piastra di massa del condensatore. Quando si applica tensione tra queste piastre, le due piastre si caricano. In stato di equilibrio, le piastre hanno la stessa tensione della sorgente di alimentazione.
 
-The touch detector circuit has an oscillator whose frequency is dependent on capacitance of the touchpad. When a finger is moved close to the touchpad, additional capacitance causes frequency of this internal oscillator to change. The detector circuit tracks oscillator frequency at timed intervals, and when the shift crosses the threshold change, the circuit triggers a key-press event.
+Il circuito del rilevatore di sfioramento contiene un oscillatore la cui frequenza dipende dalla capacità del touchpad. Quando un dito si avvicina al touchpad, la capacità aggiuntiva provoca un cambiamento nella frequenza di questo oscillatore interno. Il circuito rilevatore traccia la frequenza dell'oscillatore a intervalli regolari e, quando lo spostamento supera la soglia di cambiamento, il circuito attiva un evento di pressione del tasto.
 
-**Example**
+
+**Esempi**
+
 
 * :ref:`2.1.3_c` (C Project)
 * :ref:`2.1.3_py` (Python Project)

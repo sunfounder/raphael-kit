@@ -1,55 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Tecnico Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.3.2_py_pi5:
 
 1.3.2 Servo
-============
+===============
 
-Introduction
---------------
+Introduzione
+-----------------
 
-In this project, we will learn how to make the servo rotate.
+In questo progetto, impareremo a far ruotare un servomotore.
 
-Required Components
-------------------------------
+Componenti Necessari
+--------------------------------
 
-In this project, we need the following components. 
+Per questo progetto, avremo bisogno dei seguenti componenti. 
 
 .. image:: ../python_pi5/img/1.3.2_servo_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È decisamente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI NEL KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK D'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,20 +60,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_servo`
         - |link_servo_buy|
 
-Schematic Diagram
---------------------
+Schema Elettrico
+----------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Passo 2:** Accedi alla cartella del codice.
 
 .. raw:: html
 
@@ -83,7 +83,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Run the executable file.
+**Passo 3:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -93,13 +93,13 @@ Experimental Procedures
 
     sudo python3 1.3.2_Servo_zero.py
 
-After the program is executed, the servo will rotate from 0 degrees to 90 to 180 degrees, and then from 180 degrees to 90 to 0 degrees, in a circle.
+Dopo l'esecuzione del programma, il servomotore ruoterà da 0 gradi a 90 fino a 180 gradi, e poi da 180 gradi a 90 fino a 0 gradi, in un ciclo continuo.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. Ma prima, devi andare nella directory del codice come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -112,47 +112,47 @@ After the program is executed, the servo will rotate from 0 degrees to 90 to 180
    from gpiozero import Servo
    from time import sleep
 
-   # Set the GPIO pin number where the servo motor is connected
+   # Imposta il numero di pin GPIO a cui è collegato il servomotore
    myGPIO = 18
 
-   # Define a correction factor to fine-tune servo pulse width
+   # Definisci un fattore di correzione per regolare la larghezza degli impulsi del servo
    myCorrection = 0.45
-   maxPW = (2.0 + myCorrection) / 1000  # Calculate maximum pulse width
-   minPW = (1.0 - myCorrection) / 1000  # Calculate minimum pulse width
+   maxPW = (2.0 + myCorrection) / 1000  # Calcola la larghezza massima degli impulsi
+   minPW = (1.0 - myCorrection) / 1000  # Calcola la larghezza minima degli impulsi
 
-   # Initialize the Servo object with custom pulse widths
+   # Inizializza l'oggetto Servo con larghezze di impulsi personalizzate
    servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
 
    try:
        while True:
-           # Position the servo at the middle and wait
+           # Posiziona il servo al centro e attendi
            servo.mid()
-           print("mid")  # Indicate current position
-           sleep(0.5)    # Brief pause for 0.5 seconds
+           print("mid")  # Indica la posizione attuale
+           sleep(0.5)    # Breve pausa di 0.5 secondi
 
-           # Move the servo to its minimum position and wait
+           # Sposta il servo alla sua posizione minima e attendi
            servo.min()
-           print("min")  # Indicate current position
-           sleep(1)      # Hold position for 1 second
+           print("min")  # Indica la posizione attuale
+           sleep(1)      # Mantieni la posizione per 1 secondo
 
-           # Return the servo to the middle position and wait
+           # Riporta il servo alla posizione centrale e attendi
            servo.mid()
-           print("mid")  # Indicate current position
-           sleep(0.5)    # Brief pause for 0.5 seconds
+           print("mid")  # Indica la posizione attuale
+           sleep(0.5)    # Breve pausa di 0.5 secondi
 
-           # Move the servo to its maximum position and wait
+           # Sposta il servo alla sua posizione massima e attendi
            servo.max()
-           print("max")  # Indicate current position
-           sleep(1)      # Hold position for 1 second
+           print("max")  # Indica la posizione attuale
+           sleep(1)      # Mantieni la posizione per 1 secondo
 
    except KeyboardInterrupt:
-       # Gracefully terminate the script on a keyboard interrupt (Ctrl+C)
+       # Termina in modo sicuro lo script con un'interruzione da tastiera (Ctrl+C)
        pass
     
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-#. These import statements bring in the ``Servo`` class for servo control and the ``sleep`` function for timing.
+#. Questi importano la classe ``Servo`` per il controllo del servo e la funzione ``sleep`` per i ritardi temporali.
 
    .. code-block:: python
 
@@ -160,56 +160,56 @@ After the program is executed, the servo will rotate from 0 degrees to 90 to 180
        from gpiozero import Servo
        from time import sleep
 
-#. Sets the GPIO pin number 18 for connecting the servo motor.
+#. Imposta il numero di pin GPIO 18 per collegare il servomotore.
 
    .. code-block:: python
 
-       # Set the GPIO pin number where the servo motor is connected
+       # Imposta il numero di pin GPIO a cui è collegato il servomotore
        myGPIO = 18
 
-#. These lines define a correction factor and use it to calculate the maximum and minimum pulse widths for the servo, fine-tuning its movement range.
+#. Queste linee definiscono un fattore di correzione e lo utilizzano per calcolare la larghezza massima e minima degli impulsi per il servo, regolando la gamma di movimento.
 
    .. code-block:: python
 
-       # Define a correction factor to fine-tune servo pulse width
+       # Definisci un fattore di correzione per regolare la larghezza degli impulsi del servo
        myCorrection = 0.45
-       maxPW = (2.0 + myCorrection) / 1000  # Calculate maximum pulse width
-       minPW = (1.0 - myCorrection) / 1000  # Calculate minimum pulse width
+       maxPW = (2.0 + myCorrection) / 1000  # Calcola la larghezza massima degli impulsi
+       minPW = (1.0 - myCorrection) / 1000  # Calcola la larghezza minima degli impulsi
 
-#. Initializes the Servo object with the specified GPIO pin and custom pulse widths.
+#. Inizializza l'oggetto Servo con il pin GPIO specificato e larghezze di impulsi personalizzate.
 
    .. code-block:: python
 
-       # Initialize the Servo object with custom pulse widths
+       # Inizializza l'oggetto Servo con larghezze di impulsi personalizzate
        servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
 
-#. The ``try`` block contains a ``while True`` loop to continuously move the servo. The servo is positioned at mid, min, and max points, with each position printed and held for a specified duration.
+#. Il blocco ``try`` contiene un ciclo ``while True`` per muovere continuamente il servo. Il servo viene posizionato a metà, min e max punti, con ciascuna posizione stampata e mantenuta per una durata specificata.
 
    .. code-block:: python
 
        try:
            while True:
-               # Position the servo at the middle and wait
+               # Posiziona il servo al centro e attendi
                servo.mid()
-               print("mid")  # Indicate current position
-               sleep(0.5)    # Brief pause for 0.5 seconds
+               print("mid")  # Indica la posizione attuale
+               sleep(0.5)    # Breve pausa di 0.5 secondi
 
-               # Move the servo to its minimum position and wait
+               # Sposta il servo alla sua posizione minima e attendi
                servo.min()
-               print("min")  # Indicate current position
-               sleep(1)      # Hold position for 1 second
+               print("min")  # Indica la posizione attuale
+               sleep(1)      # Mantieni la posizione per 1 secondo
 
-               # Return the servo to the middle position and wait
+               # Riporta il servo alla posizione centrale e attendi
                servo.mid()
-               print("mid")  # Indicate current position
-               sleep(0.5)    # Brief pause for 0.5 seconds
+               print("mid")  # Indica la posizione attuale
+               sleep(0.5)    # Breve pausa di 0.5 secondi
 
-               # Move the servo to its maximum position and wait
+               # Sposta il servo alla sua posizione massima e attendi
                servo.max()
-               print("max")  # Indicate current position
-               sleep(1)      # Hold position for 1 second
+               print("max")  # Indica la posizione attuale
+               sleep(1)      # Mantieni la posizione per 1 secondo
 
        except KeyboardInterrupt:
-           # Gracefully terminate the script on a keyboard interrupt (Ctrl+C)
+           # Termina in modo sicuro lo script con un'interruzione da tastiera (Ctrl+C)
            pass
 

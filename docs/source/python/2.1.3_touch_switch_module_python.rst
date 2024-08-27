@@ -1,58 +1,60 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.3_py:
 
-2.1.3 Touch Switch Module
-=================================
+2.1.3 Modulo Interruttore a Tocco
+====================================
 
-Introduction
+Introduzione
 -------------------
 
-In this project, you will learn about touch switch module. It can replace the traditional kinds of switch with these advantages: convenient operation, fine touch sense, precise control and least mechanical wear.
+In questo progetto, imparerai a conoscere il modulo interruttore a tocco. Può sostituire 
+i tipi tradizionali di interruttore con questi vantaggi: operazione conveniente, sensazione 
+di tocco delicata, controllo preciso e minore usura meccanica.
 
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/2.1.3component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,23 +69,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
 
-Schematic Diagram
------------------
+Schema Elettrico
+-------------------
 
 .. image:: ../img/2.1.3circuit.png
     :width: 500
     :align: center
 
-Experimental Procedures
+Procedure Sperimentali
 ------------------------------
 
-**Step 1::** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.1.3fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Change directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -93,7 +95,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -103,13 +105,13 @@ Experimental Procedures
 
     sudo python3 2.1.3_TouchSwitch.py
 
-While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
+Mentre il codice è in esecuzione, il LED rosso si accende; quando tocchi il modulo interruttore a tocco, il LED giallo si accende.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -123,57 +125,57 @@ While the code is running, the red LED lights up; when you tap on the touch swit
     import RPi.GPIO as GPIO
     import time
 
-    # Set #17 as touch switch pin, #22 as led1 pin, #27 as led2 pin
+    # Imposta il #17 come pin interruttore a tocco, #22 come pin led1, #27 come pin led2
     touchPin = 17
     led1Pin = 22
     led2Pin = 27
 
-    # Define a setup function for some setup
+    # Definisci una funzione di setup per alcune impostazioni iniziali
     def setup():
-        # Set the GPIO modes to BCM Numbering
+        # Imposta la modalità GPIO su BCM
         GPIO.setmode(GPIO.BCM)
-        # Set touchPin input
-        # Set ledPin output, 
-        # and initial level to High(3.3v)
+        # Imposta touchPin come input
+        # Imposta ledPin come output, 
+        # e il livello iniziale su Alto (3.3v)
         GPIO.setup(touchPin, GPIO.IN)
         GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.HIGH)
         GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.HIGH)
 
-    # Define a main function for main process
+    # Definisci una funzione main per il processo principale
     def main():
         while True:
-            # touch switch high, led1 on
+            # interruttore a tocco alto, led1 acceso
             if GPIO.input(touchPin) == 1:
                 print ('You touch it!')
                 GPIO.output(led1Pin, GPIO.LOW)
                 GPIO.output(led2Pin, GPIO.HIGH)
 
-            # touch switch low, led2 on
+            # interruttore a tocco basso, led2 acceso
             if GPIO.input(touchPin) == 0:
                 GPIO.output(led2Pin, GPIO.LOW)
                 GPIO.output(led1Pin, GPIO.HIGH)
 
             time.sleep(0.5)
-    # Define a destroy function for clean up everything after
-    # the script finished 
+    # Definisci una funzione destroy per pulire tutto dopo
+    # la fine dello script 
     def destroy():
-        # Turn off LED
+        # Spegni il LED
         GPIO.output(led1Pin, GPIO.HIGH)
         GPIO.output(led2Pin, GPIO.HIGH)
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup()                     
 
-    # If run this script directly, do:
+    # Se esegui questo script direttamente, fai:
     if __name__ == '__main__':
         setup()
         try:
             main()
-        # When 'Ctrl+C' is pressed, the program 
-        # destroy() will be  executed.
+        # Quando viene premuto 'Ctrl+C', il programma 
+        # destroy() verrà eseguito.
         except KeyboardInterrupt:
             destroy()	
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
     
@@ -181,8 +183,8 @@ While the code is running, the red LED lights up; when you tap on the touch swit
     led1Pin = 22
     led2Pin = 27
 
-``touchPin``, ``led1Pin`` and ``led2Pin`` connects to the GPIO17, GPIO22 and GPIO27,
-namely BCM17, BCM22 and BCM27.
+``touchPin``, ``led1Pin`` e ``led2Pin`` sono collegati rispettivamente a GPIO17, GPIO22 e GPIO27,
+ossia BCM17, BCM22 e BCM27.
 
 .. code-block:: python
 
@@ -191,27 +193,27 @@ namely BCM17, BCM22 and BCM27.
 	GPIO.setup(led1Pin, GPIO.OUT, initial=GPIO.HIGH)
 	GPIO.setup(led2Pin, GPIO.OUT, initial=GPIO.HIGH)
 
-Set the GPIO modes to BCM Numbering. Set ``led1Pin``, ``led2Pin`` to output mode 
-and initial their level to High (3.3v).
+Imposta la modalità GPIO su BCM Numbering. Imposta ``led1Pin`` e ``led2Pin`` su modalità output 
+e imposta il loro livello iniziale su Alto (3.3v).
 
 .. code-block:: python
 
-    # touch switch high, led1 on
+    # interruttore a tocco alto, led1 acceso
     if GPIO.input(touchPin) == 1:
         print ('You touch it!')
         GPIO.output(led1Pin, GPIO.LOW)
         GPIO.output(led2Pin, GPIO.HIGH)
 
-    # touch switch low, led2 on
+    # interruttore a tocco basso, led2 acceso
     if GPIO.input(touchPin) == 0:
         GPIO.output(led2Pin, GPIO.LOW)
         GPIO.output(led1Pin, GPIO.HIGH)
 
-When you tap on the touch switch module, ``touchPin`` is high, led1 will light up and print \"You touch it!\". When touchPin is low, led2 will light up.
+Quando tocchi il modulo interruttore a tocco, ``touchPin`` sarà alto, led1 si accenderà e stamperà \"Hai toccato!\". Quando ``touchPin`` è basso, led2 si accenderà.
 
 
-**Phenomenon Picture**
-------------------------
+**Immagine del Fenomeno**
+-------------------------------
 
 .. image:: ../img/2.1.3touch_switch_module.JPG
     :width: 500

@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.6_js:
 
-2.2.6 Speed Sensor Module
-=========================
+2.2.6 Modulo Sensore di Velocità
+====================================
 
-Introduction
-------------------
+Introduzione
+--------------------
 
-In this project, we will learn the use of the speed sensor module. A Speed sensor module is a type of tachometer that is used to measure the speed of a rotating object like a motor.
+In questo progetto, impareremo a utilizzare il modulo sensore di velocità. Un modulo sensore di velocità è un tipo di tachimetro utilizzato per misurare la velocità di un oggetto rotante, come un motore.
 
-Required Components
-------------------------------
+Componenti necessari
+--------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.2.6component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,34 +66,33 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_speed_sensor`
         - \-
 
-Schematic Diagram
------------------------
+Schema elettrico
+--------------------
 
 .. image:: ../img/2.2.6circuit.png
     :width: 400
     :align: center
 
-Experimental Procedures
-------------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
    <run></run>
 
 .. code-block::
-    
+
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -103,10 +102,11 @@ Experimental Procedures
 
     sudo node speed_sensor_module.js
 
-After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
-Remove the obstacle and the green LED will light up again.
+Dopo l'esecuzione del codice, il LED verde si accenderà. Se inserisci un 
+ostacolo nel sensore di velocità, verrà stampato sullo schermo "light blocked" 
+e si accenderà il LED rosso. Rimuovi l'ostacolo e il LED verde si riaccenderà.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -135,16 +135,13 @@ Remove the obstacle and the green LED will light up again.
         process.exit();
     });
 
-**Code Explanation**
+**Spiegazione del codice**
 
-The code of this example is almost the same as :ref:`2.1.5_js`, so no need to repeat it.
+Il codice di questo esempio è quasi identico a :ref:`2.1.5_js`, quindi non è necessario ripeterlo.
 
-
-
-Phenomenon Picture
------------------------
+Immagine del fenomeno
+-------------------------
 
 .. image:: ../img/2.2.6photo_interrrupter.JPG
-   :width: 500
-   :align: center
-
+    :width: 500
+    :align: center

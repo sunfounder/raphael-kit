@@ -1,51 +1,51 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _clickable_color_blocks:
 
-Clickable Color Blocks
-=======================
+Blocchi di Colore Cliccabili
+=================================
 
-We've already tried drawing a clickable dot to control the LED, so let's take it a step further and draw 3 colored squares to adjust the RGB colors!
+Abbiamo già provato a disegnare un punto cliccabile per controllare il LED, quindi facciamo un passo avanti e disegniamo 3 quadrati colorati per regolare i colori RGB!
 
 .. image:: img/colorful_square.png
 
-**Required Components**
+**Componenti Necessari**
 
-In this project, we need the following components.
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -56,7 +56,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rgb_led`
         - |link_rgb_led_buy|
 
-**Wiring**
+**Cablatura**
 
 .. image:: img/image61.png
 
@@ -64,7 +64,7 @@ You can also buy them separately from the links below.
 
 .. code-block:: arduino
 
-    import processing.io.*; // use the GPIO library
+    import processing.io.*; // usa la libreria GPIO
 
     int[] pins = { 17, 18, 27 };
 
@@ -101,13 +101,13 @@ You can also buy them separately from the links below.
     }
 
 
-**How it works?**
+**Come funziona?**
 
-This project has a lot in common with :ref:`clickable_dot`, except that it refines the conditions for determining mouse click event.
+Questo progetto ha molto in comune con :ref:`clickable_dot`, tranne che raffina le condizioni per determinare l'evento del click del mouse.
 
-First draw three color blocks in ``draw()``, then get which color block was clicked based on the value of mouseX (the X-axis coordinate of the mouse), and finally make RGB light up the corresponding color.
+Prima disegna tre blocchi di colore in ``draw()``, poi ottieni quale blocco è stato cliccato in base al valore di mouseX (la coordinata sull'asse X del mouse), e infine accendi il colore corrispondente sul LED RGB.
 
-**What more?**
+**Cos'altro?**
 
-Based on the addition of light, we can make RGB LED display seven colors - adding red to green produces yellow; adding all three primary colors together produces white.
-Now you can try it out for yourself.
+Basandosi sull'aggiunta di luce, possiamo far sì che il LED RGB mostri sette colori: aggiungendo rosso e verde si ottiene il giallo; aggiungendo tutti e tre i colori primari insieme si ottiene il bianco.
+Ora puoi provarlo tu stesso.

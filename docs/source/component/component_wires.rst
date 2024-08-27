@@ -1,45 +1,43 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _cpn_wires:
 
-Jumper Wires
+Cavi Jumper
 =====================
 
-Wires that connect two terminals are called jumper wires. There are
-various kinds of jumper wires. Here we focus on those used in
-breadboard. Among others, they are used to transfer electrical signals
-from anywhere on the breadboard to the input/output pins of a
-microcontroller.
+I cavi che collegano due terminali sono chiamati cavi jumper. Esistono vari tipi di cavi 
+jumper. Qui ci concentriamo su quelli utilizzati nella breadboard. Tra le altre cose, 
+vengono utilizzati per trasferire segnali elettrici da qualsiasi punto della breadboard 
+ai pin di ingresso/uscita di un microcontrollore.
 
-Jump wires are fitted by inserting their "end connectors" into the slots
-provided in the breadboard, beneath whose surface there are a few sets
-of parallel plates that connect the slots in groups of rows or columns
-depending on the area. The "end connectors" are inserted into the
-breadboard, without soldering, in the particular slots that need to be
-connected in the specific prototype.
+I cavi jumper vengono inseriti nelle fessure apposite della breadboard, sotto la cui 
+superficie ci sono alcuni set di piastre parallele che collegano le fessure in gruppi 
+di righe o colonne a seconda dell'area. I connettori alle estremità vengono inseriti 
+nella breadboard, senza saldature, nelle fessure specifiche che devono essere collegate 
+nel prototipo specifico.
 
-There are three types of jumper wire: Female-to-Female, Male-to-Male,
-and Male-to-Female. The reason we call it Male-to-Female is because it
-has the outstanding tip in one end as well as a sunk female end.
-Male-to-Male means both side are male and Female-to-Female means both
-ends are female.
+Esistono tre tipi di cavi jumper: Femmina-Femmina, Maschio-Maschio e Maschio-Femmina. 
+Il motivo per cui li chiamiamo Maschio-Femmina è perché hanno un'estremità sporgente 
+da un lato e un'estremità incassata dall'altro. Maschio-Maschio significa che entrambe 
+le estremità sono maschili, mentre Femmina-Femmina significa che entrambe le estremità 
+sono femminili.
 
 .. image:: img/Jumper_Wires.png
 
 
-More than one type of them may be used in a project. The color of the
-jump wires is different but it doesn’t mean their function is different
-accordingly; it's just designed so to better identify the connection
-between each circuit.
+Possono essere utilizzati più tipi di cavi in un progetto. Il colore dei cavi jumper è 
+diverso ma non significa che la loro funzione sia differente; è semplicemente progettato 
+così per identificare meglio le connessioni tra i vari circuiti.
+

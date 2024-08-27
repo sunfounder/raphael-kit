@@ -1,45 +1,43 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti Esclusivi**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni festive e giveaway.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 34: Creating a Python Class and Library for Reading a Keypad
+Video 34: Creare una Classe e Libreria Python per Leggere una Tastiera a Membrana
 =======================================================================================
 
+Questo tutorial copre il processo di creazione di una classe Python per leggere gli input di una tastiera a membrana collegata a un Raspberry Pi. 
+Inizia con un'introduzione alla serie di tutorial sul Raspberry Pi sponsorizzata da SunFounder. 
+Viene spiegata la configurazione hardware, dettagliando i collegamenti della tastiera usando i pin GPIO. 
+Il video prosegue con una guida passo-passo per creare una classe "keypad" per gestire la funzionalità della tastiera, 
+includendo metodi di inizializzazione e configurazione dei pin GPIO all'interno della classe. 
+Viene implementato il metodo per leggere gli input dalla tastiera scansionando righe e colonne. 
+Inoltre, il video discute la logica del codice, la rilevazione delle pressioni dei tasti per prevenire input ripetuti, 
+la concatenazione dei caratteri di input, la configurazione dei caratteri di ritorno, 
+e la creazione di una libreria Python riutilizzabile che racchiude la funzionalità della tastiera. 
+Vengono esplorate anche potenziali applicazioni oltre l'input della tastiera, come l'integrazione con display LCD e telecamere.
 
-This tutorial covers the process of creating a Python class to read input from a keypad connected to a Raspberry Pi. 
-It begins with an introduction to the Raspberry Pi tutorial series sponsored by SunFounder. 
-The hardware setup is explained, detailing the connections of the keypad using GPIO pins. 
-The video then walks through the step-by-step process of creating a "keypad" class to manage keypad functionality, 
-including initialization methods and GPIO pin configuration within the class. 
-The method for reading input from the keypad by scanning rows and columns is implemented. 
-Additionally, the video discusses code logic, button press detection to prevent repeated inputs, 
-concatenation of input characters, configuration of return characters, 
-and the creation of a reusable Python library encapsulating keypad functionality. 
-Potential applications beyond keypad input, such as integration with LCD displays and cameras, are also explored.
-
-
-1. Introduction to the Raspberry Pi tutorial series sponsored by SunFounder.
-2. Explanation of keypad hardware connections using GPIO pins.
-3. Step-by-step guide to creating a "keypad" class for managing keypad functionality.
-4. Details on initializing the keypad object with default parameters.
-5. Configuration of GPIO pins within the class for interacting with the keypad hardware.
-6. Implementation of a method to read input from the keypad by scanning rows and columns.
-7. Understanding the step-by-step logic behind building a keypad input system.
-8. Techniques for detecting button presses and preventing repeated inputs.
-9. Concatenating input characters to form a string for processing.
-10. Configuring the return character for keypad inputs.
-11. Creating a reusable Python library encapsulating keypad functionality.
-12. Exploring potential applications beyond keypad input, such as integrating with LCD displays and cameras.
+1. Introduzione alla serie di tutorial sul Raspberry Pi sponsorizzata da SunFounder.
+2. Spiegazione dei collegamenti hardware della tastiera usando i pin GPIO.
+3. Guida passo-passo per creare una classe "keypad" per gestire la funzionalità della tastiera.
+4. Dettagli sull'inizializzazione dell'oggetto tastiera con parametri predefiniti.
+5. Configurazione dei pin GPIO all'interno della classe per interagire con l'hardware della tastiera.
+6. Implementazione di un metodo per leggere l'input dalla tastiera scansionando righe e colonne.
+7. Comprendere la logica passo-passo dietro la costruzione di un sistema di input della tastiera.
+8. Tecniche per rilevare la pressione dei tasti e prevenire input ripetuti.
+9. Concatenare i caratteri di input per formare una stringa da elaborare.
+10. Configurare il carattere di ritorno per gli input della tastiera.
+11. Creare una libreria Python riutilizzabile che racchiude la funzionalità della tastiera.
+12. Esplorare potenziali applicazioni oltre l'input della tastiera, come l'integrazione con display LCD e telecamere.
 
 
 **Video**

@@ -1,58 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.4_js:
 
-2.1.4 Slide Switch
-==================
+2.1.4 Interruttore a Scorrimento
+=======================================
 
-Introduction
-------------
+Introduzione
+-------------------
 
-In this project, we will learn how to use a slide switch. Usually,the
-slide switch is soldered on PCB as a power switch, but here we need to
-insert it into the breadboard, thus it may not be tightened. And we use
-it on the breadboard to show its function.
+In questo progetto, impareremo a usare un interruttore a scorrimento. 
+Solitamente, l'interruttore a scorrimento viene saldato su PCB come 
+interruttore di alimentazione, ma qui dobbiamo inserirlo nella breadboard, 
+quindi potrebbe non essere ben fissato. Lo usiamo sulla breadboard per 
+mostrare il suo funzionamento.
 
-Required Components
-------------------------------
+Componenti necessari
+--------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_2.1.2_slide_switch.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,12 +70,12 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+------------------------
 
-Connect the middle pin of the Slide Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you pull the slide, you
-can see the two LEDs light up alternately.
+Collega il pin centrale dell'interruttore a scorrimento a GPIO17 e due LED 
+rispettivamente ai pin GPIO22 e GPIO27. Poi, quando fai scorrere l'interruttore, 
+vedrai i due LED accendersi alternativamente.
 
 .. image:: ../img/image305.png
 
@@ -82,14 +83,14 @@ can see the two LEDs light up alternately.
 .. image:: ../img/image306.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image161.png
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -99,7 +100,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -109,10 +110,10 @@ Experimental Procedures
 
     sudo node slide_switch.js
 
-While the code is running, get the switch connected to the left, then
-the yellow LED lights up; to the right, the red light turns on.
+Mentre il codice è in esecuzione, collega l'interruttore a sinistra, 
+il LED giallo si accenderà; collegalo a destra, si accenderà il LED rosso.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -133,7 +134,8 @@ the yellow LED lights up; to the right, the red light turns on.
     });
 
 
-**Code Explanation**
+Spiegazione del Codice
+---------------------------------
 
 .. code-block:: js
 
@@ -148,8 +150,9 @@ the yellow LED lights up; to the right, the red light turns on.
         edge: Gpio.EITHER_EDGE        
     });
 
-Import the pigpio module, and create three objects led1, led2, slideSwitch, 
-and control the on and off of led1 and led2 by reading the level of the slideSwitch IO port.   
+Importa il modulo pigpio, crea tre oggetti led1, led2 e slideSwitch,
+e controlla l'accensione e lo spegnimento di led1 e led2 leggendo il 
+livello della porta IO di slideSwitch.
 
 .. code-block:: js
 
@@ -158,12 +161,11 @@ and control the on and off of led1 and led2 by reading the level of the slideSwi
         led2.digitalWrite(!level);       
     });
 
-When the read level of the slideSwitch IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Quando il livello della porta IO di slideSwitch cambia,
+scrivi lo stesso livello su led1 e il livello opposto su led2.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+------------------------------
 
 .. image:: ../img/image162.jpeg
-
 

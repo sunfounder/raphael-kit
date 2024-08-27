@@ -1,40 +1,40 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _cpn_humiture_sensor:
 
-Humiture Sensor Module
+Modulo Sensore di Umidità e Temperatura
 =============================
 
 .. image:: img/dht11_pic.png
     :width: 400
     :align: center
 
-The digital temperature and humidity sensor DHT11 is a composite sensor that contains a calibrated digital signal output of temperature and humidity. 
-The technology of a dedicated digital modules collection and the temperature and humidity sensing technology are applied to ensure that the product has high reliability and excellent long-term stability.
+Il sensore digitale di temperatura e umidità DHT11 è un sensore composito che contiene un'uscita di segnale digitale calibrata di temperatura e umidità.
+La tecnologia di raccolta dei moduli digitali dedicati e la tecnologia di rilevamento della temperatura e dell'umidità sono applicate per garantire un'elevata affidabilità e un'eccellente stabilità a lungo termine.
 
-
-Only three pins are available for use: VCC, GND, and DATA. 
-The communication process begins with the DATA line sending start signals to DHT11, and DHT11 receives the signals and returns an answer signal. 
-Then the host receives the answer signal and begins to receive 40-bit humiture data (8-bit humidity integer + 8-bit humidity decimal + 8-bit temperature integer + 8-bit temperature decimal + 8-bit checksum).
+Sono disponibili solo tre pin per l'uso: VCC, GND e DATA.
+Il processo di comunicazione inizia con la linea DATA che invia segnali di avvio al DHT11, il quale riceve i segnali e restituisce un segnale di risposta.
+Quindi l'host riceve il segnale di risposta e inizia a ricevere i dati di umidità e temperatura a 40 bit (8 bit di umidità intera + 8 bit di umidità decimale + 8 bit di temperatura intera + 8 bit di temperatura decimale + 8 bit di checksum).
 
 .. image:: img/Dht11.png
 
 
 * `DHT11 Datasheet <https://components101.com/sites/default/files/component_datasheet/DHT11-Temperature-Sensor.pdf>`_
 
-**Example**
+**Esempio**
+
 
 * :ref:`2.2.3_c` (C Project)
 * :ref:`2.2.3_py` (Python Project)

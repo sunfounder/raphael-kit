@@ -1,60 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Immergiti più a fondo in Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.3_c_pi5:
 
-2.1.3 Touch Switch Module
-====================================
+2.1.3 Modulo Interruttore Touch
+======================================
 
-Introduction
+Introduzione
 -------------------
 
-In this project, you will learn about touch switch module. It can replace 
-the traditional kinds of switch with these advantages: convenient operation, 
-fine touch sense, precise control and least mechanical wear.
+In questo progetto imparerai a conoscere il modulo interruttore touch. Può sostituire 
+i tipi di interruttore tradizionali con questi vantaggi: operazione conveniente, 
+sensazione al tocco raffinata, controllo preciso e minima usura meccanica.
 
-
-Required Components
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.1.3component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,23 +68,23 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_touch_switch`
         - |link_touch_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+---------------------
 
 .. image:: ../img/2.1.3circuit.png
     :width: 500
     :align: center
 
-Experimental Procedures
-------------------------------
+Procedure sperimentali
+---------------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.1.3fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Change directory.
+**Passo 2:** Cambia la directory.
 
 .. raw:: html
 
@@ -95,7 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.3/
 
-**Step 3:** Compile.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -105,7 +104,7 @@ Experimental Procedures
 
     gcc 2.1.3_TouchSwitch.c -lwiringPi
 
-**Step 4:** Run.
+**Passo 4:** Esegui.
 
 .. raw:: html
 
@@ -115,13 +114,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
+Durante l'esecuzione del codice, il LED rosso si accende; quando tocchi il modulo interruttore touch, il LED giallo si accende.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -134,7 +133,7 @@ While the code is running, the red LED lights up; when you tap on the touch swit
 
     int main(void)
     {
-        // When initialize wiring failed, print message to screen
+        // Se l'inizializzazione di wiring fallisce, stampa un messaggio sullo schermo
         if(wiringPiSetup() == -1){
             printf(etup w"siringPi failed !");
             return 1; 
@@ -145,13 +144,13 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         pinMode(led2, OUTPUT);
         
         while(1){
-            // touch switch high, led1 on
+            // interruttore touch alto, led1 acceso
             if(digitalRead(touchPin) == 1){
                 digitalWrite(led1, LOW);
                 digitalWrite(led2, HIGH);
                 printf("You touch it! \r\n");
             }
-            // touch switch low, led2 on
+            // interruttore touch basso, led2 acceso
             if(digitalRead(touchPin) == 0){
                 digitalWrite(led2, LOW);
                 digitalWrite(led1, HIGH);
@@ -161,7 +160,7 @@ While the code is running, the red LED lights up; when you tap on the touch swit
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del codice**
 
 .. code-block:: c
 
@@ -169,9 +168,9 @@ While the code is running, the red LED lights up; when you tap on the touch swit
     #define led1		   3
     #define led2 		   2
     
-Pin GPIO17, GPIO22 and GPIO27 of the T_Extension Board is corresponding to 
-the GPIO0, GPIO3 and GPIO2 in wiringPi. Assign GPIO0, GPIO3 and GPIO2 to 
-``touchPin``, ``led1`` and ``led2``. 
+I pin GPIO17, GPIO22 e GPIO27 della scheda di espansione T corrispondono ai 
+GPIO0, GPIO3 e GPIO2 in wiringPi. Assegna GPIO0, GPIO3 e GPIO2 a ``touchPin``, 
+``led1`` e ``led2``.
 
 .. code-block:: c
 
@@ -179,30 +178,28 @@ the GPIO0, GPIO3 and GPIO2 in wiringPi. Assign GPIO0, GPIO3 and GPIO2 to
     pinMode(led1, OUTPUT);
     pinMode(led2, OUTPUT);
 
-Set ``led1``, ``led2`` as output to write value to them and set ``touchPin`` as input to
-read value from it.
+Imposta ``led1`` e ``led2`` come output per scrivere valori su di essi e imposta ``touchPin`` come input per leggere il valore.
 
 .. code-block:: c
 
     while(1){
-        // touch switch high, led1 on
-            if(digitalRead(touchPin) == 1){
+        // interruttore touch alto, led1 acceso
+        if(digitalRead(touchPin) == 1){
             digitalWrite(led1, LOW);
             digitalWrite(led2, HIGH);
             printf("You touch it! \r\n");
         }
-        // touch switch low, led2 on
+        // interruttore touch basso, led2 acceso
         if(digitalRead(touchPin) == 0){
             digitalWrite(led2, LOW);
             digitalWrite(led1, HIGH);
         }
     }
 
-Set an infinite loop, when you tap on the touch switch module, ``touchPin`` is high, led1 will light up and print "You touch it!" . When touchPin is low, led2 will light up.
+Imposta un ciclo infinito, quando tocchi il modulo interruttore touch, ``touchPin`` è alto, led1 si accenderà e verrà stampato "Lo hai toccato!". Quando ``touchPin`` è basso, il led2 si accenderà.
 
-
-Phenomenon Picture
-------------------------
+Immagine del fenomeno
+----------------------------
 
 .. image:: ../img/2.1.3touch_switch_module.JPG
     :width: 500

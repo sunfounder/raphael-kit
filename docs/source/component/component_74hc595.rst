@@ -1,16 +1,16 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _cpn_74hc595:
 
@@ -19,38 +19,35 @@
 
 .. image:: img/74HC595.png
 
-The 74HC595 consists of an 8−bit shift register and a storage register with three−state parallel outputs. It converts serial input into parallel output so you can save IO ports of an MCU.
-When MR (pin10) is high level and OE (pin13) is low level, data is input in the rising edge of SHcp and goes to the memory register through the rising edge of SHcp. If the two clocks are connected together, the shift register is always one pulse earlier than the memory register. There is a serial shift input pin (Ds), a serial output pin (Q) and an asynchronous reset button (low level) in the memory register. The memory register outputs a Bus with a parallel 8-bit and in three states. When OE is enabled (low level), the data in memory register is output to the bus.
+Il 74HC595 è composto da un registro a scorrimento a 8 bit e un registro di memoria con uscite parallele a tre stati. Converte l'ingresso seriale in uscita parallela in modo da poter risparmiare le porte IO di un microcontrollore.
+Quando MR (pin 10) è a livello alto e OE (pin 13) è a livello basso, i dati vengono inseriti sul fronte di salita di SHcp e vanno al registro di memoria attraverso il fronte di salita di SHcp. Se i due clock sono collegati insieme, il registro a scorrimento è sempre un impulso avanti rispetto al registro di memoria. Nel registro di memoria è presente un pin di ingresso a scorrimento seriale (Ds), un pin di uscita seriale (Q) e un pulsante di reset asincrono (livello basso). Il registro di memoria fornisce un Bus parallelo a 8 bit in tre stati. Quando OE è attivo (livello basso), i dati nel registro di memoria vengono inviati al bus.
 
-* `74HC595 Datasheet <https://www.ti.com/lit/ds/symlink/cd74hc595.pdf?ts=1617341564801>`_
+* `Scheda tecnica del 74HC595 <https://www.ti.com/lit/ds/symlink/cd74hc595.pdf?ts=1617341564801>`_
 
 .. image:: img/74hc595_pin.png
     :width: 600
 
-Pins of 74HC595 and their functions:
+Pin del 74HC595 e le loro funzioni:
 
-* **Q0-Q7**: 8-bit parallel data output pins, able to control 8 LEDs or 8 pins of 7-segment display directly.
-* **Q7’**: Series output pin, connected to DS of another 74HC595 to connect multiple 74HC595s in series
-* **MR**: Reset pin, active at low level; 
-* **SHcp**: Time sequence input of shift register. On the rising edge, the data in shift register moves successively one bit, i.e. data in Q1 moves to Q2, and so forth. While on the falling edge, the data in shift register remain unchanged.
-* **STcp**: Time sequence input of storage register. On the rising edge, data in the shift register moves into memory register.
-* **CE**: Output enable pin, active at low level. 
-* **DS**: Serial data input pin
-* **VCC**: Positive supply voltage.
-* **GND**: Ground.
+* **Q0-Q7**: Pin di uscita dati paralleli a 8 bit, in grado di controllare direttamente 8 LED o 8 pin di un display a 7 segmenti.
+* **Q7’**: Pin di uscita seriale, collegato a DS di un altro 74HC595 per connettere più 74HC595 in serie.
+* **MR**: Pin di reset, attivo a livello basso.
+* **SHcp**: Ingresso della sequenza temporale del registro a scorrimento. Sul fronte di salita, i dati nel registro a scorrimento si spostano successivamente di un bit, cioè i dati in Q1 si spostano su Q2, e così via. Sul fronte di discesa, i dati nel registro a scorrimento rimangono invariati.
+* **STcp**: Ingresso della sequenza temporale del registro di memoria. Sul fronte di salita, i dati nel registro a scorrimento si spostano nel registro di memoria.
+* **CE**: Pin di abilitazione dell'uscita, attivo a livello basso.
+* **DS**: Pin di ingresso dati seriali.
+* **VCC**: Tensione di alimentazione positiva.
+* **GND**: Massa.
 
-**Example**
+**Esempio**
 
-* :ref:`1.1.4_c` (C Project)
-* :ref:`1.1.5_c` (C Project)
-* :ref:`3.1.1_c` (C Project)
-* :ref:`3.1.6_c` (C Project)
-* :ref:`3.1.12_c` (C Project)
-* :ref:`1.1.4_py` (Python Project)
-* :ref:`1.1.5_py` (Python Project)
-* :ref:`4.1.7_py` (Pyhton Project)
-* :ref:`4.1.12_py` (Python Project)
-* :ref:`4.1.18_py` (Pyhton Project)
-
-
-
+* :ref:`1.1.4_c` (Progetto in C)
+* :ref:`1.1.5_c` (Progetto in C)
+* :ref:`3.1.1_c` (Progetto in C)
+* :ref:`3.1.6_c` (Progetto in C)
+* :ref:`3.1.12_c` (Progetto in C)
+* :ref:`1.1.4_py` (Progetto in Python)
+* :ref:`1.1.5_py` (Progetto in Python)
+* :ref:`4.1.7_py` (Progetto in Python)
+* :ref:`4.1.12_py` (Progetto in Python)
+* :ref:`4.1.18_py` (Progetto in Python)

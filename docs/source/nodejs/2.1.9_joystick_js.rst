@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.9_js:
 
 2.1.9 Joystick
-==============
+================
 
-Introduction
-------------
+Introduzione
+----------------
 
-In this project, We're going to learn how joystick works. We manipulate
-the Joystick and display the results on the screen.
+In questo progetto, impareremo come funziona il joystick. Manipoleremo 
+il joystick e visualizzeremo i risultati sullo schermo.
 
-Required Components
-------------------------------
+Componenti necessari
+-----------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/image317.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,13 +65,14 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
------------------
+Schema elettrico
+---------------------
 
-When the data of joystick is read, there are some differents between
-axis: data of X and Y axis is analog, which need to use ADC0834 to
-convert the analog value to digital value. Data of Z axis is digital, so
-you can directly use the GPIO to read, or you can also use ADC to read.
+Quando si leggono i dati del joystick, ci sono alcune differenze tra gli assi: i 
+dati degli assi X e Y sono analogici, il che richiede l'uso dell'ADC0834 per 
+convertire il valore analogico in valore digitale. I dati dell'asse Z sono digitali, 
+quindi è possibile leggerli direttamente utilizzando il GPIO, oppure è possibile 
+utilizzare l'ADC per leggerli.
 
 .. image:: ../img/image319.png
 
@@ -79,14 +80,14 @@ you can directly use the GPIO to read, or you can also use ADC to read.
 .. image:: ../img/image320.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+---------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image193.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -96,7 +97,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3:** Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -106,10 +107,10 @@ Experimental Procedures
 
     sudo node joystick.js
 
-After the code runs, turn the Joystick, then the corresponding values of
-x, y, Btn are displayed on screen.
+Dopo l'esecuzione del codice, muovi il joystick e i valori corrispondenti 
+di x, y, Btn verranno visualizzati sullo schermo.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -131,15 +132,14 @@ x, y, Btn are displayed on screen.
         console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
     }, 100);
 
-
-
-**Code Explanation**
+Spiegazione del Codice
+------------------------------
 
 .. code-block:: js
 
     const ADC0834 = require('./adc0834.js').ADC0834;
 
-We import an ``ADC0834`` constructor to use the adc0834 module.
+Importiamo un costruttore ``ADC0834`` per utilizzare il modulo adc0834.
 
 .. code-block:: js
 
@@ -152,19 +152,15 @@ We import an ``ADC0834`` constructor to use the adc0834 module.
         console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
     }, 100);
 
-
-When reading the values of multiple channels of ADC0834 at the same time, asynchronous programming is required.
-We build a promise function here,
-And use the await instruction of async function to elegantly write this complex asynchronous task.
+Quando si leggono i valori di più canali dell'ADC0834 contemporaneamente, è necessaria la programmazione asincrona.
+Costruiamo qui una funzione promise,
+E utilizziamo l'istruzione await della funzione async per scrivere in modo elegante questo compito asincrono complesso.
 
 * `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 * `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
 
-
-
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+-----------------------
 
 .. image:: ../img/image194.jpeg
-
 

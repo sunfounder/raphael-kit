@@ -1,55 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino e ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime esclusive.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e Giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _blynk_reed_py:
 
-Door Window Sensor
-==================
+Sensore Porta/Finestra
+=========================
 
-When you're outside, you've probably had this confusion. "Are the doors and windows of my house closed?"
+Quando sei fuori casa, ti sei probabilmente chiesto: "Le porte e le finestre di casa mia sono chiuse?"
 
-To solve this problem, in this project, we will build a door and window sensor with Reed Switch and magnets.
+Per risolvere questo problema, in questo progetto costruiremo un sensore per porte e finestre utilizzando un interruttore Reed e magneti.
 
-Install this sensor and magnet on both sides of the door or window. You will be able to check whether your doors and windows are closed or not from the Blynk APP on your phone.
+Installa questo sensore e magnete su entrambi i lati della porta o della finestra. Potrai verificare se le tue porte e finestre sono chiuse o meno tramite l'app Blynk sul tuo telefono.
 
-.. note:: Before starting this project, we recommend that you complete :ref:`bk_start_py`. The following will give you a clear understanding of Blynk.
+.. note:: Prima di iniziare questo progetto, ti consigliamo di completare :ref:`bk_start_py`. Di seguito troverai una spiegazione chiara di Blynk.
 
-**Required Components**
+**Componenti necessari**
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un intero kit, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link seguenti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK DI ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,32 +61,31 @@ You can also buy them separately from the links below.
         - |link_reed_switch_buy|
 
 
-
-**1. Wiring**
+**1. Collegamenti**
 
 .. image:: img/wiring_blynk_reed.png
 
-**2. Create Datastream**
+**2. Crea Datastream**
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Clicca sull'icona del menu in alto a destra e seleziona modifica dashboard.
 
     .. image:: img/sp220913_180231.png
 
-2. Go to the Datastreams page and create a New Datastream.
+2. Vai alla pagina dei Datastream e crea un nuovo Datastream.
 
     .. image:: img/sp220914_165911.png
 
-3. Create a Virtual Pin V4.
+3. Crea un Virtual Pin V4.
 
     .. image:: img/sp220914_170113.png
 
-#. When finished, click Save And Apply at the top right.
+#. Al termine, clicca su Salva e Applica in alto a destra.
 
     .. image:: img/sp220913_182300.png
 
-**3. Run the Code**
+**3. Esegui il Codice**
 
-1. Edit the code
+1. Modifica il codice
 
 .. raw:: html
 
@@ -97,13 +96,13 @@ You can also buy them separately from the links below.
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_reed.py
 
-2. Find the line below and past your ``BLYNK_AUTH_TOKEN``.
+2. Trova la seguente linea e incolla il tuo ``BLYNK_AUTH_TOKEN``.
 
 .. code-block:: python
 
     BLYNK_AUTH = 'YourAuthToken'
 
-3. Run the code.
+3. Esegui il codice.
 
 .. raw:: html
 
@@ -113,30 +112,26 @@ You can also buy them separately from the links below.
 
     sudo python3 blynk_reed.py
 
-**4. Open Blynk APP**
+**4. Apri l'APP Blynk**
 
 .. note::
 
-    As datastreams can only be created in Blynk on the web, you will need to reference different projects to create datastreams on the web, then follow the tutorial below to create widgets in Blynk on your mobile device.
+    Poiché i datastream possono essere creati solo su Blynk tramite web, sarà necessario fare riferimento a diversi progetti per creare i datastream sul web, quindi seguire il tutorial di seguito per creare i widget in Blynk sul tuo dispositivo mobile.
 
-#. Open Google Play or APP Store on your mobile device and search for "Blynk IoT" (not Blynk(legacy)) to download.
-#. After opening the APP, login in, this account should be the same as the account used on the web client.
-#. Then go to **Dashboard** (if you don't have one, create one) and you will see that the **Dashboard** for mobile and web are independent of each other.
+#. Apri Google Play o l'APP Store sul tuo dispositivo mobile e cerca "Blynk IoT" (non Blynk(legacy)) per scaricarlo.
+#. Dopo aver aperto l'APP, accedi con lo stesso account usato nel client web.
+#. Vai su **Dashboard** (se non ne hai uno, creane uno) e vedrai che i **Dashboard** per dispositivi mobili e web sono indipendenti l'uno dall'altro.
 
     .. image:: img/APP_1.jpg
 
-
-#. Click **Edit** Icon.
-#. Click on the blank area. 
-#. Choose **LED** widget.
+#. Clicca sull'icona **Modifica**.
+#. Clicca sull'area vuota. 
+#. Scegli il widget **LED**.
 
     .. image:: img/APP_2.jpg      
 
-
-#. Now you will see a **LED** widget appear in the blank area, even if it looks like a blank grid, click on it.
-#. **LED** Settings will appear, select the **V4** datastreams you just set in the web page. Note that each widget corresponds to a different datastream in each project.
-#. Go back to the **Dashboard** page. Now if you see that the **LED** widget is filled with color, your door or window is open; if the **LED** widget is not filled with color, the door or window is closed.
+#. Ora vedrai il widget **LED** nell'area vuota, anche se sembra una griglia vuota, cliccaci sopra.
+#. Appariranno le impostazioni del widget **LED**, seleziona il datastream **V4** che hai appena impostato nella pagina web. Ricorda che ogni widget corrisponde a un diverso datastream in ogni progetto.
+#. Torna alla pagina **Dashboard**. Ora, se il widget **LED** è colorato, la tua porta o finestra è aperta; se il widget **LED** non è colorato, la porta o finestra è chiusa.
 
     .. image:: img/APP_3.jpg
-
-

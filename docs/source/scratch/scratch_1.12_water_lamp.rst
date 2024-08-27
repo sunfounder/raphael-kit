@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.12_scratch:
 
-1.12 Water Lamp
-================
+1.12 Lampada d'Acqua
+==============================
 
-Today, we will use LED Bar Graph, Raspberry Pi and scratch to make a Water Lamp.
+Oggi useremo il Grafico a Barre LED, Raspberry Pi e Scratch per creare una Lampada d'Acqua.
 
-The LED Bar Graph will light up in order with the direction of the arrows on the stage.
+Le barre LED si accenderanno in sequenza seguendo la direzione delle frecce sul palco.
 
 .. image:: img/1.12_header.png
 
-Required Components
-------------------------------
+Componenti Necessari
+----------------------------------
 
-In this project, we need the following components. 
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: img/1.12_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - ELEMENTI NEL KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,71 +63,65 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_bar_graph`
         - \-
 
-Build the Circuit
------------------------
+Costruisci il Circuito
+-----------------------------
 
 .. image:: img/1.12_image66.png
 
-Load the Code and See What Happens
+Carica il Codice e Guarda Cosa Succede
 -----------------------------------------
 
-Load the code file (``1.12_water_lamp.sb3``) from your computer to Scratch 3.
+Carica il file di codice (``1.12_water_lamp.sb3``) dal tuo computer su Scratch 3.
 
-By clicking on **Arrow1**, the LEDs on the LED bar are lit in sequence from the left to the right (one at a time) and then off. Click **Arrow2** and the LEDs light up in the opposite order.
+Cliccando su **Arrow1**, i LED sul grafico a barre si accenderanno in sequenza da sinistra a destra (uno alla volta) e poi si spegneranno. Clicca su **Arrow2** e i LED si accenderanno nell'ordine opposto.
 
-Tips on Sprites
-----------------
+Suggerimenti sugli Sprite
+---------------------------------
 
-Delete the default sprite and choose the **Arrow1** sprite.
+Elimina lo sprite predefinito e scegli lo sprite **Arrow1**.
 
 .. image:: img/1.12_graph1.png
 
-Here we will need 2 **Arrow1** sprites, which can be done with the duplicate button.
+Avremo bisogno di 2 sprite **Arrow1**, che possono essere duplicati con il pulsante duplica.
 
 .. image:: img/1.12_scratch_duplicate.png
 
-Click on the **Arrow 2** sprite and change the direction of the arrow by selecting costume 2.
+Clicca sullo sprite **Arrow2** e cambia la direzione della freccia selezionando il costume 2.
 
 .. image:: img/1.12_graph2.png
 
-
-Now let's make a variable.
+Ora creiamo una variabile.
 
 .. image:: img/1.12_graph3.png
 
-
-Name it as **num**.
+Nominala **num**.
 
 .. image:: img/1.12_graph4.png
 
-
-Follow the same method to create a list called **led**.
+Segui lo stesso metodo per creare una lista chiamata **led**.
 
 .. image:: img/1.12_graph6.png
 
+Dopo averla aggiunta, dovresti vedere la variabile **num** e la lista **led** nell'area del palco.
 
-After adding, you should see the **num** variable and the **led** list on the stage area. 
-
-Click **+** to add 10 list items and enter the pin numbers in order (17,18,27,22,23,24,25,2,3,8).
+Clicca su **+** per aggiungere 10 elementi alla lista e inserisci i numeri dei pin in ordine (17,18,27,22,23,24,25,2,3,8).
 
 .. image:: img/1.12_graph7.png
 
-Tips on Codes
---------------
+Suggerimenti sui Codici
+------------------------------
 
 .. image:: img/1.12_graph10.png
   :width: 300
 
-This is an event block that is triggered when the current sprite is clicked.
+Questo è un blocco di eventi che si attiva quando lo sprite corrente viene cliccato.
 
 .. image:: img/1.12_graph8.png
   :width: 300
 
-The initial value of the **num** variable determines which LED is lit first.
+Il valore iniziale della variabile **num** determina quale LED si accende per primo.
 
 .. image:: img/1.12_graph9.png
 
-
-Set the pin corresponding to **num** in the led list to low to light the LED, and then set the pin corresponding to **num-1** to high to turn off the previous LED.
-
+Imposta il pin corrispondente a **num** nella lista led su basso per accendere il LED, e poi imposta il pin corrispondente a **num-1** su alto per spegnere il LED precedente.
 

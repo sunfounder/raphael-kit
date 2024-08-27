@@ -1,33 +1,31 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti Esclusivi**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni festive e giveaway.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 30: Using a Photoresistor to Detect Light on the Raspberry Pi
+Video 30: Utilizzo di un Fotoresistore per Rilevare la Luce con Raspberry Pi
 =======================================================================================
 
-Learn how to incorporate a photoresistor into your Raspberry Pi projects to measure light intensity and control actions based on brightness.
+Impara a incorporare un fotoresistore nei tuoi progetti con Raspberry Pi per misurare l'intensità della luce e controllare azioni basate sulla luminosità.
 
-1. **Introduction to the photoresistor**: Learn how a photoresistor's resistance changes with light intensity.
-2. **Physics behind the photoresistor**: Understand the solid-state physics principles underlying the photoresistor's operation.
-3. **Building the circuit**: Discover how to create a voltage divider circuit using a photoresistor and a load resistor.
-4. **Programming the Raspberry Pi**: Write Python code to read analog values from the photoresistor using the ADC0834 module.
-5. **Testing the circuit**: See how the circuit responds to changes in lighting conditions, demonstrating changes in resistance and voltage.
-6. **Practical applications**: Explore potential uses of photoresistors in projects such as automatic lighting systems.
-
+1. **Introduzione al fotoresistore**: Scopri come la resistenza del fotoresistore varia in base all'intensità della luce.
+2. **Fisica dietro il fotoresistore**: Comprendi i principi della fisica dello stato solido che regolano il funzionamento del fotoresistore.
+3. **Costruzione del circuito**: Impara a creare un circuito partitore di tensione utilizzando un fotoresistore e una resistenza di carico.
+4. **Programmazione su Raspberry Pi**: Scrivi il codice Python per leggere i valori analogici del fotoresistore utilizzando il modulo ADC0834.
+5. **Test del circuito**: Osserva come il circuito risponde ai cambiamenti delle condizioni di illuminazione, dimostrando variazioni di resistenza e tensione.
+6. **Applicazioni pratiche**: Esplora possibili utilizzi dei fotoresistori in progetti come i sistemi di illuminazione automatica.
 
 **Video**
 
 .. raw:: html
 
     <iframe width="700" height="500" src="https://www.youtube.com/embed/LLYJsXEQueM?si=S8H16QtaW122F_sC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-

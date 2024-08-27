@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché Unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Tecnico Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato alle novità sui nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.4_py_pi5:
 
-2.2.4 Reed Switch Module
-========================
+2.2.4 Modulo Interruttore Reed
+==================================
 
-Introduction
--------------------
+Introduzione
+---------------
 
-In this project, we will learn about the reed switch, which is an electrical switch that operates by means of an applied magnetic field.
+In questo progetto, impareremo a conoscere l'interruttore reed, che è un interruttore elettrico che funziona mediante un campo magnetico applicato.
 
-Required Components
-------------------------------
+Componenti Necessari
+-----------------------
 
-In this project, we need the following components. 
+Per questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: ../python_pi5/img/2.2.4_reed_switch_list.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È decisamente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI NEL KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK D'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,8 +66,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Schematic Diagram
------------------------
+Schema Elettrico
+--------------------
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -84,16 +84,16 @@ GPIO22       Pin 15   3        22
     :width: 400
     :align: center
 
-Experimental Procedures
--------------------------------
+Procedure Sperimentali
+-----------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../python_pi5/img/2.2.4_reed_switch_circuit.png
     :width: 700
     :align: center
 
-**Step 2:** Change directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -103,7 +103,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -113,14 +113,13 @@ Experimental Procedures
 
     sudo python3 2.2.4_ReedSwitch_zero.py
 
-The green LED will light up when the code is run. If a magnet is placed close to the reed switch module, the red LED lights up; take away the magnet and the green LED lights up again.
+Quando il codice viene eseguito, il LED verde si accenderà. Se un magnete viene posto vicino al modulo interruttore reed, il LED rosso si accenderà; allontanando il magnete, il LED verde si riaccenderà.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
-
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. Ma prima, devi andare al percorso sorgente del codice come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 .. raw:: html
 
@@ -131,10 +130,10 @@ The green LED will light up when the code is run. If a magnet is placed close to
    #!/usr/bin/env python3
    from gpiozero import LED, Button
 
-   # Initialize the reed switch and LEDs using GPIO Zero
-   reed_switch = Button(17, pull_up=True)  # Reed switch on GPIO 17, using an internal pull-up resistor
-   green_led = LED(27)                     # Green LED connected to GPIO pin 27
-   red_led = LED(22)                       # Red LED connected to GPIO pin 22
+   # Inizializza l'interruttore reed e i LED utilizzando GPIO Zero
+   reed_switch = Button(17, pull_up=True)  # Interruttore reed su GPIO 17, utilizzando una resistenza di pull-up interna
+   green_led = LED(27)                     # LED verde collegato al pin GPIO 27
+   red_led = LED(22)                       # LED rosso collegato al pin GPIO 22
 
    def update_leds():
        """
@@ -142,68 +141,68 @@ The green LED will light up when the code is run. If a magnet is placed close to
        Turns the red LED on and green LED off when the reed switch is pressed, and vice versa.
        """
        if reed_switch.is_pressed:
-           green_led.off()          # Turn off the green LED
-           red_led.on()             # Turn on the red LED
+           green_led.off()          # Spegne il LED verde
+           red_led.on()             # Accende il LED rosso
        else:
-           green_led.on()           # Turn on the green LED
-           red_led.off()            # Turn off the red LED
+           green_led.on()           # Accende il LED verde
+           red_led.off()            # Spegne il LED rosso
 
    try:
-       green_led.on()               # Turn on the green LED at the start
+       green_led.on()               # Accende il LED verde all'inizio
        while True:
-           # Set the callback functions for reed switch state changes
-           reed_switch.when_pressed = update_leds   # Callback when the switch is pressed
-           reed_switch.when_released = update_leds  # Callback when the switch is released
+           # Imposta le funzioni di callback per i cambiamenti di stato dell'interruttore reed
+           reed_switch.when_pressed = update_leds   # Callback quando l'interruttore viene attivato
+           reed_switch.when_released = update_leds  # Callback quando l'interruttore viene disattivato
 
    except KeyboardInterrupt:
-       # Clean up resources and exit on Ctrl+C
+       # Pulisce le risorse e esce con Ctrl+C
        green_led.off()
        red_led.off()
        pass
 
-**Code Explanation**
+**Spiegazione del Codice**
 
-#. This line specifies that the script is to be run using Python 3. It imports ``LED`` and ``Button`` (used for the reed switch) from the gpiozero library.
+#. Questa linea specifica che lo script deve essere eseguito utilizzando Python 3. Importa ``LED`` e ``Button`` (utilizzati per l'interruttore reed) dalla libreria gpiozero.
 
    .. code-block:: python
 
        #!/usr/bin/env python3
        from gpiozero import LED, Button
 
-#. Initializes the reed switch on GPIO pin 17 with an internal pull-up resistor. Also initializes two LEDs connected to GPIO pins 27 and 22.
+#. Inizializza l'interruttore reed sul pin GPIO 17 con una resistenza di pull-up interna. Inizializza anche due LED collegati ai pin GPIO 27 e 22.
 
    .. code-block:: python
        
-       # Initialize the reed switch and LEDs using GPIO Zero
-       reed_switch = Button(17, pull_up=True)  # Reed switch on GPIO 17, using an internal pull-up resistor
-       green_led = LED(27)                     # Green LED connected to GPIO pin 27
-       red_led = LED(22)                       # Red LED connected to GPIO pin 22
+       # Inizializza l'interruttore reed e i LED utilizzando GPIO Zero
+       reed_switch = Button(17, pull_up=True)  # Interruttore reed su GPIO 17, utilizzando una resistenza di pull-up interna
+       green_led = LED(27)                     # LED verde collegato al pin GPIO 27
+       red_led = LED(22)                       # LED rosso collegato al pin GPIO 22
 
-#. Defines the ``update_leds`` function, which updates the LED states based on the reed switch's state. The red LED is turned on and the green LED is turned off when the switch is pressed, and the opposite when released.
+#. Definisce la funzione ``update_leds``, che aggiorna lo stato dei LED in base allo stato dell'interruttore reed. Il LED rosso si accende e il LED verde si spegne quando l'interruttore viene attivato, e il contrario quando viene rilasciato.
 
    .. code-block:: python
 
        def update_leds():
            if reed_switch.is_pressed:
-               green_led.off()          # Turn off the green LED
-               red_led.on()             # Turn on the red LED
+               green_led.off()          # Spegne il LED verde
+               red_led.on()             # Accende il LED rosso
            else:
-               green_led.on()           # Turn on the green LED
-               red_led.off()            # Turn off the red LED
+               green_led.on()           # Accende il LED verde
+               red_led.off()            # Spegne il LED rosso
 
-#. Sets the initial state of the green LED to on. The main loop assigns the ``update_leds`` function as callbacks for the ``when_pressed`` and ``when_released`` events of the reed switch. Includes exception handling for KeyboardInterrupt to clean up and exit the program gracefully.
+#. Imposta lo stato iniziale del LED verde su acceso. Il ciclo principale assegna la funzione ``update_leds`` come callback per gli eventi ``when_pressed`` e ``when_released`` dell'interruttore reed. Include la gestione delle eccezioni per KeyboardInterrupt per pulire e uscire dal programma in modo ordinato.
 
    .. code-block:: python
 
        try:
-           green_led.on()               # Turn on the green LED at the start
+           green_led.on()               # Accende il LED verde all'inizio
            while True:
-               # Set the callback functions for reed switch state changes
-               reed_switch.when_pressed = update_leds   # Callback when the switch is pressed
-               reed_switch.when_released = update_leds  # Callback when the switch is released
+               # Imposta le funzioni di callback per i cambiamenti di stato dell'interruttore reed
+               reed_switch.when_pressed = update_leds   # Callback quando l'interruttore viene attivato
+               reed_switch.when_released = update_leds  # Callback quando l'interruttore viene disattivato
 
        except KeyboardInterrupt:
-           # Clean up resources and exit on Ctrl+C
+           # Pulisce le risorse e esce con Ctrl+C
            green_led.off()
            red_led.off()
            pass

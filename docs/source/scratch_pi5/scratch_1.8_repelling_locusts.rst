@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e affronta sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa ai giveaway e alle promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
 .. _1.11_scratch_pi5:
 
-1.11 Repelling locusts
-========================
+1.11 Scacciare le Cavallette
+============================
 
 
-Today, we will use IR obstacle avoidance module, Raspberry Pi and Scratch to make a locust repelling game.
+Oggi useremo un modulo di evitamento ostacoli IR, un Raspberry Pi e Scratch per creare un gioco in cui si scacciano le cavallette.
 
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+Posiziona la mano davanti al modulo di evitamento ostacoli e vedrai le cavallette allontanarsi.
 
 .. image:: img/1.11_header.png
 
-Required Components
-------------------------------
+Componenti Necessari
+-------------------------
 
-In this project, we need the following components. 
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: img/1.11_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - COMPONENTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -62,38 +62,38 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_avoid_module`
         - |link_obstacle_avoidance_buy|
 
-Build the Circuit
-----------------------
+Costruire il Circuito
+------------------------
 
 .. image:: img/1.11_fritzing.png
     :width: 700
     :align: center
 
-Load the Code and See What Happens
+Carica il Codice e Vedi Cosa Succede
 ----------------------------------------
 
-Load the code file (``1.11_repelling_locusts.sb3``) to Scratch 3.
+Carica il file di codice (``1.11_repelling_locusts.sb3``) su Scratch 3.
 
-Place your hand in front of the obstacle avoidance module and you will see the locusts being chased away.
+Posiziona la mano davanti al modulo di evitamento ostacoli e vedrai le cavallette allontanarsi.
 
 
-Tips on Sprite
-----------------
+Suggerimenti sugli Sprite
+----------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **locust1.png**, **locust1.png** and **locust3.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **locust**.
+Seleziona Sprite1 e clicca su **Costumi** nell'angolo in alto a sinistra; carica **locust1.png**, **locust1.png** e **locust3.png** dal percorso ``~/raphael-kit/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi predefiniti e rinomina lo sprite in **locust**.
 
 .. image:: img/1.11_ir1.png
 
-Tips on Codes
---------------
+Suggerimenti sul Codice
+--------------------------
 
 .. image:: img/1.11_ir2.png
   :width: 400
 
-When the IR obstacle avoidance module does not detect an obstacle (no hand is placed in front of the probe), the gpio is high.
+Quando il modulo di evitamento ostacoli IR non rileva ostacoli (nessuna mano davanti alla sonda), gpio è alto.
 
 .. image:: img/1.11_ir3.png
   :width: 400
 
-When gpio17 is high (no obstacles go in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust1 (locusts gather in wheat). Conversely when gpio17 is low (put your hand in front of the IR obstacle avoidance module), switch the locust sprite's costume to locust2 (expel locusts), then switch the locust sprite's costume to locust3 (locusts are completely expelled) after 0.5s.
+Quando gpio17 è alto (nessun ostacolo davanti al modulo IR), cambia il costume dello sprite locusta in locust1 (le cavallette si radunano nel grano). Al contrario, quando gpio17 è basso (metti la mano davanti al modulo di evitamento ostacoli IR), cambia il costume dello sprite locusta in locust2 (scaccia le cavallette), poi dopo 0,5 secondi cambia il costume in locust3 (le cavallette sono completamente scacciate).
 

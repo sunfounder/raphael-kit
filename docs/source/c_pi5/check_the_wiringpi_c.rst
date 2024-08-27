@@ -1,30 +1,31 @@
-.. note::
+.. nota::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _install_wiringpi:
 
-Install and Check the WiringPi
+Installazione e verifica di WiringPi
 =======================================
 
-``wiringPi`` is a C language GPIO library applied to the Raspberry Pi. It complies with GUN Lv3. The functions in wiringPi are
-similar to those in the wiring system of Arduino. They enable the users
-familiar with Arduino to use wiringPi more easily.
+``wiringPi`` è una libreria GPIO in linguaggio C applicata al Raspberry Pi. 
+È conforme alla licenza GNU Lv3. Le funzioni in wiringPi sono simili a quelle 
+del sistema wiring di Arduino, rendendo più facile per gli utenti abituati ad 
+Arduino utilizzare wiringPi.
 
-``wiringPi`` includes lots of GPIO commands which enable you to control all
-kinds of interfaces on Raspberry Pi. 
+``wiringPi`` include molti comandi GPIO che ti permettono di controllare tutti 
+i tipi di interfacce su Raspberry Pi.
 
-Please run the following command to install ``wiringPi`` library.
+Esegui il seguente comando per installare la libreria ``wiringPi``:
 
 
 
@@ -39,8 +40,8 @@ Please run the following command to install ``wiringPi`` library.
     cd WiringPi 
     ./build
 
-You can test whether the wiringPi
-library is installed successfully or not by the following instruction.
+Puoi verificare se la libreria wiringPi è stata installata correttamente con il 
+seguente comando.
 
 .. raw:: html
 
@@ -53,7 +54,7 @@ library is installed successfully or not by the following instruction.
 .. image:: ../img/image30.png
 
 
-Check the GPIO with the following command:
+Controlla il GPIO con il seguente comando:
 
 .. raw:: html
 
@@ -66,6 +67,4 @@ Check the GPIO with the following command:
 .. image:: ../img/image31.png
 
 
-For more details about wiringPi, you can refer to `WiringPi <https://github.com/WiringPi/WiringPi>`_.
-
-
+Per ulteriori dettagli su wiringPi, puoi consultare `WiringPi <https://github.com/WiringPi/WiringPi>`_.

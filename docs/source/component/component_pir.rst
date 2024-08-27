@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _cpn_pir:
 
-PIR Motion Sensor Module
-============================
+Modulo Sensore di Movimento PIR
+====================================
 
 .. image:: img/pir_pic.png
     :width: 300
     :align: center
 
-The PIR sensor detects infrared heat radiation that can be used to detect the presence of organisms that emit infrared heat radiation.
+Il sensore PIR rileva la radiazione termica infrarossa che può essere utilizzata per rilevare la presenza di organismi che emettono radiazione termica infrarossa.
 
-The PIR sensor is split into two slots that are connected to a differential amplifier. Whenever a stationary object is in front of the sensor, the two slots receive the same amount of radiation and the output is zero. Whenever a moving object is in front of the sensor, one of the slots receives more radiation than the other , which makes the output fluctuate high or low. This change in output voltage is a result of detection of motion.
+Il sensore PIR è diviso in due slot collegati a un amplificatore differenziale. Ogni volta che un oggetto stazionario si trova di fronte al sensore, i due slot ricevono la stessa quantità di radiazione e l'uscita è zero. Ogni volta che un oggetto in movimento si trova di fronte al sensore, uno degli slot riceve più radiazione dell'altro, il che fa oscillare l'uscita tra alto e basso. Questa variazione della tensione di uscita è il risultato del rilevamento del movimento.
 
 .. image:: img/PIR_working_principle.jpg
     :width: 800
 
-After the sensing module is wired, there is a one-minute initialization. During the initialization, module will output for 0~3 times at intervals. Then the module will be in the standby mode. Please keep the interference of light source and other sources away from the surface of the module so as to avoid the misoperation caused by the interfering signal. Even you'd better use the module without too much wind, because the wind can also interfere with the sensor.
+Dopo che il modulo di rilevamento è stato cablato, c'è un'inizializzazione di un minuto. Durante l'inizializzazione, il modulo emetterà da 0 a 3 volte a intervalli. Successivamente il modulo entrerà in modalità standby. Si prega di mantenere lontana l'interferenza di fonti di luce e altre fonti dalla superficie del modulo per evitare che il segnale interferente causi un'operazione errata. È meglio usare il modulo senza troppo vento, poiché anche il vento può interferire con il sensore.
 
 .. image:: img/pir_back.png
     :width: 600
     :align: center
 
-**Distance Adjustment**
+**Regolazione della Distanza**
 
-Turning the knob of the distance adjustment potentiometer clockwise, the range of sensing distance increases, and the maximum sensing distance range is about 0-7 meters. If turn it anticlockwise, the range of sensing distance is reduced, and the minimum sensing distance range is about 0-3 meters.
+Ruotando la manopola del potenziometro di regolazione della distanza in senso orario, l'intervallo di rilevamento aumenta, e l'intervallo massimo di rilevamento è di circa 0-7 metri. Se lo ruoti in senso antiorario, l'intervallo di rilevamento si riduce e l'intervallo minimo di rilevamento è di circa 0-3 metri.
 
-**Delay adjustment**
+**Regolazione del Ritardo**
 
-Rotate the knob of the delay adjustment potentiometer clockwise, you can also see the sensing delay increasing. The maximum of the sensing delay can reach up to 300s. On the contrary, if rotate it anticlockwise, you can shorten the delay with a minimum of 5s. 
+Ruotando la manopola del potenziometro di regolazione del ritardo in senso orario, puoi vedere aumentare anche il ritardo di rilevamento. Il ritardo massimo di rilevamento può arrivare fino a 300s. Al contrario, se lo ruoti in senso antiorario, puoi ridurre il ritardo con un minimo di 5s.
 
-**Two Trigger Modes**
+**Due Modalità di Trigger**
 
-Choosing different modes by using the jumper cap.
+Scegli modalità diverse utilizzando il cappuccio a ponticello.
 
-* **H**: Repeatable trigger mode, after sensing the human body, the module outputs high level. During the subsequent delay period, if somebody enters the sensing range, the output will keep being the high level.
+* **H**: Modalità di trigger ripetibile, dopo aver rilevato il corpo umano, il modulo emette un livello alto. Durante il periodo di ritardo successivo, se qualcuno entra nell'intervallo di rilevamento, l'uscita continuerà a mantenere il livello alto.
 
-* **L**: Non-repeatable trigger mode, outputs high level when it senses the human body. After the delay, the output will change from high level into low level automatically. 
+* **L**: Modalità di trigger non ripetibile, emette un livello alto quando rileva il corpo umano. Dopo il ritardo, l'uscita cambierà automaticamente da livello alto a livello basso.
 
-**Example**
+**Esempi**
 
 * :ref:`2.2.7_c` (C Project)
 * :ref:`2.2.7_py` (Python Project)

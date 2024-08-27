@@ -1,58 +1,58 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.2_c_pi5:
 
-2.1.2 Micro Switch
-=======================
+2.1.2 Microinterruttore
+==============================
 
-Introduction
+Introduzione
 --------------------
 
-In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+In questo progetto, impareremo come utilizzare un microinterruttore. Un microinterruttore è un piccolo interruttore molto sensibile che richiede una minima compressione per essere attivato. Grazie alla loro affidabilità e sensibilità, i microinterruttori vengono spesso utilizzati come dispositivi di sicurezza.
 
-They are used to prevent doors from closing if something or someone is in the way and other applications similar.
+Sono impiegati per impedire la chiusura delle porte se qualcosa o qualcuno è di mezzo e in altre applicazioni simili.
 
-Required Components
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.1.2component.png
 
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,12 +69,12 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Schema di Collegamento
+------------------------------
 
-Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-move arm of the Micro Switch, you can see the two LEDs light up alternately.
+Collega il pin sinistro del microinterruttore al GPIO17 e due LED rispettivamente ai 
+pin GPIO22 e GPIO27. Premendo e rilasciando il braccio mobile del microinterruttore, 
+vedrai i due LED accendersi alternativamente.
 
 .. image:: ../img/image305.png
 
@@ -82,14 +82,14 @@ move arm of the Micro Switch, you can see the two LEDs light up alternately.
 .. image:: ../img/micro_Schematic.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.1.4fritzing.png
 
-**Step 2**: Go to the folder of the code.
+**Passo 2:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -99,7 +99,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.1.2
 
-**Step 3**: Compile.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -109,7 +109,7 @@ Experimental Procedures
 
     gcc 2.1.2_MicroSwitch.c -lwiringPi 
 
-**Step 4**: Run the executable file above.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -119,13 +119,13 @@ Experimental Procedures
 
     sudo ./a.out
 
-While the code is running, press the Micro Switch, then the yellow LED lights up; release the moving arm, the red LED turns on.
+Durante l'esecuzione del codice, premi il microinterruttore, il LED giallo si accenderà; rilasciando il braccio mobile, si accenderà il LED rosso.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -138,7 +138,7 @@ While the code is running, press the Micro Switch, then the yellow LED lights up
 
     int main(void)
     {
-        // When initialize wiring failed, print message to screen
+        // Se l'inizializzazione di wiring fallisce, stampa un messaggio a schermo
         if(wiringPiSetup() == -1){
             printf("setup wiringPi failed !");
             return 1; 
@@ -149,13 +149,13 @@ While the code is running, press the Micro Switch, then the yellow LED lights up
         pinMode(led2, OUTPUT);
         
         while(1){
-            // micro switch high, led1 on
+            // microinterruttore alto, led1 acceso
             if(digitalRead(microPin) == 1){
                 digitalWrite(led1, LOW);
                 digitalWrite(led2, HIGH);
                 printf("LED1 on\n");
             }
-            // micro switch low, led2 on
+            // microinterruttore basso, led2 acceso
             if(digitalRead(microPin) == 0){
                 digitalWrite(led2, LOW);
                 digitalWrite(led1, HIGH);
@@ -167,7 +167,7 @@ While the code is running, press the Micro Switch, then the yellow LED lights up
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -177,7 +177,7 @@ While the code is running, press the Micro Switch, then the yellow LED lights up
                 printf("LED1 on\n");
         }
 
-When the moving arm of the micro switch is released, the left pin is connected to the right pin; at this time, a high level will be read on GPIO17, and then LED1 will be on and LED2 will be off.
+Quando il braccio mobile del microinterruttore viene rilasciato, il pin sinistro è collegato al pin destro; in questo momento, verrà letto un livello alto sul GPIO17 e il LED1 si accenderà mentre il LED2 si spegnerà.
 
 
 .. code-block:: c
@@ -188,10 +188,10 @@ When the moving arm of the micro switch is released, the left pin is connected t
                 printf(".....LED2 on\n");
             }
 
-When the move arm is pressed, the left pin and the middle pin are connected. At this point a low level will be read on GPIO17, then turns LED2 on and LED1 off.
+Quando il braccio mobile viene premuto, il pin sinistro e il pin centrale sono collegati. A questo punto verrà letto un livello basso sul GPIO17 e si accenderà il LED2, spegnendo il LED1.
 
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+-------------------------
 
 .. image:: ../img/2.1.2micro_switch.JPG

@@ -1,59 +1,60 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Tecnico Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.6_py_pi5:
 
-2.1.6 Rotary Encoder Module
-===========================
+2.1.6 Modulo Encoder Rotativo
+================================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this project, you will learn about Rotary Encoder. A rotary encoder is
-an electronic switch with a set of regular pulses in strictly timing
-sequence. When used with IC, it can achieve increment, decrement, page
-turning and other operations such as mouse scrolling, menu selection,
-and so on.
+In questo progetto imparerai a conoscere l'encoder rotativo. Un encoder 
+rotativo è un interruttore elettronico che emette una serie di impulsi 
+regolari in una sequenza temporale rigorosa. Quando viene utilizzato con 
+un circuito integrato (IC), può consentire operazioni come incremento, 
+decremento, scorrimento di pagine e altre operazioni, come lo scrolling del 
+mouse, la selezione dei menu, ecc.
 
-Required Components
-------------------------------
+Componenti Necessari
+-------------------------------
 
-In this project, we need the following components. 
+Per questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: ../python_pi5/img/2.1.6_rotary_encoder_list.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È decisamente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI NEL KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK D'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -64,25 +65,25 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_rotary_encoder`
         - |link_rotary_encoder_buy|
 
-Schematic Diagram
+Schema Elettrico
 ------------------------
 
 .. image:: ../python_pi5/img/2.1.6_rotary_encoder_schematic.png
    :align: center
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../python_pi5/img/2.1.6_rotary_encoder_circuit.png
 
-In this example, we can connect the Rotary Encoder pin directly to the
-Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
-17.
+In questo esempio, possiamo collegare il pin dell'encoder rotativo direttamente 
+al Raspberry Pi utilizzando una breadboard e un cavo a 40 pin. Collega il GND 
+dell'encoder rotativo a GND, 「+」a 5V, SW a GPIO digitale 27, DT a GPIO digitale 
+18 e CLK a GPIO digitale 17.
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -92,7 +93,7 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -102,14 +103,14 @@ Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CL
 
     sudo python3 2.1.6_RotaryEncoder_zero.py
 
-You will see the count on the shell. When you turn the rotary encoder clockwise, the count is increased; when turn it counterclockwise, the count is decreased. If you press the switch on the rotary encoder, the readings will return to zero.
+Vedrai il conteggio sul terminale. Quando ruoti l'encoder rotativo in senso orario, il conteggio aumenta; quando lo ruoti in senso antiorario, il conteggio diminuisce. Se premi l'interruttore sull'encoder rotativo, il conteggio si azzererà.
 
 
-**Code**
+**Codice**
 
 .. note::
 
-   You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python-pi5``. After modifying the code, you can run it directly to see the effect.
+   Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. Ma prima, devi accedere alla directory del codice come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -145,20 +146,20 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
    button.when_pressed = reset_counter
 
    try:
-      # Monitor rotary encoder continuously and process changes
+      # Monitora continuamente l'encoder rotativo e gestisci le variazioni
       while True:
-         rotary_change()  # Handle rotary encoder changes
-         sleep(0.1)  # Short delay to reduce CPU load
+         rotary_change()  # Gestisci le variazioni dell'encoder rotativo
+         sleep(0.1)  # Breve pausa per ridurre il carico della CPU
 
    except KeyboardInterrupt:
-      # Gracefully handle a keyboard interrupt (Ctrl+C)
+      # Gestisci in modo corretto un'interruzione da tastiera (Ctrl+C)
       pass
 
 
 
-**Code Analysis**
+**Analisi del Codice**
 
-#. Imports the ``RotaryEncoder`` and ``Button`` classes from the ``gpiozero`` library, and the ``sleep`` function for delays.
+#. Importa le classi ``RotaryEncoder`` e ``Button`` dalla libreria ``gpiozero``, e la funzione ``sleep`` per gestire i ritardi.
 
    .. code-block:: python
 
@@ -166,59 +167,59 @@ You will see the count on the shell. When you turn the rotary encoder clockwise,
       from gpiozero import RotaryEncoder, Button
       from time import sleep
 
-#. Initializes the rotary encoder with GPIO pins 17 and 18, and a button on GPIO pin 27.
+#. Inizializza l'encoder rotativo con i pin GPIO 17 e 18, e un pulsante sul pin GPIO 27.
 
    .. code-block:: python
 
-      # Initialize the rotary encoder and button
-      encoder = RotaryEncoder(a=17, b=18)  # Rotary Encoder connected to GPIO pins 17 (CLK) and 18 (DT)
-      button = Button(27)                  # Button connected to GPIO pin 27
+      # Inizializza l'encoder rotativo e il pulsante
+      encoder = RotaryEncoder(a=17, b=18)  # Encoder rotativo collegato ai pin GPIO 17 (CLK) e 18 (DT)
+      button = Button(27)                  # Pulsante collegato al pin GPIO 27
 
-#. Declares a global variable ``global_counter`` to track the position of the rotary encoder.
+#. Dichiara una variabile globale ``global_counter`` per tracciare la posizione dell'encoder rotativo.
 
    .. code-block:: python
 
-      global_counter = 0  # Track the rotary encoder's position
+      global_counter = 0  # Variabile globale per tracciare la posizione dell'encoder rotativo
 
-#. Defines a function ``rotary_change`` to update the global counter based on the rotary encoder's rotation.
+#. Definisce una funzione ``rotary_change`` per aggiornare il contatore globale in base alla rotazione dell'encoder rotativo.
 
    .. code-block:: python
 
       def rotary_change():
-         """ Update the global counter based on the rotary encoder's rotation. """
+         """ Aggiorna il contatore globale in base alla rotazione dell'encoder rotativo. """
          global global_counter
-         global_counter += encoder.steps  # Adjust counter based on encoder steps
-         encoder.steps = 0  # Reset encoder steps after updating counter
-         print('Global Counter =', global_counter)  # Display current counter value
+         global_counter += encoder.steps  # Aggiorna il contatore in base agli step dell'encoder
+         encoder.steps = 0  # Resetta gli step dell'encoder dopo aver aggiornato il contatore
+         print('Global Counter =', global_counter)  # Mostra il valore corrente del contatore
 
-#. Defines a function ``reset_counter`` to reset the global counter to zero when the button is pressed.
+#. Definisce una funzione ``reset_counter`` per resettare il contatore globale a zero quando viene premuto il pulsante.
 
    .. code-block:: python
 
       def reset_counter():
-         """ Reset the global counter to zero when the button is pressed. """
+         """ Resetta il contatore globale a zero quando viene premuto il pulsante. """
          global global_counter
-         global_counter = 0  # Reset the counter
-         print('Counter reset')  # Indicate counter reset
+         global_counter = 0  # Resetta il contatore
+         print('Contatore resettato')  # Indica che il contatore è stato resettato
 
-#. Assigns the ``reset_counter`` function to be called when the button is pressed.
+#. Assegna la funzione ``reset_counter`` da eseguire quando il pulsante viene premuto.
 
    .. code-block:: python
 
-      # Assign the reset_counter function to button press event
+      # Assegna la funzione reset_counter all'evento di pressione del pulsante
       button.when_pressed = reset_counter
 
-#. In a continuous loop, the script calls ``rotary_change`` to handle rotary encoder changes and introduces a short delay to reduce CPU load. Uses a try-except block to handle KeyboardInterrupts gracefully.
+#. In un ciclo continuo, lo script chiama ``rotary_change`` per gestire le variazioni dell'encoder rotativo e introduce una breve pausa per ridurre il carico della CPU. Utilizza un blocco try-except per gestire in modo corretto le interruzioni da tastiera.
 
    .. code-block:: python
 
       try:
-         # Monitor rotary encoder continuously and process changes
+         # Monitora continuamente l'encoder rotativo e gestisci le variazioni
          while True:
-            rotary_change()  # Handle rotary encoder changes
-            sleep(0.1)  # Short delay to reduce CPU load
+            rotary_change()  # Gestisci le variazioni dell'encoder rotativo
+            sleep(0.1)  # Breve pausa per ridurre il carico della CPU
 
       except KeyboardInterrupt:
-         # Gracefully handle a keyboard interrupt (Ctrl+C)
+         # Gestisci in modo corretto un'interruzione da tastiera (Ctrl+C)
          pass
 

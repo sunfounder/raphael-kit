@@ -1,70 +1,69 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _cpn_adc0834:
 
 ADC0834
 ==============
 
-ADC0834 is an 8-bit successive approximation analog-to-digital converter that is equipped with an input-configurable
-multichannel multi-plexer and serial input/output. The serial
-input/output is configured to interface with standard shift registers or
-microprocessors.
+L'ADC0834 è un convertitore analogico-digitale a 8 bit di approssimazione 
+successiva, dotato di un multiplexer multicanale configurabile in ingresso 
+e di input/output seriale. L'input/output seriale è configurato per interfacciarsi 
+con registri a scorrimento standard o microprocessori.
 
 .. image:: img/image309.png
 
 
-**Sequence of Operation**
+**Sequenza di Operazione**
 
-A conversion is initiated by setting CS low, which enables all logic
-circuits. CS must be held low for the complete conversion process. A
-clock input is then received from the processor. On each low-to-high
-transition of the clock input, the data on DI is clocked into the
-multiplexer address shift register. The first logic high on the input is
-the start bit. A 3- to 4-bit assignment word follows the start bit. On
-each successive low-to-high transition of the clock input, the start bit
-and assignment word are shifted through the shift register. When the
-start bit is shifted into the start location of the multiplexer
-register, the input channel is selected and conversion starts. The SAR
-Statu output (SARS) goes high to indicate that a conversion is in
-progress, and DI to the multiplexer shift register is disabled the
-duration of the conversion.
+Una conversione viene avviata abbassando il segnale CS, che abilita tutti i 
+circuiti logici. CS deve essere mantenuto basso per l'intero processo di 
+conversione. Un segnale di clock viene quindi ricevuto dal processore. Ad 
+ogni transizione da basso ad alto del segnale di clock, i dati su DI vengono 
+caricati nel registro di indirizzi del multiplexer. Il primo impulso alto in 
+ingresso rappresenta il bit di avvio. Una parola di assegnazione da 3 a 4 bit 
+segue il bit di avvio. Ad ogni successiva transizione da basso ad alto del 
+segnale di clock, il bit di avvio e la parola di assegnazione vengono spostati 
+attraverso il registro a scorrimento. Quando il bit di avvio raggiunge la 
+posizione di partenza del registro del multiplexer, il canale di ingresso viene 
+selezionato e inizia la conversione. L'uscita dello stato del SAR (SARS) si alza 
+per indicare che è in corso una conversione, e DI al registro a scorrimento del 
+multiplexer viene disabilitato per tutta la durata della conversione.
 
-An interval of one clock period is automatically inserted to allow the
-selected multiplexed channel to settle. The data output DO comes out of
-the high-impedance state and provides a leading low for this one clock
-period of multiplexer settling time. The SAR comparator compares
-successive outputs from the resistive ladder with the incoming analog
-signal. The comparator output indicates whether the analog input is
-greater than or less than the resistive ladder output. As the conversion
-proceeds, conversion data is simultaneously output from the DO output
-pin, with the most significant bit (MSB) first.
+Viene automaticamente inserito un intervallo di un periodo di clock per consentire 
+al canale selezionato del multiplexer di stabilizzarsi. L'uscita dati DO esce dallo 
+stato ad alta impedenza e fornisce un livello basso per questo periodo di clock di 
+tempo di stabilizzazione del multiplexer. Il comparatore SAR confronta le uscite 
+successive della scala resistiva con il segnale analogico in ingresso. L'uscita del 
+comparatore indica se l'ingresso analogico è maggiore o minore dell'uscita della scala 
+resistiva. Man mano che la conversione procede, i dati della conversione vengono 
+contemporaneamente inviati dal pin di uscita DO, con il bit più significativo (MSB) per primo.
 
-After eight clock periods, the conversion is complete and the SARS
-output goes low. Finally outputs the least-significant-bit-first data
-after the MSB-first data stream.
+Dopo otto periodi di clock, la conversione è completata e l'uscita SARS si abbassa. 
+Infine, i dati vengono forniti con il bit meno significativo per primo, successivamente 
+allo stream di dati con MSB per primo.
 
 .. image:: img/image175.png
 
 
-**ADC0834 MUX ADDRESS CONTROL LOGIC TABLE**
+**Tabella di Controllo degli Indirizzi MUX per ADC0834**
 
 .. image:: img/image176.png
 
 * `ADC0831 series Datasheet <https://www.ti.com/lit/ds/symlink/adc0831-n.pdf>`_
 
-**Example**
+**Esempio**
 
 * :ref:`2.1.7_c` (C Project)
 * :ref:`2.2.1_c` (C Project)

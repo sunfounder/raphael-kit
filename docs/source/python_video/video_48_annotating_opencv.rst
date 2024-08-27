@@ -1,30 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community degli appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto da esperti**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime esclusive.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a promozioni festive e giveaway.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 48: Adding Boxes, Rectangles and Circles on Images in OpenCV
+Video 48: Aggiungere Riquadri, Rettangoli e Cerchi alle Immagini in OpenCV
 =======================================================================================
 
+In questo tutorial per Raspberry Pi, imparerai come annotare i frame video utilizzando OpenCV, aggiungendo rettangoli, cerchi e sovrapposizioni di testo per migliorare i tuoi progetti.
 
-In this Raspberry Pi tutorial, learn how to annotate video frames using OpenCV, adding rectangles, circles, and text overlays to enhance your projects.
-
-
-1. **Introduction**: Overview of the SunFounder Raphael kit for Raspberry Pi.
-2. **Recap of previous lesson**: Using OpenCV to display video frames and overlay text.
-3. **Annotating video frames**: Adding rectangles, circles, and text annotations between grabbing and displaying frames.
-4. **Key considerations**: Understanding image coordinates (column, row) and color representation (RGB).
-5. **Homework assignment**: Practice annotating video frames with different shapes and colors to reinforce learning.
-6. **Performance impact**: Annotating frames may slightly reduce frame rate, so optimize annotations for efficiency.
+1. **Introduzione**: Panoramica sul kit Raphael di SunFounder per Raspberry Pi.
+2. **Riepilogo della lezione precedente**: Utilizzo di OpenCV per visualizzare i frame video e sovrapporre del testo.
+3. **Annotazione dei frame video**: Aggiunta di rettangoli, cerchi e annotazioni di testo tra la cattura e la visualizzazione dei frame.
+4. **Considerazioni chiave**: Comprendere le coordinate delle immagini (colonna, riga) e la rappresentazione dei colori (RGB).
+5. **Assegnazione dei compiti**: Esercitati ad annotare i frame video con forme e colori diversi per consolidare l'apprendimento.
+6. **Impatto sulle prestazioni**: L'annotazione dei frame potrebbe ridurre leggermente il frame rate, quindi ottimizza le annotazioni per migliorare l'efficienza.
 
 **Video**
 

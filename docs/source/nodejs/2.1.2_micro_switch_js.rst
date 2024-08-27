@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.2_js:
 
-2.1.2 Micro Switch
-=======================
+2.1.2 Microinterruttore
+==========================
 
-Introduction
---------------------
+Introduzione
+----------------------
 
-In this project, we will learn how to use Micro Switch. A Micro Switch is a small, very sensitive switch which requires minimum compression to activate. Because they are reliable and sensitive, micro switches are often used as a safety device. 
+In questo progetto, impareremo come utilizzare il Microinterruttore. Un Microinterruttore è un piccolo e molto sensibile interruttore che richiede una compressione minima per attivarsi. Grazie alla loro affidabilità e sensibilità, i microinterruttori vengono spesso utilizzati come dispositivi di sicurezza.
 
-They are used to prevent doors from closing if something or someone is in the way and other applications similar.
+Vengono utilizzati per evitare che le porte si chiudano se qualcosa o qualcuno si trova in mezzo e in altre applicazioni simili.
 
-Required Components
-------------------------------
+Componenti necessari
+------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.1.2component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -68,12 +68,12 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_capacitor`
         - |link_capacitor_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+----------------
 
-Connect the left pin of the Micro Switch to GPIO17, and two LEDs to
-pin GPIO22 and GPIO27 respectively. Then when you press and release the 
-move arm of the Micro Switch, you can see the two LEDs light up alternately.
+Collega il pin sinistro del Microinterruttore a GPIO17, e due LED ai pin 
+GPIO22 e GPIO27 rispettivamente. Quindi, quando premi e rilasci il braccio 
+mobile del Microinterruttore, vedrai i due LED accendersi alternativamente.
 
 .. image:: ../img/image305.png
 
@@ -81,14 +81,14 @@ move arm of the Micro Switch, you can see the two LEDs light up alternately.
 .. image:: ../img/micro_Schematic.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.1.4fritzing.png
 
-**Step 2**: Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -98,7 +98,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run the code.
+**Passo 3:** Esegui il codice.
 
 .. raw:: html
 
@@ -108,11 +108,11 @@ Experimental Procedures
 
     sudo node micro_switch.js
 
-While the code is running, press the Micro Switch, 
-then the yellow LED lights up; 
-release the moving arm, the red LED turns on.
+Mentre il codice è in esecuzione, premi il Microinterruttore,
+e il LED giallo si accenderà;
+rilascia il braccio mobile e il LED rosso si accenderà.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -133,7 +133,7 @@ release the moving arm, the red LED turns on.
     });
 
 
-**Code Explanation**
+**Spiegazione del codice**
 
 .. code-block:: js
 
@@ -148,8 +148,9 @@ release the moving arm, the red LED turns on.
         edge: Gpio.EITHER_EDGE       
     });
 
-Import the ``pigpio`` module and create three objects led1, led2, micro,
-By reading the level of the micro IO port, the on and off of led1 and led2 are controlled.       
+Importa il modulo ``pigpio`` e crea tre oggetti: led1, led2 e microSwitch. 
+Leggendo il livello della porta IO del microinterruttore, viene controllata 
+l'accensione e lo spegnimento dei led1 e led2.
 
 .. code-block:: js
 
@@ -158,10 +159,11 @@ By reading the level of the micro IO port, the on and off of led1 and led2 are c
         led2.digitalWrite(!level);       
     });
 
-When the level of the read micro IO port changes,
-Write the same level to led1 and the opposite level to led2.
+Quando il livello della porta IO del microinterruttore cambia,
+lo stesso livello viene scritto su led1 e il livello opposto su led2.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+--------------------------
 
 .. image:: ../img/2.1.2micro_switch.JPG
+

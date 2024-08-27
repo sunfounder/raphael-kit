@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime speciali.
+    - **Sconti esclusivi**: Approfitta di sconti riservati sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.1.8_py:
 
-2.1.8 Keypad
-============
+2.1.8 Tastierino
+====================
 
-Introduction
-------------
+Introduzione
+---------------
 
-A keypad is a rectangular array of buttons. In this project, We will use
-it input characters.
+Un tastierino è una matrice rettangolare di pulsanti. In questo progetto, lo utilizzeremo 
+per inserire caratteri.
 
-Required Components
-------------------------------
+Componenti Necessari
+--------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_2.1.5_keypad.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -63,8 +63,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_keypad`
         - \-
 
-Schematic Diagram
------------------
+Schema Elettrico
+--------------------
 
 .. image:: ../img/image315.png
 
@@ -72,14 +72,14 @@ Schematic Diagram
 .. image:: ../img/image316.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image186.png
 
-**Step 2:** Open the code file.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -89,7 +89,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -99,14 +99,14 @@ Experimental Procedures
 
     sudo python3 2.1.8_Keypad.py
 
-After the code runs, the values of pressed buttons on keypad (button
-Value) will be printed on the screen.
+Dopo l'esecuzione del codice, i valori dei pulsanti premuti sul tastierino (valore del 
+pulsante) verranno stampati sullo schermo.
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -159,20 +159,20 @@ Value) will be printed on the screen.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-    # Define a destroy function for clean up everything after the script finished
+    # Definisci una funzione destroy per pulire tutto dopo che lo script è finito
     def destroy():
-        # Release resource
+        # Rilascia le risorse
         GPIO.cleanup() 
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # Il programma inizia da qui
         try:
             setup()
             while True:
                 loop()
-        except KeyboardInterrupt:   # When 'Ctrl+C' is pressed, the program destroy() will be executed.
+        except KeyboardInterrupt:   # Quando viene premuto 'Ctrl+C', il programma destroy() verrà eseguito.
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -187,8 +187,8 @@ Value) will be printed on the screen.
         keypad = Keypad(rowsPins, colsPins, keys)
         last_key_pressed = []
 
-Declare each key of the matrix keyboard to the array keys[] and define
-the pins on each row and column.
+Dichiara ogni tasto della tastiera a matrice nell'array keys[] e definisci i 
+pin di ogni riga e colonna.
 
 .. code-block:: python
 
@@ -200,23 +200,18 @@ the pins on each row and column.
         last_key_pressed = pressed_keys
         time.sleep(0.1)
 
-This is the part of the main function that reads and prints the button
-value.
+Questa è la parte della funzione principale che legge e stampa il valore del pulsante.
 
-The function ``keyRead()`` will read the state of every button.
+La funzione ``keyRead()`` leggerà lo stato di ogni pulsante.
 
-The statement ``if len(pressed_keys) != 0`` and ``last_key_pressed !=
-pressed_keys`` is used to judge
+L'istruzione ``if len(pressed_keys) != 0`` e ``last_key_pressed != pressed_keys`` serve a determinare
 
-whether a key is pressed and the state of the pressed button. (If you
-press \'3\' when you press \'1\', the judgement is tenable.)
+se un tasto è premuto e lo stato del pulsante premuto. (Se premi \'3\' quando premi \'1\', la condizione è valida.)
 
-Prints the value of the currently pressed key when the condition is
-tenable.
+Stampa il valore del tasto attualmente premuto quando la condizione è valida.
 
-The statement ``last_key_pressed = pressed_keys`` assigns the state of each
-judgment to an array ``last_key_pressed`` to facilitate the next round of
-conditional judgment.
+L'istruzione ``last_key_pressed = pressed_keys`` assegna lo stato di ciascuna valutazione 
+a un array ``last_key_pressed`` per facilitare il prossimo ciclo di valutazione.
 
 .. code-block:: python
 
@@ -231,32 +226,30 @@ conditional judgment.
                 GPIO.output(row, GPIO.LOW)
             return pressed_keys
 
-This function assigns a high level to each row in turn, and when the
-button in the column is pressed, the column in which the key is located
-gets a high level. After the two-layer loop is judged, the value of the
-button whose state is 1 is stored in the array ``pressed_keys``.
+Questa funzione assegna un livello alto a ciascuna riga a turno, e quando il pulsante 
+nella colonna viene premuto, la colonna in cui si trova il tasto riceve un livello alto. 
+Dopo che il ciclo a due livelli viene valutato, il valore del pulsante il cui stato è 1 
+viene memorizzato nell'array ``pressed_keys``.
 
-If you press the key '3':
+Se premi il tasto '3':
 
 .. image:: ../img/image187.png
 
 
-rowPins[0] is written in high level, and colPins[2] gets high level.
+rowPins[0] è impostato su alto, e colPins[2] riceve livello alto.
 
-colPins[0]、colPins[1]、colPins[3] get low level.
+colPins[0], colPins[1], colPins[3] ricevono livello basso.
 
-There are four states: 0, 0, 1, 0; and we write \'3\' into ``pressed_keys``.
+Ci sono quattro stati: 0, 0, 1, 0; e scriviamo \'3\' in ``pressed_keys``.
 
-When rowPins[1] , rowPins[2] , rowPins[3] are written into high level,
-colPins[0] ~ colPins[4] get low level.
+Quando rowPins[1], rowPins[2], rowPins[3] vengono impostati su alto, colPins[0] ~ colPins[4] ricevono livello basso.
 
-The loop stopped, there returns ``pressed_keys = ‘3’``.
+Il ciclo si interrompe e restituisce ``pressed_keys = ‘3’``.
 
-If you press the buttons ‘1’ and ‘3’, there will return pressed_keys =
-[‘1’,’3’].
+Se premi i tasti ‘1’ e ‘3’, restituirà pressed_keys = [‘1’,’3’].
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+------------------------
 
 .. image:: ../img/image188.jpeg
 

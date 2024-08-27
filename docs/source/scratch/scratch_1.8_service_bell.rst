@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anticipazioni.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.8_scratch:
 
-1.8 Service Bell
-===================
+1.8 Campanello di Servizio
+==================================
 
-Today, we will use Micro Switch, speakers, audio amplifier module, Raspberry Pi and scratch to make a service bell.
+Oggi utilizzeremo un Micro Switch, altoparlanti, un modulo amplificatore audio, un Raspberry Pi e Scratch per creare un campanello di servizio.
 
-Tap the Micro Switch to make the service bell sound.
+Tocca il Micro Switch per far suonare il campanello di servizio.
 
 .. image:: img/1.8_header.png
 
-Required Components
-------------------------------
+Componenti Necessari
+---------------------------------
 
-In this project, we need the following components. 
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: img/1.8_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI NEL KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,45 +67,46 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_audio_speaker`
         - \-
 
-Build the Circuit
----------------------
+Costruisci il Circuito
+-------------------------
 
 .. image:: img/1.8_fritzing.png
 
 
-Load the Code and See What Happens
------------------------------------------
+Carica il Codice e Guarda Cosa Succede
+--------------------------------------------
 
-Load the code file (``1.8_service_bell.sb3``) to Scratch 3.
+Carica il file di codice (``1.8_service_bell.sb3``) su Scratch 3.
 
-Press the micro switch and the service bell will ring once.
+Premi il micro switch e il campanello di servizio suonerà una volta.
+
 
 .. note::
   
-  If your Raspberry Pi is connected to a screen with speakers, it may cause no sound from this external speaker, please refer to :ref:`change_audio_output` for the solution.
+  Se il tuo Raspberry Pi è collegato a uno schermo con altoparlanti, potrebbe non emettere suoni da questo altoparlante esterno. Per la soluzione, fai riferimento a :ref:`change_audio_output`.
 
-  Also, if you want to adjust the volume level, please refer to :ref:`adjust_volume`.
+  Inoltre, se desideri regolare il livello del volume, consulta :ref:`adjust_volume`.
 
-Tips on Sprite
-----------------
+Suggerimenti sugli Sprite
+------------------------------
 
-Select Sprite1 and click **Costumes** in the top left corner; upload **bell1.png** and **bell2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **bell**.
+Seleziona Sprite1 e clicca su **Costumi** nell'angolo in alto a sinistra; carica **bell1.png** e **bell2.png** dal percorso ``~/raphael-kit/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi predefiniti e rinomina lo sprite in **campanello**.
 
 .. image:: img/1.8_travel1.png
 
-In the **Sounds** option, upload the ``bell.wav`` from the ``~/raphael-kit/scratch/sound`` path to Scratch 3.
+Nell'opzione **Suoni**, carica il file ``bell.wav`` dal percorso ``~/raphael-kit/scratch/sound`` su Scratch 3.
 
 .. image:: img/1.8_travel2.png
 
-Tips on Codes
---------------
+Suggerimenti sui Codici
+-----------------------------------
 
 .. image:: img/1.8_travel3.png
   :width: 400
 
-When pin17 is high (the Micro switch is not pressed), switch the costume of the **bell** sprite to **bell1** (released state).
+Quando pin17 è alto (il Micro switch non è premuto), cambia il costume dello sprite **campanello** in **bell1** (stato rilasciato).
 
 .. image:: img/1.8_travel4.png
   :width: 400
 
-Press the micro switch, gpio17 is low level. At this time, switch the costume of the **bell** sprite to **bell2** (press state), and play a sound effect through the speaker.
+Premi il micro switch, gpio17 va a livello basso. A questo punto, cambia il costume dello sprite **campanello** in **bell2** (stato premuto) e riproduci un effetto sonoro tramite l'altoparlante.

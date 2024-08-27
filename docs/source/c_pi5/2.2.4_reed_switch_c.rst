@@ -1,61 +1,61 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Immergiti più a fondo in Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.4_c_pi5:
 
-2.2.3 Reed Switch Module
-==============================
+2.2.3 Modulo Reed Switch
+===========================
 
-Introduction
--------------------
+Introduzione
+---------------
 
-In this project, we will learn about the reed switch, which is an electrical switch that operates by means of an applied magnetic field.
+In questo progetto impareremo a conoscere il reed switch, un interruttore elettrico che si attiva grazie a un campo magnetico applicato.
 
 .. image:: ../img/2.2.4reed_switch.png
     :width: 300
     :align: center
 
-Required Components
-------------------------------
+Componenti necessari
+-----------------------
 
-In this project, we need the following components. 
+In questo progetto abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/2.2.4component.png
     :width: 700
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -70,7 +70,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
 
-Schematic Diagram
+Schema elettrico
 -----------------------
 
 ============ ======== ======== ===
@@ -88,16 +88,16 @@ GPIO22       Pin 15   3        22
     :width: 400
     :align: center
 
-Experimental Procedures
--------------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.2.4fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Change directory.
+**Passo 2:** Cambia la directory.
 
 .. raw:: html
 
@@ -107,7 +107,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.4/
 
-**Step 3:** Compile.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -117,7 +117,7 @@ Experimental Procedures
 
     gcc 2.2.4_ReedSwitch.c -lwiringPi
 
-**Step 4:** Run.
+**Passo 4:** Esegui.
 
 .. raw:: html
 
@@ -127,13 +127,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-The green LED will light up when the code is run. If a magnet is placed close to the reed switch module, the red LED lights up; take away the magnet and the green LED lights up again.
+Il LED verde si accenderà quando il codice sarà eseguito. Se si avvicina un magnete al modulo reed switch, il LED rosso si accende; allontanando il magnete, si riaccende il LED verde.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-**Code**
+
+**Codice**
+
 
 .. code-block:: c
 
@@ -164,7 +166,7 @@ The green LED will light up when the code is run. If a magnet is placed close to
 
     int main(void)
     {
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ // se l'inizializzazione di wiring fallisce, stampa un messaggio sullo schermo
             printf("setup wiringPi failed !");
             return 1; 
         }
@@ -191,7 +193,8 @@ The green LED will light up when the code is run. If a magnet is placed close to
         return 0;
     }
 
-**Code Explanation**
+Spiegazione del Codice
+--------------------------
 
 .. code-block:: c
 
@@ -199,9 +202,9 @@ The green LED will light up when the code is run. If a magnet is placed close to
     #define Gpin		2
     #define Rpin		3
 
-Pin GPIO17, GPIO27 and GPIO22 of the T_Extension Board is corresponding to 
-the GPIO0, GPIO2 and GPIO3 in wiringPi. Assign GPIO0, GPIO2 and GPIO3 to 
-``ReedPin``, ``Gpin`` and ``Rpin``.
+Il pin GPIO17, GPIO27 e GPIO22 della T_Extension Board corrispondono 
+rispettivamente ai GPIO0, GPIO2 e GPIO3 in wiringPi. Assegna GPIO0, 
+GPIO2 e GPIO3 a ``ReedPin``, ``Gpin`` e ``Rpin``.
 
 .. code-block:: c
 
@@ -223,9 +226,9 @@ the GPIO0, GPIO2 and GPIO3 in wiringPi. Assign GPIO0, GPIO2 and GPIO3 to
             printf("LED Error");
     }
 
-Set a ``LED()`` function to control the 2 LEDs, the parameter of this function is ``color``.
+Imposta una funzione ``LED()`` per controllare i 2 LED, il parametro di questa funzione è ``color``.
 
-When ``color`` is ``"RED"``, set ``Rpin`` to ``HIGH`` (light up the red LED) and ``Gpin`` to ``LOW`` (turn off the green LED); when ``color`` is ``"GREEN"``, then light up the green LED and turn off the red LED. 
+Quando ``color`` è ``"RED"``, imposta ``Rpin`` su ``HIGH`` (accendi il LED rosso) e ``Gpin`` su ``LOW`` (spegni il LED verde); quando ``color`` è ``"GREEN"``, accendi il LED verde e spegni quello rosso.
 
 .. code-block:: c
 
@@ -246,13 +249,12 @@ When ``color`` is ``"RED"``, set ``Rpin`` to ``HIGH`` (light up the red LED) and
             }
         }
 
-Read the value of the reed switch module, if the value read 2 times is 0, call ``LED("RED")`` to light up the red LED and print ``"Magnetic material detected!"``.
+Leggi il valore del modulo reed switch, se il valore letto 2 volte è 0, chiama ``LED("RED")`` per accendere il LED rosso e stampa ``"Rilevato materiale magnetico!"``.
 
-If the value is 1, the green LED is lit.
+Se il valore è 1, il LED verde si accende.
 
-
-Phenomenon Picture
-------------------------
+Immagine del fenomeno
+-------------------------
 
 .. image:: ../img/2.2.4reed_switch.JPG
     :width: 500

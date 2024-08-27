@@ -1,59 +1,59 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci l'esplorazione del Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anteprima agli annunci di nuovi prodotti e alle anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e omaggi festivi**: Partecipa a omaggi e promozioni speciali durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.7_py:
 
 2.2.7 PIR
-=========
+============
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this project, we will make a device by using the human body infrared
-pyroelectric sensors. When someone gets closer to the LED, the LED will
-turn on automatically. If not, the light will turn off. This infrared
-motion sensor is a kind of sensor that can detect the infrared emitted
-by human and animals.
+In questo progetto, realizzeremo un dispositivo utilizzando i sensori piroelettrici 
+a infrarossi per il rilevamento del corpo umano. Quando qualcuno si avvicina al LED, 
+questo si accenderà automaticamente. In caso contrario, la luce si spegnerà. Questo 
+sensore di movimento a infrarossi è un tipo di sensore che può rilevare l'infrarosso 
+emesso da esseri umani e animali.
 
-Required Components
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto avremo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.2.4_pir2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -69,20 +69,20 @@ You can also buy them separately from the links below.
         - \-
 
 
-Schematic Diagram
------------------
+Schema elettrico
+-----------------------
 
 .. image:: ../img/image327.png
 
 
-Experimental Procedures
------------------------
+Procedura sperimentale
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image214.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run the executable file.
+**Passo 3:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -102,19 +102,19 @@ Experimental Procedures
 
     sudo python3 2.2.7_PIR.py
 
-After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. 
+Dopo l'esecuzione del codice, il PIR rileva l'ambiente circostante e fa illuminare il LED RGB di giallo se rileva qualcuno nelle vicinanze.
 
-There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.
+Sul modulo PIR ci sono due potenziometri: uno per regolare la sensibilità e l'altro per regolare la distanza di rilevamento. Per far funzionare meglio il modulo PIR, devi ruotarli entrambi in senso antiorario fino alla fine.
 
 .. image:: ../img/PIR_TTE.png
     :width: 400
     :align: center
 
-**Code**
+**Codice**
 
 .. note::
 
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect.
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. Ma prima di farlo, devi andare nel percorso del codice sorgente, come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 
 .. raw:: html
@@ -127,47 +127,47 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
     import time
 
     rgbPins = {'Red':18, 'Green':27, 'Blue':22}
-    pirPin = 17    # the pir connect to pin17
+    pirPin = 17    # il pir è collegato al pin 17
 
     def setup():
         global p_R, p_G, p_B
-        GPIO.setmode(GPIO.BCM)      # Set the GPIO modes to BCM Numbering
-        GPIO.setup(pirPin, GPIO.IN)    # Set pirPin to input
-        # Set all LedPin's mode to output and initial level to High(3.3v)
+        GPIO.setmode(GPIO.BCM)      # Imposta le modalità GPIO su BCM Numbering
+        GPIO.setup(pirPin, GPIO.IN)    # Imposta pirPin come input
+        # Imposta tutti i LedPin in modalità output e livello iniziale alto (3,3 V)
         for i in rgbPins:
             GPIO.setup(rgbPins[i], GPIO.OUT, initial=GPIO.HIGH)
 
-        # Set all led as pwm channel and frequece to 2KHz
+        # Imposta tutti i led come canali pwm e frequenza a 2KHz
         p_R = GPIO.PWM(rgbPins['Red'], 2000)
         p_G = GPIO.PWM(rgbPins['Green'], 2000)
         p_B = GPIO.PWM(rgbPins['Blue'], 2000)
 
-        # Set all begin with value 0
+        # Imposta tutti i valori iniziali a 0
         p_R.start(0)
         p_G.start(0)
         p_B.start(0)
 
-    # Define a MAP function for mapping values.  Like from 0~255 to 0~100
+    # Definisci una funzione MAP per mappare i valori, ad esempio da 0~255 a 0~100
     def MAP(x, in_min, in_max, out_min, out_max):
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-    # Define a function to set up colors 
+    # Definisci una funzione per impostare i colori 
     def setColor(color):
-    # configures the three LEDs' luminance with the inputted color value . 
-        # Devide colors from 'color' veriable
+    # configura la luminosità dei tre LED con il valore del colore inserito. 
+        # Suddividi i colori dalla variabile 'color'
         R_val = (color & 0xFF0000) >> 16
         G_val = (color & 0x00FF00) >> 8
         B_val = (color & 0x0000FF) >> 0
-        # Map color value from 0~255 to 0~100
+        # Mappa il valore del colore da 0~255 a 0~100
         R_val = MAP(R_val, 0, 255, 0, 100)
         G_val = MAP(G_val, 0, 255, 0, 100)
         B_val = MAP(B_val, 0, 255, 0, 100)
         
-        #Assign the mapped duty cycle value to the corresponding PWM channel to change the luminance. 
+        # Assegna il valore del ciclo di lavoro mappato al corrispondente canale PWM per cambiare la luminosità. 
         p_R.ChangeDutyCycle(R_val)
         p_G.ChangeDutyCycle(G_val)
         p_B.ChangeDutyCycle(B_val)
-        #print ("color_msg: R_val = %s, G_val = %s, B_val = %s"%(R_val, G_val, B_val))
+        #print ("messaggio_colore: R_val = %s, G_val = %s, B_val = %s"%(R_val, G_val, B_val))
 
     def loop():
         while True:
@@ -181,16 +181,16 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
         p_R.stop()
         p_G.stop()
         p_B.stop()
-        GPIO.cleanup()                     # Release resource
+        GPIO.cleanup()                     # Rilascia le risorse
 
-    if __name__ == '__main__':     # Program start from here
+    if __name__ == '__main__':     # Il programma inizia qui
         setup()
         try:
             loop()
-        except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+        except KeyboardInterrupt:  # Quando si preme 'Ctrl+C', viene eseguito il programma figlio destroy().
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
@@ -215,8 +215,8 @@ There are two potentiometers on the PIR module: one is to adjust sensitivity and
     def setColor(color):
     ...
 
-These codes are used to set the color of the RGB LED, and please refer
-to :ref:`1.1.2_py` for more details.
+Questi codici vengono utilizzati per impostare il colore del LED RGB, 
+per ulteriori dettagli consulta :ref:`1.1.2_py`.
 
 .. code-block:: python
 
@@ -228,10 +228,9 @@ to :ref:`1.1.2_py` for more details.
             else :
                 setColor(0x0000FF)
 
-When PIR detects the human infrared spectrum, RGB LED emits the yellow
-light; if not, emits the blue light.
+Quando il PIR rileva lo spettro infrarosso umano, il LED RGB emette luce gialla; altrimenti, emette luce blu.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+-------------------------
 
 .. image:: ../img/image215.jpeg

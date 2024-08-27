@@ -1,54 +1,54 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirsi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anticipazioni.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.3_scratch:
 
 1.3 Tumbler
 ==================
 
-In this project, we will make a tilt switch controlled tumbler toy.
+In questo progetto, realizzeremo un giocattolo a bilanciere controllato da un interruttore a inclinazione.
 
 .. image:: img/1.3_header.png
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, avremo bisogno dei seguenti componenti.
 
 .. image:: img/1.3_component.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI NEL KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -61,40 +61,39 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_tilt_switch` 
         - \-
 
-Build the Circuit
----------------------
+Costruisci il Circuito
+--------------------------
 
 .. image:: img/1.3_fritzing.png
 
 
-Load the Code and See What Happens
+Carica il Codice e Guarda Cosa Succede
 -----------------------------------------
 
-Load the code file (``1.3_tumbler.sb3``) to Scratch 3.
+Carica il file di codice (``1.3_tumbler.sb3``) su Scratch 3.
 
-When the tilt switch is placed upright, the tumbler is standing. If you tilt it, the tumbler will also fall. Place it upright again, and the tumbler will stand up again.
+Quando l'interruttore a inclinazione è in posizione verticale, il bilanciere è in piedi. Se lo inclini, anche il bilanciere cadrà. Rimettilo in verticale, e il bilanciere si rialzerà.
 
-
-Tips on Sprite
-----------------
-Select Sprite1 and click **Costumes** in the top left corner; upload **tumbler1.png** and **tumbler2.png** from the ``~/raphael-kit/scratch/picture`` path via the **Upload Costume** button; delete the default 2 costumes, and rename the sprite to **tumbler**.
+Suggerimenti sugli Sprite
+-------------------------------
+Seleziona Sprite1 e clicca su **Costumi** nell'angolo in alto a sinistra; carica **tumbler1.png** e **tumbler2.png** dal percorso ``~/raphael-kit/scratch/picture`` tramite il pulsante **Carica Costume**; elimina i 2 costumi predefiniti e rinomina lo sprite in **tumbler**.
 
 .. image:: img/1.3_add_tumbler.png
 
-Tips on Codes
---------------
+Suggerimenti sui Codici
+--------------------------
 
 .. image:: img/1.3_title2.png
   :width: 400
 
-When the green flag is clicked, the initial state of gpio17 is set to low.
+Quando si clicca sulla bandierina verde, lo stato iniziale di gpio17 è impostato su basso.
 
 .. image:: img/1.3_title4.png
   :width: 400
 
-When pin17 is low (the tilt switch is placed upright), we switch the tumbler sprite's costume to tumbler1 (upright state).
+Quando pin17 è basso (l'interruttore a inclinazione è in posizione verticale), cambiamo il costume dello sprite bilanciere in tumbler1 (stato in piedi).
 
 .. image:: img/1.3_title3.png
   :width: 400
 
-When pin17 is high (tilt switch is tilted), switch the tumbler sprite's costume to tumbler2 (tilt state).
+Quando pin17 è alto (l'interruttore a inclinazione è inclinato), cambiamo il costume dello sprite bilanciere in tumbler2 (stato inclinato).

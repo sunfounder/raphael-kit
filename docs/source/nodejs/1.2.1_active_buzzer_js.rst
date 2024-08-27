@@ -1,56 +1,56 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di Raspberry Pi, Arduino e ESP32 di SunFounder su Facebook! Approfondisci il tuo viaggio con Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e concorsi festivi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.2.1_js:
 
-1.2.1 Active Buzzer
-====================
+1.2.1 Buzzer Attivo
+========================
 
-Introduction
-------------
+Introduzione
+---------------
 
-In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+In questo progetto, impareremo come far suonare un buzzer attivo utilizzando un 
+transistor PNP.
 
-Required Components
-------------------------------
+Componenti necessari
+--------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_1.2.1.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - OGGETTI IN QUESTO KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -65,28 +65,26 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_transistor`
         - |link_transistor_buy|
 
-Schematic Diagram
------------------
+Schema elettrico
+--------------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with low
-level (0V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when high level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+In questo esperimento, utilizziamo un buzzer attivo, un transistor PNP e una 
+resistenza da 1k tra la base del transistor e il GPIO per proteggere il transistor. 
+Quando il GPIO17 del Raspberry Pi è impostato a basso livello (0V) tramite programmazione, 
+il transistor si saturerà e condurrà corrente, facendo suonare il buzzer. Tuttavia, quando 
+il GPIO è impostato ad alto livello, il transistor si interromperà e il buzzer non emetterà suoni.
 
 .. image:: ../img/image332.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+--------------------------
 
-**Step 1:** Build the circuit. (The active buzzer has a white table sticker on the surface and a black back.)
+**Passo 1:** Costruisci il circuito. (Il buzzer attivo ha un adesivo bianco sulla superficie e un retro nero.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -96,7 +94,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/nodejs/
 
-**Step 3**: Run.
+**Passo 3**: Esegui.
 
 .. raw:: html
 
@@ -106,9 +104,9 @@ Experimental Procedures
 
     sudo node active_buzzer.js
 
-The code run, the buzzer beeps.
+Dopo l'esecuzione del codice, il buzzer suonerà a intervalli regolari.
 
-**Code**
+**Codice**
 
 .. code-block:: js
 
@@ -124,14 +122,14 @@ The code run, the buzzer beeps.
     process.exit();
   });
 
-**Code Explanation**
+**Spiegazione del codice**
 
 .. code-block:: js
 
     const Gpio = require('pigpio').Gpio;
     const active = new Gpio(17,{mode: Gpio.OUTPUT});
 
-Import the ``pigpio`` module, and instantiate an object active to control the IO port Gpio17, and the mode is set to output mode.
+Importa il modulo ``pigpio`` e crea un oggetto ``active`` per controllare la porta IO GPIO17, impostata in modalità di uscita.
 
 .. code-block:: js
 
@@ -139,8 +137,8 @@ Import the ``pigpio`` module, and instantiate an object active to control the IO
     active.digitalWrite(!active.digitalRead());
   }, 500);
 
-The active buzzer is similar to the LED in usage and can be controlled with ``digitalWrite()``, and ``digitalRead()`` is used to read the current pin level.
-Here we make the active buzzer change its working state every 500ms.
+Il buzzer attivo è simile a un LED per quanto riguarda l'uso e può essere controllato con ``digitalWrite()``, mentre ``digitalRead()`` è usato per leggere il livello del pin corrente.
+Qui facciamo cambiare lo stato operativo del buzzer attivo ogni 500 ms.
 
 .. code-block:: js
 
@@ -150,11 +148,11 @@ Here we make the active buzzer change its working state every 500ms.
       process.exit()
   })
 
-Handle Ctrl+C, here is used to stop the buzzer sounding when exiting the program.
+Gestisce Ctrl+C; in questo caso, viene utilizzato per fermare il suono del buzzer quando il programma viene chiuso.
 
 `Process - NodeJS <https://nodejs.org/api/process.html>`_
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+----------------------------
 
 .. image:: ../img/image105.jpeg

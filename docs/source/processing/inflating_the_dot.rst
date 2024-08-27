@@ -1,50 +1,50 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime esclusive.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
-Inflating the Dot
+Gonfiando il Punto
 ===========================
 
-Next, let's build a circuit that allows the button to control the size of the dot.
-When we press the button, the dot will quickly get bigger; when we release the button, the dot will gradually get smaller, which makes the dot look like a balloon being inflated.
+Ora costruiamo un circuito che permetta al pulsante di controllare la dimensione del punto. 
+Quando premiamo il pulsante, il punto diventerà rapidamente più grande; quando rilasciamo il pulsante, il punto si ridurrà gradualmente, facendolo sembrare un palloncino che si gonfia.
 
 .. image:: img/dot_size.png
 
-**Required Components**
+**Componenti Necessari**
 
-In this project, we need the following components.
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -55,7 +55,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-**Wiring**
+**Collegamento**
 
 .. image:: img/button_pressed.png
 
@@ -70,7 +70,7 @@ You can also buy them separately from the links below.
 
     void setup() {
         size(200, 200);
-        frameRate(64); //set frame rate
+        frameRate(64); //imposta il frame rate
         GPIO.pinMode(buttonPin, GPIO.INPUT_PULLUP); 
         diameter = width*0.5;
     }
@@ -85,11 +85,10 @@ You can also buy them separately from the links below.
         ellipse(width/2, height/2,diameter, diameter);
     }
 
-**How it works?**
+**Come funziona?**
 
-This project uses the input function compared to the previous 2 projects that used the output function of the GPIO.
+Questo progetto utilizza la funzione di input rispetto ai precedenti 2 progetti che utilizzavano la funzione di output del GPIO.
 
-The ``GPIO.pinMode()`` function is used to set ``buttonPin`` to pull-up input mode, which makes the pin get high automatically in the default state.
+La funzione ``GPIO.pinMode()`` viene utilizzata per impostare ``buttonPin`` in modalità input pull-up, che fa sì che il pin riceva automaticamente un segnale alto in stato predefinito.
 
-Then use the ``GPIO.digitalRead()`` function to read the value of ``buttonPin``. When the value is LOW, it means the button is pressed, at which point let the diameter of the dot increase by 5; if the button is released, then the diameter of the dot will decrease by 1.
-
+Successivamente, utilizziamo la funzione ``GPIO.digitalRead()`` per leggere il valore di ``buttonPin``. Quando il valore è LOW, significa che il pulsante è premuto, a quel punto la dimensione del punto aumenta di 5; se il pulsante viene rilasciato, la dimensione del punto diminuisce di 1.

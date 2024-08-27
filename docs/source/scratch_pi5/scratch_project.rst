@@ -1,27 +1,27 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa ai giveaway e alle promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
-Projects
+Progetti
 ==================
 
-In this chapter, you will play with Scratch 3 through 18 projects.
+In questo capitolo, esplorerai Scratch 3 attraverso 18 progetti.
 
-If you are a user who has just used Scratch 3, we recommend that you try the projects in order so that you can quickly get started with Scratch 3.
+Se sei un nuovo utente di Scratch 3, ti consigliamo di provare i progetti in ordine per familiarizzare rapidamente con Scratch 3.
 
 .. note::
-    Before trying the projects, you should have downloaded the relevant materials and code files.
-    Open a Terminal and enter the following command to download them from github.
+    Prima di provare i progetti, assicurati di aver scaricato i materiali e i file di codice rilevanti.
+    Apri un terminale e inserisci il seguente comando per scaricarli da GitHub.
 
     .. raw:: html
 
@@ -48,6 +48,3 @@ If you are a user who has just used Scratch 3, we recommend that you try the pro
     scratch_1.12_inflating_the_balloon
     scratch_1.13_fishing_game
     scratch_1.14_rotating_fan
-
-
-

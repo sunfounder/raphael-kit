@@ -1,57 +1,57 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Immergiti più a fondo in Raspberry Pi, Arduino ed ESP32 con altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _2.2.2_c_pi5:
 
-2.2.2 Thermistor
-======================
+2.2.2 Termistore
+====================
 
-Introduction
-------------
+Introduzione
+-----------------
 
-Just like photoresistor can sense light, thermistor is a temperature
-sensitive electronic device that can be used for realizing functions of
-temperature control, such as making a heat alarm.
+Proprio come il fotoresistore può rilevare la luce, il termistore è un dispositivo 
+elettronico sensibile alla temperatura che può essere utilizzato per realizzare 
+funzioni di controllo della temperatura, come ad esempio un allarme termico.
 
-Required Components
-------------------------------
+Componenti necessari
+------------------------
 
-In this project, we need the following components. 
+In questo progetto abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_2.2.2_thermistor.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,8 +66,8 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_adc0834`
         - \-
 
-Schematic Diagram
------------------
+Schema elettrico
+-------------------
 
 .. image:: ../img/image323.png
 
@@ -75,14 +75,14 @@ Schematic Diagram
 .. image:: ../img/image324.png
 
 
-Experimental Procedures
------------------------
+Procedure sperimentali
+-------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image202.png
 
-**Step 2:** Go to the folder of the code.
+**Passo 2:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/2.2.2/
 
-**Step 3:** Compile the code.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -103,10 +103,9 @@ Experimental Procedures
     gcc 2.2.2_Thermistor.c -lwiringPi -lm
 
 .. note::
-    -lm is to load the library math. Do not omit, or you will make
-    an error.
+    -lm serve per caricare la libreria matematica. Non ometterla, altrimenti si verificherà un errore.
 
-**Step 4:** Run the executable file.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -116,14 +115,15 @@ Experimental Procedures
 
     sudo ./a.out
 
-With the code run, the thermistor detects ambient temperature which will
-be printed on the screen once it finishes the program calculation.
+Quando il codice viene eseguito, il termistore rileva la temperatura ambiente 
+che verrà stampata sullo schermo una volta completato il calcolo del programma.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-**Code**
+Codice
+----------
 
 .. code-block:: c
 
@@ -198,7 +198,7 @@ be printed on the screen once it finishes the program calculation.
     {
         unsigned char analogVal;
         double Vr, Rt, temp, cel, Fah;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio sullo schermo
             printf("setup wiringPi failed !");
             return 1;
         }
@@ -218,20 +218,20 @@ be printed on the screen once it finishes the program calculation.
         return 0;
     }
 
-**Code Explanation**
+Spiegazione del Codice
+-------------------------
 
 .. code-block:: c
 
     #include <math.h>
 
-There is a C numerics library which declares a set of functions to
-compute common mathematical operations and transformations.
+Questa è una libreria numerica C che dichiara una serie di funzioni per eseguire operazioni matematiche comuni e trasformazioni.
 
 .. code-block:: c
 
     analogVal = get_ADC_Result(0);
 
-This function is used to read the value of the thermistor.
+Questa funzione viene utilizzata per leggere il valore del termistore.
 
 .. code-block:: c
 
@@ -242,43 +242,42 @@ This function is used to read the value of the thermistor.
     Fah = cel * 1.8 +32;
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-These calculations convert the thermistor values into Celsius values.
+Questi calcoli convertono i valori del termistore in valori Celsius.
 
 .. code-block:: c
 
     Vr = 5 * (double)(analogVal) / 255;
     Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
 
-These two lines of codes are calculating the voltage distribution with
-the read value analog so as to get Rt (resistance of thermistor).
+Queste due righe di codice calcolano la distribuzione della tensione con 
+il valore analogico letto per ottenere Rt (resistenza del termistore).
 
 .. code-block:: c
 
     temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
 
-This code refers to plugging Rt into the formula
-**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** to get Kelvin temperature.
+Questo codice si riferisce all'inserimento di Rt nella formula 
+**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** per ottenere la temperatura in Kelvin.
 
 .. code-block:: c
 
     temp = temp - 273.15;
 
-Convert Kelvin temperature into degree Celsius.
+Converte la temperatura Kelvin in gradi Celsius.
 
 .. code-block:: c
 
     Fah = cel * 1.8 +32;
 
-Convert degree Celsius into Fahrenheit.
+Converte i gradi Celsius in Fahrenheit.
     
 .. code-block:: c
 
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
 
-Print centigrade degree, Fahrenheit degree and their units on the
-display.
+Stampa la temperatura in gradi Celsius, in gradi Fahrenheit e le loro unità sul display.
 
-Phenomenon Picture
-------------------
+Immagine del fenomeno
+------------------------
 
 .. image:: ../img/image203.jpeg

@@ -1,56 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime esclusive.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e concorsi**: Partecipa a concorsi e promozioni durante le festività.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 .. _1.1.4_py:
 
-1.1.4 7-segment Display
+1.1.4 Display a 7 Segmenti
 =============================
 
-Introduction
+Introduzione
 -----------------
 
-Let's try to drive a 7-segment display to show a figure from 0 to 9 and
-A to F.
+Proviamo a controllare un display a 7 segmenti per visualizzare una cifra da 0 a 9 e le lettere da A a F.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_7_segment.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente comodo acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link qui sotto.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -66,17 +65,17 @@ You can also buy them separately from the links below.
         - |link_74hc595_buy|
 
 
-Schematic Diagram
+Schema Elettrico
 ---------------------
 
-Connect pin ST_CP of 74HC595 to Raspberry Pi GPIO18, SH_CP to GPIO27, DS
-to GPIO17, parallel output ports to 8 segments of the LED segment
-display. Input data in DS pin to shift register when SH_CP (the clock
-input of the shift register) is at the rising edge, and to the memory
-register when ST_CP (the clock input of the memory) is at the rising
-edge. Then you can control the states of SH_CP and ST_CP via the
-Raspberry Pi GPIOs to transform serial data input into parallel data
-output so as to save Raspberry Pi GPIOs and drive the display.
+Collega il pin ST_CP del 74HC595 al GPIO18 del Raspberry Pi, SH_CP al GPIO27, DS al 
+GPIO17, e le porte di uscita parallele agli 8 segmenti del display a LED. Inserisci i 
+dati nel pin DS del registro a scorrimento quando SH_CP (l'ingresso di clock del registro 
+a scorrimento) si trova al fronte di salita, e al registro di memoria quando ST_CP 
+(l'ingresso di clock della memoria) si trova al fronte di salita. In questo modo, puoi 
+controllare gli stati di SH_CP e ST_CP tramite i GPIO del Raspberry Pi per trasformare 
+l'input di dati seriale in un'uscita di dati paralleli, risparmiando i GPIO del Raspberry 
+Pi e pilotando il display.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
@@ -88,14 +87,14 @@ GPIO27       Pin 13   2        27
 .. image:: ../img/schematic_7_segment.png
 
 
-Experimental Procedures
+Procedure Sperimentali
 ------------------------------
 
-**Step 1:** Build the circuit.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image73.png
 
-**Step 2:** Get into the folder of the code.
+**Passo 2:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -105,7 +104,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/python/
 
-**Step 3:** Run.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -115,12 +114,12 @@ Experimental Procedures
 
     sudo python3 1.1.4_7-Segment.py
 
-After the code runs, you'll see the 7-segment display display 0-9, A-F.
+Dopo l'esecuzione del codice, vedrai il display a 7 segmenti mostrare le cifre da 0 a 9 e le lettere da A a F.
 
-**Code**
+**Codice**
 
 .. note::
-    You can **Modify/Reset/Copy/Run/Stop** the code below. But before that, you need to go to  source code path like ``raphael-kit/python``. After modifying the code, you can run it directly to see the effect. After confirming that there are no problems, you can use the Copy button to copy the modified code, then open the source code in Terminal via ``nano``  cammand and paste it.
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima devi accedere al percorso del codice come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto. Dopo aver confermato che non ci sono problemi, puoi utilizzare il pulsante Copia per copiare il codice modificato, quindi aprire il codice sorgente in Terminale tramite il comando ``nano`` e incollarlo.
 
 .. raw:: html
 
@@ -131,12 +130,12 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
     import RPi.GPIO as GPIO
     import time
 
-    # Set up pins
+    # Configurazione dei pin
     SDI   = 17
     RCLK  = 18
     SRCLK = 27
 
-    # Define a segment code from 0 to F in Hexadecimal
+    # Definisci un codice segmento da 0 a F in esadecimale
     segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
 
     def setup():
@@ -145,7 +144,7 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
 
-    # Shift the data to 74HC595
+    # Trasmetti i dati al 74HC595
     def hc595_shift(dat):
         for bit in range(0, 8): 
             GPIO.output(SDI, 0x80 & (dat << bit))
@@ -158,10 +157,10 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
 
     def main():
         while True:
-            # Shift the code one by one from segCode list
+            # Trasmetti il codice uno per uno dalla lista segCode
             for code in segCode:
                 hc595_shift(code)
-                print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X means double digit HEX to print
+                print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X significa doppia cifra HEX da stampare
                 time.sleep(0.5)
 
     def destroy():
@@ -174,13 +173,13 @@ After the code runs, you'll see the 7-segment display display 0-9, A-F.
         except KeyboardInterrupt:
             destroy()
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: python
 
     segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
 
-A segment code array from 0 to F in Hexadecimal (Common cathode). 
+Un array di codice segmento da 0 a F in esadecimale (Catodo comune). 
 
 .. code-block:: python
 
@@ -190,30 +189,30 @@ A segment code array from 0 to F in Hexadecimal (Common cathode).
         GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
 
-Set ds, st_cp, sh_cp three pins to output and the initial state as low level.
+Imposta i tre pin ds, st_cp, sh_cp in output e lo stato iniziale come livello basso.
 
 .. code-block:: python
 
     GPIO.output(SDI, 0x80 & (dat << bit))
 
-Assign the dat data to SDI(DS) by bits. Here we assume dat=0x3f(0011 1111, when bit=2, 0x3f will shift right(<<) 2 bits. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, is true.
+Assegna i dati dat al pin SDI(DS) per bit. Qui supponiamo che dat=0x3f (0011 1111), quando bit=2, 0x3f si sposterà a destra (<<) di 2 bit. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, è vero.
 
 .. code-block:: python
 
     GPIO.output(SRCLK, GPIO.HIGH)
 
-SRCLK's initial value was set to LOW, and here it's set to HIGH, which is to generate a rising edge pulse, then shift the DS date to shift register.
+Il valore iniziale di SRCLK è stato impostato su LOW, e qui viene impostato su HIGH, per generare un impulso di fronte di salita, quindi trasferire i dati DS al registro a scorrimento.
 
 .. code-block:: python
 
     GPIO.output(RCLK, GPIO.HIGH)
 
-RCLK's initial value was set to LOW, and here it's set to HIGH, which is to generate a rising edge, then shift data from shift register to storage register.
+Il valore iniziale di RCLK è stato impostato su LOW, e qui viene impostato su HIGH, per generare un fronte di salita, quindi trasferire i dati dal registro a scorrimento al registro di memoria.
 
 .. note::
-    The hexadecimal format of number 0~15 are (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+    Il formato esadecimale dei numeri da 0 a 15 è (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
 
-**Phenomenon Picture**
+**Immagine del Fenomeno**
 
 .. image:: ../img/image74.jpeg
 

@@ -1,60 +1,60 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
 
 .. _3.1.13_c_pi5:
 
-3.1.13 GAME– NotNot
-===========================
+3.1.13 GIOCO - NotNot
+==============================
 
-Introduction
+Introduzione
 -------------------
 
-In this project, we will make an interesting game device, and we call it “Not Not”.
+In questo progetto, realizzeremo un dispositivo di gioco interessante, che chiameremo “Not Not”.
 
-During the game, the dot matrix will refresh an arrow randomly. What you need to do is to press the button in the opposite direction of the arrow within a limited time. If the time is up, or if the button in the same direction as the arrow is pressed, you are out.
+Durante il gioco, la matrice a punti aggiornerà casualmente una freccia. Il tuo compito è premere il pulsante nella direzione opposta alla freccia entro un tempo limitato. Se il tempo scade, o se viene premuto il pulsante nella stessa direzione della freccia, sei fuori.
 
-This game can really practice your reverse thinking, and now shall we have a try?
+Questo gioco può davvero esercitare il tuo pensiero inverso, e ora facciamo un tentativo?
 
-Required Components
+Componenti necessari
 ------------------------------
 
-In this project, we need the following components.
+In questo progetto, abbiamo bisogno dei seguenti componenti.
 
 .. image:: ../img/list_GAME_14_NotNot.png
     :align: center
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link:
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
         - LINK
-    *   - Raphael Kit
+    *   - Kit Raphael
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link sottostanti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE COMPONENTE
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -67,7 +67,7 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_button`
         - |link_button_buy|
 
-Schematic Diagram
+Schema elettrico
 ------------------------
 
 ============ ======== ======== ====
@@ -82,19 +82,19 @@ SPISCLK      Pin 23   14       SCLK
 .. image:: ../img/Schematic_notnot.png
    :align: center
 
-Experimental Procedures
+Procedure sperimentali
 ---------------------------------
 
-**Step 1**: Build the circuit.
+**Passo 1**: Costruisci il circuito.
 
 .. image:: ../img/3.1.14game_notnot.png
 
 .. note::
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
-    And the :ref:`BCM2835` library is also needed.
+    Accendi l'SPI prima di iniziare l'esperimento, consulta :ref:`spi configuration` per i dettagli.  
+    E sarà necessaria anche la libreria :ref:`BCM2835`.
 
-**Step 2**: Go to the folder of the code.
+**Passo 2**: Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -104,7 +104,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/3.1.13/
 
-**Step 3**: Compile the code.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -114,7 +114,7 @@ Experimental Procedures
 
     make
 
-**Step 4**: Run the executable file.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -124,28 +124,29 @@ Experimental Procedures
 
     sudo ./3.1.13_GAME_NotNot
 
-After the program starts, a left or right arrow will be refreshed at 
-random on the dot matrix. What you need to do is to press the button 
-in the opposite direction of the arrow, then “√” appears on the dot matrix. If the button in the 
-same direction as the arrow is pressed, you are out and the dot matrix 
-displays “x”. You can also add 2 new buttons or replace them with 
-Joystick keys for up, down, left and right— 4 directions to increase 
-the difficulty of the game.
+Dopo l'avvio del programma, una freccia verso sinistra o destra verrà 
+aggiornata casualmente sulla matrice a punti. Il tuo compito è premere 
+il pulsante nella direzione opposta alla freccia; allora apparirà un “√” 
+sulla matrice a punti. Se premi il pulsante nella stessa direzione della 
+freccia, sei fuori e la matrice a punti mostrerà una “x”. Puoi anche 
+aggiungere 2 nuovi pulsanti o sostituirli con i tasti del joystick per 4 
+direzioni—su, giù, sinistra e destra—per aumentare la difficoltà del gioco.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se non funziona dopo l'esecuzione, o appare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-**Code Explanation**
+Spiegazione del codice
+----------------------
 
-Based on :ref:`1.1.6_c_pi5`, this project adds 2 buttons to make an amusing game device.
+Basato su :ref:`1.1.6_c_pi5`, questo progetto aggiunge 2 pulsanti per creare un dispositivo di gioco divertente.
 
-The whole program process is as below:
+Il processo completo del programma è il seguente:
 
-#. Use system time to generate a random 0 or 1.
-#. Display a random left or right arrow pattern.
-#. Press the key and determine the result.
-#. Display the right or wrong pattern.
+#. Utilizza il tempo di sistema per generare un 0 o 1 casuale.
+#. Visualizza casualmente un pattern di freccia sinistra o destra.
+#. Premi il pulsante e determina il risultato.
+#. Mostra il pattern corretto o sbagliato.
 
 .. image:: ../img/3.1.14_notnot1.png
 
@@ -157,7 +158,7 @@ The whole program process is as below:
         return rand()%2;
     }
 
-The seed of the system is changed by the system time, i.e. ``srand((unsigned)time(NULL))``, so that each time the rand function is called the value obtained is completely random, and finally the result obtained is divided by 2, so that the values obtained are 0 and 1.
+Il seed del sistema viene modificato dal tempo di sistema, ossia ``srand((unsigned)time(NULL))``, così che ogni volta che la funzione rand viene chiamata, il valore ottenuto è completamente casuale. Infine, il risultato ottenuto viene diviso per 2, in modo che i valori ottenuti siano 0 e 1.
 
 
 .. code-block:: c
@@ -181,7 +182,8 @@ The seed of the system is changed by the system time, i.e. ``srand((unsigned)tim
         }
     }
 
-Determines which button was pressed and compares it to the direction of the arrow on the dot matrix and gives the final result of 0 or 1.
+Determina quale pulsante è stato premuto e lo confronta con la direzione 
+della freccia sulla matrice a punti, quindi restituisce il risultato finale di 0 o 1.
 
 .. image:: ../img/3.1.14_getkey.png
 
@@ -203,6 +205,6 @@ Determines which button was pressed and compares it to the direction of the arro
         }
     }
 
-Depending on the value of the ``stage`` and ``index`` to display the ``left or right`` arrow or the ``right or wrong`` pattern.
+A seconda del valore di ``stage`` e ``index``, visualizza la freccia ``sinistra o destra`` o il pattern ``corretto o sbagliato``.
 
 .. image:: ../img/3.1.14_display.png

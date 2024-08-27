@@ -1,55 +1,55 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
 
 .. _1.3.2_c:
 
 1.3.2 Servo
 =================
 
-Introduction
+Introduzione
 --------------
 
-In this project, we will learn how to make the servo rotate.
+In questo progetto, impareremo come far ruotare un servo.
 
-Required Components
+Componenti Necessari
 ------------------------------
 
-In this project, we need the following components. 
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
 
 .. image:: ../img/list_1.3.2.png
 
-It's definitely convenient to buy a whole kit, here's the link: 
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
 
 .. list-table::
     :widths: 20 20 20
     :header-rows: 1
 
-    *   - Name	
-        - ITEMS IN THIS KIT
+    *   - Nome	
+        - COMPONENTI NEL KIT
         - LINK
     *   - Raphael Kit
         - 337
         - |link_Raphael_kit|
 
-You can also buy them separately from the links below.
+Puoi anche acquistarli separatamente dai link seguenti.
 
 .. list-table::
     :widths: 30 20
     :header-rows: 1
 
-    *   - COMPONENT INTRODUCTION
-        - PURCHASE LINK
+    *   - INTRODUZIONE AI COMPONENTI
+        - LINK PER L'ACQUISTO
 
     *   - :ref:`cpn_gpio_extension_board`
         - |link_gpio_board_buy|
@@ -60,20 +60,20 @@ You can also buy them separately from the links below.
     *   - :ref:`cpn_servo`
         - |link_servo_buy|
 
-Schematic Diagram
------------------
+Schema Elettrico
+---------------------
 
 .. image:: ../img/image337.png
 
 
-Experimental Procedures
------------------------
+Procedure Sperimentali
+---------------------------
 
-**Step 1:** Build the circuit.
+**Step 1:** Costruisci il circuito.
 
 .. image:: ../img/image125.png
 
-**Step 2**: Go to the folder of the code.
+**Step 2**: Entra nella cartella del codice.
 
 .. raw:: html
 
@@ -83,7 +83,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.3.2
 
-**Step 3**: Compile the code.
+**Step 3**: Compila il codice.
 
 .. raw:: html
 
@@ -93,7 +93,7 @@ Experimental Procedures
 
     gcc 1.3.2_Servo.c -lwiringPi
 
-**Step 4**: Run the executable file.
+**Step 4**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -103,14 +103,14 @@ Experimental Procedures
 
     sudo ./a.out
 
-After the program is executed, the servo will rotate from 
-0 degrees to 180 degrees, and then from 180 degrees to 0 degrees, circularly.
+Dopo l'esecuzione del programma, il servo ruoterà da 
+0 gradi a 180 gradi, e poi da 180 gradi a 0 gradi, ciclicamente.
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    Se il codice non funziona o appare un errore come: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`install_wiringpi`.
 
-**Code**
+**Codice**
 
 .. code-block:: c
 
@@ -118,11 +118,11 @@ After the program is executed, the servo will rotate from
     #include <softPwm.h>
     #include <stdio.h>
 
-    #define ServoPin    1       //define the servo to GPIO1
+    #define ServoPin    1       //definisci il servo su GPIO1
     long Map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+    void setAngle(int pin, int angle){    //Crea una funzione per controllare l'angolo del servo.
         if(angle < 0)
             angle = 0;
         if(angle > 180)
@@ -133,17 +133,17 @@ After the program is executed, the servo will rotate from
     int main(void)
     {
         int i;
-        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+        if(wiringPiSetup() == -1){ //quando l'inizializzazione di wiring fallisce, stampa messaggio a schermo
             printf("setup wiringPi failed !");
             return 1; 
         }
-        softPwmCreate(ServoPin, 0, 200);       //initialize PMW pin of servo
+        softPwmCreate(ServoPin, 0, 200);       //inizializza il pin PWM del servo
         while(1){
-            for(i=0;i<181;i++){     // Let servo rotate from 0 to 180.            	setAngle(ServoPin,i);
+            for(i=0;i<181;i++){     // Lascia ruotare il servo da 0 a 180 gradi.            	setAngle(ServoPin,i);
                 delay(2);
             }
             delay(1000);
-            for(i=181;i>-1;i--){        // Let servo rotate from 180 to 0.            	setAngle(ServoPin,i);
+            for(i=181;i>-1;i--){        // Lascia ruotare il servo da 180 a 0 gradi.            	setAngle(ServoPin,i);
                 delay(2);
             }
             delay(1000);
@@ -151,7 +151,7 @@ After the program is executed, the servo will rotate from
         return 0;
     }
 
-**Code Explanation**
+**Spiegazione del Codice**
 
 .. code-block:: c
 
@@ -159,11 +159,11 @@ After the program is executed, the servo will rotate from
         return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
     }
 
-Create a ``Map()`` function to map value in the following code.
+Crea una funzione ``Map()`` per mappare i valori nel codice seguente.
 
 .. code-block:: c
 
-    void setAngle(int pin, int angle){    //Create a funtion to control the angle of the servo.
+    void setAngle(int pin, int angle){    //Crea una funzione per controllare l'angolo del servo.
         if(angle < 0)
             angle = 0;
         if(angle > 180)
@@ -171,31 +171,32 @@ Create a ``Map()`` function to map value in the following code.
         softPwmWrite(pin,Map(angle, 0, 180, 5, 25));   
     } 
 
-Create a funtion, ``setAngle()`` to write angle to the servo.
+Crea una funzione, ``setAngle()`` per impostare l'angolo del servo.
 
 .. code-block:: c
 
     softPwmWrite(pin,Map(angle,0,180,5,25));  
 
-This function can change the duty cycle of the PWM.
+Questa funzione può cambiare il ciclo di lavoro del PWM.
 
-To make the servo rotate to 0 ~ 180 °, the pulse width should change
-within the range of 0.5ms ~ 2.5ms when the period is 20ms; in the
-function, ``softPwmCreate()`` , we have set that the period is
-200x100us=20ms, thus we need to map 0 ~ 180 to 5x100us ~ 25x100us.
+Per far ruotare il servo da 0 a 180°, la larghezza dell'impulso deve variare
+tra 0,5ms e 2,5ms quando il periodo è di 20ms; nella
+funzione, ``softPwmCreate()``, abbiamo impostato che il periodo è
+200x100us=20ms, quindi dobbiamo mappare 0 ~ 180 a 5x100us ~ 25x100us.
 
-The prototype of this function is shown below.
+Il prototipo di questa funzione è mostrato di seguito.
 
 .. code-block::
 
     int softPwmCreate（int pin，int initialValue，int pwmRange）;
 
-* ``pin``: Any GPIO pin of Raspberry Pi can be set as PWM pin.
-* ``initialValue``: The initial pulse width is that initialValue times 100us.
-* ``pwmRange``: the period of PWM is that pwmRange times 100us.
+* ``pin``: Qualsiasi pin GPIO del Raspberry Pi può essere impostato come pin PWM.
+* ``initialValue``: La larghezza dell'impulso iniziale è pari a initialValue moltiplicato per 100us.
+* ``pwmRange``: il periodo del PWM è pari a pwmRange moltiplicato per 100us.
 
-Phenomenon Picture
-------------------
+Immagine del Fenomeno
+---------------------------
 
 .. image:: ../img/image126.jpeg
+
 

@@ -1,28 +1,28 @@
 .. note::
 
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+    Ciao, benvenuto nella community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
-    **Why Join?**
+    **Perché unirti a noi?**
 
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti Esclusivi**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni festive e giveaway.
 
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-Video 32: Understanding and Using a Keypad with the Raspberry Pi
+Video 32: Comprendere e Utilizzare una Tastiera a Membrana con il Raspberry Pi
 =======================================================================================
 
-Learn how to efficiently incorporate a keypad into your Raspberry Pi projects using passive row-column addressing for input reading.
+Scopri come integrare efficacemente una tastiera a membrana nei tuoi progetti con Raspberry Pi utilizzando l'indirizzamento passivo a righe e colonne per la lettura degli input.
 
-1. **Introduction**: Learn how to integrate a keypad into your Raspberry Pi projects.
-2. **Passive Row-Column Addressing**: Understand the concept of passive addressing for efficient keypad input reading.
-3. **Wiring Setup**: Discover the wiring setup using rows and columns for the keypad.
-4. **GPIO Pins Configuration**: Set up GPIO pins as outputs for rows and inputs for columns.
-5. **Key Labeling**: Create a matrix to label the keys on the keypad for easier reference.
-6. **Implementation**: Follow along with the coding process to incorporate the keypad into your projects.
+1. **Introduzione**: Impara a integrare una tastiera a membrana nei tuoi progetti con Raspberry Pi.
+2. **Indirizzamento Passivo Righe-Colonne**: Comprendi il concetto di indirizzamento passivo per una lettura efficiente degli input della tastiera.
+3. **Configurazione dei Collegamenti**: Scopri come configurare i collegamenti utilizzando righe e colonne per la tastiera.
+4. **Configurazione dei Pin GPIO**: Imposta i pin GPIO come uscite per le righe e ingressi per le colonne.
+5. **Etichettatura dei Tasti**: Crea una matrice per etichettare i tasti della tastiera per una più facile consultazione.
+6. **Implementazione**: Segui il processo di codifica per integrare la tastiera nei tuoi progetti.
 
 
 **Video**
@@ -30,4 +30,3 @@ Learn how to efficiently incorporate a keypad into your Raspberry Pi projects us
 .. raw:: html
 
     <iframe width="700" height="500" src="https://www.youtube.com/embed/wuCABxky94g?si=j9nJ7bov1DhMgVxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
