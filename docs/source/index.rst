@@ -25,6 +25,7 @@ Merci d'avoir choisi notre Kit Ultime Raphael.
         * |link_en_tutorials|
         * |link_es_tutorials|
         * |link_fr_tutorials|
+        * |link_it_tutorials|
 
     Veuillez cliquer sur les liens correspondants pour accéder au document dans votre langue préférée.
 
