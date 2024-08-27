@@ -27,6 +27,7 @@ Thanks for choosing our |link_Raphael_kit|.
         * |link_en_tutorials|
         * |link_es_tutorials|
         * |link_fr_tutorials|
+        * |link_it_tutorials|
 
     Please click on the respective links to access the document in your preferred language.
 
