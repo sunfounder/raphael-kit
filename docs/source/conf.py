@@ -282,7 +282,7 @@ rst_epilog += """
 
 .. |link_it_tutorials| raw:: html
 
-    <a href="https://docs.sunfounder.com/projects/raphael-kit/fr/latest/" target="_blank">Tutoriels de français en ligne</a>
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/it/latest/" target="_blank">Tutorial online in italiano</a>
 
     
 .. |Adafruit_CircuitPython_DHT| raw:: html
