@@ -105,6 +105,10 @@
 
 コードを実行した後、緑色のLEDが点灯します。スピードセンサーモジュールの隙間に障害物を置くと、「Light was blocked」と画面に表示され、赤色のLEDが点灯します。障害物を取り除くと、緑色のLEDが再び点灯します。
 
+.. warning::
+
+    エラー メッセージ ``RuntimeError: Cannot determine SOC peripheral base address`` が表示された場合は、 :ref:`faq_soc` を参照してください。
+
 **コード**
 
 .. note::

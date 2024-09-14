@@ -112,6 +112,10 @@ GPIO22とGPIO27にそれぞれLEDを二つ接続します。
 コードが実行されている間、動くアームを押すと、黄色いLEDが点灯し、
 動くアームを離すと、赤いLEDが点灯します。
 
+.. warning::
+
+    エラー メッセージ ``RuntimeError: Cannot determine SOC peripheral base address`` が表示された場合は、 :ref:`faq_soc` を参照してください。
+
 **コード**
 
 .. note::

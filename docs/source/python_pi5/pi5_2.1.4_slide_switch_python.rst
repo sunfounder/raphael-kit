@@ -110,6 +110,10 @@
 
 コードが実行されている間、スイッチを左につなぐと、黄色いLEDが点灯します。右につなぐと、赤いLEDが点灯します。
 
+.. warning::
+
+    エラー メッセージ ``RuntimeError: Cannot determine SOC peripheral base address`` が表示された場合は、 :ref:`faq_soc` を参照してください。
+
 **コード**
 
 .. note::

@@ -100,6 +100,10 @@
 
 コードを実行した後、モジュールのプローブの前に手を置くと、モジュール上の出力インジケーターが点灯し、「Detected Barrier!」が画面に繰り返し表示されます。手を離すと停止します。
 
+.. warning::
+
+    エラー メッセージ ``RuntimeError: Cannot determine SOC peripheral base address`` が表示された場合は、 :ref:`faq_soc` を参照してください。
+
 **コード**
 
 .. note::
