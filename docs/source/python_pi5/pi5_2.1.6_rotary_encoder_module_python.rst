@@ -107,6 +107,10 @@ SW au GPIO numérique 27, DT au GPIO numérique 18 et CLK au GPIO numérique 17.
 
 Vous verrez le décompte dans le terminal. Lorsque vous tournez l'encodeur rotatif dans le sens des aiguilles d'une montre, le décompte augmente ; lorsque vous le tournez dans le sens inverse, le décompte diminue. Si vous appuyez sur l'interrupteur de l'encodeur rotatif, les lectures reviendront à zéro.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

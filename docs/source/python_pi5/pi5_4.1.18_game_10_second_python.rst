@@ -124,6 +124,10 @@ Secouez la baguette, l'affichage à 4 chiffres commencera à compter, secouez
 à **10.00**, alors vous gagnez. Secouez-la une fois de plus pour commencer la
 prochaine manche du jeu.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

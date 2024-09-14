@@ -113,6 +113,10 @@ Après l'exécution du code, vous verrez « Greetings!, From SunFounder » s'aff
     * Si le code et le câblage sont corrects, mais que le LCD n'affiche toujours pas de contenu, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
 
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code** 
 
 .. note::

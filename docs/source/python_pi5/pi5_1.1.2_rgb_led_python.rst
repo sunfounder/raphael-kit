@@ -108,6 +108,10 @@ Procédures expérimentales
 
 Après l'exécution du code, vous verrez que la LED RVB affiche rouge, vert, bleu, jaune, rose et cyan.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

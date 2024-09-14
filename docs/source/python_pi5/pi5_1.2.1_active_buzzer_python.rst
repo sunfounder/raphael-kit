@@ -107,6 +107,10 @@ Procédures Expérimentales
 
 Le code s'exécute et le buzzer émet un bip.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

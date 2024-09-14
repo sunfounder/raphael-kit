@@ -66,6 +66,7 @@ Si vous avez des questions, veuillez envoyer un email à service@sunfounder.com 
 
     component/component_list
     appendix/appendix
+    faq
     thank-learning
 
 

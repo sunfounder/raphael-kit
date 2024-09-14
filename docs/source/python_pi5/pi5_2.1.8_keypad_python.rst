@@ -102,6 +102,10 @@ Procédures expérimentales
 Après l'exécution du code, les valeurs des boutons pressés sur le clavier
  (valeur des boutons) seront affichées à l'écran.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

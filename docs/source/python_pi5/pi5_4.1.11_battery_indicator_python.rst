@@ -122,6 +122,10 @@ pin de l'ADC0834 et à la masse, puis connectez-les aux deux pôles d'une batter
 Vous verrez la LED correspondante sur le Bargraph LED s'allumer pour afficher le 
 niveau de charge (plage de mesure : 0-5V).
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

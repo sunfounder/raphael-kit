@@ -117,6 +117,10 @@ Procédures expérimentales
 
 Après l'exécution du code, vous verrez l'afficheur 7 segments afficher 0-9, A-F.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

@@ -111,6 +111,10 @@ Procédures Expérimentales
 
 Si l'interrupteur à lames est influencé par l'aimant (par exemple, l'interrupteur à lames est placé sur la base et l'aimant est placé dans le vase), l'objet est en sécurité. À ce moment-là, l'interrupteur à lames est en état fermé, et le buzzer reste silencieux. 
 Après avoir retiré l'aimant (par exemple, si le vase est volé), l'interrupteur à lames n'est plus affecté par le magnétisme, l'interrupteur s'ouvre et le buzzer émet une alarme.
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

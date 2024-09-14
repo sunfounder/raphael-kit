@@ -96,6 +96,10 @@ Experimental Procedures
 
 Après l'exécution du programme, le servo tournera de 0 degrés à 90 degrés à 180 degrés, puis de 180 degrés à 90 degrés à 0 degrés, en cercle.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

@@ -110,6 +110,10 @@ Procédures Expérimentales
 
 Lorsque le code s'exécute, le buzzer joue un morceau de musique.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

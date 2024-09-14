@@ -81,6 +81,10 @@ Lorsque le code s'exécute, la caméra prendra une photo. Vous pouvez maintenant
 
 Si vous souhaitez télécharger la photo sur votre PC, veuillez vous référer à :ref:`filezilla`.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. code-block:: python

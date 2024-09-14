@@ -98,6 +98,10 @@ Lorsque le code est exécuté, le module de capteur ultrasonique détecte la
 distance entre l'obstacle devant et le module lui-même, puis la valeur de 
 la distance sera imprimée à l'écran.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

@@ -120,6 +120,10 @@ Après avoir exécuté le code, appuyez sur le bouton, le Raspberry Pi fera clig
 
 Si vous souhaitez télécharger la photo sur votre PC, veuillez vous référer à : :ref:`filezilla`.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

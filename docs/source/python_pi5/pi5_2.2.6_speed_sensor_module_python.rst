@@ -107,6 +107,10 @@ Après l'exécution du code, la LED verte s'allumera. Si vous placez un obstacle
 dans l'espace du module de capteur de vitesse, "light blocked" sera imprimé à 
 l'écran et la LED rouge s'allumera. Retirez l'obstacle et la LED verte s'allumera de nouveau.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

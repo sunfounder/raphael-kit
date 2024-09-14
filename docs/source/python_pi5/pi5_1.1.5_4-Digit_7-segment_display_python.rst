@@ -111,6 +111,10 @@ Procédures expérimentales
 
 Après l'exécution du code, le programme effectue un comptage, augmentant de 1 par seconde, et l'afficheur à 4 chiffres affiche le comptage.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

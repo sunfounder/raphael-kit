@@ -107,6 +107,10 @@ Procédures expérimentales
 Lorsque le code s'exécute, la thermistance détecte la température ambiante qui 
 sera affichée à l'écran une fois le calcul du programme terminé.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

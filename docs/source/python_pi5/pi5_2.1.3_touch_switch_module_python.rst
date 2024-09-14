@@ -105,6 +105,10 @@ Procédures Expérimentales
 
 Pendant que le code s'exécute, la LED rouge s'allume ; lorsque vous appuyez sur le module de commutateur tactile, la LED jaune s'allume.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

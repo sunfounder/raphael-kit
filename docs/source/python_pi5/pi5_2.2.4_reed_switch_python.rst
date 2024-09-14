@@ -116,6 +116,10 @@ Procédures expérimentales
 
 La LED verte s'allume lorsque le code est exécuté. Si un aimant est placé près du module à interrupteur Reed, la LED rouge s'allume ; retirez l'aimant et la LED verte se rallume.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

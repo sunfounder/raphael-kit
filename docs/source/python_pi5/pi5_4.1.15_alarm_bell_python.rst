@@ -119,6 +119,10 @@ Après le démarrage du programme, l'interrupteur à bascule sera activé vers l
 et le buzzer émettra des sons d'alarme. En même temps, les LED rouges et vertes clignoteront 
 à une certaine fréquence.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

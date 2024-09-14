@@ -134,6 +134,10 @@ en fonction de la distance.
     * Si l'erreur ``OSError: [Errno 121] Remote I/O error`` apparaît, cela signifie que le module est mal câblé ou que le module est défectueux.
     * Si le code et le câblage sont corrects, mais que l'écran LCD ne montre toujours pas de contenu, vous pouvez tourner le potentiomètre à l'arrière pour augmenter le contraste.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

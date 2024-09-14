@@ -110,6 +110,10 @@ Pendant l'exécution du code, la LED s'allume. De plus, vous pouvez entendre un
  tic-tac causé par l'ouverture du contact normalement fermé et la fermeture du
   contact normalement ouvert.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

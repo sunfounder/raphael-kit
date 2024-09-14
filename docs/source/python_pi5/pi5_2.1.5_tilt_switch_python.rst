@@ -105,6 +105,10 @@ Placez l'interrupteur à la verticale, et la LED verte s'allumera.
 Si vous l'inclinez, "Tilt!" sera affiché à l'écran et la LED rouge
  s'allumera. Replacez-le à la verticale, et la LED verte se rallumera.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

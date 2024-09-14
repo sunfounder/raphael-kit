@@ -159,6 +159,10 @@ ou ``N`` (ne pas enregistrer).
 
 Appuyez ensuite sur ``Entrée`` pour quitter. Tapez à nouveau nano ``1.1.1_BlinkingLed_zero.py`` pour voir l'effet après la modification.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 Le code du programme est le suivant :

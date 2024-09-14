@@ -126,6 +126,10 @@ Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilit�
    Vous pouvez également ouvrir ``4.1.4_AutomaticCaptureCamera_zero.py`` dans le chemin ``~/raphael-kit/python-pi5/`` avec un IDE Python, cliquer sur le bouton Exécuter pour l'exécuter, et arrêter le code avec le bouton Arrêter.
 
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

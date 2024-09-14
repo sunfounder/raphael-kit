@@ -112,6 +112,10 @@ Lorsque le code s'exécute, le moteur tourne d'abord dans le sens horaire pendan
 puis s'arrête pendant 5 secondes. Ensuite, il tourne dans le sens antihoraire pendant 5 secondes; 
 par la suite, le moteur s'arrête pendant 5 secondes. Cette série d'actions sera exécutée de manière répétée.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

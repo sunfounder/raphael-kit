@@ -111,6 +111,10 @@ Experimental Procedures
     sudo python3 2.1.2_MicroSwitch_zero.py
 
 Pendant l'exécution du code, appuyez sur le bras mobile, puis la LED jaune s'allume ; relâchez le bras mobile, la LED rouge s'allume.
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

@@ -102,6 +102,10 @@ Procédures expérimentales
 Après l'exécution du code, lorsque vous placez votre main devant la sonde du module, 
 l'indicateur de sortie sur le module s'allume et "Detected Barrier!" sera imprimé de manière répétée à l'écran jusqu'à ce que votre main soit retirée.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. note::

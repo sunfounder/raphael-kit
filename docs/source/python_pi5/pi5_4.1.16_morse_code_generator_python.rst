@@ -115,6 +115,10 @@ négatif.)
 Après le démarrage du programme, tapez une série de caractères, et le buzzer ainsi
 que la LED enverront les signaux correspondants en code Morse.
 
+.. warning::
+
+    Si vous recevez le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`
+
 **Code**
 
 .. code-block:: python
