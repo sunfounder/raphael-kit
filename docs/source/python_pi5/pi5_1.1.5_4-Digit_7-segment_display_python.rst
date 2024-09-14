@@ -109,6 +109,10 @@ Experimentelle Verfahren
 
 Nachdem der Code ausgeführt wurde, nimmt das Programm eine Zählung vor, die jede Sekunde um 1 erhöht, und die 4-stellige Anzeige zeigt die Zählung an.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

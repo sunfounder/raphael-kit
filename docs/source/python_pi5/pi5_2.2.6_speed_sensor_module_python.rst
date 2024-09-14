@@ -106,6 +106,10 @@ Experimentelle Verfahren
 Nachdem der Code ausgeführt wurde, leuchtet die grüne LED. Wenn Sie ein Hindernis in die Lücke des Geschwindigkeitssensormoduls platzieren, wird "Light was blocked" auf dem Bildschirm gedruckt und die rote LED leuchtet auf.
 Entfernen Sie das Hindernis und die grüne LED leuchtet wieder auf.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

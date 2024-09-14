@@ -108,6 +108,10 @@ Experimentelle Verfahren
 
 Jetzt, wenn Sie den Taster drücken, leuchtet die LED auf; wenn Sie den Taster loslassen, geht die LED aus.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

@@ -106,6 +106,10 @@ Experimentelle Verfahren
 
 Während der Code läuft, verbinden Sie den Schalter mit der linken Seite, dann leuchtet die gelbe LED auf; nach rechts, schaltet sich die rote LED ein.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

@@ -117,6 +117,10 @@ Experimentelle Verfahren
 
 Nachdem das Programm ausgeführt wurde, geben Sie dem 3. Pin des ADC0834 und dem GND jeweils ein Anschlusskabel und führen Sie diese dann separat an die beiden Pole einer Batterie. Sie können sehen, wie die entsprechende LED auf dem LED-Balkendiagramm aufleuchtet, um den Ladestand anzuzeigen (Messbereich: 0-5V).
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

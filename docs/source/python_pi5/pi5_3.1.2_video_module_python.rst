@@ -83,6 +83,10 @@ Führen Sie den Code aus, um die Aufnahme zu starten. Drücken Sie ``Ctrl+C``, u
 Wenn Sie Fotos an Ihren PC senden möchten, siehe :ref:`filezilla`.
 
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. code-block:: python

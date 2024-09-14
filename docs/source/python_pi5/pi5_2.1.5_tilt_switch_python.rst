@@ -102,6 +102,10 @@ Experimentelle Verfahren
 
 Stellen Sie den Neigungsschalter vertikal auf, und die grüne LED leuchtet auf. Wenn Sie ihn neigen, wird "Tilt!" auf dem Bildschirm angezeigt und die rote LED leuchtet auf. Stellen Sie ihn wieder vertikal auf, und die grüne LED leuchtet wieder auf.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

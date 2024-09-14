@@ -103,6 +103,10 @@ Experimentelle Verfahren
 
 Während der Code läuft, leuchtet die LED auf. Zusätzlich kann man ein Klicken hören, verursacht durch das Öffnen des normalerweise geschlossenen Kontakts und das Schließen des normalerweise offenen Kontakts.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

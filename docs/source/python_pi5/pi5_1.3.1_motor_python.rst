@@ -105,6 +105,10 @@ Experimentelle Verfahren
 
 Während der Code ausgeführt wird, dreht sich der Motor zunächst 5 Sekunden lang im Uhrzeigersinn, dann stoppt er für 5 Sekunden, danach dreht er sich 5 Sekunden lang gegen den Uhrzeigersinn; anschließend stoppt der Motor wieder für 5 Sekunden. Diese Reihe von Aktionen wird wiederholt ausgeführt.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

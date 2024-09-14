@@ -120,6 +120,10 @@ Nachdem der Code ausgeführt wurde, drücken Sie den Knopf, der Raspberry Pi wir
 
 Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

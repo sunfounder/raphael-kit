@@ -116,6 +116,10 @@ Experimentelle Verfahren
 
 Nachdem das Programm gestartet wurde, wird der Kippschalter nach rechts umgelegt, und der Summer gibt Alarmsignale aus. Gleichzeitig blinken die roten und grünen LEDs in einer bestimmten Frequenz.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

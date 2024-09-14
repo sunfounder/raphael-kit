@@ -115,6 +115,10 @@ Experimentelle Verfahren
 
 Die grüne LED leuchtet, wenn der Code ausgeführt wird. Wenn ein Magnet nahe an das Reed-Schalter-Modul gebracht wird, leuchtet die rote LED auf; entfernt man den Magnet, leuchtet wieder die grüne LED.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

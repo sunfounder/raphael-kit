@@ -103,6 +103,10 @@ Experimentelle Verfahren
 
 Wenn der Code läuft, ändert sich die Helligkeit der LED entsprechend der vom Fotowiderstand erfassten Lichtintensität.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

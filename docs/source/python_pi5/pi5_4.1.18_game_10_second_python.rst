@@ -115,6 +115,10 @@ Experimentelle Verfahren
 
 Schütteln Sie den Zauberstab, beginnt die 4-stellige Segmentanzeige zu zählen, ein weiteres Schütteln stoppt die Zählung. Wenn es Ihnen gelingt, die angezeigte Zählung bei **10,00** zu halten, dann gewinnen Sie. Schütteln Sie ihn noch einmal, um die nächste Runde des Spiels zu starten.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

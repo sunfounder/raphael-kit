@@ -97,6 +97,10 @@ In diesem Beispiel können wir den Drehencoder direkt mit dem Raspberry Pi über
 
 Sie werden den Zählerstand in der Shell sehen. Wenn Sie den Drehencoder im Uhrzeigersinn drehen, wird der Zähler erhöht; wenn Sie ihn gegen den Uhrzeigersinn drehen, wird der Zähler verringert. Wenn Sie den Schalter am Drehencoder drücken, werden die Messwerte auf null zurückgesetzt.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

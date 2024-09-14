@@ -113,6 +113,10 @@ Experimentelle Verfahren
 Wenn der Reed-Schalter durch den Magneten beeinflusst wird (zum Beispiel wird der Reed-Schalter auf der Basis platziert und der Magnet in der Vase), ist das Objekt sicher. Zu diesem Zeitpunkt ist der Reed-Schalter im geschlossenen Zustand und der Summer schweigt.
 Nach Entfernen des Magneten (wie beim Diebstahl der Vase) wird der Reed-Schalter nicht mehr durch den Magneten beeinflusst, der Schalter öffnet sich, und der Summer löst einen Alarm aus.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

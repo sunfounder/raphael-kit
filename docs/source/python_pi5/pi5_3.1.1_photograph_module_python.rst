@@ -82,6 +82,10 @@ Nachdem der Code ausgeführt wurde, wird die Kamera ein Foto machen. Jetzt könn
 Wenn Sie das Foto auf Ihren PC herunterladen möchten, siehe :ref:`filezilla`.
 
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. code-block:: python

@@ -109,6 +109,10 @@ Mit der Ausführung des Codes werden der Ablenkwinkel der x- und y-Achse sowie d
     * Erscheint der Fehler ``OSError: [Errno 121] Remote I/O error``, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
 
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

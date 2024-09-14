@@ -108,6 +108,10 @@ Experimentelle Verfahren
 
 Während der Code läuft, drücken Sie den Bewegungsarm, dann leuchtet die gelbe LED auf; lassen Sie den Bewegungsarm los, leuchtet die rote LED.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

@@ -95,6 +95,10 @@ Experimentelle Verfahren
 
 Nachdem der Code ausgeführt wurde, erkennt das Ultraschallsensormodul die Distanz zwischen dem Hindernis vor dem Modul und dem Modul selbst, dann wird der Distanzwert auf dem Bildschirm angezeigt.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

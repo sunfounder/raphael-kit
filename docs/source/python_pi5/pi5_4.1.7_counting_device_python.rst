@@ -128,6 +128,10 @@ Es gibt zwei Potentiometer am PIR-Modul: eines zur Einstellung der Empfindlichke
     :width: 400
     :align: center
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

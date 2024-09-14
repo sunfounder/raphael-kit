@@ -112,6 +112,10 @@ Nachdem der Code ausgeführt wurde, können Sie sehen, dass auf dem LCD „Greet
     * Wenn der Fehler „OSError: [Errno 121] Remote I/O error“ erscheint, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
     * Wenn der Code und die Verdrahtung korrekt sind, das LCD aber immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::

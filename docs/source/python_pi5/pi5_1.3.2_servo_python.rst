@@ -95,6 +95,10 @@ Experimentelle Verfahren
 
 Nachdem das Programm ausgeführt wurde, wird der Servomotor von 0 Grad über 90 Grad zu 180 Grad rotieren und dann von 180 Grad über 90 Grad zurück zu 0 Grad, in einem Kreis.
 
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
 **Code**
 
 .. note::
