@@ -71,6 +71,7 @@ If you have any questions, please send an email to service@sunfounder.com and we
 
     component/component_list
     appendix/appendix
+    faq
     thank-learning
 
 
