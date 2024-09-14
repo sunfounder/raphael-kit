@@ -74,6 +74,7 @@ SunFounder Raphael Ulimate Kit for Raspberry Pi
     
     component/component_list
     appendix/appendix
+    faq
     thank-learning
 
 
