@@ -110,6 +110,10 @@ Procedimientos Experimentales
 
 Después de ejecutar el código, el programa realiza un conteo, aumentando de 1 en 1 cada segundo, y la pantalla de 4 dígitos muestra el conteo.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

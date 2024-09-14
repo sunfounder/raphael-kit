@@ -122,6 +122,10 @@ Agita la varita, la pantalla de 4 dígitos comenzará a contar, agítala de nuev
 para detener la cuenta. Si logras mantener el conteo en **10.00**, entonces ganas. 
 Agítala una vez más para comenzar la siguiente ronda del juego.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

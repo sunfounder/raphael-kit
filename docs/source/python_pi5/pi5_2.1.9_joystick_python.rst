@@ -109,6 +109,10 @@ Procedimientos Experimentales
 Después de ejecutar el código, gira el joystick y los valores correspondientes 
 de x, y y Btn se mostrarán en la pantalla.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

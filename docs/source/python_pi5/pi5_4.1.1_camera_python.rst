@@ -118,6 +118,10 @@ Después de que el código se ejecute, presiona el botón, el Raspberry Pi hará
     También puedes abrir ``4.1.1_Camera_zero.py`` en la ruta ``~/raphael-kit/python/`` con un IDE de Python, hacer clic en el botón de Ejecutar para ejecutarlo y detener el código con el botón de Detener.
 
 Si deseas descargar la foto a tu PC, consulta :ref:`filezilla`.
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

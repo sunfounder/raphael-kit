@@ -112,6 +112,10 @@ Procedimientos experimentales
 
 Después de ejecutar el código, gira la perilla del potenciómetro, la intensidad del LED cambiará en consecuencia.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

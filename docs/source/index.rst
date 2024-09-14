@@ -66,6 +66,7 @@ Si tienes alguna pregunta, por favor envía un correo electrónico a service@sun
 
     component/component_list
     appendix/appendix
+    faq
     thank-learning
 
 

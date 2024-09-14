@@ -104,6 +104,10 @@ Codificador Rotatorio a GND, 「+」a 5V, SW a GPIO27, DT a GPIO18, y CLK a GPIO
 Verás el conteo en la consola. Cuando giras el codificador rotatorio en el sentido de las agujas del reloj, el conteo aumenta; cuando lo giras en sentido contrario, el conteo disminuye. Si presionas el interruptor del codificador rotatorio, las lecturas volverán a cero.
 
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

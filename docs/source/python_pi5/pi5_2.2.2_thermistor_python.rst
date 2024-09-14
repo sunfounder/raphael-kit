@@ -104,6 +104,10 @@ Procedimientos Experimentales
 
 Con el código en ejecución, el termistor detecta la temperatura ambiente, que se imprimirá en la pantalla una vez que finalice el cálculo del programa.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

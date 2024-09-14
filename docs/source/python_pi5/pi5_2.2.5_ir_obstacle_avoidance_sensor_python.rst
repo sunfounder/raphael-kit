@@ -102,6 +102,10 @@ Después de ejecutar el código, cuando pongas tu mano frente a la sonda del mó
 el indicador de salida en el módulo se encenderá y se imprimirá repetidamente en la 
 pantalla "¡Barrera detectada!" hasta que retires tu mano.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

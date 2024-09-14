@@ -98,6 +98,10 @@ Cuando el código se ejecute, el módulo del sensor ultrasónico detectará la d
 entre el obstáculo delante y el propio módulo, luego el valor de la distancia se imprimirá 
 en la pantalla.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

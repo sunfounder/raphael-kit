@@ -113,6 +113,10 @@ Procedimientos Experimentales
 Si el interruptor de láminas está afectado por el imán (por ejemplo, el interruptor de láminas se coloca en la base y el imán se coloca en el jarrón), el objeto está seguro. En este momento, el interruptor de láminas está en estado cerrado y el zumbador está silencioso.
 Después de retirar el imán (como cuando el jarrón es robado), el interruptor de láminas no se ve afectado por el imán, el interruptor se abre y el zumbador suena una alarma.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

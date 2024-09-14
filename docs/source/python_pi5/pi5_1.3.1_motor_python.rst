@@ -112,6 +112,10 @@ Cuando el código se ejecute, el motor primero girará en sentido horario durant
 luego se detendrá durante 5s. Después, girará en sentido antihorario durante 5s; 
 posteriormente, el motor se detendrá durante 5s. Esta serie de acciones se ejecutará repetidamente.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

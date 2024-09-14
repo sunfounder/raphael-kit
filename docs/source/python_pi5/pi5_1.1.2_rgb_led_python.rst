@@ -107,6 +107,10 @@ Procedimientos experimentales
 
 Después de ejecutar el código, verás que el LED RGB muestra rojo, verde, azul, amarillo, rosa y cian.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

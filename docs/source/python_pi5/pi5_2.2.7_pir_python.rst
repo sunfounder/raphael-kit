@@ -109,6 +109,10 @@ Hay dos potenciómetros en el módulo PIR: uno para ajustar la sensibilidad y ot
     :width: 400
     :align: center
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

@@ -110,6 +110,10 @@ Procedimientos Experimentales
 
 Mientras el código se está ejecutando, conecta el interruptor a la izquierda, entonces el LED amarillo se encenderá; a la derecha, se encenderá el LED rojo.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

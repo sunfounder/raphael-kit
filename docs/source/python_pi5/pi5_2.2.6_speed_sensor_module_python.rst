@@ -105,6 +105,10 @@ Procedimientos Experimentales
 Después de ejecutar el código, el LED verde se encenderá. Si colocas un obstáculo en el hueco del módulo sensor de velocidad, se imprimirá "luz bloqueada" en la pantalla y el LED rojo se encenderá.
 Retira el obstáculo y el LED verde se encenderá de nuevo.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

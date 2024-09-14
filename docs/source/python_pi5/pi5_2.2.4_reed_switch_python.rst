@@ -115,6 +115,10 @@ Procedimientos Experimentales
 
 El LED verde se encenderá cuando se ejecute el código. Si se coloca un imán cerca del módulo del interruptor de láminas, el LED rojo se encenderá; al retirar el imán, el LED verde se encenderá nuevamente.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

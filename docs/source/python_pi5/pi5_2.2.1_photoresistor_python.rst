@@ -108,6 +108,10 @@ Procedimientos Experimentales
 
 Cuando el código se esté ejecutando, la intensidad del LED cambiará según la intensidad de luz detectada por el fotorresistor.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

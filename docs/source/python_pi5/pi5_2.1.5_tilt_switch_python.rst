@@ -104,6 +104,10 @@ Coloca el interruptor de inclinación verticalmente, y el LED verde se encender�
 Si lo inclinas, se imprimirá "¡Inclinación!" en la pantalla y el LED rojo se encenderá. 
 Colócalo nuevamente en posición vertical, y el LED verde se encenderá.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

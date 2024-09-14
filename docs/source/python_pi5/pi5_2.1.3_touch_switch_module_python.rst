@@ -105,6 +105,10 @@ Procedimientos Experimentales
 
 Mientras el código se está ejecutando, el LED rojo se enciende; cuando tocas el módulo de interruptor táctil, el LED amarillo se enciende. 
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

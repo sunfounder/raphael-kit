@@ -112,6 +112,10 @@ El que tiene la etiqueta + es el polo positivo y el otro es el negativo.)
 Después de que el programa se ejecute, escribe una serie de caracteres, 
 y el zumbador y el LED enviarán las señales de código Morse correspondientes.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. code-block:: python

@@ -109,6 +109,10 @@ Procedimientos Experimentales
 
 Mientras el código se está ejecutando, presiona el brazo móvil, entonces el LED amarillo se enciende; suelta el brazo móvil, el LED rojo se enciende.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

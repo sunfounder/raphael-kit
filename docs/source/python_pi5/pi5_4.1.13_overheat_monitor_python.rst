@@ -144,6 +144,10 @@ el umbral al valor inicial.
     * Si el código y el cableado están bien, pero la pantalla LCD aún no muestra contenido, puedes girar el potenciómetro en la parte trasera para aumentar el contraste.
 
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

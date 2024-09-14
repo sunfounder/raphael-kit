@@ -121,6 +121,10 @@ Después de que el programa se ejecute, conecta un cable de salida desde el
 por separado. Podrás ver que el LED correspondiente en la barra de LED se enciende 
 para mostrar el nivel de energía (rango de medición: 0-5V).
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. note::

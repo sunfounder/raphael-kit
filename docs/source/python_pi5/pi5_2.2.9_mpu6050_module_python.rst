@@ -116,6 +116,10 @@ calculados.
     * Si aparece el error ``OSError: [Errno 121] Remote I/O error``, significa que el módulo está mal conectado o está roto.
 
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::

@@ -110,6 +110,10 @@ Procedimientos Experimentales
 
 Al ejecutar el código, el zumbador reproducirá una pieza de música.
 
+.. warning::
+
+    Si recibe el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulte :ref:`faq_soc`
+
 **Código**
 
 .. nota::
