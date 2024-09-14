@@ -121,6 +121,10 @@ After the code runs, press the button, the Raspberry Pi will flash the LED and t
 
 If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
 **Code**
 
 .. note::

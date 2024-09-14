@@ -110,6 +110,10 @@ Experimental Procedures
 
 While the code is running, press the moving arm, then the yellow LED lights up; release the moving arm, the red LED turns on.
 
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
 **Code**
 
 .. note::

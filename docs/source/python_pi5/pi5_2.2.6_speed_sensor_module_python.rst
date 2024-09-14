@@ -106,6 +106,10 @@ Experimental Procedures
 After the code runs, the green LED will light up. If you place an obstacle in the gap of the speed sensor module, the "light blocked" will be printed on the screen and the red LED will be lit.
 Remove the obstacle and the green LED will light up again.
 
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
 **Code**
 
 .. note::

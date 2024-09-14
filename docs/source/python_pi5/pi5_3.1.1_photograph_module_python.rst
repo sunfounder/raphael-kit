@@ -82,6 +82,10 @@ After the code runs, the camera will take a photo. Now you can see the photo nam
 If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
 
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
 **Code**
 
 .. code-block:: python

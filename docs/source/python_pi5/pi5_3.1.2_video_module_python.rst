@@ -83,6 +83,10 @@ Run the code to start recording. Press ``Ctrl+C`` to end the recording. Name the
 If you want to send photos to your PC, please refer to :ref:`filezilla`.
 
 
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
 **Code**
 
 .. code-block:: python

@@ -105,6 +105,10 @@ Experimental Procedures
 
 While the code is running, the red LED lights up; when you tap on the touch switch module, the yellow LED turns on. 
 
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
 **Code**
 
 .. note::
