@@ -100,6 +100,10 @@ rst_epilog = """
 
     <a href="https://www.sunfounder.com/products/raphael-kit?_pos=1&_sid=e78196ab0&_ss=r" target="_blank">Raphael Kit</a>
 
+.. |link_Raphael| raw:: html
+
+    <a href="https://www.sunfounder.com/products/raphael-kit?_pos=1&_sid=e78196ab0&_ss=r" target="_blank">Purchase link for Raphael Kit</a>
+
 .. |link_picow_buy| raw:: html
 
     <a href="https://www.sunfounder.com/products/raspberry-pi-pico-w" target="_blank">BUY</a>
@@ -282,6 +286,10 @@ rst_epilog += """
 .. |link_fr_tutorials| raw:: html
 
     <a href="https://docs.sunfounder.com/projects/raphael-kit/fr/latest/" target="_blank">Tutoriels de français en ligne</a>
+
+.. |link_it_tutorials| raw:: html
+
+    <a href="https://docs.sunfounder.com/projects/raphael-kit/it/latest/" target="_blank">Tutorial online in italiano</a>
     
 
 .. |Adafruit_CircuitPython_DHT| raw:: html
