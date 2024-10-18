@@ -115,7 +115,15 @@ Procedure Sperimentali
 Dopo l'esecuzione del codice, vedrai che i LED della barra LED si accendono e si 
 spengono regolarmente.
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 

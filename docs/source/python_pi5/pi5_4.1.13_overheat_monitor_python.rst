@@ -144,7 +144,16 @@ la soglia al valore iniziale.
     * Se compare l'errore ``OSError: [Errno 121] Remote I/O error``, significa che il modulo è cablato male o è difettoso.
     * Se il codice e i collegamenti sono corretti, ma il display LCD non mostra ancora contenuti, puoi ruotare il potenziometro sul retro per aumentare il contrasto.
 
+<<<<<<< HEAD
 **Codice**
+=======
+
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. Ma prima devi accedere al percorso del codice sorgente come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.

@@ -95,7 +95,15 @@ Procedure Sperimentali
 
 Dopo l'esecuzione del programma, il servomotore ruoterà da 0 gradi a 90 fino a 180 gradi, e poi da 180 gradi a 90 fino a 0 gradi, in un ciclo continuo.
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 

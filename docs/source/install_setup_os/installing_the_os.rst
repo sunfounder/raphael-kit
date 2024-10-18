@@ -19,9 +19,9 @@ Installazione del sistema operativo
 
 **Componenti richiesti**
 
-* Raspberry Pi 5B
-* Un computer personale
-* Una scheda Micro SD 
+* Raspberry Pi 5
+* A Personal Computer
+* A Micro SD card 
 
 **Passaggi di installazione**
 

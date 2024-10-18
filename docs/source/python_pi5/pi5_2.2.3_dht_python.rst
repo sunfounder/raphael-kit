@@ -104,7 +104,15 @@ Procedure Sperimentali
 Dopo l'esecuzione del codice, il programma stamperà sullo schermo la 
 temperatura e l'umidità rilevate dal DHT11.
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 

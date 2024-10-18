@@ -81,7 +81,18 @@ Dopo l'esecuzione del codice, la fotocamera scatterà una foto. Ora puoi vedere 
 Se desideri scaricare la foto sul tuo PC, fai riferimento a :ref:`filezilla`.
 
 
+<<<<<<< HEAD
 **Codice**
+=======
+If you want to download the photo to your PC, please refer to :ref:`filezilla`.
+
+
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. code-block:: python
 

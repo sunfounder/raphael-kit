@@ -127,7 +127,15 @@ Il modulo PIR ha due potenziometri: uno per regolare la sensibilità e l'altro p
 
 
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice sottostante. Ma prima di ciò, devi andare nel percorso del codice sorgente come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.

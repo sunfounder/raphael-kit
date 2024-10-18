@@ -105,7 +105,15 @@ Procedure Sperimentali
 
 Mentre il codice è in esecuzione, il LED rosso si accende; quando tocchi il modulo interruttore tattile, si accende il LED giallo.
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 

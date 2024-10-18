@@ -157,7 +157,15 @@ restringe; se hai indovinato il numero fortunato, apparirà "Hai indovinato!"
     * Se il codice e il cablaggio sono corretti, ma l'LCD non visualizza ancora nulla, puoi regolare il potenziometro sul retro per aumentare il contrasto.
 
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. Ma prima di tutto, devi andare al percorso del codice sorgente come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.

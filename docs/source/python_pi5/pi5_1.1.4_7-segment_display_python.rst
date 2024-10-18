@@ -119,7 +119,15 @@ Procedure Sperimentali
 
 Dopo l'esecuzione del codice, vedrai il display a 7 segmenti visualizzare 0-9, A-F.
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Reset/Copy/Esegui/Ferma** il codice qui sotto. Ma prima, devi andare nella directory del codice come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto. Dopo aver confermato che non ci sono problemi, puoi utilizzare il pulsante Copy per copiare il codice modificato, quindi aprire il codice sorgente nel Terminal tramite il comando ``nano`` e incollarlo.

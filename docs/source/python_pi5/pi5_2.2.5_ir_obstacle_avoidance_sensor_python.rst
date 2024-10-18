@@ -100,7 +100,15 @@ Procedure Sperimentali
 
 Dopo aver eseguito il codice, quando metti la mano davanti alla sonda del modulo, l'indicatore di uscita del modulo si accenderà e la scritta "Ostacolo Rilevato!" verrà stampata ripetutamente sullo schermo fino a quando non rimuoverai la mano.
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 

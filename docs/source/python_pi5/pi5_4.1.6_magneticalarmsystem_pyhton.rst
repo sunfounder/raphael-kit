@@ -113,7 +113,15 @@ Procedure Sperimentali
 Se l'interruttore reed è influenzato dal magnete (ad esempio, se l'interruttore reed è posizionato sulla base e il magnete nel vaso), l'oggetto è al sicuro. In questo momento, l'interruttore reed è chiuso e il buzzer rimane silenzioso.
 Quando il magnete viene rimosso (ad esempio, se il vaso viene rubato), l'interruttore reed non è più influenzato dal magnetismo, si apre e il buzzer suona l'allarme.
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice sottostante. Ma prima di farlo, devi andare nel percorso del codice sorgente come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.

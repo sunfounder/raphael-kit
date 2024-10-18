@@ -69,6 +69,7 @@ Se hai domande, invia un'email a service@sunfounder.com e ti risponderemo il pri
 
     component/component_list
     appendix/appendix
+    faq
     thank-learning
 
 

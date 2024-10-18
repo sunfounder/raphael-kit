@@ -106,7 +106,15 @@ dell'encoder rotativo a GND, 「+」a 5V, SW a GPIO digitale 27, DT a GPIO digit
 Vedrai il conteggio sul terminale. Quando ruoti l'encoder rotativo in senso orario, il conteggio aumenta; quando lo ruoti in senso antiorario, il conteggio diminuisce. Se premi l'interruttore sull'encoder rotativo, il conteggio si azzererà.
 
 
+<<<<<<< HEAD
 **Codice**
+=======
+.. warning::
+
+    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+
+**Code**
+>>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 
