@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -134,7 +134,7 @@ el zumbador y el LED se activan para alertarte.
 en la dirección del eje X y el eje Y puede ajustar (aumentar o disminuir) el umbral de alta 
 temperatura actual. Presiona el **Joystick** una vez más para restablecer el umbral al valor inicial.
 
-.. nota::
+.. note::
 
     * Si obtienes el error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, necesitas consultar :ref:`i2c_config` para habilitar el I2C.
     * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, por favor ejecuta ``sudo pip3 install smbus2``.
@@ -343,9 +343,9 @@ actual y el umbral de alta temperatura **40** se muestran en la **I2C LCD1602**.
 temperatura actual es mayor que el umbral, el buzzer y el LED se activan para alertarte.
 
 2) Presiona el joystick, y **stage** será **1**, pudiendo ajustar el umbral de alta
- temperatura. Mover el joystick en la dirección del eje X e Y ajusta (aumenta o disminuye) 
- el umbral de alta temperatura actual. Presiona nuevamente el joystick para restablecer el 
- umbral al valor inicial.
+temperatura. Mover el joystick en la dirección del eje X e Y ajusta (aumenta o disminuye) 
+el umbral de alta temperatura actual. Presiona nuevamente el joystick para restablecer el 
+umbral al valor inicial.
 
 
 Imagen del Fenómeno

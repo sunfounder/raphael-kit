@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -69,6 +69,7 @@ También puedes comprarlos por separado en los siguientes enlaces.
         - |link_led_buy|
     *   - :ref:`cpn_reed_switch`
         - |link_reed_switch_buy|
+
 Diagrama Esquemático
 --------------------------
 
@@ -131,6 +132,7 @@ El LED verde se encenderá cuando el código se ejecute. Si se coloca un imán c
 .. note::
 
     Si no funciona después de ejecutar el código, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulte :ref:`install_wiringpi`.
+
 **Código**
 
 .. code-block:: c

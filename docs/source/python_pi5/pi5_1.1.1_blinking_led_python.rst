@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -72,7 +72,7 @@ Diagrama Esquemático
 
 En este experimento, conectamos el pin GPIO 17 de la Raspberry Pi al ánodo (pin largo) del LED, luego el cátodo (pin corto) del LED a un resistor, y luego conectamos el otro extremo del resistor al pin GND en la Raspberry Pi. Para encender el LED, necesitamos configurar GPIO17 a alto (3.3V). Podemos lograr este fenómeno mediante programación.
 
-.. nota::
+.. note::
 
     **Pin11** se refiere al 11º pin de la Raspberry Pi de izquierda a derecha, y sus números 
     de pin **BCM** correspondientes se muestran en la siguiente tabla.
@@ -120,7 +120,7 @@ para cerrarlo y volverás al código. Si modificas el código, antes de hacer cl
 
    cd ~/raphael-kit/python-pi5
 
-.. nota::
+.. note::
     Cambia el directorio a la ruta del código en este experimento mediante ``cd``.
 
 **Paso 3:** Ejecuta el código
@@ -133,7 +133,7 @@ para cerrarlo y volverás al código. Si modificas el código, antes de hacer cl
 
    sudo python3 1.1.1_BlinkingLed_zero.py
 
-.. nota::
+.. note::
     Aquí sudo - superuser do, y python significa ejecutar el archivo con Python.
 
 Después de ejecutar el código, verás que el LED parpadea.
@@ -150,7 +150,7 @@ Después de ejecutar el código, verás que el LED parpadea.
 
    nano 1.1.1_BlinkingLed_zero.py
 
-.. nota::
+.. note::
     nano es una herramienta de edición de texto. El comando se usa para abrir el archivo de 
     código ``1.1.1_BlinkingLed_zero.py`` con esta herramienta.
 

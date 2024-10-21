@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -15,7 +15,7 @@
 Jugar con Python 
 =====================================
 
-.. advertencia::
+.. warning::
 
     ``RPi.GPIO`` es una biblioteca de GPIO ampliamente utilizada, pero desafortunadamente, no ha sido actualizada para soportar la última Raspberry Pi 5. Como resultado, cualquier programa de Python escrito usando esta biblioteca no será compatible con la Pi 5. Es esencial adaptarse a bibliotecas más nuevas como ``GPIO.Zero`` para una compatibilidad sin problemas con el hardware más reciente.
 

@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -66,6 +66,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
         - |link_led_matrix_buy|
     *   - :ref:`cpn_button`
         - |link_button_buy|
+
 Diagrama Esquemático
 --------------------------
 
@@ -88,9 +89,9 @@ Procedimientos Experimentales
 
 .. image:: ../img/3.1.14game_notnot.png
 
-.. nota::
+.. note::
 
-    Activa el SPI antes de comenzar el experimento, consulta :ref:`Configuración SPI` para más detalles.
+    Activa el SPI antes de comenzar el experimento, consulta :ref:spi configuration` para más detalles.
     También se necesita la biblioteca :ref:`BCM2835`.
 
 **Paso 2**: Ve a la carpeta del código.
@@ -131,9 +132,10 @@ puntos mostrará “x”. También puedes agregar 2 nuevos botones o reemplazarl
 de joystick para arriba, abajo, izquierda y derecha— 4 direcciones para aumentar la 
 dificultad del juego.
 
-.. nota::
+.. note::
 
-    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`instalación de wiringpi`.
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
+
 **Explicación del Código**
 
 Basado en :ref:`1.1.6_c`, este proyecto agrega 2 botones para crear un dispositivo de juego divertido.

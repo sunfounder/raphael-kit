@@ -81,7 +81,7 @@ Procedimientos Experimentales
 .. image:: ../img/image96.png
 
 
-**Paso 2**: Configurar I2C (ver :ref:`I2C Configuration`. Si ya has configurado I2C, omite este paso.)
+**Paso 2**: Configurar I2C (ver :ref:`i2c_config`. Si ya has configurado I2C, omite este paso.)
 
 **Paso 3:** Cambiar de directorio.
 
@@ -129,12 +129,12 @@ Después de ejecutar el código, podrás ver ``Greetings!, From SunFounder`` en 
 
 .. code-block:: c
 
-    void write_word(int data){……}
-    void send_command(int comm){……}
-    void send_data(int data){……}
-    void init(){……}
-    void clear(){……}
-    void write(int x, int y, char data[]){……}
+    void write_word(int data){ /* ... */ }
+    void send_command(int comm){ /* ... */ }
+    void send_data(int data){ /* ... */ }
+    void init(){ /* ... */ }
+    void clear(){ /* ... */ }
+    void write(int x, int y, char data[]){ /* ... */ }
 
 Estas funciones se utilizan para controlar el código fuente abierto del LCD1602 I2C. Nos permiten 
 usar fácilmente el LCD1602 I2C.

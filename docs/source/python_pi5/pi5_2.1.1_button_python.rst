@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -70,7 +70,7 @@ Diagrama esquemático
 
 Utiliza un botón normalmente abierto como entrada para Raspberry Pi, la conexión se muestra en el diagrama esquemático a continuación. Cuando se presiona el botón, el GPIO18 se convierte en un nivel alto (3.3V). Podemos detectar el estado del GPIO18 a través de la programación. Es decir, si el GPIO18 se convierte en nivel alto, significa que el botón está presionado. Puedes ejecutar el código correspondiente cuando se presiona el botón, y entonces el LED se encenderá.
 
-.. nota::
+.. note::
     El pin más largo del LED es el ánodo y el más corto es
     el cátodo.
 
@@ -115,7 +115,7 @@ Ahora, presiona el botón y el LED se encenderá; suelta el botón y el LED se a
 
 **Código**
 
-.. nota::
+.. note::
 
     Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 

@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -66,6 +66,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
         - |link_wires_buy|
     *   - :ref:`cpn_mpu6050`
         - |link_mpu6050_buy|
+
 Diagrama Esquemático
 --------------------------
 
@@ -120,7 +121,7 @@ Con el código ejecutándose, el ángulo de deflexión del eje x, el eje y y la 
 la velocidad angular en cada eje leída por el MPU6050 se imprimirá en la pantalla después 
 de ser calculada.
 
-.. nota::
+.. note::
 
     * Si aparece el mensaje de error ``wiringPi.h: No such file or directory``, por favor consulta :ref:`install_wiringpi`.
     * Si obtienes el error ``Unable to open I2C device: No such file or directory``, necesitas consultar :ref:`i2c_config` para habilitar I2C y verificar si el cableado es correcto.

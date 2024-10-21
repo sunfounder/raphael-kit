@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -86,7 +86,7 @@ rotación del motor.
 
 .. image:: ../img/image117.png
 
-.. nota::
+.. note::
     El módulo de alimentación puede usar una batería de 9V con el conector de 
     batería de 9V incluido en el kit. Inserta el capuchón del puente del módulo 
     de alimentación en las tiras de bus de 5V de la placa de pruebas.
@@ -120,7 +120,7 @@ Esta serie de acciones se ejecutará repetidamente.
 
 **Código**
 
-.. nota::
+.. note::
 
     Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
@@ -206,6 +206,7 @@ Esta serie de acciones se ejecutará repetidamente.
         # destroy() will be executed.
         except KeyboardInterrupt:
             destroy()
+            
 **Explicación del Código**
 
 .. code-block:: python

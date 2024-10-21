@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -75,7 +75,7 @@ luego la resistencia a 3.3 V, y conecta el cátodo (el pin corto) del LED al GPI
  Raspberry Pi. Por lo tanto, para encender un LED, necesitamos hacer que el GPIO17 esté 
  en nivel bajo (0V). Podemos obtener este fenómeno mediante programación.
 
-.. nota::
+.. note::
 
     **Pin11** se refiere al pin 11 del Raspberry Pi de izquierda a derecha, y sus números 
     de pin correspondientes en **wiringPi** y **BCM** se muestran en la siguiente tabla.
@@ -125,7 +125,7 @@ para cerrarlo y luego volverás al código. Si modificas el código, antes de ha
 
    cd ~/raphael-kit/python
 
-.. nota::
+.. note::
     Cambia el directorio a la ruta del código en este experimento mediante ``cd``.
 
 **Paso 3:** Ejecuta el código
@@ -138,7 +138,7 @@ para cerrarlo y luego volverás al código. Si modificas el código, antes de ha
 
    sudo python3 1.1.1_BlinkingLed.py
 
-.. nota::
+.. note::
     Aquí sudo - superuser do, y python significa ejecutar el archivo con Python.
 
 Después de ejecutar el código, verás el LED parpadeando.
@@ -155,7 +155,7 @@ comando para abrir 1.1.1_BlinkingLed.py:
 
    nano 1.1.1_BlinkingLed.py
 
-.. nota::
+.. note::
     nano es una herramienta de editor de texto. El comando se utiliza para abrir el
     archivo de código 1.1.1_BlinkingLed.py con esta herramienta.
 
@@ -170,7 +170,7 @@ ver el efecto después del cambio.
 
 El siguiente es el código del programa:
 
-.. nota::
+.. note::
 
    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 

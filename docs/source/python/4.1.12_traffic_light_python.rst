@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -126,7 +126,7 @@ de cuatro dígitos muestra el tiempo de cuenta regresiva continuamente.
 Código
 ----------
 
-.. nota::
+.. note::
     Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
 
 .. raw:: html
@@ -359,6 +359,7 @@ colorState cambiará para así cambiar el LED, y al temporizador se le asignará
             loop()  
         except KeyboardInterrupt:  
             destroy()  
+
 
 En la función ``setup()`` se inicia el temporizador. En la función ``loop()``, 
 se utiliza un **while True**: llama a las funciones relativas de la pantalla de 

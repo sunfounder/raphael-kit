@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -36,7 +36,7 @@ Entre estos métodos de nomenclatura, la placa de extensión GPIO de 40 pines ut
 
 La siguiente tabla nos muestra los métodos de nomenclatura de WiringPi, Board y el nombre intrínseco de cada pin en la placa de extensión GPIO. Por ejemplo, para el GPIO17, el método de nomenclatura de Board es 11, el método de nomenclatura de wiringPi es 0, y el método de nomenclatura intrínseca es GPIO0.
 
-.. nota::
+.. note::
 
     1) En lenguaje C, se utiliza el método de nomenclatura wiringPi.
     

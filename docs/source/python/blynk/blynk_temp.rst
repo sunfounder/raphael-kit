@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -19,7 +19,7 @@ Registrador de Temperatura
 
 En este proyecto, puedes ver la temperatura actual y el gráfico de línea de cambio de temperatura desde Blynk.
 
-.. nota:: Antes de comenzar este proyecto, te recomendamos que completes :ref:`bk_start_py`. Lo siguiente te dará una comprensión clara de Blynk.
+.. note:: Antes de comenzar este proyecto, te recomendamos que completes :ref:`bk_start_py`. Lo siguiente te dará una comprensión clara de Blynk.
 
 **Componentes Requeridos**
 

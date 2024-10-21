@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -108,9 +108,10 @@ Cuando se ejecuta el código, el módulo del sensor ultrasónico detecta la dist
 entre el obstáculo delante y el propio módulo, luego el valor de la distancia se 
 imprimirá en la pantalla.
 
-.. nota::
+.. note::
 
     Si no funciona después de ejecutar, o hay un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+
 **Código**
 
 .. code-block:: c

@@ -1,6 +1,6 @@
 .. _spi_configuration:
 
-Configuración de SPI
+SPI Configurtion
 -----------------------
 
 **Paso 1**: Habilita el puerto SPI de tu Raspberry Pi (si ya lo has habilitado, omite este paso; si no sabes si lo has hecho, continúa).

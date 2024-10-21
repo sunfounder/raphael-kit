@@ -4,7 +4,7 @@ FAQ
 .. _faq_soc:
 
 Si "gpiozero" no funciona.
--------------------------------------------------- ---------------------
+--------------------------------
 
 El tutorial de Raspberry Pi 5 GPIO Python se basa en la biblioteca gpiozero y se probó exhaustivamente durante el proceso de diseño.
 

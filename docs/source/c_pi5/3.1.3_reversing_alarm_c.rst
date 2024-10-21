@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -70,6 +70,7 @@ También puedes comprarlos por separado desde los enlaces a continuación.
         - |link_ultrasonic_buy|
     *   - :ref:`cpn_i2c_lcd`
         - |link_i2clcd1602_buy|
+        
 Diagrama Esquemático
 ------------------------
 
@@ -132,7 +133,7 @@ distancia al obstáculo y luego muestra la información sobre la distancia en el
 LCD1602; además, el zumbador emite un tono de advertencia cuya frecuencia cambia 
 con la distancia.
 
-.. nota::
+.. note::
 
     * Si aparece un mensaje de error ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
     * Si aparece el error ``Unable to open I2C device: No such file or directory``, consulta :ref:`i2c_config` para habilitar I2C y verificar si el cableado es correcto.

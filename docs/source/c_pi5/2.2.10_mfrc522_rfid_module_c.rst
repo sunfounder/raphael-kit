@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook. Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -82,7 +82,7 @@ Procedimientos Experimentales
 .. image:: ../img/image232.png
 
 
-**Paso 2:** Configura SPI (consulta :ref:`SPI Configuration` para más detalles. 
+**Paso 2:** Configura SPI (consulta :ref:`spi_configuration` para más detalles. 
 Si ya has configurado SPI, omite este paso.)
 
 **Paso 3:** Ve a la carpeta del código.
@@ -127,7 +127,7 @@ Si ya has configurado SPI, omite este paso.)
 
     sudo ./read
 
-.. nota::
+.. note::
 
     Si no funciona después de ejecutar, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 

@@ -238,6 +238,7 @@ Cuando el código se ejecute, el display de 7 segmentos de 4 dígitos mostrará 
             loop()
         except KeyboardInterrupt:
             destroy()
+
 **Explicación del Código**
 
 .. code-block:: python
@@ -256,49 +257,49 @@ Finalmente, usamos el método ``time.strftime()`` para formatear la gran cadena 
 
 Las salidas de la cadena formateada especificada obtenida modificando el primer parámetro se enumeran a continuación.
 
-+----+----------------------------------------------------+
-| %y | Representación de año de dos dígitos (00-99)       |
-+----+----------------------------------------------------+
-| %Y | Representación de año de cuatro dígitos (000-9999) |
-+----+----------------------------------------------------+
-| %m | Mes (01-12)                                        |
-+----+----------------------------------------------------+
-| %d | Día del mes (0-31)                                 |
-+----+----------------------------------------------------+
-| %H | Horas en un reloj de 24 horas (0-23)               |
-+----+----------------------------------------------------+
-| %I | Horas en un reloj de 12 horas (01-12)              |
-+----+----------------------------------------------------+
-| %M | Minutos (00-59)                                    |
-+----+----------------------------------------------------+
-| %S | Segundos (00-59)                                   |
-+----+----------------------------------------------------+
-| %a | Nombre local simplificado de la semana             |
-+----+----------------------------------------------------+
-| %A | Nombre completo local de la semana                 |
-+----+----------------------------------------------------+
-| %b | Nombre local simplificado del mes                  |
-+----+----------------------------------------------------+
-| %B | Nombre completo local del mes                      |
-+----+----------------------------------------------------+
-| %c | Representación local correspondiente de fecha y hora|
-+----+----------------------------------------------------+
-| %j | Día del año (001-366)                              |
-+----+----------------------------------------------------+
-| %p | Equivalente local de A.M. o P.M.                   |
-+----+----------------------------------------------------+
-| %U | Número de semanas del año (00-53) comenzando el domingo|
-+----+----------------------------------------------------+
-| %w | Semana (0-6), comenzando el domingo                |
-+----+----------------------------------------------------+
-| %W | Número de semanas del año (00-53) comenzando el lunes|
-+----+----------------------------------------------------+
-| %x | Representación local correspondiente de la fecha   |
-+----+----------------------------------------------------+
-| %X | Representación local correspondiente de la hora    |
-+----+----------------------------------------------------+
-| %Z | Nombre de la zona horaria actual                   |
-+----+----------------------------------------------------+
++------+-------------------------------------------------------------+
+| %y   | Representación de año de dos dígitos (00-99)                |
++------+-------------------------------------------------------------+
+| %Y   | Representación de año de cuatro dígitos (000-9999)          |
++------+-------------------------------------------------------------+
+| %m   | Mes (01-12)                                                 |
++------+-------------------------------------------------------------+
+| %d   | Día del mes (0-31)                                          |
++------+-------------------------------------------------------------+
+| %H   | Horas en un reloj de 24 horas (0-23)                        |
++------+-------------------------------------------------------------+
+| %I   | Horas en un reloj de 12 horas (01-12)                       |
++------+-------------------------------------------------------------+
+| %M   | Minutos (00-59)                                             |
++------+-------------------------------------------------------------+
+| %S   | Segundos (00-59)                                            |
++------+-------------------------------------------------------------+
+| %a   | Nombre local simplificado de la semana                      |
++------+-------------------------------------------------------------+
+| %A   | Nombre completo local de la semana                          |
++------+-------------------------------------------------------------+
+| %b   | Nombre local simplificado del mes                           |
++------+-------------------------------------------------------------+
+| %B   | Nombre completo local del mes                               |
++------+-------------------------------------------------------------+
+| %c   | Representación local correspondiente de fecha y hora        |
++------+-------------------------------------------------------------+
+| %j   | Día del año (001-366)                                       |
++------+-------------------------------------------------------------+
+| %p   | Equivalente local de A.M. o P.M.                            |
++------+-------------------------------------------------------------+
+| %U   | Número de semanas del año (00-53) comenzando el domingo     |
++------+-------------------------------------------------------------+
+| %w   | Semana (0-6), comenzando el domingo                         |
++------+-------------------------------------------------------------+
+| %W   | Número de semanas del año (00-53) comenzando el lunes       |
++------+-------------------------------------------------------------+
+| %x   | Representación local correspondiente de la fecha            |
++------+-------------------------------------------------------------+
+| %X   | Representación local correspondiente de la hora             |
++------+-------------------------------------------------------------+
+| %Z   | Nombre de la zona horaria actual                            |
++------+-------------------------------------------------------------+
 
 .. note::
     La salida del método ``time.strftime()`` son todas variables de cadena. Antes de usarlo, recuerda hacer una conversión de tipo coercitiva.

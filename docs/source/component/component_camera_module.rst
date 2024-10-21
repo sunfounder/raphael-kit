@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -27,7 +27,7 @@ Este es un módulo de cámara de 5MP para Raspberry Pi con sensor OV5647. Es plu
 
 La placa es pequeña, aproximadamente 25mm x 23mm x 9mm, y pesa 3g, lo que la hace ideal para aplicaciones móviles u otras aplicaciones donde el tamaño y el peso son críticos. El módulo de cámara tiene una resolución nativa de 5 megapíxeles y tiene una lente de enfoque fijo incorporada que captura imágenes fijas a 2592 x 1944 píxeles, y también soporta video 1080p30, 720p60 y 640x480p90.
 
-.. nota::
+.. note::
 
    El módulo solo es capaz de capturar imágenes y videos, no sonido.
 
@@ -55,7 +55,7 @@ Si el cable FFC está correctamente instalado, estará recto y no se saldrá cua
 .. image:: img/1.10_camera.png
    :width: 700
 
-.. advertencia::
+.. warning::
 
    No instales la cámara con la alimentación encendida, puede dañar tu cámara.
 

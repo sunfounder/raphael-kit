@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     ¡Hola, bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
@@ -15,7 +15,7 @@
 Audiovisual
 ===============
 
-.. nota::
+.. note::
 
     Cuando uses el módulo de cámara, es posible que necesites una pantalla para una mejor experiencia, consulta: `Conecta tu Raspberry Pi <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/3>`_. Por supuesto, si no tienes una pantalla, también puedes acceder al escritorio de Raspberry Pi de forma remota, para un tutorial detallado consulta :ref:`remote_desktop`.
 
