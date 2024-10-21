@@ -71,9 +71,9 @@ Après avoir construit le circuit selon le schéma ci-dessus, branchez le câble
     :width: 400
     :align: center
 
-Si votre haut-parleur ne produit aucun son, cela peut être dû au fait que le Raspberry Pi a sélectionné la mauvaise sortie audio (par défaut, c'est HDMI). Vous devez :ref:`changer_la_sortie_audio` pour **Casque**.
+Si votre haut-parleur ne produit aucun son, cela peut être dû au fait que le Raspberry Pi a sélectionné la mauvaise sortie audio (par défaut, c'est HDMI). Vous devez :ref:`changer_sortie_audio` pour **Casque**.
 
-Si vous trouvez que le volume des haut-parleurs est trop bas, vous pouvez :ref:`ajuster_le_volume`.
+Si vous trouvez que le volume des haut-parleurs est trop bas, vous pouvez :ref:`Ajuster_le_volume `.
 
 **Exemple**
 

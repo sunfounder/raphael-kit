@@ -103,7 +103,7 @@ Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 **Comment ça fonctionne ?**
 
-Ce projet a beaucoup en commun avec :ref:`clickable_dot`, sauf qu'il affine les conditions pour déterminer l'événement de clic de souris.
+Ce projet a beaucoup en commun avec :ref:`dot_cliquable`, sauf qu'il affine les conditions pour déterminer l'événement de clic de souris.
 
 Dessinez d'abord trois blocs de couleur dans ``draw()``, puis identifiez quel bloc de couleur a été cliqué en fonction de la valeur de mouseX (la coordonnée X de la souris), et enfin, allumez la couleur correspondante avec la LED RGB.
 

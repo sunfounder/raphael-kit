@@ -92,7 +92,7 @@ Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 
 **Comment ça fonctionne ?**
 
-Ce projet a beaucoup en commun avec :ref:`blinking_dot`, la différence est qu'il met l'état de bascule dans l'événement de la souris.
+Ce projet a beaucoup en commun avec :ref:`Point_Clignotant`, la différence est qu'il met l'état de bascule dans l'événement de la souris.
 Cela fait que la LED ne clignote pas automatiquement, mais s'allume et s'éteint avec un clic de souris.
 
 Et dans l'événement ``mouseClicked()``, la fonction ``dist()`` est utilisée pour déterminer la position de la souris au moment du clic, et le point est considéré comme cliqué uniquement si la distance entre la souris et le centre du point est inférieure au rayon.

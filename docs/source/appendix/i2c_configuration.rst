@@ -14,7 +14,7 @@
 
 .. _i2c_config:
 
-Configuration I2C
+I2C Configuration 
 ====================
 
 **Étape 1** : Activez le port I2C de votre Raspberry Pi (Si vous l'avez

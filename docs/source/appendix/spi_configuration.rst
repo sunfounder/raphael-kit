@@ -14,7 +14,7 @@
 
 .. _spi_configuration:
 
-Configuration SPI
+SPI Configuration
 ========================
 
 **Étape 1** : Activez le port SPI de votre Raspberry Pi (Si vous l'avez

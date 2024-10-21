@@ -13,7 +13,7 @@
     👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
 
 Vidéo 30 : Utilisation d'une photorésistance pour détecter la lumière avec le Raspberry Pi
-=======================================================================================
+=========================================================================================================
 
 Apprenez à intégrer une photorésistance dans vos projets Raspberry Pi pour mesurer l'intensité lumineuse et contrôler des actions en fonction de la luminosité.
 

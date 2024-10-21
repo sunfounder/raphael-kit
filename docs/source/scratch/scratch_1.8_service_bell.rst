@@ -81,9 +81,10 @@ Appuyez sur le micro-interrupteur et la sonnette de service sonnera une fois.
 
 .. note::
 
-  Si votre Raspberry Pi est connecté à un écran avec des haut-parleurs, cela peut empêcher le son de sortir de ce haut-parleur externe, veuillez vous référer à :ref:`change_audio_output` pour la solution.
+  Si votre Raspberry Pi est connecté à un écran avec des haut-parleurs, cela peut empêcher le son de sortir de ce haut-parleur externe, veuillez vous référer à :ref:`changer_sortie_audio` pour la solution.
 
-  De plus, si vous souhaitez ajuster le niveau du volume, veuillez vous référer à :ref:`adjust_volume`.
+  De plus, si vous souhaitez ajuster le niveau du volume, veuillez vous référer à :ref:`Ajuster_le_volume `.
+
 
 Astuces sur le Sprite
 ------------------------

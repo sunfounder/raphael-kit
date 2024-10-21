@@ -88,7 +88,7 @@ Procédures Expérimentales
 
     Activez le SPI avant de commencer l'expérience, consultez :ref:`SPI Configuration` pour plus de détails.
     
-    Les bibliothèques :ref:`Luma.LED_Matrix` et :ref:`Spidev and MFRC522` sont également nécessaires.
+    Les bibliothèques :ref:`Luma.LED_Matrix` et :ref:`Spidev et MFRC522` sont également nécessaires.
 
 Étape 1 : Construisez le circuit.
 
@@ -210,7 +210,7 @@ Nous pouvons également trouver un fichier ``.csv`` qui enregistre l'heure et la
 Explication du Code
 -------------------------
 
-Pour mieux comprendre le programme, vous devrez peut-être d'abord compléter :ref:`1.1.6 Matrice LED` , :ref:`2.2.10 Module RFID MFRC522` et :ref:`3.1.4 Synthèse vocale`.
+Pour mieux comprendre le programme, vous devrez peut-être d'abord compléter :ref:`1.1.6 Matrice de Points LED` , :ref:`2.2.10 Module RFID MFRC522` et :ref:`3.1.4 Synthèse Vocale (TTS)`.
 
 .. code-block:: python
 
