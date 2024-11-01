@@ -20,6 +20,9 @@ Additionally, we offer three programming languages. MicroPython, C/C++ (Arduino)
 
 <a id="update"></a>
 ## Update:
+2024-11-01:
+- Solve the problem that MAX7219 dot matrix module, DHT11 and MFRC522 module are not compatible with Pi 5.
+
 2024-04-03:
 - Add the tutorial on installing a virtual environment
 

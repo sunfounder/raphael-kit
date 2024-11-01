@@ -140,22 +140,7 @@ After creating the virtual environment, you need to activate it for use.
 Once the virtual environment is activated, you will see the environment name before the command line prompt, indicating you are working within the virtual environment.
 
 
-**3. Installing Dependencies**
-
-With the virtual environment activated, you can use pip to install the required dependencies. For example:
-
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: shell
-
-    pip install requests
-
-This will install the requests library into the current virtual environment, rather than the global environment. This step only needs to be done once.
-
-
-**4. Exiting the Virtual Environment**
+**3. Exiting the Virtual Environment**
 
 When you have completed your work and wish to exit the virtual environment, simply run:
 
@@ -169,7 +154,7 @@ When you have completed your work and wish to exit the virtual environment, simp
 
 This will return you to the system's global Python environment.
 
-**5. Deleting the Virtual Environment**
+**4. Deleting the Virtual Environment**
 
 If you no longer need a particular virtual environment, you can simply delete the directory containing the virtual environment:
 
@@ -185,40 +170,98 @@ If you no longer need a particular virtual environment, you can simply delete th
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-This is a Python 3 library interfacing LED matrix displays with the MAX7219 driver (using SPI), WS2812 (NeoPixels, inc Pimoroni Unicorn pHat/Hat and Unicorn Hat HD) and APA102 (DotStar) on the Raspberry Pi and other Linux-based single board computers.
+This is a Python 3 library for interfacing LED matrix displays using the MAX7219 driver (via SPI), WS2812 (NeoPixels, including Pimoroni Unicorn pHat/Hat and Unicorn Hat HD), and APA102 (DotStar) on the Raspberry Pi and other Linux-based single-board computers.
 
-Install the dependencies for library first with:
+#. Add the user to the ``spi`` and ``gpio`` groups to ensure that the current user (replace "pi" with your own username) has permission to access the SPI and GPIO interfaces.
 
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo usermod -a -G spi,gpio pi
-    sudo apt install build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff5
-
-.. note:: warning
-
-    The default pip and setuptools bundled with apt on Raspbian are really old, and can cause components to not be installed properly. Make sure they are up to date by upgrading them first:
-
-    .. raw:: html
-
+   .. raw:: html
+   
        <run></run>
+   
+   .. code-block:: shell
 
-    .. code-block:: 
+        sudo usermod -a -G spi,gpio pi
 
-        sudo -H pip install --upgrade --ignore-installed pip setuptools
+   After executing this command, it's recommended to restart the system or log out and log back in to apply the group membership changes.
 
-Proceed to install latest version of the luma.led_matrix library directly from PyPI:
+#. Install the necessary dependencies: Use ``apt`` to install build tools and related development libraries. These libraries are essential for compiling and installing certain Python packages.
 
-.. raw:: html
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
 
-   <run></run>
+        sudo apt update
+        sudo apt install -y build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff-dev
 
-.. code-block:: 
+#. Create a virtual environment. Here, ``~/my_env`` is the path for the virtual environment, and it can be customized.
 
-    sudo python3 -m pip install --upgrade luma.led_matrix
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       python3 -m venv ~/my_env
+
+
+#. After creating the virtual environment, activate it for use.
+
+   .. note::
+   
+       Each time you restart the Raspberry Pi or open a new terminal, you will need to run the following command again to activate the virtual environment.
+
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       source ~/my_env/bin/activate
+
+   Once the virtual environment is activated, you will see the environment name before the command prompt, indicating you are working within the virtual environment.
+
+#. Inside the virtual environment, upgrade ``pip`` and ``setuptools`` to ensure the latest versions of packages are installed.
+
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+      pip install --upgrade pip setuptools
+
+
+#. Then, install ``luma.led_matrix``:
+
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+   
+     pip install luma.led_matrix
+
+#. After installation, you can verify that ``luma.led_matrix`` is installed correctly by running the following command. If successful, it will display the version number of ``luma.led_matrix``.
+
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+        python3 -c "import luma.led_matrix; print(luma.led_matrix.__version__)"
+
+#. When you are done working and wish to exit the virtual environment, simply run:
+
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       deactivate
 
 
 * Reference: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_

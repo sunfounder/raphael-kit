@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-.. _1.1.6_c_pi5:
+.. _1.1.6_c:
 
 1.1.6 LED Dot Matrix Module
 ==================================
@@ -79,12 +79,9 @@ Experimental Procedures
 
 .. image:: ../img/1.1.6fritzing.png
 
-.. note::
+**Step 2**: Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details.
 
-    Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. And the :ref:`BCM2835` library is also needed.
-
-
-**Step 2:** Go to the folder of the code.
+**Step 3:** Go to the folder of the code.
 
 .. raw:: html
 
@@ -94,7 +91,7 @@ Experimental Procedures
 
     cd ~/raphael-kit/c/1.1.6/
 
-**Step 3:** Compile the code.
+**Step 4:** Compile the code.
 
 .. raw:: html
 
@@ -104,7 +101,7 @@ Experimental Procedures
 
     make
 
-**Step 4:**: Run the executable file.
+**Step 5:**: Run the executable file.
 
 .. raw:: html
 
@@ -114,7 +111,7 @@ Experimental Procedures
 
     sudo ./1.1.6_LedMatrix
 
-After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in sequence.
+After running the code, the LED Dot Matrix displays from square, heart and number 0 to 9 in sequence.
 
 .. note::
 
@@ -124,175 +121,390 @@ After running the code, the LED Dot Matrix displays from 0 to 9 and A to Z in se
 
 .. code-block:: c
 
-    #include <bcm2835.h>
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
     #include <stdio.h>
-    #include <string.h>
-    #include <ctype.h>
 
-    #define uchar unsigned char
-    #define uint unsigned int
+    #define SPI_CHANNEL    0           // Define SPI channel (0 or 1)
+    #define SPI_SPEED      1000000     // SPI speed set to 1 MHz
 
-    #define Max7219_pinCS  RPI_GPIO_P1_24
+    // Function to write data to a MAX7219 register
+    void max7219_write(unsigned char address, unsigned char data) {
+        unsigned char buffer[2];
+        buffer[0] = address;   // Register address to write to
+        buffer[1] = data;      // Data to write into the register
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 2);  // Send data via SPI
+    }
 
-    uchar disp1[36][8]={
-    {0x3C,0x42,0x42,0x42,0x42,0x42,0x42,0x3C},//0
-    {0x08,0x18,0x28,0x08,0x08,0x08,0x08,0x08},//1
-    {0x7E,0x2,0x2,0x7E,0x40,0x40,0x40,0x7E},//2
-    {0x3E,0x2,0x2,0x3E,0x2,0x2,0x3E,0x0},//3
-    {0x8,0x18,0x28,0x48,0xFE,0x8,0x8,0x8},//4
-    {0x3C,0x20,0x20,0x3C,0x4,0x4,0x3C,0x0},//5
-    {0x3C,0x20,0x20,0x3C,0x24,0x24,0x3C,0x0},//6
-    {0x3E,0x22,0x4,0x8,0x8,0x8,0x8,0x8},//7
-    {0x0,0x3E,0x22,0x22,0x3E,0x22,0x22,0x3E},//8
-    {0x3E,0x22,0x22,0x3E,0x2,0x2,0x2,0x3E},//9
-    {0x8,0x14,0x22,0x3E,0x22,0x22,0x22,0x22},//A
-    {0x3C,0x22,0x22,0x3E,0x22,0x22,0x3C,0x0},//B
-    {0x3C,0x40,0x40,0x40,0x40,0x40,0x3C,0x0},//C
-    {0x7C,0x42,0x42,0x42,0x42,0x42,0x7C,0x0},//D
-    {0x7C,0x40,0x40,0x7C,0x40,0x40,0x40,0x7C},//E
-    {0x7C,0x40,0x40,0x7C,0x40,0x40,0x40,0x40},//F
-    {0x3C,0x40,0x40,0x40,0x40,0x44,0x44,0x3C},//G
-    {0x44,0x44,0x44,0x7C,0x44,0x44,0x44,0x44},//H
-    {0x7C,0x10,0x10,0x10,0x10,0x10,0x10,0x7C},//I
-    {0x3C,0x8,0x8,0x8,0x8,0x8,0x48,0x30},//J
-    {0x0,0x24,0x28,0x30,0x20,0x30,0x28,0x24},//K
-    {0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x7C},//L
-    {0x81,0xC3,0xA5,0x99,0x81,0x81,0x81,0x81},//M
-    {0x0,0x42,0x62,0x52,0x4A,0x46,0x42,0x0},//N
-    {0x3C,0x42,0x42,0x42,0x42,0x42,0x42,0x3C},//O
-    {0x3C,0x22,0x22,0x22,0x3C,0x20,0x20,0x20},//P
-    {0x1C,0x22,0x22,0x22,0x22,0x26,0x22,0x1D},//Q
-    {0x3C,0x22,0x22,0x22,0x3C,0x24,0x22,0x21},//R
-    {0x0,0x1E,0x20,0x20,0x3E,0x2,0x2,0x3C},//S
-    {0x0,0x3E,0x8,0x8,0x8,0x8,0x8,0x8},//T
-    {0x42,0x42,0x42,0x42,0x42,0x42,0x22,0x1C},//U
-    {0x42,0x42,0x42,0x42,0x42,0x42,0x24,0x18},//V
-    {0x0,0x49,0x49,0x49,0x49,0x2A,0x1C,0x0},//W
-    {0x0,0x41,0x22,0x14,0x8,0x14,0x22,0x41},//X
-    {0x41,0x22,0x14,0x8,0x8,0x8,0x8,0x8},//Y
-    {0x0,0x7F,0x2,0x4,0x8,0x10,0x20,0x7F},//Z
+    // Function to initialize the MAX7219 display module
+    void max7219_init() {
+        max7219_write(0x09, 0x00); // Decode Mode: No decoding for digits (useful for 7-segment displays)
+        max7219_write(0x0A, 0x03); // Intensity: Set brightness level (0x00 to 0x0F)
+        max7219_write(0x0B, 0x07); // Scan Limit: Display digits 0-7 (all 8 digits)
+        max7219_write(0x0C, 0x01); // Shutdown Register: Normal operation (not in shutdown mode)
+        max7219_write(0x0F, 0x00); // Display Test: Normal operation (no test mode)
+
+        // Clear all digits on the display
+        for (int i = 1; i <= 8; i++) {
+            max7219_write(i, 0x00); // Write 0 to each digit register
+        }
+    }
+
+    // Function to display a pattern on the MAX7219
+    void max7219_display(unsigned char *data) {
+        for (int i = 1; i <= 8; i++) {
+            max7219_write(i, data[i - 1]); // Write each row of the pattern to the display
+        }
+    }
+
+    // Function to display a pattern for a specified duration
+    void display_pattern(const unsigned char pattern[8], int delay_ms) {
+        max7219_display((unsigned char *)pattern); // Display the pattern
+        delay(delay_ms);                           // Wait for the specified time in milliseconds
+    }
+
+    // Array of patterns to display
+    const unsigned char patterns[][8] = {
+        // Square pattern
+        {
+            0b11111111, // Row 1
+            0b10000001, // Row 2
+            0b10000001, // Row 3
+            0b10000001, // Row 4
+            0b10000001, // Row 5
+            0b10000001, // Row 6
+            0b10000001, // Row 7
+            0b11111111  // Row 8
+        },
+        // Heart pattern
+        {
+            0b01100110, // Row 1
+            0b11111111, // Row 2
+            0b11111111, // Row 3
+            0b11111111, // Row 4
+            0b01111110, // Row 5
+            0b00111100, // Row 6
+            0b00011000, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 0
+        {
+            0b00111100, // Row 1
+            0b01100110, // Row 2
+            0b11000011, // Row 3
+            0b11000011, // Row 4
+            0b11000011, // Row 5
+            0b11000011, // Row 6
+            0b01100110, // Row 7
+            0b00111100  // Row 8
+        },
+        // Number 1
+        {
+            0b00011000, // Row 1
+            0b00111000, // Row 2
+            0b01111000, // Row 3
+            0b00011000, // Row 4
+            0b00011000, // Row 5
+            0b00011000, // Row 6
+            0b01111110, // Row 7
+            0b01111110  // Row 8
+        },
+        // Number 2
+        {
+            0b01111110, // Row 1
+            0b11000011, // Row 2
+            0b00000011, // Row 3
+            0b00001110, // Row 4
+            0b00110000, // Row 5
+            0b11000000, // Row 6
+            0b11111111, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 3
+        {
+            0b01111110, // Row 1
+            0b11000011, // Row 2
+            0b00000011, // Row 3
+            0b00111110, // Row 4
+            0b00000011, // Row 5
+            0b11000011, // Row 6
+            0b01111110, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 4
+        {
+            0b00001110, // Row 1
+            0b00011110, // Row 2
+            0b00110110, // Row 3
+            0b01100110, // Row 4
+            0b11111111, // Row 5
+            0b00000110, // Row 6
+            0b00000110, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 5
+        {
+            0b11111111, // Row 1
+            0b11000000, // Row 2
+            0b11111110, // Row 3
+            0b00000011, // Row 4
+            0b00000011, // Row 5
+            0b11000011, // Row 6
+            0b01111110, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 6
+        {
+            0b00111110, // Row 1
+            0b01100000, // Row 2
+            0b11000000, // Row 3
+            0b11111110, // Row 4
+            0b11000011, // Row 5
+            0b11000011, // Row 6
+            0b01111110, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 7
+        {
+            0b11111111, // Row 1
+            0b11000011, // Row 2
+            0b00000110, // Row 3
+            0b00001100, // Row 4
+            0b00011000, // Row 5
+            0b00110000, // Row 6
+            0b00110000, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 8
+        {
+            0b01111110, // Row 1
+            0b11000011, // Row 2
+            0b11000011, // Row 3
+            0b01111110, // Row 4
+            0b11000011, // Row 5
+            0b11000011, // Row 6
+            0b01111110, // Row 7
+            0b00000000  // Row 8
+        },
+        // Number 9
+        {
+            0b01111110, // Row 1
+            0b11000011, // Row 2
+            0b11000011, // Row 3
+            0b01111111, // Row 4
+            0b00000011, // Row 5
+            0b00000110, // Row 6
+            0b01111100, // Row 7
+            0b00000000  // Row 8
+        },
     };
 
-    void Delay_xms(uint x)
-    {
-        bcm2835_delay(x);
-    }
-    //------------------------
-
-    void Write_Max7219_byte(uchar DATA)
-    {
-        bcm2835_gpio_write(Max7219_pinCS,LOW);
-        bcm2835_spi_transfer(DATA);
-    }
-
-    void Write_Max7219(uchar address1,uchar dat1)
-    {
-        bcm2835_gpio_write(Max7219_pinCS,LOW);
-        Write_Max7219_byte(address1);
-        Write_Max7219_byte(dat1); 
-        bcm2835_gpio_write(Max7219_pinCS,HIGH);
-    }
-
-    void Init_MAX7219()
-    {
-        Write_Max7219(0x09,0x00);
-        Write_Max7219(0x0a,0x03);
-        Write_Max7219(0x0b,0x07);
-        Write_Max7219(0x0c,0x01);
-        Write_Max7219(0x0f,0x00);
-    }
-
-    void Init_BCM2835()
-    {
-        bcm2835_spi_begin();
-        bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
-        bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);
-        bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);
-        bcm2835_gpio_fsel(Max7219_pinCS, BCM2835_GPIO_FSEL_OUTP);
-        bcm2835_gpio_write(disp1[0][0],HIGH);
-    }
-
-    int main(void)
-    {
-        uchar i,j;
-
-        if (!bcm2835_init())
-        {
-            printf("Unable to init bcm2835.\n");
+    int main() {
+        if (wiringPiSetup() == -1) {
+            printf("Failed to initialize WiringPi\n");
             return 1;
         }
-        Init_BCM2835();
-        Delay_xms(50);
-        Init_MAX7219();
-        while(1)
-        {
-            for(j=0;j<36;j++)
-            {
-                for(i=1;i<9;i++)
-                {
-                    Write_Max7219(i,disp1[j][i-1]);
-                }
-                Delay_xms(1000);
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("Failed to initialize SPI\n");
+            return 1;
+        }
+
+        max7219_init();  // Initialize the MAX7219 module
+
+        // Display patterns in a loop
+        while (1) {
+            // Display the square pattern
+            display_pattern(patterns[0], 1000);  // Display for 1000 milliseconds
+
+            // Display the heart pattern
+            display_pattern(patterns[1], 1000);
+
+            // Display numbers 0-9
+            for (int i = 2; i <= 11; i++) {
+                display_pattern(patterns[i], 1000);
             }
         }
-        // bcm2835_spi_end();
-        // bcm2835_close();
+
         return 0;
     }
 
-**Code Explanation**
+**Code Analysis**
 
-.. code-block:: c
+#. Header Files:
 
-    #define Max7219_pinCS  24
+   * ``wiringPi.h``: Provides functions for GPIO control.
+   * ``wiringPiSPI.h``: Provides functions for SPI communication.
+   * ``stdio.h``: Standard input/output library for functions like printf.
 
-The cs pin of the LED Dot Matrix is connected to pin24.
+#. Definitions:
 
-.. note::
+   * ``SPI_CHANNEL``: Specifies the SPI channel (0 or 1) used for communication.
+   * ``SPI_SPEED``: Sets the SPI communication speed to 1 MHz.
 
-    When you have multiple devices that need spi communication, just connect the cs pins on different pins.
+   .. code-block:: c
 
-.. code-block:: c
+        #define SPI_CHANNEL    0           // Define SPI channel (0 or 1)
+        #define SPI_SPEED      1000000     // SPI speed set to 1 MHz
 
-    if (!bcm2835_init())
-	{
-		printf("Unable to init bcm2835.\n");
-		return 1;
-	}
+#. Function ``max7219_write``: Sends data to a specific register of the MAX7219 display driver.
 
-Check if the bcm2835 library is successfully installed, if not, print the message "Unable to init bcm2835".
+   * ``address``: The address of the register to write to.
+   * ``data``: The data to write into the register.
+   * Creates a buffer containing the address and data.
+   * Uses ``wiringPiSPIDataRW`` to send the buffer over SPI.
 
-.. code-block:: c
+   .. code-block:: c
 
-    Init_BCM2835();
-	Delay_xms(50);
-	Init_MAX7219();
-
-Initialize libraries and module.
-
-.. code-block:: c
-
-    while(1)
-    {
-        for(j=0;j<36;j++)
-        {
-            for(i=1;i<9;i++)
-            {
-                Write_Max7219(i,disp1[j][i-1]);
-            }
-            Delay_xms(1000);
+        void max7219_write(unsigned char address, unsigned char data) {
+            unsigned char buffer[2];
+            buffer[0] = address;   // Register address to write to
+            buffer[1] = data;      // Data to write into the register
+            wiringPiSPIDataRW(SPI_CHANNEL, buffer, 2);  // Send data via SPI
         }
-    }
+
+#. Function ``max7219_init``: Initializes the MAX7219 display module with required settings.
+
+   * Sets decode mode to "no decode" since we are directly controlling the LEDs.
+   * Sets intensity (brightness) to a moderate level (0x03).
+   * Sets scan limit to 7 to enable all 8 digits (rows) of the display.
+   * Exits shutdown mode to turn on the display.
+   * Disables display test mode.
+   * Clears the display by writing 0x00 to all digit registers.
+
+   .. code-block:: c
+
+        void max7219_init() {
+            max7219_write(0x09, 0x00); // Decode Mode: No decoding for digits (useful for 7-segment displays)
+            max7219_write(0x0A, 0x03); // Intensity: Set brightness level (0x00 to 0x0F)
+            max7219_write(0x0B, 0x07); // Scan Limit: Display digits 0-7 (all 8 digits)
+            max7219_write(0x0C, 0x01); // Shutdown Register: Normal operation (not in shutdown mode)
+            max7219_write(0x0F, 0x00); // Display Test: Normal operation (no test mode)
+
+            // Clear all digits on the display
+            for (int i = 1; i <= 8; i++) {
+                max7219_write(i, 0x00); // Write 0 to each digit register
+            }
+        }
+
+#. Function ``max7219_display``: Updates the display with a given 8-byte pattern.
+
+   * ``data``: An array containing the pattern to display.
+   * Iterates through each of the 8 rows (digits) and writes the corresponding data.
+
+   .. code-block:: c
+
+        void max7219_display(unsigned char *data) {
+            for (int i = 1; i <= 8; i++) {
+                max7219_write(i, data[i - 1]); // Write each row of the pattern to the display
+            }
+        }
+
+#. Function ``display_pattern``: Displays a pattern for a specified amount of time.
+
+   * ``pattern``: The pattern to display (array of 8 bytes).
+   * ``delay_ms``: Duration to display the pattern in milliseconds.
+   * Calls ``max7219_display`` to show the pattern.
+   * Uses ``delay`` to wait for the specified duration.
+
+   .. code-block:: c
+
+        void display_pattern(const unsigned char pattern[8], int delay_ms) {
+            max7219_display((unsigned char *)pattern); // Display the pattern
+            delay(delay_ms);                           // Wait for the specified time in milliseconds
+        }
+
+#. Array patterns:
+
+   * Contains predefined patterns for the square, heart, and numbers 0-9.
+   * Each pattern is an array of 8 bytes, representing 8 rows of the 8x8 LED matrix.
+   * Each byte uses binary notation where each bit represents an LED (1 for on, 0 for off).
+   
+   .. code-block:: c
+
+        const unsigned char patterns[][8] = {
+            // Square pattern
+            {
+                0b11111111, // Row 1
+                0b10000001, // Row 2
+                0b10000001, // Row 3
+                0b10000001, // Row 4
+                0b10000001, // Row 5
+                0b10000001, // Row 6
+                0b10000001, // Row 7
+                0b11111111  // Row 8
+            },
+            ...
+            // Number 9
+            {
+                ...
+            },
+        };    
+
+#. Function main:
+
+   * Initializes ``WiringPi`` and ``SPI`` interface.
+   
+     .. code-block:: c
+
+        if (wiringPiSetup() == -1) {
+            printf("Failed to initialize WiringPi\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("Failed to initialize SPI\n");
+            return 1;
+        }
+   
+   * Calls ``max7219_init`` to configure the MAX7219 module.
+   
+     .. code-block:: c
+
+        max7219_init();  // Initialize the MAX7219 module
+      
+   * Enters an infinite loop to display the patterns continuously. Displays each pattern for 1 second before moving to the next.
+
+     .. code-block:: c
+
+        while (1) {
+            // Display the square pattern
+            display_pattern(patterns[0], 1000);  // Display for 1000 milliseconds
+
+            // Display the heart pattern
+            display_pattern(patterns[1], 1000);
+
+            // Display numbers 0-9
+            for (int i = 2; i <= 11; i++) {
+                display_pattern(patterns[i], 1000);
+            }
+        }
+
+**Understanding the Patterns**
+
+* Binary Representation:
+
+  * Each pattern is defined using binary literals (0b prefix).
+  * Each byte corresponds to a row on the 8x8 LED matrix.
+  * Each bit within the byte represents a column (LED) in that row.
+  * The most significant bit (leftmost) corresponds to the first LED on the left.
+
+* Creating Custom Patterns:
+
+  * You can create new patterns by defining new arrays of 8 bytes.
+  * Each pattern can be added to the patterns array.
+  * Update the display loop in main to include your new patterns.
 
 
-The ``Write_Max7219()`` function allows you to display the specified character on the LED Dot Matrix, where the first parameter inputs the row in which it is displayed, and the second parameter inputs an 8-bit binary number or a hexadecimal number that indicates the light on or off in that row (0 means off, 1 means lit).
+**Adjustments and Customization**
 
-The variable ``j`` represents the rows in the array ``disp1[]`` (35 rows) and the variable ``i`` represents the column (8 columns).
-    
-For example, when j=1 and i=2, the value ``disp1[1][1]`` (0x18) is displayed on the dot matrix. i loops 8 times to display the full 1 on the dot matrix. After 35 cycles of j, 0-9 and A-Z are displayed on the dot matrix.
+* Changing Brightness: Modify the intensity level in ``max7219_init``:
 
-    .. image:: ../img/led_not.png
-        :width: 400
+  .. code-block:: c
+
+        max7219_write(0x0A, brightness_level); // brightness_level between 0x00 and 0x0F
+
+* Modifying Display Time: Change the ``delay_ms`` parameter in ``display_pattern`` calls to adjust how long each pattern is displayed.
 
 Phenomenon Picture
 -----------------------
