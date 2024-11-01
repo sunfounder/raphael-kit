@@ -1,78 +1,78 @@
 #!/usr/bin/env python3
 # -*- coding: utf8 -*-
-#
-#    Copyright 2018 Daniel Perron
-#
-#    Base on Mario Gomez <mario.gomez@teubi.co>   MFRC522-Python
-#
-#    This file use part of MFRC522-Python
-#    MFRC522-Python is a simple Python implementation for
-#    the MFRC522 NFC Card Reader for the Raspberry Pi.
-#
-#    MFRC522-Python is free software:
-#    you can redistribute it and/or modify
-#    it under the terms of
-#    the GNU Lesser General Public License as published by the
-#    Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    MFRC522-Python is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Lesser General Public License for more details.
-#
-#    You should have received a copy of the
-#    GNU Lesser General Public License along with MFRC522-Python.
-#    If not, see <http://www.gnu.org/licenses/>.
-#
 
 import MFRC522
 import signal
+import time
 
+# Flag to control the reading loop
 continue_reading = True
 
-
-# function to read uid an conver it to a string
-
-def uidToString(uid):
-    mystring = ""
-    for i in uid:
-        mystring = format(i, '02X') + mystring
-    return mystring
-
-
-# Capture SIGINT for cleanup when the script is aborted
+# Capture SIGINT signal to allow graceful exit when the script is interrupted
 def end_read(signal, frame):
     global continue_reading
-    print("Ctrl+C captured, ending read.")
+    print("\nCtrl+C captured, ending read operation.")
     continue_reading = False
 
-# Hook the SIGINT
+# Bind the SIGINT signal handler to the `end_read` function
 signal.signal(signal.SIGINT, end_read)
 
-# Create an object of the class MFRC522
-MIFAREReader = MFRC522.MFRC522()
+# Create an instance of the MFRC522 class
+rfid_reader = MFRC522.MFRC522()
+
+# Define the default key (6 bytes, default is all 0xFF)
+default_key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
+
+# Define the block number to read (must match the block used during writing)
+block_num = 8  # For example, block 8
 
 # Welcome message
-print("Welcome to the MFRC522 data read example")
+print("Please place your RFID card on the reader...")
 print("Press Ctrl-C to stop.")
 
-# This loop keeps checking for chips.
-# If one is near it will get the UID and authenticate
+# Continuously check for RFID cards
 while continue_reading:
+    # Scan for RFID cards
+    (status, TagType) = rfid_reader.MFRC522_Request(rfid_reader.PICC_REQIDL)
 
-    # Scan for cards
-    (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
-
-    # If a card is found
-    if status == MIFAREReader.MI_OK:
-        print ("Card detected")
+    # If a card is detected
+    if status == rfid_reader.MI_OK:
+        print("RFID card detected!")
 
         # Get the UID of the card
-        (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
-        # If we have the UID, continue
-        if status == MIFAREReader.MI_OK:
-            print("Card read UID: %s" % uidToString(uid))
-        else:
-            print("Authentication error")
+        (status, uid) = rfid_reader.MFRC522_SelectTagSN()
 
+        # If UID was successfully retrieved, proceed
+        if status == rfid_reader.MI_OK:
+            # Convert UID list to a hexadecimal string
+            uid_str = ''.join(['%02X' % i for i in uid])
+            print("Card UID: %s" % uid_str)
+
+            # Authenticate with the card using the default key
+            status = rfid_reader.MFRC522_Auth(rfid_reader.PICC_AUTHENT1A, block_num, default_key, uid)
+
+            if status == rfid_reader.MI_OK:
+                print("Block %d authentication successful" % block_num)
+
+                # Read data from the specified block
+                read_status, data = rfid_reader.MFRC522_Read(block_num)
+                print(f"MFRC522_Read return type: {type(read_status)}, Data: {data}")
+
+                if read_status == rfid_reader.MI_OK and data:
+                    print(f"Sector {block_num} {data}")
+                    # Convert byte data to string and remove any padding null bytes
+                    read_data = ''.join([chr(byte) for byte in data]).rstrip('\x00')
+                    print("Read data: %s" % read_data)
+                else:
+                    print("Data read failed, status code: %s" % read_status)
+
+                # Stop encryption on the card
+                rfid_reader.MFRC522_StopCrypto1()
+            else:
+                print("Authentication failed, status code: %s" % status)
+                rfid_reader.MFRC522_StopCrypto1()
+        else:
+            print("Unable to get card UID")
+    else:
+        # If no card is detected, wait for a short period before retrying
+        time.sleep(0.5)
