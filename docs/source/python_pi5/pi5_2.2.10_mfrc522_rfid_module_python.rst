@@ -1,0 +1,440 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.2.10_py:
+
+2.2.10 MFRC522 RFID Modul
+=========================
+
+Einführung
+----------
+
+Die Radiofrequenzidentifikation (RFID) bezieht sich auf Technologien, die
+kabellose Kommunikation zwischen einem Objekt (oder Tag) und einem abfragenden
+Gerät (oder Lesegerät) verwenden, um solche Objekte automatisch zu verfolgen und zu identifizieren.
+
+Einige der häufigsten Anwendungen dieser Technologie sind Einzelhandels-Lieferketten, 
+militärische Lieferketten, automatisierte Zahlungsmethoden, 
+Gepäckverfolgung und -management, Dokumentenverfolgung und Pharmamanagement, um nur einige zu nennen.
+
+In diesem Projekt verwenden wir RFID zum Lesen und Schreiben.
+
+Benötigte Komponenten
+---------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list_2.2.7.png
+
+Es ist definitiv praktisch, ein ganzes Kit zu kaufen, hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können sie auch einzeln über die untenstehenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUF-LINK
+
+    *   - :ref:`cpn_gpio_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_mfrc522`
+        - |link_mfrc522_rfid_buy|
+
+Schaltplan
+----------
+
+.. image:: ../img/image331.png
+
+Experimentelle Verfahren
+----------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis.
+
+.. image:: ../img/image232.png
+
+**Schritt 2:** Aktivieren Sie das SPI, bevor Sie mit dem Experiment beginnen, siehe :ref:`spi_configuration` für Details. 
+
+**Schritt 3:** Gehen Sie in den Ordner mit dem Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**Schritt 4:** Führen Sie ``2.2.10_write.py`` aus.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.10_write.py
+
+**Schritt 5:** Nach dem Start des Programms geben Sie den Text ein, den Sie schreiben möchten (bis zu 16 Zeichen), zum Beispiel "welcome", und drücken Sie Enter zur Bestätigung. Danach wird die Meldung "Daten wurden auf die Karte geschrieben" angezeigt. Drücken Sie schließlich ``Strg+C``, um die Ausführung des Codes zu stoppen.
+
+.. code-block::
+
+    Please place your RFID card on the reader...
+    Press Ctrl-C to stop.
+    RFID card detected!
+    Card UID: 9BF6210B
+    Please enter data to write to the card (up to 16 characters): welcome
+    Block 8 authentication successful
+    4 backdata &0x0F == 0x0A 10
+    Data written
+    Data has been written to the card
+    Reading data from block 8:
+    Sector 8 [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+**Schritt 6:** Führen Sie nun ``2.2.10_read.py`` aus, um die Informationen des Tags oder der Karte zu lesen, die Sie geschrieben haben.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+
+    sudo python3 2.2.10_read.py
+
+**Schritt 7:** Nach dem Start erhalten Sie die folgenden Informationen.
+
+.. code-block::
+
+    Please place your RFID card on the reader...
+    Press Ctrl-C to stop.
+    RFID card detected!
+    Card UID: 9BF6210B
+    Block 8 authentication successful
+    Sector 8 [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    MFRC522_Read return type: <class 'int'>, Data: [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    Sector 8 [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    Read data: welcome
+
+Code-Analyse für ``2.2.10_write.py``
+---------------------------------------------
+
+Dieses Python-Skript schreibt vom Benutzer bereitgestellte Daten auf eine RFID-Karte unter Verwendung des MFRC522-RFID-Lesegeräts. Das Skript überprüft kontinuierlich die Anwesenheit einer Karte, fordert den Benutzer zur Eingabe der zu schreibenden Daten auf und bestätigt den erfolgreichen Schreib- und Lesevorgang.
+
+#. Importanweisungen
+
+   * ``MFRC522``: Importiert Funktionen und Klassen, die für die Steuerung des RFID-Lesegeräts benötigt werden.
+   * ``signal`` und ``time``: ``signal`` wird verwendet, um eine sichere Beendigung über SIGINT (Strg+C) zu ermöglichen, und ``time`` fügt Verzögerungen in der Hauptschleife hinzu.
+
+#. Globale Variable
+
+   * ``continue_reading``: Steuert die Hauptschleife und ermöglicht es dem Skript, sich sicher zu beenden, wenn es auf ``False`` gesetzt wird.
+
+   .. code-block:: python
+
+        continue_reading = True
+
+#. Signalbehandlung:
+
+   * Funktion ``end_read``: Diese Funktion wird ausgelöst, wenn ``Strg+C`` (SIGINT) erkannt wird. Sie setzt ``continue_reading`` auf ``False``, sodass das Skript sicher beendet werden kann.
+   * ``signal.signal(signal.SIGINT, end_read)``: Bindet das SIGINT-Signal (Strg+C) an ``end_read``, sodass bei einer Unterbrechung eine Meldung angezeigt und das Skript sicher beendet wird.
+
+   .. code-block:: python
+
+        signal.signal(signal.SIGINT, end_read)
+
+#. RFID-Lesegerät Setup:
+
+   * ``rfid_reader``: Eine Instanz der ``MFRC522``-Klasse, die für die Steuerung des RFID-Lesegeräts verwendet wird.
+   * ``default_key``: Ein 6-Byte-Schlüssel, normalerweise ``0xFF`` für jedes Byte. Dies ist der Standard-Authentifizierungsschlüssel für die meisten RFID-Karten.
+
+   .. code-block:: python
+
+        # Erstellen einer Instanz der MFRC522-Klasse
+        rfid_reader = MFRC522.MFRC522()
+
+        # Definieren des Standardschlüssels (6 Bytes, Standard ist alles 0xFF)
+        default_key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
+
+#. Benutzeranweisungen
+
+   Das Skript gibt Anweisungen in der Konsole aus und informiert den Benutzer, die RFID-Karte auf den Leser zu legen und ``Strg+C`` zu verwenden, um das Programm zu beenden.
+
+   .. code-block:: python
+
+        print("Bitte legen Sie Ihre RFID-Karte auf den Leser...")
+        print("Drücken Sie Strg-C zum Stoppen.")
+
+#. Hauptschleife: Erkennung, Schreiben und Lesen von Daten
+
+   * **Kartenerkennung**: Das Skript ruft kontinuierlich ``MFRC522_Request`` auf, um RFID-Karten zu erkennen. Wenn eine Karte erkannt wird (``status == rfid_reader.MI_OK``), fährt das Skript mit dem nächsten Schritt fort.
+
+   .. code-block:: python
+
+        (status, TagType) = rfid_reader.MFRC522_Request(rfid_reader.PICC_REQIDL)
+
+        # Wenn eine Karte erkannt wird
+        if status == rfid_reader.MI_OK:
+            print("RFID-Karte erkannt!")
+            ...
+        else:
+            # Kurze Wartezeit vor erneutem Versuch
+            time.sleep(0.5)
+
+   * **Abrufen der Karten-UID**: Ruft ``MFRC522_SelectTagSN`` auf, um die eindeutige Kennung (UID) der Karte abzurufen. Wenn erfolgreich, wird die UID in eine hexadezimale Zeichenfolge umgewandelt und ausgegeben. Die UID ist für die Authentifizierung erforderlich.
+
+   .. code-block:: python
+
+        (status, uid) = rfid_reader.MFRC522_SelectTagSN()
+
+        # Wenn die UID vorhanden ist, fortfahren
+        if status == rfid_reader.MI_OK:
+            # UID ausgeben
+            uid_str = ''.join(['%02X' % i for i in uid])
+            print("Karten-UID: %s" % uid_str)
+            ...
+        else:
+            print("Karten-UID konnte nicht abgerufen werden")
+
+   * **Datenvorbereitung**:
+
+     * **Benutzereingabe**: Der Benutzer wird aufgefordert, Daten einzugeben, die auf die Karte geschrieben werden sollen (bis zu 16 Zeichen).
+     * **Datenkürzung**: Die Daten werden auf 16 Zeichen gekürzt, falls der Benutzer mehr eingibt.
+     * **String-zu-Byte-Konvertierung**: Die Benutzereingabe wird in eine Byte-Liste konvertiert und auf 16 Bytes aufgefüllt, wie es das Speicherformat der RFID-Karte erfordert.
+
+   .. code-block:: python
+
+        write_data = input("Bitte geben Sie die Daten ein, die auf die Karte geschrieben werden sollen (bis zu 16 Zeichen): ")
+        # Sicherstellen, dass die Daten 16 Zeichen nicht überschreiten
+        write_data = write_data[:16]
+        # String in Byte-Liste konvertieren, auf 16 Bytes auffüllen
+        data_to_write = [0x00]*16
+        string_bytes = write_data.encode('utf-8')
+        for i in range(len(string_bytes)):
+            data_to_write[i] = string_bytes[i]
+
+   * **Blocknummer angeben**: Das Skript legt Block 8 als Ziel zum Schreiben der Daten fest. Hinweis: Blocknummern sollten die „Sektortrailer“-Blöcke, normalerweise der letzte Block in jedem Sektor, vermeiden, da diese für Steuerinformationen verwendet werden.
+
+   .. code-block:: python
+
+        block_num = 8  # Zum Beispiel Block 8
+
+
+   * **Karten-Authentifizierung**: ``MFRC522_Auth`` authentifiziert den angegebenen Block mit dem Standard-Schlüssel und der UID. Bei erfolgreicher Authentifizierung wird der Schreibvorgang fortgesetzt. Andernfalls wird eine Fehlermeldung ausgegeben und die Verschlüsselung beendet.
+
+   .. code-block:: python
+
+        status = rfid_reader.MFRC522_Auth(rfid_reader.PICC_AUTHENT1A, block_num, default_key, uid)
+
+        if status == rfid_reader.MI_OK:
+            print("Authentifizierung von Block %d erfolgreich" % block_num)
+            ...
+        else:
+            print("Authentifizierung fehlgeschlagen")
+            rfid_reader.MFRC522_StopCrypto1()
+
+   * **Daten auf die Karte schreiben**: ``MFRC522_Write`` schreibt die vorbereiteten Daten auf den angegebenen Block der RFID-Karte. Nach dem Schreiben bestätigt eine Nachricht den erfolgreichen Schreibvorgang.
+
+   .. code-block:: python
+                
+        rfid_reader.MFRC522_Write(block_num, data_to_write)
+        print("Daten wurden auf die Karte geschrieben")
+
+
+   * **Daten zurücklesen**: Um den Schreibvorgang zu überprüfen, liest das Skript die Daten aus demselben Block mit ``MFRC522_Read``. Die zurückgelesenen Daten werden ausgegeben, damit der Benutzer die Daten überprüfen kann.
+
+   .. code-block:: python
+
+        print("Daten aus Block %d lesen:" % block_num)
+        rfid_reader.MFRC522_Read(block_num)
+
+   * **Verschlüsselung beenden**: ``MFRC522_StopCrypto1`` beendet den Verschlüsselungsprozess nach Abschluss der Vorgänge. Dieser Schritt ist notwendig, um den Kommunikationsstatus der Karte zurückzusetzen.
+
+   .. code-block:: python
+
+        # Verschlüsselung beenden
+        rfid_reader.MFRC522_StopCrypto1()
+
+   * **Schleife beenden**: Nach dem Schreiben und Überprüfen der Daten wird ``continue_reading`` auf ``False`` gesetzt, um die Schleife zu beenden und das Skript zu stoppen.
+
+                continue_reading = False
+
+**Wichtige Punkte**
+
+   * **Sichere Beendigung**: Das Skript erfasst SIGINT (Strg+C), um sicher zu beenden und eine Nachricht anzuzeigen. Dies ermöglicht es, dass alle laufenden Vorgänge abgeschlossen werden, bevor das Skript beendet wird.
+   * **Benutzerinteraktion**: Fordert den Benutzer zur Eingabe auf, sodass die Daten bei jedem Schreibvorgang individuell angepasst werden können.
+   * **Authentifizierung**: Sichert den Zugriff auf den angegebenen Block und behandelt Authentifizierungsfehler auf sichere Weise.
+   * **Datenformatierung**: Konvertiert Zeichenfolgendaten in ein Byte-Listenformat, das mit der Speicherstruktur der Karte kompatibel ist, und fügt bei Bedarf Auffüllbytes hinzu.
+   * **Überprüfung**: Liest Daten von der Karte zurück, um einen erfolgreichen Schreibvorgang zu bestätigen, was die Zuverlässigkeit erhöht.
+   * **Modularität**: Das Skript ist gut strukturiert mit klaren Funktionen zur Erkennung, zum Schreiben und zum Lesen, was das Verständnis und die Wartung erleichtert.
+
+Dieses Skript eignet sich für Anwendungen, die Lese- und Schreibfunktionen mit RFID-Karten erfordern, wie z. B. Zugangskontrolle oder Benutzeridentifikation.
+
+Code Explanation for ``2.2.10_read.py``
+-----------------------------------------------
+
+This Python script uses an **RFID reader (MFRC522)** to read data from RFID cards. The script is structured to continuously check for cards, retrieve their data, and gracefully handle exit requests using signal handling.
+
+#. Import Statements:
+
+   * ``MFRC522``: This module provides methods to interact with the MFRC522 RFID reader.
+   * ``signal`` and ``time``: Used to handle script termination (e.g., ``Ctrl+C``) and control the timing of certain operations.
+
+#. Global Variables:
+
+   * ``continue_reading``: A boolean flag that controls the main reading loop, allowing the script to stop gracefully when ``Ctrl+C`` is pressed.
+
+   .. code-block:: python
+
+        continue_reading = True
+
+#. Signal Handling:
+
+   * ``end_read`` function: This function is triggered when ``Ctrl+C`` (SIGINT) is detected. It sets ``continue_reading`` to ``False``, allowing the script to exit gracefully. 
+   * ``signal.signal(signal.SIGINT, end_read)``: Binds the SIGINT signal (Ctrl+C) to ``end_read``, so when interrupted, the script will display a message and terminate gracefully.
+
+   .. code-block:: python
+
+        signal.signal(signal.SIGINT, end_read)
+
+#. RFID Reader Setup:
+
+   * ``rfid_reader``: An instance of the ``MFRC522`` class, used to control RFID reader operations.
+   * ``default_key``: A 6-byte list, typically ``0xFF`` for each byte. This is the default authentication key for most RFID cards.
+   * ``block_num``: Specifies the block number to be read from the RFID card, here set to block ``8``. The block number must match the one used when writing data to the card.
+
+   .. code-block:: python
+
+        # Create an instance of the MFRC522 class
+        rfid_reader = MFRC522.MFRC522()
+
+        # Define the default key (6 bytes, default is all 0xFF)
+        default_key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
+
+        # Define the block number to read (must match the block used during writing)
+        block_num = 8  # For example, block 8
+
+#. User Instructions
+
+   The script prints instructions to the console, informing the user to place their RFID card on the reader and use ``Ctrl+C`` to exit.
+
+   .. code-block:: python
+
+        print("Please place your RFID card on the reader...")
+        print("Press Ctrl-C to stop.")
+
+#. Main Loop: RFID Card Detection and Data Reading.
+
+   * **Scanning for Cards**: The main loop continuously calls ``MFRC522_Request`` to scan for RFID cards. If a card is detected, it proceeds to the next steps.
+   
+     .. code-block:: python
+
+        (status, TagType) = rfid_reader.MFRC522_Request(rfid_reader.PICC_REQIDL)
+
+        if status == rfid_reader.MI_OK:
+            print("RFID card detected!")
+            ...
+        else:
+            # If no card is detected, wait for a short period before retrying
+            time.sleep(0.5)
+
+   * **Retrieving Card UID**: Uses ``MFRC522_SelectTagSN`` to retrieve the card's unique identifier (UID). If successful, it converts the UID to a hexadecimal string and prints it. This UID is necessary for authenticating the card.
+
+     .. code-block:: python
+        
+        (status, uid) = rfid_reader.MFRC522_SelectTagSN()
+
+        # If UID was successfully retrieved, proceed
+        if status == rfid_reader.MI_OK:
+            # Convert UID list to a hexadecimal string
+            uid_str = ''.join(['%02X' % i for i in uid])
+            print("Card UID: %s" % uid_str)
+            ...
+        else:
+            print("Unable to get card UID")
+
+   * **Authenticating the Card**: ``MFRC522_Auth`` authenticates access to the specified block using the default key and the card's UID. If authentication succeeds, the script moves to reading data from the block.
+
+     .. code-block:: python
+
+        status = rfid_reader.MFRC522_Auth(rfid_reader.PICC_AUTHENT1A, block_num, default_key, uid)
+
+        if status == rfid_reader.MI_OK:
+            print("Block %d authentication successful" % block_num)
+            ...
+        else:
+            print("Authentication failed, status code: %s" % status)
+            rfid_reader.MFRC522_StopCrypto1()
+    
+   * **Reading Data**:
+     
+     * ``MFRC522_Read`` reads data from the specified block.
+     * ``data``: This variable contains the block's raw data if the read operation is successful.
+     * The script converts each byte in ``data`` to characters and removes any padding null bytes (``\x00``). The processed data is then printed.
+     
+     .. code-block:: python
+
+        read_status, data = rfid_reader.MFRC522_Read(block_num)
+        print(f"MFRC522_Read return type: {type(read_status)}, Data: {data}")
+
+        if read_status == rfid_reader.MI_OK and data:
+            print(f"Sector {block_num} {data}")
+            # Convert byte data to string and remove any padding null bytes
+            read_data = ''.join([chr(byte) for byte in data]).rstrip('\x00')
+            print("Read data: %s" % read_data)
+        else:
+            print("Data read failed, status code: %s" % read_status)
+
+   * ``MFRC522_StopCrypto1`` is called to stop encryption and reset card communication.
+
+     .. code-block:: python
+
+        # Stop encryption on the card
+        rfid_reader.MFRC522_StopCrypto1()
+
+   * **Waiting between Reads**: If no card is detected, the loop pauses for 0.5 seconds before retrying.
+
+     .. code-block:: python
+
+        else:
+            # If no card is detected, wait for a short period before retrying
+            time.sleep(0.5)
+
+**Key Points**
+
+* **Graceful Exit**: The script captures the ``SIGINT`` signal for graceful termination, allowing the RFID reader to complete any ongoing operations.
+* **Block and UID Management**: Uses block and UID as key components in reading data from an RFID card, with proper handling of authentication and read errors.
+* **Modular Design**: The use of dedicated functions from the ``MFRC522`` module makes the script readable and modular, simplifying RFID operations like authentication and data reading.
+
+Phenomenon Picture
+------------------
+
+.. image:: ../img/image233.jpeg

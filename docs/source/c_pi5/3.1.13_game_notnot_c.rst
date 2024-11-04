@@ -89,12 +89,9 @@ Experimentelle Verfahren
 
 .. image:: ../img/3.1.14game_notnot.png
 
-.. note::
+**Schritt 2**: Aktivieren Sie das SPI, bevor Sie das Experiment starten. Weitere Details finden Sie unter :ref:`spi_configuration`.
 
-    Aktivieren Sie das SPI, bevor Sie das Experiment starten. Weitere Details finden Sie unter :ref:`spi_configuration`.
-    Auch die :ref:`BCM2835` Bibliothek wird benötigt.
-
-**Schritt 2**: Navigieren Sie zum Ordner des Codes.
+**Schritt 3**: Navigieren Sie zum Ordner des Codes.
 
 .. raw:: html
 
@@ -104,7 +101,7 @@ Experimentelle Verfahren
 
     cd ~/raphael-kit/c/3.1.13/
 
-**Schritt 3**: Kompilieren Sie den Code.
+**Schritt 4**: Kompilieren Sie den Code.
 
 .. raw:: html
 
@@ -114,7 +111,7 @@ Experimentelle Verfahren
 
     make
 
-**Schritt 4**: Führen Sie die ausführbare Datei aus.
+**Schritt 5**: Führen Sie die ausführbare Datei aus.
 
 .. raw:: html
 
@@ -132,70 +129,160 @@ Nachdem das Programm gestartet ist, wird auf dem Punktmatrix zufällig ein linke
 
 **Code-Erklärung**
 
-Basierend auf :ref:`1.1.6_c_pi5` fügt dieses Projekt 2 Tasten hinzu, um ein amüsantes Spielgerät zu erstellen.
+Dieses C-Programm ist darauf ausgelegt, auf einem Raspberry Pi unter Verwendung der WiringPi-Bibliothek ausgeführt zu werden. Es kommuniziert mit einem 8x8-LED-Matrix-Display, das über den MAX7219-Treiberchip gesteuert wird, und verwendet zwei Tasten zur Benutzerinteraktion. Das Programm zeigt zufällig einen Pfeil nach links oder rechts auf der LED-Matrix an, und der Benutzer muss die entsprechende Taste drücken. Anschließend wird ein Häkchen für eine richtige Antwort oder ein Kreuz für eine falsche angezeigt.
 
-Der gesamte Programmablauf ist wie folgt:
+#. Header-Dateien:
 
-#. Verwenden Sie die Systemzeit, um eine zufällige 0 oder 1 zu generieren.
-#. Zeigen Sie ein zufälliges linkes oder rechtes Pfeilmuster an.
-#. Drücken Sie die Taste und bestimmen Sie das Ergebnis.
-#. Zeigen Sie das richtige oder falsche Muster an.
+   * ``wiringPi.h``: Bietet Funktionen zur GPIO-Steuerung mit der WiringPi-Bibliothek.
+   * ``wiringPiSPI.h``: Bietet Funktionen für die SPI-Kommunikation.
+   * ``stdio.h``: Standard-Ein-/Ausgabefunktionen (``printf`` usw.).
+   * ``stdlib.h``: Standardbibliotheksfunktionen (``rand``, ``srand``, ``exit``).
+   * ``time.h``: Funktionen zur Bearbeitung von Datum und Uhrzeit (``time``, ``NULL``).
 
-.. image:: ../img/3.1.14_notnot1.png
+#. Typdefinitionen:
 
-.. code-block:: c
+   * ``#define uchar unsigned char``: Definiert ``uchar`` als Alias für ``unsigned char``.
+   * ``#define uint unsigned int``: Definiert ``uint`` als Alias für ``unsigned int``.
 
-    int get_index()
-    {
-        srand((unsigned)time(NULL));
-        return rand()%2;
-    }
+#. Konstanten und Makros:
 
-Der Seed des Systems wird durch die Systemzeit geändert, d.h. ``srand((unsigned)time(NULL))``, so dass jedes Mal, wenn die rand-Funktion aufgerufen wird, der erhaltene Wert völlig zufällig ist. Schließlich wird das erhaltene Ergebnis durch 2 geteilt, sodass die erhaltenen Werte 0 und 1 sind.
+   * ``SPI_CHANNEL``: SPI-Kanal für die Kommunikation (0 oder 1).
+   * ``SPI_SPEED``: SPI-Kommunikationsgeschwindigkeit auf 1 MHz gesetzt.
+   * ``AButtonPin``: WiringPi-Pin-Nummer für Taste A (GPIO 22).
+   * ``BButtonPin``: WiringPi-Pin-Nummer für Taste B (GPIO 23).
 
-.. code-block:: c
+#. Globale Variablen:
 
-    int get_key(uint num)
-    {
-        while (1)
-        {
-            if (1 == bcm2835_gpio_lev(AButtonPin) && num == 0){
-                return 1;
-            }
-            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 1){
-                return 1;
-            }
-            else if (1 == bcm2835_gpio_lev(AButtonPin) && num == 1){
-                return 0;
-            }
-            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 0){
-                return 0;
-            }
-        }
-    }
+   * ``int stage = 0;``: Verfolgt die aktuelle Phase des Spiels (Anzeige des Pfeils oder Ergebnis).
 
-Es wird bestimmt, welche Taste gedrückt wurde und dies mit der Richtung des Pfeils auf der Punktmatrix verglichen, wodurch das endgültige Ergebnis von 0 oder 1 ermittelt wird.
+#. Daten-Arrays:
 
-.. image:: ../img/3.1.14_getkey.png
+   * ``uchar arrow[2][8]``: Enthält zwei 8-Byte-Muster, die einen rechten und linken Pfeil für die LED-Matrix darstellen.
 
-.. code-block:: c
+     * ``arrow[0]``: Muster für den rechten Pfeil.
+     * ``arrow[1]``: Muster für den linken Pfeil.
 
-    void display(uint index){
-        uchar i;
-        if (stage == 0){
-            for(i=1;i<9;i++)
-            {
-                Write_Max7219(i,arrow[index][i-1]);
-            }
-        }
-        else if(stage == 1){
-            for(i=1;i<9;i++)
-            {
-                Write_Max7219(i,check[index][i-1]);
-            }
-        }
-    }
+   * ``uchar check[2][8]``: Enthält zwei 8-Byte-Muster für die Symbole „Richtig“ (Häkchen) und „Falsch“ (Kreuz).
 
-Je nach Wert von ``stage`` und ``index`` wird der ``left or right`` Pfeil oder das Muster ``right or wrong`` angezeigt.
+     * ``check[0]``: Muster für das Häkchen-Symbol.
+     * ``check[1]``: Muster für das Kreuz-Symbol.
 
-.. image:: ../img/3.1.14_display.png
+#. Funktion ``void Delay_xms(uint x)``:
+
+   * Wrapper-Funktion für ``delay(x)``, bereitgestellt von WiringPi.
+   * Verzögert die Programmausführung um ``x`` Millisekunden.
+
+#. Funktion ``void Write_Max7219_byte(uchar DATA)``:
+
+   * Sendet ein einzelnes Byte (``DATA``) an den MAX7219 über SPI.
+   * Verwendet ``wiringPiSPIDataRW`` zur Durchführung der SPI-Datenübertragung.
+   * ``DATA``: Das zu sendende Datenbyte.
+
+#. Funktion ``void Write_Max7219(uchar address1, uchar dat1)``:
+
+   * Sendet einen Befehl und Daten an den MAX7219.
+   * Kombiniert ``address1`` (Registeradresse) und ``dat1`` (Daten) in einen Puffer und sendet sie über SPI.
+   * ``address1``: Adresse des MAX7219-Registers.
+   * ``dat1``: Daten zum Schreiben in das Register.
+
+#. Funktion ``void Init_MAX7219()``:
+
+   * Initialisiert den MAX7219-Display-Treiber mit den erforderlichen Konfigurationen.
+   * Konfiguriert Decode-Modus, Intensität, Scan-Limit, Shutdown-Modus und Display-Test.
+   * Löscht vorherige Daten auf dem Display.
+
+#. Funktion ``void Init_WiringPi()``:
+
+   * Initialisiert die WiringPi-Bibliothek und die SPI-Schnittstelle.
+   * Konfiguriert die Tasten-Pins als Eingänge mit Pull-up-Widerständen.
+   * Überprüft, ob die Initialisierung erfolgreich war und beendet das Programm bei einem Fehler.
+
+#. Funktion ``int get_index()``:
+
+   * Generiert einen zufälligen Index (0 oder 1), um zwischen dem linken und rechten Pfeil zu wählen.
+   * Rückgabe: ``0`` oder ``1``.
+
+#. Funktion ``int get_key(uint num)``:
+
+   * Wartet darauf, dass der Benutzer eine Taste drückt, und bestimmt, ob die Eingabe mit dem angezeigten Pfeil übereinstimmt.
+   * Parameter:
+
+     * ``num``: Der Index des angezeigten Pfeils (0 für rechts, 1 für links).
+
+   * Rückgabe:
+
+     * ``1`` bei korrekter Benutzereingabe.
+     * ``0`` bei falscher Benutzereingabe.
+
+   * Funktionsweise:
+
+     * Tritt in eine Endlosschleife ein und überprüft den Zustand der Tasten.
+     * Verwendet ``digitalRead``, um Tastendrücke zu erkennen (aktiv LOW).
+     * Vergleicht die gedrückte Taste mit der erwarteten Eingabe basierend auf ``num``.
+
+#. Funktion ``void display(uint index)``:
+
+   * Zeigt entweder einen Pfeil oder ein Ergebnissymbol auf der LED-Matrix an, basierend auf der ``stage``.
+   * Parameter:
+
+     * ``index``: Index zur Auswahl des Musters aus den Arrays ``arrow`` oder ``check``.
+
+   * Funktionsweise:
+
+     * Wenn ``stage == 0``, wird ein Pfeilmuster angezeigt.
+     * Wenn ``stage == 1``, wird ein Häkchen- oder Kreuzsymbol angezeigt.
+
+#. Hauptfunktion:
+
+   * **Initialisierung:**
+
+     * Initialisiert den Zufallszahlengenerator mit ``srand((unsigned)time(NULL))``.
+     * Ruft ``Init_WiringPi()`` auf, um GPIO und SPI einzurichten.
+     * Ruft ``Init_MAX7219()`` auf, um das LED-Matrix-Display zu initialisieren.
+     * Führt eine kurze Verzögerung mit ``Delay_xms(50)`` ein.
+   
+   * **Spielschleife (``while (1)``):**
+
+     * **Stufe 0 (Pfeil anzeigen):**
+
+       * Ruft ``get_index()`` auf, um zufällig eine Pfeilrichtung auszuwählen.
+       * Ruft ``display(direction)`` auf, um den Pfeil auf der LED-Matrix anzuzeigen.
+       * Setzt ``stage = 1``, um zur nächsten Stufe zu wechseln.
+
+     * **Stufe 1 (Benutzereingabe abwarten und Ergebnis anzeigen):**
+
+       * Ruft ``get_key(direction)`` auf, um die Benutzereingabe abzuwarten und die Richtigkeit zu bestimmen.
+       * Ruft ``display(key)`` auf, um das Ergebnissymbol (Häkchen oder Kreuz) anzuzeigen.
+       * Wartet 1 Sekunde mit ``Delay_xms(1000)``, damit der Benutzer das Ergebnis sehen kann.
+       * Setzt ``stage = 0``, um die Schleife neu zu starten.
+
+
+**Programmfluss-Zusammenfassung:**
+
+1. **Einrichtung:**
+
+   * Initialisiert WiringPi und SPI.
+   * Konfiguriert die Tasten-Pins und die MAX7219-Einstellungen.
+   * Initialisiert den Zufallszahlengenerator.
+
+2. **Pfeil anzeigen:**
+
+   * Wählt zufällig eine Pfeilrichtung (links oder rechts).
+   * Zeigt den entsprechenden Pfeil auf der LED-Matrix an.
+
+3. **Benutzerinteraktion:**
+
+   * Wartet darauf, dass der Benutzer entweder Taste A oder Taste B drückt.
+   * Bestimmt, ob die gedrückte Taste der Pfeilrichtung entspricht.
+
+4. **Ergebnis anzeigen:**
+
+   * Zeigt ein Häkchen an, wenn die Benutzereingabe korrekt ist.
+   * Zeigt ein Kreuz an, wenn die Benutzereingabe falsch ist.
+   * Wartet 1 Sekunde vor der nächsten Runde.
+
+5. **Wiederholen:**
+
+   * Kehrt zur Anzeige eines neuen Pfeils zurück und setzt das Spiel fort.
+
+

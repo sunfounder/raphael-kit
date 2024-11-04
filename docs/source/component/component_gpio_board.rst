@@ -35,10 +35,8 @@ Die folgende Tabelle zeigt die Benennungsmethoden von WiringPi, Board und den ei
 
 .. note::
 
-    1）In der C-Sprache wird das Namensschema WiringPi verwendet.
-    
-    2）In der Python-Sprache werden die Namensschemata **Board** und **BCM** angewendet, und die Funktion ``GPIO.setmode()`` dient zur Einstellung dieser.
-    
-    3）In Scratch 3 und Processing wird das Namensschema **BCM** verwendet.
+    * In der C-Sprache wird das Namensschema WiringPi verwendet.
+    * In der Python-Sprache werden die Namensschemata **Board** und **BCM** angewendet, und die Funktion ``GPIO.setmode()`` dient zur Einstellung dieser.
+    * In Scratch 3 und Processing wird das Namensschema **BCM** verwendet.
 
 .. image:: img/gpio_board.png
