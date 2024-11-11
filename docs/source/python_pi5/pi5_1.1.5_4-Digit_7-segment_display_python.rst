@@ -68,16 +68,16 @@ Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 Schéma de câblage
 --------------------------
 
-=============== ======== =====
-Nom de la carte physique BCM
-GPIO17          Pin 11   17
-GPIO27          Pin 13   27
-GPIO22          Pin 15   22
-SPIMOSI         Pin 19   10
-GPIO18          Pin 12   18
-GPIO23          Pin 16   23
-GPIO24          Pin 18   24
-=============== ======== ======
+============ ======== ======== ===
+Nom T-Board  physique wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+============ ======== ======== ===
 
 .. image:: ../python_pi5/img/1.1.5_4_digit_schmatic.png
 

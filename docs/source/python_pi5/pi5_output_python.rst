@@ -26,6 +26,7 @@ Sortie
     pi5_1.1.3_led_bar_graph_python
     pi5_1.1.4_7-segment_display_python
     pi5_1.1.5_4-Digit_7-segment_display_python
+    pi5_1.1.6_led_dot_matrix_python    
     pi5_1.1.7_i2c_lcd1602_python
 
 1.2 Son

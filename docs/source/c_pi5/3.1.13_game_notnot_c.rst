@@ -90,12 +90,9 @@ Procédures expérimentales
 
 .. image:: ../img/3.1.14game_notnot.png
 
-.. note::
+**Étape 2** : Activez le SPI avant de commencer l'expérience, consultez :ref:`spi_configuration` pour plus de détails.
 
-    Activez le SPI avant de commencer l'expérience, consultez :ref:`SPI Configuration` pour plus de détails.
-    La bibliothèque :ref:`BCM2835` est également nécessaire.
-
-**Étape 2** : Accédez au dossier du code.
+**Étape 3** : Accédez au dossier du code.
 
 .. raw:: html
 
@@ -105,7 +102,7 @@ Procédures expérimentales
 
     cd ~/raphael-kit/c/3.1.13/
 
-**Étape 3** : Compilez le code.
+**Étape 4** : Compilez le code.
 
 .. raw:: html
 
@@ -115,7 +112,7 @@ Procédures expérimentales
 
     make
 
-**Étape 4** : Exécutez le fichier exécutable.
+**Étape 5** : Exécutez le fichier exécutable.
 
 .. raw:: html
 
@@ -138,69 +135,157 @@ et droite afin d'augmenter la difficulté du jeu.
 
 **Explication du code**
 
-Basé sur :ref:`1.1.6_c_pi5`, ce projet ajoute 2 boutons pour créer un dispositif de jeu amusant.
+Ce programme en C est conçu pour fonctionner sur un Raspberry Pi en utilisant la bibliothèque WiringPi. Il interagit avec un écran de matrice LED 8x8 contrôlé par le pilote MAX7219 et utilise deux boutons pour l’interaction avec l’utilisateur. Le programme affiche aléatoirement une flèche vers la gauche ou la droite sur la matrice LED, et l’utilisateur doit appuyer sur le bouton correspondant. Ensuite, il affiche une coche pour une réponse correcte ou une croix pour une réponse incorrecte.
 
-Le processus complet du programme est le suivant :
+#. Fichiers d'en-tête :
 
-#. Utilisez l'heure du système pour générer un 0 ou 1 aléatoire.
-#. Affichez un motif de flèche gauche ou droite aléatoire.
-#. Appuyez sur la touche et déterminez le résultat.
-#. Affichez le motif correct ou incorrect.
+   * ``wiringPi.h`` : Fournit des fonctions pour le contrôle GPIO via la bibliothèque WiringPi.
+   * ``wiringPiSPI.h`` : Fournit des fonctions pour la communication SPI.
+   * ``stdio.h`` : Fonctions standard d'entrée/sortie (``printf``, etc.).
+   * ``stdlib.h`` : Fonctions de la bibliothèque standard (``rand``, ``srand``, ``exit``).
+   * ``time.h`` : Fonctions pour manipuler la date et l'heure (``time``, ``NULL``).
 
-.. image:: ../img/3.1.14_notnot1.png
+#. Définitions de types :
 
-.. code-block:: c
+   * ``#define uchar unsigned char`` : Définit ``uchar`` comme un alias pour ``unsigned char``.
+   * ``#define uint unsigned int`` : Définit ``uint`` comme un alias pour ``unsigned int``.
 
-    int get_index()
-    {
-        srand((unsigned)time(NULL));
-        return rand()%2;
-    }
-La graine du système est modifiée par l'heure du système, c'est-à-dire ``srand((unsigned)time(NULL))``, de sorte qu'à chaque appel de la fonction rand, la valeur obtenue est complètement aléatoire. Enfin, le résultat obtenu est divisé par 2, de sorte que les valeurs obtenues sont 0 et 1.
+#. Constantes et macros :
 
-.. code-block:: c
+   * ``SPI_CHANNEL`` : Canal SPI utilisé pour la communication (0 ou 1).
+   * ``SPI_SPEED`` : Vitesse de communication SPI fixée à 1 MHz.
+   * ``AButtonPin`` : Numéro de broche WiringPi pour le Bouton A (GPIO 22).
+   * ``BButtonPin`` : Numéro de broche WiringPi pour le Bouton B (GPIO 23).
 
-    int get_key(uint num)
-    {
-        while (1)
-        {
-            if (1 == bcm2835_gpio_lev(AButtonPin) && num == 0){
-                return 1;
-            }
-            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 1){
-                return 1;
-            }
-            else if (1 == bcm2835_gpio_lev(AButtonPin) && num == 1){
-                return 0;
-            }
-            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 0){
-                return 0;
-            }
-        }
-    }
+#. Variables globales :
 
-Détermine quel bouton a été pressé, le compare à la direction de la flèche sur la matrice de points et donne le résultat final de 0 ou 1.
+   * ``int stage = 0;`` : Suit l’étape actuelle du jeu (affichage de la flèche ou du résultat).
 
-.. image:: ../img/3.1.14_getkey.png
+#. Tableaux de données :
 
-.. code-block:: c
+   * ``uchar arrow[2][8]`` : Contient deux modèles de 8 octets représentant les flèches droite et gauche pour la matrice LED.
 
-    void display(uint index){
-        uchar i;
-        if (stage == 0){
-            for(i=1;i<9;i++)
-            {
-                Write_Max7219(i,arrow[index][i-1]);
-            }
-        }
-        else if(stage == 1){
-            for(i=1;i<9;i++)
-            {
-                Write_Max7219(i,check[index][i-1]);
-            }
-        }
-    }
+     * ``arrow[0]`` : Modèle de flèche droite.
+     * ``arrow[1]`` : Modèle de flèche gauche.
 
-Affiche la flèche ``gauche ou droite`` ou le motif ``correct ou incorrect`` en fonction de la valeur de ``stage`` et ``index``.
+   * ``uchar check[2][8]`` : Contient deux modèles de 8 octets représentant les symboles correct (coche) et incorrect (croix).
 
-.. image:: ../img/3.1.14_display.png
+     * ``check[0]`` : Modèle de symbole correct.
+     * ``check[1]`` : Modèle de symbole incorrect.
+
+#. Fonction ``void Delay_xms(uint x)`` :
+
+   * Fonction enveloppe pour ``delay(x)`` fournie par WiringPi.
+   * Retarde l'exécution du programme de ``x`` millisecondes.
+
+#. Fonction ``void Write_Max7219_byte(uchar DATA)`` :
+
+   * Envoie un octet unique (``DATA``) au MAX7219 via SPI.
+   * Utilise ``wiringPiSPIDataRW`` pour effectuer le transfert de données SPI.
+   * ``DATA`` : L'octet de données à envoyer.
+
+#. Fonction ``void Write_Max7219(uchar address1, uchar dat1)`` :
+
+   * Envoie une commande et des données au MAX7219.
+   * Combine ``address1`` (adresse du registre) et ``dat1`` (données) dans un buffer et les envoie via SPI.
+   * ``address1`` : Adresse du registre MAX7219.
+   * ``dat1`` : Données à écrire dans le registre.
+
+#. Fonction ``void Init_MAX7219()`` :
+
+   * Initialise le pilote d'affichage MAX7219 avec les configurations nécessaires.
+   * Configure le mode de décodage, l’intensité, la limite de balayage, le mode veille et le test d'affichage.
+   * Efface les données précédentes sur l'affichage.
+
+#. Fonction ``void Init_WiringPi()`` :
+
+   * Initialise la bibliothèque WiringPi et l'interface SPI.
+   * Configure les broches des boutons en entrée avec des résistances pull-up.
+   * Vérifie la réussite de l'initialisation et quitte en cas d'échec.
+
+#. Fonction ``int get_index()`` :
+
+   * Génère un index aléatoire (0 ou 1) pour choisir entre la flèche gauche et droite.
+   * Retourne : ``0`` ou ``1``.
+
+#. Fonction ``int get_key(uint num)`` :
+
+   * Attend que l’utilisateur appuie sur un bouton et détermine si l’entrée correspond à la flèche affichée.
+   * Paramètres :
+
+     * ``num`` : L'index de la flèche affichée (0 pour droite, 1 pour gauche).
+
+   * Renvoie :
+
+     * ``1`` si l'entrée de l'utilisateur est correcte.
+     * ``0`` si l'entrée de l'utilisateur est incorrecte.
+
+   * Fonctionnalité :
+
+     * Entre dans une boucle infinie vérifiant l'état des boutons.
+     * Utilise ``digitalRead`` pour détecter les appuis de boutons (actif en BAS).
+     * Compare le bouton pressé avec l'entrée attendue en fonction de ``num``.
+
+#. Fonction ``void display(uint index)`` :
+
+   * Affiche soit une flèche soit un symbole de résultat sur la matrice LED en fonction de ``stage``.
+   * Paramètres :
+
+     * ``index`` : Index pour sélectionner le modèle dans les tableaux ``arrow`` ou ``check``.
+
+   * Fonctionnalité :
+
+     * Si ``stage == 0``, affiche un modèle de flèche.
+     * Si ``stage == 1``, affiche une coche ou une croix.
+
+#. Fonction principale :
+
+   * **Initialisation :**
+
+     * Initialise le générateur de nombres aléatoires avec ``srand((unsigned)time(NULL))``.
+     * Appelle ``Init_WiringPi()`` pour configurer le GPIO et le SPI.
+     * Appelle ``Init_MAX7219()`` pour initialiser l'affichage de la matrice LED.
+     * Introduit un court délai avec ``Delay_xms(50)``.
+   
+   * **Boucle du jeu (``while (1)``) :**
+
+     * **Étape 0 (Affichage de la flèche) :**
+
+       * Appelle ``get_index()`` pour sélectionner aléatoirement une direction de flèche.
+       * Appelle ``display(direction)`` pour afficher la flèche sur la matrice LED.
+       * Définit ``stage = 1`` pour passer à l’étape suivante.
+
+     * **Étape 1 (Obtenir l’entrée de l’utilisateur et afficher le résultat) :**
+
+       * Appelle ``get_key(direction)`` pour attendre l'entrée de l’utilisateur et déterminer si elle est correcte.
+       * Appelle ``display(key)`` pour afficher le symbole de résultat (coche ou croix).
+       * Attend 1 seconde avec ``Delay_xms(1000)`` pour permettre à l’utilisateur de voir le résultat.
+       * Définit ``stage = 0`` pour redémarrer la boucle.
+
+**Résumé du déroulement du programme :**
+
+1. **Configuration :**
+
+   * Initialiser WiringPi et SPI.
+   * Configurer les broches des boutons et les paramètres du MAX7219.
+   * Initialiser le générateur de nombres aléatoires.
+
+2. **Affichage de la flèche :**
+
+   * Sélectionner aléatoirement une direction de flèche (gauche ou droite).
+   * Afficher la flèche correspondante sur la matrice LED.
+
+3. **Interaction avec l'utilisateur :**
+
+   * Attendre que l'utilisateur appuie sur le bouton A ou le bouton B.
+   * Vérifier si le bouton pressé correspond à la direction de la flèche.
+
+4. **Affichage du résultat :**
+
+   * Afficher une coche si la réponse de l'utilisateur est correcte.
+   * Afficher une croix si la réponse de l'utilisateur est incorrecte.
+   * Attendre 1 seconde avant la prochaine manche.
+
+5. **Répéter :**
+
+   * Revenir en boucle pour afficher une nouvelle flèche et continuer le jeu.

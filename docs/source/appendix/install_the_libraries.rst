@@ -139,23 +139,7 @@ Après avoir créé l'environnement virtuel, vous devez l'activer pour l'utilise
 
 Une fois l'environnement virtuel activé, vous verrez le nom de l'environnement avant l'invite de commande, indiquant que vous travaillez dans l'environnement virtuel.
 
-
-**3. Installation des dépendances**
-
-Avec l'environnement virtuel activé, vous pouvez utiliser pip pour installer les dépendances requises. Par exemple :
-
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: shell
-
-    pip install requests
-
-Cela installera la bibliothèque requests dans l'environnement virtuel actuel, plutôt que dans l'environnement global. Cette étape ne doit être effectuée qu'une seule fois.
-
-
-**4. Sortie de l'environnement virtuel**
+**3. Sortie de l'environnement virtuel**
 
 Lorsque vous avez terminé votre travail et souhaitez quitter l'environnement virtuel, exécutez simplement :
 
@@ -169,7 +153,7 @@ Lorsque vous avez terminé votre travail et souhaitez quitter l'environnement vi
 
 Cela vous ramènera à l'environnement Python global du système.
 
-**5. Suppression de l'environnement virtuel**
+**4. Suppression de l'environnement virtuel**
 
 Si vous n'avez plus besoin d'un environnement virtuel particulier, vous pouvez simplement supprimer le répertoire contenant l'environnement virtuel :
 
@@ -185,41 +169,96 @@ Si vous n'avez plus besoin d'un environnement virtuel particulier, vous pouvez s
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Il s'agit d'une bibliothèque Python 3 pour interfacer des affichages de matrice LED avec le pilote MAX7219 (utilisant SPI), WS2812 (NeoPixels, y compris Pimoroni Unicorn pHat/Hat et Unicorn Hat HD) et APA102 (DotStar) sur le Raspberry Pi et d'autres ordinateurs monocartes basés sur Linux.
+Il s'agit d'une bibliothèque Python 3 pour interfacer des affichages à matrice de LED en utilisant le pilote MAX7219 (via SPI), WS2812 (NeoPixels, y compris Pimoroni Unicorn pHat/Hat et Unicorn Hat HD), et APA102 (DotStar) sur Raspberry Pi et d'autres ordinateurs monocartes basés sur Linux.
 
-Installez d'abord les dépendances pour la bibliothèque avec :
+#. Ajoutez l’utilisateur aux groupes ``spi`` et ``gpio`` pour vous assurer que l’utilisateur actuel (remplacez "pi" par votre propre nom d’utilisateur) a la permission d’accéder aux interfaces SPI et GPIO.
 
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo usermod -a -G spi,gpio pi
-    sudo apt install build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff5
-
-.. note:: warning
-
-    Les versions par défaut de pip et setuptools fournies avec apt sur Raspbian sont vraiment anciennes, et peuvent empêcher l'installation correcte de certains composants. Assurez-vous qu'ils sont à jour en les mettant à niveau d'abord :
-
-    .. raw:: html
-
+   .. raw:: html
+   
        <run></run>
+   
+   .. code-block:: shell
 
-    .. code-block:: 
+        sudo usermod -a -G spi,gpio pi
 
-        sudo -H pip install --upgrade --ignore-installed pip setuptools
+   Après avoir exécuté cette commande, il est recommandé de redémarrer le système ou de se déconnecter puis de se reconnecter pour appliquer les changements d’appartenance aux groupes.
 
-Procédez à l'installation de la dernière version de la bibliothèque luma.led_matrix directement depuis PyPI :
+#. Installez les dépendances nécessaires : Utilisez ``apt`` pour installer les outils de construction et les bibliothèques de développement associées. Ces bibliothèques sont essentielles pour compiler et installer certains paquets Python.
 
-.. raw:: html
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+    
+        sudo apt update
+        sudo apt install -y build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff-dev
 
-   <run></run>
+#. Créez un environnement virtuel. Ici, ``~/my_env`` est le chemin de l’environnement virtuel, et il peut être personnalisé.
 
-.. code-block:: 
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       python3 -m venv ~/my_env
 
-    sudo python3 -m pip install --upgrade luma.led_matrix
+#. Après avoir créé l’environnement virtuel, activez-le pour l’utiliser.
 
+   .. note::
+   
+       Chaque fois que vous redémarrez le Raspberry Pi ou ouvrez un nouveau terminal, vous devrez exécuter la commande suivante à nouveau pour activer l’environnement virtuel.
+
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       source ~/my_env/bin/activate
+   
+   Une fois l’environnement virtuel activé, vous verrez le nom de l’environnement avant l’invite de commande, indiquant que vous travaillez dans l’environnement virtuel.
+
+#. Dans l’environnement virtuel, mettez à jour ``pip`` et ``setuptools`` pour vous assurer que les versions les plus récentes des paquets sont installées.
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+        pip install --upgrade pip setuptools
+
+#. Ensuite, installez ``luma.led_matrix``:
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+   
+        pip install luma.led_matrix
+
+#. Après l'installation, vous pouvez vérifier que ``luma.led_matrix`` est correctement installé en exécutant la commande suivante. Si l’installation est réussie, elle affichera le numéro de version de ``luma.led_matrix``.
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+        python3 -c "import luma.led_matrix; print(luma.led_matrix.__version__)"
+
+#. Lorsque vous avez terminé votre travail et que vous souhaitez quitter l’environnement virtuel, il vous suffit d’exécuter :
+   
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       deactivate
 
 * Référence : `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
