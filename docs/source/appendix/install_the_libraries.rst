@@ -136,22 +136,7 @@ Después de crear el entorno virtual, necesitas activarlo para su uso.
 
 Una vez activado el entorno virtual, verás el nombre del entorno antes del prompt de la línea de comandos, indicando que estás trabajando dentro del entorno virtual.
 
-**3. Instalación de Dependencias**
-
-Con el entorno virtual activado, puedes usar pip para instalar las dependencias necesarias. Por ejemplo:
-
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: shell
-
-    pip install requests
-
-Esto instalará la librería requests en el entorno virtual actual, en lugar de en el entorno global. Este paso solo necesita realizarse una vez.
-
-
-**4. Salir del Entorno Virtual**
+**3. Salir del Entorno Virtual**
 
 Cuando hayas terminado tu trabajo y desees salir del entorno virtual, simplemente ejecuta:
 
@@ -165,7 +150,7 @@ Cuando hayas terminado tu trabajo y desees salir del entorno virtual, simplement
 
 Esto te devolverá al entorno global de Python del sistema.
 
-**5. Eliminar el Entorno Virtual**
+**4. Eliminar el Entorno Virtual**
 
 Si ya no necesitas un entorno virtual en particular, puedes simplemente eliminar el directorio que contiene el entorno virtual:
 
@@ -181,40 +166,96 @@ Si ya no necesitas un entorno virtual en particular, puedes simplemente eliminar
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Esta es una librería en Python 3 para interactuar con pantallas de matriz LED usando el controlador MAX7219 (usando SPI), WS2812 (NeoPixels, incluyendo Pimoroni Unicorn pHat/Hat y Unicorn Hat HD) y APA102 (DotStar) en la Raspberry Pi y otras computadoras de placa única basadas en Linux.
+Esta es una biblioteca de Python 3 para la interfaz de pantallas de matriz de LED utilizando el controlador MAX7219 (a través de SPI), WS2812 (NeoPixels, incluyendo Pimoroni Unicorn pHat/Hat y Unicorn Hat HD), y APA102 (DotStar) en la Raspberry Pi y otras computadoras de placa única basadas en Linux.
 
-Primero, instala las dependencias de la librería con:
+#. Agrega el usuario a los grupos ``spi`` y ``gpio`` para asegurar que el usuario actual (reemplaza "pi" con tu nombre de usuario) tenga permiso para acceder a las interfaces SPI y GPIO.
 
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo usermod -a -G spi,gpio pi
-    sudo apt install build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff5
-
-.. note:: warning
-
-    Las versiones predeterminadas de pip y setuptools incluidas con apt en Raspbian son muy antiguas y pueden causar problemas al instalar componentes. Asegúrate de que estén actualizadas actualizándolas primero:
-
-    .. raw:: html
-
+   .. raw:: html
+   
        <run></run>
+   
+   .. code-block:: shell
 
-    .. code-block:: 
+        sudo usermod -a -G spi,gpio pi
 
-        sudo -H pip install --upgrade --ignore-installed pip setuptools
+   Después de ejecutar este comando, se recomienda reiniciar el sistema o cerrar y volver a iniciar sesión para aplicar los cambios de pertenencia al grupo.
 
-Procede a instalar la versión más reciente de la librería luma.led_matrix directamente desde PyPI:
+#. Instala las dependencias necesarias: Usa ``apt`` para instalar herramientas de compilación y bibliotecas de desarrollo relacionadas. Estas bibliotecas son esenciales para compilar e instalar ciertos paquetes de Python.
 
-.. raw:: html
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+    
+        sudo apt update
+        sudo apt install -y build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff-dev
 
-   <run></run>
+#. Crea un entorno virtual. Aquí, ``~/my_env`` es la ruta para el entorno virtual y puede personalizarse.
 
-.. code-block:: 
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       python3 -m venv ~/my_env
 
-    sudo python3 -m pip install --upgrade luma.led_matrix
+#. Después de crear el entorno virtual, actívalo para su uso.
+
+   .. nota::
+   
+       Cada vez que reinicies la Raspberry Pi o abras un nuevo terminal, deberás ejecutar el siguiente comando nuevamente para activar el entorno virtual.
+
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       source ~/my_env/bin/activate
+   
+   Una vez que el entorno virtual esté activado, verás el nombre del entorno antes del símbolo del sistema, indicando que estás trabajando dentro del entorno virtual.
+
+#. Dentro del entorno virtual, actualiza ``pip`` y ``setuptools`` para asegurar que las versiones más recientes de los paquetes estén instaladas.
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+        pip install --upgrade pip setuptools
+
+#. Luego, instala ``luma.led_matrix``:
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+   
+        pip install luma.led_matrix
+
+#. Después de la instalación, puedes verificar que ``luma.led_matrix`` se haya instalado correctamente ejecutando el siguiente comando. Si es exitoso, mostrará el número de versión de ``luma.led_matrix``.
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+        python3 -c "import luma.led_matrix; print(luma.led_matrix.__version__)"
+
+#. Cuando termines de trabajar y desees salir del entorno virtual, simplemente ejecuta:
+   
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       deactivate
 
 
 * Referencia: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_

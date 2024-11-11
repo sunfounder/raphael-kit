@@ -26,6 +26,7 @@ Salida
     1.1.3_led_bar_graph_c
     1.1.4_7-segment_display_c
     1.1.5_4-Digit_7-segment_display_c
+    1.1.6_led_dot_matrix_c
     1.1.7_i2c_lcd1602_c
 
 1.2 Sonido
