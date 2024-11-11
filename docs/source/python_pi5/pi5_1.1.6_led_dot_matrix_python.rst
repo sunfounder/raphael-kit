@@ -81,7 +81,7 @@ Experimental Procedures
 
 .. image:: ../img/1.1.6fritzing.png
 
-**Step 2:** Turn on the SPI before starting the experiment, refer to :ref:`SPI Configuration` for details. 
+**Step 2:** Turn on the SPI before starting the experiment, refer to :ref:`spi_configuration` for details. 
 
 **Step 3:** Install :ref:`Luma.LED_Matrix` module.
 
@@ -93,7 +93,7 @@ Experimental Procedures
 
 .. code-block::
 
-    cd ~/raphael-kit/python/
+    cd ~/raphael-kit/python-pi5
 
 **Step 5:** Runs the ``1.1.6_LedMatrix.py`` Python script using the Python interpreter from the ``my_env`` virtual environment.
 
