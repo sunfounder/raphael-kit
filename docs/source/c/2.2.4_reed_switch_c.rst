@@ -91,13 +91,13 @@ GPIO22       Pin 15   3        22
 Procedure Sperimentali
 -------------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.2.4fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Cambia directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -107,7 +107,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/2.2.4/
 
-**Step 3:** Compila.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -117,7 +117,7 @@ Procedure Sperimentali
 
     gcc 2.2.4_ReedSwitch.c -lwiringPi
 
-**Step 4:** Esegui.
+**Passo 4:** Esegui.
 
 .. raw:: html
 

@@ -122,15 +122,11 @@ Agita la bacchetta, il display a 4 cifre inizierà a contare, agitala di nuovo p
 fermare il conteggio. Se riesci a mantenere il conteggio visualizzato su **10.00**, 
 hai vinto. Agita ancora una volta per iniziare il prossimo round del gioco.
 
-<<<<<<< HEAD
-**Codice**
-=======
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se viene visualizzato l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, fare riferimento a :ref:`faq_soc`. 
 
 **Code**
->>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Tuttavia, prima di farlo, devi accedere al percorso sorgente del codice, come ad esempio ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.

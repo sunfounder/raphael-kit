@@ -85,12 +85,12 @@ GPIO22       Pin 15   3        22
 Procedure sperimentali
 ----------------------------
 
-**Step 1:** Monta il circuito. (Fai attenzione ai poli del cicalino: 
+**Passo 1:** Monta il circuito. (Fai attenzione ai poli del cicalino: 
 Quello con l'etichetta + è il polo positivo, l'altro è il polo negativo.)
 
 .. image:: ../python_pi5/img/4.1.16_morse_code_generator_circuit.png
 
-**Step 2**: Apri il file di codice.
+**Passo 2**: Apri il file di codice.
 
 .. raw:: html
 
@@ -100,7 +100,7 @@ Quello con l'etichetta + è il polo positivo, l'altro è il polo negativo.)
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3**: Esegui.
+**Passo 3**: Esegui.
 
 .. raw:: html
 
@@ -113,15 +113,11 @@ Quello con l'etichetta + è il polo positivo, l'altro è il polo negativo.)
 Dopo l'avvio del programma, digita una serie di caratteri e il cicalino e il LED 
 invieranno i segnali corrispondenti in codice Morse.
 
-<<<<<<< HEAD
-**Codice**
-=======
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se viene visualizzato l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, fare riferimento a :ref:`faq_soc`. 
 
 **Code**
->>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. code-block:: python
 

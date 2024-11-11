@@ -81,7 +81,7 @@ Schema Elettrico
 Procedure Sperimentali
 --------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image180.png
 
@@ -91,7 +91,7 @@ Procedure Sperimentali
     raffigurata nell'immagine. Nota che le scanalature sul chip dovrebbero
     essere a sinistra quando viene posizionato.
 
-**Step 2:** Apri il file del codice.
+**Passo 2:** Apri il file del codice.
 
 .. raw:: html
 
@@ -101,7 +101,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/2.1.7/
 
-**Step 3:** Compila il codice.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -111,7 +111,7 @@ Procedure Sperimentali
 
     gcc 2.1.7_Potentiometer.c -lwiringPi
 
-**Step 4:** Esegui.
+**Passo 4:** Esegui.
 
 .. raw:: html
 

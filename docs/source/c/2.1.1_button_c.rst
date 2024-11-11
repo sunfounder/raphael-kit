@@ -87,11 +87,11 @@ il pulsante viene premuto e successivamente il LED si accenderà.
 Procedure Sperimentali
 ---------------------------
 
-**Step 1**: Costruisci il circuito.
+**Passo 1**: Costruisci il circuito.
 
 .. image:: ../img/image152.png
 
-**Step 2**: Apri il file del codice.
+**Passo 2**: Apri il file del codice.
 
 .. raw:: html
 
@@ -104,7 +104,7 @@ Procedure Sperimentali
 .. note::
     Cambia directory al percorso del codice di questo esperimento tramite **cd**.
 
-**Step 3**: Compila il codice.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -114,7 +114,7 @@ Procedure Sperimentali
 
     gcc 2.1.1_Button.c -lwiringPi
 
-**Step 4**: Esegui il file eseguibile.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 

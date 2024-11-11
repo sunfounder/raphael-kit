@@ -14,7 +14,7 @@
 
 .. _1.1.7_py_pi5:
 
-1.1.6 LCD1602 I2C
+1.1.7 LCD1602 I2C
 ========================
 
 Introduzione
@@ -113,16 +113,12 @@ Dopo l'esecuzione del codice, sul display LCD vedrai apparire il messaggio ``Gre
     * Se il codice e il cablaggio sono corretti, ma l'LCD non visualizza contenuti, prova a regolare il potenziometro sul retro per aumentare il contrasto.
 
 
-<<<<<<< HEAD
-**Codice** 
-=======
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se viene visualizzato l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, fare riferimento a :ref:`faq_soc`. 
 
 **Code** 
->>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 

@@ -19,11 +19,11 @@ PuTTY
 
 Se sei un utente Windows, puoi utilizzare alcune applicazioni SSH. Qui ti consigliamo `PuTTY <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`_.
 
-**Step 1**
+**Passo 1**
 
 Scarica PuTTY.
 
-**Step 2**
+**Passo 2**
 
 Apri PuTTY e clicca su **Session** nella struttura ad albero a sinistra. Inserisci 
 l'indirizzo IP del Raspberry Pi nella casella di testo sotto **Host Name (or IP address)** 
@@ -32,12 +32,12 @@ e **22** sotto **Port** (il valore predefinito è 22).
 .. image:: img/image25.png
     :align: center
 
-**Step 3**
+**Passo 3**
 
 Clicca su **Open**. Nota che quando accedi per la prima volta al Raspberry Pi con 
 l'indirizzo IP, appare un promemoria di sicurezza. Clicca semplicemente su **Yes**.
 
-**Step 4**
+**Passo 4**
 
 Quando la finestra di PuTTY richiede \"**login as:**\", digita
 \"**pi**\" (il nome utente del Raspberry Pi), e la **password**: \"raspberry\"
@@ -52,6 +52,6 @@ Quando la finestra di PuTTY richiede \"**login as:**\", digita
 .. image:: img/image26.png
     :align: center
 
-**Step 5**
+**Passo 5**
 
 Ora, il Raspberry Pi è connesso ed è il momento di procedere con i passaggi successivi.

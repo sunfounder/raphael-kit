@@ -119,17 +119,12 @@ Dopo l'esecuzione del codice, premi il pulsante: il Raspberry Pi farà lampeggia
 
 Se desideri scaricare la foto sul tuo PC, fai riferimento a :ref:`filezilla`.
 
-<<<<<<< HEAD
-**Codice**
-=======
-If you want to download the photo to your PC, please refer to :ref:`filezilla`.
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se viene visualizzato l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, fare riferimento a :ref:`faq_soc`. 
 
 **Code**
->>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice sottostante. Ma prima di ciò, devi andare nel percorso del codice sorgente come ``raphael-kit/python``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.

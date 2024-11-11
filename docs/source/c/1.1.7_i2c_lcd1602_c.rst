@@ -75,14 +75,14 @@ SCL1         Pin 5
 Procedure Sperimentali
 -----------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image96.png
 
 
-**Step 2**: Configura I2C (vedi :ref:`i2c_config`. Se hai già configurato I2C, salta questo passaggio).
+**Passo 2**: Configura I2C (vedi :ref:`i2c_config`. Se hai già configurato I2C, salta questo passaggio).
 
-**Step 3:** Cambia directory.
+**Passo 3:** Cambia directory.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/1.1.7/
 
-**Step 4:** Compila il codice.
+**Passo 4:** Compila il codice.
 
 .. raw:: html
 
@@ -102,7 +102,7 @@ Procedure Sperimentali
 
     gcc 1.1.7_Lcd1602.c -lwiringPi
 
-**Step 5:** Esegui.
+**Passo 5:** Esegui.
 
 .. raw:: html
 

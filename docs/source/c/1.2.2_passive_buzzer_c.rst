@@ -79,11 +79,11 @@ differenti; in questo modo, il buzzer riproduce musica.
 Procedure Sperimentali
 ---------------------------
 
-**Step 1:** Costruisci il circuito. (Il buzzer passivo ha un circuito stampato verde sul retro.)
+**Passo 1:** Costruisci il circuito. (Il buzzer passivo ha un circuito stampato verde sul retro.)
 
 .. image:: ../img/image106.png
 
-**Step 2:** Cambia la directory.
+**Passo 2:** Cambia la directory.
 
 .. raw:: html
 
@@ -93,7 +93,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/1.2.2/
 
-**Step 3:** Compila.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -103,7 +103,7 @@ Procedure Sperimentali
 
     gcc 1.2.2_PassiveBuzzer.c -lwiringPi
 
-**Step 4:** Esegui.
+**Passo 4:** Esegui.
 
 .. raw:: html
 

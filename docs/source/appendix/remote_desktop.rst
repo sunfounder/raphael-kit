@@ -31,7 +31,7 @@ Puoi utilizzare la funzione di desktop remoto tramite VNC.
 Il servizio VNC è già installato nel sistema. Per impostazione predefinita, VNC è
 disabilitato. È necessario abilitarlo nella configurazione.
 
-**Step 1**
+**Passo 1**
 
 Inserisci il seguente comando:
 
@@ -46,7 +46,7 @@ Inserisci il seguente comando:
 .. image:: img/image287.png
    :align: center
 
-**Step 2**
+**Passo 2**
 
 Scegli **3** **Interfacing Options** premendo la freccia verso il basso sulla tua
 tastiera, poi premi il tasto **Enter**.
@@ -54,14 +54,14 @@ tastiera, poi premi il tasto **Enter**.
 .. image:: img/image282.png
    :align: center
 
-**Step 3**
+**Passo 3**
 
 **P3 VNC**
 
 .. image:: img/image288.png
    :align: center
 
-**Step 4**
+**Passo 4**
 
 Seleziona **Yes -> OK -> Finish** per uscire dalla configurazione.
 
@@ -70,39 +70,39 @@ Seleziona **Yes -> OK -> Finish** per uscire dalla configurazione.
 
 **Accedere a VNC**
 
-**Step 1**
+**Passo 1**
 
 Devi scaricare e installare `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ sul tuo computer. Dopo aver completato l'installazione, aprilo.
 
-**Step 2**
+**Passo 2**
 
 Seleziona \"**New connection**\".
 
 .. image:: img/image290.png
    :align: center
 
-**Step 3**
+**Passo 3**
 
 Inserisci l'indirizzo IP del Raspberry Pi e un **Nome** a tua scelta.
 
 .. image:: img/image291.png
    :align: center
 
-**Step 4**
+**Passo 4**
 
 Fai doppio clic sulla **connessione** appena creata:
 
 .. image:: img/image292.png
    :align: center
 
-**Step 5**
+**Passo 5**
 
 Inserisci il Nome utente (**pi**) e la Password (**raspberry** per impostazione predefinita).
 
 .. image:: img/image293.png
    :align: center
 
-**Step 6**
+**Passo 6**
 
 Ora puoi vedere il desktop del Raspberry Pi:
 
@@ -119,11 +119,11 @@ Un altro metodo di desktop remoto è XRDP, che fornisce un accesso grafico alle 
 
 **Installare XRDP**
 
-**Step 1**
+**Passo 1**
 
 Accedi al Raspberry Pi tramite SSH.
 
-**Step 2**
+**Passo 2**
 
 Inserisci i seguenti comandi per installare XRDP.
 
@@ -136,7 +136,7 @@ Inserisci i seguenti comandi per installare XRDP.
    sudo apt-get update
    sudo apt-get install xrdp
 
-**Step 3**
+**Passo 3**
 
 L'installazione inizierà.
 
@@ -145,21 +145,21 @@ Digita \"Y\" e premi il tasto \"Enter\" per confermare.
 .. image:: img/image295.png
    :align: center
 
-**Step 4**
+**Passo 4**
 
 Terminata l'installazione, dovrai accedere al tuo Raspberry Pi utilizzando 
 le applicazioni di desktop remoto di Windows.
 
 **Accedere a XRDP**
 
-**Step 1**
+**Passo 1**
 
 Se sei un utente Windows, puoi utilizzare la funzione di Desktop Remoto 
 inclusa in Windows. Se sei un utente Mac, puoi scaricare e utilizzare 
 Microsoft Remote Desktop dall'APP Store. Non ci sono grandi differenze 
 tra le due versioni. L'esempio seguente è per il desktop remoto su Windows.
 
-**Step 2**
+**Passo 2**
 
 Digita \"**mstsc**\" in Esegui (WIN+R) per aprire la Connessione Desktop 
 Remoto e inserisci l'indirizzo IP del Raspberry Pi, quindi clicca su \"Connect\".
@@ -167,7 +167,7 @@ Remoto e inserisci l'indirizzo IP del Raspberry Pi, quindi clicca su \"Connect\"
 .. image:: img/image296.png
    :align: center
 
-**Step 3**
+**Passo 3**
 
 Apparirà la pagina di login di xrdp. Inserisci il tuo nome utente e
 password. Successivamente, clicca su \"OK\". Al primo accesso,
@@ -176,7 +176,7 @@ il tuo nome utente sarà \"pi\" e la password sarà \"raspberry\".
 .. image:: img/image297.png
    :align: center
 
-**Step 4**
+**Passo 4**
 
 Ora sei connesso con successo al Raspberry Pi utilizzando il desktop remoto.
 

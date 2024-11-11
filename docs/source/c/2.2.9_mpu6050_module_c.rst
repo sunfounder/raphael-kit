@@ -79,14 +79,14 @@ necessario collegare SDA1 e SCL1 al pin corrispondente.
 Procedure Sperimentali
 -----------------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image227.png
 
 
-**Step 2**: Configura l'I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato l'I2C, salta questo passaggio.)
+**Passo 2**: Configura l'I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato l'I2C, salta questo passaggio.)
 
-**Step 3:** Vai alla cartella del codice.
+**Passo 3:** Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -96,7 +96,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/2.2.9/
 
-**Step 4:** Compila il codice.
+**Passo 4:** Compila il codice.
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ Procedure Sperimentali
 
     gcc 2.2.9_mpu6050.c -lwiringPi -lm
 
-**Step 5:** Esegui il file eseguibile.
+**Passo 5:** Esegui il file eseguibile.
 
 .. raw:: html
 

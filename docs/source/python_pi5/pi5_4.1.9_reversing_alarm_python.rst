@@ -96,12 +96,12 @@ SCL1         Pin 5
 Procedure sperimentali
 ---------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../python_pi5/img/4.1.9_reversing_alarm_circuit.png
     :align: center
 
-**Step 2:** Cambia directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -111,7 +111,7 @@ Procedure sperimentali
 
     cd ~/raphael-kit/python-pi5
 
-**Step 3:** Esegui.
+**Passo 3:** Esegui.
 
 .. raw:: html
 
@@ -133,16 +133,12 @@ in base alla distanza.
     * Se compare l'errore ``OSError: [Errno 121] Remote I/O error``, significa che il modulo è cablato male o il modulo è guasto.
     * Se il codice e il cablaggio sono corretti, ma l'LCD continua a non visualizzare contenuti, puoi regolare il potenziometro sul retro per aumentare il contrasto.
 
-<<<<<<< HEAD
-**Codice**
-=======
 
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se viene visualizzato l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, fare riferimento a :ref:`faq_soc`. 
 
 **Code**
->>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
     Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Ma prima di tutto, devi andare nel percorso del codice come ``raphael-kit/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.

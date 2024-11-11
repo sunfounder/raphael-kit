@@ -95,13 +95,13 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 Procedure Sperimentali
 -----------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image273.png
 
-**Step 2**: Configura I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato I2C, salta questo passaggio.)
+**Passo 2**: Configura I2C (vedi Appendice :ref:`i2c_config`. Se hai già configurato I2C, salta questo passaggio.)
 
-**Step 3**: Cambia directory.
+**Passo 3**: Cambia directory.
 
 .. raw:: html
 
@@ -111,7 +111,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/3.1.11/
 
-**Step 4**: Compila.
+**Passo 4**: Compila.
 
 .. raw:: html
 
@@ -121,7 +121,7 @@ Procedure Sperimentali
 
     gcc 3.1.11_GAME_GuessNumber.c -lwiringPi
 
-**Step 5**: Esegui.
+**Passo 5**: Esegui.
 
 .. raw:: html
 

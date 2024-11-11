@@ -98,21 +98,17 @@ Dopo l'esecuzione del codice, il modulo sensore ultrasonico rileva la distanza
 tra l'ostacolo di fronte e il modulo stesso, e il valore della distanza verrà 
 stampato sullo schermo.
 
-<<<<<<< HEAD
-**Codice**
-=======
 .. warning::
 
-    If there is an error prompt  ``RuntimeError: Cannot determine SOC peripheral base address``, please refer to :ref:`faq_soc` 
+    Se viene visualizzato l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, fare riferimento a :ref:`faq_soc`. 
 
 **Code**
->>>>>>> 387505b31ef24b78d49967f4b4dcfb048c8f48cb
 
 .. note::
 
     Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto. 
-    Ma prima, devi andare al percorso sorgente del codice come ``raphael-kit/python-pi5``.
-     Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
+    Ma prima, devi andare al percorso sorgente del codice come ``raphael-kit/python-pi5``. 
+    Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
 
 .. raw:: html
 

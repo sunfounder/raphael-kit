@@ -82,11 +82,11 @@ digitali, quindi puoi leggerli direttamente utilizzando i GPIO oppure usare l'AD
 Procedure Sperimentali
 ---------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/image193.png
 
-**Step 2:** Vai nella cartella del codice.
+**Passo 2:** Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -96,7 +96,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/2.1.9/
 
-**Step 3:** Compila il codice.
+**Passo 3:** Compila il codice.
 
 .. raw:: html
 
@@ -106,7 +106,7 @@ Procedure Sperimentali
 
     gcc 2.1.9_Joystick.c -lwiringPi
 
-**Step 4:** Esegui il file eseguibile.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 

@@ -89,12 +89,9 @@ Procedure sperimentali
 
 .. image:: ../img/3.1.14game_notnot.png
 
-.. note::
+**Passo 2**: Accendi l'SPI prima di iniziare l'esperimento, consulta :ref:`spi_configuration` per i dettagli.  
 
-    Accendi l'SPI prima di iniziare l'esperimento, consulta :ref:`spi_configuration` per i dettagli.  
-    E sarà necessaria anche la libreria :ref:`BCM2835`.
-
-**Passo 2**: Vai nella cartella del codice.
+**Passo 3**: Vai nella cartella del codice.
 
 .. raw:: html
 
@@ -104,7 +101,7 @@ Procedure sperimentali
 
     cd ~/raphael-kit/c/3.1.13/
 
-**Passo 3**: Compila il codice.
+**Passo 4**: Compila il codice.
 
 .. raw:: html
 
@@ -114,7 +111,7 @@ Procedure sperimentali
 
     make
 
-**Passo 4**: Esegui il file eseguibile.
+**Passo 5**: Esegui il file eseguibile.
 
 .. raw:: html
 
@@ -136,75 +133,161 @@ direzioni—su, giù, sinistra e destra—per aumentare la difficoltà del gioco
 
     Se non funziona dopo l'esecuzione, o appare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`install_wiringpi`.
 
-Spiegazione del codice
+Spiegazione del Codice
 ----------------------
 
-Basato su :ref:`1.1.6_c_pi5`, questo progetto aggiunge 2 pulsanti per creare un dispositivo di gioco divertente.
+Questo programma in C è progettato per essere eseguito su un Raspberry Pi utilizzando la libreria WiringPi. Interagisce con un display a matrice LED 8x8 controllato dal chip driver MAX7219 e utilizza due pulsanti per l'interazione con l'utente. Il programma visualizza casualmente una freccia a sinistra o a destra sulla matrice LED, e l'utente deve premere il pulsante corrispondente. Successivamente, visualizza un segno di spunta per una risposta corretta o una croce per una risposta errata.
 
-Il processo completo del programma è il seguente:
+#. File di intestazione:
 
-#. Utilizza il tempo di sistema per generare un 0 o 1 casuale.
-#. Visualizza casualmente un pattern di freccia sinistra o destra.
-#. Premi il pulsante e determina il risultato.
-#. Mostra il pattern corretto o sbagliato.
+   * ``wiringPi.h``: Fornisce funzioni per il controllo GPIO usando la libreria WiringPi.
+   * ``wiringPiSPI.h``: Fornisce funzioni per la comunicazione SPI.
+   * ``stdio.h``: Funzioni di input/output standard (``printf``, ecc.).
+   * ``stdlib.h``: Funzioni di libreria standard (``rand``, ``srand``, ``exit``).
+   * ``time.h``: Funzioni per la manipolazione di data e ora (``time``, ``NULL``).
 
-.. image:: ../img/3.1.14_notnot1.png
+#. Definizioni di tipo:
 
-.. code-block:: c
+   * ``#define uchar unsigned char``: Definisce ``uchar`` come alias per ``unsigned char``.
+   * ``#define uint unsigned int``: Definisce ``uint`` come alias per ``unsigned int``.
 
-    int get_index()
-    {
-        srand((unsigned)time(NULL));
-        return rand()%2;
-    }
+#. Costanti e Macro:
 
-Il seed del sistema viene modificato dal tempo di sistema, ossia ``srand((unsigned)time(NULL))``, così che ogni volta che la funzione rand viene chiamata, il valore ottenuto è completamente casuale. Infine, il risultato ottenuto viene diviso per 2, in modo che i valori ottenuti siano 0 e 1.
+   * ``SPI_CHANNEL``: Canale SPI usato per la comunicazione (0 o 1).
+   * ``SPI_SPEED``: Velocità di comunicazione SPI impostata a 1 MHz.
+   * ``AButtonPin``: Numero di pin WiringPi per il pulsante A (GPIO 22).
+   * ``BButtonPin``: Numero di pin WiringPi per il pulsante B (GPIO 23).
+
+#. Variabili globali:
+
+   * ``int stage = 0;``: Tiene traccia della fase attuale del gioco (visualizzazione della freccia o del risultato).
+
+#. Array di dati:
+
+   * ``uchar arrow[2][8]``: Contiene due pattern di 8 byte che rappresentano le frecce destra e sinistra per la matrice LED.
+
+     * ``arrow[0]``: Pattern della freccia destra.
+     * ``arrow[1]``: Pattern della freccia sinistra.
+
+   * ``uchar check[2][8]``: Contiene due pattern di 8 byte che rappresentano i simboli di corretto (segno di spunta) e errato (croce).
+
+     * ``check[0]``: Pattern del simbolo corretto.
+     * ``check[1]``: Pattern del simbolo errato.
+
+#. Funzione ``void Delay_xms(uint x)``:
+
+   * Funzione wrapper per ``delay(x)`` fornita da WiringPi.
+   * Ritarda l'esecuzione del programma per ``x`` millisecondi.
+
+#. Funzione ``void Write_Max7219_byte(uchar DATA)``:
+
+   * Invia un singolo byte (``DATA``) al MAX7219 via SPI.
+   * Usa ``wiringPiSPIDataRW`` per eseguire il trasferimento dei dati SPI.
+   * ``DATA``: Il byte di dati da inviare.
+
+#. Funzione ``void Write_Max7219(uchar address1, uchar dat1)``:
+
+   * Invia un comando e dati al MAX7219.
+   * Combina ``address1`` (indirizzo del registro) e ``dat1`` (dati) in un buffer e li invia tramite SPI.
+   * ``address1``: Indirizzo del registro del MAX7219.
+   * ``dat1``: Dati da scrivere nel registro.
+
+#. Funzione ``void Init_MAX7219()``:
+
+   * Inizializza il driver display MAX7219 con le configurazioni necessarie.
+   * Configura il modo di decodifica, intensità, limite di scansione, modalità di spegnimento e test display.
+   * Pulisce eventuali dati precedenti sul display.
+
+#. Funzione ``void Init_WiringPi()``:
+
+   * Inizializza la libreria WiringPi e l'interfaccia SPI.
+   * Configura i pin dei pulsanti come input con resistori di pull-up.
+   * Verifica l'inizializzazione e termina se fallisce.
+
+#. Funzione ``int get_index()``:
+
+   * Genera un indice casuale (0 o 1) per scegliere tra la freccia sinistra e destra.
+   * Restituisce: ``0`` o ``1``.
+
+#. Funzione ``int get_key(uint num)``:
+
+   * Attende che l'utente prema un pulsante e determina se l'input corrisponde alla freccia visualizzata.
+   * Parametri:
+
+     * ``num``: L'indice della freccia visualizzata (0 per destra, 1 per sinistra).
+
+   * Restituisce:
+
+     * ``1`` se l'input dell'utente è corretto.
+     * ``0`` se l'input dell'utente è errato.
+
+   * Funzionalità:
+
+     * Entra in un ciclo infinito controllando lo stato dei pulsanti.
+     * Usa ``digitalRead`` per rilevare le pressioni dei pulsanti (LOW attivo).
+     * Confronta il pulsante premuto con l'input previsto in base a ``num``.
+
+#. Funzione ``void display(uint index)``:
+
+   * Visualizza una freccia o un simbolo di risultato sulla matrice LED in base alla ``stage``.
+   * Parametri:
+
+     * ``index``: Indice per selezionare il pattern dagli array ``arrow`` o ``check``.
+
+   * Funzionalità:
+
+     * Se ``stage == 0``, visualizza un pattern a freccia.
+     * Se ``stage == 1``, visualizza un segno di spunta o un simbolo di croce.
+
+#. Funzione Principale:
+
+   * **Inizializzazione:**
+
+     * Imposta il generatore di numeri casuali con ``srand((unsigned)time(NULL))``.
+     * Chiama ``Init_WiringPi()`` per configurare GPIO e SPI.
+     * Chiama ``Init_MAX7219()`` per inizializzare il display a matrice LED.
+     * Introduce un breve ritardo con ``Delay_xms(50)``.
+   
+   * **Loop di gioco (``while (1)``):**
+
+     * **Fase 0 (Visualizza freccia):**
+
+       * Chiama ``get_index()`` per selezionare casualmente una direzione della freccia.
+       * Chiama ``display(direction)`` per mostrare la freccia sulla matrice LED.
+       * Imposta ``stage = 1`` per passare alla fase successiva.
+
+     * **Fase 1 (Ottieni input utente e visualizza risultato):**
+
+       * Chiama ``get_key(direction)`` per attendere l'input dell'utente e determinare la correttezza.
+       * Chiama ``display(key)`` per mostrare il simbolo di risultato (segno di spunta o croce).
+       * Attende 1 secondo usando ``Delay_xms(1000)`` per consentire all'utente di vedere il risultato.
+       * Imposta ``stage = 0`` per riavviare il ciclo.
 
 
-.. code-block:: c
+**Riepilogo del flusso del programma:**
 
-    int get_key(uint num)
-    {
-        while (1)
-        {
-            if (1 == bcm2835_gpio_lev(AButtonPin) && num == 0){
-                return 1;
-            }
-            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 1){
-                return 1;
-            }
-            else if (1 == bcm2835_gpio_lev(AButtonPin) && num == 1){
-                return 0;
-            }
-            else if (1 == bcm2835_gpio_lev(BButtonPin) && num == 0){
-                return 0;
-            }
-        }
-    }
+1. **Configurazione:**
 
-Determina quale pulsante è stato premuto e lo confronta con la direzione 
-della freccia sulla matrice a punti, quindi restituisce il risultato finale di 0 o 1.
+   * Inizializza WiringPi e SPI.
+   * Configura i pin dei pulsanti e le impostazioni MAX7219.
+   * Imposta il generatore di numeri casuali.
 
-.. image:: ../img/3.1.14_getkey.png
+2. **Visualizza Freccia:**
 
-.. code-block:: c
+   * Seleziona casualmente una direzione della freccia (sinistra o destra).
+   * Visualizza la freccia corrispondente sulla matrice LED.
 
-    void display(uint index){
-        uchar i;
-        if (stage == 0){
-            for(i=1;i<9;i++)
-            {
-                Write_Max7219(i,arrow[index][i-1]);
-            }
-        }
-        else if(stage == 1){
-            for(i=1;i<9;i++)
-            {
-                Write_Max7219(i,check[index][i-1]);
-            }
-        }
-    }
+3. **Interazione con l'utente:**
 
-A seconda del valore di ``stage`` e ``index``, visualizza la freccia ``sinistra o destra`` o il pattern ``corretto o sbagliato``.
+   * Attende che l'utente prema il pulsante A o B.
+   * Determina se il pulsante premuto corrisponde alla direzione della freccia.
 
-.. image:: ../img/3.1.14_display.png
+4. **Visualizza Risultato:**
+
+   * Mostra un segno di spunta se l'input dell'utente è corretto.
+   * Mostra una croce se l'input dell'utente è errato.
+   * Attende 1 secondo prima del turno successivo.
+
+5. **Ripeti:**
+
+   * Torna a visualizzare una nuova freccia e continua il gioco.

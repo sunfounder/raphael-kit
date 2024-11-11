@@ -80,11 +80,11 @@ il transistor si interrompe e il buzzer non emetterà suoni.
 Procedure Sperimentali
 ---------------------------
 
-**Step 1:** Costruisci il circuito. (Il buzzer attivo ha un'etichetta bianca sulla superficie e un retro nero.)
+**Passo 1:** Costruisci il circuito. (Il buzzer attivo ha un'etichetta bianca sulla superficie e un retro nero.)
 
 .. image:: ../img/image104.png
 
-**Step 2**: Apri il file di codice.
+**Passo 2**: Apri il file di codice.
 
 .. raw:: html
 
@@ -94,7 +94,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/1.2.1/
 
-**Step 3**: Compila il codice.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -104,7 +104,7 @@ Procedure Sperimentali
 
     gcc 1.2.1_ActiveBuzzer.c -lwiringPi
 
-**Step 4**: Esegui il file eseguibile.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 

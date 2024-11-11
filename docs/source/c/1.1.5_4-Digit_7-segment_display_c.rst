@@ -87,11 +87,11 @@ GPIO24       Pin 18   5        24
 Procedure Sperimentali
 -----------------------------------
 
-**Step 1**: Costruisci il circuito.
+**Passo 1**: Costruisci il circuito.
 
 .. image:: ../img/image80.png
 
-**Step 2**: Vai alla cartella del codice.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -101,7 +101,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/1.1.5/
 
-**Step 3**: Compila il codice.
+**Passo 3**: Compila il codice.
 
 .. raw:: html
 
@@ -111,7 +111,7 @@ Procedure Sperimentali
 
     gcc 1.1.5_4-Digit.c -lwiringPi
 
-**Step 4**: Esegui il file eseguibile.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 

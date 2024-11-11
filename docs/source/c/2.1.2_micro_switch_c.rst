@@ -85,11 +85,11 @@ Interruttore, puoi vedere i due LED accendersi alternativamente.
 Procedure Sperimentali
 ---------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.1.4fritzing.png
 
-**Step 2**: Vai alla cartella del codice.
+**Passo 2**: Vai alla cartella del codice.
 
 .. raw:: html
 
@@ -99,7 +99,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/2.1.2
 
-**Step 3**: Compila.
+**Passo 3**: Compila.
 
 .. raw:: html
 
@@ -109,7 +109,7 @@ Procedure Sperimentali
 
     gcc 2.1.2_MicroSwitch.c -lwiringPi 
 
-**Step 4**: Esegui il file eseguibile.
+**Passo 4**: Esegui il file eseguibile.
 
 .. raw:: html
 

@@ -82,7 +82,7 @@ la direzione di rotazione del motore.
 Procedure Sperimentali
 ---------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/1.3.1.png
 
@@ -94,7 +94,7 @@ Procedure Sperimentali
 
 .. image:: ../img/image118.jpeg
 
-**Step 2**: Entra nella cartella del codice.
+**Passo 2**: Entra nella cartella del codice.
 
 .. raw:: html
 
@@ -104,7 +104,7 @@ Procedure Sperimentali
 
     cd ~/raphael-kit/c/1.3.1/
 
-**Step 3:** Compila.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -114,7 +114,7 @@ Procedure Sperimentali
 
     gcc 1.3.1_Motor.c -lwiringPi
 
-**Step 4:** Esegui il file eseguibile.
+**Passo 4:** Esegui il file eseguibile.
 
 .. raw:: html
 

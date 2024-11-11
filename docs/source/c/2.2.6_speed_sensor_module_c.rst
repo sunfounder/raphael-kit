@@ -76,13 +76,13 @@ Schema Elettrico
 Procedure Sperimentali
 ------------------------------
 
-**Step 1:** Costruisci il circuito.
+**Passo 1:** Costruisci il circuito.
 
 .. image:: ../img/2.2.6fritzing.png
     :width: 700
     :align: center
 
-**Step 2:** Cambia directory.
+**Passo 2:** Cambia directory.
 
 .. raw:: html
 
@@ -92,7 +92,7 @@ Procedure Sperimentali
     
     cd ~/raphael-kit/c/2.2.6/
 
-**Step 3:** Compila.
+**Passo 3:** Compila.
 
 .. raw:: html
 
@@ -102,7 +102,7 @@ Procedure Sperimentali
 
     gcc 2.2.6_speed_sensor_module.c -lwiringPi
 
-**Step 4:** Esegui.
+**Passo 4:** Esegui.
 
 .. raw:: html
 
