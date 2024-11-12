@@ -44,3 +44,4 @@
     pi5_2.2.7_pir_python
     pi5_2.2.8_ultrasonic_sensor_module_python
     pi5_2.2.9_mpu6050_module_python
+    pi5_2.2.10_mfrc522_rfid_module_python

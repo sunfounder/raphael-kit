@@ -135,21 +135,7 @@ Python 3.3以降のバージョンでは、 ``venv`` モジュールを直接使
 
 仮想環境が有効化されると、コマンドラインのプロンプトの前に環境名が表示され、仮想環境内で作業していることが示されます。
 
-**3. 依存関係のインストール**
-
-仮想環境を有効化した状態で、pipを使用して必要な依存関係をインストールできます。例：
-
-.. raw:: html
-
-    <run></run>
-
-.. code-block:: shell
-
-    pip install requests
-
-これにより、requestsライブラリがグローバル環境ではなく、現在の仮想環境にインストールされます。このステップは1度だけ行えば十分です。
-
-**4. 仮想環境の終了**
+**3. 仮想環境の終了**
 
 作業を完了し、仮想環境から退出したい場合は、単純に次のコマンドを実行します：
 
@@ -163,7 +149,7 @@ Python 3.3以降のバージョンでは、 ``venv`` モジュールを直接使
 
 これにより、システムのグローバルPython環境に戻ります。
 
-**5. 仮想環境の削除**
+**4. 仮想環境の削除**
 
 特定の仮想環境をもはや必要としない場合は、単純にその仮想環境を含むディレクトリを削除できます：
 
@@ -179,40 +165,96 @@ Python 3.3以降のバージョンでは、 ``venv`` モジュールを直接使
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-このライブラリはPython 3用で、MAX7219ドライバー（SPIを使用）、WS2812（NeoPixels、Pimoroni Unicorn pHat/HatとUnicorn Hat HD）、およびAPA102（DotStar）を使用してLEDマトリックスディスプレイとインターフェースします。
+これは、Raspberry Piや他のLinuxベースのシングルボードコンピュータで、MAX7219ドライバ（SPI経由）、WS2812（NeoPixels、Pimoroni Unicorn pHat/HatおよびUnicorn Hat HDを含む）、およびAPA102（DotStar）を使用してLEDマトリックスディスプレイとインターフェースを作成するためのPython 3ライブラリです。
 
-まず、必要な依存ライブラリを以下のコマンドでインストールします。
+#. 現在のユーザー（"pi"を自分のユーザー名に置き換えてください）がSPIおよびGPIOインターフェースにアクセスする権限を持つようにするため、ユーザーを``spi``および``gpio``グループに追加します。
 
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo usermod -a -G spi,gpio pi
-    sudo apt install build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff5
-
-.. note:: warning
-
-    Raspbianでaptと共にバンドルされているデフォルトのpipとsetuptoolsは非常に古く、コンポーネントが正しくインストールされない場合があります。最初にそれらをアップグレードしてください。
-
-    .. raw:: html
-
+   .. raw:: html
+   
        <run></run>
+   
+   .. code-block:: shell
 
-    .. code-block:: 
+        sudo usermod -a -G spi,gpio pi
 
-        sudo -H pip install --upgrade --ignore-installed pip setuptools
+   このコマンドを実行した後、システムを再起動するか、ログアウトして再ログインすることをお勧めします。
 
-次に、PyPIからluma.led_matrixライブラリの最新版をインストールします。
+#. 必要な依存関係をインストールします。``apt``を使用してビルドツールと関連の開発ライブラリをインストールしてください。これらのライブラリは、特定のPythonパッケージをコンパイルおよびインストールするために必要です。
 
-.. raw:: html
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+    
+        sudo apt update
+        sudo apt install -y build-essential python3-dev python3-pip libfreetype6-dev libjpeg-dev libopenjp2-7 libtiff-dev
 
-   <run></run>
+#. 仮想環境を作成します。ここで、``~/my_env``は仮想環境のパスであり、カスタマイズすることができます。
 
-.. code-block:: 
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       python3 -m venv ~/my_env
 
-    sudo python3 -m pip install --upgrade luma.led_matrix
+#. 仮想環境を作成した後、使用するために有効化します。
+
+   .. note::
+   
+       Raspberry Piを再起動するか新しいターミナルを開くたびに、仮想環境を再度有効化する必要があります。
+
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       source ~/my_env/bin/activate
+   
+   仮想環境が有効になっていると、コマンドプロンプトの前に環境名が表示され、仮想環境内で作業していることが確認できます。
+
+#. 仮想環境内で、 ``pip`` と ``setuptools`` をアップグレードして、最新バージョンのパッケージをインストールできるようにします。
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+        pip install --upgrade pip setuptools
+
+#. 次に、 ``luma.led_matrix`` をインストールします。
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+   
+        pip install luma.led_matrix
+
+#. インストール後、以下のコマンドを実行して ``luma.led_matrix`` が正しくインストールされていることを確認できます。成功すると、 ``luma.led_matrix`` のバージョン番号が表示されます。
+   
+   .. raw:: html
+   
+      <run></run>
+   
+   .. code-block:: shell
+
+        python3 -c "import luma.led_matrix; print(luma.led_matrix.__version__)"
+
+#. 作業が完了し、仮想環境を終了したい場合は、次のコマンドを実行してください。
+   
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: shell
+   
+       deactivate
 
 * 参考: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
