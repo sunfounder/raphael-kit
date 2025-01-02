@@ -29,7 +29,7 @@ Scratch 3を初めて使うユーザーの方は、Scratch 3を迅速に始め�
 
     .. code-block::
 
-        git clone https://github.com/sunfounder/raphael-kit.git
+        git clone https://github.com/sunfounder/raphael-kit.git --depth 1
 
 .. toctree::
     :maxdepth: 1

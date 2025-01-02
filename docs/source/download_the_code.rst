@@ -43,7 +43,7 @@ GitHubからリポジトリをクローンします。
 
 .. code-block:: 
 
-   git clone https://github.com/sunfounder/raphael-kit.git
+   git clone https://github.com/sunfounder/raphael-kit.git --depth 1
 
 **方法2: コードをダウンロードする**
 

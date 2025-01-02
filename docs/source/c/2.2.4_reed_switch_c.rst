@@ -199,7 +199,7 @@ GPIO22       Pin 15   3        22
     #define Gpin		2
     #define Rpin		3
 
-T_Extension BoardのGPIO17、GPIO27、GPIO22は、wiringPiのGPIO0、GPIO2、GPIO3に対応しています。GPIO0、GPIO2、GPIO3を ``ReedPin``、 ``Gpin``、 ``Rpin`` に割り当てます。
+T_Extension BoardのGPIO17、GPIO27、GPIO22は、wiringPiのGPIO0、GPIO2、GPIO3に対応しています。GPIO0、GPIO2、GPIO3を ``ReedPin`` 、 ``Gpin`` 、 ``Rpin`` に割り当てます。
 
 .. code-block:: c
 

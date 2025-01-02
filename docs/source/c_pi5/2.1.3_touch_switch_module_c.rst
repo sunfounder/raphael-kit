@@ -166,7 +166,7 @@
     #define led1		   3
     #define led2 		   2
     
-T_Extension BoardのGPIO17、GPIO22、GPIO27は、wiringPiのGPIO0、GPIO3、GPIO2に対応しています。GPIO0、GPIO3、GPIO2を ``touchPin``、 ``led1``、 ``led2`` に割り当てます。
+T_Extension BoardのGPIO17、GPIO22、GPIO27は、wiringPiのGPIO0、GPIO3、GPIO2に対応しています。GPIO0、GPIO3、GPIO2を ``touchPin`` 、 ``led1`` 、 ``led2`` に割り当てます。
 
 .. code-block:: c
 

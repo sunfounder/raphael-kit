@@ -34,7 +34,7 @@
 
 .. image:: img/audio1.jpg
 
-次に **S2 オーディオ**。
+次に **S2 オーディオ** 。
 
 .. image:: img/audio2.jpg
 

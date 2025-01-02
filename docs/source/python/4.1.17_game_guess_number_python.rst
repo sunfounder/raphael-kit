@@ -333,7 +333,7 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 
 この関数はゲームページの表示のためのものです。
 
-``str(count)``: ``write()`` はデータタイプとして **string** のみをサポートしているため、 **number** を **string** に変換するために ``str()`` が必要です。
+``str(count)`` : ``write()`` はデータタイプとして **string** のみをサポートしているため、 **number** を **string** に変換するために ``str()`` が必要です。
 
 .. code-block:: python
 

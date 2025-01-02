@@ -269,7 +269,7 @@ GPIO22       Pin 15   3        22
    ``class threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)``
 
 構築メソッドの中で、主要なパラメータは ``target`` です。
-我々は、呼び出し可能なオブジェクト（ここでは関数 ``ledWork`` と ``BuzzWork``）を ``target`` に割り当てる必要があります。
+我々は、呼び出し可能なオブジェクト（ここでは関数 ``ledWork`` と ``BuzzWork`` ）を ``target`` に割り当てる必要があります。
 
 次に、 ``start()`` が呼び出されてスレッドオブジェクトを開始します。例えば、 ``tBuzz.start()`` は新しくインストールされた ``tBuzz`` スレッドを開始するために使用されます。
 

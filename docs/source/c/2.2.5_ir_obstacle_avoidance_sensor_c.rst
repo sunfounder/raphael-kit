@@ -175,7 +175,7 @@ ObstaclePinが高から低に変わると、障害物が検出されたことを
 
    int wiringPiISR (int pin, int edgeType,  void (*function)(void)) ;
 
-edgeTypeパラメータは ``INT_EDGE_FALLING``、 ``INT_EDGE_RISING``、 ``INT_EDGE_BOTH``、または ``INT_EDGE_SETUP`` のいずれかです。もし ``INT_EDGE_SETUP`` の場合、ピンの初期化は行われません。ピンの設定はすでに他の場所（例：gpioプログラム）で行われていると想定されます。しかし、他のタイプのいずれかを指定した場合、ピンは指定された通りにエクスポートおよび初期化されます。
+edgeTypeパラメータは ``INT_EDGE_FALLING`` 、 ``INT_EDGE_RISING`` 、 ``INT_EDGE_BOTH`` 、または ``INT_EDGE_SETUP`` のいずれかです。もし ``INT_EDGE_SETUP`` の場合、ピンの初期化は行われません。ピンの設定はすでに他の場所（例：gpioプログラム）で行われていると想定されます。しかし、他のタイプのいずれかを指定した場合、ピンは指定された通りにエクスポートおよび初期化されます。
 
 詳細については、以下を参照してください: `wiringPi-Functions (API) <https://projects.drogon.net/raspberry-pi/wiringpi/functions/>`_。
 

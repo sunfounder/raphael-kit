@@ -151,7 +151,7 @@ LEDの最も長いピン（GND）はRaspberry PiのGNDに接続します。三�
     const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
     const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
 
-17、18、27のピンを出力モードに初期化し、それぞれの定数 ``ledred``、 ``ledgreen``、 ``ledblue`` に割り当てます。
+17、18、27のピンを出力モードに初期化し、それぞれの定数 ``ledred`` 、 ``ledgreen`` 、 ``ledblue`` に割り当てます。
 
 .. code-block:: js
 

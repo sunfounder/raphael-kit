@@ -147,7 +147,7 @@
     const RCLK = new Gpio(18, { mode: Gpio.OUTPUT });
     const SRCLK = new Gpio(27, { mode: Gpio.OUTPUT });
 
-ピン17、18、27を出力モードとして初期化し、それぞれ ``SDI``、 ``RCLK``、 ``SRCLK`` にコピーします。
+ピン17、18、27を出力モードとして初期化し、それぞれ ``SDI`` 、 ``RCLK`` 、 ``SRCLK`` にコピーします。
 
 .. code-block:: js
 
