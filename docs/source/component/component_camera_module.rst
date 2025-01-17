@@ -64,45 +64,7 @@ If the FFC wire is installed correctly, it will be straight and will not pull ou
 
    Do not install the camera with the power on, it may damage your camera.
 
-.. _enable_camera:
 
-**Enable the Camera Interface**
----------------------------------------
-
-Run the following command to enable the camera interface of your Raspberry Pi. If you have enabled it, skip this; if you do not know whether you have done that or not, please continue.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo raspi-config
-
-**3 Interfacing options**
-
-.. image:: img/image282.png
-   :align: center
-
-**P1 Camera**
-
-.. image:: img/camera_config1.png
-   :align: center
-
-**<Yes>, then <Ok> -> <Finish>**
-
-.. image:: img/camera_config2.png
-   :align: center
-
-After the configuration is complete, it is recommended to reboot the Raspberry Pi.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo reboot
    
 **Example**
 
