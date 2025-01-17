@@ -59,46 +59,6 @@ Si el cable FFC está correctamente instalado, estará recto y no se saldrá cua
 
    No instales la cámara con la alimentación encendida, puede dañar tu cámara.
 
-.. _enable_camera:
-
-**Habilitar la Interfaz de la Cámara**
----------------------------------------
-
-Ejecuta el siguiente comando para habilitar la interfaz de la cámara de tu Raspberry Pi. Si ya lo has habilitado, omite este paso; si no sabes si lo has hecho o no, continúa.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo raspi-config
-
-**3 Opciones de Interfaz**
-
-.. image:: img/image282.png
-   :align: center
-
-**P1 Cámara**
-
-.. image:: img/camera_config1.png
-   :align: center
-
-**<Sí>, luego <Ok> -> <Terminar>**
-
-.. image:: img/camera_config2.png
-   :align: center
-
-Después de completar la configuración, se recomienda reiniciar la Raspberry Pi.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo reboot
-
 **Ejemplo**
 
 * :ref:`3.1.1_py` (Python Project)
