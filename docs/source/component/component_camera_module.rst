@@ -58,47 +58,6 @@ Wenn das FFC-Kabel korrekt installiert ist, wird es gerade sein und sich nicht h
 
    Schließen Sie die Kamera nicht an, wenn die Stromversorgung eingeschaltet ist. Dies kann Ihre Kamera beschädigen.
 
-
-.. _enable_camera:
-
-Kamera-Schnittstelle aktivieren
--------------------------------------------
-
-
-Führen Sie den folgenden Befehl aus, um die Kamera-Schnittstelle Ihres Raspberry Pi zu aktivieren. Wenn Sie dies bereits getan haben, überspringen Sie diesen Schritt. Wenn Sie nicht sicher sind, ob Sie dies getan haben, fahren Sie bitte fort.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo raspi-config
-
-**3 Interfacing options**
-
-.. image:: img/image282.png
-   :align: center
-
-**P1 Camera**
-
-.. image:: img/camera_config1.png
-   :align: center
-
-**<Yes>, dann <Ok> -> <Finish>**
-
-.. image:: img/camera_config2.png
-   :align: center
-
-Nach Abschluss der Konfiguration wird empfohlen, den Raspberry Pi neu zu starten.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo reboot
    
 **Beispiel**
 
