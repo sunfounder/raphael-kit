@@ -63,46 +63,6 @@ FFCケーブルが正しく取り付けられている場合、それはまっ�
 
 
 
-.. _enable_camera:
-
-カメラインターフェースの有効化
-------------------------------------------------
-
-以下のコマンドを実行して、Raspberry Piのカメラインターフェースを有効にします。すでに有効にしている場合はこのステップをスキップしてください。
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo raspi-config
-
-**3 インターフェーシングオプション**
-
-.. image:: img/image282.png
-   :align: center
-
-**P1 カメラ**
-
-.. image:: img/camera_config1.png
-   :align: center
-
-**<Yes>、次に<Ok> -> <Finishz>**
-
-.. image:: img/camera_config2.png
-   :align: center
-
-設定が完了したら、Raspberry Piを再起動することをお勧めします。
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo reboot
-
 **例**
 
 * :ref:`3.1.1_py` （Pythonプロジェクト）
