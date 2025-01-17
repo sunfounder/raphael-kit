@@ -57,45 +57,6 @@ Si le câble FFC est correctement installé, il sera droit et ne se retirera pas
 
    N'installez pas la caméra avec l'alimentation allumée, cela pourrait endommager votre caméra.
 
-.. _enable_camera:
-
-**Activer l'interface de la caméra**
----------------------------------------
-
-Exécutez la commande suivante pour activer l'interface de la caméra de votre Raspberry Pi. Si vous l'avez déjà activée, passez cette étape ; si vous ne savez pas si cela a été fait ou non, veuillez continuer.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo raspi-config
-
-**3 Interfacing options**
-
-.. image:: img/image282.png
-   :align: center
-
-**P1 Camera**
-
-.. image:: img/camera_config1.png
-   :align: center
-
-**<Oui>, puis <Ok> -> <Finish>**
-
-.. image:: img/camera_config2.png
-   :align: center
-
-Après la configuration, il est recommandé de redémarrer le Raspberry Pi.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   sudo reboot
    
 **Exemple**
 
