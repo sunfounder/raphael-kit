@@ -21,7 +21,7 @@ Introduction
 ------------
 
 In this project, we will learn how to drive an active buzzer to beep with
-a PNP transistor.
+a NPN transistor.
 
 Required Components
 ------------------------------
@@ -69,13 +69,7 @@ You can also buy them separately from the links below.
 Schematic Diagram
 -----------------
 
-In this experiment, an active buzzer, a PNP transistor and a 1k resistor
-are used between the base of the transistor and GPIO to protect the
-transistor. When the GPIO17 of Raspberry Pi output is supplied with high
-level (3.3V) by programming, the transistor will conduct because of
-current saturation and the buzzer will make sounds. But when low level
-is supplied to the IO of Raspberry Pi, the transistor will be cut off
-and the buzzer will not make sounds.
+In this experiment, an active buzzer, an NPN transistor, and a 1kΩ resistor are used. The resistor is placed between the GPIO pin and the transistor’s base to protect the transistor. When GPIO17 on the Raspberry Pi is set to a low level (0V), the transistor saturates and conducts, allowing the buzzer to sound. When GPIO17 is set to a high level, the transistor is turned off, and the buzzer remains silent.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
