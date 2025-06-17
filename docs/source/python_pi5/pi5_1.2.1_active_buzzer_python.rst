@@ -20,7 +20,7 @@
 Einleitung
 --------------------
 
-In diesem Projekt lernen wir, wie man einen aktiven Summer mit einem PNP-Transistor zum Piepen bringt.
+In diesem Projekt lernen wir, wie man einen aktiven Summer mit einem NPN-Transistor zum Piepen bringt.
 
 Benötigte Komponenten
 -----------------------------
@@ -68,7 +68,7 @@ Sie können sie auch separat über die unten stehenden Links kaufen.
 Schaltplan
 ------------------------
 
-In diesem Experiment werden ein aktiver Summer, ein PNP-Transistor und ein 1k-Widerstand verwendet, der zwischen der Basis des Transistors und GPIO liegt, um den Transistor zu schützen. Wenn der GPIO17 des Raspberry Pi durch Programmierung mit einem hohen Pegel (3,3V) versorgt wird, leitet der Transistor aufgrund der Stromsättigung, und der Summer gibt Töne ab. Wird jedoch ein niedriger Pegel an den IO des Raspberry Pi geliefert, wird der Transistor abgeschaltet, und der Summer gibt keine Töne ab.
+In diesem Experiment werden ein aktiver Summer, ein NPN-Transistor und ein 1-kΩ-Widerstand verwendet. Der Widerstand befindet sich zwischen dem GPIO-Pin und der Basis des Transistors, um diesen zu schützen. Wenn GPIO17 des Raspberry Pi auf ein niedriges Niveau (0 V) gesetzt wird, geht der Transistor in Sättigung und leitet, wodurch der Summer ertönt. Wird GPIO17 auf ein hohes Niveau gesetzt, sperrt der Transistor und der Summer bleibt stumm.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
