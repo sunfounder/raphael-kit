@@ -21,7 +21,7 @@ Introduzione
 ---------------
 
 In questo progetto, impareremo a far suonare un buzzer attivo con l'aiuto di 
-un transistor PNP.
+un transistor NPN.
 
 Componenti Necessari
 --------------------------------
@@ -69,13 +69,7 @@ Puoi anche acquistarli separatamente dai link sottostanti.
 Schema Elettrico
 --------------------
 
-In questo esperimento, utilizziamo un buzzer attivo, un transistor PNP e una 
-resistenza da 1k tra la base del transistor e il GPIO per proteggere il transistor. 
-Quando il GPIO17 del Raspberry Pi è alimentato con un livello alto (3,3 V) tramite 
-programmazione, il transistor condurrà a causa della saturazione di corrente e il 
-buzzer emetterà suoni. Ma quando al pin IO del Raspberry Pi viene fornito un livello 
-basso, il transistor verrà interrotto e il buzzer non emetterà suoni.
-
+In questo esperimento vengono utilizzati un buzzer attivo, un transistor NPN e una resistenza da 1 kΩ. La resistenza è collegata tra il pin GPIO e la base del transistor per limitare la corrente di base e proteggere il transistor. Quando il GPIO17 del Raspberry Pi fornisce un livello alto (3,3 V), il transistor va in saturazione, permettendo alla corrente di fluire attraverso il buzzer, che emette un suono. Quando il GPIO17 fornisce un livello basso (0 V), il transistor è spento e il buzzer rimane silenzioso.
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
 GPIO17       Pin 11   0        17
