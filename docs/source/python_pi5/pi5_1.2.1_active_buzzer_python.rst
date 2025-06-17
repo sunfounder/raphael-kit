@@ -69,7 +69,7 @@ You can also buy them separately from the links below.
 Schematic Diagram
 -----------------
 
-In this experiment, an active buzzer, an NPN transistor, and a 1kΩ resistor are used. The resistor is placed between the GPIO pin and the transistor’s base to protect the transistor. When GPIO17 on the Raspberry Pi is set to a low level (0V), the transistor saturates and conducts, allowing the buzzer to sound. When GPIO17 is set to a high level, the transistor is turned off, and the buzzer remains silent.
+In this experiment, an active buzzer, an NPN transistor, and a 1kΩ resistor are used. The resistor is connected between the GPIO pin and the transistor’s base to limit the base current and protect the transistor. When GPIO17 on the Raspberry Pi outputs a high level (3.3V), the transistor enters saturation mode, allowing current to flow through the buzzer, which then sounds. When the GPIO17 outputs a low level (0V), the transistor is turned off, and the buzzer remains silent.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
