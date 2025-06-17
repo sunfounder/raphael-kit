@@ -20,7 +20,7 @@
 Introducción
 ----------------
 
-En este proyecto, aprenderemos a hacer sonar un zumbador activo con un transistor PNP.
+En este proyecto, aprenderemos a hacer sonar un zumbador activo con un transistor NPN.
 
 Componentes Necesarios
 ---------------------------
@@ -68,12 +68,7 @@ También puedes comprarlos por separado desde los enlaces a continuación.
 Diagrama Esquemático
 ------------------------
 
-En este experimento, se utiliza un zumbador activo, un transistor PNP y una 
-resistencia de 1k entre la base del transistor y el GPIO para proteger el transistor. 
-Cuando el GPIO17 de la Raspberry Pi se suministra con un nivel alto (3.3V) mediante 
-programación, el transistor conducirá debido a la saturación de corriente y el zumbador 
-emitirá sonidos. Pero cuando se suministra un nivel bajo al IO de la Raspberry Pi, 
-el transistor se cortará y el zumbador no emitirá sonidos.
+En este experimento se utilizan un zumbador activo, un transistor NPN y una resistencia de 1 kΩ. La resistencia se conecta entre el pin GPIO y la base del transistor para limitar la corriente de base y proteger el transistor. Cuando el GPIO17 de la Raspberry Pi emite un nivel alto (3,3 V), el transistor entra en saturación, permitiendo el paso de corriente a través del zumbador, que emite sonido. Cuando el GPIO17 emite un nivel bajo (0 V), el transistor se apaga y el zumbador permanece en silencio.
 
 ============ ======== ======== ===
 T-Board Name physical wiringPi BCM
