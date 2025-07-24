@@ -17,6 +17,15 @@
 2.2.2 Thermistor
 ======================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
 Introduction
 ------------
 
@@ -270,7 +279,7 @@ Convert Kelvin temperature into degree Celsius.
     Fah = cel * 1.8 +32;
 
 Convert degree Celsius into Fahrenheit.
-    
+
 .. code-block:: c
 
     printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);

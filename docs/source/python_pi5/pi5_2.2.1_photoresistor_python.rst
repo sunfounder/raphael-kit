@@ -17,6 +17,15 @@
 2.2.1 Photoresistor
 ===================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
 Introduction
 ------------
 
@@ -125,38 +134,38 @@ When the code is running, the brightness of the LED will change according to the
 
 .. code-block:: python
 
-   #!/usr/bin/env python3
-   from gpiozero import PWMLED
+    #!/usr/bin/env python3
+    from gpiozero import PWMLED
    import ADC0834
    import time
 
-   # Initialize a PWM LED on GPIO pin 22
-   led = PWMLED(22)
+    # Initialize a PWM LED on GPIO pin 22
+    led = PWMLED(22)
 
    # Set up the ADC0834 module
    ADC0834.setup()
 
-   # Define a function for mapping values from one range to another
-   def MAP(x, in_min, in_max, out_min, out_max):
-       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+    # Define a function for mapping values from one range to another
+    def MAP(x, in_min, in_max, out_min, out_max):
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-   # Main loop for reading ADC value and controlling LED brightness
-   def loop():
-       while True:
+    # Main loop for reading ADC value and controlling LED brightness
+    def loop():
+        while True:
            # Read analog value from ADC
            analogVal = ADC0834.getResult()
-           print('value = %d' % analogVal)
+            print('value = %d' % analogVal)
 
            # Map the ADC value to a PWM value and set LED brightness
            led.value = float(analogVal/255)
 
-           # Wait for 0.2 seconds
-           time.sleep(0.2)
+            # Wait for 0.2 seconds
+            time.sleep(0.2)
 
-   # Run the main loop and handle KeyboardInterrupt for graceful shutdown
-   try:
-       loop()
-   except KeyboardInterrupt: 
+    # Run the main loop and handle KeyboardInterrupt for graceful shutdown
+    try:
+        loop()
+    except KeyboardInterrupt:
        # Turn off LED before exiting
        led.value = 0
 
@@ -214,7 +223,7 @@ When the code is running, the brightness of the LED will change according to the
        # Run the main loop and handle KeyboardInterrupt for graceful shutdown
        try:
            loop()
-       except KeyboardInterrupt: 
+       except KeyboardInterrupt:
            # Turn off LED before exiting
            led.value = 0
 

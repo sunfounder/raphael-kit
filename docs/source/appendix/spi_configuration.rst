@@ -3,62 +3,64 @@
 SPI Configuration
 -----------------------
 
-**Step 1**: Enable the SPI port of your Raspberry Pi (If you have
-enabled it, skip this; if you do not know whether you have done that or
-not, please continue).
+#. Enable the SPI interface on your Raspberry Pi. If you've already enabled it, you can skip this step. If you're unsure, follow the instructions below.
 
-.. raw:: html
+   * Open the Raspberry Pi configuration tool:
 
-   <run></run>
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo raspi-config
 
-.. code-block:: 
+   * **3 Interfacing options**
 
-    sudo raspi-config
+     .. image:: img/image282.png
+        :align: center
 
-**3 Interfacing options**
+   * **I3 SPI**
 
-.. image:: img/image282.png
-   :align: center
+     .. image:: img/i3spi.png
+        :align: center
+     
+   * **<YES>, then click <OK> and <Finish>.**
 
-**I3 SPI**
+     .. image:: img/image286.png
+        :align: center 
 
-.. image:: img/i3spi.png
-   :align: center
+#. Verify that the SPI modules are active.
 
-**<YES>, then click <OK> and <Finish>.**
+   * Run the following command:
 
-.. image:: img/image286.png
-   :align: center 
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         ls /dev/sp*
 
-**Step 2:** Check that the spi modules are loaded and active.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    ls /dev/sp*
-
-Then the following codes will appear (the number may be different).
+   * You should see output similar to:
 
 
-.. code-block:: 
+     .. code-block:: 
+     
+         /dev/spidev0.0  /dev/spidev0.1
 
-    /dev/spidev0.0  /dev/spidev0.1
+   If these devices appear, the SPI interface is active and ready.
 
-**Step 3:** Install Python module SPI-Py.
+#. Install the ``spidev`` Python library.
 
-.. raw:: html
+   * Run the following command to install it using ``pip``:
 
-   <run></run>
-
-.. code-block:: 
-
-    git clone https://github.com/lthiery/SPI-Py.git
-    cd SPI-Py
-    sudo python3 setup.py install
-
-.. note::
-    This step is for python users, if you use C language, please
-    skip.
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo pip3 install spidev
+     
+   This library provides the Python interface to communicate with SPI devices using /dev/spidevX.Y.

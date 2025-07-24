@@ -1,0 +1,319 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+.. _3.1.5_c_mcp3008:
+
+3.1.5 Battery Indicator(MCP3008)
+==================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
+Introduction
+--------------
+
+In this project, we will make a battery indicator device that can
+visually display the battery level on the LED Bargraph.
+
+.. warning::
+
+    Do not use battery components that exceed 3.3V to avoid overloading, which may damage the chip or Raspberry Pi.
+
+Required Components
+------------------------------
+
+In this project, we need the following components.
+
+.. image:: ../img/list2_Battery_Indicator.png
+    :align: center
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
+    *   - :ref:`mcp3008`
+        - \-
+
+Schematic Diagram
+-------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+SPICE0       Pin 24   10       8
+SPIMOSI      Pin 19   12       10
+SPIMISO      Pin 21   13       9
+SPISCLK      Pin 23   14       11
+GPIO25       Pin 22   6        25
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       20
+GPIO21       Pin 40   29       21
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+GPIO19       Pin 35   24       19
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../img/schematic_battery_indicator_mcp3008.png
+   :align: center
+
+Experimental Procedures
+-------------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../img/july24_3.1.5_battery_indicator_mcp3008.png
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.5-2/
+
+**Step 3:** Compile the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.5_BatteryIndicator.c -lwiringPi
+
+**Step 4:** Run the executable file.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+After the program runs, give the 3rd pin of MCP3008 and the GND a
+lead-out wire separately and then lead them to the two poles of a
+battery separately. You can see the corresponding LED on the LED
+Bargraph is lit up to display the power level (measuring range: 0-5V).
+
+.. note::
+
+    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+
+Code
+--------
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+
+    #define SPI_CHANNEL 0
+    #define SPI_SPEED   1000000  // 1MHz
+    #define VREF        3.3      
+
+    int pins[10] = {6, 26, 27, 28, 29, 21, 22, 23, 24, 25};
+
+    int read_ADC(int channel)
+    {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;  // Start bit
+        buffer[1] = (8 + channel) << 4;  // Single-ended mode
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int value = ((buffer[1] & 3) << 8) | buffer[2];
+        return value;
+    }
+
+    void LedBarGraph(int value) {
+        for (int i = 0; i < 10; i++) {
+            if (i < value)
+            digitalWrite(pins[i], HIGH);  
+        else
+            digitalWrite(pins[i],LOW);
+        }
+    }
+
+    int main(void)
+    {
+        if (wiringPiSetup() == -1) {
+            printf("setup wiringPi failed!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("SPI setup failed!\n");
+            return 1;
+        }
+
+        for (int i = 0; i < 10; i++) {
+            pinMode(pins[i], OUTPUT);
+            digitalWrite(pins[i], HIGH);
+        }
+
+        while (1) {
+            int analogVal = read_ADC(0);  // MCP3008 CH0
+            if (analogVal < 0) continue;
+
+
+            float voltage = analogVal * VREF / 1023.0;
+            int level = analogVal * 10 / 1024;  
+            if (level > 10) level = 10;  
+
+            LedBarGraph(level);
+
+            printf("ADC Value: %d\tVoltage: %.2f V\tLevel: %d\n", analogVal, voltage, level);
+
+            delay(200);
+        }
+
+        return 0;
+    }
+
+
+Code Explanation
+----------------------
+.. code-block:: c
+
+    int read_ADC(int channel)
+    {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;  // Start bit
+        buffer[1] = (8 + channel) << 4;  // Single-ended mode, CH0~CH7
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int value = ((buffer[1] & 3) << 8) | buffer[2];  // Combine 10-bit result
+        return value;
+    }
+
+This function reads analog values from the MCP3008 ADC chip using SPI.
+The `channel` parameter selects one of the 8 analog inputs (CH0–CH7).
+The MCP3008 returns a 10-bit digital value between 0 and 1023 representing the analog voltage.
+
+.. code-block:: c
+
+    void LedBarGraph(int value) {
+        for (int i = 0; i < 10; i++) {
+            if (i < value)
+                digitalWrite(pins[i], HIGH);  // Turn on LED (assumes active HIGH wiring)
+            else
+                digitalWrite(pins[i], LOW);   // Turn off LED
+        }
+    }
+
+This function controls a 10-LED bar graph display.
+Each LED represents 1/10th of the voltage range.
+LEDs are turned on in order up to the specified level.
+
+Note: This version assumes LED anodes are connected to GPIOs and cathodes to GND (i.e. active HIGH).
+
+.. code-block:: c
+
+    int main(void)
+    {
+        if (wiringPiSetup() == -1) {
+            printf("setup wiringPi failed!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("SPI setup failed!\n");
+            return 1;
+        }
+
+        for (int i = 0; i < 10; i++) {
+            pinMode(pins[i], OUTPUT);
+            digitalWrite(pins[i], HIGH);  // Initialize all LEDs to ON
+        }
+
+        while (1) {
+            int analogVal = read_ADC(0);  // Read voltage on CH0
+            if (analogVal < 0) continue;
+
+            float voltage = analogVal * VREF / 1023.0;
+            int level = analogVal * 10 / 1024;  // Map to 0–10 levels
+            if (level > 10) level = 10;
+
+            LedBarGraph(level);  // Display level on LEDs
+
+            printf("ADC Value: %d\tVoltage: %.2f V\tLevel: %d\n", analogVal, voltage, level);
+
+            delay(200);  // Update rate: 5 Hz
+        }
+
+        return 0;
+    }
+
+Main program logic:
+
+- Initializes wiringPi and SPI communication.
+- Sets GPIO pins as outputs for controlling the 10-LED bar.
+- Continuously reads analog voltage via MCP3008 (CH0).
+- Converts the reading to a voltage using `VREF = 3.3V`.
+- Scales voltage to a 0–10 level bar graph and lights up LEDs.
+- Displays the raw ADC value, voltage (in volts), and LED level via serial console.
+
+This acts as a visual battery level indicator or analog voltmeter.
+
+.. **Phenomenon Picture**
+
+.. .. image:: ../img/image249.jpeg
+   :align: center

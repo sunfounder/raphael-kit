@@ -17,6 +17,18 @@
 2.1.7 Potentiometer
 =========================
 
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+   
+
+
 Introduction
 ------------
 
@@ -133,9 +145,9 @@ of LED will change accordingly.
 
 .. code-block:: c
 
-    #include <wiringPi.h>
-    #include <stdio.h>
-    #include <softPwm.h>
+        #include <wiringPi.h>
+        #include <stdio.h>
+        #include <softPwm.h>
 
     typedef unsigned char uchar;
     typedef unsigned int uint;
@@ -199,15 +211,15 @@ of LED will change accordingly.
         digitalWrite(ADC_CS,1);
         pinMode(ADC_DIO, OUTPUT);
         return(dat1==dat2) ? dat1 : 0;
-    }
+        }
 
     int main(void)
     {
         uchar analogVal;
         if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
             printf("setup wiringPi failed !");
-            return 1;
-        }
+                return 1;
+            }
         softPwmCreate(LedPin,  0, 100);
         pinMode(ADC_CS,  OUTPUT);
         pinMode(ADC_CLK, OUTPUT);
@@ -216,10 +228,10 @@ of LED will change accordingly.
             analogVal = get_ADC_Result(0);
             printf("Current analogVal : %d\n", analogVal);
             softPwmWrite(LedPin, analogVal);
-            delay(100);
+                delay(100);
+            }
+            return 0;
         }
-        return 0;
-    }
 
 **Code Explanation**
 

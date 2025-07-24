@@ -266,23 +266,10 @@ This is a Python 3 library for interfacing LED matrix displays using the MAX7219
 
 * Reference: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-Spidev and MFRC522
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MFRC522
+~~~~~~~~~~~~~~~~~
 
-The ``spidev`` library helps handle interactions with the SPI and is a key component to this tutorial as we need it for the Raspberry Pi to interact with the RFID RC522.
-
-Run the following command to install ``spidev`` to your Raspberry Pi via ``pip``.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo pip3 install spidev
-
-
-Continue to install the MFRC522 library.
+Run the following command to install the MFRC522 library.
 
 .. raw:: html
 

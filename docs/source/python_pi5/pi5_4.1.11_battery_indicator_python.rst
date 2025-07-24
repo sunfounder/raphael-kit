@@ -17,11 +17,24 @@
 4.1.8 Battery Indicator
 ===================================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
 Introduction
 --------------
 
 In this project, we will make a battery indicator device that can
 visually display the battery level on the LED Bargraph.
+
+.. warning::
+
+    Do not use battery components that exceed 3.3V to avoid overloading, which may damage the chip or Raspberry Pi.
 
 Required Components
 ------------------------------
@@ -136,53 +149,66 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
 
 .. code-block:: python
 
-   #!/usr/bin/env python3
-   from gpiozero import LED
-   import ADC0834
-   import time
+    #!/usr/bin/env python3
+    from gpiozero import LED
+    import spidev
+    import time
 
-   # List of GPIO pins to which LEDs are connected
-   ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
-   # Initialize LED objects for each pin in the list
-   leds = [LED(pin) for pin in ledPins]
+    # List of GPIO pins to which LEDs are connected
+    ledPins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
+    # Initialize LED objects for each pin in the list
+    leds = [LED(pin) for pin in ledPins]
 
-   # Setup ADC0834 module
-   ADC0834.setup()
+    # Setup SPI for MCP3008
+    spi = spidev.SpiDev()
+    spi.open(0, 0)              # Open SPI bus 0, device (CE0)
+    spi.max_speed_hz = 1000000  # Set SPI speed to 1 MHz
 
-   def LedBarGraph(value):
-       # Turn off all LEDs
-       for i in range(10):
-           leds[i].off()
-       # Turn on LEDs up to the specified value
-       for i in range(value):
-           leds[i].on()
+    def read_adc(channel=0):
+        """
+        Reads analog value from MCP3008 channel (default CH0).
+        Returns a 10-bit value .
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        r = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((r[1] & 0x03) << 8) | r[2]
+        return value
 
-   try:
-       # Main loop to continuously update LED bar graph
-       while True:
-           # Read analog value from ADC0834
-           analogVal = ADC0834.getResult()
-           # Convert analog value to LED bar graph level
-           LedBarGraph(int(analogVal/25))
-   except KeyboardInterrupt: 
-       # Turn off all LEDs when program is interrupted
-       for i in range(10):
-           leds[i].off()
+    def LedBarGraph(value):
+        # Turn off all LEDs
+        for i in range(10):
+            leds[i].on()
+        # Turn on LEDs up to the specified value
+        for i in range(min(value, 10)):
+            leds[i].off()
 
+    try:
+        # Main loop to continuously update LED bar graph
+        while True:
+            analogVal = read_adc(0)  # Read from CH0
+            LedBarGraph(int(analogVal / 102.4)) 
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        # Turn off all LEDs when program is interrupted
+        for i in range(10):
+            leds[i].off()
+        spi.close()
 
 
 **Code Explanation**
+---------------------
 
-#. This section imports the necessary libraries. ``gpiozero`` is for controlling the LEDs, ``ADC0834`` for interfacing with the ADC module, and ``time`` for time-related operations.
+#. This section imports the necessary libraries. `gpiozero` is used for controlling GPIO pins (specifically LEDs), `spidev` is used to interface with the MCP3008 ADC over SPI, and `time` is used for delays.
 
    .. code-block:: python
 
        #!/usr/bin/env python3
        from gpiozero import LED
-       import ADC0834
+       import spidev
        import time
 
-#. Defines the GPIO pins to which the LEDs are connected and initializes an array of LED objects for each pin. This allows for easy control of each LED in the array.
+#. Defines the GPIO pins to which the LEDs are connected and creates a list of `LED` objects. These are used to represent a bar graph.
 
    .. code-block:: python
 
@@ -191,42 +217,59 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
        # Initialize LED objects for each pin in the list
        leds = [LED(pin) for pin in ledPins]
 
-#. Initializes the ADC0834 module for analog-to-digital conversion.
+#. Initializes SPI communication for the MCP3008 ADC on SPI bus 0 using CE0. The speed is set to 1 MHz.
 
    .. code-block:: python
 
-       # Setup ADC0834 module
-       ADC0834.setup()
+       # Setup SPI for MCP3008
+       spi = spidev.SpiDev()
+       spi.open(0, 0)              # Open SPI bus 0, device (CE0)
+       spi.max_speed_hz = 1000000  # Set SPI speed to 1 MHz
 
-#. This function turns off all LEDs and then turns on a number of LEDs based on the input value, effectively creating a bar graph representation.
+#. Reads a 10-bit analog value (0–1023) from the specified MCP3008 channel. Channel 0 is used by default.
+
+   .. code-block:: python
+
+       def read_adc(channel=0):
+           """
+           Reads analog value from MCP3008 channel (default CH0).
+           Returns a 10-bit value .
+           """
+           if channel < 0 or channel > 7:
+               return -1
+           r = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((r[1] & 0x03) << 8) | r[2]
+           return value
+
+#. This function turns on all LEDs first (reset state), then turns off a number of LEDs based on the scaled input value. It creates a reverse bar graph effect (more value = fewer LEDs lit).
 
    .. code-block:: python
 
        def LedBarGraph(value):
            # Turn off all LEDs
            for i in range(10):
-               leds[i].off()
-           # Turn on LEDs up to the specified value
-           for i in range(value):
                leds[i].on()
+           # Turn on LEDs up to the specified value
+           for i in range(min(value, 10)):
+               leds[i].off()
 
-#. Continuously reads the analog value from the ADC0834 and updates the LED bar graph based on this value. The analog value is scaled down to a range of 0-10 for the 10 LEDs.
+#. Continuously reads the analog value from MCP3008 CH0 and updates the LED bar graph. The analog value is divided by 102.4 to scale it from 0–1023 to a 0–10 LED level.
 
    .. code-block:: python
 
        try:
            # Main loop to continuously update LED bar graph
            while True:
-               # Read analog value from ADC0834
-               analogVal = ADC0834.getResult()
-               # Convert analog value to LED bar graph level
-               LedBarGraph(int(analogVal/25))
+               analogVal = read_adc(0)  # Read from CH0
+               LedBarGraph(int(analogVal / 102.4)) 
+               time.sleep(0.1)
 
-#. Ensures all LEDs are turned off when the program is interrupted (e.g., by pressing Ctrl+C).
+#. Ensures all LEDs are turned off and SPI is closed when the program is interrupted (e.g., by pressing Ctrl+C).
 
    .. code-block:: python
 
-       except KeyboardInterrupt: 
+       except KeyboardInterrupt:
            # Turn off all LEDs when program is interrupted
            for i in range(10):
                leds[i].off()
+           spi.close()

@@ -17,6 +17,15 @@
 3.1.4 Smart Fan
 ======================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
 Introduction
 -----------------
 
@@ -249,7 +258,7 @@ Code
         }
         digitalWrite(MotorEnable,HIGH);
         softPwmWrite(MotorPin1, level*25);
-        return level;    
+        return level;
     }
     void setup(){
         if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
@@ -322,10 +331,10 @@ temperature values. Refer to :ref:`2.2.2_c_pi5` for more details.
         if(level==0){
             digitalWrite(MotorEnable,LOW);
             return 0;
-        }
+        }
         if (level>=4){
             level =4;
-        }
+        }
         digitalWrite(MotorEnable,HIGH);
         softPwmWrite(MotorPin1, level*25);
         return level;    
@@ -339,7 +348,7 @@ adjustment stands for a **25%** change of the wind speed.
 
     int main(void)
     {
-        setup();
+        setup();
         int currentState,lastState=0;
         int level = 0;
         int currentTemp,markTemp=0;
@@ -350,21 +359,21 @@ adjustment stands for a **25%** change of the wind speed.
             if (currentState==1&&lastState==0){
                 level=(level+1)%5;
                 markTemp=currentTemp;
-                delay(500);
-            }
+                delay(500);
+            }
             lastState=currentState;
             if (level!=0){
                 if (currentTemp-markTemp<=-2){
                     level=level-1;
                     markTemp=currentTemp;
-                }
+                }
                 if (currentTemp-markTemp>=2){
                     level=level+1;
                     markTemp=currentTemp;
-                }
-            }
+                }
+            }
             level=motor(level);
-        }
+        }
         return 0;
     }
 

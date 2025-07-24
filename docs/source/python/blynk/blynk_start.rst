@@ -50,13 +50,13 @@ Follow the steps below, and note that you must do them in order and not skip any
 
     .. image:: img/sp220607_143608.png
 
-#. Go to Template from the navigation bar.
+#. Go to Developer Zone from the navigation bar.
 
-    .. image:: img/sp220913_170029.png
+    .. image:: img/develop_zone.png
 
 #. Create New Template
 
-    .. image:: img/sp220913_170206.png
+    .. image:: img/new_template.png
 
 
 #. Fill in **NAME**, feel free to do so; **HARDWARE** should be **Raspberry Pi**. Then **Done**.
@@ -68,17 +68,17 @@ Follow the steps below, and note that you must do them in order and not skip any
 
     .. image:: img/sp220913_171202.png
 
-#. Go to **Search** page from the navigation bar.
+#. Go to **Devices** page from the navigation bar.
 
-    .. image:: img/sp220913_172727.png
+    .. image:: img/devices.jpg
 
 #. Create New Device.
 
-    .. image:: img/sp220913_173259.png
+    .. image:: img/new_devices.png
 
 #. From template.
 
-    .. image:: img/sp220913_173350.png
+    .. image:: img/create_new_device.png
 
 #. Select **TEMPLATE** as the one you just set, **DEVICE NAME** can be customized. Then click Create.
 
@@ -87,16 +87,16 @@ Follow the steps below, and note that you must do them in order and not skip any
 
 #. You should now see a page like this one, which means that your initial Blynk setup is complete.
 
-    .. image:: img/sp220913_173950.png
+    .. image:: img/my_device.png
 
 
 2. Edit Dashboard
 --------------------------------
 
 
-1. Click on the menu icon in the upper right corner and select edit dashboard.
+1. Click on the edit dashboard.
 
-    .. image:: img/sp220913_180231.png
+    .. image:: img/edit_dashboard.png
 
 #. Then drag any CONTROL Widgets you want onto the Dashboard. I dragged a Switch and a Slider.
 

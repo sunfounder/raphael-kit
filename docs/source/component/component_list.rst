@@ -44,6 +44,7 @@ Below is the introduction to each component, which contains the operating princi
     component_74hc595
     component_l293d
     component_adc0834
+    component_mcp3008
 
 
 

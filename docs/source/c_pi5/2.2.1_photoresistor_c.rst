@@ -17,6 +17,15 @@
 2.2.1 Photoresistor
 =========================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
 Introduction
 ------------
 
@@ -216,7 +225,7 @@ When the code is running, the brightness of the LED will change according to the
 
 **Code Explanation**
 
-The codes here are the same as that in 2.1.4 Potentiometer. If you have
+The codes here are the same as that in 2.1.7 Potentiometer. If you have
 any other questions, please check the code explanation of :ref:`2.1.7_c_pi5` for details.
 
 Phenomenon Picture

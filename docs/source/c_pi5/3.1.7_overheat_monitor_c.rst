@@ -17,6 +17,15 @@
 3.1.7 Overheat Monitor
 ==================================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
 Introduction
 -------------------
 
@@ -175,7 +184,7 @@ initial value.
         }
         else{
             return 0;
-        }
+    }
     }
 
 This function reads values of X and Y. If ``X>200``, there will return
@@ -194,7 +203,7 @@ This function reads values of X and Y. If ``X>200``, there will return
     int len;
       len = strlen(str);
       write(len,1,"             ");
-        delay(100);
+        delay(100);
     }
 
 This function is for adjusting the threshold and displaying it on the
@@ -228,7 +237,7 @@ then convert it to temperature value.
         snprintf(str,3,"%d",upperTem);
         write(0, 1, "Upper: ");
         write(7, 1, str);
-        delay(100);
+        delay(100);
         if(cel >= upperTem){
             digitalWrite(buzzPin, HIGH);
             digitalWrite(LedPin, HIGH);
@@ -236,7 +245,7 @@ then convert it to temperature value.
         else if(cel < upperTem){
             digitalWrite(buzzPin, LOW);
             digitalWrite(LedPin, LOW);
-        }
+        }
     }
 
 As the code runs, the current temperature and the high-temperature
@@ -248,7 +257,7 @@ to alarm you.
 
     int main(void)
     {
-        setup();
+        setup();
         int lastState =1;
         int stage=0;
         while (1)
@@ -256,16 +265,16 @@ to alarm you.
             int currentState = digitalRead(Joy_BtnPin);
             if(currentState==1 && lastState == 0){
                 stage=(stage+1)%2;
-                delay(100);
-                lcd_clear();
-            }
+                delay(100);
+                lcd_clear();
+            }
             lastState=currentState;
             if (stage==1){
-                upper_tem_setting();
+                upper_tem_setting();
             }
             else{
-                monitoring_temp();
-            }
+                monitoring_temp();
+        }
         }
         return 0;
     }
