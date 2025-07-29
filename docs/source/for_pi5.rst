@@ -12,8 +12,8 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-For Pi 5
-============================
+For All Models (Recommended)
+=================================
 
 The release of the Raspberry Pi 5 has brought us a more powerful model, but it also introduced some changes, 
 most notably to the GPIO.Although it retains its standard 40-pin interface, functionality has shifted due to 
