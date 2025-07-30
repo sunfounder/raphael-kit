@@ -1,0 +1,294 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauche gemeinsam mit anderen Enthusiasten tiefer in Raspberry Pi, Arduino und ESP32 ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Löse Probleme nach dem Kauf und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tausche Tipps und Tutorials aus, um deine Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalte frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Sonderrabatte**: Genieße exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nimm an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Bereit, mit uns zu erkunden und zu kreieren? Klicke [|link_sf_facebook|] und tritt noch heute bei!
+
+.. _2.1.7_py_mcp3008:
+
+2.1.7 Potentiometer (MCP3008)
+=============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Je nach deiner Kit-Version überprüfe bitte, ob du **ADC0834** oder **MCP3008** hast, und gehe entsprechend zum passenden Abschnitt.
+
+Einführung
+----------
+
+Die ADC-Funktion wird verwendet, um analoge Signale in digitale Werte umzuwandeln. 
+In diesem Experiment verwenden wir den MCP3008-ADC-Chip, um diese Umwandlung durchzuführen. 
+Ein Potentiometer wird verwendet, um eine variable Spannung zu erzeugen, die eine physikalische Größe verändert. 
+Der MCP3008 wandelt dann diese analoge Spannung in einen digitalen Wert um, der vom Raspberry Pi gelesen und verarbeitet werden kann.
+
+Benötigte Komponenten
+---------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten. 
+
+.. image:: ../img/list2_2.1.4_potentiometer.png
+
+Es ist auf jeden Fall praktisch, ein komplettes Kit zu kaufen. Hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Du kannst sie auch separat über die folgenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUFLINK
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schaltplan
+----------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board-Name
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.7_potentiometer_mcp3008.png
+
+Experimentelle Verfahren
+------------------------
+
+**Schritt 1:** Baue die Schaltung auf.
+
+.. image:: ../img/july24_2.1.7_potentiometer_mcp3008.png
+
+.. note::
+    Platziere den Chip entsprechend der dargestellten Position im Bild. Achte darauf, dass die Kerbe des Chips nach links zeigt, wenn er platziert wird.
+
+**Schritt 2:** Richte die SPI-Schnittstelle ein und installiere die ``spidev``-Bibliothek (siehe :ref:`spi_configuration` für detaillierte Anweisungen). Wenn du diese Schritte bereits abgeschlossen hast, kannst du diesen Schritt überspringen.
+
+**Schritt 3:** Öffne die Code-Datei
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**Schritt 4:** Führe den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.7-2_Potentiometer.py
+
+Nachdem der Code ausgeführt wird, drehe am Potentiometerknopf, und die Helligkeit der LED ändert sich entsprechend.
+
+.. warning::
+
+    Wenn eine Fehlermeldung erscheint ``RuntimeError: Cannot determine SOC peripheral base address``, siehe :ref:`faq_soc`
+
+**Code**
+
+.. note::
+
+    Du kannst den Code unten **Bearbeiten/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Gehe zuvor in das Quellcodeverzeichnis wie ``raphael-kit/python``. Nach Änderungen kannst du den Code direkt ausführen, um das Ergebnis zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import spidev
+    import time
+    import RPi.GPIO as GPIO
+
+    # GPIO-Pin für PWM-Ausgabe
+    PWM_PIN = 22
+
+    # GPIO einrichten
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(PWM_PIN, GPIO.OUT)
+
+    # Initialisiere PWM auf GPIO22 bei 1000Hz
+    pwm = GPIO.PWM(PWM_PIN, 1000)
+    pwm.start(0)  # Starte mit 0% Tastverhältnis
+
+    # SPI initialisieren
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus 0, CE0
+    spi.max_speed_hz = 1000000
+
+    def read_adc(channel):
+        """
+        Lese analogen Wert vom MCP3008
+        :param channel: ADC-Kanal (0-7)
+        :return: 10-Bit-Integer (0-1023)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 3) << 8) | adc[2]
+        return value
+
+    def MAP(x, in_min, in_max, out_min, out_max):
+        """
+        Wertebereich von einem Bereich auf einen anderen abbilden
+        """
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+    try:
+        while True:
+            # Lese analogen Wert von CH0
+            res = read_adc(0)
+            print('res = %d' % res)
+
+            # Umrechnung in 0–100% Tastverhältnis
+            duty_cycle = MAP(res, 0, 1023, 0, 100)
+
+            # PWM-Tastverhältnis aktualisieren
+            pwm.ChangeDutyCycle(duty_cycle)
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        pwm.stop()
+        GPIO.cleanup()
+        spi.close()
+
+**Code-Erklärung**
+
+#. ``RPi.GPIO`` wird verwendet, um PWM-Signale zur Steuerung einer LED zu erzeugen. ``spidev`` wird für die SPI-Kommunikation mit dem MCP3008 verwendet. ``time`` wird genutzt, um Verzögerungen in der Schleife hinzuzufügen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import spidev
+       import time
+       import RPi.GPIO as GPIO
+
+#. GPIO-Pin 22 wird für die PWM-Ausgabe konfiguriert. SPI-Kommunikation mit dem MCP3008 (Bus 0, CE0) wird mit 1 MHz eingerichtet.
+
+   .. code-block:: python
+
+       PWM_PIN = 22
+
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(PWM_PIN, GPIO.OUT)
+
+       pwm = GPIO.PWM(PWM_PIN, 1000)  # 1kHz Frequenz
+       pwm.start(0)  # Start mit 0% Tastverhältnis
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+
+#. Diese Funktion liest analoge Daten vom MCP3008 am angegebenen Kanal (0–7) über SPI. Das Ergebnis ist eine 10-Bit-Zahl im Bereich von 0 bis 1023.
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           if channel < 0 or channel > 7:
+               return -1
+           adc = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((adc[1] & 3) << 8) | adc[2]
+           return value
+
+#. Diese Funktion bildet einen Wert von einem Zahlenbereich auf einen anderen ab. Sie wird verwendet, um ADC-Werte in PWM-Tastverhältnisse zu skalieren.
+
+   .. code-block:: python
+
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. In der Hauptschleife liest das Programm kontinuierlich analoge Daten vom Kanal 0 des MCP3008, wandelt den Wert in einen PWM-Bereich (0–100) um und stellt entsprechend die LED-Helligkeit ein. Die Schleife wird alle 0,2 Sekunden aktualisiert. Bei einer Unterbrechung (z.B. Strg+C) wird das PWM-Signal gestoppt und die GPIO-Konfiguration zurückgesetzt.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               res = read_adc(0)
+               print('res = %d' % res)
+
+               duty_cycle = MAP(res, 0, 1023, 0, 100)
+               pwm.ChangeDutyCycle(duty_cycle)
+
+               time.sleep(0.2)
+
+       except KeyboardInterrupt:
+           pass
+
+       finally:
+           pwm.stop()
+           GPIO.cleanup()
+           spi.close()

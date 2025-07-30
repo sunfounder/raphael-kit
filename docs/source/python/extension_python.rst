@@ -28,9 +28,12 @@ Erweiterung
     4.1.8_welcome_python
     4.1.9_reversing_alarm_python
     4.1.10_smart_fan_python
+    4.1.10_smart_fan_python(mcp3008)
     4.1.11_battery_indicator_python
+    4.1.11_battery_indicator_python(mcp3008)
     4.1.12_traffic_light_python
     4.1.13_overheat_monitor_python
+    4.1.13_overheat_monitor_python(mcp3008)
     4.1.14_password_lock_python
     4.1.15_alarm_bell_python
     4.1.16_morse_code_generator_python

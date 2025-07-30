@@ -48,13 +48,16 @@ Befolgen Sie die untenstehenden Schritte und beachten Sie, dass Sie diese in der
 
     .. image:: img/sp220607_143608.png
 
-#. Gehen Sie zur Vorlage in der Navigationsleiste.
+#. Gehen Sie über die Navigationsleiste zur Entwicklerzone.
 
-    .. image:: img/sp220913_170029.png
+    .. image:: img/develop_zone.png
 
 #. Neue Vorlage erstellen.
 
-    .. image:: img/sp220913_170206.png
+    .. image:: img/new_template.png
+
+
+
 
 #. Füllen Sie das Feld **NAME** aus, wie Sie möchten; bei **HARDWARE** sollte **Raspberry Pi** ausgewählt werden. Klicken Sie anschließend auf **Done**.
 
@@ -64,33 +67,35 @@ Befolgen Sie die untenstehenden Schritte und beachten Sie, dass Sie diese in der
 
     .. image:: img/sp220913_171202.png
 
-#. Gehen Sie zur **Search**-Seite über die Navigationsleiste.
 
-    .. image:: img/sp220913_172727.png
+#. Gehen Sie zur **Devices**-Seite über die Navigationsleiste.
+
+    .. image:: img/devices.jpg
 
 #. Neues Gerät erstellen.
 
-    .. image:: img/sp220913_173259.png
+    .. image:: img/new_devices.png
 
 #. Aus Vorlage.
 
-    .. image:: img/sp220913_173350.png
+    .. image:: img/create_new_device.png
 
 #. Wählen Sie bei **TEMPLATE** die von Ihnen erstellte aus, den **DEVICE NAME** können Sie individuell festlegen. Dann auf Erstellen klicken.
 
     .. image:: img/sp220913_173507.png
 
+
 #. Wenn Sie eine Seite wie diese sehen, bedeutet das, dass Ihre erste Blynk-Einrichtung abgeschlossen ist.
 
-    .. image:: img/sp220913_173950.png
+    .. image:: img/my_device.png
 
 
 2. Dashboard bearbeiten
 --------------------------------
 
-1. Klicken Sie auf das Menü-Symbol oben rechts und wählen Sie Dashboard bearbeiten.
+1. Klicken Sie auf das Bearbeitungs-Dashboard.
 
-    .. image:: img/sp220913_180231.png
+    .. image:: img/edit_dashboard.png
 
 #. Ziehen Sie anschließend beliebige CONTROL Widgets, die Sie möchten, auf das Dashboard. Ich habe einen Schalter und einen Schieberegler hinzugefügt.
 

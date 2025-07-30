@@ -18,6 +18,7 @@ anhang
 .. toctree::
     :maxdepth: 1
 
+
     install_the_libraries
     i2c_configuration
     spi_configuration
@@ -26,3 +27,5 @@ anhang
     filezilla
     blynk_app
     get_ip
+    install_openssh_powershell
+    login_windows

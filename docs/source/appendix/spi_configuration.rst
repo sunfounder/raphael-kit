@@ -17,61 +17,66 @@
 SPI Konfiguration
 ========================
 
-**Schritt 1**: Aktivieren Sie den SPI-Port Ihres Raspberry Pi (Falls Sie ihn bereits aktiviert haben, überspringen Sie diesen Schritt; wenn Sie nicht sicher sind, ob Sie dies getan haben oder nicht, fahren Sie bitte fort).
 
-.. raw:: html
+#. Aktivieren Sie die SPI-Schnittstelle auf Ihrem Raspberry Pi.  
+   Wenn Sie diese bereits aktiviert haben, können Sie diesen Schritt überspringen.  
+   Falls Sie unsicher sind, folgen Sie den untenstehenden Anweisungen.
 
-   <run></run>
+   * Öffnen Sie das Raspberry Pi-Konfigurationstool:
 
-.. code-block:: 
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo raspi-config
 
-    sudo raspi-config
+   * **3 Schnittstellenoptionen (Interfacing Options)**
 
-**3 Interfacing options**
+     .. image:: img/image282.png
+        :align: center
 
-.. image:: img/image282.png
-   :align: center
+   * **I3 SPI**
 
-**I3 SPI**
+     .. image:: img/i3spi.png
+        :align: center
+     
+   * **<JA>, dann auf <OK> und <Finish> klicken.**
 
-.. image:: img/image285.png
-   :align: center
+     .. image:: img/image286.png
+        :align: center 
 
-**<YES>, anschließend <OK> und <Finish> anklicken.**
+#. Überprüfen Sie, ob die SPI-Module aktiv sind.
 
-.. image:: img/image286.png
-   :align: center 
+   * Führen Sie den folgenden Befehl aus:
 
-**Schritt 2:** Überprüfen Sie, ob die SPI-Module geladen und aktiv sind.
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         ls /dev/sp*
 
-.. raw:: html
+   * Sie sollten eine ähnliche Ausgabe sehen wie:
 
-   <run></run>
+     .. code-block:: 
+     
+         /dev/spidev0.0  /dev/spidev0.1
 
-.. code-block:: 
+   Wenn diese Geräte erscheinen, ist die SPI-Schnittstelle aktiv und einsatzbereit.
 
-    ls /dev/sp*
+#. Installieren Sie die ``spidev`` Python-Bibliothek.
 
-Daraufhin sollten die folgenden Codes erscheinen (die Nummer könnte unterschiedlich sein).
+   * Führen Sie den folgenden Befehl aus, um sie mit ``pip`` zu installieren:
 
-
-.. code-block:: 
-
-    /dev/spidev0.0  /dev/spidev0.1
-
-**Schritt 3:** Installieren Sie das Python-Modul SPI-Py.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    git clone https://github.com/lthiery/SPI-Py.git
-    cd SPI-Py
-    sudo python3 setup.py install
-
-.. note::
-    Dieser Schritt ist für Python-Benutzer, wenn Sie C verwenden,
-    überspringen Sie bitte diesen Schritt.
-
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo pip3 install spidev
+     
+   Diese Bibliothek stellt das Python-Interface zur Kommunikation mit SPI-Geräten über /dev/spidevX.Y bereit.

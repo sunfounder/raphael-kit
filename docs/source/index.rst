@@ -52,7 +52,7 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
     :maxdepth: 2
 
     About This Kit <self>
-    install_setup_os/installing_the_os
+    install_setup_os/install_setup_os
 
     download_the_code
 

@@ -1,0 +1,303 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauche tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Löse Probleme nach dem Kauf und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tausche Tipps und Tutorials aus, um deine Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalte frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.
+    - **Sonderrabatte**: Genieße exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nimm an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Bereit, mit uns zu erkunden und zu kreieren? Klicke [|link_sf_facebook|] und tritt noch heute bei!
+
+.. _2.2.1_py_mcp3008:
+
+2.2.1 Fotowiderstand (MCP3008)
+===============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Abhängig von deiner Kit-Version überprüfe bitte, ob du **ADC0834** oder **MCP3008** hast, und gehe entsprechend zum passenden Abschnitt.
+
+Einführung
+----------
+
+Der Fotowiderstand ist eine häufig verwendete Komponente zur Erfassung der Umgebungslichtintensität. Er hilft dem Controller, Tag und Nacht zu erkennen und Lichtsteuerungsfunktionen wie Nachtlampen zu realisieren.  
+Dieses Projekt ist dem Potentiometer sehr ähnlich, und man kann sich vorstellen, dass es die Spannung ändert, um das Licht zu erfassen.
+
+Benötigte Komponenten
+---------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../img/list2_2.2.1_photoresistor.png
+
+Es ist auf jeden Fall praktisch, ein komplettes Kit zu kaufen. Hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ARTIKEL IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Du kannst sie auch separat über die folgenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENVORSTELLUNG
+        - KAUFLINK
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+Schaltplan
+----------
+
+.. .. image:: ../img/2.2.1_photoresistor_schematic_1.png
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board-Name
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.2.1_photoresistor_mcp3008.png
+
+Experimentelle Schritte
+-----------------------
+
+**Schritt 1:** Baue die Schaltung auf.
+
+.. image:: ../img/july24_2.2.1_photoresistor_mcp3008.png
+
+**Schritt 2:** Richte die SPI-Schnittstelle ein und installiere die ``spidev``-Bibliothek (siehe :ref:`spi_configuration` für detaillierte Anweisungen). Wenn du diese Schritte bereits abgeschlossen hast, kannst du diesen Schritt überspringen.
+
+**Schritt 3:** Wechsle in den Code-Ordner.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**Schritt 4:** Führe die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.1-2_photoresistor.py
+
+Während der Code ausgeführt wird, ändert sich die Helligkeit der LED entsprechend der vom Fotowiderstand erfassten Lichtintensität.
+
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` erscheint, siehe :ref:`faq_soc`
+
+**Code**
+
+.. note::
+
+    Du kannst den untenstehenden Code **Bearbeiten/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Gehe zuvor in das Quellcodeverzeichnis wie ``raphael-kit/python``. Nach Änderungen kannst du den Code direkt ausführen, um das Ergebnis zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+    # GPIO-Pin für PWM-LED
+    PWM_PIN = 22
+
+    # GPIO einrichten
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(PWM_PIN, GPIO.OUT)
+
+    # PWM initialisieren (Frequenz = 1000Hz)
+    pwm = GPIO.PWM(PWM_PIN, 1000)
+    pwm.start(0)  # Start mit 0% Tastverhältnis
+
+    # SPI initialisieren (MCP3008 auf Bus 0, CE0)
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    # Funktion zum Auslesen des MCP3008-ADC-Werts
+    def read_adc(channel):
+        """
+        Liest analogen Wert vom MCP3008 (Kanal 0–7)
+        Rückgabe: 10-Bit-Wert (0–1023)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        r = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((r[1] & 3) << 8) | r[2]
+        return value
+
+    # Hauptschleife zum Auslesen des ADC und Einstellen der PWM-Helligkeit
+    try:
+        while True:
+            analogVal = read_adc(0)
+            print(f"value = {analogVal}")
+
+            # Skaliere den ADC-Wert (0–1023) auf das Tastverhältnis (0–100)
+            duty_cycle = analogVal * 100 / 1023
+            pwm.ChangeDutyCycle(duty_cycle)
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        pwm.stop()
+        GPIO.cleanup()
+        spi.close()
+
+**Code-Erklärung**
+
+#. Importiere die benötigten Bibliotheken:
+
+   - ``RPi.GPIO`` zur Steuerung der GPIO-Pins und Erzeugung von PWM-Signalen.
+   - ``spidev`` zur Kommunikation mit dem MCP3008-ADC über SPI.
+   - ``time`` zur Handhabung von Zeitverzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import RPi.GPIO as GPIO
+       import spidev
+       import time
+
+#. Konfiguriere GPIO-Pin 22 als PWM-Ausgang im BCM-Modus. Initialisiere Software-PWM bei 1000 Hz mit einem Start-Tastverhältnis von 0 %.
+
+   .. code-block:: python
+
+       # GPIO-Pin für PWM-LED
+       PWM_PIN = 22
+
+       # GPIO einrichten
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(PWM_PIN, GPIO.OUT)
+
+       # PWM initialisieren (Frequenz = 1000Hz)
+       pwm = GPIO.PWM(PWM_PIN, 1000)
+       pwm.start(0)  # Start mit 0% Tastverhältnis
+
+#. Richte die SPI-Schnittstelle für die Kommunikation mit dem MCP3008 auf Bus 0, Chip Enable 0 (CE0) ein und konfiguriere die SPI-Geschwindigkeit auf 1 MHz.
+
+   .. code-block:: python
+
+       # SPI initialisieren (MCP3008 auf Bus 0, CE0)
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000  # 1 MHz
+
+#. Definiere eine Funktion ``read_adc(channel)``, um analoge Werte vom MCP3008 auszulesen. Die Funktion sendet drei Bytes an den Chip und rekonstruiert einen 10-Bit-Analogwert (0–1023) aus der Antwort.
+
+   .. code-block:: python
+
+       # Funktion zum Auslesen des MCP3008-ADC-Werts
+       def read_adc(channel):
+           """
+           Liest analogen Wert vom MCP3008 (Kanal 0–7)
+           Rückgabe: 10-Bit-Wert (0–1023)
+           """
+           if channel < 0 or channel > 7:
+               return -1
+           r = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((r[1] & 3) << 8) | r[2]
+           return value
+
+#. Dies ist die Hauptschleife, die:
+   - den analogen Eingang von Kanal 0 des MCP3008 liest,
+   - den Wert in ein PWM-Tastverhältnis (0–100 %) umwandelt,
+   - die Helligkeit der LED mit ``pwm.ChangeDutyCycle()`` anpasst
+   - und dies alle 0,2 Sekunden wiederholt.
+
+   .. code-block:: python
+
+       # Hauptschleife zum Auslesen des ADC und Einstellen der PWM-Helligkeit
+       try:
+           while True:
+               analogVal = read_adc(0)
+               print(f"value = {analogVal}")
+
+               # Skaliere den ADC-Wert (0–1023) auf das Tastverhältnis (0–100)
+               duty_cycle = analogVal * 100 / 1023
+               pwm.ChangeDutyCycle(duty_cycle)
+
+               time.sleep(0.2)
+
+#. Wenn das Programm mit Strg+C unterbrochen wird, werden PWM und GPIO ordnungsgemäß beendet und die SPI-Schnittstelle geschlossen.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           pass
+
+       finally:
+           pwm.stop()
+           GPIO.cleanup()
+           spi.close()

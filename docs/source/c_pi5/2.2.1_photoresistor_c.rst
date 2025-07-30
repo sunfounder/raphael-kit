@@ -17,6 +17,16 @@
 2.2.1 Fotowiderstand
 =========================
 
+.. note::
+
+    .. image:: ../img/mcp3008_and_adc0834.jpg
+        :width: 25%
+        :align: left
+        
+    Abhängig von Ihrer Kit-Version identifizieren Sie bitte, ob Sie **ADC0834** oder **MCP3008** haben, und fahren Sie mit dem entsprechenden Abschnitt fort.
+
+
+
 Einführung
 ------------
 
@@ -210,7 +220,7 @@ Wenn der Code läuft, wird die Helligkeit der LED je nach vom Fotowiderstand erf
 
 **Code-Erklärung**
 
-Die hier verwendeten Codes sind identisch mit denen in 2.1.4 Potentiometer. Wenn Sie weitere Fragen haben, überprüfen Sie bitte die Code-Erklärung von :ref:`2.1.7_c_pi5` für weitere Details.
+Die hier verwendeten Codes sind identisch mit denen in 2.1.7 Potentiometer. Wenn Sie weitere Fragen haben, überprüfen Sie bitte die Code-Erklärung von :ref:`2.1.7_c_pi5` für weitere Details.
 
 Phänomen-Bild
 ------------------

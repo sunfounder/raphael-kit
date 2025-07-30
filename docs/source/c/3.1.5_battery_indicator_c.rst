@@ -17,11 +17,27 @@
 3.1.5 Batterieanzeige
 ==================================
 
+.. note::
+
+    .. image:: ../img/mcp3008_and_adc0834.jpg
+        :width: 25%
+        :align: left
+        
+    Abhängig von Ihrer Kit-Version identifizieren Sie bitte, ob Sie **ADC0834** oder **MCP3008** haben, und fahren Sie mit dem entsprechenden Abschnitt fort.
+
+
+
 Einführung
 --------------
 
 In diesem Projekt erstellen wir ein Gerät zur Batterieanzeige, das
 den Batteriestatus auf einem LED-Balkendiagramm visuell darstellen kann.
+
+
+.. warning::
+
+    Verwenden Sie keine Batteriekomponenten, die mehr als 3,3 V überschreiten, um Überlastung zu vermeiden, die den Chip oder den Raspberry Pi beschädigen könnte.
+
 
 Benötigte Komponenten
 ------------------------------

@@ -66,9 +66,3 @@ Konvertierungskabel.
 **Gehäuse**
 
 Sie können den Raspberry Pi in ein Gehäuse setzen, um Ihr Gerät zu schützen.
-
-**Lautsprecher oder Kopfhörer**
-
-Der Raspberry Pi ist mit einem 3,5-mm-Audioanschluss ausgestattet, den Sie 
-verwenden können, wenn Ihr Bildschirm keine eingebauten Lautsprecher hat oder 
-wenn kein Bildschirmbetrieb vorhanden ist.

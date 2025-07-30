@@ -14,77 +14,56 @@
 
 .. _set_up_your_raspberry_pi:
 
-Richten Sie Ihren Raspberry Pi ein
+Einrichtung deines Raspberry Pi
 =====================================
 
-Wenn Sie einen Bildschirm haben
-------------------------------------
+Einrichtung mit Bildschirm
+---------------------------
 
-Wenn Sie einen Bildschirm besitzen, wird es für Sie einfacher sein, den Raspberry Pi zu bedienen.
+Die Verwendung eines Bildschirms vereinfacht die Arbeit mit deinem Raspberry Pi.
 
-**Benötigte Komponenten**
+**Erforderliche Komponenten**
 
-* Ein beliebiger Raspberry Pi   
-* 1 * Stromadapter
-* 1 * Micro-SD-Karte
-* 1 * Bildschirm-Stromadapter
-* 1 * HDMI-Kabel
-* 1 * Bildschirm
-* 1 * Maus
-* 1 * Tastatur
+* Raspberry Pi  
+* Netzteil  
+* Micro-SD-Karte  
+* Bildschirm-Netzteil  
+* HDMI-Kabel  
+* Bildschirm  
+* Maus  
+* Tastatur  
 
-#. Stecken Sie die mit dem Raspberry Pi OS vorbereitete SD-Karte in den Micro-SD-Kartenslot auf der Unterseite Ihres Raspberry Pi.
+**Schritte**:
 
-#. Schließen Sie Maus und Tastatur an.
+#. Schließe die Maus und die Tastatur an den Raspberry Pi an.
 
-#. Verbinden Sie den Bildschirm über den HDMI-Port mit dem Raspberry Pi und stellen Sie sicher, dass Ihr Bildschirm in eine Steckdose eingesteckt und eingeschaltet ist.
+#. Verbinde den Bildschirm mit dem HDMI-Anschluss des Raspberry Pi über das HDMI-Kabel. Stelle sicher, dass der Bildschirm an eine Stromquelle angeschlossen und eingeschaltet ist.
 
-   .. note::
-   
-      Bei Verwendung eines Raspberry Pi 4 sollten Sie den Bildschirm mit dem HDMI0-Port (am nächsten zum Stromanschluss) verbinden.
+#. Versorge den Raspberry Pi mit Strom über das Netzteil. Nach einigen Sekunden sollte der Desktop des Raspberry Pi OS auf dem Bildschirm erscheinen.
 
-#. Verwenden Sie den Stromadapter, um den Raspberry Pi mit Strom zu versorgen. Nach einigen Sekunden wird der Raspberry Pi OS-Desktop angezeigt.
+    .. image:: img/bullseye_desktop.png
+        :align: center
 
-   .. image:: img/login1.png
-       :align: center
-   
-   .. raw:: html
-   
-       <br/>
+Einrichtung ohne Bildschirm
+------------------------------
 
-#. Sie können einen Webbrowser auf Ihrem Raspberry Pi-System starten und diese Anleitung aufrufen. So können Sie Anweisungen bequem kopieren und im Terminal ausführen.
+Wenn du keinen Monitor hast, ist die Remote-Anmeldung eine praktikable Option.
 
-   .. image:: img/login2.png
-       :align: center
-   
-.. raw:: html
-   
-   <br/>
+**Erforderliche Komponenten**
 
-.. _no_screen:
+* Raspberry Pi  
+* Netzteil  
+* Micro-SD-Karte  
 
-Wenn Sie keinen Bildschirm haben
-----------------------------------
+Mit SSH kannst du auf die Bash-Shell des Raspberry Pi zugreifen, die die Standard-Linux-Shell ist. Bash bietet eine Befehlszeilenschnittstelle zum Ausführen verschiedener Aufgaben.
 
-Wenn Sie keinen Monitor besitzen, können Sie sich remote in Ihren Raspberry Pi einloggen.
+Für diejenigen, die eine grafische Benutzeroberfläche (GUI) bevorzugen, ist die Remote-Desktop-Funktion eine bequeme Alternative zum Verwalten von Dateien und Operationen.
 
-**Benötigte Komponenten**
-
-* Ein beliebiger Raspberry Pi   
-* 1 * Stromadapter
-* 1 * Micro-SD-Karte
-
-Sie können den SSH-Befehl verwenden, um die Bash-Shell des Raspberry Pi zu öffnen. Bash ist die standardmäßige Standard-Shell für Linux. Die Shell selbst ist ein Befehl (Anweisung), wenn der Benutzer Unix/Linux verwendet. Das meiste, was Sie tun müssen, kann über die Shell erledigt werden.
-
-Wenn Sie mit dem Befehlsfenster für den Zugriff auf Ihren Raspberry Pi nicht zufrieden sind, können Sie auch die Fernzugriffsfunktion verwenden, um Dateien auf Ihrem Raspberry Pi über eine grafische Benutzeroberfläche (GUI) einfach zu verwalten.
-
-Unten finden Sie detaillierte Tutorials für jedes System.
-
-
+Für detaillierte Einrichtungstutorials basierend auf deinem Betriebssystem siehe die folgenden Abschnitte:
 
 .. toctree::
 
     remote_macosx
     remote_windows
     remote_linux
-
+    remote_desktop

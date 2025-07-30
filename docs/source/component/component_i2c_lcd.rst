@@ -12,7 +12,7 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-.. _cpn_i2c_lcd1602:
+.. _cpn_i2c_lcd:
 
 I2C LCD1602
 ==============

@@ -1,0 +1,220 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook!  
+    Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Probleme nach dem Kauf und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugriff auf neue Produktankündigungen und exklusive Einblicke.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Giveaways**: Nehmen Sie an Verlosungen und Feiertagsaktionen teil.
+
+    👉 Bereit, mit uns zu forschen und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+.. _2.2.2_js_pi5_mcp3008:
+
+2.2.2 Thermistor (MCP3008)
+============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+
+   Abhängig von Ihrer Kit-Version identifizieren Sie bitte, ob Sie **ADC0834** oder **MCP3008** haben, und fahren Sie mit dem entsprechenden Abschnitt fort.
+
+Einführung
+------------
+
+Genau wie ein Fotowiderstand Licht erkennen kann, ist ein Thermistor ein temperaturabhängiges elektronisches Bauelement, das für Temperaturregelungsfunktionen wie z. B. einen Hitzewarnmelder verwendet werden kann.
+
+Benötigte Komponenten
+------------------------------
+
+In diesem Projekt benötigen wir die folgenden Komponenten: 
+
+.. image:: ../img/list2_2.2.2_thermistor.png
+
+Es ist definitiv bequem, ein komplettes Kit zu kaufen. Hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name
+        - ELEMENTE IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können die Komponenten auch einzeln über die folgenden Links kaufen:
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUFLINK
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schaltplan
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board Name
+        - Physikalisch
+        - WiringPi
+        - BCM
+    *   - SPICE0
+        - Pin 24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - Pin 19
+        - 12
+        - 10
+    *   - SPIMISO
+        - Pin 21
+        - 13
+        - 9
+    *   - SPISCLK
+        - Pin 23
+        - 14
+        - 11
+
+.. image:: ../img/schematic_2.2.2_thermistor_mcp3008.png
+
+Experimentelle Verfahren
+------------------------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../img/2.2.2_Thermistor_bb.png
+
+**Schritt 2:** Wechseln Sie in den Code-Ordner.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node thermistor-2.js
+
+Sobald der Code ausgeführt wird, erkennt der Thermistor die Umgebungstemperatur, die nach der Berechnung des Programms auf dem Bildschirm ausgegeben wird.
+
+**Code**
+
+.. code-block:: js
+
+    const mcpadc = require('mcp-spi-adc');
+
+    // Öffne MCP3008-Kanal 0 (CH0), analoger Eingang vom Thermistor-Spannungsteiler
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1350000 }, (err) => {
+      if (err) {
+        console.error('Fehler beim Öffnen des MCP3008-Kanals:', err);
+        process.exit(1);
+      }
+
+      console.log('MCP3008-Thermistor-Kanal geöffnet.');
+
+      setInterval(() => {
+        adc.read((err, reading) => {
+          if (err) {
+            console.error('ADC-Lesefehler:', err);
+            return;
+          }
+
+          const adcValue = reading.value; // Float: 0.0–1.0
+          const raw = Math.round(adcValue * 1023); // 10-Bit-Integerwert
+
+          const Vr = 3.3 * raw / 1023; // Spannung (bei 3,3 V Referenz)
+          const R0 = 10000;            // Festwiderstand: 10kΩ
+          const B = 3950;              // B-Konstante
+          const Rt = R0 * Vr / (3.3 - Vr); // Thermistorwiderstand
+
+          const tempK = 1 / ((Math.log(Rt / R0) / B) + (1 / (273.15 + 25))); // Kelvin
+          const tempC = tempK - 273.15; // Celsius
+          const tempF = tempC * 1.8 + 32; // Fahrenheit
+
+          console.log(`Celsius: ${tempC.toFixed(2)} °C  |  Fahrenheit: ${tempF.toFixed(2)} °F`);
+        });
+      }, 1000);
+    });
+
+**Code-Erklärung**
+
+.. code-block:: js
+
+    setInterval(() => {
+      adc.read((err, reading) => {
+        ...
+      });
+    }, 1000);
+
+Richtet eine Schleife ein, die alle 1000 Millisekunden (1 Sekunde) vom MCP3008-Kanal 0 liest. Die Funktion `read` gibt einen analogen Wert zwischen 0,0 und 1,0 zurück.
+
+.. code-block:: js
+
+    const raw = Math.round(reading.value * 1023);
+
+Wandelt den normalisierten Float-ADC-Wert in einen rohen 10-Bit-Integerwert (Bereich 0–1023) um.
+
+.. code-block:: js
+
+    const Vr = 3.3 * raw / 1023;
+
+Berechnet die Spannung am Thermistor (``Vr``) anhand des ADC-Wertes. Es wird eine Referenzspannung des MCP3008 von 3,3 V angenommen.
+
+.. code-block:: js
+
+    const Rt = R0 * Vr / (3.3 - Vr);
+
+Verwendet die Spannungsteilerformel, um den Thermistorwiderstand ``Rt`` zu berechnen, wobei ``R0`` ein 10kΩ-Festwiderstand in Reihe ist.
+
+.. code-block:: js
+
+    const tempK = 1 / ((Math.log(Rt / R0) / B) + (1 / (273.15 + 25)));
+
+Wendet die **B-Parameter-Gleichung** (eine vereinfachte Form der Steinhart-Hart-Gleichung) an, um die Temperatur in Kelvin zu berechnen.
+
+.. code-block:: js
+
+    const tempC = tempK - 273.15;
+    const tempF = tempC * 1.8 + 32;
+
+Wandelt die Temperatur von Kelvin in Celsius und anschließend in Fahrenheit um.
+
+.. code-block:: js
+
+    console.log(`Celsius: ${tempC.toFixed(2)} °C  |  Fahrenheit: ${tempF.toFixed(2)} °F`);
+
+Gibt sowohl die Celsius- als auch die Fahrenheit-Temperatur mit zwei Dezimalstellen Genauigkeit in der Konsole aus.

@@ -17,6 +17,16 @@
 3.1.4 Intelligenter Ventilator
 ==================================
 
+
+.. note::
+
+    .. image:: ../img/mcp3008_and_adc0834.jpg
+        :width: 25%
+        :align: left
+        
+    Abhängig von Ihrer Kit-Version identifizieren Sie bitte, ob Sie **ADC0834** oder **MCP3008** haben, und fahren Sie mit dem entsprechenden Abschnitt fort.
+
+
 Einführung
 -----------------
 
@@ -195,9 +205,9 @@ Code
         digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
         digitalWrite(ADC_CLK,1);
 
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        delayMicroseconds(2);
         digitalWrite(ADC_CLK,0);
-        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        delayMicroseconds(2);
 
         for(i=0;i<8;i++)
         {

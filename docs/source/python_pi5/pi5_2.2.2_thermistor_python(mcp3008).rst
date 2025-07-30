@@ -1,0 +1,252 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook!  
+    Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugriff auf neue Produktankündigungen und exklusive Einblicke.
+    - **Sonderrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Verlosungen**: Nehmen Sie an Verlosungen und Feiertagsaktionen teil.
+
+    👉 Bereit, mit uns zu forschen und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+.. _2.2.2_py_pi5_mcp3008:
+
+2.2.2 Thermistor (MCP3008)
+============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+
+   Abhängig von Ihrer Kit-Version identifizieren Sie bitte, ob Sie **ADC0834** oder **MCP3008** haben, und fahren Sie mit dem entsprechenden Abschnitt fort.
+
+Einführung
+------------
+
+Genau wie ein Fotowiderstand Licht wahrnehmen kann, ist ein Thermistor ein temperatur­empfindliches elektronisches Bauteil, das zur Realisierung von Temperaturregelungsfunktionen verwendet werden kann, wie z. B. für einen Hitzewarnmelder.
+
+Benötigte Komponenten
+------------------------------
+
+In diesem Projekt benötigen wir die folgenden Komponenten: 
+
+.. image:: ../python_pi5/img/list2_2.2.2_thermistor.png
+
+Es ist auf jeden Fall bequem, ein komplettes Kit zu kaufen, hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ELEMENTE IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können diese Komponenten auch einzeln über die folgenden Links kaufen.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUFLINK
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schaltplan
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board Name
+        - Physikalisch
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - Pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - Pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - Pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - Pin23
+        - 14
+        - 11
+
+.. image:: ../python_pi5/img/schematic_2.2.2_thermistor_mcp3008.png
+
+Experimentelle Verfahren
+--------------------------
+
+**Schritt 1:** Bauen Sie die Schaltung auf.
+
+.. image:: ../python_pi5/img/july24_2.2.2_thermistor_mcp3008.png
+
+**Schritt 2:** Richten Sie die SPI-Schnittstelle ein und installieren Sie die ``spidev``-Bibliothek (siehe :ref:`spi_configuration` für detaillierte Anweisungen). Wenn Sie diese Schritte bereits abgeschlossen haben, können Sie diesen Schritt überspringen.
+
+**Schritt 3:** Wechseln Sie in den Ordner mit dem Code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python-pi5
+
+**Schritt 4:** Führen Sie die ausführbare Datei aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.2.2-2_Thermistor_zero.py
+
+Sobald der Code ausgeführt wird, erkennt der Thermistor die Umgebungstemperatur, die auf dem Bildschirm ausgegeben wird, sobald die Programmberechnung abgeschlossen ist.
+
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`.
+
+**Code**
+
+.. note::
+
+    Sie können den untenstehenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**.  
+    Vorher müssen Sie jedoch zum Quellcodepfad wie ``raphael-kit/python-pi5`` wechseln.  
+    Nach dem Ändern des Codes können Sie ihn direkt ausführen, um das Ergebnis zu sehen.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+    # -*- coding: utf-8 -*-
+
+    import spidev
+    import time
+    import math
+
+    # Initialisiere SPI für MCP3008 (Bus 0, CE0)
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus 0, Gerät 0 (CE0)
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    def read_adc(channel):
+        """
+        Lese analogen Wert vom MCP3008-Kanal (0–7)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        # MCP3008-Kommunikationsformat
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+    try:
+        while True:
+            # Analogen Wert von CH0 des MCP3008 lesen
+            analogVal = read_adc(0)
+
+            # In Spannung umrechnen (3,3V Referenz)
+            Vr = 3.3 * analogVal / 1023.0
+
+            # Thermistorwiderstand berechnen
+            Rt = 10000.0 * Vr / (3.3 - Vr)
+
+            # Temperatur in Kelvin mit Steinhart–Hart-Approximation berechnen
+            tempK = 1.0 / (((math.log(Rt / 10000.0)) / 3950.0) + (1.0 / (273.15 + 25.0)))
+
+            # In Celsius und Fahrenheit umrechnen
+            Cel = tempK - 273.15
+            Fah = Cel * 1.8 + 32
+
+            # Temperatur ausgeben
+            print('Celsius: %.2f °C  Fahrenheit: %.2f °F' % (Cel, Fah))
+
+            # Vor nächster Messung warten
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        spi.close()
+
+**Code-Erklärung**
+
+#. Dieser Abschnitt importiert das Modul ``spidev`` für die Kommunikation mit dem MCP3008-ADC über SPI, das Modul ``time`` für Verzögerungen und das Modul ``math`` für die Logarithmusberechnungen, die für die Temperaturumrechnung erforderlich sind.
+
+   .. code-block:: python
+
+       import spidev
+       import time
+       import math
+
+#. Initialisiert die SPI-Schnittstelle für den MCP3008 auf Bus 0 und Gerät 0 (CE0) und setzt die maximale SPI-Taktrate auf 1 MHz.
+
+   .. code-block:: python
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+
+#. Definiert eine Funktion zum Lesen analoger Werte von einem bestimmten MCP3008-Kanal (0–7). Das SPI-Protokoll wird verwendet, um mit dem MCP3008 zu kommunizieren, und ein 10-Bit-Integer (0–1023) wird zurückgegeben.
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           adc = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((adc[1] & 0x03) << 8) | adc[2]
+           return value
+
+#. Implementiert eine Schleife, die kontinuierlich analoge Werte von einem Thermistor liest, der an CH0 des MCP3008 angeschlossen ist. Sie wandelt den Rohwert in eine Spannung (basierend auf 3,3 V Referenz), dann in einen Widerstand und schließlich mit der Steinhart–Hart-Gleichung in eine Temperatur um. Die Temperatur wird sowohl in Celsius als auch in Fahrenheit ausgegeben. Zwischen den Messungen wird eine kurze Verzögerung eingefügt.
+
+   .. code-block:: python
+
+       while True:
+           analogVal = read_adc(0)
+           Vr = 3.3 * analogVal / 1023.0
+           Rt = 10000.0 * Vr / (3.3 - Vr)
+           tempK = 1.0 / (((math.log(Rt / 10000.0)) / 3950.0) + (1.0 / (273.15 + 25.0)))
+           Cel = tempK - 273.15
+           Fah = Cel * 1.8 + 32
+           print('Celsius: %.2f °C  Fahrenheit: %.2f °F' % (Cel, Fah))
+           time.sleep(0.2)
+
+#. Fängt einen KeyboardInterrupt (Ctrl+C) ab, um das Programm sauber zu beenden, und schließt die SPI-Schnittstelle.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           spi.close()

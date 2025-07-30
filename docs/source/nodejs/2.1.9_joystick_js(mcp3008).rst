@@ -1,0 +1,226 @@
+.. note::
+
+    Hallo, willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook!  
+    Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Probleme nach dem Kauf und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugriff auf neue Produktankündigungen und exklusive Einblicke.
+    - **Spezielle Rabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Giveaways**: Nehmen Sie an Verlosungen und Feiertagsaktionen teil.
+
+    👉 Bereit, mit uns zu forschen und zu kreieren? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+.. _2.1.9_js_pi5_mcp3008:
+
+2.1.9 Joystick (MCP3008)
+==========================
+
+Einführung
+--------------
+
+In diesem Projekt lernen wir, wie ein Joystick funktioniert. Wir bewegen
+den Joystick und zeigen die Ergebnisse auf dem Bildschirm an.
+
+Benötigte Komponenten
+-------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten: 
+
+.. image:: ../img/image317 - Copy.png
+
+Es ist definitiv bequem, ein komplettes Kit zu kaufen. Hier ist der Link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ELEMENTE IN DIESEM KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Sie können die Komponenten auch einzeln über die folgenden Links kaufen:
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - KOMPONENTENBESCHREIBUNG
+        - KAUFLINK
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schaltplan
+-----------------
+
+Beim Auslesen der Joystick-Daten gibt es Unterschiede zwischen den Achsen:  
+Die Daten der X- und Y-Achse sind analog und müssen mit dem MCP3008 in digitale Werte umgewandelt werden.  
+Die Daten der Z-Achse sind digital, sodass Sie diese direkt über GPIO auslesen können oder ebenfalls den ADC verwenden können.
+
+.. .. image:: ../img/image319.png
+
+    *   - T-Board Name
+        - Physikalisch
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - Pin 24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - Pin 19
+        - 12
+        - 10
+    *   - SPIMISO
+        - Pin 21
+        - 13
+        - 9
+    *   - SPISCLK
+        - Pin 23
+        - 14
+        - 11
+    *   - GPIO22
+        - Pin 15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.9_joystick_mcp3008_js.png
+
+
+Experimentelle Verfahren
+-------------------------------------
+
+**Schritt 1:** Bauen Sie den Stromkreis auf.
+
+.. image:: ../img/2.1.9_Joystick_js.png
+
+**Schritt 2:** Wechseln Sie in den Code-Ordner.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/nodejs/
+
+**Schritt 3:** Führen Sie den Code aus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node joystick-2.js
+
+Nach dem Start des Codes bewegen Sie den Joystick, und die entsprechenden Werte von x, y und Btn werden auf dem Bildschirm angezeigt.
+
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const mcpadc = require('mcp-spi-adc');
+
+    // Öffne Kanal 1 (X-Achse)
+    const xChannel = mcpadc.openMcp3008(1, { speedHz: 1350000 }, (err) => {
+    if (err) {
+        console.error('Fehler beim Öffnen des X-Kanals:', err);
+        process.exit(1);
+    }
+    });
+
+    // Öffne Kanal 2 (Y-Achse)
+    const yChannel = mcpadc.openMcp3008(2, { speedHz: 1350000 }, (err) => {
+    if (err) {
+        console.error('Fehler beim Öffnen des Y-Kanals:', err);
+        process.exit(1);
+    }
+    });
+
+    // Tastereingang auf GPIO22 mit Pull-Up-Widerstand
+    const btn = new Gpio(22, {
+    mode: Gpio.INPUT,
+    pullUpDown: Gpio.PUD_UP,
+    });
+
+    // Lese-Schleife
+    setInterval(() => {
+    xChannel.read((errX, xReading) => {
+        if (errX) {
+        console.error('Fehler beim Lesen des X-Kanals:', errX);
+        return;
+        }
+
+        yChannel.read((errY, yReading) => {
+        if (errY) {
+            console.error('Fehler beim Lesen des Y-Kanals:', errY);
+            return;
+        }
+
+        const x_val = Math.round(xReading.value * 1023);
+        const y_val = Math.round(yReading.value * 1023);
+        const btn_val = btn.digitalRead();
+
+        console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
+        });
+    });
+    }, 100);
+
+
+**Code-Erklärung**
+
+.. code-block:: js
+
+    const mcpadc = require('mcp-spi-adc');
+
+Diese Zeile importiert das Modul ``mcp-spi-adc``, das die Kommunikation mit dem MCP3008-ADC unter Verwendung der SPI-Hardware-Schnittstelle des Raspberry Pi ermöglicht.
+
+.. code-block:: js
+
+    const xChannel = mcpadc.openMcp3008(1, { speedHz: 1350000 }, ...);
+    const yChannel = mcpadc.openMcp3008(2, { speedHz: 1350000 }, ...);
+
+Diese Zeilen öffnen die analogen Eingangskanäle 1 und 2 des MCP3008, um die Signale der X- und Y-Achse des Joysticks auszulesen.  
+Die SPI-Kommunikationsgeschwindigkeit ist auf 1,35 MHz eingestellt.
+
+.. code-block:: js
+
+    const btn = new Gpio(22, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_UP,
+    });
+
+Initialisiert den GPIO-Pin 22 als digitalen Eingang mit internem Pull-Up-Widerstand.  
+Dieser Pin wird verwendet, um den Status eines Tasters zu lesen.
+
+.. code-block:: js
+
+    setInterval(() => {
+      xChannel.read(...);
+      yChannel.read(...);
+    }, 100);
+
+Diese Funktion wird alle 100 Millisekunden ausgeführt. Sie liest die X- und Y-Achsenwerte des Joysticks über die MCP3008-Kanäle 1 und 2 per SPI aus.  
+Die Gleitkommawerte (Bereich 0,0–1,0) werden in 10-Bit-Ganzzahlen (0–1023) umgerechnet.  
+Außerdem wird der Tasterstatus mit ``digitalRead()`` auf GPIO22 gelesen, der 0 zurückgibt, wenn er gedrückt ist, und 1, wenn er losgelassen wird.  
+Alle Werte werden auf der Konsole ausgegeben.

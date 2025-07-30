@@ -48,7 +48,7 @@ Im Folgenden finden Sie eine Einführung zu jeder Komponente. Diese beinhaltet d
     component_74hc595
     component_l293d
     component_adc0834
-
+    component_mcp3008
 
 
 **Anzeige**
