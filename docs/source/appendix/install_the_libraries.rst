@@ -203,7 +203,7 @@ Esta es una biblioteca de Python 3 para la interfaz de pantallas de matriz de LE
 
 #. Después de crear el entorno virtual, actívalo para su uso.
 
-   .. nota::
+   .. note::
    
        Cada vez que reinicies la Raspberry Pi o abras un nuevo terminal, deberás ejecutar el siguiente comando nuevamente para activar el entorno virtual.
 
@@ -260,23 +260,14 @@ Esta es una biblioteca de Python 3 para la interfaz de pantallas de matriz de LE
 
 * Referencia: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-Spidev y MFRC522
+
+
+.. _mfrc522_lib:
+
+MFRC522
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La librería ``spidev`` ayuda a manejar las interacciones con SPI y es un componente clave en este tutorial, ya que la necesitamos para que la Raspberry Pi interactúe con el RFID RC522.
-
-Ejecuta el siguiente comando para instalar ``spidev`` en tu Raspberry Pi a través de ``pip``.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo pip3 install spidev
-
-
-Continúa instalando la librería MFRC522.
+Ejecute el siguiente comando para instalar la biblioteca MFRC522.
 
 .. raw:: html
 

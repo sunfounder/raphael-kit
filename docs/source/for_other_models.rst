@@ -12,7 +12,7 @@
 
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
-Para Pi 4, 3 y todos los demás modelos de Pi
+Para Pi 4, 3 y anteriores (no Pi 5)
 =================================================
 
 .. toctree::

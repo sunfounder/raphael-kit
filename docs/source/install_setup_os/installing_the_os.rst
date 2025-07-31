@@ -19,7 +19,7 @@ Instalación del Sistema Operativo
 
 **Componentes Necesarios**
 
-* Raspberry Pi 5
+* Raspberry Pi
 * Una Computadora Personal
 * Una tarjeta Micro SD 
 

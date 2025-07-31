@@ -1,0 +1,312 @@
+.. note::
+
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi & Arduino & ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _2.2.2_c_pi5_mcp3008:
+
+2.2.2 Termistor (MCP3008)
+============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Dependiendo de la versión de tu kit, identifica si tienes **ADC0834** o **MCP3008** y procede con la sección correspondiente.
+
+Introducción
+------------
+
+Al igual que el fotorresistor puede detectar la luz, el termistor es un dispositivo electrónico sensible a la temperatura que se puede utilizar para realizar funciones de control de temperatura, como hacer una alarma de calor.
+
+Componentes requeridos
+-----------------------
+
+En este proyecto necesitamos los siguientes componentes. 
+
+.. image:: ../img/list2_2.2.2_thermistor.png
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ARTÍCULOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los siguientes enlaces.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Diagrama esquemático
+--------------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - Nombre de la T-Board
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+
+.. image:: ../img/schematic_2.2.2_thermistor_mcp3008.png
+
+Procedimientos experimentales
+-----------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: ../img/july24_2.2.2_thermistor_mcp3008.png
+
+**Paso 2:** Ve a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.2-2/
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.2_Thermistor.c -o Thermistor -lwiringPi -lm
+
+.. note::
+    -lm es para cargar la librería matemática. No lo omitas o se producirá un error.
+
+**Paso 4:** Ejecuta el archivo compilado.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    ./Thermistor
+
+Cuando el código se ejecute, el termistor detectará la temperatura ambiente, la cual se imprimirá en la pantalla después de finalizar el cálculo del programa.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+    #include <math.h>
+
+    #define SPI_CHANNEL 0  // CE0
+    #define SPI_SPEED   1000000  // 1MHz
+
+    int read_ADC(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;  // Bit de inicio
+        buffer[1] = (8 + channel) << 4;  // Modo de un solo extremo + canal
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int value = ((buffer[1] & 3) << 8) | buffer[2];
+        return value;
+    }
+
+    int main(void) {
+        int analogVal;
+        double Vr, Rt, temp, cel, Fah;
+
+        if (wiringPiSetup() == -1) {
+            printf("¡Falló la configuración de wiringPi!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("¡Falló la configuración de SPI!\n");
+            return 1;
+        }
+
+        while (1) {
+            analogVal = read_ADC(0);  // Leer desde CH0
+
+            // MCP3008 es un ADC de 10 bits (0–1023)
+            Vr = 3.3 * analogVal / 1023.0;  // Suponiendo Vref = 3.3V
+            Rt = 10000.0 * Vr / (3.3 - Vr); // Divisor de voltaje, resistencia de 10k
+            temp = 1 / ((log(Rt / 10000.0) / 3950.0) + (1 / (273.15 + 25.0)));
+            cel = temp - 273.15;
+            Fah = cel * 1.8 + 32;
+
+            printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+            delay(1000);
+        }
+
+        return 0;
+    }
+
+Explicación del código
+----------------------
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+    #include <math.h>
+
+Estos archivos de cabecera incluyen bibliotecas para el control de GPIO (``wiringPi.h``), comunicación SPI (``wiringPiSPI.h``), operaciones estándar de entrada/salida (``stdio.h``) y funciones matemáticas (``math.h``) en C.
+
+.. code-block:: c
+
+    #define SPI_CHANNEL 0
+    #define SPI_SPEED   1000000
+
+Define constantes para el canal SPI y la velocidad de comunicación SPI. Aquí se usa el canal SPI 0 (CE0) y una velocidad de reloj de 1 MHz.
+
+.. code-block:: c
+
+    int read_ADC(int channel)
+
+Esta función lee datos analógicos de un canal específico del ADC MCP3008.
+
+.. code-block:: c
+
+    buffer[0] = 1;
+    buffer[1] = (8 + channel) << 4;
+    buffer[2] = 0;
+
+Estas líneas formatean el comando SPI según el protocolo MCP3008: un bit de inicio, configuración para modo de un solo extremo y número de canal.
+
+.. code-block:: c
+
+    wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+Transfiere el comando SPI y recibe los datos ADC de 10 bits desde el MCP3008.
+
+.. code-block:: c
+
+    int value = ((buffer[1] & 3) << 8) | buffer[2];
+
+Extrae y combina el resultado ADC de 10 bits desde el búfer SPI devuelto.
+
+.. code-block:: c
+
+    if (wiringPiSetup() == -1) { ... }
+    if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) { ... }
+
+Estas líneas inicializan WiringPi y configuran SPI. Si la inicialización falla, el programa termina.
+
+.. code-block:: c
+
+    analogVal = read_ADC(0);
+
+Lee la señal analógica del canal 0 del MCP3008, donde está conectado el divisor de voltaje con el termistor.
+
+.. code-block:: c
+
+    Vr = 3.3 * analogVal / 1023.0;
+
+Convierte el valor digital del ADC en voltaje analógico. El rango del ADC es de 0–1023 con un voltaje de referencia de 3.3V.
+
+.. code-block:: c
+
+    Rt = 10000.0 * Vr / (3.3 - Vr);
+
+Calcula la resistencia del termistor usando la fórmula del divisor de voltaje. Se supone una resistencia de 10kΩ en serie con el termistor.
+
+.. code-block:: c
+
+    temp = 1 / ((log(Rt / 10000.0) / 3950.0) + (1 / (273.15 + 25.0)));
+
+Usa la ecuación del parámetro B para convertir la resistencia del termistor en temperatura en Kelvin. 
+
+**T(K) = 1 / [ln(Rt/R₀)/B + 1/T₀]**, donde  
+- R₀ = 10kΩ  
+- B = 3950  
+- T₀ = 25°C = 298.15K
+
+.. code-block:: c
+
+    cel = temp - 273.15;
+
+Convierte la temperatura de Kelvin a grados Celsius.
+
+.. code-block:: c
+
+    Fah = cel * 1.8 + 32;
+
+Convierte la temperatura en Celsius a Fahrenheit.
+
+.. code-block:: c
+
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+Muestra la temperatura tanto en Celsius como en Fahrenheit en la terminal con una precisión de dos decimales.
+
+.. Imagen del fenómeno
+.. -------------------
+
+.. .. image:: ../img/image203.jpeg

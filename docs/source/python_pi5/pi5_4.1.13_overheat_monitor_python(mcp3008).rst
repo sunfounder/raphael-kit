@@ -1,0 +1,427 @@
+.. note::
+
+    ¡Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _4.1.13_py_pi5_mcp3008:
+
+4.1.10 Monitor de sobrecalentamiento (MCP3008)
+==============================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Dependiendo de la versión de tu kit, identifica si tienes **ADC0834** o **MCP3008** y continúa con la sección correspondiente.
+
+Introducción
+-------------
+
+Puede que desees crear un dispositivo de monitoreo de sobrecalentamiento que se aplique a diversas situaciones, por ejemplo, en una fábrica, donde queremos tener una alarma y el apagado automático de la máquina cuando hay un sobrecalentamiento del circuito.  
+En este proyecto, usaremos un termistor, joystick, zumbador, LED y LCD para crear un dispositivo inteligente de monitoreo de temperatura cuyo umbral es ajustable.
+
+Componentes requeridos
+----------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../python_pi5/img/list2_Overheat_Monitor.png
+    :width: 800
+    :align: center
+
+Es definitivamente conveniente comprar un kit completo, aquí está el enlace: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nombre	
+        - ELEMENTOS EN ESTE KIT
+        - ENLACE
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+También puedes comprarlos por separado en los enlaces de abajo.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCCIÓN DEL COMPONENTE
+        - ENLACE DE COMPRA
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+
+Diagrama esquemático
+--------------------
+
+
+============== ======== ======== ===
+Nombre T-Board físico   wiringPi BCM
+SPICE0         Pin 24   10       8
+SPIMOSI        Pin 19   12       10
+SPIMISO        Pin 21   13       9
+SPISCLK        Pin 23   14       11
+GPIO22         Pin 15   3        22
+GPIO23         Pin 16   4        23
+GPIO24         Pin 18   5        24
+SDA1           Pin 3             
+SCL1           Pin 5             
+============== ======== ======== ===
+
+.. image:: ../python_pi5/img/schematic_over_monitor_mcp3008.png
+   :align: center
+
+Procedimientos experimentales
+-----------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: ../python_pi5/img/july24_3.1.8_overheat_monitor_mcp3008.png
+
+**Paso 2:** Configura la interfaz SPI e instala la librería ``spidev`` (ver :ref:`spi_configuration` para instrucciones detalladas). Si ya completaste estos pasos, puedes omitirlos.
+
+**Paso 3:** Ve a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Paso 4:** Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.13-2_OverheatMonitor_zero.py
+
+Cuando el código se ejecuta, la temperatura actual y el umbral de alta temperatura **40** se muestran en el **I2C LCD1602**.  
+Si la temperatura actual es mayor que el umbral, el zumbador y el LED se activan para alertarte.
+
+**Joystick** aquí se utiliza para ajustar el umbral de alta temperatura. Moviendo el **Joystick** en la dirección de los ejes X e Y se puede ajustar (subir o bajar) el umbral de temperatura actual. Presionar el **Joystick** una vez más restablece el umbral a su valor inicial.
+
+.. note::
+
+    * Si obtienes el error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, debes consultar :ref:`i2c_config` para habilitar el I2C.
+    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, ejecuta ``sudo pip3 install smbus2``.
+    * Si aparece el error ``OSError: [Errno 121] Remote I/O error``, significa que el módulo está mal cableado o dañado.
+    * Si el código y el cableado están correctos, pero la LCD no muestra contenido, puedes ajustar el potenciómetro en la parte posterior para aumentar el contraste.
+
+.. warning::
+
+    Si aparece el error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+Código
+------
+
+.. note::
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes debes ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import LCD1602
+    from gpiozero import LED, Buzzer, Button
+    import spidev
+    import time
+    import math
+
+    # Inicializar botón del joystick, zumbador y LED
+    Joy_BtnPin = Button(22)  # GPIO22, Pin15
+    buzzPin = Buzzer(23)     # GPIO23, Pin16
+    ledPin = LED(24)         # GPIO24, Pin18
+
+    # Establecer umbral inicial de temperatura alta
+    upperTem = 40
+
+    # Inicializar SPI para MCP3008 (Bus 0, CE0 -> GPIO8 / Pin24)
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    # Inicializar LCD (dirección I2C 0x27, retroiluminación activada)
+    LCD1602.init(0x27, 1)
+
+    def read_adc(channel):
+        """
+        Leer valor analógico del MCP3008 (0–7)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+    def get_joystick_value():
+        """
+        Lee los valores del joystick y devuelve un cambio según su posición.
+        """
+        x_val = read_adc(1)
+        y_val = read_adc(2)
+        if x_val > 800:
+            return 1
+        elif x_val < 200:
+            return -1
+        elif y_val > 800:
+            return -10
+        elif y_val < 200:
+            return 10
+        else:
+            return 0
+
+    def upper_tem_setting():
+        """
+        Ajusta y muestra el umbral de temperatura alta en la LCD.
+        """
+        global upperTem
+        LCD1602.write(0, 0, 'Upper Adjust: ')
+        change = int(get_joystick_value())
+        upperTem += change
+        strUpperTem = str(upperTem)
+        LCD1602.write(0, 1, strUpperTem)
+        LCD1602.write(len(strUpperTem), 1, '              ')
+        time.sleep(0.1)
+
+    def temperature():
+        """
+        Lee la temperatura actual del sensor y la devuelve en grados Celsius.
+        """
+        analogVal = read_adc(0)
+        Vr = 3.3 * analogVal / 1023.0  # Voltaje en la resistencia fija
+        if Vr == 0:
+            return 0  # Evitar división por cero
+        Rt = 10000.0 * Vr / (3.3 - Vr)  # Fórmula ajustada
+        temp = 1 / (((math.log(Rt / 10000.0)) / 3950.0) + (1 / (273.15 + 25.0)))
+        Cel = temp - 273.15
+        return round(Cel, 2)
+
+    def monitoring_temp():
+        """
+        Monitorea y muestra la temperatura actual y el umbral.
+        Activa el zumbador y el LED si la temperatura supera el límite.
+        """
+        global upperTem
+        Cel = temperature()
+        LCD1602.write(0, 0, 'Temp: ')
+        LCD1602.write(0, 1, 'Upper: ')
+        LCD1602.write(6, 0, str(Cel))
+        LCD1602.write(7, 1, str(upperTem))
+        time.sleep(0.1)
+        if Cel >= upperTem:
+            buzzPin.on()
+            ledPin.on()
+        else:
+            buzzPin.off()
+            ledPin.off()
+
+    # Bucle principal de ejecución
+    try:
+        lastState = 1
+        stage = 0
+        while True:
+            currentState = Joy_BtnPin.value
+            if currentState == 1 and lastState == 0:
+                stage = (stage + 1) % 2
+                time.sleep(0.1)
+                LCD1602.clear()
+            lastState = currentState
+            if stage == 1:
+                upper_tem_setting()
+            else:
+                monitoring_temp()
+    except KeyboardInterrupt:
+        LCD1602.clear()
+        spi.close()
+
+Explicación del código
+----------------------
+
+#. Se importan las librerías necesarias. ``LCD1602`` es para mostrar en la LCD vía I2C, ``gpiozero`` proporciona soporte para LED, zumbador y botón, ``spidev`` se usa para comunicar con el ADC MCP3008, y ``time`` y ``math`` son bibliotecas estándar para retrasos y cálculos de temperatura.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import LCD1602
+       from gpiozero import LED, Buzzer, Button
+       import spidev
+       import time
+       import math
+
+
+#. Inicializa los componentes de hardware conectados a los pines GPIO:
+
+   * ``Button(22)`` conectado al botón del joystick.
+   * ``Buzzer(23)`` y ``LED(24)`` sirven como indicadores de alta temperatura.
+
+
+   .. code-block:: python
+
+       Joy_BtnPin = Button(22)  # GPIO22, Pin15
+       buzzPin = Buzzer(23)     # GPIO23, Pin16
+       ledPin = LED(24)         # GPIO24, Pin18
+
+#. Se establece el umbral de temperatura predeterminado y se inicializan tanto SPI para MCP3008 como la pantalla LCD1602.
+
+   .. code-block:: python
+
+       upperTem = 40
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+
+       LCD1602.init(0x27, 1)
+
+#. La función ``read_adc`` lee el valor analógico de un canal especificado (0–7) del MCP3008 usando el protocolo SPI y devuelve un valor de 10 bits.
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           if channel < 0 or channel > 7:
+               return -1
+           adc = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((adc[1] & 0x03) << 8) | adc[2]
+           return value
+
+
+#. La posición del joystick se evalúa leyendo los canales 1 y 2 del MCP3008. Dependiendo de la dirección X o Y, se devuelven diferentes valores para ajustar el umbral.
+
+   .. code-block:: python
+
+       def get_joystick_value():
+           x_val = read_adc(1)
+           y_val = read_adc(2)
+           if x_val > 800:
+               return 1
+           elif x_val < 200:
+               return -1
+           elif y_val > 800:
+               return -10
+           elif y_val < 200:
+               return 10
+           else:
+               return 0
+
+#. ``upper_tem_setting`` ajusta el umbral de temperatura usando el joystick. Muestra el valor actual del umbral en la LCD y asegura un formato limpio.
+
+   .. code-block:: python
+
+       def upper_tem_setting():
+           global upperTem
+           LCD1602.write(0, 0, 'Upper Adjust: ')
+           change = int(get_joystick_value())
+           upperTem += change
+           strUpperTem = str(upperTem)
+           LCD1602.write(0, 1, strUpperTem)
+           LCD1602.write(len(strUpperTem), 1, '              ')
+           time.sleep(0.1)
+
+#. La función ``temperature`` lee el valor analógico del canal 0 del MCP3008 (conectado a un termistor), calcula el voltaje, resistencia y finalmente la temperatura en Celsius usando la aproximación de Steinhart–Hart.
+
+   .. code-block:: python
+
+    def temperature():
+        """
+        Reads the current temperature from the sensor and returns it in Celsius.
+        """
+        analogVal = read_adc(0)
+        Vr = 3.3 * analogVal / 1023.0  # Voltage across the fixed resistor
+        if Vr == 0:
+            return 0  # Prevent division by zero
+        Rt = 10000.0 * Vr / (3.3 - Vr)  # Adjusted formula: thermistor voltage is (3.3 - Vr)
+        temp = 1 / (((math.log(Rt / 10000.0)) / 3950.0) + (1 / (273.15 + 25.0)))
+        Cel = temp - 273.15
+        return round(Cel, 2)
+
+#. ``monitoring_temp`` lee continuamente la temperatura actual, la compara con el umbral superior y muestra ambos valores en la LCD. Si la temperatura excede el umbral, el zumbador y el LED se encienden.
+
+
+   .. code-block:: python
+
+       def monitoring_temp():
+           global upperTem
+           Cel = temperature()
+           LCD1602.write(0, 0, 'Temp: ')
+           LCD1602.write(0, 1, 'Upper: ')
+           LCD1602.write(6, 0, str(Cel))
+           LCD1602.write(7, 1, str(upperTem))
+           time.sleep(0.1)
+           if Cel >= upperTem:
+               buzzPin.on()
+               ledPin.on()
+           else:
+               buzzPin.off()
+               ledPin.off()
+
+#. El bucle principal alterna entre modo de configuración y modo de monitoreo usando el botón del joystick. Una pulsación alterna el modo. En modo de configuración se ajusta el umbral; en modo de monitoreo, se revisa continuamente la temperatura.
+
+   .. code-block:: python
+
+       try:
+           lastState = 1
+           stage = 0
+           while True:
+               currentState = Joy_BtnPin.value
+               if currentState == 1 and lastState == 0:
+                   stage = (stage + 1) % 2
+                   time.sleep(0.1)
+                   LCD1602.clear()
+               lastState = currentState
+               if stage == 1:
+                   upper_tem_setting()
+               else:
+                   monitoring_temp()
+
+#. Al salir con interrupción por teclado, la pantalla LCD se limpia y la comunicación SPI se cierra correctamente.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           LCD1602.clear()
+           spi.close()

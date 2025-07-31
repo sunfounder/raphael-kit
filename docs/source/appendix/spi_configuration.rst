@@ -44,7 +44,9 @@ Luego aparecerán los siguientes códigos (el número puede ser diferente).
 
     /dev/spidev0.0  /dev/spidev0.1
 
-**Paso 3:** Instala el módulo Python SPI-Py.
+**Paso 3:** Instala el módulo Python ``spidev`` .
+
+* Ejecute el siguiente comando para instalarlo usando ``pip``:
 
 .. raw:: html
 
@@ -52,10 +54,6 @@ Luego aparecerán los siguientes códigos (el número puede ser diferente).
 
 .. code-block:: 
 
-    git clone https://github.com/lthiery/SPI-Py.git
-    cd SPI-Py
-    sudo python3 setup.py install
+    sudo pip3 install spidev
 
-.. note::
-    Este paso es para usuarios de Python, si usas lenguaje C, por favor omítelo.
-
+Esta biblioteca proporciona la interfaz Python para comunicarse con dispositivos SPI utilizando /dev/spidevX.Y.

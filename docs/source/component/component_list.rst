@@ -42,6 +42,8 @@ A continuación, se presenta una introducción a cada componente, que contiene e
     component_74hc595
     component_l293d
     component_adc0834
+    component_mcp3008
+
 
 **Pantalla**
 

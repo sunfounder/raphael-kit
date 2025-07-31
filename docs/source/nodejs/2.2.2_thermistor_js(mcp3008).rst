@@ -1,0 +1,235 @@
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+.. _2.2.2_js_pi5_mcp3008:
+
+2.2.2 Thermistor(MCP3008)
+============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Depending on your kit version, please identify whether you have **ADC0834** or **MCP3008** and proceed with the matching section.
+
+Introduction
+------------
+
+Just like photoresistor can sense light, thermistor is a temperature
+sensitive electronic device that can be used for realizing functions of
+temperature control, such as making a heat alarm.
+
+Required Components
+------------------------------
+
+In this project, we need the following components. 
+
+.. image:: ../img/list2_2.2.2_thermistor.png
+
+It's definitely convenient to buy a whole kit, here's the link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Name	
+        - ITEMS IN THIS KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+You can also buy them separately from the links below.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - COMPONENT INTRODUCTION
+        - PURCHASE LINK
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schematic Diagram
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board Name
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+
+
+.. image:: ../img/schematic_2.2.2_thermistor_mcp3008.png
+
+
+Experimental Procedures
+-----------------------
+
+**Step 1:** Build the circuit.
+
+.. image:: ../img/2.2.2_Thermistor_bb.png
+
+
+**Step 2:** Go to the folder of the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/nodejs/
+
+**Step 3:** Run the code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node thermistor-2.js
+
+With the code run, the thermistor detects ambient temperature which will
+be printed on the screen once it finishes the program calculation.
+
+**Code**
+
+.. code-block:: js
+
+    const mcpadc = require('mcp-spi-adc');
+
+    // Open MCP3008 channel 0 (CH0), analog input from thermistor voltage divider
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1350000 }, (err) => {
+      if (err) {
+        console.error('Failed to open MCP3008 channel:', err);
+        process.exit(1);
+      }
+
+      console.log('MCP3008 thermistor channel opened.');
+
+      setInterval(() => {
+        adc.read((err, reading) => {
+          if (err) {
+            console.error('ADC read error:', err);
+            return;
+          }
+
+          const adcValue = reading.value; // Float: 0.0–1.0
+          const raw = Math.round(adcValue * 1023); // 10-bit integer value
+
+          const Vr = 3.3 * raw / 1023; // Convert to voltage (assuming 3.3V Vref)
+          const R0 = 10000;            // Fixed resistor: 10k
+          const B = 3950;              // B constant
+          const Rt = R0 * Vr / (3.3 - Vr); // Thermistor resistance
+
+          const tempK = 1 / ((Math.log(Rt / R0) / B) + (1 / (273.15 + 25))); // Kelvin
+          const tempC = tempK - 273.15; // Celsius
+          const tempF = tempC * 1.8 + 32; // Fahrenheit
+
+          console.log(`Celsius: ${tempC.toFixed(2)} °C  |  Fahrenheit: ${tempF.toFixed(2)} °F`);
+        });
+      }, 1000);
+    });
+
+
+**Code Explanation**
+
+.. code-block:: js
+
+    setInterval(() => {
+      adc.read((err, reading) => {
+        ...
+      });
+    }, 1000);
+
+Sets up a loop to read from MCP3008 channel 0 every 1000 milliseconds (1 second). The `read` function returns an analog value between 0.0 and 1.0.
+
+.. code-block:: js
+
+    const raw = Math.round(reading.value * 1023);
+
+Converts the normalized float ADC value into a raw 10-bit integer (range 0–1023).
+
+.. code-block:: js
+
+    const Vr = 3.3 * raw / 1023;
+
+Calculates the voltage at the thermistor (``Vr``) using the ADC reading. Assumes MCP3008 reference voltage is 3.3V.
+
+.. code-block:: js
+
+    const Rt = R0 * Vr / (3.3 - Vr);
+
+Uses the voltage divider formula to calculate the thermistor resistance ``Rt``, where ``R0`` is a fixed resistor (10kΩ) in series.
+
+.. code-block:: js
+
+    const tempK = 1 / ((Math.log(Rt / R0) / B) + (1 / (273.15 + 25)));
+
+This applies the **B-parameter equation** (a simplified form of the Steinhart-Hart equation) to estimate the temperature in Kelvin.
+
+.. code-block:: js
+
+    const tempC = tempK - 273.15;
+    const tempF = tempC * 1.8 + 32;
+
+These convert the Kelvin temperature to Celsius and then Fahrenheit.
+
+.. code-block:: js
+
+    console.log(`Celsius: ${tempC.toFixed(2)} °C  |  Fahrenheit: ${tempF.toFixed(2)} °F`);
+
+Prints both the Celsius and Fahrenheit temperature values with two decimal points of precision to the console.
+
+
+.. Phenomenon Picture
+.. ------------------
+
+.. .. image:: ../img/image203.jpeg
