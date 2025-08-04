@@ -28,9 +28,9 @@ segmento in un ciclo, formando stringhe continue.
 
 Ad esempio, quando sul display appare "1234", il primo segmento visualizza "1", mentre 
 gli altri tre non mostrano nulla. Dopo un breve intervallo, il secondo segmento mostra "2",
- e così via. Questo processo è molto veloce (tipicamente 5ms) e, grazie all'effetto 
- dell'afterglow ottico e al principio del residuo visivo, siamo in grado di vedere tutti 
- e quattro i caratteri contemporaneamente.
+e così via. Questo processo è molto veloce (tipicamente 5ms) e, grazie all'effetto 
+dell'afterglow ottico e al principio del residuo visivo, siamo in grado di vedere tutti 
+e quattro i caratteri contemporaneamente.
 
 .. image:: img/image78.png
 

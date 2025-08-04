@@ -71,7 +71,8 @@ Usa un pulsante normalmente aperto come ingresso per Raspberry Pi, la connession
 mostrata nello schema elettrico qui sotto. Quando il pulsante viene premuto, il GPIO18 
 si porterà a livello basso (0V). Possiamo rilevare lo stato del GPIO18 tramite programmazione. 
 In pratica, se il GPIO18 si porta a livello basso, significa che il pulsante è stato premuto.
- Puoi eseguire il codice corrispondente quando il pulsante viene premuto, facendo così accendere il LED.
+Puoi eseguire il codice corrispondente quando il pulsante viene premuto, facendo così accendere il LED.
+
 .. note::
     Il pin più lungo del LED è l'anodo e quello più corto è il catodo.
 

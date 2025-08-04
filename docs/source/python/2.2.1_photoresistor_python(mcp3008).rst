@@ -1,0 +1,298 @@
+.. note::
+
+    Ciao, benvenuto nella Community Facebook di appassionati di SunFounder Raspberry Pi & Arduino & ESP32! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _2.2.1_py_mcp3008:
+
+2.2.1 Fotoresistore (MCP3008)
+===============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   A seconda della versione del tuo kit, identifica se hai **ADC0834** o **MCP3008** e procedi con la sezione corrispondente.
+
+Introduzione
+------------
+
+Il fotoresistore è un componente comunemente usato per rilevare l'intensità della luce ambientale.  
+Aiuta il controller a riconoscere giorno e notte e a realizzare funzioni di controllo della luce come le lampade notturne.  
+Questo progetto è molto simile a quello con il potenziometro: potresti pensare che anch'esso modifichi la tensione per rilevare la luce.
+
+Componenti richiesti
+------------------------------
+
+In questo progetto, ci servono i seguenti componenti. 
+
+.. image:: ../img/list2_2.2.1_photoresistor.png
+
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Puoi anche acquistarli separatamente dai link sottostanti.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUZIONE COMPONENTE
+        - LINK DI ACQUISTO
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+Schema elettrico
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - Nome T-Board
+        - fisico
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.2.1_photoresistor_mcp3008.png
+
+Procedure sperimentali
+-----------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/july24_2.2.1_photoresistor_mcp3008.png
+
+**Passo 2:** Configura l'interfaccia SPI e installa la libreria ``spidev`` (vedi :ref:`spi_configuration` per istruzioni dettagliate).  
+Se hai già completato questi passaggi, puoi saltarli.
+
+**Passo 3:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.1-2_photoresistor.py
+
+Quando il codice è in esecuzione, la luminosità del LED cambierà in base all'intensità della luce rilevata dal fotoresistore.
+
+.. warning::
+
+    Se compare il messaggio di errore ``RuntimeError: Cannot determine SOC peripheral base address``, fai riferimento a :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto.  
+    Prima però devi andare nel percorso del codice sorgente come ``raphael-kit/python``.  
+    Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+    # Pin GPIO per LED PWM
+    PWM_PIN = 22
+
+    # Configura GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(PWM_PIN, GPIO.OUT)
+
+    # Inizializza PWM (frequenza = 1000Hz)
+    pwm = GPIO.PWM(PWM_PIN, 1000)
+    pwm.start(0)  # Avvia con duty cycle 0%
+
+    # Inizializza SPI (MCP3008 su Bus 0, CE0)
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    # Funzione per leggere il valore ADC da MCP3008
+    def read_adc(channel):
+        """
+        Legge il valore analogico da MCP3008 (canale 0–7)
+        Restituisce: valore a 10 bit (0–1023)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        r = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((r[1] & 3) << 8) | r[2]
+        return value
+
+    # Ciclo principale per leggere l'ADC e impostare la luminosità del PWM
+    try:
+        while True:
+            analogVal = read_adc(0)
+            print(f"value = {analogVal}")
+
+            # Scala il valore ADC (0–1023) a duty cycle (0–100)
+            duty_cycle = analogVal * 100 / 1023
+            pwm.ChangeDutyCycle(duty_cycle)
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        pwm.stop()
+        GPIO.cleanup()
+        spi.close()
+
+**Spiegazione del codice**
+
+#. Importa le librerie necessarie:
+
+   - ``RPi.GPIO`` per controllare i pin GPIO e generare il segnale PWM.
+   - ``spidev`` per comunicare con l'ADC MCP3008 tramite SPI.
+   - ``time`` per gestire temporizzazioni e ritardi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import RPi.GPIO as GPIO
+       import spidev
+       import time
+
+#. Configura il pin GPIO 22 come uscita PWM usando la modalità BCM.  
+   Inizializza quindi un PWM software a 1000 Hz con duty cycle iniziale dello 0%.
+
+   .. code-block:: python
+
+       # Pin GPIO per LED PWM
+       PWM_PIN = 22
+
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(PWM_PIN, GPIO.OUT)
+
+       pwm = GPIO.PWM(PWM_PIN, 1000)
+       pwm.start(0)  # Avvia con duty cycle 0%
+
+#. Configura l'interfaccia SPI per comunicare con MCP3008 sul bus 0, chip enable 0 (CE0), e velocità SPI a 1 MHz.
+
+   .. code-block:: python
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000  # 1 MHz
+
+#. Definisce una funzione ``read_adc(channel)`` per leggere valori analogici da MCP3008.  
+   La funzione invia tre byte al chip e ricostruisce un valore analogico a 10 bit (0–1023) dalla risposta.
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           if channel < 0 or channel > 7:
+               return -1
+           r = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((r[1] & 3) << 8) | r[2]
+           return value
+
+#. Il ciclo principale:
+
+   - Legge l'ingresso analogico dal canale 0 di MCP3008.
+   - Converte il valore in un duty cycle PWM (0–100%).
+   - Regola la luminosità del LED tramite ``pwm.ChangeDutyCycle()``.
+   - Si ripete ogni 0,2 secondi.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               analogVal = read_adc(0)
+               print(f"value = {analogVal}")
+
+               duty_cycle = analogVal * 100 / 1023
+               pwm.ChangeDutyCycle(duty_cycle)
+
+               time.sleep(0.2)
+
+#. Quando l'utente interrompe il programma con Ctrl+C, il PWM e i GPIO vengono correttamente ripristinati e l'interfaccia SPI viene chiusa.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           pass
+
+       finally:
+           pwm.stop()
+           GPIO.cleanup()
+           spi.close()

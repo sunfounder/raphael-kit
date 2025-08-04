@@ -1,0 +1,277 @@
+.. note::
+
+    Ciao, benvenuto nella Community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anticipo agli annunci dei nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _2.1.9_c_mcp3008:
+
+2.1.9 Joystick (MCP3008)
+==========================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   A seconda della versione del tuo kit, identifica se hai **ADC0834** o **MCP3008** e procedi con la sezione corrispondente.
+
+Introduzione
+--------------
+
+In questo progetto impareremo come funziona un joystick. Manipoleremo
+il joystick e visualizzeremo i risultati sullo schermo.
+
+Componenti necessari
+-------------------------------
+
+In questo progetto sono necessari i seguenti componenti. 
+
+.. image:: ../img/image317-copy.png
+
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
+        - LINK
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Puoi anche acquistarli separatamente dai link sottostanti.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUZIONE COMPONENTE
+        - LINK DI ACQUISTO
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schema elettrico
+-----------------
+
+Quando vengono letti i dati del joystick, ci sono alcune differenze tra
+gli assi: i dati degli assi X e Y sono analogici e richiedono l'uso di MCP3008
+per convertire il valore analogico in un valore digitale. I dati dell'asse Z
+sono digitali, quindi puoi utilizzare direttamente il GPIO per leggerli oppure
+usare l'ADC.
+
+.. .. image:: ../img/image319.png
+
+    *   - Nome T-Board
+        - fisico
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.9_joystick_mcp3008.png
+
+
+Procedure sperimentali
+-----------------------
+
+**Passo 1:** Monta il circuito.
+
+.. image:: ../img/july24_2.1.9_joystick_mcp3008.png
+
+**Passo 2:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.9-2/
+
+**Passo 3:** Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.9_Joystick.c -o joystick -lwiringPi
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    ./joystick
+
+Dopo l'esecuzione del codice, muovi il joystick: i valori corrispondenti di
+x, y e Btn vengono visualizzati sullo schermo.
+
+
+.. note::
+
+    Se non funziona dopo l'esecuzione o compare un errore del tipo: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`install_wiringpi`.
+
+**Codice**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+
+    #define SPI_CHANNEL 0
+    #define SPI_SPEED   1000000  // 1 MHz
+    #define BtnPin      3        // WiringPi 3 = BCM GPIO22
+
+    // Lettura dal canale MCP3008 (0–7)
+    int read_ADC(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;                            // Bit di avvio
+        buffer[1] = (8 + channel) << 4;           // Configurazione del canale
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int result = ((buffer[1] & 0x03) << 8) | buffer[2];
+        return result;
+    }
+
+    int main(void) {
+        if (wiringPiSetup() == -1) {
+            printf("Inizializzazione WiringPi fallita!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("Configurazione SPI fallita!\n");
+            return 1;
+        }
+
+        pinMode(BtnPin, INPUT);
+        pullUpDnControl(BtnPin, PUD_UP);
+
+        while (1) {
+            int x_val = read_ADC(0);     // VRX su CH0
+            int y_val = read_ADC(1);     // VRY su CH1
+            int btn_val = digitalRead(BtnPin);  // Pulsante SW
+
+            printf("x = %d, y = %d, btn = %d\n", x_val, y_val, btn_val);
+            delay(100);
+        }
+
+        return 0;
+    }
+
+**Spiegazione del codice**
+
+#. Questa sezione inizializza le librerie necessarie per la comunicazione GPIO e SPI.
+
+   .. code-block:: c
+
+       #include <wiringPi.h>
+       #include <wiringPiSPI.h>
+       #include <stdio.h>
+
+       #define SPI_CHANNEL 0
+       #define SPI_SPEED   1000000  // 1 MHz
+       #define BtnPin      3        // WiringPi 3 = BCM GPIO22
+
+#. Definisce una funzione `read_ADC()` per leggere dati analogici dal MCP3008.  
+   Comunica tramite SPI per richiedere dati da un dato canale (0–7) e interpreta la risposta per ottenere un risultato ADC a 10 bit.
+
+   .. code-block:: c
+
+       int read_ADC(int channel) {
+           if (channel < 0 || channel > 7) return -1;
+
+           unsigned char buffer[3];
+           buffer[0] = 1;
+           buffer[1] = (8 + channel) << 4;
+           buffer[2] = 0;
+
+           wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+           int result = ((buffer[1] & 0x03) << 8) | buffer[2];
+           return result;
+       }
+
+#. La funzione principale inizializza le interfacce WiringPi e SPI, configura il pin del pulsante del joystick e legge continuamente i valori del joystick, stampandoli sulla console.
+
+   .. code-block:: c
+
+       int main(void) {
+           if (wiringPiSetup() == -1) {
+               printf("Inizializzazione WiringPi fallita!\n");
+               return 1;
+           }
+
+           if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+               printf("Configurazione SPI fallita!\n");
+               return 1;
+           }
+
+           pinMode(BtnPin, INPUT);
+           pullUpDnControl(BtnPin, PUD_UP);
+
+           while (1) {
+               int x_val = read_ADC(0);     // VRX su CH0
+               int y_val = read_ADC(1);     // VRY su CH1
+               int btn_val = digitalRead(BtnPin);  // SW su GPIO22
+
+               printf("x = %d, y = %d, btn = %d\n", x_val, y_val, btn_val);
+               delay(100);
+           }
+
+           return 0;
+       }
+

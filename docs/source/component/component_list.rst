@@ -44,7 +44,7 @@ Di seguito è riportata l'introduzione a ciascun componente, che contiene il pri
     component_74hc595
     component_l293d
     component_adc0834
-
+    component_mcp3008
 
 
 **Display**

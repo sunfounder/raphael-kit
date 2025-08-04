@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
@@ -222,7 +222,7 @@ Il prototipo della funzione softPwmCreate(LedPinRed, 0, 100) è il seguente:
 
 Questa funzione serve a impostare i colori del LED. Utilizzando RGB, il parametro 
 formale **r_val** rappresenta la luminosità del rosso, **g_val** del verde,
- **b_val** del blu.
+**b_val** del blu.
 
 Il prototipo della funzione softPwmWrite(LedPinBlue, b_val) è il 
 seguente:

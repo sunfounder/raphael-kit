@@ -260,7 +260,7 @@ lo schema di numerazione dei pin di wiringPi.
 Questa funzione deve essere chiamata con privilegi di root. Se l'inizializzazione 
 wiring fallisce, stampa un messaggio sullo schermo. La funzione ``return`` viene 
 utilizzata per uscire dalla funzione corrente. Usare ``return`` nella funzione
- ``main()`` termina il programma.
+``main()`` termina il programma.
 
 .. code-block:: c
 

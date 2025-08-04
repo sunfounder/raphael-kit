@@ -1,0 +1,302 @@
+.. note::
+
+    Ciao, benvenuto nella Community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Accedi in anticipo agli annunci dei nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _3.1.7_c_mcp3008:
+
+3.1.7 Monitor Surriscaldamento (MCP3008)
+===========================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   A seconda della versione del tuo kit, identifica se hai **ADC0834** o **MCP3008** e procedi con la sezione corrispondente.
+
+Introduzione
+-------------------
+
+Potresti voler realizzare un dispositivo di monitoraggio del surriscaldamento applicabile a varie situazioni.  
+Ad esempio, in una fabbrica, potremmo voler avere un allarme e lo spegnimento automatico della macchina quando c'è un surriscaldamento del circuito.  
+In questo progetto utilizzeremo un termistore, un joystick, un buzzer, un LED e un display LCD per realizzare un dispositivo intelligente di monitoraggio della temperatura con soglia regolabile.
+
+Componenti necessari
+------------------------------
+
+In questo progetto sono necessari i seguenti componenti.
+
+.. image:: ../img/list2_Overheat_Monitor.png
+    :align: center
+
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nome	
+        - ELEMENTI IN QUESTO KIT
+        - LINK
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Puoi anche acquistarli separatamente dai link sottostanti.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUZIONE COMPONENTE
+        - LINK DI ACQUISTO
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+
+Schema elettrico
+--------------------------
+
+============ ======== ======== ===
+Nome T-Board fisico   wiringPi BCM
+SPICE0       Pin 24   10       8
+SPIMOSI      Pin 19   12       10
+SPIMISO      Pin 21   13       9
+SPISCLK      Pin 23   14       11
+GPIO22       Pin 15   3        22
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one8.png
+   :align: center
+
+Procedure sperimentali
+-----------------------------
+
+**Passo 1:** Monta il circuito.
+
+.. image:: ../img/july24_3.1.8_overheat_monitor_mcp3008.png
+
+**Passo 2**: Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.7-2/
+
+**Passo 3**: Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.7_OverheatMonitor.c -lm -lwiringPi
+
+**Passo 4**: Esegui il file compilato.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Quando il codice è in esecuzione, la temperatura attuale e la soglia di alta temperatura **40** vengono visualizzate su **I2C LCD1602**.  
+Se la temperatura corrente è superiore alla soglia, il buzzer e il LED vengono attivati per avvisarti.
+
+**Joystick**: premendolo è possibile regolare la soglia di alta temperatura.  
+Spostando il **Joystick** lungo l'asse X e Y è possibile aumentare o diminuire la soglia.  
+Premendo di nuovo il **Joystick** si reimposta la soglia al valore iniziale.
+
+.. note::
+
+    * Se viene visualizzato l'errore ``wiringPi.h: No such file or directory``, fai riferimento a :ref:`install_wiringpi`.
+    * Se appare l'errore ``Unable to open I2C device: No such file or directory``, fai riferimento a :ref:`i2c_config` per abilitare I2C e controllare i collegamenti.
+    * Se il codice e il cablaggio sono corretti ma l'LCD non mostra nulla, regola il potenziometro sul retro per aumentare il contrasto.
+
+Spiegazione del codice
+----------------------
+
+.. code-block:: c
+
+    int read_ADC(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+        unsigned char buffer[3];
+        buffer[0] = 1;
+        buffer[1] = (8 + channel) << 4;
+        buffer[2] = 0;
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+        return ((buffer[1] & 0x03) << 8) | buffer[2];
+    }
+
+Legge un valore analogico a 10 bit dal canale MCP3008 (CH0–CH7) utilizzando SPI e restituisce un intero da 0 a 1023.
+
+.. code-block:: c
+
+    int get_joystick_value() {
+        int x = read_ADC(1);
+        int y = read_ADC(2);
+
+        if (x > 900)      return 1;   // Destra
+        else if (x < 100) return -1;  // Sinistra
+        else if (y > 900) return -10; // Su
+        else if (y < 100) return 10;  // Giù
+        else              return 0;
+    }
+
+Legge i valori analogici X e Y del joystick dai canali CH1 e CH2. Restituisce un numero intero che indica la direzione del movimento in base alle soglie.
+
+.. code-block:: c
+
+    void upper_tem_setting() {
+        write_lcd(0,0, "Upper Adjust:");
+
+        int change = get_joystick_value();
+
+        if (change != 0 && change != lastJoystickChange) {
+            upperTem += change;
+            lastJoystickChange = change;
+        }
+        else if (change == 0) {
+            lastJoystickChange = 0;
+        }
+
+        char str[6];
+        snprintf(str, sizeof(str), "%d", upperTem);
+        write_lcd(0,1, str);
+        write_lcd(strlen(str),1, "            ");
+
+        delay(100);
+    }
+
+Permette all'utente di regolare la soglia di temperatura utilizzando il joystick, evitando variazioni continue se la direzione viene mantenuta.
+
+.. code-block:: c
+
+    double temperature() {
+        int raw = read_ADC(0);
+        double Vr = 3.3 * ((double)raw / 1023.0);
+        double Rt = 10000.0 * Vr / (3.3 - Vr);
+        double tempK = 1.0 / ((log(Rt/10000.0)/3950.0) + 1.0/(273.15+25.0));
+        return tempK - 273.15;
+    }
+
+Legge il valore analogico dal CH0 collegato al termistore. Utilizza l'equazione di Steinhart–Hart per calcolare la temperatura in gradi Celsius.
+
+.. code-block:: c
+
+    void monitoring_temp() {
+        char str[6];
+        double cel = temperature();
+        snprintf(str, sizeof(str), "%.2f", cel);
+        write_lcd(0,0, "Temp: ");
+        write_lcd(6,0, str);
+
+        snprintf(str, sizeof(str), "%d", upperTem);
+        write_lcd(0,1, "Upper: ");
+        write_lcd(7,1, str);
+        delay(100);
+
+        if (cel >= upperTem) {
+            digitalWrite(buzzPin, HIGH);
+            digitalWrite(LedPin,  HIGH);
+        } else {
+            digitalWrite(buzzPin, LOW);
+            digitalWrite(LedPin,  LOW);
+        }
+    }
+
+Legge continuamente la temperatura corrente e la visualizza insieme alla soglia.  
+Se la temperatura supera la soglia, vengono attivati buzzer e LED.
+
+.. code-block:: c
+
+    void setup_all() {
+        fd = wiringPiI2CSetup(LCDAddr);
+        lcd_init();
+        if (wiringPiSetup() == -1 || wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("Setup fallito!\n");
+            return;
+        }
+        pinMode(Joy_BtnPin, INPUT);
+        pullUpDnControl(Joy_BtnPin, PUD_UP);
+        pinMode(buzzPin, OUTPUT);
+        pinMode(LedPin,  OUTPUT);
+    }
+
+Inizializza l'LCD, SPI, i pin GPIO per il pulsante del joystick, buzzer e LED. Imposta anche la resistenza di pull-up per il pulsante del joystick.
+
+.. code-block:: c
+
+    int main(void) {
+        setup_all();
+
+        int lastBtnState = HIGH;
+        int stage = 0;
+
+        while (1) {
+            int curBtn = digitalRead(Joy_BtnPin);
+            if (curBtn == HIGH && lastBtnState == LOW) {
+                stage = (stage + 1) % 2;
+                lastJoystickChange = 0;
+                delay(100);
+                lcd_clear();
+            }
+            lastBtnState = curBtn;
+
+            if (stage == 1)
+                upper_tem_setting();
+            else
+                monitoring_temp();
+        }
+
+        return 0;
+    }
+
+Il ciclo principale alterna due modalità:
+
+1. Monitoraggio della temperatura.
+2. Regolazione del limite superiore tramite joystick.
+
+La modalità cambia quando il pulsante del joystick viene rilasciato (trigger sul fronte di salita).

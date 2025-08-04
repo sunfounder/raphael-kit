@@ -1,0 +1,263 @@
+.. note::
+
+    Ciao, benvenuto nella Community Facebook di appassionati di SunFounder Raspberry Pi & Arduino & ESP32! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _2.1.9_py_mcp3008:
+
+2.1.9 Joystick (MCP3008)
+=========================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   A seconda della versione del tuo kit, identifica se hai **ADC0834** o **MCP3008** e procedi con la sezione corrispondente.
+
+Introduzione
+------------
+
+In questo progetto impareremo come funziona il joystick.  
+Muoveremo il Joystick e mostreremo i risultati sullo schermo.
+
+Componenti richiesti
+------------------------------
+
+In questo progetto, ci servono i seguenti componenti. 
+
+.. image:: ../img/image317-copy.png
+
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Puoi anche acquistarli separatamente dai link sottostanti.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUZIONE COMPONENTE
+        - LINK DI ACQUISTO
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schema elettrico
+-----------------
+
+Quando vengono letti i dati del joystick, ci sono alcune differenze tra gli assi:  
+i dati degli assi X e Y sono analogici, quindi è necessario usare l'MCP3008 per convertirli in valori digitali.  
+I dati dell'asse Z sono digitali, quindi è possibile leggere direttamente il valore tramite GPIO, oppure utilizzare l'ADC.
+
+.. image:: ../img/schematic_2.1.9_joystick_mcp3008.png
+
+Procedure sperimentali
+----------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/july24_2.1.9_joystick_mcp3008.png
+
+**Passo 2:** Configura l'interfaccia SPI e installa la libreria ``spidev`` (vedi :ref:`spi_configuration` per istruzioni dettagliate).  
+Se hai già completato questi passaggi, puoi saltarli.
+
+**Passo 3:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**Passo 4:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.9-2_Joystick.py
+
+Dopo l'esecuzione del codice, muovi il Joystick, quindi i valori corrispondenti di  
+x, y e Btn verranno visualizzati sullo schermo.
+
+.. warning::
+
+    Se compare il messaggio di errore ``RuntimeError: Cannot determine SOC peripheral base address``, fai riferimento a :ref:`faq_soc`
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto.  
+    Prima però devi andare nel percorso del codice sorgente come ``raphael-kit/python``.  
+    Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+    # Definizione del pin GPIO per il pulsante del joystick (pin SW)
+    BTN_PIN = 22
+
+    # Impostazione della modalità GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(BTN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Usa pull-up interno
+
+    # Inizializza la comunicazione SPI con MCP3008
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus SPI 0, CE0
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    def read_adc(channel):
+        """
+        Legge il valore analogico dal canale MCP3008 specificato (0–7)
+        :param channel: numero del canale ADC (0–7)
+        :return: valore intero a 10 bit (0–1023)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+    try:
+        # Ciclo principale per leggere e stampare i valori del joystick e lo stato del pulsante
+        while True:
+            # Legge i valori X e Y dai canali MCP3008 1 e 2
+            x_val = read_adc(1)  # Joystick VRX collegato a CH1
+            y_val = read_adc(2)  # Joystick VRY collegato a CH2
+
+            # Legge lo stato del pulsante del joystick (SW)
+            Btn_val = GPIO.input(BTN_PIN)  # 0 = premuto, 1 = rilasciato
+
+            # Stampa i valori letti
+            print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        spi.close()
+        GPIO.cleanup()
+
+**Spiegazione del codice**
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+Questa sezione importa le librerie richieste:
+
+- ``RPi.GPIO`` viene utilizzata per gestire l'input GPIO (pulsante del joystick).
+- ``spidev`` viene utilizzata per comunicare con il chip ADC MCP3008 tramite SPI.
+- ``time`` viene utilizzata per introdurre ritardi tra le letture.
+
+.. code-block:: python
+
+    # Definizione del pin GPIO per il pulsante del joystick (pin SW)
+    BTN_PIN = 22
+
+    # Impostazione della modalità GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(BTN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+    # Inizializza la comunicazione SPI con MCP3008
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus SPI 0, CE0
+    spi.max_speed_hz = 1000000
+
+Questo blocco imposta la modalità GPIO su ``BCM``, inizializza l'input del pulsante del joystick sul GPIO22 con una resistenza pull-up interna e configura l'interfaccia SPI con MCP3008 utilizzando bus 0 e chip enable 0 (CE0) a 1 MHz.
+
+.. code-block:: python
+
+    def read_adc(channel):
+        """
+        Legge il valore analogico dal canale MCP3008 specificato (0–7)
+        :param channel: numero del canale ADC (0–7)
+        :return: valore intero a 10 bit (0–1023)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+Definisce la funzione ``read_adc()`` per leggere i dati analogici da un canale specifico di MCP3008.  
+Invia tre byte tramite SPI e interpreta la risposta per restituire un valore a 10 bit compreso tra 0 e 1023.
+
+.. code-block:: python
+
+    try:
+        # Ciclo principale per leggere e stampare i valori del joystick e lo stato del pulsante
+        while True:
+            # Legge i valori X e Y dai canali MCP3008 0 e 1
+            x_val = read_adc(0)  # Joystick VRX collegato a CH0
+            y_val = read_adc(1)  # Joystick VRY collegato a CH1
+
+            # Legge lo stato del pulsante del joystick (SW)
+            Btn_val = GPIO.input(BTN_PIN)  # 0 = premuto, 1 = rilasciato
+
+            # Stampa i valori letti
+            print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        spi.close()
+        GPIO.cleanup()
+
+Il ciclo principale legge e stampa le posizioni analogiche X/Y del joystick e lo stato del pulsante ogni 200 ms.  
+Se lo script viene interrotto tramite tastiera (Ctrl+C), l'interfaccia SPI e la configurazione GPIO vengono correttamente chiuse.

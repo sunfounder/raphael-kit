@@ -34,5 +34,6 @@ e molto altro ancora…
    blynk_light
    blynk_reed
    blynk_motor
+   blynk_motor(mcp3008)
    blynk_temp
 

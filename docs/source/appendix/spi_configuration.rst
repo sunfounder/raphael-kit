@@ -17,62 +17,64 @@
 Configurazione SPI
 -----------------------
 
-**Passo 1**: Abilita la porta SPI del tuo Raspberry Pi (se l'hai già
-abilitata, salta questo passaggio; se non sei sicuro di averlo fatto o meno,
-continua a seguire le istruzioni).
+#. Abilita l'interfaccia SPI sul tuo Raspberry Pi. Se l'hai già abilitata, puoi saltare questo passaggio. Se non sei sicuro, segui le istruzioni riportate di seguito.
 
-.. raw:: html
+   * Apri lo strumento di configurazione di Raspberry Pi:
 
-   <run></run>
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo raspi-config
 
-.. code-block:: 
+   * **3 Opzioni di interfacciamento**
 
-    sudo raspi-config
+     .. image:: img/image282.png
+        :align: center
 
-**3 Opzioni di Interfaccia**
+   * **I3 SPI**
 
-.. image:: img/image282.png
-   :align: center
+     .. image:: img/i3spi.png
+        :align: center
+     
+   * **<SÌ>, quindi fare clic su <OK> e <Finish>.**
 
-**I3 SPI**
+     .. image:: img/image286.png
+        :align: center 
 
-.. image:: img/i3spi.png
-   :align: center
+#. Verifica che i moduli SPI siano attivi.
 
-**<SÌ>, quindi fai clic su <OK> e <Finish>.**
+   * Esegui il seguente comando:
 
-.. image:: img/image286.png
-   :align: center 
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         ls /dev/sp*
 
-**Passo 2:** Verifica che i moduli spi siano caricati e attivi.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    ls /dev/sp*
-
-A questo punto compariranno i seguenti codici (il numero può variare).
+   * Dovresti vedere un output simile a:
 
 
-.. code-block:: 
+     .. code-block:: 
+     
+         /dev/spidev0.0  /dev/spidev0.1
 
-    /dev/spidev0.0  /dev/spidev0.1
+   Se questi dispositivi compaiono, l'interfaccia SPI è attiva e pronta.
 
-**Passo 3:** Installa il modulo Python SPI-Py.
+#. Installa la libreria Python ``spidev``.
 
-.. raw:: html
+   * Esegui il seguente comando per installarla usando ``pip``:
 
-   <run></run>
-
-.. code-block:: 
-
-    git clone https://github.com/lthiery/SPI-Py.git
-    cd SPI-Py
-    sudo python3 setup.py install
-
-.. note::
-    Questo passaggio è per gli utenti Python, se utilizzi il linguaggio C,
-    puoi saltarlo.
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo pip3 install spidev
+     
+   Questa libreria fornisce l'interfaccia Python per comunicare con i dispositivi SPI utilizzando /dev/spidevX.Y.

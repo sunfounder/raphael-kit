@@ -12,8 +12,8 @@
 
     👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi!
 
-Per Pi 5
-============================
+Per tutti i modelli (consigliato)
+==============================================
 
 Il rilascio del Raspberry Pi 5 ci ha portato un modello più potente, ma ha 
 introdotto anche alcune modifiche, 

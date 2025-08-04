@@ -1,4 +1,4 @@
-.. nota::
+.. note::
 
     Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
 
@@ -28,8 +28,10 @@ Input
     2.1.5_tilt_switch_c
     2.1.6_rotary_encoder_module_c
     2.1.7_potentiometer_c
+    2.1.7_potentiometer_c(mcp3008)
     2.1.8_keypad_c
     2.1.9_joystick_c
+    2.1.9_joystick_c(mcp3008)
 
 2.2 Sensori
 ---------------
@@ -38,7 +40,9 @@ Input
     :maxdepth: 1
 
     2.2.1_photoresistor_c
+    2.2.1_photoresistor_c(mcp3008)
     2.2.2_thermistor_c
+    2.2.2_thermistor_c(mcp3008)
     2.2.3_dht-11_c
     2.2.4_reed_switch_c
     2.2.5_ir_obstacle_avoidance_sensor_c
@@ -46,4 +50,4 @@ Input
     2.2.7_pir_c
     2.2.8_ultrasonic_sensor_module_c
     2.2.9_mpu6050_module_c
-    2.2.10_mfrc522_rfid_module_c
+    2.2.10_mfrc522_rfid_module_c 

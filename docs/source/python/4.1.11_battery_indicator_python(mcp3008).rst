@@ -1,0 +1,304 @@
+.. note::
+
+    Ciao, benvenuto nella Community Facebook di appassionati di SunFounder Raspberry Pi & Arduino & ESP32! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _4.1.11_py_mcp3008:
+
+4.1.11 Indicatore di Batteria (MCP3008)
+=========================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   A seconda della versione del tuo kit, identifica se hai **ADC0834** o **MCP3008** e procedi con la sezione corrispondente.
+
+Introduzione
+--------------
+
+In questo progetto, realizzeremo un indicatore di batteria che può visualizzare il livello della batteria su un LED Bargraph.
+
+.. warning::
+
+    Non utilizzare componenti della batteria che superano i 3,3V per evitare sovraccarichi, che potrebbero danneggiare il chip o il Raspberry Pi.
+
+Componenti richiesti
+------------------------------
+
+In questo progetto, ci servono i seguenti componenti.
+
+.. image:: ../img/list2_Battery_Indicator.png
+    :align: center
+
+È sicuramente conveniente acquistare un kit completo, ecco il link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Puoi anche acquistarli separatamente dai link sottostanti.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUZIONE COMPONENTE
+        - LINK DI ACQUISTO
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schema elettrico
+-------------------
+
+============ ======= ======== ===
+Nome T-Board fisico  wiringPi BCM
+SPICE0       Pin 24  10       8
+SPIMOSI      Pin 19  12       10
+SPIMISO      Pin 21  13       9
+SPISCLK      Pin 23  14       11
+GPIO25       Pin 22  6        25
+GPIO12       Pin 32  26       12
+GPIO16       Pin 36  27       16
+GPIO20       Pin 38  28       20
+GPIO21       Pin 40  29       21
+GPIO5        Pin 29  21       5
+GPIO6        Pin 31  22       6
+GPIO13       Pin 33  23       13
+GPIO19       Pin 35  24       19
+GPIO26       Pin 37  25       26
+============ ======= ======== ===
+
+.. image:: ../img/schematic_battery_indicator_mcp3008.png
+   :align: center
+
+Procedure sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/july24_3.1.5_battery_indicator_mcp3008.png
+
+**Passo 2:** Configura l'interfaccia SPI e installa la libreria ``spidev`` (vedi :ref:`spi_configuration` per istruzioni dettagliate). Se hai già completato questi passaggi, puoi saltarli.
+
+**Passo 3:** Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.11-2_BatteryIndicator.py
+
+Dopo l'avvio del programma, collega separatamente un filo dal 3° pin dell'ADC0834 e dalla GND e connettili ai due poli di una batteria.  
+Potrai vedere che i LED corrispondenti sul LED Bargraph si accendono per visualizzare il livello di carica (intervallo di misura: 0-5V).
+
+.. warning::
+
+    Se compare il messaggio di errore ``RuntimeError: Cannot determine SOC peripheral base address``, fai riferimento a :ref:`faq_soc`
+
+**Codice**
+
+.. note::
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto.  
+    Prima però devi andare nel percorso del codice sorgente come ``raphael-kit/python``.  
+    Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+    # Pin GPIO collegati a 10 LED, ordinati da sinistra a destra
+    led_pins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]  # Numerazione BCM
+
+    # Impostazione GPIO
+    GPIO.setmode(GPIO.BCM)
+    for pin in led_pins:
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.LOW)
+
+    # Inizializza SPI
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus 0, CE0
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    # Legge il valore dal canale MCP3008
+    def read_adc(channel):
+        if channel < 0 or channel > 7:
+            return -1
+        r = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((r[1] & 0x03) << 8) | r[2]
+        return value
+
+    # Accende il LED bar graph in base al valore
+    def led_bar_graph(level):
+        for i, pin in enumerate(led_pins):
+            if i < level:
+                GPIO.output(pin, GPIO.HIGH)
+            else:
+                GPIO.output(pin, GPIO.LOW)
+
+    # Ciclo principale
+    try:
+        while True:
+            analog_val = read_adc(0)  # Lettura dal canale 0 di MCP3008
+            level = int(analog_val * 10 / 1023)
+            led_bar_graph(level)
+            print(f"ADC: {analog_val}, Livello: {level}")
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        for pin in led_pins:
+            GPIO.output(pin, GPIO.LOW)
+        GPIO.cleanup()
+        spi.close()
+
+Spiegazione del codice
+-------------------------
+Questo programma legge la tensione analogica da un ADC MCP3008 e visualizza il risultato su un LED bar graph a 10 LED utilizzando un Raspberry Pi (disposizione pin BCM).
+
+1. **Importa moduli**
+
+   - ``RPi.GPIO`` controlla i pin GPIO del Raspberry Pi.
+   - ``spidev`` comunica con MCP3008 tramite SPI.
+   - ``time`` fornisce la funzionalità di attesa/ritardo.
+
+   .. code-block:: python
+
+       import RPi.GPIO as GPIO
+       import spidev
+       import time
+
+2. **Configurazione dei LED GPIO**
+
+   Viene definita una lista di 10 pin GPIO per il controllo dei LED.  
+   Questi pin vengono configurati come output e inizializzati su LOW (spenti).
+
+   .. code-block:: python
+
+       led_pins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]
+       GPIO.setmode(GPIO.BCM)
+       for pin in led_pins:
+           GPIO.setup(pin, GPIO.OUT)
+           GPIO.output(pin, GPIO.LOW)
+
+3. **Inizializzazione SPI**
+
+   Inizializza il bus SPI 0 e il chip enable 0 (CE0) per comunicare con MCP3008.  
+   La velocità di comunicazione è impostata su 1 MHz.
+
+   .. code-block:: python
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+
+4. **Funzione di lettura ADC**
+
+   Legge un valore analogico da un canale specifico MCP3008 (0–7).  
+   La funzione invia un comando SPI a 3 byte e decodifica il risultato a 10 bit.
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           if channel < 0 or channel > 7:
+               return -1
+           r = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((r[1] & 0x03) << 8) | r[2]
+           return value
+
+5. **Funzione LED Bar Graph**
+
+   Accende i LED in base al livello analogico.  
+   Se il livello è 7, i primi 7 LED saranno ACCESI e i restanti SPENTI.
+
+   .. code-block:: python
+
+       def led_bar_graph(level):
+           for i, pin in enumerate(led_pins):
+               if i < level:
+                   GPIO.output(pin, GPIO.HIGH)
+               else:
+                   GPIO.output(pin, GPIO.LOW)
+
+6. **Ciclo principale**
+
+   Legge continuamente l'ingresso analogico dal canale 0, ridimensiona il risultato su un valore da 0 a 10 e aggiorna la visualizzazione LED di conseguenza.  
+   Stampa i valori ADC e livello per monitoraggio.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               analog_val = read_adc(0)
+               level = int(analog_val * 10 / 1023)
+               led_bar_graph(level)
+               print(f"ADC: {analog_val}, Livello: {level}")
+               time.sleep(0.2)
+
+7. **Pulizia all'uscita**
+
+   Quando viene premuto ``Ctrl+C``, il programma spegne tutti i LED, ripristina lo stato dei GPIO e chiude l'interfaccia SPI.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           pass
+
+       finally:
+           for pin in led_pins:
+               GPIO.output(pin, GPIO.LOW)
+           GPIO.cleanup()
+           spi.close()

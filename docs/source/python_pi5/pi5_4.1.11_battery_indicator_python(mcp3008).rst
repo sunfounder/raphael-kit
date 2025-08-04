@@ -1,0 +1,392 @@
+.. note::
+
+    Ciao, benvenuto nella Community Facebook di appassionati SunFounder Raspberry Pi & Arduino & ESP32! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti speciali**: Goditi sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e giveaway**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _4.1.11_py_pi5_mcp3008:
+
+4.1.8 Indicatore di batteria (MCP3008)
+========================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   A seconda della versione del kit, identifica se hai **ADC0834** o **MCP3008** e procedi con la sezione corrispondente.
+
+Introduzione
+--------------
+
+In questo progetto, realizzeremo un dispositivo indicatore di batteria che può mostrare visivamente il livello della batteria sul LED Bargraph.
+
+.. warning::
+
+    Non utilizzare batterie con tensione superiore a 3,3V per evitare sovraccarichi che potrebbero danneggiare il chip o il Raspberry Pi.
+
+Componenti richiesti
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/list2_Battery_Indicator.png
+    :align: center
+
+È sicuramente comodo acquistare un kit completo, ecco il link: 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nome	
+        - ARTICOLI IN QUESTO KIT
+        - LINK
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+Puoi anche acquistarli separatamente dai link sottostanti.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUZIONE COMPONENTE
+        - LINK DI ACQUISTO
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schema elettrico
+-------------------
+
+============ ======== ======== ===
+Nome T-Board fisico   wiringPi BCM
+SPICE0       Pin 24   10       8
+SPIMOSI      Pin 19   12       10
+SPIMISO      Pin 21   13       9
+SPISCLK      Pin 23   14       11
+GPIO25       Pin 22   6        25
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       20
+GPIO21       Pin 40   29       21
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+GPIO19       Pin 35   24       19
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/schematic_battery_indicator_mcp3008.png
+   :align: center
+   :width: 800
+
+Procedure sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/july24_3.1.5_battery_indicator_mcp3008.png
+   :width: 800
+
+**Passo 2:** Configura l'interfaccia SPI e installa la libreria ``spidev`` (vedi :ref:`spi_configuration` per istruzioni dettagliate).  
+Se hai già completato questi passaggi, puoi saltarli.
+
+**Passo 3:** Vai nella cartella del codice.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.11-2_Battery_indicator_zero.py
+
+Dopo l'avvio del programma, collega un cavo tra il terzo pin di MCP3008 e il GND, quindi collegali ai due poli di una batteria.  
+Puoi vedere il LED corrispondente sul LED Bargraph accendersi per mostrare il livello di carica (intervallo di misura: 0-5V).
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, fai riferimento a :ref:`faq_soc` 
+
+Codice
+--------
+
+.. note::
+    Puoi **Modificare/Resettare/Copiare/Eseguire/Fermare** il codice qui sotto.  
+    Prima, però, devi andare al percorso del codice sorgente come ``raphael-kit/python-pi5``.  
+    Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import LCD1602
+    from gpiozero import LED, Buzzer, Button
+    import spidev
+    import time
+    import math
+
+    # Inizializza joystick, buzzer e LED
+    Joy_BtnPin = Button(22)  # GPIO22, Pin15
+    buzzPin = Buzzer(23)     # GPIO23, Pin16
+    ledPin = LED(24)         # GPIO24, Pin18
+
+    # Soglia di temperatura iniziale
+    upperTem = 40
+
+    # Inizializza SPI per MCP3008 (Bus 0, CE0 -> GPIO8 / Pin24)
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    # Inizializza LCD (indirizzo I2C 0x27, retroilluminazione attiva)
+    LCD1602.init(0x27, 1)
+
+    def read_adc(channel):
+        """
+        Legge il valore analogico da MCP3008 
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+    def get_joystick_value():
+        """
+        Legge i valori del joystick e restituisce un valore di variazione 
+        in base alla posizione del joystick.
+        """
+        x_val = read_adc(1)
+        y_val = read_adc(2)
+        if x_val > 800:
+            return 1
+        elif x_val < 200:
+            return -1
+        elif y_val > 800:
+            return -10
+        elif y_val < 200:
+            return 10
+        else:
+            return 0
+
+    def upper_tem_setting():
+        """
+        Regola e visualizza la soglia di temperatura superiore sull'LCD.
+        """
+        global upperTem
+        LCD1602.write(0, 0, 'Upper Adjust: ')
+        change = int(get_joystick_value())
+        upperTem += change
+        strUpperTem = str(upperTem)
+        LCD1602.write(0, 1, strUpperTem)
+        LCD1602.write(len(strUpperTem), 1, '              ')
+        time.sleep(0.1)
+
+    def temperature():
+        """
+        Legge la temperatura corrente dal sensore e la restituisce in Celsius.
+        """
+        analogVal = read_adc(0)
+        Vr = 3.3 * analogVal / 1023.0
+        if Vr == 0:
+            return 0
+        Rt = 10000.0 * (3.3 - Vr) / Vr
+        temp = 1 / (((math.log(Rt / 10000.0)) / 3950.0) + (1 / (273.15 + 25.0)))
+        Cel = temp - 273.15
+        return round(Cel, 2)
+
+    def monitoring_temp():
+        """
+        Monitora e visualizza la temperatura corrente e la soglia impostata. 
+        Attiva buzzer e LED se la temperatura supera il limite.
+        """
+        global upperTem
+        Cel = temperature()
+        LCD1602.write(0, 0, 'Temp: ')
+        LCD1602.write(0, 1, 'Upper: ')
+        LCD1602.write(6, 0, str(Cel))
+        LCD1602.write(7, 1, str(upperTem))
+        time.sleep(0.1)
+        if Cel >= upperTem:
+            buzzPin.on()
+            ledPin.on()
+        else:
+            buzzPin.off()
+            ledPin.off()
+
+    # Ciclo principale
+    try:
+        lastState = 1
+        stage = 0
+        while True:
+            currentState = Joy_BtnPin.value
+            if currentState == 1 and lastState == 0:
+                stage = (stage + 1) % 2
+                time.sleep(0.1)
+                LCD1602.clear()
+            lastState = currentState
+            if stage == 1:
+                upper_tem_setting()
+            else:
+                monitoring_temp()
+    except KeyboardInterrupt:
+        LCD1602.clear()
+        spi.close()
+
+Spiegazione del codice
+------------------------
+
+Questo programma Python funziona su Raspberry Pi. Utilizza un convertitore analogico-digitale MCP3008 per leggere i dati di temperatura da un sensore analogico.  
+Un joystick viene usato per regolare la soglia di temperatura, e un display LCD1602 mostra la temperatura corrente e la soglia.  
+Un buzzer e un LED vengono attivati quando la temperatura supera la soglia.
+
+1. **Importazione delle librerie**
+
+   .. code-block:: python
+
+       import RPi.GPIO as GPIO
+       import spidev
+       import time
+       import math
+       import LCD1602
+
+   * ``RPi.GPIO`` per il controllo dei pin GPIO.  
+   * ``spidev`` per comunicare con MCP3008 tramite SPI.  
+   * ``math`` per i calcoli di conversione della temperatura.  
+   * ``LCD1602`` per controllare il display LCD.
+
+2. **Configurazione dei GPIO**
+
+   .. code-block:: python
+
+       JOY_BTN_PIN = 22
+       BUZZER_PIN = 23
+       LED_PIN = 24
+
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(JOY_BTN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+       GPIO.setup(BUZZER_PIN, GPIO.OUT)
+       GPIO.setup(LED_PIN, GPIO.OUT)
+
+   * Definizione dei pin per pulsante, buzzer e LED con numerazione BCM.  
+   * Configurazione del pulsante joystick con resistenza di pull-up.
+
+3. **Inizializzazione di SPI e LCD**
+
+   .. code-block:: python
+
+       upperTem = 40
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+       LCD1602.init(0x27, 1)
+
+   * Comunicazione SPI con MCP3008.  
+   * Configurazione LCD1602 tramite I2C.
+
+4. **Lettura canale ADC**
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           adc = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((adc[1] & 0x03) << 8) | adc[2]
+           return value
+
+   * Lettura dei valori analogici su un canale (0–7) dell'MCP3008.
+
+5. **Input direzionale joystick**
+
+   .. code-block:: python
+
+       def get_joystick_value():
+           ...
+
+   * Lettura movimenti orizzontali/verticali per variare la soglia di temperatura.
+
+6. **Regolazione soglia temperatura**
+
+   .. code-block:: python
+
+       def upper_tem_setting():
+           ...
+
+   * Permette di modificare la soglia ``upperTem`` tramite joystick e aggiornare l'LCD.
+
+7. **Calcolo della temperatura dal sensore**
+
+   .. code-block:: python
+
+       def temperature():
+           ...
+
+   * Converte la tensione letta in resistenza e quindi in temperatura (°C) con l'equazione di Steinhart–Hart.
+
+8. **Modalità di monitoraggio**
+
+   .. code-block:: python
+
+       def monitoring_temp():
+           ...
+
+   * Mostra temperatura corrente e soglia, attiva buzzer e LED se il limite è superato.
+
+9. **Ciclo principale**
+
+   .. code-block:: python
+
+       try:
+           ...
+       except KeyboardInterrupt:
+           ...
+
+   * Alterna tra monitoraggio e regolazione soglia con il pulsante joystick.
+
+10. **Pulizia finale**
+
+   .. code-block:: python
+
+       finally:
+           LCD1602.clear()
+           GPIO.cleanup()
+           spi.close()
+
+   * Garantisce la pulizia dei GPIO e dello schermo LCD alla chiusura del programma.

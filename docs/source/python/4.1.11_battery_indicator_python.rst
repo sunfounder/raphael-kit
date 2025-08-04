@@ -17,11 +17,24 @@
 4.1.11 Indicatore di Batteria
 ===================================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   A seconda della versione del tuo kit, identifica se hai **ADC0834** o **MCP3008** e procedi con la sezione corrispondente.
+
 Introduzione
 --------------
 
 In questo progetto, realizzeremo un dispositivo indicatore di batteria che può 
 isualizzare il livello della batteria su un LED Bargraph.
+
+.. warning::
+
+    Non utilizzare componenti della batteria che superano i 3,3V per evitare sovraccarichi, che potrebbero danneggiare il chip o il Raspberry Pi.
 
 Componenti necessari
 ------------------------------

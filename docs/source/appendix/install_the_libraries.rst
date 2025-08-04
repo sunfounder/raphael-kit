@@ -262,23 +262,13 @@ Questa è una libreria Python 3 per interfacciare display a matrice LED utilizza
 
 * Riferimento: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-Spidev e MFRC522
+
+.. _mfrc522_lib:
+
+MFRC522
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La libreria ``spidev`` aiuta a gestire le interazioni con l'interfaccia SPI ed è un componente chiave in questo tutorial poiché è necessaria affinché il Raspberry Pi possa interagire con il modulo RFID RC522.
-
-Esegui il seguente comando per installare ``spidev`` sul tuo Raspberry Pi tramite ``pip``.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo pip3 install spidev
-
-
-Continua installando la libreria MFRC522.
+Esegui il seguente comando per installare la libreria MFRC522.
 
 .. raw:: html
 

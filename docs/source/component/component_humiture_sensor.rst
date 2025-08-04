@@ -15,7 +15,7 @@
 .. _cpn_humiture_sensor:
 
 Modulo Sensore di Umidità e Temperatura
-=============================
+==========================================================
 
 .. image:: img/dht11_pic.png
     :width: 400
