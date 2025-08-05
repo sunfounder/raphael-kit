@@ -17,7 +17,7 @@ Pour les utilisateurs de Mac OS X
 
 Pour les utilisateurs de Mac OS X, SSH (Secure Shell) offre une méthode sécurisée et pratique pour accéder à distance et contrôler un Raspberry Pi. Cela est particulièrement utile pour travailler avec le Raspberry Pi à distance ou lorsqu'il n'est pas connecté à un moniteur. En utilisant l'application Terminal sur un Mac, vous pouvez établir cette connexion sécurisée. Le processus implique une commande SSH intégrant le nom d'utilisateur et le nom d'hôte du Raspberry Pi. Lors de la première connexion, une invite de sécurité vous demandera de confirmer l'authenticité du Raspberry Pi.
 
-#. Pour vous connecter au Raspberry Pi, tapez la commande SSH suivante :
+#. Lancez une connexion SSH en tapant ssh ``<username>@<hostname>.local`` ou ``ssh <username>@<IP address>``. Par exemple:
 
     .. code-block::
 

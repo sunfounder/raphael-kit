@@ -18,6 +18,15 @@
 3.1.4 Ventilateur Intelligent
 ===================================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
 Introduction
 ----------------
 
@@ -53,40 +62,40 @@ Vous pouvez également les acheter séparément à partir des liens ci-dessous.
     * - INTRODUCTION DES COMPOSANTS
       - LIEN D'ACHAT
 
-    *   - :ref:`cpn_gpio_extension_board`
+    * - :ref:`cpn_gpio_extension_board`
       - |link_gpio_board_buy|
-    *   - :ref:`cpn_breadboard`
+    * - :ref:`cpn_breadboard`
       - |link_breadboard_buy|
-    *   - :ref:`cpn_wires`
+    * - :ref:`cpn_wires`
       - |link_wires_buy|
-    *   - :ref:`cpn_resistor`
+    * - :ref:`cpn_resistor`
       - |link_resistor_buy|
-    *   - :ref:`cpn_power_module`
+    * - :ref:`cpn_power_module`
       - \-
-    *   - :ref:`cpn_thermistor`
+    * - :ref:`cpn_thermistor`
       - |link_thermistor_buy|
-    *   - :ref:`cpn_l293d`
+    * - :ref:`cpn_l293d`
       - \-
-    *   - :ref:`cpn_adc0834`
+    * - :ref:`cpn_adc0834`
       - \-
-    *   - :ref:`cpn_button`
+    * - :ref:`cpn_button`
       - |link_button_buy|
-    *   - :ref:`cpn_motor`
+    * - :ref:`cpn_motor`
       - |link_motor_buy|
 
 Schéma de Câblage
 -----------------
 
-============ ========= ========= ===
-Nom T-Board   physique wiringPi  BCM
-GPIO17        Pin 11   0         17
-GPIO18        Pin 12   1         18
-GPIO27        Pin 13   2         27
-GPIO22        Pin 15   3         22
-GPIO5         Pin 29   21        5
-GPIO6         Pin 31   22        6
-GPIO13        Pin 33   23        13
-============ ========= ========= ===
+============ ======== ========= ===
+Nom T-Board  physique wiringPi  BCM
+GPIO17       Pin 11   0         17
+GPIO18       Pin 12   1         18
+GPIO27       Pin 13   2         27
+GPIO22       Pin 15   3         22
+GPIO5        Pin 29   21        5
+GPIO6        Pin 31   22        6
+GPIO13       Pin 33   23        13
+============ ======== ========= ===
 
 .. image:: ../img/Schematic_three_one4.png
    :align: center
@@ -147,6 +156,7 @@ automatiquement d'un niveau.
 .. note::
 
     Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
+
 Code
 --------
 

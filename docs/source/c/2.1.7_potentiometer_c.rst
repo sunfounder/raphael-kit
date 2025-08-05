@@ -18,6 +18,17 @@
 2.1.7 Potentiomètre
 =========================
 
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
+
 Introduction
 ---------------
 
@@ -77,7 +88,7 @@ Schéma de Câblage
 
 
 Procédures Expérimentales
------------------------
+----------------------------------------
 
 **Étape 1:** Construisez le circuit.
 
@@ -123,6 +134,7 @@ Après l'exécution du code, tournez le bouton du potentiomètre, l'intensité d
 .. note::
 
     Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : \"wiringPi.h: No such file or directory\", veuillez vous référer à :ref:`install_wiringpi`.
+
 **Code**
 
 .. code-block:: c

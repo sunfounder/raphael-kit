@@ -1,0 +1,249 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! 
+    Plongez plus profondément dans l’univers Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes après-vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et aux avant‑premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et promotions de vacances.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez‑nous dès aujourd’hui !
+
+.. _2.2.1_js_pi5_mcp3008:
+
+2.2.1 Photoresistance (MCP3008)
+================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous avez un **ADC0834** ou un **MCP3008** et suivez la section correspondante.
+
+Introduction
+------------
+
+La photo‑résistance est un composant couramment utilisé pour mesurer l’intensité lumineuse ambiante.  
+Elle aide le contrôleur à distinguer le jour et la nuit et permet de réaliser des fonctions de commande lumineuse telles qu’une lampe de nuit.  
+Ce projet est très similaire au potentiomètre, sauf qu’il mesure la lumière au lieu de changer manuellement la tension.
+
+Composants requis
+-----------------
+
+Dans ce projet, nous avons besoin des composants suivants :
+
+.. image:: ../img/list2_2.2.1_photoresistor.png
+
+Il est définitivement plus pratique d’acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci‑dessous :
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D’ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+Schéma
+------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - Nom T‑Board
+        - Physique
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.2.1_photoresistor_mcp3008.png
+
+Procédure expérimentale
+-----------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/2.2.1_Photoresistor_bb.png
+
+**Étape 2 :** Aller dans le dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/nodejs/
+
+**Étape 3 :** Exécuter le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node photoresistor-2.js
+
+Code
+----
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const mcpadc = require('mcp-spi-adc');
+
+    // Ouvrir le canal 0 du MCP3008 (entrée analogique CH0)
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1350000 }, (err) => {
+    if (err) {
+        console.error("Échec d'ouverture du MCP3008 :", err);
+        process.exit(1);
+    }
+
+    console.log("MCP3008 initialisé sur SPI0/CE0.");
+
+    // Initialiser la LED sur GPIO22 (compatible PWM)
+    const led = new Gpio(22, { mode: Gpio.OUTPUT });
+
+    // Lire l'ADC et mettre à jour la luminosité de la LED toutes les 100 ms
+    const interval = setInterval(() => {
+        adc.read((err, reading) => {
+        if (err) {
+            console.error("Erreur de lecture ADC :", err);
+            return;
+        }
+
+        const adcValue = reading.value;               // Float entre 0.0 et 1.0
+        const pwmValue = Math.round(adcValue * 255);  // Échelle 0–255
+
+        console.log(`ADC = ${adcValue.toFixed(4)}, PWM = ${pwmValue}`);
+
+        led.pwmWrite(pwmValue); // Mettre à jour la luminosité de la LED
+        });
+    }, 100);
+
+    // Gestion de Ctrl+C (SIGINT) pour un arrêt propre
+    process.on('SIGINT', () => {
+        console.log('\nArrêt en cours...');
+        clearInterval(interval);  // Arrêter la boucle intervalle
+        led.digitalWrite(0);      // Éteindre la LED
+        process.exit(0);
+    });
+    });
+
+Explication du code
+-------------------
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+Importe le module ``pigpio`` utilisé pour contrôler les broches GPIO du Raspberry Pi.  
+Il prend en charge la sortie PWM nécessaire pour la gradation d’une LED.
+
+.. code-block:: js
+
+    const mcpadc = require('mcp-spi-adc');
+
+Importe la bibliothèque ``mcp-spi-adc``, qui permet la communication avec le convertisseur analogique‑numérique MCP3008 en utilisant l’interface SPI matérielle du Raspberry Pi.
+
+.. code-block:: js
+
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1350000 }, (err) => { ... });
+
+Ouvre le canal d’entrée analogique 0 de la puce MCP3008 via le SPI matériel.  
+La vitesse d’horloge SPI est réglée à 1,35 MHz.  
+En cas d’erreur, le programme l’affiche et se termine.
+
+.. code-block:: js
+
+    const led = new Gpio(22, { mode: Gpio.OUTPUT });
+
+Initialise la broche GPIO 22 comme sortie.  
+Cette broche est utilisée pour contrôler la luminosité d’une LED via PWM avec la bibliothèque ``pigpio``.
+
+.. code-block:: js
+
+    setInterval(() => {
+        adc.read((err, reading) => {
+            ...
+        });
+    }, 100);
+
+Configure une boucle répétée toutes les 100 millisecondes.  
+Dans chaque cycle, la valeur analogique du canal 0 est lue.  
+Le résultat est un nombre flottant compris entre 0,0 et 1,0 représentant le rapport entre la tension d’entrée et la tension de référence.
+
+.. code-block:: js
+
+    const pwmValue = Math.round(adcValue * 255);
+    led.pwmWrite(pwmValue);
+
+Convertit la valeur analogique en valeur PWM 8 bits (0–255) puis l’écrit sur GPIO22 pour ajuster la luminosité de la LED proportionnellement.
+
+.. code-block:: js
+
+    process.on('SIGINT', () => {
+        clearInterval(interval);
+        led.digitalWrite(0);
+        process.exit(0);
+    });
+
+Ajoute un gestionnaire de signal pour arrêter proprement le programme lorsque ``Ctrl+C`` est pressé.  
+Il stoppe la boucle intervalle, éteint la LED et ferme proprement le programme.
+

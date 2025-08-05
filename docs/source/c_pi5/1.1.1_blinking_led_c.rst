@@ -70,17 +70,17 @@ Schéma de câblage
 ---------------------
 
 Dans cette expérience, connectez une résistance de 220Ω à l'anode (la longue broche de la LED),
- puis la résistance à 3,3 V, et connectez la cathode (la broche courte) de la LED à GPIO17 du Raspberry Pi.
-  Ainsi, pour allumer une LED, nous devons rendre GPIO17 à un niveau bas (0V).
-   Nous pouvons obtenir ce phénomène par programmation.
+puis la résistance à 3,3 V, et connectez la cathode (la broche courte) de la LED à GPIO17 du Raspberry Pi.
+Ainsi, pour allumer une LED, nous devons rendre GPIO17 à un niveau bas (0V).
+Nous pouvons obtenir ce phénomène par programmation.
 
 .. note::
 
     **Pin11** se réfère à la 11ème broche du Raspberry Pi de gauche à droite, et ses numéros de broche correspondants **wiringPi** et **BCM** sont indiqués dans le tableau suivant.
 
 Dans le contenu lié au langage C, nous faisons équivaloir GPIO0 à 0 dans wiringPi.
- Parmi le contenu lié au langage Python, BCM 17 est 17 dans la colonne BCM du tableau suivant.
-  En même temps, ils sont les mêmes que la 11ème broche du Raspberry Pi, Pin 11.
+Parmi le contenu lié au langage Python, BCM 17 est 17 dans la colonne BCM du tableau suivant.
+En même temps, ils sont les mêmes que la 11ème broche du Raspberry Pi, Pin 11.
 
 ============ ======== ======== ===
 Nom T-Board  Physique wiringPi BCM
@@ -153,7 +153,7 @@ Les procédures suivantes basées sur ces deux méthodes sont les mêmes. Contin
     Ici, il compile le fichier de langage C ``1.1.1_BlinkingLed.c`` et produit un fichier exécutable.
 
 Dans la commande, ``-o`` signifie sortie (le caractère immédiatement après -o est le nom de fichier de sortie après compilation,
- et un exécutable nommé ``BlinkingLed`` sera généré ici) et ``-lwiringPi`` est pour charger la bibliothèque wiringPi (``l`` est l'abréviation de library).
+et un exécutable nommé ``BlinkingLed`` sera généré ici) et ``-lwiringPi`` est pour charger la bibliothèque wiringPi (``l`` est l'abréviation de library).
 
 **Étape 4 :** Exécutez le fichier exécutable généré à l'étape précédente.
 
@@ -196,6 +196,7 @@ Répétez ``Étape 3`` et ``Étape 4`` pour voir l'effet après modification.
 .. image:: ../img/image53.png
     :width: 800
     :align: center
+    
 **Code**
 
 Le code du programme est présenté comme suit :
@@ -260,8 +261,8 @@ Cela initialise wiringPi et suppose que le programme appelant va utiliser le sch
 
 Cette fonction doit être appelée avec les privilèges root.
 Lorsque l'initialisation de wiring échoue, afficher un message à l'écran.
- La fonction ``return`` est utilisée pour sortir de la fonction en cours.
-  Utiliser return dans la fonction ``main()`` met fin au programme.
+La fonction ``return`` est utilisée pour sortir de la fonction en cours.
+Utiliser return dans la fonction ``main()`` met fin au programme.
 
 .. code-block:: c
 
@@ -274,8 +275,8 @@ Définir ``LedPin`` comme sortie pour écrire une valeur dessus.
    digitalWrite(LedPin, LOW);
 
 Définir GPIO0 à 0V (niveau bas). Étant donné que la cathode de la LED est connectée à GPIO0,
- la LED s'allume si GPIO0 est réglé sur bas. Au contraire,
-  définir GPIO0 à un niveau haut éteindra la LED.
+la LED s'allume si GPIO0 est réglé sur bas. Au contraire,
+définir GPIO0 à un niveau haut éteindra la LED.
 
 .. code-block:: c
 

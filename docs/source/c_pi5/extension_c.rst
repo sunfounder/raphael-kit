@@ -24,9 +24,12 @@ Extension
     3.1.2_welcome_c
     3.1.3_reversing_alarm_c
     3.1.4_smart_fan_c
+    3.1.4_smart_fan_c(mcp3008)
     3.1.5_battery_indicator_c
+    3.1.5_battery_indicator_c(mcp3008)
     3.1.6_traffic_light_c
     3.1.7_overheat_monitor_c
+    3.1.7_overheat_monitor_c(mcp3008)
     3.1.8_password_lock_c
     3.1.9_alarm_bell_c
     3.1.10_morse_code_generator_c

@@ -24,7 +24,7 @@ ensemble.
 
 L'affichage à 7 segments 4 chiffres fonctionne indépendamment. Il utilise le principe de la 
 persistance visuelle humaine pour afficher rapidement les caractères de chaque segment en boucle
- afin de former des chaînes continues.
+afin de former des chaînes continues.
 
 Par exemple, lorsque "1234" est affiché, "1" apparaît sur le premier segment, tandis que "234" 
 ne s'affiche pas. Après un certain temps, le deuxième segment affiche "2", et les 1er, 3e et 4e 

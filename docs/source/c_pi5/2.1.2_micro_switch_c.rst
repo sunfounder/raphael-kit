@@ -69,7 +69,7 @@ Vous pouvez également les acheter séparément via les liens ci-dessous.
         - |link_capacitor_buy|
 
 Schéma de Câblage
------------------
+-------------------
 
 Connectez la broche gauche du micro-interrupteur au GPIO17 et deux LED aux 
 broches GPIO22 et GPIO27. Ensuite, lorsque vous appuyez et relâchez le bras 
@@ -80,7 +80,7 @@ mobile du micro-interrupteur, vous verrez les deux LED s'allumer alternativement
 .. image:: ../img/micro_Schematic.png
 
 Procédures Expérimentales
------------------------
+-----------------------------
 
 **Étape 1 :** Construisez le circuit.
 
@@ -121,6 +121,7 @@ Pendant l'exécution du code, appuyez sur le micro-interrupteur, puis la LED jau
 .. note::
 
     Si cela ne fonctionne pas après l'exécution ou si un message d'erreur prompt:\"wiringPi.h: No such file or directory » s'affiche, veuillez consulter :ref:`install_wiringpi`.
+
 **Code**
 
 .. code-block:: c

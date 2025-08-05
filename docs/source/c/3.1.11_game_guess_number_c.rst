@@ -25,10 +25,7 @@ Deviner les nombres est un jeu amusant où vous et vos amis tour à tour entrez 
 La plage sera réduite à chaque entrée de nombre jusqu'à ce qu'un joueur trouve la bonne réponse. 
 Ensuite, le joueur est éliminé et puni. Par exemple, si le nombre chanceux est 51 que les joueurs 
 ne peuvent pas voir, et que le joueur ① entre 50, la plage de nombres change à 50~99 ; si le joueur
- ② entre 70, la plage devient 50~70 ; si le joueur ③ entre 51, ce joueur est le perdant. Ici, nous utilisons un clavier pour entrer les nombres et un écran LCD pour afficher les résultats.
-
-
-
+② entre 70, la plage devient 50~70 ; si le joueur ③ entre 51, ce joueur est le perdant. Ici, nous utilisons un clavier pour entrer les nombres et un écran LCD pour afficher les résultats.
 
 
 Composants nécessaires
@@ -78,17 +75,17 @@ Schéma de câblage
 -----------------------
 
 =============== ======== ======== =======
-Nom de la carte  Physique WiringPi BCM
-GPIO18           Pin 12   1        18
-GPIO23           Pin 16   4        23
-GPIO24           Pin 18   5        24
-GPIO25           Pin 22   6        25
-SPIMOSI          Pin 19   12       10
-GPIO22           Pin 15   3        22
-GPIO27           Pin 13   2        27
-GPIO17           Pin 11   0        17
-SDA1             Pin 3    SDA1(8)  SDA1(2)
-SCL1             Pin 5    SCL1(9)  SDA1(3)
+Nom de la carte Physique WiringPi BCM
+GPIO18          Pin 12   1        18
+GPIO23          Pin 16   4        23
+GPIO24          Pin 18   5        24
+GPIO25          Pin 22   6        25
+SPIMOSI         Pin 19   12       10
+GPIO22          Pin 15   3        22
+GPIO27          Pin 13   2        27
+GPIO17          Pin 11   0        17
+SDA1            Pin 3    SDA1(8)  SDA1(2)
+SCL1            Pin 5    SCL1(9)  SDA1(3)
 =============== ======== ======== =======
 
 .. image:: ../img/Schematic_three_one12.png

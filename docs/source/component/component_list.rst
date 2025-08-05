@@ -43,6 +43,8 @@ Vous trouverez ci-dessous une introduction à chaque composant, qui contient le 
     component_74hc595
     component_l293d
     component_adc0834
+    component_mcp3008
+
 
 **Affichage**
 

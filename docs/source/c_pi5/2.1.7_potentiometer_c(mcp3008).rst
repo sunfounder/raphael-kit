@@ -1,0 +1,296 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Approfondissez vos connaissances sur Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes après‑vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant‑première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos tout derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des concours et promotions spéciales pendant les fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez‑nous dès aujourd’hui !
+
+.. _2.1.7_c_pi5_mcp3008:
+
+2.1.7 Potentiomètre (MCP3008)
+=============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
+Introduction
+------------
+
+La fonction ADC est utilisée pour convertir des signaux analogiques en valeurs numériques.  
+Dans cette expérience, nous utilisons la puce ADC MCP3008 pour effectuer cette conversion.  
+Un potentiomètre est utilisé pour générer une tension variable, qui change la grandeur physique.  
+Le MCP3008 convertit ensuite cette tension analogique en une valeur numérique pouvant être lue et traitée par le Raspberry Pi.
+
+Composants requis
+-----------------
+
+Dans ce projet, nous avons besoin des composants suivants :
+
+.. image:: ../img/list2_2.1.4_potentiometer.png
+
+Il est bien sûr pratique d’acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom	
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci‑dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D’ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schéma de câblage
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - Nom T‑Board
+        - Physique
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.7_potentiometer_mcp3008.png
+
+Procédures expérimentales
+-------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/july24_2.1.7_potentiometer_mcp3008.png
+
+.. note::
+    Veuillez placer la puce en vous référant à la position correspondante
+    illustrée sur l’image. Notez que la rainure sur la puce doit être placée sur
+    la gauche.
+
+**Étape 2 :** Ouvrez le fichier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.7-2/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.7_Potentiometer.c -lwiringPi
+
+**Étape 4 :** Exécutez le programme.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Après l’exécution du code, tournez le bouton du potentiomètre : l’intensité de la LED changera en conséquence.
+
+.. note::
+
+    Si cela ne fonctionne pas après l’exécution ou si un message d’erreur apparaît : « wiringPi.h: No such file or directory », veuillez vous référer à :ref:`install_wiringpi`.
+
+Code
+----
+
+.. code-block:: c
+
+        #include <wiringPi.h>
+        #include <wiringPiSPI.h>
+        #include <stdio.h>
+        #include <softPwm.h>
+
+        #define SPI_CHANNEL 0  // CE0
+        #define SPI_SPEED   1000000  // 1MHz
+        #define LedPin      3
+
+        int readADC(int channel) {
+            if (channel < 0 || channel > 7) return -1;
+
+            unsigned char buffer[3];
+            buffer[0] = 1;                             // Bit de démarrage
+            buffer[1] = (8 + channel) << 4;            // Mode simple, canal
+            buffer[2] = 0;
+
+            wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+            int value = ((buffer[1] & 3) << 8) | buffer[2];
+            return value;
+        }
+
+        int main(void) {
+            if (wiringPiSetup() == -1) {
+                printf("Échec de l’initialisation de WiringPi !\n");
+                return 1;
+            }
+
+            if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+                printf("Échec de l’initialisation du SPI !\n");
+                return 1;
+            }
+
+            softPwmCreate(LedPin, 0, 100);
+
+            while (1) {
+                int analogVal = readADC(0);  // CH0
+                printf("Valeur ADC : %d\n", analogVal);
+
+                int pwmVal = analogVal * 100 / 1023;  // Normaliser de 0 à 100
+                softPwmWrite(LedPin, pwmVal);
+
+                delay(100);
+            }
+
+            return 0;
+        }
+
+Explication du code
+-------------------
+
+.. code-block:: c
+
+    #define SPI_CHANNEL 0  // CE0
+    #define SPI_SPEED   1000000  // 1MHz
+    #define LedPin      3
+
+Définit le canal SPI comme CE0 (Chip Enable 0), fixe la vitesse SPI à 1 MHz et assigne la broche GPIO3 à la LED.
+
+.. code-block:: c
+
+    int readADC(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;                             // Bit de démarrage
+        buffer[1] = (8 + channel) << 4;            // Mode simple, canal
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int value = ((buffer[1] & 3) << 8) | buffer[2];
+        return value;
+    }
+
+Cette fonction est utilisée pour lire des données analogiques du MCP3008.
+
+* Tout d’abord, elle vérifie si le numéro de canal est dans la plage valide (0 à 7).
+* Elle initialise un tableau de 3 octets, où :
+  * ``buffer[0] = 1`` : bit de démarrage pour la communication MCP3008.
+  * ``buffer[1] = (8 + channel) << 4`` : construction de l’octet de configuration pour le mode simple et sélection du canal souhaité.
+  * ``buffer[2] = 0`` : octet tampon pour recevoir le résultat.
+* ``wiringPiSPIDataRW`` envoie et reçoit des données via le canal SPI.
+* La valeur de retour est extraite des deux derniers octets à l’aide d’opérations binaires pour obtenir un résultat ADC 10 bits.
+
+.. code-block:: c
+
+    int main(void) {
+        if (wiringPiSetup() == -1) {
+            printf("Échec de l’initialisation de WiringPi !\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("Échec de l’initialisation du SPI !\n");
+            return 1;
+        }
+
+        softPwmCreate(LedPin, 0, 100);
+
+        while (1) {
+            int analogVal = readADC(0);  // CH0
+            printf("Valeur ADC : %d\n", analogVal);
+
+            int pwmVal = analogVal * 100 / 1023;  // Normaliser de 0 à 100
+            softPwmWrite(LedPin, pwmVal);
+
+            delay(100);
+        }
+
+        return 0;
+    }
+
+Dans la fonction principale :
+
+* ``wiringPiSetup()`` initialise la bibliothèque WiringPi.
+* ``wiringPiSPISetup()`` initialise la communication SPI sur le canal 0 à 1 MHz.
+* ``softPwmCreate()`` configure un PWM logiciel sur GPIO3 avec un cycle de service initial de 0 et une plage de 0 à 100.
+
+Le programme entre dans une boucle infinie où :
+
+* Il lit la valeur ADC du canal 0 (connecté au potentiomètre).
+* Affiche la valeur ADC sur le terminal.
+* Convertit la valeur ADC 10 bits en un cycle PWM compris entre 0 et 100.
+* Écrit la valeur PWM sur la LED, de sorte que la luminosité reflète la position du potentiomètre.
+
+``delay(100)`` suspend l’exécution pendant 100 millisecondes avant le prochain cycle de lecture/écriture.

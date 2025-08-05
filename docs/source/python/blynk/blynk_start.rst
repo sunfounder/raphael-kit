@@ -1,123 +1,127 @@
- 
 .. note::
 
-    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! 
+    Plongez plus profondément dans l’univers Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
 
-    **Pourquoi rejoindre ?**
+    **Pourquoi rejoindre ?**
 
-    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
-    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
-    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
-    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
-    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
+    - **Support d’experts** : Résolvez les problèmes après‑vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et aux avant‑premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et promotions de vacances.
 
-    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez‑nous dès aujourd’hui !
 
 .. _bk_start_py:
 
-Commencer avec Blynk
-===========================
+Démarrage avec Blynk
+=====================
 
-Vous apprendrez à utiliser Blynk dans ce projet.
+Vous allez apprendre à utiliser **Blynk** dans ce projet.
 
-Lorsque vous déclenchez des widgets sur Blynk, votre Raspberry Pi imprimera leurs valeurs.
+Lorsque vous déclenchez des widgets sur Blynk, votre Raspberry Pi affichera leurs valeurs.
 
-Suivez les étapes ci-dessous, et notez que vous devez les faire dans l'ordre sans sauter de chapitres.
+Suivez les étapes ci‑dessous, en respectant l’ordre sans sauter de chapitres.
 
 1. Configuration de Blynk
-----------------------------
+-------------------------
 
 1. Allez sur `BLYNK <https://blynk.io/>`_ et cliquez sur **START FREE**. 
 
     .. image:: img/sp220607_142551.png
 
-2. Remplissez votre adresse e-mail pour créer un compte.
+#. Renseignez votre adresse e‑mail pour enregistrer un compte.
 
     .. image:: img/sp220607_142807.png
 
-3. Consultez votre adresse e-mail pour finaliser l'enregistrement de votre compte.
+#. Allez dans votre messagerie pour compléter l’enregistrement de votre compte.
 
     .. image:: img/sp220607_142936.png
 
-4. Ensuite, **Blynk Tour** apparaîtra et vous pourrez le lire pour apprendre les informations de base sur Blynk.
+#. Ensuite, **Blynk Tour** apparaîtra ; vous pouvez le lire pour apprendre les informations de base sur Blynk.
 
     .. image:: img/sp220607_143244.png
 
-5. Ensuite, nous devons créer un modèle et un appareil, cliquez sur **Cancel**.
+#. Nous devons maintenant créer un modèle et un appareil, cliquez sur **Cancel**.
 
     .. image:: img/sp220607_143608.png
 
-6. Allez dans Template depuis la barre de navigation.
+#. Allez dans **Developer Zone** depuis la barre de navigation.
 
-    .. image:: img/sp220913_170029.png
+    .. image:: img/develop_zone.png
 
-7. Créez un nouveau modèle
+#. Créez un nouveau modèle (**New Template**).
 
-    .. image:: img/sp220913_170206.png
+    .. image:: img/new_template.png
 
-8. Remplissez le **NOM**, à votre convenance ; **HARDWARE** doit être **Raspberry Pi**. Puis cliquez sur **Done**.
+#. Renseignez **NAME** (nom libre), et sélectionnez **HARDWARE** sur **Raspberry Pi**. Puis cliquez sur **Done**.
 
     .. image:: img/sp220913_170402.png
 
-9. Vous serez redirigé vers la page Info, cliquez simplement sur enregistrer en haut à droite.
+#. Vous serez redirigé vers la page **Info**, cliquez simplement sur **Save** en haut à droite.
 
     .. image:: img/sp220913_171202.png
 
-10. Allez sur la page **Search** depuis la barre de navigation.
+#. Allez sur la page **Devices** depuis la barre de navigation.
 
-    .. image:: img/sp220913_172727.png
+    .. image:: img/devices.jpg
 
-11. Créez un nouvel appareil.
+#. Créez un nouvel appareil (**New Device**).
 
-    .. image:: img/sp220913_173259.png
+    .. image:: img/new_devices.png
 
-12. À partir du modèle.
+#. Choisissez **From template**.
 
-    .. image:: img/sp220913_173350.png
+    .. image:: img/create_new_device.png
 
-13. Sélectionnez **TEMPLATE** comme celui que vous venez de définir, **DEVICE NAME** peut être personnalisé. Puis cliquez sur **Create**.
+#. Sélectionnez **TEMPLATE** comme celui que vous venez de définir, personnalisez **DEVICE NAME**, puis cliquez sur **Create**.
 
     .. image:: img/sp220913_173507.png
 
-14. Vous devriez maintenant voir une page comme celle-ci, ce qui signifie que votre configuration initiale de Blynk est terminée.
+#. Vous devriez maintenant voir une page similaire à celle‑ci, ce qui signifie que votre configuration initiale de Blynk est terminée.
 
-    .. image:: img/sp220913_173950.png
+    .. image:: img/my_device.png
 
-2. Modifier le tableau de bord
------------------------------------
 
-1. Cliquez sur l'icône du menu en haut à droite et sélectionnez "modifier le tableau de bord".
+2. Éditer le tableau de bord (Dashboard)
+-----------------------------------------
 
-    .. image:: img/sp220913_180231.png
+1. Cliquez sur **Edit Dashboard**.
 
-2. Faites glisser les Widgets de CONTRÔLE que vous souhaitez sur le tableau de bord. J'ai glissé un interrupteur et un curseur.
+    .. image:: img/edit_dashboard.png
+
+#. Glissez les widgets de contrôle (**CONTROL Widgets**) que vous souhaitez sur le tableau de bord. Par exemple, un **Switch** et un **Slider**.
 
     .. image:: img/sp220913_180725.png
 
-3. Appuyez sur l'icône de réglage du widget.
+#. Appuyez sur l’icône des paramètres du widget.
 
     .. image:: img/sp220913_180806.png
 
-4. Créez un flux de données (Datastream), sélectionnez "Virtual Pin".
+#. Créez un flux de données (**Datastream**), sélectionnez **Virtual Pin**.
 
     .. image:: img/sp220913_180906.png
 
-5. Complétez la configuration du flux de données. Ici, un flux de données a été créé pour l'interrupteur, donc **TYPE DE DONNÉES** sélectionnez ``Interger``, **MIN** et **MAX** réglez sur ``0`` et ``1``. Créez et enregistrez.
+#. Terminez la configuration du flux de données.  
+   Exemple pour un Switch : sélectionnez **DATA TYPE** sur ``Integer``, définissez **MIN** et **MAX** sur ``0`` et ``1``.  
+   Cliquez sur **Create**, puis sur **Save**.
 
     .. image:: img/sp220913_181113.png
 
-6. Utilisez les mêmes étapes pour créer un flux de données pour le widget curseur, et modifiez à nouveau **TYPE DE DONNÉES**, **MIN** et **MAX** selon vos besoins.
+#. Répétez les mêmes étapes pour créer un flux de données pour le **Slider**, en définissant **DATA TYPE**, **MIN** et **MAX** selon vos besoins.
 
     .. image:: img/sp220913_182042.png
 
-7. Lorsque vous avez terminé, cliquez sur "Enregistrer et appliquer" en haut à droite.
+#. Une fois terminé, cliquez sur **Save And Apply** en haut à droite.
 
     .. image:: img/sp220913_182300.png
 
-3. Installer la bibliothèque Blynk
---------------------------------------
 
-Exécutez la commande suivante pour installer.
+3. Installer la bibliothèque Blynk
+-----------------------------------
+
+Exécutez la commande suivante pour installer la bibliothèque.
 
 .. raw:: html
 
@@ -130,10 +134,11 @@ Exécutez la commande suivante pour installer.
     cd blynk-library-python
     sudo python3 setup.py
 
-4. Télécharger l'exemple
----------------------------
 
-Nous avons fourni quelques exemples, veuillez exécuter la commande suivante pour les télécharger.
+4. Télécharger les exemples
+----------------------------
+
+Nous avons fourni quelques exemples. Exécutez la commande suivante pour les télécharger.
 
 .. raw:: html
 
@@ -144,14 +149,15 @@ Nous avons fourni quelques exemples, veuillez exécuter la commande suivante pou
     cd ~
     git clone https://github.com/sunfounder/blynk-raspberrypi-python.git
 
-5. Exécuter le code
-----------------------
 
-1. Allez sur la page d'informations de l'appareil Blynk, vous verrez des informations sous **CONFIGURATION DU MICROLOGICIEL**, vous devez copier **BLYNK_AUTH_TOKEN**.
+5. Exécuter le code
+--------------------
+
+1. Accédez à la page **Device Info** sur Blynk, et copiez le **BLYNK_AUTH_TOKEN** situé sous **FIRMWARE CONFIGURATION**.
 
     .. image:: img/sp220913_182456.png
 
-2. Modifiez le code.
+2. Éditez le code.
 
 .. raw:: html
 
@@ -162,7 +168,7 @@ Nous avons fourni quelques exemples, veuillez exécuter la commande suivante pou
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_start.py
 
-3. Trouvez la ligne ci-dessous et collez votre ``BLYNK_AUTH_TOKEN``.
+3. Recherchez la ligne ci‑dessous et collez votre ``BLYNK_AUTH_TOKEN``.
 
 .. code-block:: 
 
@@ -178,11 +184,11 @@ Nous avons fourni quelques exemples, veuillez exécuter la commande suivante pou
 
     sudo python3 blynk_start.py
 
-5. Allez sur Blynk, et utilisez le widget sur le tableau de bord.
+5. Allez sur Blynk et manipulez les widgets du tableau de bord.
 
     .. image:: img/sp220913_183529.png
 
-6. Maintenant, vous pourrez voir vos actions sur le terminal.
+6. Vous verrez maintenant vos actions s’afficher dans le terminal.
 
 .. code-block:: 
 
@@ -200,10 +206,3 @@ Nous avons fourni quelques exemples, veuillez exécuter la commande suivante pou
     V1 value: ['3']
     V1 value: ['8']
     V0 value: ['1']
-
-
-
-
-
-
-

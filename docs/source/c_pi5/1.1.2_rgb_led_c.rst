@@ -70,7 +70,7 @@ Schéma de câblage
 Après avoir connecté les broches de R, G et B à une résistance de limitation de courant, 
 connectez-les respectivement aux GPIO17, GPIO18 et GPIO27. La broche la plus longue (GND) 
 de la LED se connecte au GND du Raspberry Pi. Lorsque les trois broches reçoivent différentes
- valeurs PWM, la LED RGB affichera différentes couleurs.
+valeurs PWM, la LED RGB affichera différentes couleurs.
 
 ============ ======== ======== ===
 Nom T-Board  Physique wiringPi BCM

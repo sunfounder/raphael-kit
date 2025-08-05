@@ -226,6 +226,8 @@ Après l'exécution du code, les valeurs des boutons appuyés sur le clavier (va
         }
         return -1;
     }
+
+
 **Explication du Code**
 
 .. code-block:: c
@@ -283,8 +285,8 @@ La fonction ``keyRead()`` lira l'état de chaque bouton.
 
 Cette fonction assigne un niveau élevé à chaque ligne à tour de rôle, 
 et lorsque la touche de la colonne est pressée, la colonne dans laquelle
- se trouve la touche obtient un niveau élevé. Après le jugement en boucle
-  à deux niveaux, la compilation de l'état de la touche générera un tableau (``result[]``).
+se trouve la touche obtient un niveau élevé. Après le jugement en boucle
+à deux niveaux, la compilation de l'état de la touche générera un tableau (``result[]``).
 
 Lors de l'appui sur le bouton 3 :
 
@@ -294,7 +296,7 @@ Lors de l'appui sur le bouton 3 :
 ``colPin [0]``, ``colPin[1]``, ``colPin[3]`` obtiennent le niveau bas.
 
 Cela nous donne 0,0,1,0. Lorsque ``rowPin[1]``, ``rowPin[2]`` et ``rowPin[3]`` sont écrits en niveau élevé,
- ``colPin[0]~colPin[4]`` obtiendront le niveau bas.
+``colPin[0]~colPin[4]`` obtiendront le niveau bas.
 
 Après que le jugement en boucle soit terminé, un tableau sera généré :
 
@@ -324,8 +326,8 @@ Après que le jugement en boucle soit terminé, un tableau sera généré :
     }
 
 Ces deux fonctions sont utilisées pour juger si l'état de la touche a changé, par exemple
- lorsque vous relâchez votre main après avoir appuyé sur '3' ou en appuyant sur '2',
-  ``keyCompare()`` renvoie false.
+lorsque vous relâchez votre main après avoir appuyé sur '3' ou en appuyant sur '2',
+``keyCompare()`` renvoie false.
 
 ``keyCopy()`` est utilisé pour réécrire la valeur actuelle du bouton dans 
 le tableau a (``last_key_pressed[BUTTON_NUM]``) après chaque comparaison. 
@@ -347,8 +349,8 @@ Ainsi, nous pouvons les comparer la prochaine fois.
     }
 
 Cette fonction est utilisée pour imprimer la valeur de la touche actuellement appuyée.
- Si la touche '1' est pressée, le '1' sera imprimé. Si la touche '1' est pressée et que
-  la touche '3' est également pressée, '1, 3' sera imprimé.
+Si la touche '1' est pressée, le '1' sera imprimé. Si la touche '1' est pressée et que
+la touche '3' est également pressée, '1, 3' sera imprimé.
 
 Image du phénomène
 ----------------------

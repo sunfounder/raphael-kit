@@ -18,6 +18,15 @@
 2.2.1 Photoresistor
 =========================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
 Introduction
 ------------
 
@@ -93,6 +102,7 @@ Experimental Procedures
 .. code-block:: 
 
     cd ~/raphael-kit/c/2.2.1/
+    
 **Étape 3 :** Compiler le code.
 
 .. raw:: html

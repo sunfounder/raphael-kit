@@ -20,7 +20,7 @@ Comment utiliser Blynk sur un appareil mobile ?
 
 .. note::
 
-Comme les flux de données ne peuvent être créés que sur Blynk via le web, vous devrez vous référer à différents projets pour créer des flux de données sur le web, puis suivre le tutoriel ci-dessous pour créer des widgets dans Blynk sur votre appareil mobile.
+    Comme les flux de données ne peuvent être créés que sur Blynk via le web, vous devrez vous référer à différents projets pour créer des flux de données sur le web, puis suivre le tutoriel ci-dessous pour créer des widgets dans Blynk sur votre appareil mobile.
 
 #. Ouvrez Google Play ou l'App Store sur votre appareil mobile et recherchez "Blynk IoT" (pas Blynk (legacy)) pour le télécharger.
 #. Après avoir ouvert l'application, connectez-vous avec le même compte utilisé sur le client web.

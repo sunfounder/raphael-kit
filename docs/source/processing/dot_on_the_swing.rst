@@ -59,6 +59,7 @@ Vous pouvez également les acheter séparément à partir des liens ci-dessous.
 **Câblage**
 
 .. image:: img/circuit_dancing_dot.png
+
 **Croquis**
 
 .. code-block:: arduino
@@ -152,6 +153,7 @@ Vous pouvez également les acheter séparément à partir des liens ci-dessous.
             ellipse(currentX, currentY, currentSize, currentSize);
         }
     }
+    
 **Comment ça marche ?**
 
 Au lieu de dessiner directement un point, nous créons ici une classe ``Dot``.

@@ -154,23 +154,23 @@ Après l'exécution du code, vous verrez l'affichage à 7 segments afficher les 
         time.sleep(0.001)
         GPIO.output(RCLK, GPIO.LOW)
 
-def main():
-    while True:
-            # Shift the code one by one from segCode list
-        for code in segCode:
-            hc595_shift(code)
-                print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X means double digit HEX to print
-            time.sleep(0.5)
+    def main():
+        while True:
+                # Shift the code one by one from segCode list
+            for code in segCode:
+                hc595_shift(code)
+                    print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X means double digit HEX to print
+                time.sleep(0.5)
 
-def destroy():
-    GPIO.cleanup()
+    def destroy():
+        GPIO.cleanup()
 
-if __name__ == '__main__':
-    setup()
-    try:
-        main()
-    except KeyboardInterrupt:
-        destroy()
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
 
 **Explication du Code**
 

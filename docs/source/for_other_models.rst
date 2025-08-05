@@ -14,8 +14,8 @@
 
 
 
-For Pi 4, 3, and All Other Pi Models
-=======================================
+Pour Pi 4, 3 et versions antérieures (pas Pi 5)
+=====================================================
 
 .. toctree::
     :maxdepth: 4

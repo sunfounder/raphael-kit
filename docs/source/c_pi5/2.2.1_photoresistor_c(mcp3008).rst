@@ -1,0 +1,219 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Approfondissez vos connaissances sur Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes après‑vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant‑première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos tout derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des concours et promotions spéciales pendant les fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez‑nous dès aujourd’hui !
+
+.. _2.2.1_c_pi5_mcp3008:
+
+2.2.1 Photoresistor (MCP3008)
+=============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
+Introduction
+------------
+
+La photorésistance est un composant couramment utilisé pour mesurer l’intensité lumineuse ambiante.  
+Elle aide le contrôleur à distinguer le jour et la nuit et permet de réaliser des fonctions de commande lumineuse telles que les lampes de nuit.  
+Ce projet est très similaire au potentiomètre, sauf qu’ici la variation de tension est utilisée pour détecter la lumière.
+
+Composants requis
+-----------------
+
+Dans ce projet, nous avons besoin des composants suivants :
+
+.. image:: ../img/list2_2.2.1_photoresistor.png
+
+Il est bien sûr pratique d’acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci‑dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D’ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+Schéma de câblage
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - Nom T‑Board
+        - Physique
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.2.1_photoresistor_mcp3008.png
+
+Procédures expérimentales
+-------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../img/july24_2.2.1_photoresistor_mcp3008.png
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/2.2.1-2/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 2.2.1_Photoresistor.c -o photoresistor -lwiringPi -lm
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    ./photoresistor
+
+Lorsque le code s’exécute, la luminosité de la LED change en fonction de l’intensité lumineuse détectée par la photorésistance.
+
+.. note::
+
+    Si cela ne fonctionne pas après l’exécution ou si un message d’erreur apparaît : « wiringPi.h: No such file or directory », veuillez vous référer à :ref:`install_wiringpi`.
+
+Code
+----
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+
+    #define SPI_CHANNEL 0      // Utiliser le canal SPI 0 (CE0)
+    #define SPI_SPEED   1000000 // Vitesse SPI 1 MHz
+    #define LedPin      3       // GPIO3 (WiringPi) pour la PWM de la LED
+
+    // Lecture de la valeur ADC à partir du MCP3008, canal 0~7
+    int readMCP3008(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;                          // Bit de démarrage
+        buffer[1] = (8 + channel) << 4;         // SGL/DIF = 1, D2-D0 = canal
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        // Combiner le résultat
+        int result = ((buffer[1] & 3) << 8) | buffer[2];
+        return result;
+    }
+
+    int main(void) {
+        if (wiringPiSetup() == -1) {
+            printf("Échec de l’initialisation de wiringPi !\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("Échec de l’initialisation du SPI !\n");
+            return 1;
+        }
+
+        softPwmCreate(LedPin, 0, 100); // Initialiser la PWM logicielle
+
+        while (1) {
+            int analogVal = readMCP3008(0); // Lire à partir de CH0
+            printf("Valeur ADC : %d\n", analogVal);
+
+            // Mise à l’échelle de la valeur ADC 10 bits (0–1023) vers l’intervalle PWM (0–100)
+            int pwmVal = analogVal * 100 / 1023;
+            softPwmWrite(LedPin, pwmVal);
+
+            delay(100);
+        }
+
+        return 0;
+    }
+
+Explication du code
+-------------------
+
+Le code ici est identique à celui de l’expérience **2.1.7 Potentiomètre**.  
+Si vous avez d’autres questions, veuillez consulter l’explication du code de :ref:`2.1.7_c_pi5_mcp3008` pour plus de détails.

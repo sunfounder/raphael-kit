@@ -18,10 +18,23 @@
 3.1.5 Indicateur de Batterie
 ==================================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
 Introduction
 --------------
 
 Dans ce projet, nous allons fabriquer un dispositif indicateur de batterie qui peut afficher visuellement le niveau de la batterie sur le bargraphe LED.
+
+.. warning::
+
+    N’utilisez pas de composants de batterie dépassant 3,3 V pour éviter toute surcharge susceptible d’endommager la puce ou le Raspberry Pi.
 
 Composants Nécessaires
 ------------------------------
@@ -88,6 +101,7 @@ GPIO26       Pin 37   25       26
 
 .. image:: ../img/Schematic_three_one5.png
    :align: center
+
 Procédures Expérimentales
 -------------------------
 
@@ -126,8 +140,8 @@ Procédures Expérimentales
     sudo ./a.out
 
 Après avoir exécuté le programme, connectez un fil de sortie au 3ème pin de l'ADC0834 et à la GND,
- puis reliez-les aux deux pôles d'une batterie. Vous verrez que les LED correspondantes sur le 
- Bargraphe LED s'allument pour afficher le niveau de la batterie (plage de mesure : 0-5V).
+puis reliez-les aux deux pôles d'une batterie. Vous verrez que les LED correspondantes sur le 
+Bargraphe LED s'allument pour afficher le niveau de la batterie (plage de mesure : 0-5V).
 
 .. note::
 
@@ -178,11 +192,11 @@ décidons combien de LED seront allumées en changeant la valeur analogique reç
 
 analogVal produit des valeurs (**0-255**) avec des variations de tension (**0-5V**), 
 par exemple, si une tension de 3V est détectée sur une batterie, la valeur correspondante
- **152** s'affiche sur le voltmètre.
+**152** s'affiche sur le voltmètre.
 
 Les **10** LED sur le Bargraphe LED sont utilisées pour afficher les lectures de **analogVal**. 
 255/10=25, donc tous les **25** que la valeur analogique augmente, une LED supplémentaire s'allume,
- par exemple, si "analogVal=150 (environ 3V), il y a 6 LED allumées."
+par exemple, si "analogVal=150 (environ 3V), il y a 6 LED allumées."
 
 **Photo du Phénomène**
 

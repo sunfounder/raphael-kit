@@ -18,14 +18,23 @@
 3.1.7 Moniteur de Surchauffe
 ==================================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
 Introduction
 -------------------
 
 Vous pouvez vouloir créer un dispositif de surveillance de la surchauffe applicable à diverses
- situations, par exemple, dans une usine, si nous voulons avoir une alarme et l'arrêt automatique
-  de la machine en temps opportun en cas de surchauffe du circuit. Dans ce projet, nous utiliserons
-   une thermistance, un joystick, un buzzer, une LED et un écran LCD pour réaliser un dispositif 
-   intelligent de surveillance de la température dont le seuil est ajustable.
+situations, par exemple, dans une usine, si nous voulons avoir une alarme et l'arrêt automatique
+de la machine en temps opportun en cas de surchauffe du circuit. Dans ce projet, nous utiliserons
+une thermistance, un joystick, un buzzer, une LED et un écran LCD pour réaliser un dispositif 
+intelligent de surveillance de la température dont le seuil est ajustable.
 
 
 Composants Nécessaires
@@ -98,6 +107,7 @@ SCL1         Pin 5
 
 .. image:: ../img/Schematic_three_one8.png
    :align: center
+
 Procédures expérimentales
 -----------------------------
 
@@ -140,15 +150,16 @@ sont affichés sur le **I2C LCD1602**. Si la température actuelle dépasse le s
 et la LED se déclenchent pour vous alerter.
 
 **Joystick** permet d'ajuster le seuil de haute température en appuyant dessus. En déplaçant le
- **Joystick** dans la direction de l'axe X ou Y, vous pouvez augmenter ou diminuer le seuil de 
- haute température actuel. Appuyez à nouveau sur le **Joystick** pour réinitialiser le seuil à 
- sa valeur initiale.
+**Joystick** dans la direction de l'axe X ou Y, vous pouvez augmenter ou diminuer le seuil de 
+haute température actuel. Appuyez à nouveau sur le **Joystick** pour réinitialiser le seuil à 
+sa valeur initiale.
 
 .. note::
 
     * Si un message d'erreur ``wiringPi.h: Aucun fichier ou dossier de ce type`` apparaît, veuillez vous référer à :ref:`install_wiringpi`.
     * Si vous recevez l'erreur ``Impossible d'ouvrir le périphérique I2C : Aucun fichier ou dossier de ce type``, vous devez vous référer à :ref:`i2c_config` pour activer I2C et vérifier si le câblage est correct.
     * Si le code et le câblage sont corrects mais que l'écran LCD n'affiche toujours rien, vous pouvez ajuster le potentiomètre à l'arrière pour augmenter le contraste.
+
 **Explication du code**
 
 .. code-block:: c

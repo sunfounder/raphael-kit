@@ -80,13 +80,13 @@ Le capteur ultrasonique détecte la distance entre lui-même et l'obstacle qui s
 l'écran LCD sous forme de code. En même temps, le capteur ultrasonique fait émettre au buzzer 
 un son d'avertissement de fréquence différente en fonction de la valeur de distance.
 
-===============  ======== =========  ===
-Nom de la Carte  physique  wiringPi  BCM
-GPIO23           Pin 16    4         23
-GPIO24           Pin 18    5         24
-GPIO17           Pin 11    0         17
-SDA1             Pin 3              
-SCL1             Pin 5              
+=============== ======== =========  ===
+Nom de la Carte physique  wiringPi  BCM
+GPIO23          Pin 16    4         23
+GPIO24          Pin 18    5         24
+GPIO17          Pin 11    0         17
+SDA1            Pin 3              
+SCL1            Pin 5              
 =============== ======== =========  ===
 
 .. image:: ../img/Schematic_three_one3.png
@@ -132,6 +132,7 @@ Procédures Expérimentales
 Lorsque le code s'exécute, le module de capteur ultrasonique détecte la distance 
 jusqu'à l'obstacle et affiche les informations sur la distance sur le LCD1602; 
 de plus, le buzzer émet un son d'avertissement dont la fréquence change en fonction de la distance.
+
 .. note::
 
     * Si une erreur ``wiringPi.h : No such file or directory`` apparaît, veuillez consulter :ref:`install_wiringpi`.
@@ -239,6 +240,7 @@ de plus, le buzzer émet un son d'avertissement dont la fréquence change en fon
 
         return 0;
     }
+
 **Explication du Code**
 
 .. code-block:: c
@@ -249,8 +251,8 @@ de plus, le buzzer émet un son d'avertissement dont la fréquence change en fon
     ultraInit();
 
 Dans ce programme, nous appliquons des composants précédents de manière synthétique. Ici,
- nous utilisons des buzzers, un écran LCD et un capteur ultrasonique. Nous les initialisons
-  de la même manière que précédemment.
+nous utilisons des buzzers, un écran LCD et un capteur ultrasonique. Nous les initialisons
+de la même manière que précédemment.
 
 .. code-block:: c
 

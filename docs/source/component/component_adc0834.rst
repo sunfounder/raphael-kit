@@ -25,15 +25,15 @@ L'ADC0834 est un convertisseur analogique-numérique à approximation successive
 
 Une conversion est initiée en mettant CS à un niveau bas, ce qui active tous les circuits logiques.
 CS doit être maintenu bas pendant tout le processus de conversion. Une horloge est ensuite reçue du
- processeur. À chaque transition du bas vers le haut de l'entrée d'horloge, les données sur DI sont
-  horodatées dans le registre de décalage de l'adresse du multiplexeur. Le premier niveau haut 
-  sur l'entrée est le bit de départ. Un mot d'attribution de 3 à 4 bits suit le bit de départ. 
-  À chaque transition successive du bas vers le haut de l'entrée d'horloge, le bit de départ et 
-  le mot d'attribution sont décalés dans le registre de décalage. Lorsque le bit de départ est 
-  décalé dans la position de départ du registre du multiplexeur, le canal d'entrée est sélectionné 
-  et la conversion commence. La sortie de l'état SAR (SARS) devient haute pour indiquer qu'une 
-  conversion est en cours, et DI vers le registre de décalage du multiplexeur est désactivé pour 
-  la durée de la conversion.
+processeur. À chaque transition du bas vers le haut de l'entrée d'horloge, les données sur DI sont
+horodatées dans le registre de décalage de l'adresse du multiplexeur. Le premier niveau haut 
+sur l'entrée est le bit de départ. Un mot d'attribution de 3 à 4 bits suit le bit de départ. 
+À chaque transition successive du bas vers le haut de l'entrée d'horloge, le bit de départ et 
+le mot d'attribution sont décalés dans le registre de décalage. Lorsque le bit de départ est 
+décalé dans la position de départ du registre du multiplexeur, le canal d'entrée est sélectionné 
+et la conversion commence. La sortie de l'état SAR (SARS) devient haute pour indiquer qu'une 
+conversion est en cours, et DI vers le registre de décalage du multiplexeur est désactivé pour 
+la durée de la conversion.
 
 Un intervalle d'une période d'horloge est automatiquement inséré pour permettre au canal multiplexé 
 sélectionné de se stabiliser. La sortie de données DO sort de l'état haute impédance et fournit un 

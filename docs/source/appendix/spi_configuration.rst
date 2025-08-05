@@ -1,78 +1,65 @@
-.. note::
-
-    Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l'univers des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
-
-    **Pourquoi rejoindre ?**
-
-    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
-    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
-    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
-    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
-    - **Promotions festives et cadeaux** : Participez à des cadeaux et des promotions de vacances.
-
-    👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
-
 .. _spi_configuration:
 
-SPI Configuration
-========================
+Configuration SPI
+-----------------------
 
-**Étape 1** : Activez le port SPI de votre Raspberry Pi (Si vous l'avez
-déjà activé, passez cette étape ; si vous ne savez pas si cela a été fait,
-veuillez continuer).
+#. Activez l’interface SPI sur votre Raspberry Pi. Si elle est déjà activée, vous pouvez ignorer cette étape. Si vous n’êtes pas sûr, suivez les instructions ci‑dessous.
 
-.. raw:: html
+   * Ouvrez l’outil de configuration du Raspberry Pi :
 
-   <run></run>
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo raspi-config
 
-.. code-block:: 
+   * **3 Options d’interfaçage**
 
-    sudo raspi-config
+     .. image:: img/image282.png
+        :align: center
 
-**3 Options d'interfaçage**
+   * **I3 SPI**
 
-.. image:: img/image282.png
-   :align: center
+     .. image:: img/i3spi.png
+        :align: center
+     
+   * **<OUI>, puis cliquez sur <OK> et <Finish>.**
 
-**I3 SPI**
+     .. image:: img/image286.png
+        :align: center 
 
-.. image:: img/image285.png
-   :align: center
+#. Vérifiez que les modules SPI sont actifs.
 
-**<OUI>, puis cliquez sur <OK> et <Finish>.**
+   * Exécutez la commande suivante :
 
-.. image:: img/image286.png
-   :align: center 
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         ls /dev/sp*
 
-**Étape 2** : Vérifiez que les modules spi sont chargés et actifs.
+   * Vous devriez obtenir un résultat similaire :
 
-.. raw:: html
+     .. code-block:: 
+     
+         /dev/spidev0.0  /dev/spidev0.1
 
-   <run></run>
+   Si ces périphériques apparaissent, l’interface SPI est active et prête à l’emploi.
 
-.. code-block:: 
+#. Installez la bibliothèque Python ``spidev``.
 
-    ls /dev/sp*
+   * Exécutez la commande suivante pour l’installer via ``pip`` :
 
-Ensuite, les codes suivants apparaîtront (les numéros peuvent être différents).
-
-.. code-block:: 
-
-    /dev/spidev0.0  /dev/spidev0.1
-
-**Étape 3** : Installez le module Python SPI-Py.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    git clone https://github.com/lthiery/SPI-Py.git
-    cd SPI-Py
-    sudo python3 setup.py install
-
-.. note::
-    Cette étape est pour les utilisateurs de python, si vous utilisez le langage C, veuillez
-    passer.
-
+     .. raw:: html
+     
+        <run></run>
+     
+     .. code-block:: 
+     
+         sudo pip3 install spidev
+     
+   Cette bibliothèque fournit l’interface Python pour communiquer avec les périphériques SPI via /dev/spidevX.Y.

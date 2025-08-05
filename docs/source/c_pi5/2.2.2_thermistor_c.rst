@@ -18,6 +18,15 @@
 2.2.2 Thermistance
 ======================
 
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, identifiez si vous disposez d’un **ADC0834** ou d’un **MCP3008** et suivez la section correspondante.
+
 Introduction
 ------------
 
@@ -66,7 +75,7 @@ Vous pouvez également les acheter séparément via les liens ci-dessous.
         - \-
 
 Schéma de câblage
------------------
+-------------------
 
 .. image:: ../img/image323.png
 
@@ -75,7 +84,7 @@ Schéma de câblage
 
 
 Procédures expérimentales
------------------------
+-------------------------------------
 
 **Étape 1 :** Construisez le circuit.
 
@@ -215,6 +224,8 @@ imprimée à l'écran une fois que le programme aura terminé le calcul.
         }
         return 0;
     }
+
+
 **Explication du code**
 
 .. code-block:: c

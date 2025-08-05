@@ -89,8 +89,9 @@ SPICE1       Pin 26   11       7
 
 .. image:: ../img/Schematic_three_one7.png
    :align: center
+
 Procédures expérimentales
-------------------------
+-----------------------------
 
 **Étape 1 :** Construisez le circuit.
 
@@ -127,13 +128,14 @@ Procédures expérimentales
     sudo ./a.out
 
 Lorsque le code s'exécute, les LED simuleront le changement de couleur des feux de circulation.
- D'abord, la LED rouge s'allume pendant 60 secondes, puis la LED verte s'allume pendant 30 secondes ;
-  ensuite, la LED jaune s'allume pendant 5 secondes. Après cela, la LED rouge s'allume de nouveau pendant 
-  60 secondes. Cette série d'actions sera répétée en boucle.
+D'abord, la LED rouge s'allume pendant 60 secondes, puis la LED verte s'allume pendant 30 secondes ;
+ensuite, la LED jaune s'allume pendant 5 secondes. Après cela, la LED rouge s'allume de nouveau pendant 
+60 secondes. Cette série d'actions sera répétée en boucle.
 
 .. note::
 
     Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+
 Code
 ---------
 

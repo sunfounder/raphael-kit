@@ -175,6 +175,7 @@ La LED verte s'allumera lorsque le code sera exécuté. Si un aimant est placé 
             loop()
         except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
             destroy()
+            
 **Explication du Code**
 
 .. code-block:: python

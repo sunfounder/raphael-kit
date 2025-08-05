@@ -17,7 +17,7 @@ Pour les utilisateurs de Linux/Unix
 
 #. Localisez et ouvrez le **Terminal** sur votre système Linux/Unix.
 
-#. Assurez-vous que votre Raspberry Pi est connecté au même réseau. Vérifiez ceci en tapant `ping <hostname>.local`. Par exemple :
+#. Assurez-vous que votre Raspberry Pi est connecté au même réseau. Vérifiez ceci en tapant ``ping <hostname>.local``. Par exemple :
 
     .. code-block::
 

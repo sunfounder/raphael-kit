@@ -22,7 +22,7 @@ Introduction
 -----------------
 
 Dans ce projet, nous allons fabriquer un générateur de code Morse, où vous tapez une série de
- lettres anglaises sur le Raspberry Pi pour les faire apparaître en code Morse.
+lettres anglaises sur le Raspberry Pi pour les faire apparaître en code Morse.
 
 Composants nécessaires
 ------------------------------
@@ -120,11 +120,12 @@ Celui avec le label + est le pôle positif et l'autre est le pôle négatif.)
     sudo ./a.out
 
 Après l'exécution du programme, tapez une série de caractères, et le buzzer ainsi que la
- LED enverront les signaux correspondants en code Morse.
+LED enverront les signaux correspondants en code Morse.
 
 .. note::
 
     Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`install_wiringpi`.
+
 **Explication du code**
 
 .. code-block:: c

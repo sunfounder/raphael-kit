@@ -1,0 +1,282 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! 
+    Plongez plus profondément dans l’univers Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d’experts :** Résolvez les problèmes après‑vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager :** Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs :** Obtenez un accès anticipé aux annonces de nouveaux produits et aux avant‑premières.
+    - **Réductions spéciales :** Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et concours festifs :** Participez à des concours et promotions de vacances.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez‑nous dès aujourd’hui !
+
+.. _4.1.11_py_pi5_mcp3008:
+
+4.1.8 Indicateur de batterie (MCP3008)
+======================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, veuillez identifier si vous avez **ADC0834** ou **MCP3008** et suivre la section correspondante.
+
+Introduction
+------------
+
+Dans ce projet, nous allons réaliser un dispositif indicateur de batterie 
+qui peut afficher visuellement le niveau de la batterie sur une barre de LED.
+
+.. warning::
+
+    N’utilisez pas de composants de batterie dépassant 3,3 V afin d’éviter toute surcharge, 
+    ce qui pourrait endommager la puce ou le Raspberry Pi.
+
+Composants requis
+-----------------
+
+Dans ce projet, nous avons besoin des composants suivants.
+
+.. image:: ../python_pi5/img/list2_Battery_Indicator.png
+    :align: center
+
+Il est évidemment plus pratique d’acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci‑dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D’ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_bar_graph`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schéma
+------
+
+============ ======== ======== ===
+Nom T-Board  physique wiringPi BCM
+SPICE0       Pin 24   10       8
+SPIMOSI      Pin 19   12       10
+SPIMISO      Pin 21   13       9
+SPISCLK      Pin 23   14       11
+GPIO25       Pin 22   6        25
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       20
+GPIO21       Pin 40   29       21
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+GPIO19       Pin 35   24       19
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/schematic_battery_indicator_mcp3008.png
+   :align: center
+   :width: 800
+
+Procédure expérimentale
+-----------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../python_pi5/img/july24_3.1.5_battery_indicator_mcp3008.png
+   :width: 800
+
+**Étape 2 :** Configurer l’interface SPI et installer la bibliothèque ``spidev`` (voir :ref:`spi_configuration` pour des instructions détaillées).  
+Si vous avez déjà effectué ces étapes, vous pouvez les ignorer.
+
+**Étape 3 :** Aller dans le dossier du code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**Étape 4 :** Exécuter le fichier.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.11-2_Battery_indicator_zero.py
+
+Après exécution du programme, connectez séparément le 3ᵉ broche du MCP3008 et la masse (GND) 
+aux deux pôles d’une batterie. Vous verrez les LED correspondantes sur la barre LED s’allumer 
+pour afficher le niveau de la batterie (plage de mesure : 0 – 5 V).
+
+.. warning::
+
+    Si une erreur « RuntimeError: Cannot determine SOC peripheral base address » apparaît, 
+    veuillez vous référer à :ref:`faq_soc`.
+
+Code
+----
+
+.. note::
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci‑dessous.  
+    Mais avant cela, vous devez aller dans le chemin du code source comme ``raphael-kit/python-pi5``.  
+    Après modification, vous pouvez exécuter directement le code pour voir l’effet.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+    ... (le code Python reste identique) ...
+
+Explication du code
+-------------------
+
+Ce programme Python s’exécute sur un Raspberry Pi. 
+Il utilise un convertisseur analogique-numérique MCP3008 pour lire des données de température 
+à partir d’un capteur analogique. Un joystick est utilisé pour ajuster le seuil de température, 
+et un écran LCD1602 affiche la température actuelle et le seuil. 
+Un buzzer et une LED sont activés lorsque la température dépasse le seuil.
+
+1. **Importer les bibliothèques nécessaires**
+
+   .. code-block:: python
+
+       import RPi.GPIO as GPIO
+       import spidev
+       import time
+       import math
+       import LCD1602
+
+   * ``RPi.GPIO`` contrôle les broches GPIO.  
+   * ``spidev`` communique avec le MCP3008 via SPI.  
+   * ``math`` est utilisé pour les calculs de température.  
+   * ``LCD1602`` contrôle l’afficheur LCD.
+
+2. **Configuration GPIO**
+
+   .. code-block:: python
+
+       JOY_BTN_PIN = 22
+       BUZZER_PIN = 23
+       LED_PIN = 24
+
+   * Définit les broches du bouton joystick, du buzzer et de la LED en numérotation BCM.
+
+3. **Initialisation SPI et LCD**
+
+   .. code-block:: python
+
+       upperTem = 40
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+       LCD1602.init(0x27, 1)
+
+   * Initialise la communication SPI avec MCP3008.  
+   * Initialise l’écran LCD1602 via I2C.
+
+4. **Lecture d’un canal ADC**
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           ...
+
+   * Envoie des commandes SPI au MCP3008 et retourne une valeur de 0 à 1023.
+
+5. **Lecture du joystick**
+
+   .. code-block:: python
+
+       def get_joystick_value():
+           ...
+
+   * Lit les mouvements du joystick et retourne un ajustement (+/-1 ou +/-10).
+
+6. **Ajuster le seuil de température**
+
+   .. code-block:: python
+
+       def upper_tem_setting():
+           ...
+
+   * Permet à l’utilisateur de modifier le seuil ``upperTem`` via le joystick.  
+   * Met à jour l’affichage LCD.
+
+7. **Conversion température**
+
+   .. code-block:: python
+
+       def temperature():
+           ...
+
+   * Convertit la tension en résistance, puis en température (équation de Steinhart-Hart).
+
+8. **Mode surveillance**
+
+   .. code-block:: python
+
+       def monitoring_temp():
+           ...
+
+   * Affiche la température actuelle et le seuil.  
+   * Active le buzzer et la LED si la température dépasse le seuil.
+
+9. **Boucle principale**
+
+   .. code-block:: python
+
+       try:
+           ...
+
+   * Utilise un appui du joystick pour basculer entre :  
+     * ``stage 0`` : surveillance  
+     * ``stage 1`` : ajustement du seuil.
+
+10. **Nettoyage à la sortie**
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           ...
+       finally:
+           LCD1602.clear()
+           GPIO.cleanup()
+           spi.close()
+
+   * Garantit la réinitialisation des ressources à la fin du programme (Ctrl+C).

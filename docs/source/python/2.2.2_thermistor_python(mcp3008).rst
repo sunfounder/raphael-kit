@@ -1,0 +1,288 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! 
+    Plongez plus profondément dans l’univers Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes après‑vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et aux avant‑premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez‑nous dès aujourd’hui !
+
+.. _2.2.2_py_mcp3008:
+
+2.2.2 Thermistance (MCP3008)
+============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, veuillez identifier si vous avez **ADC0834** ou **MCP3008** et suivre la section correspondante.
+
+Introduction
+------------
+
+Tout comme la photo‑résistance peut détecter la lumière, la thermistance est un dispositif électronique sensible à la température 
+qui peut être utilisé pour réaliser des fonctions de contrôle thermique, comme la création d’une alarme de surchauffe.
+
+Composants requis
+-----------------
+
+Dans ce projet, nous avons besoin des composants suivants :
+
+.. image:: ../img/list2_2.2.2_thermistor.png
+
+Il est évidemment plus pratique d’acheter un kit complet, voici le lien :
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément via les liens ci‑dessous :
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D’ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schéma
+------
+
+.. .. image:: ../img/2.2.2_thermistor_schematic_1.png
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - Nom T‑Board
+        - physique
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+
+.. image:: ../img/schematic_2.2.2_thermistor_mcp3008.png
+
+Procédure expérimentale
+-----------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/july24_2.2.2_thermistor_mcp3008.png
+
+**Étape 2 :** Configurer l’interface SPI et installer la bibliothèque ``spidev``  
+(voir :ref:`spi_configuration` pour des instructions détaillées).  
+Si vous avez déjà effectué ces étapes, vous pouvez les ignorer.
+
+**Étape 3 :** Aller dans le dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/python
+
+**Étape 4 :** Exécuter le fichier
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.2.2-2_thermistor.py
+
+Lorsque le programme s’exécute, la thermistance détecte la température ambiante  
+et l’affiche à l’écran une fois le calcul terminé.
+
+.. warning::
+
+    Si un message d’erreur ``RuntimeError: Cannot determine SOC peripheral base address`` apparaît, reportez‑vous à :ref:`faq_soc`.
+
+Code
+----
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci‑dessous.  
+    Mais avant cela, vous devez vous placer dans le chemin du code source comme ``raphael-kit/python``.  
+    Après modification, vous pouvez exécuter directement le programme pour voir l’effet.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+    
+    #!/usr/bin/env python3
+    # -*- coding: utf-8 -*-
+
+    import spidev
+    import time
+    import math
+    import RPi.GPIO as GPIO
+
+    # Définir le mode GPIO
+    GPIO.setmode(GPIO.BCM)
+
+    # Initialiser SPI pour MCP3008 (Bus 0, CE0)
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus 0, Device 0 (CE0)
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    def read_adc(channel):
+        """
+        Lire la valeur analogique du canal MCP3008 (0–7)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+    try:
+        while True:
+            # Lire la valeur analogique du CH0 du MCP3008
+            analogVal = read_adc(0)
+
+            # Convertir en tension (référence supposée à 3,3 V)
+            Vr = 3.3 * analogVal / 1023.0
+
+            # Calculer la résistance de la thermistance (R2 dans le pont diviseur = 10 kΩ)
+            Rt = 10000.0 * Vr / (3.3 - Vr)
+
+            # Calcul de Steinhart–Hart
+            tempK = 1.0 / (((math.log(Rt / 10000.0)) / 3950.0) + (1.0 / (273.15 + 25.0)))
+
+            # Conversion en Celsius et Fahrenheit
+            Cel = tempK - 273.15
+            Fah = Cel * 1.8 + 32
+
+            # Afficher le résultat
+            print('Celsius: %.2f °C  Fahrenheit: %.2f °F' % (Cel, Fah))
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        spi.close()
+        GPIO.cleanup()
+
+Explication du code
+-------------------
+
+#. Cette section importe les bibliothèques requises :
+
+   - ``spidev`` pour la communication SPI avec MCP3008  
+   - ``time`` pour les temporisations  
+   - ``math`` pour les calculs logarithmiques de la formule Steinhart–Hart  
+   - ``RPi.GPIO`` pour l’initialisation et le nettoyage des GPIO (inclus par structure)
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       # -*- coding: utf-8 -*-
+
+       import spidev
+       import time
+       import math
+       import RPi.GPIO as GPIO
+
+#. Initialise le mode GPIO en BCM et configure l’interface SPI sur le bus 0 et le périphérique 0 (CE0), avec une vitesse de 1 MHz.
+
+   .. code-block:: python
+
+       GPIO.setmode(GPIO.BCM)
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+
+#. Définit la fonction ``read_adc(channel)`` pour lire les valeurs analogiques d’un canal spécifié du MCP3008 (0–7).  
+   Elle envoie une commande SPI de trois octets et reçoit une valeur analogique sur 10 bits (0–1023).
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           if channel < 0 or channel > 7:
+               return -1
+           adc = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((adc[1] & 0x03) << 8) | adc[2]
+           return value
+
+#. Boucle principale : lit la tension analogique depuis la thermistance sur le canal 0, la convertit en résistance,  
+   puis applique l’équation de Steinhart–Hart pour estimer la température en Celsius et Fahrenheit.  
+   Les valeurs sont mises à jour toutes les 0,2 secondes.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               analogVal = read_adc(0)
+               Vr = 3.3 * analogVal / 1023.0
+               Rt = 10000.0 * Vr / (3.3 - Vr)
+               tempK = 1.0 / (((math.log(Rt / 10000.0)) / 3950.0) + (1.0 / (273.15 + 25.0)))
+               Cel = tempK - 273.15
+               Fah = Cel * 1.8 + 32
+               print('Celsius: %.2f °C  Fahrenheit: %.2f °F' % (Cel, Fah))
+               time.sleep(0.2)
+
+#. Le bloc ``finally`` assure une fermeture propre. Il ferme l’interface SPI et libère les ressources GPIO.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           pass
+
+       finally:
+           spi.close()
+           GPIO.cleanup()

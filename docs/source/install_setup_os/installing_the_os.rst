@@ -19,7 +19,7 @@ Installer le Système d'Exploitation
 
 **Composants Nécessaires**
 
-* Raspberry Pi 5
+* Raspberry Pi
 * Un ordinateur personnel
 * Une carte Micro SD
 

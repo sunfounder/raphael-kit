@@ -72,9 +72,9 @@ Connectez la broche ST_CP du 74HC595 à GPIO18 du Raspberry Pi, SH_CP à GPIO27,
 les ports de sortie parallèles aux 8 segments de l'affichage LED. Les données sont entrées 
 dans la broche DS vers le registre à décalage lorsque SH_CP (l'entrée d'horloge du registre 
 à décalage) est en front montant, et vers le registre de mémoire lorsque ST_CP (l'entrée d'horloge
- de la mémoire) est en front montant. Vous pouvez alors contrôler les états de SH_CP et ST_CP via 
- les GPIO du Raspberry Pi pour transformer les données d'entrée série en données de sortie 
- parallèle afin d'économiser les GPIO du Raspberry Pi et piloter l'affichage.
+de la mémoire) est en front montant. Vous pouvez alors contrôler les états de SH_CP et ST_CP via 
+les GPIO du Raspberry Pi pour transformer les données d'entrée série en données de sortie 
+parallèle afin d'économiser les GPIO du Raspberry Pi et piloter l'affichage.
 
 ============ ======== ======== ===
 Nom T-Board  Physique wiringPi BCM

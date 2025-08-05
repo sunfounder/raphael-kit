@@ -167,7 +167,7 @@ et entrez l'adresse IP du Raspberry Pi, puis cliquez sur \"Connecter\".
 **Étape 3**
 
 Ensuite, la page de connexion xrdp apparaît. Veuillez saisir votre nom d'utilisateur et votre mot de passe.
- Après cela, cliquez sur \"OK\". Lors de votre première connexion, votre nom d'utilisateur est \"pi\" et le mot de passe est \"raspberry\".
+Après cela, cliquez sur \"OK\". Lors de votre première connexion, votre nom d'utilisateur est \"pi\" et le mot de passe est \"raspberry\".
 
 .. image:: img/image297.png
    :align: center
@@ -182,9 +182,9 @@ Vous êtes maintenant connecté avec succès à votre Raspberry Pi en utilisant 
 **Avis de droits d'auteur**
 
 Tous les contenus, y compris mais sans s'y limiter, les textes, les images et le code de ce manuel,
- sont la propriété de la société SunFounder. Vous devez les utiliser uniquement pour des études personnelles,
-  des recherches, des loisirs ou d'autres objectifs non commerciaux ou à but non lucratif, conformément aux réglementations et aux lois sur les droits d'auteur en vigueur,
-   sans porter atteinte aux droits légaux de l'auteur et des détenteurs de droits concernés.
-    Pour toute personne ou organisation qui utilise ces contenus à des fins lucratives sans autorisation,
-     la société se réserve le droit d'intenter une action en justice.
+sont la propriété de la société SunFounder. Vous devez les utiliser uniquement pour des études personnelles,
+des recherches, des loisirs ou d'autres objectifs non commerciaux ou à but non lucratif, conformément aux réglementations et aux lois sur les droits d'auteur en vigueur,
+sans porter atteinte aux droits légaux de l'auteur et des détenteurs de droits concernés.
+Pour toute personne ou organisation qui utilise ces contenus à des fins lucratives sans autorisation,
+la société se réserve le droit d'intenter une action en justice.
 

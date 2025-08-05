@@ -1,0 +1,309 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! 
+    Plongez plus profondément dans l’univers Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes après‑vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et aux avant‑premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et promotions de vacances.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez‑nous dès aujourd’hui !
+
+.. _2.1.7_py_mcp3008:
+
+2.1.7 Potentiomètre (MCP3008)
+=============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   Selon la version de votre kit, veuillez identifier si vous avez **ADC0834** ou **MCP3008** et suivre la section correspondante.
+
+Introduction
+------------
+
+La fonction ADC est utilisée pour convertir des signaux analogiques en valeurs numériques.  
+Dans cette expérience, nous utilisons la puce ADC MCP3008 pour effectuer cette conversion.  
+Un potentiomètre est utilisé pour générer une tension variable, qui modifie une grandeur physique.  
+Le MCP3008 convertit ensuite cette tension analogique en une valeur numérique pouvant être lue et traitée par le Raspberry Pi.
+
+Composants requis
+-----------------
+
+Dans ce projet, nous avons besoin des composants suivants : 
+
+.. image:: ../img/list2_2.1.4_potentiometer.png
+
+Il est bien sûr pratique d’acheter un kit complet, voici le lien : 
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - Nom
+        - ÉLÉMENTS DANS CE KIT
+        - LIEN
+    *   - Kit Raphael
+        - 337
+        - |link_Raphael_kit|
+
+Vous pouvez également les acheter séparément à partir des liens ci‑dessous.
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - INTRODUCTION DU COMPOSANT
+        - LIEN D’ACHAT
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+Schéma
+------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - Nom T‑Board
+        - physique
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.7_potentiometer_mcp3008.png
+
+Procédure expérimentale
+-----------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/july24_2.1.7_potentiometer_mcp3008.png
+
+.. note::
+    Placez la puce en vous référant à la position correspondante représentée sur l’image.  
+    Remarquez que les encoches de la puce doivent être sur la gauche lorsqu’elle est installée.
+
+**Étape 2 :** Configurer l’interface SPI et installer la bibliothèque ``spidev`` (voir :ref:`spi_configuration` pour les instructions détaillées).  
+Si vous avez déjà effectué ces étapes, vous pouvez les ignorer.
+
+**Étape 3 :** Ouvrir le fichier de code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**Étape 4 :** Exécuter le programme.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.7-2_Potentiometer.py
+
+Une fois le programme exécuté, tournez le bouton du potentiomètre : l’intensité de la LED changera en conséquence.
+
+.. warning::
+
+    Si un message d’erreur ``RuntimeError: Cannot determine SOC peripheral base address`` apparaît, reportez‑vous à :ref:`faq_soc`.
+
+Code
+----
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci‑dessous.  
+    Mais avant cela, vous devez vous placer dans le chemin du code source comme ``raphael-kit/python``.  
+    Après modification, vous pouvez exécuter directement le programme pour voir l’effet.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import spidev
+    import time
+    import RPi.GPIO as GPIO
+
+    # Broche GPIO pour la sortie PWM
+    PWM_PIN = 22
+
+    # Configuration GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(PWM_PIN, GPIO.OUT)
+
+    # Initialiser le PWM sur GPIO22 à 1000 Hz
+    pwm = GPIO.PWM(PWM_PIN, 1000)
+    pwm.start(0)  # Démarre avec un rapport cyclique de 0 %
+
+    # Initialiser le SPI
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus 0, CE0
+    spi.max_speed_hz = 1000000
+
+    def read_adc(channel):
+        """
+        Lire la valeur analogique depuis le MCP3008
+        :param channel: canal ADC (0-7)
+        :return: entier 10 bits (0-1023)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 3) << 8) | adc[2]
+        return value
+
+    def MAP(x, in_min, in_max, out_min, out_max):
+        """
+        Convertir une valeur d’une plage à une autre
+        """
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+    try:
+        while True:
+            # Lire la valeur analogique du canal 0
+            res = read_adc(0)
+            print('res = %d' % res)
+
+            # Convertir en rapport cyclique de 0 à 100 %
+            duty_cycle = MAP(res, 0, 1023, 0, 100)
+
+            # Mettre à jour le rapport cyclique du PWM
+            pwm.ChangeDutyCycle(duty_cycle)
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        pwm.stop()
+        GPIO.cleanup()
+        spi.close()
+
+Explication du code
+-------------------
+
+#. ``RPi.GPIO`` est utilisé pour générer des signaux PWM afin de contrôler une LED.  
+   ``spidev`` est utilisé pour la communication SPI avec le MCP3008.  
+   ``time`` est utilisé pour insérer des temporisations dans la boucle.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import spidev
+       import time
+       import RPi.GPIO as GPIO
+
+#. Configurer la broche GPIO 22 pour la sortie PWM via ``RPi.GPIO``.  
+   Configurer la communication SPI avec le MCP3008 (Bus 0, CE0) à 1 MHz.
+
+   .. code-block:: python
+
+       PWM_PIN = 22
+
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(PWM_PIN, GPIO.OUT)
+
+       pwm = GPIO.PWM(PWM_PIN, 1000)  # fréquence 1 kHz
+       pwm.start(0)  # démarrage avec 0 %
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)
+       spi.max_speed_hz = 1000000
+
+#. Cette fonction lit les données analogiques du MCP3008 sur le canal spécifié (0 – 7) via le protocole SPI.  
+   Le résultat est un entier 10 bits allant de 0 à 1023.
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           if channel < 0 or channel > 7:
+               return -1
+           adc = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((adc[1] & 3) << 8) | adc[2]
+           return value
+
+#. Cette fonction mappe une valeur d’une plage numérique à une autre.  
+   Elle est utilisée pour convertir la valeur ADC en un rapport cyclique PWM.
+
+   .. code-block:: python
+
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. Dans la boucle principale, le programme lit en continu les données analogiques du canal 0 du MCP3008,  
+   les mappe à une plage de PWM (0 – 100 %) et ajuste la luminosité de la LED en conséquence.  
+   La boucle se met à jour toutes les 0,2 s.  
+   En cas d’interruption (Ctrl+C), le programme arrête le signal PWM et libère la configuration GPIO.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               res = read_adc(0)
+               print('res = %d' % res)
+
+               duty_cycle = MAP(res, 0, 1023, 0, 100)
+               pwm.ChangeDutyCycle(duty_cycle)
+
+               time.sleep(0.2)
+
+       except KeyboardInterrupt:
+           pass
+
+       finally:
+           pwm.stop()
+           GPIO.cleanup()
+           spi.close()

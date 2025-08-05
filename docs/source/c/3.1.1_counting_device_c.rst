@@ -22,9 +22,9 @@ Introduction
 -----------------
 
 Ici, nous allons créer un système de comptage avec affichage numérique, composé d'un capteur
- PIR et d'un afficheur à segments 4 chiffres. Lorsque le capteur PIR détecte le passage de 
- quelqu'un, le chiffre sur l'afficheur à segments 4 chiffres augmentera de 1. Vous pouvez 
- utiliser ce compteur pour compter le nombre de personnes traversant un passage.
+PIR et d'un afficheur à segments 4 chiffres. Lorsque le capteur PIR détecte le passage de 
+quelqu'un, le chiffre sur l'afficheur à segments 4 chiffres augmentera de 1. Vous pouvez 
+utiliser ce compteur pour compter le nombre de personnes traversant un passage.
 
 Composants requis
 ------------------------------
@@ -98,6 +98,7 @@ Procédures expérimentales
 **Étape 1** : Construisez le circuit.
 
 .. image:: ../img/image235.png
+    
 **Étape 2** : Allez dans le dossier du code.
 
 .. raw:: html
