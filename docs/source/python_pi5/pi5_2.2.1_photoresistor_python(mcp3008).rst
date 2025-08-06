@@ -1,0 +1,240 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と共にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門サポート**: 購入後の問題や技術的課題をコミュニティとチームで解決  
+    - **学びと共有**: ヒントや学習資料を交換し、技術力を向上  
+    - **限定プレビュー**: 新製品情報や先行発表に早期アクセス  
+    - **特別割引**: 新製品を特別価格で購入可能  
+    - **イベントと景品企画**: 景品イベントや季節ごとのキャンペーンに参加  
+
+    👉 一緒に探求し、ものづくりを楽しみましょう。[|link_sf_facebook|] をクリックして参加！
+
+.. _2.2.1_py_pi5_mcp3008:
+
+2.2.1 フォトレジスタ (MCP3008)
+===============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+
+   キットのバージョンに応じて **ADC0834** または **MCP3008** が含まれています。  
+   お手持ちのバージョンに対応する章をご参照ください。
+
+概要
+----
+
+フォトレジスタは周囲光の強さを検知するために広く使われる部品です。  
+これを用いることで、コントローラは昼夜を識別し、ナイトランプのような光制御機能を実現できます。  
+このプロジェクトは可変抵抗器の実験と非常によく似ており、電圧を変化させることで光を検知します。
+
+必要な部品
+----------
+
+このプロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../python_pi5/img/list2_2.2.1_photoresistor.png
+
+キット一式で購入すると便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名称
+        - キット内数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+個別に購入することもできます。以下のリンクをご参照ください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品紹介
+        - 購入リンク
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+回路図
+------
+
+.. .. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_1.png
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../python_pi5/img/schematic_2.2.1_photoresistor_mcp3008.png
+
+実験手順
+--------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/july24_2.2.1_photoresistor_mcp3008.png
+
+**ステップ 2:** SPI インターフェースを設定し、``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` を参照）。すでに設定済みの場合は省略可能です。
+
+**ステップ 3:** コードがあるフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.1-2_Photoresistor_zero.py
+
+コード実行中、フォトレジスタが検知した光の強さに応じて LED の明るさが変化します。
+
+.. warning::
+
+    ``RuntimeError: Cannot determine SOC peripheral base address`` エラーが表示された場合は :ref:`faq_soc` を参照してください。
+
+コード
+------
+
+.. note::
+    以下のコードは **修正／リセット／コピー／実行／停止** が可能です。  
+    その前に ``raphael-kit/python-pi5`` のソースコードパスに移動してください。変更後、直接実行して結果を確認できます。
+
+.. raw:: html
+
+   <run></run>
+
+（コード部分は原文のまま保持）
+
+コード解説
+----------
+
+1. ``gpiozero`` の ``PWMLED`` クラスで LED の輝度を制御、 ``spidev`` で MCP3008 との SPI 通信、 ``time`` で待機処理を行います。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       import spidev
+       import time
+       from gpiozero import PWMLED
+
+2. GPIO ピン 22 に接続された PWM LED を初期化し、MCP3008 用 SPI インターフェース (バス 0, CE0) を 1 MHz で設定します。
+
+   .. code-block:: python
+
+       # Initialize a PWM LED on GPIO pin 22
+       led = PWMLED(22)
+
+       # Initialize SPI communication (Bus 0, CE0 -> GPIO8)
+       spi = spidev.SpiDev()
+       spi.open(0, 0)  # Bus 0, CS0
+       spi.max_speed_hz = 1000000  # 1 MHz
+
+3. 指定した MCP3008 チャンネル (0～7) からアナログ値を読み取る関数 ``read_adc()`` を定義しています。SPI により 3 バイトを送信し、応答から 10 ビットの値 (0～1023) を得ます。
+
+   .. code-block:: python
+
+       # Function to read from MCP3008 channel (0–7)
+       def read_adc(channel):
+           """
+           Read analog value from MCP3008 (0–1023)
+           """
+           if channel < 0 or channel > 7:
+               return -1
+           # MCP3008 protocol: Start bit, Single-ended mode, Channel (3 bits), filler
+           r = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((r[1] & 3) << 8) | r[2]
+           return value
+
+4. ``MAP()`` 関数は数値をある範囲から別の範囲に変換します。ADC 値を LED の PWM 出力範囲に合わせるために利用します。
+
+   .. code-block:: python
+
+       # Define a function for mapping values from one range to another
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+5. メインループでは、MCP3008 のチャンネル 0 からアナログ値を取得し、PWM 輝度値 (0.0〜1.0) に変換して LED の明るさを制御します。0.2 秒ごとに更新します。
+
+   .. code-block:: python
+
+       # Main loop for reading ADC value and controlling LED brightness
+       def loop():
+           while True:
+               # Read analog value from channel 0 of MCP3008
+               analogVal = read_adc(0)
+               print('value = %d' % analogVal)
+
+               # Map 0–1023 to PWM range 0.0–1.0
+               led.value = analogVal / 1023.0
+
+               # Wait for 0.2 seconds
+               time.sleep(0.2)
+
+6. ``KeyboardInterrupt`` (Ctrl+C) を検知するとループを終了し、LED を消灯してプログラムを終了します。
+
+   .. code-block:: python
+
+       # Run the main loop and handle KeyboardInterrupt for graceful shutdown
+       try:
+           loop()
+       except KeyboardInterrupt:
+           # Turn off LED before exiting
+           led.value = 0
+

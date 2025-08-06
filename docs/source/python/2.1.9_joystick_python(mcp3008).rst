@@ -1,0 +1,210 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門サポート**: 購入後の問題や技術的な課題をコミュニティとチームで解決
+    - **学びと共有**: ヒントやチュートリアルを交換し、スキルを向上
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス
+    - **特別割引**: 新製品を特別価格で購入可能
+    - **イベントとプレゼント企画**: プレゼントや季節ごとのキャンペーンに参加
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.1.9_py_mcp3008:
+
+2.1.9 ジョイスティック (MCP3008)
+==================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンによって **ADC0834** か **MCP3008** が含まれています。自分のキットに合ったセクションに従ってください。
+
+概要
+----
+
+このプロジェクトではジョイスティックの仕組みを学びます。  
+ジョイスティックを操作し、その結果を画面に表示します。
+
+必要な部品
+----------
+
+このプロジェクトでは以下の部品を使用します。
+
+.. image:: ../img/image317 - Copy.png
+
+キット一式で購入するのが便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - キット内の部品数
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+個別に購入する場合は以下のリンクを参照してください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品名
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+回路図
+------
+
+ジョイスティックのデータを読み取る際、X軸とY軸はアナログ信号であるため、MCP3008 を使ってアナログ値をデジタル値に変換する必要があります。Z軸はデジタル信号なので、GPIO で直接読み取るか、ADC を使用することもできます。
+
+.. image:: ../img/schematic_2.1.9_joystick_mcp3008.png
+
+実験手順
+--------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_2.1.9_joystick_mcp3008.png
+
+**ステップ 2:** SPI インターフェースを設定し、``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` を参照）。すでに完了している場合はこのステップを省略できます。
+
+**ステップ 3:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**ステップ 4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.9-2_Joystick.py
+
+コードを実行すると、ジョイスティックを動かしたときに X、Y、ボタンの値が画面に表示されます。
+
+.. warning::
+
+    ``RuntimeError: Cannot determine SOC peripheral base address`` というエラーが出た場合は、:ref:`faq_soc` を参照してください。
+
+コード
+------
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+    BTN_PIN = 22
+
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(BTN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 1000000
+
+    def read_adc(channel):
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+    try:
+        while True:
+            x_val = read_adc(1)
+            y_val = read_adc(2)
+            Btn_val = GPIO.input(BTN_PIN)
+            print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+            time.sleep(0.2)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        spi.close()
+        GPIO.cleanup()
+
+コード解説
+----------
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+- ``RPi.GPIO`` はジョイスティックのボタン入力を扱います。  
+- ``spidev`` は SPI 経由で MCP3008 と通信します。  
+- ``time`` は処理間の遅延を追加するために使用します。
+
+.. code-block:: python
+
+    BTN_PIN = 22
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(BTN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 1000000
+
+GPIO モードを ``BCM`` に設定し、ジョイスティックボタンをプルアップ入力で初期化します。  
+また、MCP3008 との SPI 通信 (バス0, CE0, 速度1MHz) を設定します。
+
+.. code-block:: python
+
+    def read_adc(channel):
+        if channel < 0 or channel > 7:
+            return -1
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 0x03) << 8) | adc[2]
+        return value
+
+指定した MCP3008 チャネルからアナログ値を読み取ります。3バイトを SPI で送信し、10 ビットの値 (0–1023) を返します。
+
+.. code-block:: python
+
+    while True:
+        x_val = read_adc(1)
+        y_val = read_adc(2)
+        Btn_val = GPIO.input(BTN_PIN)
+        print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+        time.sleep(0.2)
+
+メインループではジョイスティックの X/Y 軸の値とボタン状態を 0.2 秒ごとに取得し表示します。  
+Ctrl+C で終了すると SPI と GPIO を適切にクリーンアップします。

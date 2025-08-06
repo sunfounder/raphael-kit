@@ -1,0 +1,238 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と共にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的サポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス
+    - **特別割引**: 新製品を特別価格で購入可能
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.2.1_js_pi5_mcp3008:
+
+2.2.1 フォトレジスタ(MCP3008)
+===============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+   
+
+   使用しているキットのバージョンに応じて、 **ADC0834** か **MCP3008** かを確認し、対応するセクションを進めてください。
+
+はじめに
+------------
+
+フォトレジスタは生活の中でよく使われる周囲光強度のセンサー部品です。  
+昼夜を識別し、ナイトライトのような照明制御機能を実現するのに役立ちます。  
+このプロジェクトは可変抵抗器（ポテンショメータ）と非常に似ており、電圧を変えることで光を検知するものです。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../img/list2_2.2.1_photoresistor.png
+
+部品を一式そろえたキットを購入すると便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名称
+        - キット内の数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+個別に購入する場合は以下のリンクを参照してください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品名
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+回路図
+--------------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名称
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.2.1_photoresistor_mcp3008.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/2.2.1_Photoresistor_bb.png
+
+**ステップ 2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/nodejs/
+
+**ステップ 3:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node photoresistor-2.js
+
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const mcpadc = require('mcp-spi-adc');
+
+    // MCP3008 チャンネル0 (アナログ入力 CH0) を開く
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1350000 }, (err) => {
+    if (err) {
+        console.error("MCP3008 を開けませんでした:", err);
+        process.exit(1);
+    }
+
+    console.log("MCP3008 SPI0/CE0 初期化完了。");
+
+    // GPIO22 に接続された LED を初期化 (PWM対応)
+    const led = new Gpio(22, { mode: Gpio.OUTPUT });
+
+    // 100ms ごとに ADC を読み取り LED 輝度を更新
+    const interval = setInterval(() => {
+        adc.read((err, reading) => {
+        if (err) {
+            console.error("ADC 読み取りエラー:", err);
+            return;
+        }
+
+        const adcValue = reading.value;            // 0.0 ～ 1.0 の浮動小数
+        const pwmValue = Math.round(adcValue * 255); // 0～255に変換
+
+        console.log(`ADC = ${adcValue.toFixed(4)}, PWM = ${pwmValue}`);
+
+        led.pwmWrite(pwmValue); // LED 輝度を更新
+        });
+    }, 100);
+
+    // Ctrl+C (SIGINT) を検知して終了処理
+    process.on('SIGINT', () => {
+        console.log('\n安全に終了します...');
+        clearInterval(interval);  // ループ停止
+        led.digitalWrite(0);      // LED を消灯
+        process.exit(0);
+    });
+    });
+
+**コード解説**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+``pigpio`` モジュールをインポートし、GPIO ピンの制御を可能にします。PWM 出力を利用して LED の調光ができます。
+
+.. code-block:: js
+
+    const mcpadc = require('mcp-spi-adc');
+
+``mcp-spi-adc`` ライブラリをインポートし、Raspberry Pi の SPI インターフェースを使用して MCP3008 と通信します。
+
+.. code-block:: js
+
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1350000 }, (err) => { ... });
+
+MCP3008 のアナログ入力チャンネル0 を開きます。SPI クロック速度は 1.35 MHz に設定されています。  
+チャンネルが開けない場合はエラーを出力しプログラムを終了します。
+
+.. code-block:: js
+
+    const led = new Gpio(22, { mode: Gpio.OUTPUT });
+
+GPIO22 番ピンを出力として初期化します。このピンは PWM を使って LED の輝度を制御します。
+
+.. code-block:: js
+
+    setInterval(() => {
+        adc.read((err, reading) => { ... });
+    }, 100);
+
+100 ミリ秒ごとに MCP3008 チャンネル0 の値を読み取り、その結果を 0.0～1.0 の範囲の浮動小数として取得します。
+
+.. code-block:: js
+
+    const pwmValue = Math.round(adcValue * 255);
+    led.pwmWrite(pwmValue);
+
+アナログ値を 0～255 の PWM 値に変換し、GPIO22 に書き込み LED 輝度を比例的に制御します。
+
+.. code-block:: js
+
+    process.on('SIGINT', () => {
+        clearInterval(interval);
+        led.digitalWrite(0);
+        process.exit(0);
+    });
+
+``Ctrl+C`` を押したときにプログラムを安全に終了させるためのハンドラを追加します。ループを停止し、LED を消灯させ、正常に終了します。

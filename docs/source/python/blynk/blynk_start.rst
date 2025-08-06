@@ -1,36 +1,34 @@
 .. note::
 
-    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と共にさらに深く学びましょう。
 
-    **参加する理由は？**
+    **参加する理由**
 
-    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
-    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
-    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
-    - **特別割引**：最新製品の独占割引をお楽しみください。
-    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+    - **専門的サポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス
+    - **特別割引**: 新製品を特別価格で購入可能
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加
 
-    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
 
 .. _bk_start:
 
-Blynkを始めよう
+Blynk の開始
 =========================
 
-このプロジェクトでは、Blynkの使用方法を学びます。
+このプロジェクトでは Blynk の使い方を学びます。
 
-Blynkのウィジェットをトリガーすると、Raspberry Piはその値を出力します。
+Blynk 上のウィジェットを操作すると、Raspberry Pi がその値を出力します。
 
-以下の手順に従ってください。すべての章を順番に進め、スキップしないでください。
+以下の手順に従ってください。順序を飛ばさずに進めることが重要です。
 
 
-
-1. Blynkの設定
+1. Blynk の設定
 --------------------------
 
-
-
-1. `BLYNK <https://blynk.io/>`_  にアクセスし、 **START FREE** をクリックします。
+1. `BLYNK <https://blynk.io/>`_ へアクセスし、**START FREE** をクリックします。
 
     .. image:: img/sp220607_142551.png
 
@@ -38,67 +36,63 @@ Blynkのウィジェットをトリガーすると、Raspberry Piはその値を
 
     .. image:: img/sp220607_142807.png
 
-#. 登録したメールアドレスにアクセスして、アカウント登録を完了します。
+#. メールに届いたリンクを開き、アカウント登録を完了します。
 
     .. image:: img/sp220607_142936.png
 
-#. その後、 **Blynk Tour** が表示されるので、Blynkについての基本情報を学びます。
+#. 登録後、**Blynk Tour** が表示されます。Blynk の基本情報を知るために読むことをおすすめします。
 
     .. image:: img/sp220607_143244.png
 
-#. 次に、テンプレートとデバイスを作成する必要があります。 **Cancel** をクリックします。
+#. 次にテンプレートとデバイスを作成する必要がありますが、ここでは **Cancel** をクリックします。
 
     .. image:: img/sp220607_143608.png
 
-#. ナビゲーションバーからTemplateに移動します。
+#. ナビゲーションバーから **Developer Zone** を選択します。
 
-    .. image:: img/sp220913_170029.png
+    .. image:: img/develop_zone.png
 
-#. 新しいテンプレートを作成します。
+#. **Create New Template** をクリックします。
 
-    .. image:: img/sp220913_170206.png
+    .. image:: img/new_template.png
 
-
-#. **NAME** を入力し、 **HARDWARE** は **Raspberry Pi** に設定します。そして、 **Done** をクリックします。
+#. **NAME** を自由に入力し、**HARDWARE** は **Raspberry Pi** を選択し、**Done** をクリックします。
 
     .. image:: img/sp220913_170402.png
 
-
-#. Infoページにリダイレクトされるので、右上の保存ボタンをクリックします。
+#. Info ページに移動したら、右上の **save** をクリックします。
 
     .. image:: img/sp220913_171202.png
 
-#. ナビゲーションバーから **Search** ページに移動します。
+#. ナビゲーションバーから **Devices** ページへ移動します。
 
-    .. image:: img/sp220913_172727.png
+    .. image:: img/devices.jpg
 
-#. 新しいデバイスを作成します。
+#. **Create New Device** をクリックします。
 
-    .. image:: img/sp220913_173259.png
+    .. image:: img/new_devices.png
 
-#. テンプレートから選択します。
+#. **From template** を選択します。
 
-    .. image:: img/sp220913_173350.png
+    .. image:: img/create_new_device.png
 
-#. 先ほど設定した **TEMPLATE** を選択し、 **DEVICE NAME** はカスタマイズ可能です。Createをクリックします。
+#. **TEMPLATE** は先ほど設定したものを選択し、**DEVICE NAME** は自由に設定して **Create** をクリックします。
 
     .. image:: img/sp220913_173507.png
 
+#. 次のようなページが表示されれば、初期設定は完了です。
 
-#. このようなページが表示されれば、Blynkの初期設定が完了です。
-
-    .. image:: img/sp220913_173950.png
+    .. image:: img/my_device.png
 
 
-2. ダッシュボードの編集
+2. ダッシュボード編集
 --------------------------------
 
+1. **edit dashboard** をクリックします。
 
-1. 右上のメニューアイコンをクリックして、ダッシュボードの編集を選択します。
+    .. image:: img/edit_dashboard.png
 
-    .. image:: img/sp220913_180231.png
-
-#. ダッシュボードに追加したいCONTROLウィジェットをドラッグします。私はSwitchとSliderを追加しました。
+#. 任意の制御ウィジェットをダッシュボードにドラッグします。例として Switch と Slider を追加しました。
 
     .. image:: img/sp220913_180725.png
 
@@ -106,27 +100,27 @@ Blynkのウィジェットをトリガーすると、Raspberry Piはその値を
 
     .. image:: img/sp220913_180806.png
 
-#. データストリームを作成し、Virtual Pinを選択します。
+#. Datastream を作成し、**Virtual Pin** を選択します。
 
     .. image:: img/sp220913_180906.png
 
-#. データストリームの設定を完了します。ここではSwitch用に作成されたデータストリームで、 **DATA TYPE** は ``Interger`` に、 **MIN** と **MAX** は ``0`` と ``1`` に設定します。作成したら保存します。
+#. Datastream の設定を完了します。Switch 用の場合、**DATA TYPE** を ``Integer``、**MIN** を ``0``、**MAX** を ``1`` に設定して作成し、保存します。
 
     .. image:: img/sp220913_181113.png
 
-#. Sliderウィジェット用のデータストリームも同様の手順で作成し、 **DATA TYPE** 、 **MIN** 、 **MAX** を必要に応じて修正します。
+#. 同様に Slider ウィジェット用の Datastream を作成し、**DATA TYPE**、**MIN**、**MAX** を必要に応じて設定します。
 
     .. image:: img/sp220913_182042.png
 
-#. 完了したら、右上のSave And Applyをクリックします。
+#. 完了したら、右上の **Save And Apply** をクリックします。
 
     .. image:: img/sp220913_182300.png
 
 
-3. Blynkライブラリのインストール
-----------------------------------
+3. Blynk ライブラリのインストール
+----------------------------------------------------------
 
-以下のコマンドを実行してインストールします。
+以下のコマンドでインストールします。
 
 .. raw:: html
 
@@ -139,10 +133,11 @@ Blynkのウィジェットをトリガーすると、Raspberry Piはその値を
     cd blynk-library-python
     sudo python3 setup.py
 
-4. サンプルのダウンロード
------------------------------
 
-いくつかのサンプルを提供していますので、以下のコマンドを実行してダウンロードしてください。
+4. サンプルコードのダウンロード
+-------------------------------
+
+以下のコマンドを実行してサンプルコードを取得します。
 
 .. raw:: html
 
@@ -157,9 +152,7 @@ Blynkのウィジェットをトリガーすると、Raspberry Piはその値を
 5. コードの実行
 -----------------
 
-
-
-1. BlynkのDevice Infoページに移動し、 **FIRMWARE CONFIGURATION** の下に表示される情報から、 **BLYNK_AUTH_TOKEN** をコピーします。
+1. Blynk の Device Info ページに移動し、**FIRMWARE CONFIGURATION** にある **BLYNK_AUTH_TOKEN** をコピーします。
 
     .. image:: img/sp220913_182456.png
 
@@ -174,7 +167,7 @@ Blynkのウィジェットをトリガーすると、Raspberry Piはその値を
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_start.py
 
-3. 下記の行を探して、 ``BLYNK_AUTH_TOKEN`` を貼り付けます。
+3. 以下の行を見つけ、``BLYNK_AUTH_TOKEN`` を貼り付けます。
 
 .. code-block:: 
 
@@ -190,11 +183,11 @@ Blynkのウィジェットをトリガーすると、Raspberry Piはその値を
 
     sudo python3 blynk_start.py
 
-5. Blynkに移動して、ダッシュボードのウィジェットを操作します。
+5. Blynk のダッシュボードにアクセスし、ウィジェットを操作します。
 
     .. image:: img/sp220913_183529.png
 
-6. これで、ターミナルで操作内容が表示されるようになります。
+6. ターミナルにあなたの操作が表示されるはずです。
 
 .. code-block:: 
 
@@ -212,4 +205,3 @@ Blynkのウィジェットをトリガーすると、Raspberry Piはその値を
     V1 value: ['3']
     V1 value: ['8']
     V0 value: ['1']
-

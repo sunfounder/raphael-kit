@@ -1,0 +1,291 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と共にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門サポート**: 購入後の問題や技術的課題をコミュニティとチームで解決  
+    - **学びと共有**: ヒントや学習資料を交換し、技術力を向上  
+    - **限定プレビュー**: 新製品情報や先行発表に早期アクセス  
+    - **特別割引**: 新製品を特別価格で購入可能  
+    - **イベントと景品企画**: 景品イベントや季節ごとのキャンペーンに参加  
+
+    👉 一緒に探求し、ものづくりを楽しみましょう。[|link_sf_facebook|] をクリックして参加！
+
+.. _2.1.7_py_pi5_mcp3008:
+
+2.1.7 可変抵抗器 (MCP3008)
+=============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+     
+   キットのバージョンに応じて **ADC0834** または **MCP3008** が含まれています。  
+   お手持ちのバージョンに対応する章をご参照ください。
+
+概要
+----
+
+アナログ信号をデジタル値に変換するために A/D 変換が利用されます。  
+この実験では MCP3008 A/D 変換器を使用してこの変換を行います。  
+可変抵抗器は可変電圧を発生させ、物理量を変化させます。  
+MCP3008 はこのアナログ電圧をデジタル値に変換し、ラズベリーパイで読み取り処理できます。
+
+必要な部品
+------------
+
+本プロジェクトで必要な部品は次のとおりです。
+
+.. image:: ../python_pi5/img/list2_2.1.4_potentiometer.png
+
+キット一式で購入すると便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名称  
+        - キット内数量  
+        - リンク
+    *   - Raphael Kit  
+        - 337  
+        - |link_Raphael_kit|
+
+個別に購入することもできます。以下のリンクをご参照ください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品紹介  
+        - 購入リンク
+    *   - :ref:`cpn_gpio_extension_board`  
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`  
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`  
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`  
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`  
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`  
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_mcp3008`  
+        - \-
+
+回路図
+------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名  
+        - physical  
+        - WiringPi  
+        - BCM
+    *   - SPICE0  
+        - pin24  
+        - 10  
+        - 8
+    *   - SPIMOSI  
+        - pin19  
+        - 12  
+        - 10
+    *   - SPIMISO  
+        - pin21  
+        - 13  
+        - 9
+    *   - SPISCLK  
+        - pin23  
+        - 14  
+        - 11
+    *   - GPIO22  
+        - pin15  
+        - 3  
+        - 22
+
+.. image:: ../python_pi5/img/schematic_2.1.7_potentiometer_mcp3008.png
+
+実験手順
+--------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/july24_2.1.7_potentiometer_mcp3008.png
+
+.. note::  
+    図を参考にチップを配置してください。溝が左側になるように配置します。
+
+**ステップ 2:** SPI インターフェースを設定し、``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` 参照）。すでに設定済みの場合は省略可能です。
+
+**ステップ 3:** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python-pi5
+
+**ステップ 4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.7-2_Potentiometer_zero.py
+
+コードを実行した後、可変抵抗器のつまみを回すと LED の明るさが変化します。
+
+.. warning::
+
+    ``RuntimeError: Cannot determine SOC peripheral base address`` エラーが表示された場合は :ref:`faq_soc` を参照してください。
+
+コード
+------
+
+.. note::
+    以下のコードは **修正／リセット／コピー／実行／停止** が可能です。  
+    その前に ``raphael-kit/python-pi5`` のソースコードパスに移動してください。変更後、直接実行して結果を確認できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import spidev
+    import time
+    from gpiozero import PWMLED
+
+    # Initialize PWM LED on GPIO22
+    led = PWMLED(22)
+
+    # Initialize SPI
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # Bus 0, CS0 (CE0)
+    spi.max_speed_hz = 1000000
+
+    def read_adc(channel):
+        """
+        Read analog value from MCP3008
+        :param channel: ADC channel (0-7)
+        :return: 10-bit integer (0-1023)
+        """
+        if channel < 0 or channel > 7:
+            return -1
+        # MCP3008 protocol
+        adc = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((adc[1] & 3) << 8) | adc[2]
+        return value
+
+    def MAP(x, in_min, in_max, out_min, out_max):
+        """
+        Map a value from one range to another
+        """
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+    try:
+        while True:
+            # Read from MCP3008 channel 0
+            res = read_adc(0)
+            print('res = %d' % res)
+
+            # Map 0–1023 to 0–100%
+            R_val = MAP(res, 0, 1023, 0, 100)
+
+            # Set LED brightness
+            led.value = R_val / 100.0
+
+            time.sleep(0.2)
+
+    except KeyboardInterrupt:
+        led.value = 0  # Turn off the LED
+
+コード解説
+----------
+
+1. ``gpiozero`` は PWM 出力で LED を制御するために使用します。 ``spidev`` は MCP3008 との通信、 ``time`` は遅延処理に使用します。
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import spidev
+       import time
+       from gpiozero import PWMLED
+
+2. GPIO22 に接続された LED を PWM 制御するために ``PWMLED`` オブジェクトを初期化し、SPI（バス0、CE0）を設定します。
+
+   .. code-block:: python
+
+       # Initialize PWM LED on GPIO22
+       led = PWMLED(22)
+
+       # Initialize SPI
+       spi = spidev.SpiDev()
+       spi.open(0, 0)  # Bus 0, CS0 (CE0)
+       spi.max_speed_hz = 1000000
+
+
+
+3. ``read_adc`` 関数は MCP3008 から指定したチャネル (0〜7) のアナログ値を取得します。
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           """
+           Read analog value from MCP3008
+           :param channel: ADC channel (0-7)
+           :return: 10-bit integer (0-1023)
+           """
+           if channel < 0 or channel > 7:
+               return -1
+           adc = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((adc[1] & 3) << 8) | adc[2]
+           return value
+
+
+4. ``MAP`` 関数は一つの範囲を別の範囲に変換するために使います（ADC の値を LED の明るさに対応させるために使用）。
+
+   .. code-block:: python
+
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+
+5. 無限ループで ADC 値を読み取り、0〜1023 の範囲を 0〜100 に変換し、LED の明るさを調整します。0.2 秒ごとに更新します。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Read from MCP3008 channel 0
+               res = read_adc(0)
+               print('res = %d' % res)
+
+               # Map 0–1023 to 0–100%
+               R_val = MAP(res, 0, 1023, 0, 100)
+
+               # Set LED brightness
+               led.value = R_val / 100.0
+
+               time.sleep(0.2)
+
+6. Ctrl+C で停止した場合、LED を消灯します。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           led.value = 0  # Turn off the LED

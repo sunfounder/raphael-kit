@@ -87,7 +87,7 @@ SPISCLK      Pin 23   14       SCLK
 
     実験を開始する前にSPIをオンにしてください。詳しくは :ref:`spi_configuration` を参照してください。
     
-    :ref:`Luma.LED_Matrix` と :ref:`SpidevとMFRC522` のライブラリも必要です。
+    :ref:`Luma.LED_Matrix` と :ref:`mfrc522_lib` のライブラリも必要です。
 
 ステップ1: 回路を組む。
 

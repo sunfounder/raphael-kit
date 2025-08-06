@@ -1,0 +1,309 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的なサポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決。
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上。
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス。
+    - **特別割引**: 新製品を特別価格で購入可能。
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加。
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.2.2_c_mcp3008:
+
+2.2.2 サーミスタ (MCP3008)
+============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンによって **ADC0834** または **MCP3008** が含まれています。  
+   該当するセクションを選択してください。
+
+はじめに
+------------
+
+光センサーが光を検出するのと同様に、サーミスタは温度に敏感な電子部品であり、  
+熱警報などの温度制御機能を実現するために使用できます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには以下の部品が必要です。
+
+.. image:: ../img/list2_2.2.2_thermistor.png
+
+部品をまとめて購入するのが便利です。リンクはこちら:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - キット内数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下から個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+回路図
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+
+.. image:: ../img/schematic_2.2.2_thermistor_mcp3008.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_2.2.2_thermistor_mcp3008.png
+
+**ステップ 2:** コードのあるフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.2.2-2/
+
+**ステップ 3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.2_Thermistor.c -o Thermistor -lwiringPi -lm
+
+.. note::
+    -lm は math ライブラリを読み込むために必要です。省略するとエラーになります。
+
+**ステップ 4:** 実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    ./Thermistor
+
+コードを実行すると、サーミスタが周囲温度を検出し、計算結果が画面に表示されます。
+
+.. note::
+
+    実行しても動作しない、または「wiringPi.h: No such file or directory」というエラーが出た場合は :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+    #include <math.h>
+
+    #define SPI_CHANNEL 0  // CE0
+    #define SPI_SPEED   1000000  // 1MHz
+
+    int read_ADC(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;  // 開始ビット
+        buffer[1] = (8 + channel) << 4;  // シングルエンドモード + チャンネル
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int value = ((buffer[1] & 3) << 8) | buffer[2];
+        return value;
+    }
+
+    int main(void) {
+        int analogVal;
+        double Vr, Rt, temp, cel, Fah;
+
+        if (wiringPiSetup() == -1) {
+            printf("setup wiringPi failed!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("SPI setup failed!\n");
+            return 1;
+        }
+
+        while (1) {
+            analogVal = read_ADC(0);  // CH0 から読み取り
+
+            // MCP3008 は 10ビット ADC (0–1023)
+            Vr = 3.3 * analogVal / 1023.0;  // 基準電圧 Vref = 3.3V と仮定
+            Rt = 10000.0 * Vr / (3.3 - Vr); // 分圧回路, 10k 抵抗を使用
+            temp = 1 / ((log(Rt / 10000.0) / 3950.0) + (1 / (273.15 + 25.0)));
+            cel = temp - 273.15;
+            Fah = cel * 1.8 + 32;
+
+            printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+            delay(1000);
+        }
+
+        return 0;
+    }
+
+コード解説
+---------------------------
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+    #include <math.h>
+
+GPIO 制御 (``wiringPi.h``)、SPI 通信 (``wiringPiSPI.h``)、標準 I/O 操作 (``stdio.h``)、数学関数 (``math.h``) のライブラリをインクルード。
+
+.. code-block:: c
+
+    #define SPI_CHANNEL 0
+    #define SPI_SPEED   1000000
+
+SPI チャンネルと通信速度を定義。ここでは SPI チャンネル 0 (CE0) とクロック速度 1MHz を使用。
+
+.. code-block:: c
+
+    int read_ADC(int channel)
+
+指定された MCP3008 チャンネルからアナログデータを読み取る関数。
+
+.. code-block:: c
+
+    buffer[0] = 1;
+    buffer[1] = (8 + channel) << 4;
+    buffer[2] = 0;
+
+MCP3008 プロトコルに従って SPI コマンドを設定: 開始ビット、シングルエンドモード設定、チャンネル番号。
+
+.. code-block:: c
+
+    wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+SPI コマンドを転送し、MCP3008 から 10ビット ADC データを取得。
+
+.. code-block:: c
+
+    int value = ((buffer[1] & 3) << 8) | buffer[2];
+
+返された SPI バッファから 10 ビットの ADC 結果を抽出。
+
+.. code-block:: c
+
+    if (wiringPiSetup() == -1) { ... }
+    if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) { ... }
+
+WiringPi を初期化し、SPI を設定。初期化に失敗した場合は終了。
+
+.. code-block:: c
+
+    analogVal = read_ADC(0);
+
+サーミスタの分圧回路が接続された MCP3008 チャンネル 0 のアナログ信号を読み取る。
+
+.. code-block:: c
+
+    Vr = 3.3 * analogVal / 1023.0;
+
+デジタル値をアナログ電圧に変換。ADC の範囲は 0–1023、基準電圧は 3.3V。
+
+.. code-block:: c
+
+    Rt = 10000.0 * Vr / (3.3 - Vr);
+
+分圧公式を使用してサーミスタの抵抗を計算。10kΩ 抵抗を仮定。
+
+.. code-block:: c
+
+    temp = 1 / ((log(Rt / 10000.0) / 3950.0) + (1 / (273.15 + 25.0)));
+
+B 定数式を使用してサーミスタ抵抗から温度 (ケルビン) を算出。  
+**T(K) = 1 / [ln(Rt/R₀)/B + 1/T₀]**  
+- R₀ = 10kΩ  
+- B = 3950  
+- T₀ = 25°C = 298.15K
+
+.. code-block:: c
+
+    cel = temp - 273.15;
+
+ケルビン温度を摂氏温度に変換。
+
+.. code-block:: c
+
+    Fah = cel * 1.8 + 32;
+
+摂氏温度を華氏に変換。
+
+.. code-block:: c
+
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+温度を摂氏と華氏で小数点 2 桁の精度で表示。

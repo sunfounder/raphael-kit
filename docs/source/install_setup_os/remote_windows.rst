@@ -1,126 +1,69 @@
-
 .. note::
 
-    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
 
-    **参加する理由は？**
+    **参加する理由**
 
-    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
-    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
-    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
-    - **特別割引**：最新製品の独占割引をお楽しみください。
-    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+    - **専門的なサポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決。
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上。
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス。
+    - **特別割引**: 新製品を特別価格で購入可能。
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加。
 
-    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
 
-.. _remote_windows:
-
-Windowsユーザー
+Windows 利用者向け
 =======================
 
-Windowsユーザーであれば、Windows PowerShellを使ってRaspberry Piにリモートでログインできます。
+Windows 10 以上を利用している場合、次の手順で Raspberry Pi へのリモートログインが可能です。
 
-#. キーボードで ``windows`` + ``R`` ショートカットキーを押して **Run** プログラムを開きます。次に入力ボックスに **powershell** と入力します。
+#. Windows の検索ボックスで ``powershell`` を検索します。``Windows PowerShell`` を右クリックし、``管理者として実行`` を選択します。
 
-    .. image:: img/sp221221_135900.png
+    .. image:: img/powershell_ssh.png
         :align: center
 
-#. ``ping <hostname>.local`` と入力することで、Raspberry Piが同じネットワークにいるか確認します。
+#. PowerShell で ``ping -4 <ホスト名>.local`` と入力し、Raspberry Pi の IP アドレスを確認します。
 
-    .. code-block:: shell
+    .. code-block::
 
-        ping raspberrypi.local
+        ping -4 raspberrypi.local
 
     .. image:: img/sp221221_145225.png
         :width: 550
         :align: center
 
-    * もしターミナルに ``Ping request could not find host <hostname>.local`` と表示されたら、Raspberry Piがネットワークに接続できていない可能性があります。
-    * どうしても ``<hostname>.local`` にpingが打てない場合は、代わりに :ref:`get_ip` と ``ping <IPアドレス>`` を試してみてください。(例: ``ping 192.168.6.116`` )
-    * "Reply from <IPアドレス>: bytes=32 time<1ms TTL=64"といったプロンプトが複数表示されれば、コンピュータはRaspberry Piにアクセスできています。
+    Raspberry Pi がネットワークに接続されていれば、その IP アドレスが表示されます。
 
-#. ``ssh <username>@<hostname>.local`` （または ``ssh <username>@<IPアドレス>``）と入力します。
+    * ターミナルに ``Ping request could not find host pi.local. Please check the name and try again.`` と表示された場合は、入力したホスト名が正しいか確認してください。
+    * IP アドレスが取得できない場合は、Raspberry Pi 側のネットワークまたは WiFi 設定を確認してください。
 
-    .. code-block:: shell
-
-        ssh pi@raspberrypi.local
-
-#. 次のようなメッセージが表示される場合があります。
+#. IP アドレスを確認したら、``ssh <ユーザー名>@<ホスト名>.local`` または ``ssh <ユーザー名>@<IP アドレス>`` を使って Raspberry Pi にログインします。
 
     .. code-block::
 
-        The authenticity of host 'raspberrypi.local (192.168.6.116)' can't be established.
-        ECDSA key fingerprint is SHA256:7ggckKZ2EEgS76a557cddfxFNDOBBuzcJsgaqA/igz4.
+        ssh pi@raspberrypi.local
+
+    .. warning::
+
+        ``The term 'ssh' is not recognized as the name of a cmdlet...`` というエラーが表示された場合は、システムに SSH ツールがインストールされていない可能性があります。  
+        この場合は、:ref:`openssh_powershell` に従って OpenSSH を手動でインストールするか、:ref:`login_windows` に記載されているサードパーティーツールを使用してください。
+
+#. 初回ログイン時にはセキュリティメッセージが表示されます。``yes`` と入力して続行します。
+
+    .. code-block::
+
+        The authenticity of host 'raspberrypi.local (2400:2410:2101:5800:635b:f0b6:2662:8cba)' can't be established.
+        ED25519 key fingerprint is SHA256:oo7x3ZSgAo032wD1tE8eW0fFM/kmewIvRwkBys6XRwg.
         Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
-    \"yes\"と入力します。
-
-#. 事前に設定したパスワードを入力します。（私の場合は ``raspberry`` です。）
+#. 以前設定したパスワードを入力します。パスワード入力中は画面に文字が表示されませんが、これは標準的なセキュリティ仕様です。
 
     .. note::
-        パスワードを入力する際、文字は画面に表示されませんが、これは正常です。正確なパスワードを入力するだけです。
+        パスワード入力時に文字が表示されないのは正常な動作です。正しいパスワードを入力してください。
 
-#. Raspberry Piに接続できたので、次の手順に進むことができます。
+#. 接続に成功すると、Raspberry Pi がリモート操作可能になります。
 
     .. image:: img/sp221221_140628.png
         :width: 550
-        :align: center
-
-
-.. _remote_desktop:
-
-
-リモートデスクトップ
-----------------------
-
-コマンドウィンドウでRaspberry Piにアクセスするだけでは満足できない場合、リモートデスクトップ機能を使ってGUIで簡単にRaspberry Piのファイルを管理できます。
-
-ここでは `VNC® Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ を使用する。
-
-**VNCサービスを有効にする**
-
-VNCサービスはシステムにインストール済みですが、デフォルトでは無効です。設定で有効にする必要があります。
-
-#. 以下のコマンドを入力します：
-
-    .. raw:: html
-
-        <run></run>
-
-    .. code-block:: shell 
-
-        sudo raspi-config
-
-#. キーボードの下矢印キーを押して **3 Interfacing Options** を選び、 **Enter** キーを押します。
-
-    .. image:: img/image282.png
-        :align: center
-
-#. 次に **VNC**。
-
-    .. image:: img/image288.png
-        :align: center
-
-#. キーボードの矢印キーを使って **<Yes>** -> **<OK>** -> **<Finish>** を選び、設定を完了します。
-
-    .. image:: img/mac_vnc8.png
-        :align: center
-
-**VNCへのログイン**
-
-#. 個人のコンピューターに `VNC Viewer <https://www.realvnc.com/en/connect/download/viewer/>`_ をダウンロードしてインストールします。
-
-#. インストールが完了したら、開きます。次に、ホスト名またはIPアドレスを入力してEnterキーを押します。
-
-    .. image:: img/vnc_viewer1.png
-        :align: center
-
-#. Raspberry Piの名前とパスワードを入力したら、 **OK** をクリックします。
-
-    .. image:: img/vnc_viewer2.png
-        :align: center
-
-#. これでRaspberry Piのデスクトップが表示されます。
-
-    .. image:: img/login1.png
         :align: center

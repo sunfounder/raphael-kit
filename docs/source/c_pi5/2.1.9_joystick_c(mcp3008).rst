@@ -1,0 +1,274 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的なサポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決。
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上。
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス。
+    - **特別割引**: 新製品を特別価格で購入可能。
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加。
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.1.9_c_pi5_mcp3008:
+
+2.1.9 ジョイスティック (MCP3008)
+=======================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンによって **ADC0834** または **MCP3008** が含まれています。  
+   該当するセクションを選択してください。
+
+はじめに
+--------------
+
+このプロジェクトではジョイスティックの仕組みを学びます。  
+ジョイスティックを操作して、その結果を画面に表示します。
+
+必要な部品
+-------------------------------
+
+このプロジェクトには以下の部品が必要です。
+
+.. image:: ../img/image317-copy.png
+
+部品をまとめて購入するのが便利です。リンクはこちら:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - キット内数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下から個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+回路図
+-----------------
+
+ジョイスティックのデータを読むとき、軸によって違いがあります:  
+X 軸と Y 軸のデータはアナログなので MCP3008 を使ってアナログ値をデジタル値に変換する必要があります。  
+Z 軸のデータはデジタルなので、GPIO から直接読み取ることができますが、ADC で読むことも可能です。
+
+.. .. image:: ../img/image319.png
+
+    *   - T-Board 名
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.9_joystick_mcp3008.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_2.1.9_joystick_mcp3008.png
+
+**ステップ 2:** コードのあるフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.9-2/
+
+**ステップ 3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.9_Joystick.c -o joystick -lwiringPi
+
+**ステップ 4:** 実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    ./joystick
+
+コードを実行すると、ジョイスティックを動かすと x, y, Btn の値が画面に表示されます。
+
+.. note::
+
+    実行しても動作しない、または「wiringPi.h: No such file or directory」というエラーが出た場合は :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+
+    #define SPI_CHANNEL 0
+    #define SPI_SPEED   1000000  // 1 MHz
+    #define BtnPin      3        // WiringPi 3 = BCM GPIO22
+
+    // MCP3008 のチャンネル (0–7) から読む
+    int read_ADC(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;                            // 開始ビット
+        buffer[1] = (8 + channel) << 4;           // チャンネル設定
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int result = ((buffer[1] & 0x03) << 8) | buffer[2];
+        return result;
+    }
+
+    int main(void) {
+        if (wiringPiSetup() == -1) {
+            printf("WiringPi setup failed!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("SPI setup failed!\n");
+            return 1;
+        }
+
+        pinMode(BtnPin, INPUT);
+        pullUpDnControl(BtnPin, PUD_UP);
+
+        while (1) {
+            int x_val = read_ADC(0);     // VRX on CH0
+            int y_val = read_ADC(1);     // VRY on CH1
+            int btn_val = digitalRead(BtnPin);  // SW ボタン
+
+            printf("x = %d, y = %d, btn = %d\n", x_val, y_val, btn_val);
+            delay(100);
+        }
+
+        return 0;
+    }
+
+**コード解説**
+
+#. GPIO と SPI 通信に必要なライブラリを初期化します。
+
+   .. code-block:: c
+
+       #include <wiringPi.h>
+       #include <wiringPiSPI.h>
+       #include <stdio.h>
+
+       #define SPI_CHANNEL 0
+       #define SPI_SPEED   1000000  // 1 MHz
+       #define BtnPin      3        // WiringPi 3 = BCM GPIO22
+
+#. `read_ADC()` 関数を定義し、MCP3008 からアナログデータを読み取ります。  
+   SPI でデータを要求し、応答を解析して 10 ビットの ADC 結果を取得します。
+
+   .. code-block:: c
+
+       int read_ADC(int channel) {
+           if (channel < 0 || channel > 7) return -1;
+
+           unsigned char buffer[3];
+           buffer[0] = 1;
+           buffer[1] = (8 + channel) << 4;
+           buffer[2] = 0;
+
+           wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+           int result = ((buffer[1] & 0x03) << 8) | buffer[2];
+           return result;
+       }
+
+#. main 関数では、WiringPi と SPI を初期化し、ジョイスティックのボタンピンを設定して、  
+   値を継続的に読み取りコンソールに表示します。
+
+   .. code-block:: c
+
+       int main(void) {
+           if (wiringPiSetup() == -1) {
+               printf("WiringPi setup failed!\n");
+               return 1;
+           }
+
+           if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+               printf("SPI setup failed!\n");
+               return 1;
+           }
+
+           pinMode(BtnPin, INPUT);
+           pullUpDnControl(BtnPin, PUD_UP);
+
+           while (1) {
+               int x_val = read_ADC(0);     // VRX to CH0
+               int y_val = read_ADC(1);     // VRY to CH1
+               int btn_val = digitalRead(BtnPin);  // SW to GPIO22
+
+               printf("x = %d, y = %d, btn = %d\n", x_val, y_val, btn_val);
+               delay(100);
+           }
+
+           return 0;
+       }

@@ -1,0 +1,224 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と共にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的サポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス
+    - **特別割引**: 新製品を特別価格で購入可能
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.2.2_js_pi5_mcp3008:
+
+2.2.2 サーミスタ(MCP3008)
+============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+   
+
+   使用しているキットのバージョンに応じて、 **ADC0834** か **MCP3008** かを確認し、対応するセクションを進めてください。
+
+はじめに
+------------
+
+フォトレジスタが光を感知するのと同様に、サーミスタは温度に敏感な電子部品で、  
+温度制御（例えば過熱警報）などの機能を実現するために使用できます。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../img/list2_2.2.2_thermistor.png
+
+部品を一式そろえたキットを購入すると便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名称
+        - キット内の数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+個別に購入する場合は以下のリンクを参照してください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品名
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+回路図
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名称
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+
+.. image:: ../img/schematic_2.2.2_thermistor_mcp3008.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/2.2.2_Thermistor_bb.png
+
+**ステップ 2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/nodejs/
+
+**ステップ 3:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node thermistor-2.js
+
+コードを実行すると、サーミスタが周囲温度を検出し、計算結果を画面に出力します。
+
+**コード**
+
+.. code-block:: js
+
+    const mcpadc = require('mcp-spi-adc');
+
+    // MCP3008 チャンネル0 (CH0)、サーミスタの電圧分割入力
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1350000 }, (err) => {
+      if (err) {
+        console.error('MCP3008 チャンネルを開けませんでした:', err);
+        process.exit(1);
+      }
+
+      console.log('MCP3008 サーミスタチャンネルを開きました。');
+
+      setInterval(() => {
+        adc.read((err, reading) => {
+          if (err) {
+            console.error('ADC 読み取りエラー:', err);
+            return;
+          }
+
+          const adcValue = reading.value; // 浮動小数: 0.0–1.0
+          const raw = Math.round(adcValue * 1023); // 10ビット整数値
+
+          const Vr = 3.3 * raw / 1023; // 電圧に変換 (3.3V基準)
+          const R0 = 10000;            // 固定抵抗 10kΩ
+          const B = 3950;              // B定数
+          const Rt = R0 * Vr / (3.3 - Vr); // サーミスタ抵抗値
+
+          const tempK = 1 / ((Math.log(Rt / R0) / B) + (1 / (273.15 + 25))); // ケルビン
+          const tempC = tempK - 273.15; // 摂氏
+          const tempF = tempC * 1.8 + 32; // 華氏
+
+          console.log(`Celsius: ${tempC.toFixed(2)} °C  |  Fahrenheit: ${tempF.toFixed(2)} °F`);
+        });
+      }, 1000);
+    });
+
+**コード解説**
+
+.. code-block:: js
+
+    setInterval(() => {
+      adc.read((err, reading) => {
+        ...
+      });
+    }, 1000);
+
+1秒ごとに MCP3008 チャンネル0 を読み取るループを設定します。``read`` 関数は 0.0～1.0 のアナログ値を返します。
+
+.. code-block:: js
+
+    const raw = Math.round(reading.value * 1023);
+
+正規化された浮動小数 ADC 値を 10 ビット整数値 (0–1023) に変換します。
+
+.. code-block:: js
+
+    const Vr = 3.3 * raw / 1023;
+
+ADC 読み取り値を使用してサーミスタ端子電圧 (``Vr``) を計算します。MCP3008 の基準電圧を 3.3V と仮定しています。
+
+.. code-block:: js
+
+    const Rt = R0 * Vr / (3.3 - Vr);
+
+電圧分割の公式を使用してサーミスタの抵抗値 ``Rt`` を計算します。 ``R0`` は直列に接続された固定抵抗 (10kΩ) です。
+
+.. code-block:: js
+
+    const tempK = 1 / ((Math.log(Rt / R0) / B) + (1 / (273.15 + 25)));
+
+**Bパラメータ式**（Steinhart-Hart 方程式の簡略形）を適用し、温度をケルビンで計算します。
+
+.. code-block:: js
+
+    const tempC = tempK - 273.15;
+    const tempF = tempC * 1.8 + 32;
+
+ケルビン温度を摂氏に変換し、その後華氏に変換します。
+
+.. code-block:: js
+    
+    console.log(`Celsius: ${tempC.toFixed(2)} °C  |  Fahrenheit: ${tempF.toFixed(2)} °F`);
+
+摂氏と華氏の温度を小数点以下2桁でコンソールに出力します。

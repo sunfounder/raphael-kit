@@ -1,0 +1,190 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と共にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門サポート**: 購入後の問題や技術的な課題をコミュニティとチームで解決
+    - **学びと共有**: ヒントやチュートリアルを交換し、スキルを向上
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス
+    - **特別割引**: 新製品を特別価格で購入可能
+    - **イベントとプレゼント企画**: プレゼントや季節ごとのキャンペーンに参加
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.2.1_py_mcp3008:
+
+2.2.1 フォトレジスタ (MCP3008)
+================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンにより **ADC0834** または **MCP3008** が含まれています。自分のキットに対応するセクションに従ってください。
+
+概要
+----
+
+フォトレジスタは周囲の光強度を測定するために広く使用される部品です。  
+昼と夜を判別し、ナイトランプなどの光制御機能を実現できます。  
+このプロジェクトは可変抵抗器を使ったものと非常によく似ており、電圧変化によって光を検出します。
+
+必要な部品
+----------
+
+このプロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../img/list2_2.2.1_photoresistor.png
+
+キット一式を購入するのが便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前
+        - キット内の部品数
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+個別購入する場合は以下のリンクを参照してください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品名
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+回路図
+------
+
+.. image:: ../img/schematic_2.2.1_photoresistor_mcp3008.png
+
+実験手順
+--------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_2.2.1_photoresistor_mcp3008.png
+
+**ステップ 2:** SPI インターフェースを設定し、``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` を参照）。すでに完了している場合はこのステップを省略できます。
+
+**ステップ 3:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**ステップ 4:** 実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.1-2_photoresistor.py
+
+コードを実行すると、フォトレジスタが感知した光の強さに応じて LED の明るさが変化します。
+
+.. warning::
+
+    ``RuntimeError: Cannot determine SOC peripheral base address`` というエラーが出た場合は、:ref:`faq_soc` を参照してください。
+
+コード
+------
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+    PWM_PIN = 22
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(PWM_PIN, GPIO.OUT)
+
+    pwm = GPIO.PWM(PWM_PIN, 1000)
+    pwm.start(0)
+
+    spi = spidev.SpiDev()
+    spi.open(0, 0)
+    spi.max_speed_hz = 1000000
+
+    def read_adc(channel):
+        if channel < 0 or channel > 7:
+            return -1
+        r = spi.xfer2([1, (8 + channel) << 4, 0])
+        value = ((r[1] & 3) << 8) | r[2]
+        return value
+
+    try:
+        while True:
+            analogVal = read_adc(0)
+            print(f"value = {analogVal}")
+            duty_cycle = analogVal * 100 / 1023
+            pwm.ChangeDutyCycle(duty_cycle)
+            time.sleep(0.2)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        pwm.stop()
+        GPIO.cleanup()
+        spi.close()
+
+コード解説
+----------
+
+1. 必要なライブラリをインポート:
+
+   - ``RPi.GPIO``: GPIO 制御と PWM 信号生成用
+   - ``spidev``: MCP3008 ADC との SPI 通信用
+   - ``time``: タイミング処理用
+
+2. GPIO22 を PWM 出力用に設定し、1000Hz で PWM を初期化。初期デューティ比は 0%。
+
+3. MCP3008 (バス0, CE0) を使用する SPI 通信を設定し、通信速度を 1MHz に設定。
+
+4. ``read_adc(channel)`` 関数で MCP3008 の指定チャネルからアナログ値を取得。3バイトを送信して 10ビット (0–1023) の値を得る。
+
+5. メインループでは:
+
+   - チャネル0からアナログ入力を読み取り
+   - その値をデューティ比 (0–100%) に変換
+   - ``pwm.ChangeDutyCycle()`` で LED の明るさを調整
+   - 0.2 秒ごとに更新
+
+6. Ctrl+C で終了すると、PWM と GPIO を停止・解放し、SPI インターフェースを閉じる。

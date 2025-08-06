@@ -12,41 +12,39 @@
 
     👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
 
-Linux/Unixユーザー
+Linux/Unix 利用者向け
 ==========================
 
-#. **Applications** -> **Utilities** に進んで、 **Terminal** を見つけて開きます。
+#. Linux/Unix システムで **ターミナル** を探して開きます。
 
-    .. image:: img/image21.png
-        :align: center
-
-#. ``ping <hostname>.local`` と入力して、Raspberry Piが同じネットワークにいるか確認します。
-
-    .. code-block:: shell
-
-        ping raspberrypi.local
-
-
-    * ターミナルが ``ping: cannot resolve <hostname>.local`` と表示した場合、Raspberry Piがネットワークに接続できていない可能性があります。ネットワーク設定を確認してください。
-    * ``<hostname>.local`` にpingが通らない場合は、代わりに :ref:`get_ip` を取得して ``ping <IPアドレス>`` としてみてください。（例： ``ping 192.168.6.116``）
-    * ``64 bytes from <IP address>: icmp_seq=0 ttl=64 time=0.464 ms`` のようなプロンプトが複数表示されれば、コンピュータはRaspberry Piにアクセスできています。
-
-#. ``ssh <username>@<hostname>.local`` （または ``ssh <username>@<IPアドレス>``）と入力します。
-
-    .. code-block:: shell
-
-        ssh pi@raspberrypi.local
-
-#. 次のようなメッセージが表示される場合があります。
+#. Raspberry Pi が同じネットワークに接続されていることを確認します。以下を入力して確認します: ``ping <hostname>.local``。例:
 
     .. code-block::
 
-        raspberrypi.local（192.168.6.116）の信頼性が確立できません。
-        ECDSA key fingerprint is SHA256:7ggckKZ2EEgS76a557cddfxFNDOBBuzcJsgaqA/igz4.
-        本当に接続を続行しますか（はい/いいえ/[fingerprint]）？
+        ping raspberrypi.local
 
-    \"はい\"と入力します。
+    ネットワークに接続されていれば、Raspberry Pi の IP アドレスが表示されます。
 
-#. 事前に設定したパスワードを入力します。（私の場合は ``raspberry`` です。）
+    * もしターミナルに ``Ping request could not find host pi.local. Please check the name and try again.`` のようなメッセージが表示された場合は、入力したホスト名を再確認してください。
+    * IP アドレスが取得できない場合は、Raspberry Pi 側のネットワークまたは WiFi 設定を確認してください。
 
-#. Raspberry Piに接続できたので、次の手順に進むことができます。
+#. SSH 接続を開始するには ``ssh <ユーザー名>@<ホスト名>.local`` または ``ssh <ユーザー名>@<IPアドレス>`` を入力します。例:
+
+    .. code-block::
+
+        ssh pi@raspberrypi.local
+
+#. 初回ログイン時にはセキュリティメッセージが表示されます。``yes`` と入力して続行します。
+
+    .. code-block::
+
+        The authenticity of host 'raspberrypi.local (2400:2410:2101:5800:635b:f0b6:2662:8cba)' can't be established.
+        ED25519 key fingerprint is SHA256:oo7x3ZSgAo032wD1tE8eW0fFM/kmewIvRwkBys6XRwg.
+        Are you sure you want to continue connecting (yes/no/[fingerprint])?
+
+#. 以前設定したパスワードを入力します。セキュリティ上の理由から、入力中はパスワードが表示されません。
+
+    .. note::
+        ターミナルにパスワードが表示されないのは正常な動作です。正しいパスワードを入力してください。
+
+#. ログインに成功すると、Raspberry Pi に接続された状態となり、次のステップに進む準備が整います。

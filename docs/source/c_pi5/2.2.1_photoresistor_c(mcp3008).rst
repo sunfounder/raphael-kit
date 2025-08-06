@@ -1,0 +1,219 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的なサポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決。
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上。
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス。
+    - **特別割引**: 新製品を特別価格で購入可能。
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加。
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.2.1_c_pi5_mcp3008:
+
+2.2.1 光センサー (MCP3008)
+===============================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンによって **ADC0834** または **MCP3008** が含まれています。  
+   該当するセクションを選択してください。
+
+はじめに
+------------
+
+光センサーは周囲の光強度を検出するために一般的に使用される部品です。  
+コントローラーが昼と夜を認識し、ナイトランプなどの光制御機能を実現するのに役立ちます。  
+このプロジェクトは可変抵抗器と非常によく似ており、電圧の変化で光を検出していると考えることができます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには以下の部品が必要です。
+
+.. image:: ../img/list2_2.2.1_photoresistor.png
+
+部品をまとめて購入するのが便利です。リンクはこちら:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - キット内数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下から個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_photoresistor`
+        - |link_photoresistor_buy|
+
+回路図
+--------------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.2.1_photoresistor_mcp3008.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_2.2.1_photoresistor_mcp3008.png
+
+**ステップ 2:** コードのあるフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/2.2.1-2/
+
+**ステップ 3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 2.2.1_Photoresistor.c -o photoresistor -lwiringPi -lm
+
+**ステップ 4:** 実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    ./photoresistor
+
+コードを実行すると、光センサーが検出した光の強さに応じて LED の明るさが変化します。
+
+.. note::
+
+    実行しても動作しない、または「wiringPi.h: No such file or directory」というエラーが出た場合は :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <wiringPiSPI.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+
+    #define SPI_CHANNEL 0      // SPI チャンネル 0 (CE0)
+    #define SPI_SPEED   1000000 // SPI 速度 1 MHz
+    #define LedPin      3       // GPIO3 (WiringPi) LED PWM 用
+
+    // MCP3008 のチャンネル 0~7 から ADC 値を読み取る
+    int readMCP3008(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;                          // 開始ビット
+        buffer[1] = (8 + channel) << 4;         // SGL/DIF = 1, D2-D0 = チャンネル
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        // 結果を結合
+        int result = ((buffer[1] & 3) << 8) | buffer[2];
+        return result;
+    }
+
+    int main(void) {
+        if (wiringPiSetup() == -1) {
+            printf("wiringPi init failed!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("SPI setup failed!\n");
+            return 1;
+        }
+
+        softPwmCreate(LedPin, 0, 100); // ソフトウェア PWM 初期化
+
+        while (1) {
+            int analogVal = readMCP3008(0); // CH0 から読み取り
+            printf("ADC Value: %d\n", analogVal);
+
+            // 10 ビット ADC 値 (0–1023) を PWM 範囲 (0–100) に変換
+            int pwmVal = analogVal * 100 / 1023;
+            softPwmWrite(LedPin, pwmVal);
+
+            delay(100);
+        }
+
+        return 0;
+    }
+
+**コード解説**
+
+このコードは 2.1.7 可変抵抗器のコードと同じです。  
+その他の質問がある場合は :ref:`2.1.7_c_pi5_mcp3008` のコード解説を参照してください。

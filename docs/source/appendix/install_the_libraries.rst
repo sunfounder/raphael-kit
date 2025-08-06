@@ -258,22 +258,14 @@ Luma.LED_Matrix
 
 * 参考: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-SpidevとMFRC522
+.. _mfrc522_lib:
+
+MFRC522
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``spidev`` ライブラリはSPIとのインタラクションを助け、このチュートリアルではRaspberry PiがRFID RC522と対話するために必要です。
 
-以下のコマンドでRaspberry Piに ``spidev`` を ``pip`` 経由でインストールします。
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-    sudo pip3 install spidev
-
-続いて、MFRC522ライブラリをインストールします。
+以下のコマンドでRaspberry PiにMFRC522ライブラリをインストールします。
 
 .. raw:: html
 

@@ -14,6 +14,7 @@
 
 .. _cpn_gpio_board:
 
+.. _cpn_gpio_extension_board:
 
 GPIO拡張ボード
 =====================

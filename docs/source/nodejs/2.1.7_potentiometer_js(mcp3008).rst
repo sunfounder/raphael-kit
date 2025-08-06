@@ -1,0 +1,237 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的なサポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決。
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上。
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス。
+    - **特別割引**: 新製品を特別価格で購入可能。
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加。
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.1.7_js_pi5_mcp3008:
+
+2.1.7 可変抵抗器(MCP3008)
+================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+   
+
+   キットのバージョンによって **ADC0834** または **MCP3008** が含まれている場合があります。  
+   自分のキットを確認し、該当するセクションを参照してください。
+
+はじめに
+------------
+
+ADC 機能はアナログ信号をデジタル値に変換するために使用されます。  
+この実験では MCP3008 ADC チップを使用して変換を行います。  
+可変抵抗器を使用して可変電圧を生成し、その変化を MCP3008 がデジタル値に変換し、Raspberry Pi で読み取って処理します。
+
+必要な部品
+------------------------------
+
+このプロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../img/list2_2.1.4_potentiometer.png
+
+部品を一式そろえたキットを購入すると便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名称	
+        - キット内の数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+個別に購入する場合は以下のリンクを参照してください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品名
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+回路図
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名称
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.7_potentiometer_mcp3008.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/2.1.7_Potentiometer_bb.png
+
+.. note::
+    図の位置を参考にチップを配置してください。  
+    チップの溝が左側になるように置いてください。
+
+**ステップ 2:** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/nodejs/
+
+**ステップ 3:** コードを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node potentionmeter-2.js
+
+コードを実行した後、可変抵抗器のつまみを回すと LED の明るさが変化します。
+
+**コード**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const mcpadc = require('mcp-spi-adc');
+
+    // MCP3008 チャンネル0 (アナログ入力 CH0) を開く
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1000000 }, (err) => {
+    if (err) {
+        console.error("ADC チャンネルを開けませんでした:", err);
+        process.exit(1);
+    }
+
+    console.log("MCP3008 チャンネル0が正常に開かれました。");
+
+    // GPIO22 の LED を PWM 出力モードで初期化
+    const led = new Gpio(22, { mode: Gpio.OUTPUT });
+
+    // 100ms ごとに ADC 値を読み取り LED の明るさを更新
+    setInterval(() => {
+        adc.read((err, reading) => {
+        if (err) {
+            console.error("ADC 読み取りエラー:", err);
+            return;
+        }
+
+        // 浮動小数値 (0.0～1.0) を PWM 範囲 (0～255) に変換
+        const pwmVal = Math.round(reading.value * 255);
+
+        console.log(`現在のアナログ値: ${pwmVal}`);
+
+        // PWM を使って LED の明るさを更新
+        led.pwmWrite(pwmVal);
+        });
+    }, 100);
+    });
+
+**コード解説**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+``pigpio`` モジュールをインポートし、正確な PWM と GPIO 制御を可能にします。
+
+.. code-block:: js
+
+    const mcpadc = require('mcp-spi-adc');
+
+``mcp-spi-adc`` ライブラリをインポートし、SPI インターフェースを介して MCP3008 ADC と通信します。
+
+.. code-block:: js
+
+    const adc = mcpadc.openMcp3008(0, { speedHz: 1000000 }, (err) => {
+        if (err) {
+            console.error("ADC チャンネルを開けませんでした:", err);
+            process.exit(1);
+        }
+    });
+
+MCP3008 のアナログ入力チャンネル0 を初期化します。  
+SPI 通信速度は 1 MHz に設定されています。初期化に失敗した場合、エラーログを出力して終了します。
+
+.. code-block:: js
+
+    const led = new Gpio(22, { mode: Gpio.OUTPUT });
+
+Raspberry Pi の GPIO22 番ピンを出力として設定し、PWM 制御で LED の明るさを変更するために使用します。
+
+.. code-block:: js
+
+    setInterval(() => {
+        adc.read((err, reading) => {
+            if (err) {
+                console.error("ADC 読み取りエラー:", err);
+                return;
+            }
+
+            const pwmVal = Math.round(reading.value * 255);
+            console.log(`現在のアナログ値: ${pwmVal}`);
+            led.pwmWrite(pwmVal);
+        });
+    }, 100);
+
+100ミリ秒ごとに MCP3008 チャンネル0 のアナログ値を読み取ります。  
+ADC は 0.0 ～ 1.0 の範囲で正規化された浮動小数点値を返します。  
+この値を 0 ～ 255 の範囲に変換し、``pwmWrite()`` を使用して GPIO22 に出力して LED の明るさを制御します。PWM 値はコンソールにも表示されます。

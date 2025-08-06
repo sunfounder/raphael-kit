@@ -1,0 +1,207 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的なサポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決。
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上。
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス。
+    - **特別割引**: 新製品を特別価格で購入可能。
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加。
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _3.1.7_c_mcp3008:
+
+3.1.7 過熱モニター (MCP3008)
+==================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンによって **ADC0834** または **MCP3008** が含まれています。  
+   該当するセクションを選択してください。
+
+はじめに
+-------------------
+
+工場などで回路の過熱が発生した際に警報を出したり、機械を自動的に停止させたい場合があります。  
+このプロジェクトでは、サーミスタ・ジョイスティック・ブザー・LED・LCD を使用して、しきい値を調整可能なスマート温度監視装置を作成します。
+
+必要な部品
+------------------------------
+
+このプロジェクトには以下の部品が必要です。
+
+.. image:: ../img/list2_Overheat_Monitor.png
+    :align: center
+
+部品をまとめて購入するのが便利です。リンクはこちら:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - キット内数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下から個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_joystick`
+        - \-
+    *   - :ref:`cpn_mcp3008`
+        - \-
+    *   - :ref:`cpn_transistor`
+        - |link_transistor_buy|
+    *   - :ref:`cpn_i2c_lcd`
+        - |link_i2clcd1602_buy|
+    *   - :ref:`cpn_thermistor`
+        - |link_thermistor_buy|
+    *   - :ref:`cpn_buzzer`
+        - \-
+
+回路図
+--------------------------
+
+============ ======== ======== ===
+T-Board 名   physical wiringPi BCM
+SPICE0       Pin 24   10       8
+SPIMOSI      Pin 19   12       10
+SPIMISO      Pin 21   13       9
+SPISCLK      Pin 23   14       11
+GPIO22       Pin 15   3        22
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: ../img/Schematic_three_one8.png
+   :align: center
+
+実験手順
+-----------------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_3.1.8_overheat_monitor_mcp3008.png
+
+**ステップ 2:** コードのあるフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/raphael-kit/c/3.1.7-2/
+
+**ステップ 3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.7_OverheatMonitor.c -lm -lwiringPi
+
+**ステップ 4:** 実行ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+コードを実行すると、現在温度と高温しきい値 **40** が **I2C LCD1602** に表示されます。  
+現在温度がしきい値を超えると、ブザーと LED が作動して警告します。
+
+**ジョイスティック** は高温しきい値を調整するために使用します。  
+ジョイスティックを X 軸または Y 軸方向に倒すと、しきい値が上下に調整されます。  
+ジョイスティックを押すとしきい値は初期値にリセットされます。
+
+.. note::
+
+    * 「wiringPi.h: No such file or directory」というエラーが出た場合は :ref:`install_wiringpi` を参照してください。
+    * 「Unable to open I2C device: No such file or directory」というエラーが出た場合は :ref:`i2c_config` を参照し、I2C を有効にして配線を確認してください。
+    * コードや配線が正しいのに LCD が表示しない場合は、裏面のポテンショメータを回してコントラストを調整してください。
+
+コード解説
+----------------------
+
+.. code-block:: c
+
+    int read_ADC(int channel) { ... }
+
+MCP3008 の指定チャネル (CH0〜CH7) から 10 ビットのアナログ値を読み取り、0〜1023 の整数値を返します。
+
+.. code-block:: c
+
+    int get_joystick_value() { ... }
+
+ジョイスティックの X 軸・Y 軸のアナログ値を読み取り、方向に応じて整数値を返します。
+
+.. code-block:: c
+
+    void upper_tem_setting() { ... }
+
+ジョイスティックを使用して高温しきい値を調整します。方向を押し続けても連続変化しないようにしています。
+
+.. code-block:: c
+
+    double temperature() { ... }
+
+CH0 に接続されたサーミスタのアナログ値を読み取り、Steinhart–Hart 式を用いて摂氏温度を計算します。
+
+.. code-block:: c
+
+    void monitoring_temp() { ... }
+
+現在温度としきい値を LCD に表示し、温度がしきい値を超えた場合にブザーと LED を動作させます。
+
+.. code-block:: c
+
+    void setup_all() { ... }
+
+LCD、SPI、ジョイスティックボタン、ブザー、LED 用の GPIO を初期化します。
+
+.. code-block:: c
+
+    int main(void) { ... }
+
+メインループでは次の 2 つのモードを切り替えます:
+
+1. 温度監視  
+2. ジョイスティックによるしきい値調整  
+
+ジョイスティックボタンが押されて離されたとき (立ち上がりエッジ) にモードが切り替わります。

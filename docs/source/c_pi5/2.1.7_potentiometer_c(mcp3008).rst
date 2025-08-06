@@ -1,0 +1,296 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と一緒にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門的なサポート**: 販売後の問題や技術的な課題をコミュニティとチームで解決。
+    - **学びと共有**: 技術やチュートリアルを交換し、スキルを向上。
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス。
+    - **特別割引**: 新製品を特別価格で購入可能。
+    - **イベント・プレゼント企画**: プレゼントや季節キャンペーンに参加。
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _2.1.7_c_pi5_mcp3008:
+
+2.1.7 可変抵抗器 (MCP3008)
+================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンによって、 **ADC0834** または **MCP3008** が含まれています。  
+   該当するセクションを選択してください。
+
+はじめに
+------------
+
+ADC 機能はアナログ信号をデジタル値に変換するために使います。  
+この実験では MCP3008 ADC チップを使用して変換を行います。  
+可変抵抗器を使って電圧を変化させ、MCP3008 がそのアナログ電圧をデジタル値に変換し、Raspberry Pi で読み取ります。
+
+必要な部品
+------------------------------
+
+このプロジェクトには以下の部品が必要です。
+
+.. image:: ../img/list2_2.1.4_potentiometer.png
+
+部品をまとめて購入するのが便利です。リンクはこちら:
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名前	
+        - キット内数量
+        - リンク
+    *   - Raphael Kit
+        - 337
+        - |link_Raphael_kit|
+
+以下から個別に購入することもできます。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品紹介
+        - 購入リンク
+
+    *   - :ref:`cpn_gpio_extension_board`
+        - |link_gpio_board_buy|
+    *   - :ref:`cpn_breadboard`
+        - |link_breadboard_buy|
+    *   - :ref:`cpn_wires`
+        - |link_wires_buy|
+    *   - :ref:`cpn_resistor`
+        - |link_resistor_buy|
+    *   - :ref:`cpn_led`
+        - |link_led_buy|
+    *   - :ref:`cpn_potentiometer`
+        - |link_potentiometer_buy|
+    *   - :ref:`cpn_mcp3008`
+        - \-
+
+回路図
+-----------------
+
+.. list-table::
+    :widths: 30 30 30 30
+    :header-rows: 1
+
+    *   - T-Board 名
+        - physical
+        - WiringPi
+        - BCM
+
+    *   - SPICE0
+        - pin24
+        - 10
+        - 8
+    *   - SPIMOSI
+        - pin19
+        - 12
+        - 10
+    *   - SPIMISO
+        - pin21
+        - 13
+        - 9
+    *   - SPISCLK
+        - pin23
+        - 14
+        - 11
+    *   - GPIO22
+        - pin15
+        - 3
+        - 22
+
+.. image:: ../img/schematic_2.1.7_potentiometer_mcp3008.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_2.1.7_potentiometer_mcp3008.png
+
+.. note::
+    写真に示された位置を参考にチップを配置してください。  
+    溝が左側になるように置きます。
+
+**ステップ 2:** コードファイルを開きます。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/c/2.1.7-2/
+
+**ステップ 3:** コードをコンパイルします。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.7_Potentiometer.c -lwiringPi
+
+**ステップ 4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+コードを実行すると、可変抵抗器のつまみを回すと LED の明るさが変化します。
+
+.. note::
+
+    実行しても動作しない、または「wiringPi.h: No such file or directory」というエラーが出た場合は :ref:`install_wiringpi` を参照してください。
+
+**コード**
+
+.. code-block:: c
+
+        #include <wiringPi.h>
+        #include <wiringPiSPI.h>
+        #include <stdio.h>
+        #include <softPwm.h>
+
+        #define SPI_CHANNEL 0  // CE0
+        #define SPI_SPEED   1000000  // 1MHz
+        #define LedPin      3
+
+        int readADC(int channel) {
+            if (channel < 0 || channel > 7) return -1;
+
+            unsigned char buffer[3];
+            buffer[0] = 1;                             // 開始ビット
+            buffer[1] = (8 + channel) << 4;            // シングルエンドモード、チャンネル
+            buffer[2] = 0;
+
+            wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+            int value = ((buffer[1] & 3) << 8) | buffer[2];
+            return value;
+        }
+
+        int main(void) {
+            if (wiringPiSetup() == -1) {
+                printf("WiringPi init failed!\n");
+                return 1;
+            }
+
+            if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+                printf("SPI setup failed!\n");
+                return 1;
+            }
+
+            softPwmCreate(LedPin, 0, 100);
+
+            while (1) {
+                int analogVal = readADC(0);  // CH0
+                printf("ADC Value: %d\n", analogVal);
+
+                int pwmVal = analogVal * 100 / 1023;  // 0–100 に正規化
+                softPwmWrite(LedPin, pwmVal);
+
+                delay(100);
+            }
+
+            return 0;
+        }
+
+**コード解説**
+
+.. code-block:: c
+
+    #define SPI_CHANNEL 0  // CE0
+    #define SPI_SPEED   1000000  // 1MHz
+    #define LedPin      3
+
+SPI チャンネルを CE0 に設定し、SPI 速度を 1MHz に設定、GPIO3 を LED ピンに割り当てます。
+
+.. code-block:: c
+
+    int readADC(int channel) {
+        if (channel < 0 || channel > 7) return -1;
+
+        unsigned char buffer[3];
+        buffer[0] = 1;                             // 開始ビット
+        buffer[1] = (8 + channel) << 4;            // シングルエンドモード、チャンネル選択
+        buffer[2] = 0;
+
+        wiringPiSPIDataRW(SPI_CHANNEL, buffer, 3);
+
+        int value = ((buffer[1] & 3) << 8) | buffer[2];
+        return value;
+    }
+
+この関数は MCP3008 からアナログデータを読み取ります。
+
+* チャンネル番号が 0～7 の範囲か確認します。
+* 3バイトの配列を初期化します:
+
+  * ``buffer[0] = 1``: MCP3008 通信用の開始ビット。
+  * ``buffer[1] = (8 + channel) << 4``: シングルエンドモードでチャンネルを指定。
+  * ``buffer[2] = 0``: 結果を受け取るプレースホルダ。
+  
+* ``wiringPiSPIDataRW`` で SPI 通信を実行。
+* 10ビットの ADC 結果をビット演算で抽出して返します。
+
+.. code-block:: c
+
+    int main(void) {
+        if (wiringPiSetup() == -1) {
+            printf("WiringPi init failed!\n");
+            return 1;
+        }
+
+        if (wiringPiSPISetup(SPI_CHANNEL, SPI_SPEED) == -1) {
+            printf("SPI setup failed!\n");
+            return 1;
+        }
+
+        softPwmCreate(LedPin, 0, 100);
+
+        while (1) {
+            int analogVal = readADC(0);  // CH0
+            printf("ADC Value: %d\n", analogVal);
+
+            int pwmVal = analogVal * 100 / 1023;  // 0–100 に正規化
+            softPwmWrite(LedPin, pwmVal);
+
+            delay(100);
+        }
+
+        return 0;
+    }
+
+**main 関数の流れ**
+
+* ``wiringPiSetup()`` : WiringPi ライブラリを初期化。
+* ``wiringPiSPISetup()`` : SPI 通信をチャンネル 0、1MHz で初期化。
+* ``softPwmCreate()`` : GPIO3 でソフトウェア PWM を 0～100 の範囲で生成。
+
+無限ループ内で:
+
+* 可変抵抗器が接続されたチャンネル 0 の ADC 値を読み取る。
+* その値をターミナルに表示。
+* 10 ビットの ADC 値を PWM デューティ比 (0～100) に変換。
+* LED の明るさを可変抵抗器の位置に応じて変更。
+
+``delay(100)`` で 100 ミリ秒待機して次の処理に移ります。

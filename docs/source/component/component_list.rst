@@ -49,7 +49,7 @@
     component_74hc595
     component_l293d
     component_adc0834
-
+    component_mcp3008
 
 
 **ディスプレイ**

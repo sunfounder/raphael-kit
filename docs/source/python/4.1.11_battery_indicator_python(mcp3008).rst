@@ -1,0 +1,296 @@
+.. note::
+
+    こんにちは、SunFounder Raspberry Pi & Arduino & ESP32 愛好者コミュニティ (Facebook) へようこそ！  
+    Raspberry Pi、Arduino、ESP32 を仲間と共にさらに深く学びましょう。
+
+    **参加する理由**
+
+    - **専門サポート**: 購入後の問題や技術的な課題をコミュニティとチームで解決  
+    - **学びと共有**: ヒントやチュートリアルを交換し、スキルを向上  
+    - **限定プレビュー**: 新製品発表や先行情報に早期アクセス  
+    - **特別割引**: 新製品を特別価格で購入可能  
+    - **イベントとプレゼント企画**: プレゼントや季節ごとのキャンペーンに参加  
+
+    👉 一緒に探求し、創造しましょう。今すぐ [|link_sf_facebook|] をクリックして参加！
+
+.. _4.1.11_py_mcp3008:
+
+4.1.11 バッテリーインジケーター (MCP3008)
+===========================================
+
+.. note::
+
+   .. image:: ../img/mcp3008_and_adc0834.jpg
+      :width: 25%
+      :align: left
+    
+
+   キットのバージョンにより **ADC0834** または **MCP3008** が含まれています。  
+   使用するキットに応じたセクションをご参照ください。
+
+概要
+------
+
+このプロジェクトでは、LED バーグラフを使ってバッテリー残量を視覚的に表示するバッテリーインジケーターを作成します。
+
+.. warning::
+
+    3.3V を超えるバッテリーを使用しないでください。過電圧によりチップや Raspberry Pi が破損する恐れがあります。
+
+必要な部品
+------------
+
+本プロジェクトで必要な部品は以下の通りです。
+
+.. image:: ../img/list2_Battery_Indicator.png
+    :align: center
+
+キット一式で購入するのが便利です。リンクはこちら：
+
+.. list-table::
+    :widths: 20 20 20
+    :header-rows: 1
+
+    *   - 名称  
+        - キット内の数量  
+        - リンク  
+    *   - Raphael Kit  
+        - 337  
+        - |link_Raphael_kit|
+
+個別に購入する場合は以下のリンクをご参照ください。
+
+.. list-table::
+    :widths: 30 20
+    :header-rows: 1
+
+    *   - 部品名  
+        - 購入リンク  
+
+    *   - :ref:`cpn_gpio_extension_board`  
+        - |link_gpio_board_buy|  
+    *   - :ref:`cpn_breadboard`  
+        - |link_breadboard_buy|  
+    *   - :ref:`cpn_wires`  
+        - |link_wires_buy|  
+    *   - :ref:`cpn_resistor`  
+        - |link_resistor_buy|  
+    *   - :ref:`cpn_bar_graph`  
+        - \-  
+    *   - :ref:`cpn_mcp3008`  
+        - \-  
+
+回路図
+-------
+
+============ ======== ======== ===  
+T‑Board Name physical wiringPi BCM  
+SPICE0       Pin 24   10       8  
+SPIMOSI      Pin 19   12       10  
+SPIMISO      Pin 21   13       9  
+SPISCLK      Pin 23   14       11  
+GPIO25       Pin 22   6        25  
+GPIO12       Pin 32   26       12  
+GPIO16       Pin 36   27       16  
+GPIO20       Pin 38   28       20  
+GPIO21       Pin 40   29       21  
+GPIO5        Pin 29   21       5  
+GPIO6        Pin 31   22       6  
+GPIO13       Pin 33   23       13  
+GPIO19       Pin 35   24       19  
+GPIO26       Pin 37   25       26  
+============ ======== ======== ===  
+
+.. image:: ../img/schematic_battery_indicator_mcp3008.png  
+   :align: center  
+
+実験手順
+---------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/july24_3.1.5_battery_indicator_mcp3008.png  
+
+**ステップ 2:** SPI インターフェースを設定し、``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` 参照）。すでに完了している場合は省略可。
+
+**ステップ 3:** コードを配置したフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/raphael-kit/python
+
+**ステップ 4:** 実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 4.1.11-2_BatteryIndicator.py
+
+プログラム実行後、ADC0834 の 3 番ピンと GND から導線を出し、それぞれバッテリーの正負極に接続してください。  
+LED バーグラフに対応する LED が点灯し、電圧レベル（測定範囲: 0〜5V）が表示されます。
+
+.. warning::
+
+    ``RuntimeError: Cannot determine SOC peripheral base address`` と表示された場合は、:ref:`faq_soc` を参照してください。
+
+コード
+------
+
+.. note::
+    コードの **修正／リセット／コピー／実行／停止** が可能です。事前に ``raphael-kit/python`` に移動してください。変更後すぐに動作確認できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import spidev
+    import time
+
+    # 左から右へ 10 個の LED に接続された GPIO ピン
+    led_pins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]  # BCM 番号
+
+    GPIO.setmode(GPIO.BCM)
+    for pin in led_pins:
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.LOW)
+
+    spi = spidev.SpiDev()
+    spi.open(0, 0)  # バス0, CE0
+    spi.max_speed_hz = 1000000  # 1 MHz
+
+    def read_adc(channel):
+        if channel < 0 or channel > 7:
+            return -1
+        r = spi.xfer2([1, (8 + channel) << 4, 0])
+        return ((r[1] & 0x03) << 8) | r[2]
+
+    def led_bar_graph(level):
+        for i, pin in enumerate(led_pins):
+            GPIO.output(pin, GPIO.HIGH if i < level else GPIO.LOW)
+
+    try:
+        while True:
+            analog_val = read_adc(0)
+            level = int(analog_val * 10 / 1023)
+            led_bar_graph(level)
+            print(f"ADC: {analog_val}, Level: {level}")
+            time.sleep(0.2)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        for pin in led_pins:
+            GPIO.output(pin, GPIO.LOW)
+        GPIO.cleanup()
+        spi.close()
+
+コード解説
+-----------
+
+1. **モジュールのインポート**  
+
+   - ``RPi.GPIO``: Raspberry Pi の GPIO 制御  
+   - ``spidev``: MCP3008 と SPI 通信  
+   - ``time``: 遅延処理  
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import RPi.GPIO as GPIO
+       import spidev
+       import time
+
+
+2. **GPIO LED 設定**  
+
+   10 個の LED を制御する GPIO ピンリストを定義し、出力モードに設定して初期値 LOW にします。
+
+   .. code-block:: python
+
+       # GPIO pins connected to 10 LEDs, ordered from left to right
+       led_pins = [25, 12, 16, 20, 21, 5, 6, 13, 19, 26]  # BCM numbering
+
+       GPIO.setmode(GPIO.BCM)
+       for pin in led_pins:
+           GPIO.setup(pin, GPIO.OUT)
+           GPIO.output(pin, GPIO.LOW)
+
+
+3. **SPI 初期化**  
+
+   バス0、チップイネーブル0 (CE0) を使用して MCP3008 と通信、通信速度は 1 MHz。
+
+   .. code-block:: python
+
+       spi = spidev.SpiDev()
+       spi.open(0, 0)  # Bus 0, CE0
+       spi.max_speed_hz = 1000000  # 1 MHz
+
+4. **ADC 読み取り関数**  
+
+   指定された MCP3008 チャンネル（0〜7）からアナログ値を読み取る。10ビット値（0〜1023）を返します。
+
+   .. code-block:: python
+
+       def read_adc(channel):
+           if channel < 0 or channel > 7:
+               return -1
+           r = spi.xfer2([1, (8 + channel) << 4, 0])
+           value = ((r[1] & 0x03) << 8) | r[2]
+           return value
+
+
+5. **LED バーグラフ制御関数**  
+
+   レベル値に応じて LED を点灯（例: レベル7なら左から7個点灯）。
+
+   .. code-block:: python
+
+       def led_bar_graph(level):
+           for i, pin in enumerate(led_pins):
+               if i < level:
+                   GPIO.output(pin, GPIO.HIGH)
+               else:
+                   GPIO.output(pin, GPIO.LOW)
+
+6. **メインループ**  
+
+   チャンネル0 から連続的に電圧を読み取り、0〜10 にスケーリングして LED 表示を更新。ADC 値とレベルを出力。
+
+   .. code-block:: python
+
+       try:
+           while True:
+               analog_val = read_adc(0)
+               level = int(analog_val * 10 / 1023)
+               led_bar_graph(level)
+               print(f"ADC: {analog_val}, Level: {level}")
+               time.sleep(0.2)
+
+
+7. **終了処理**  
+
+   Ctrl+C で終了時、全 LED を消灯し、GPIO 設定をリセットし、SPI 接続を閉じます。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           pass
+
+       finally:
+           for pin in led_pins:
+               GPIO.output(pin, GPIO.LOW)
+           GPIO.cleanup()
+           spi.close()
