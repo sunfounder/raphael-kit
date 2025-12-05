@@ -166,6 +166,7 @@ If you no longer need a particular virtual environment, you can simply delete th
 
     rm -rf myenv
 
+.. _install_luma_led_matrix:
 
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -265,6 +266,8 @@ This is a Python 3 library for interfacing LED matrix displays using the MAX7219
 
 
 * Reference: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
+
+.. _install_mfrc522:
 
 MFRC522
 ~~~~~~~~~~~~~~~~~
