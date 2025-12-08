@@ -82,10 +82,12 @@ GPIO23       Pin 16   4        23
 GPIO24       Pin 18   5        24
 ============ ======== ======== ===
 
-.. image:: ../img/schmatic_4_digit.png
+.. image:: ../img/4.1.3_speechclock_schematic.png
+  :width: 700
+  :align: center
 
 .. image:: ../img/3.1.17_schematic.png
-  :width: 500
+  :width: 400
   :align: center
 
 実験手順
@@ -143,7 +145,12 @@ GPIO24       Pin 18   5        24
 
     python3 4.1.3_SpeechClock.py
 
-コードが実行されると、4桁の7セグメントディスプレイが時間を表示し、毎時にチャイムが鳴ります。
+コードが実行されると、次の動作が行われます：
+
+- 音声で「時計システムを起動しました。ようこそ！」という歓迎メッセージが再生されます。
+- 4 桁のディスプレイには、現在時刻が HH:MM 形式で表示されます。
+- 毎正時（分が 0 のとき）に、システムがその時刻を 1 回アナウンスします。
+- ``Ctrl+C`` が押されるまでディスプレイは継続的に更新され、終了時には GPIO リソースが適切に解放されます。
 
 **コード**
 
@@ -160,14 +167,18 @@ GPIO24       Pin 18   5        24
     from tts import TTS
     import time
 
+    # Initialize TTS
     tts = TTS(engine="espeak")
     tts.lang('en-US')
 
+    # GPIO pins
     SDI = 24
     RCLK = 23
-    SRCLK = 18
+    SRCLK = 25
 
     placePin = (10, 22, 27, 17)
+
+    # Seven-segment encoding
     number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
     def setup():
@@ -175,64 +186,80 @@ GPIO24       Pin 18   5        24
         GPIO.setup(SDI, GPIO.OUT)
         GPIO.setup(RCLK, GPIO.OUT)
         GPIO.setup(SRCLK, GPIO.OUT)
-        for i in placePin:
-            GPIO.setup(i, GPIO.OUT)
+        for pin in placePin:
+            GPIO.setup(pin, GPIO.OUT)
 
     def clearDisplay():
-        for i in range(8):
+        for _ in range(8):
             GPIO.output(SDI, 1)
             GPIO.output(SRCLK, GPIO.HIGH)
             GPIO.output(SRCLK, GPIO.LOW)
         GPIO.output(RCLK, GPIO.HIGH)
-        GPIO.output(RCLK, GPIO.LOW)    
+        GPIO.output(RCLK, GPIO.LOW)
 
-    def hc595_shift(data): 
+    def hc595_shift(data):
         for i in range(8):
-            GPIO.output(SDI, 0x80 & (data << i))
+            GPIO.output(SDI, (0x80 & (data << i)))
             GPIO.output(SRCLK, GPIO.HIGH)
             GPIO.output(SRCLK, GPIO.LOW)
         GPIO.output(RCLK, GPIO.HIGH)
         GPIO.output(RCLK, GPIO.LOW)
 
     def pickDigit(digit):
-        for i in placePin:
-            GPIO.output(i,GPIO.LOW)
+        # Turn all digits off
+        for pin in placePin:
+            GPIO.output(pin, GPIO.LOW)
+        # Turn selected digit ON
         GPIO.output(placePin[digit], GPIO.HIGH)
 
     def loop():
-        status = 0                   
-        while True:
-            time.localtime(time.time())
-            hour = int(time.strftime('%H',time.localtime(time.time())))
-            minute = int(time.strftime('%M',time.localtime(time.time())))
+        status = 0
 
-            clearDisplay() 
-            pickDigit(0)  
+        while True:
+            now = time.localtime()
+            hour = now.tm_hour
+            minute = now.tm_min
+
+            # Display minute (unit)
+            clearDisplay()
+            pickDigit(0)
             hc595_shift(number[minute % 10])
-            
+
+            # Display minute (tens)
             clearDisplay()
             pickDigit(1)
-            hc595_shift(number[minute % 100//10])
+            hc595_shift(number[(minute // 10) % 10])
 
+            # Display hour (unit)
             clearDisplay()
             pickDigit(2)
             hc595_shift(number[hour % 10])
 
+            # Display hour (tens)
             clearDisplay()
             pickDigit(3)
-            hc595_shift(number[hour % 100//10])
+            hc595_shift(number[(hour // 10) % 10])
 
+            # Speak once every hour (at minute == 0)
             if minute == 0 and status == 0:
-                tts.say('The time is now ' + str(hour) + ' hours and ' + str(minute) + ' minutes')
+                tts.say(f'The time is now {hour} hours and {minute} minutes')
+                time.sleep(3)   # Give time to finish speaking
                 status = 1
             elif minute != 0:
                 status = 0
 
-    def destroy():   # When "Ctrl+C" is pressed, the function is executed.
+            time.sleep(0.005)  # Prevent CPU overload
+
+    def destroy():
         GPIO.cleanup()
 
-    if __name__ == '__main__':  # Program starting from here
+    if __name__ == '__main__':
         setup()
+
+        # ★ Welcome message at startup
+        tts.say("Clock system started. Welcome!")
+        time.sleep(3)
+
         try:
             loop()
         except KeyboardInterrupt:
@@ -240,99 +267,99 @@ GPIO24       Pin 18   5        24
 
 **コード説明**
 
-.. code-block:: python
+#. ``espeak`` を使用して音声合成エンジンを初期化し、言語を英語に設定します。
 
-    time.localtime(time.time())
-    hour = int(time.strftime('%H', time.localtime(time.time())))
-    minute = int(time.strftime('%M', time.localtime(time.time())))
+   .. code-block:: python
 
-関数 ``time.time()`` を通して、現在時刻のタイムスタンプ（1970年のエポックから経過した浮動小数点数の秒数）を取得し、timeモジュールの時刻フォーマットメソッド ``(time.localtime(time.time()))`` を使って現在のタイムスタンプを処理することで、タイムスタンプをローカルタイムとしてフォーマットすることができる。
+       tts = TTS(engine="espeak")
+       tts.lang('en-US')
 
-入力結果は以下のようになります。
+#. シフトレジスタ（74HC595）と 4 桁表示用の各桁選択ピンに使用する GPIO ピンを定義します。
 
-``time.struct_time(tm_year=2021, tm_mon=5, tm_mday=28, tm_hour=13, tm_min=54, tm_sec=26, tm_wday=4, tm_yday=148, tm_isdst=0)``
+   .. code-block:: python
 
-最後に、 ``time.strftime()`` メソッドを使用して、多くの情報が含まれている文字列を目的に合わせて書式設定します。現在の時間（時）を取得する場合、 ``time.strftime('%H',time.localtime(time.time()))`` 関数を通して取得できます。
+       SDI = 24
+       RCLK = 23
+       SRCLK = 25
+       placePin = (10, 22, 27, 17)
 
-指定された書式で得られる文字列の出力は、以下のとおりです。
+#. 7 セグメントディスプレイで数字 0〜9 を表示するためのセグメントエンコード値を保存します。
 
-+----+----------------------------------------------------+
-| %y | 2桁の年表示(00-99)                                 |
-+----+----------------------------------------------------+
-| %Y | 4桁の西暦表示(000-9999)                            |
-+----+----------------------------------------------------+
-| %m | 月(01-12)                                          |
-+----+----------------------------------------------------+
-| %H | 月の曜日(0-31)                                     |
-+----+----------------------------------------------------+
-| %I | 24時間表示(0-23)                                   |
-+----+----------------------------------------------------+
-| %M | 12時間表示(01-12)                                  |
-+----+----------------------------------------------------+
-| %y | 分(00=59)                                          |
-+----+----------------------------------------------------+
-| %S | 秒(00-59)                                          |
-+----+----------------------------------------------------+
-| %a | 地元の簡略化された週名                             |
-+----+----------------------------------------------------+
-| %A | 地元の完全な週名                                   |
-+----+----------------------------------------------------+
-| %b | 現地簡体字月名                                     |
-+----+----------------------------------------------------+
-| %B | 現地の月名                                         |
-+----+----------------------------------------------------+
-| %c | 現地対応日付・時刻表示                             |
-+----+----------------------------------------------------+
-| %j | 曜日(001-366)                                      |
-+----+----------------------------------------------------+
-| %p | 現地の午前または午後に相当。                       |
-+----+----------------------------------------------------+
-| %U | 日曜日から始まる1年間の週数(00-53)                 |
-+----+----------------------------------------------------+
-| %w | 週（0～6）、日曜日から開始                         |
-+----+----------------------------------------------------+
-| %W | 月曜日から始まる1年間の週数(00-53)                 |
-+----+----------------------------------------------------+
-| %x | 現地で対応する日付表示                             |
-+----+----------------------------------------------------+
-| %X | ローカル対応時間表現                               |
-+----+----------------------------------------------------+
-| %Z | 現在のタイムゾーン名                               |
-+----+----------------------------------------------------+
+   .. code-block:: python
 
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-.. note::
-    ``time.strftime()`` メソッドの出力はすべて文字列変数です。使用する前に、強制的な型変換を忘れずに行ってください。
+#. シフトレジスタに「1」のビットを 8 回送り、ディスプレイをクリアします。
 
-.. code-block:: python
+   .. code-block:: python
 
-    clearDisplay()
-    pickDigit(0)
-    hc595_shift(number[minute % 10])
+       def clearDisplay():
+           for _ in range(8):
+               GPIO.output(SDI, 1)
+               GPIO.output(SRCLK, GPIO.HIGH)
+               GPIO.output(SRCLK, GPIO.LOW)
+           GPIO.output(RCLK, GPIO.HIGH)
+           GPIO.output(RCLK, GPIO.LOW)
 
-    clearDisplay()
-    pickDigit(1)
-    hc595_shift(number[minute % 100//10])
+#. 現在表示する数字を更新するため、1 バイト分のセグメントデータを 74HC595 に送信します。
 
-    clearDisplay()
-    pickDigit(2)
-    hc595_shift(number[hour % 10])
+   .. code-block:: python
 
-    clearDisplay()
-    pickDigit(3)
-    hc595_shift(number[hour % 100//10])
+       def hc595_shift(data):
+           for i in range(8):
+               GPIO.output(SDI, (0x80 & (data << i)))
+               GPIO.output(SRCLK, GPIO.HIGH)
+               GPIO.output(SRCLK, GPIO.LOW)
+           GPIO.output(RCLK, GPIO.HIGH)
+           GPIO.output(RCLK, GPIO.LOW)
 
-7セグメントのデジタルディスプレイの最初に時間の10の位が表示され、次に1の位が表示されます。その後、分の10の位が第3のデジタルディスプレイに表示され、1の位は最後に表示されます。
+#. 4 桁表示のうち、千の位・百の位・十の位・一の位のいずれかを選択して表示する桁を切り替えます（多重化処理）。
 
-.. code-block:: python
+   .. code-block:: python
 
-    if minute == 0 and status == 0:
-        tts.say('The time is now ' + str(hour) + ' hours and ' + str(minute) + ' minutes')
-        status = 1
-    elif minute != 0:
-        status = 0
+       def pickDigit(digit):
+           for pin in placePin:
+               GPIO.output(pin, GPIO.LOW)
+           GPIO.output(placePin[digit], GPIO.HIGH)
 
-分の数が0（毎時）である場合、Raspberry PiはTTSを使用して時間をお知らせします。
+#. システムクロックから現在時刻を読み取ります。
+
+   .. code-block:: python
+
+       now = time.localtime()
+       hour = now.tm_hour
+       minute = now.tm_min
+
+#. HH:MM 形式で現在時刻を表示するため、7 セグメントディスプレイの各桁を更新します。
+
+   .. code-block:: python
+
+       hc595_shift(number[minute % 10])
+       hc595_shift(number[(minute // 10) % 10])
+       hc595_shift(number[hour % 10])
+       hc595_shift(number[(hour // 10) % 10])
+
+#. 毎正時（minute が 0 のとき）に、現在時刻を音声で 1 回読み上げます。
+
+   .. code-block:: python
+
+       if minute == 0 and status == 0:
+           tts.say(f'The time is now {hour} hours and {minute} minutes')
+           status = 1
+       elif minute != 0:
+           status = 0
+
+#. プログラム起動時にウェルカムメッセージを再生します。
+
+   .. code-block:: python
+
+       tts.say("Clock system started. Welcome!")
+
+#. ``Ctrl+C`` が押されたとき、すべての GPIO ピンを解放し、後処理を行います。
+
+   .. code-block:: python
+
+       GPIO.cleanup()
 
 現象の画像
 ------------------------

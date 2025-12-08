@@ -14,7 +14,7 @@ Powershell で OpenSSH を導入する
 
 これは、お使いのコンピュータのシステムが古く、`OpenSSH <https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=gui>`_ が事前に導入されていないことを意味します。以下の手順に従って手動で導入してください。
 
-#. Windows デスクトップの検索ボックスに ``powershell`` と入力し、``Windows PowerShell`` を右クリックし、表示されたメニューから ``管理者として実行`` を選びます。
+#. Windows デスクトップの検索ボックスに ``powershell`` と入力し、 ``Windows PowerShell`` を右クリックし、表示されたメニューから ``管理者として実行`` を選びます。
 
     .. image:: img/powershell_ssh.png
         :align: center

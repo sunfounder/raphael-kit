@@ -63,7 +63,7 @@ OS のインストール
 
     .. note::
 
-        ホスト名は Raspberry Pi のネットワーク識別子です。``<hostname>.local`` または ``<hostname>.lan`` を使って Pi にアクセスできます。
+        ホスト名は Raspberry Pi のネットワーク識別子です。 ``<hostname>.local`` または ``<hostname>.lan`` を使って Pi にアクセスできます。
 
     .. image:: img/os_set_hostname.png
 

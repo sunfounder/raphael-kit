@@ -111,7 +111,7 @@ GPIO26       Pin 37   25       26
 .. image:: ../python_pi5/img/july24_3.1.5_battery_indicator_mcp3008.png
    :width: 800
 
-**ステップ 2:** SPIインターフェースを設定し、``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` を参照）。  
+**ステップ 2:** SPIインターフェースを設定し、 ``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` を参照）。  
 すでに設定済みの場合は省略可能です。
 
 **ステップ 3:** コードがあるフォルダに移動します。

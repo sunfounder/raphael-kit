@@ -108,7 +108,7 @@
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_motor(mcp3008).py
 
-2. 以下の行を見つけ、``BLYNK_AUTH_TOKEN`` を貼り付けます。
+2. 以下の行を見つけ、 ``BLYNK_AUTH_TOKEN`` を貼り付けます。
 
 .. code-block:: python
 

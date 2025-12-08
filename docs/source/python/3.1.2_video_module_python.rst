@@ -84,42 +84,153 @@
 
 .. code-block:: python
 
-    from picamera import PiCamera
-    import os
-    user = os.getlogin()
-    user_home = os.path.expanduser(f'~{user}')
+   #!/usr/bin/env python3
 
-    camera = PiCamera()
-    
-    def setup():
-        camera.start_preview(alpha=200)
-    
-    def main():
-        camera.start_recording(f'{user_home}/my_video.h264')
-        while True:
-            pass    
-    
-    def destroy():
-        camera.stop_recording()
-        camera.stop_preview()
-    
-    if __name__ == '__main__':
-        setup()
-        try:
-            main()
-        except KeyboardInterrupt:
-            destroy()
+   import time
+   from picamera2 import Picamera2, Preview
+   from picamera2.encoders import H264Encoder
+   from picamera2.outputs import FfmpegOutput
+   import os
+
+   # Get the current user's login name
+   user = os.getlogin()
+   # Get the path to the user's home directory
+   user_home = os.path.expanduser(f'~{user}')
+
+   # Create a Picamera2 instance
+   camera = Picamera2()
+   # Retrieve the default preview configuration
+   preview_config = camera.preview_configuration
+
+   try:
+       # Configure preview size and format
+       preview_config.size = (800, 600)
+       preview_config.format = 'XRGB8888'
+       # Start the camera preview in QTGL mode
+       camera.start_preview(Preview.QTGL)
+
+       # Define video configuration with size, frame rate, and buffer count
+       conf = {'size': (800, 600)}
+       controls = {'FrameRate': 40}
+       config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+       # Create a video encoder with a specified bitrate
+       encoder = H264Encoder(bitrate=10000000)
+       # Define output file for the video
+       output = FfmpegOutput(f'{user_home}/my_video.mp4')
+       # Configure and start recording
+       camera.configure(config)
+       camera.start_recording(encoder, output)
+       # Record for 10 seconds
+       time.sleep(10)
+       # Stop the recording
+       camera.stop_recording()
+
+   except KeyboardInterrupt:
+       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+       camera.stop_preview()
+       pass
 
 **コード説明**
 
-.. code-block:: python
+#. 必要なライブラリとクラスをインポートします。 ``picamera2`` はカメラ制御に使用され、  ``H264Encoder`` は動画エンコード、  ``FfmpegOutput`` は動画の出力ファイルを定義するために使用されます。
 
-    start_recording(output, format=None, resize=None, splitter_port=1, **options)
+   .. code-block:: python
 
-``output`` にビデオを保存するために、カメラからビデオの録画を開始します。
+       #!/usr/bin/env python3
 
-.. code-block:: python
+       import time
+       from picamera2 import Picamera2, Preview
+       from picamera2.encoders import H264Encoder
+       from picamera2.outputs import FfmpegOutput
+       import os
 
-    camera.stop_recording()
+#. 現在ログインしているユーザー名と、そのユーザーのホームディレクトリのパスを取得します。
 
-録画を終了します。
+   .. code-block:: python
+
+       # 現在のユーザーのログイン名を取得
+       user = os.getlogin()
+       # ユーザーのホームディレクトリのパスを取得
+       user_home = os.path.expanduser(f'~{user}')
+
+#. ``Picamera2`` クラスのインスタンスを作成し、デフォルトのプレビュー設定を取得します。
+
+   .. code-block:: python
+
+       # Picamera2 インスタンスを作成
+       camera = Picamera2()
+       # デフォルトのプレビュー設定を取得
+       preview_config = camera.preview_configuration
+
+#. カメラプレビューのサイズとフォーマットを設定します。サイズは 800x600 ピクセル、フォーマットは ``XRGB8888`` に設定されています。
+
+   .. code-block:: python
+
+       try:
+           # プレビューのサイズとフォーマットを設定
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
+           
+#. QTGL モード（グラフィカルなプレビューモード）でカメラプレビューを開始します。
+
+   .. code-block:: python
+
+       try:
+           ...          
+             
+           # カメラプレビューを QTGL モードで開始
+           camera.start_preview(Preview.QTGL)
+           
+           ...
+
+#. 動画設定を定義します。フレームサイズは 800x600 ピクセル、フレームレートは 40fps に設定されています。
+
+   .. code-block:: python
+
+       try:
+           ...
+           
+           # サイズ、フレームレート、バッファ数を指定した動画設定を定義
+           conf = {'size': (800, 600)}
+           controls = {'FrameRate': 40}
+           config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+           
+           ...
+
+#. H.264 エンコード形式を使用し、ビットレート 10 Mbps で動画エンコーダーを作成します。また、動画の出力ファイルパスを設定し、ユーザーのホームディレクトリに ``my_video.mp4`` として保存します。
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # 指定したビットレートで動画エンコーダーを作成
+           encoder = H264Encoder(bitrate=10000000)
+           # 動画の出力ファイルを定義
+           output = FfmpegOutput(f'{user_home}/my_video.mp4')
+           
+           ...
+
+#. 定義した動画設定でカメラを構成し、指定したエンコーダーと出力ファイルを使用して録画を開始します。10 秒間録画した後、録画を停止します。
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # カメラを構成して録画を開始
+           camera.configure(config)
+           camera.start_recording(encoder, output)
+           # 10 秒間録画
+           time.sleep(10)
+           # 録画を停止
+           camera.stop_recording()
+
+#. このコードブロックは、KeyboardInterrupt（Ctrl+C など）が発生した場合にカメラプレビューを停止します。 ``pass`` 文は追加の処理を行わずに例外を受け流します。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # KeyboardInterrupt（例：Ctrl+C）が発生した場合、カメラプレビューを停止
+           camera.stop_preview()
+           pass

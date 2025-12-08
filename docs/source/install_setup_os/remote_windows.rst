@@ -18,7 +18,7 @@ Windows 利用者向け
 
 Windows 10 以上を利用している場合、次の手順で Raspberry Pi へのリモートログインが可能です。
 
-#. Windows の検索ボックスで ``powershell`` を検索します。``Windows PowerShell`` を右クリックし、``管理者として実行`` を選択します。
+#. Windows の検索ボックスで ``powershell`` を検索します。 ``Windows PowerShell`` を右クリックし、 ``管理者として実行`` を選択します。
 
     .. image:: img/powershell_ssh.png
         :align: center
@@ -38,7 +38,7 @@ Windows 10 以上を利用している場合、次の手順で Raspberry Pi へ�
     * ターミナルに ``Ping request could not find host pi.local. Please check the name and try again.`` と表示された場合は、入力したホスト名が正しいか確認してください。
     * IP アドレスが取得できない場合は、Raspberry Pi 側のネットワークまたは WiFi 設定を確認してください。
 
-#. IP アドレスを確認したら、``ssh <ユーザー名>@<ホスト名>.local`` または ``ssh <ユーザー名>@<IP アドレス>`` を使って Raspberry Pi にログインします。
+#. IP アドレスを確認したら、 ``ssh <ユーザー名>@<ホスト名>.local`` または ``ssh <ユーザー名>@<IP アドレス>`` を使って Raspberry Pi にログインします。
 
     .. code-block::
 
@@ -49,7 +49,7 @@ Windows 10 以上を利用している場合、次の手順で Raspberry Pi へ�
         ``The term 'ssh' is not recognized as the name of a cmdlet...`` というエラーが表示された場合は、システムに SSH ツールがインストールされていない可能性があります。  
         この場合は、:ref:`openssh_powershell` に従って OpenSSH を手動でインストールするか、:ref:`login_windows` に記載されているサードパーティーツールを使用してください。
 
-#. 初回ログイン時にはセキュリティメッセージが表示されます。``yes`` と入力して続行します。
+#. 初回ログイン時にはセキュリティメッセージが表示されます。 ``yes`` と入力して続行します。
 
     .. code-block::
 

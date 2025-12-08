@@ -137,58 +137,151 @@ PIRモジュールには2つのポテンショメータがあり、1つは感度
 
 .. code-block:: python
 
-   #!/usr/bin/env python3
+    #!/usr/bin/env python3
+    import time
+    import os
+    import RPi.GPIO as GPIO
+    from picamera2 import Picamera2
 
-   from picamera import PiCamera
-   import RPi.GPIO as GPIO
-   import time
-   import os
-   user = os.getlogin()
-   user_home = os.path.expanduser(f'~{user}')
+    # ----------------------------
+    # USER DIRECTORY
+    # ----------------------------
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
 
+    # ----------------------------
+    # GPIO SETUP
+    # ----------------------------
+    PIR_PIN = 17  # PIR motion sensor connected to GPIO17
 
-   camera = PiCamera()
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(PIR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-   pirPin = 17    # the pir connect to pin17
+    # ----------------------------
+    # CAMERA SETUP
+    # ----------------------------
+    camera = Picamera2()
+    camera.start()
 
-   def setup():
-      GPIO.setmode(GPIO.BCM)
-      GPIO.setup(pirPin, GPIO.IN)
-      camera.start_preview(alpha=200)
+    print("Motion detection started. Press Ctrl+C to exit.")
 
-   def main():
-      i = 1
-      while True:
-         pirVal = GPIO.input(pirPin)
-         if pirVal==GPIO.HIGH:
-               camera.capture(f'{user_home}/capture%s.jpg' % i)
-               print('The number is %s' % i)
-               time.sleep(3)
-               i = i + 1
+    # ----------------------------
+    # MAIN LOOP
+    # ----------------------------
+    try:
+        i = 1
+        while True:
+            if GPIO.input(PIR_PIN) == GPIO.HIGH:
+                filename = f"{user_home}/capture{i}.jpg"
+                camera.capture_file(filename)
+                print(f"Motion detected. Saved image #{i}: {filename}")
+                time.sleep(3)
+                i += 1
+            else:
+                print("waiting")
+                time.sleep(0.5)
 
-   def destroy():
-      GPIO.cleanup()
-      camera.stop_preview()
+    # ----------------------------
+    # KEYBOARD INTERRUPT
+    # ----------------------------
+    except KeyboardInterrupt:
+        print("\nKeyboard interrupt received. Exiting program...")
 
-   if __name__ == '__main__':
-      setup()
-      try:
-         main()
-      except KeyboardInterrupt:
-         destroy()
+    # ----------------------------
+    # CLEANUP
+    # ----------------------------
+    finally:
+        try:
+            camera.close()
+        except:
+            pass
+
+        GPIO.cleanup()
+        print("Program exited cleanly.")
 
 **コード説明**
 
-.. code-block:: python
+#. 現在のユーザーのホームディレクトリを取得し、撮影した画像の保存先として使用します。
 
-   pirVal = GPIO.input(pirPin)
-   if pirVal==GPIO.HIGH:
-         camera.capture(f'{user_home}/capture%s.jpg' % i)
-         print('The number is %s' % i)
-         time.sleep(3)
-         i = i + 1
+   .. code-block:: python
 
-PIRモジュールによってリスが検出されるたびに、Raspberry Piは写真を撮り、写真が何枚撮影されたかをプリントウィンドウを通じて通知します。各写真の間隔は3秒です。
+       user = os.getlogin()
+       user_home = os.path.expanduser(f'~{user}')
+
+   これにより、アクティブユーザー名を取得し、ホームディレクトリへの完全パスを生成します。
+
+#. GPIO を設定し、PIR モーションセンサーを ``GPIO17`` に入力として構成します。
+
+   .. code-block:: python
+
+       PIR_PIN = 17
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(PIR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+   プルダウン抵抗を使用することで、動きが検出されていないときはピンが ``LOW`` を読み取るようになります。
+
+#. Picamera2 インスタンスを初期化し、カメラを起動します。
+
+   .. code-block:: python
+
+       camera = Picamera2()
+       camera.start()
+
+   カメラを起動しておくことで、動作検知時にすぐ撮影できる状態になります。
+
+#. PIR センサーの入力状態を読み取り、動きを検出します。
+
+   .. code-block:: python
+
+       if GPIO.input(PIR_PIN) == GPIO.HIGH:
+
+   PIR が動きを検知すると ``HIGH`` を出力し、撮影処理がトリガーされます。
+
+#. 画像を撮影し、連番ファイル名で保存します。
+
+   .. code-block:: python
+
+       filename = f"{user_home}/capture{i}.jpg"
+       camera.capture_file(filename)
+
+   動きを検出するたびに ``capture1.jpg``、  ``capture2.jpg`` …というように連番で保存されます。
+
+#. 動作検知後、3 秒間の遅延を入れます。
+
+   .. code-block:: python
+
+       time.sleep(3)
+
+   これにより、1 回の動作で短時間に多数の画像が撮影されるのを防ぎます。
+
+#. 動作が検知されない場合は「waiting」と表示し、少し待ってから再チェックします。
+
+   .. code-block:: python
+
+       else:
+           print("waiting")
+           time.sleep(0.5)
+
+   これにより CPU 負荷を抑えながら、継続的な監視を実現します。
+
+#. キーボード割り込み（Ctrl+C）を処理して安全に終了します。
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           print("\nKeyboard interrupt received. Exiting program...")
+
+   ユーザーが手動でプログラムを停止した際に、終了メッセージを表示します。
+
+#. 終了前にカメラと GPIO リソースを解放します。
+
+   .. code-block:: python
+
+       finally:
+           camera.close()
+           GPIO.cleanup()
+
+   これにより、カメラは正しくシャットダウンされ、GPIO ピンも安全な状態に戻されます。
 
 現象の画像
 ------------------------

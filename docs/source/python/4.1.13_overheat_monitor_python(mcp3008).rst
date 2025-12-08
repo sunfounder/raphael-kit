@@ -114,7 +114,7 @@ SCL1         Pin 5
 
 .. image:: ../img/july24_3.1.8_overheat_monitor_mcp3008.png  
 
-**ステップ 2:** SPI インターフェースを設定し、``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` 参照）。すでに完了している場合は省略可。
+**ステップ 2:** SPI インターフェースを設定し、 ``spidev`` ライブラリをインストールします（詳細は :ref:`spi_configuration` 参照）。すでに完了している場合は省略可。
 
 **ステップ 3:** コードを配置したフォルダに移動します。
 
@@ -146,7 +146,7 @@ SCL1         Pin 5
 .. note::
 
     * ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` エラーが出た場合、:ref:`i2c_config` を参照してI2Cを有効にしてください。  
-    * ``ModuleNotFoundError: No module named 'smbus2'`` エラーが出た場合、``sudo pip3 install smbus2`` を実行してください。  
+    * ``ModuleNotFoundError: No module named 'smbus2'`` エラーが出た場合、 ``sudo pip3 install smbus2`` を実行してください。  
     * ``OSError: [Errno 121] Remote I/O error`` エラーが出た場合、配線の誤りまたはモジュールの故障の可能性があります。  
     * 配線とコードが正しくてもLCDが表示しない場合は、背面の可変抵抗を回してコントラストを調整してください。
 

@@ -167,7 +167,7 @@ Blynk 上のウィジェットを操作すると、Raspberry Pi がその値を�
     cd ~/blynk-raspberrypi-python
     sudo nano blynk_start.py
 
-3. 以下の行を見つけ、``BLYNK_AUTH_TOKEN`` を貼り付けます。
+3. 以下の行を見つけ、 ``BLYNK_AUTH_TOKEN`` を貼り付けます。
 
 .. code-block:: 
 

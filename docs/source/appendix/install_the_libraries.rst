@@ -161,6 +161,7 @@ Python 3.3以降のバージョンでは、 ``venv`` モジュールを直接使
 
     rm -rf myenv
 
+.. _install_luma_led_matrix:
 
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
