@@ -23,37 +23,3 @@ Raspberry Pi 5の発売により、より強力なモデルが登場しました
     python_pi5/play_with_python_pi5
     c_pi5/play_with_c
 
-他のプログラミング言語との互換性の問題については、以下の詳細情報をご覧ください：
-
-**C言語**
-
-.. note::
-
-    * wiringPiライブラリはバージョン3.0からRaspberry Pi 5と互換性があります。しかし、最新バージョンではPWM機能がまだ開発中です。
-    * 現在、最新バージョンのwiringPiを使用して、Raspberry Pi 5との互換性のためにコースを更新しています。更新をお待ちください。
-
-C言語の実装はwiringPiライブラリに依存しています。しかし、wiringPiコミュニティライブラリは現在アーカイブされ、更新が行われていないため、Raspberry Pi 5プロジェクトには不適切です。詳細については、https://github.com/WiringPi/WiringPi を参照してください。
-
-.. image:: img/pi5_c_language.png
-
-**Processing**
-
-Raspberry Pi 5でProcessing 4を使用する際、GPIOプログラミングに課題が生じます。「Invalid argument」や「GPIO pin 17 seems to be unavailable on your platform」といったエラーがGPIO関連コードの実行中に発生します（添付画像に示されている通り）。詳細については、https://github.com/benfry/processing4/issues/807 をご覧ください。
-
-.. image:: img/pi5_processing.png
-
-**Node.js**
-
-Node.jsはpigpioライブラリを使用していますが、現在のところRaspberry Pi 5をサポートしていません。詳細については、https://github.com/joan2937/pigpio/issues/589 をご覧ください。
-
-.. image:: img/pi5_nodejs.png
-    :width: 700
-
-**Scratch**
-
-.. note::
- 
-    * Scratch 3のバージョン3.30.8は現在Raspberry Pi 5と互換性があります。
-    * 私たちのコースもRaspberry Pi 5との互換性を持つように更新中です。これらの更新をお待ちください。
-
-64ビットシステムでは、Raspberry Pi GPIOライブラリのインポートに問題が発生し、応答しなくなります。詳細については、https://github.com/raspberrypi/bookworm-feedback/issues/91 を参照してください。
