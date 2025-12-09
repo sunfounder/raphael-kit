@@ -14,7 +14,7 @@
 
 
 
-Pour tous les modèles (recommandé)
+Pour le Raspberry Pi 5
 ============================================
 
 The release of the Raspberry Pi 5 has brought us a more powerful model, but it also introduced some changes, 
