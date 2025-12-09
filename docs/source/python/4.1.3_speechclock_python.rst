@@ -83,10 +83,12 @@ GPIO23       Pin 16   4        23
 GPIO24       Pin 18   5        24
 ============ ======== ======== ===
 
-.. image:: ../img/schmatic_4_digit.png
+.. image:: ../img/4.1.3_speechclock_schematic.png
+  :width: 700
+  :align: center
 
 .. image:: ../img/3.1.17_schematic.png
-  :width: 500
+  :width: 400
   :align: center
 
 Experimentelle Verfahren
@@ -144,7 +146,12 @@ Wählen Sie Ihre Zeitzone aus.
 
     python3 4.1.3_SpeechClock.py
 
-Wenn der Code ausgeführt wird, zeigt die 4-stellige 7-Segment-Anzeige die Uhrzeit an und schlägt stündlich an.
+Nach dem Ausführen des Codes:
+
+- Es wird eine Willkommensnachricht gesprochen: „Clock system started. Welcome!“
+- Die vierstellige Anzeige zeigt die aktuelle Uhrzeit im HH:MM-Format an.
+- Zu Beginn jeder vollen Stunde (Minute = 0) gibt das System die aktuelle Uhrzeit einmal per Sprachausgabe aus.
+- Die Anzeige wird kontinuierlich aktualisiert, bis ``Ctrl+C`` gedrückt wird; anschließend werden die GPIO-Ressourcen bereinigt.
 
 **Code**
 
@@ -161,14 +168,18 @@ Wenn der Code ausgeführt wird, zeigt die 4-stellige 7-Segment-Anzeige die Uhrze
     from tts import TTS
     import time
 
+    # Initialize TTS
     tts = TTS(engine="espeak")
     tts.lang('en-US')
 
+    # GPIO pins
     SDI = 24
     RCLK = 23
-    SRCLK = 18
+    SRCLK = 25
 
     placePin = (10, 22, 27, 17)
+
+    # Seven-segment encoding
     number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
     def setup():
@@ -176,64 +187,80 @@ Wenn der Code ausgeführt wird, zeigt die 4-stellige 7-Segment-Anzeige die Uhrze
         GPIO.setup(SDI, GPIO.OUT)
         GPIO.setup(RCLK, GPIO.OUT)
         GPIO.setup(SRCLK, GPIO.OUT)
-        for i in placePin:
-            GPIO.setup(i, GPIO.OUT)
+        for pin in placePin:
+            GPIO.setup(pin, GPIO.OUT)
 
     def clearDisplay():
-        for i in range(8):
+        for _ in range(8):
             GPIO.output(SDI, 1)
             GPIO.output(SRCLK, GPIO.HIGH)
             GPIO.output(SRCLK, GPIO.LOW)
         GPIO.output(RCLK, GPIO.HIGH)
-        GPIO.output(RCLK, GPIO.LOW)    
+        GPIO.output(RCLK, GPIO.LOW)
 
-    def hc595_shift(data): 
+    def hc595_shift(data):
         for i in range(8):
-            GPIO.output(SDI, 0x80 & (data << i))
+            GPIO.output(SDI, (0x80 & (data << i)))
             GPIO.output(SRCLK, GPIO.HIGH)
             GPIO.output(SRCLK, GPIO.LOW)
         GPIO.output(RCLK, GPIO.HIGH)
         GPIO.output(RCLK, GPIO.LOW)
 
     def pickDigit(digit):
-        for i in placePin:
-            GPIO.output(i,GPIO.LOW)
+        # Turn all digits off
+        for pin in placePin:
+            GPIO.output(pin, GPIO.LOW)
+        # Turn selected digit ON
         GPIO.output(placePin[digit], GPIO.HIGH)
 
     def loop():
-        status = 0                   
-        while True:
-            time.localtime(time.time())
-            hour = int(time.strftime('%H',time.localtime(time.time())))
-            minute = int(time.strftime('%M',time.localtime(time.time())))
+        status = 0
 
-            clearDisplay() 
-            pickDigit(0)  
+        while True:
+            now = time.localtime()
+            hour = now.tm_hour
+            minute = now.tm_min
+
+            # Display minute (unit)
+            clearDisplay()
+            pickDigit(0)
             hc595_shift(number[minute % 10])
-            
+
+            # Display minute (tens)
             clearDisplay()
             pickDigit(1)
-            hc595_shift(number[minute % 100//10])
+            hc595_shift(number[(minute // 10) % 10])
 
+            # Display hour (unit)
             clearDisplay()
             pickDigit(2)
             hc595_shift(number[hour % 10])
 
+            # Display hour (tens)
             clearDisplay()
             pickDigit(3)
-            hc595_shift(number[hour % 100//10])
+            hc595_shift(number[(hour // 10) % 10])
 
+            # Speak once every hour (at minute == 0)
             if minute == 0 and status == 0:
-                tts.say('The time is now ' + str(hour) + ' hours and ' + str(minute) + ' minutes')
+                tts.say(f'The time is now {hour} hours and {minute} minutes')
+                time.sleep(3)   # Give time to finish speaking
                 status = 1
             elif minute != 0:
                 status = 0
 
-    def destroy():   # When "Ctrl+C" is pressed, the function is executed.
+            time.sleep(0.005)  # Prevent CPU overload
+
+    def destroy():
         GPIO.cleanup()
 
-    if __name__ == '__main__':  # Program starting from here
+    if __name__ == '__main__':
         setup()
+
+        # ★ Welcome message at startup
+        tts.say("Clock system started. Welcome!")
+        time.sleep(3)
+
         try:
             loop()
         except KeyboardInterrupt:
@@ -241,99 +268,99 @@ Wenn der Code ausgeführt wird, zeigt die 4-stellige 7-Segment-Anzeige die Uhrze
 
 **Code-Erklärung**
 
-.. code-block:: python
+#. Initialisiert die Text-to-Speech-Engine mit ``espeak`` und setzt die Sprache auf Englisch.
 
-    time.localtime(time.time())
-    hour = int(time.strftime('%H',time.localtime(time.time())))
-    minute = int(time.strftime('%M',time.localtime(time.time())))
+   .. code-block:: python
 
-Durch die Funktion ``time.time()`` erhalten wir den Zeitstempel der aktuellen Zeit (die Anzahl der seit der Epoche 1970 verstrichenen Sekunden im Fließkommawert). Anschließend verwenden wir die Zeitformatierungsmethode des Zeitmoduls ``(time.localtime(time.time()))``, um den aktuellen Zeitstempel zu verarbeiten, sodass wir den Zeitstempel als Ortszeit formatieren können.
+       tts = TTS(engine="espeak")
+       tts.lang('en-US')
 
-Das Eingabeergebnis lautet:
+#. Definiert die GPIO-Pins für das Schieberegister (74HC595) sowie die Stellenwahl-Pins für die 4-stellige Anzeige.
 
-``time.struct_time(tm_year=2021, tm_mon=5, tm_mday=28, tm_hour=13, tm_min=54, tm_sec=26, tm_wday=4, tm_yday=148, tm_isdst=0)``
+   .. code-block:: python
 
-Zuletzt verwenden wir die Methode ``time.strftime()`` um die umfangreiche Informationskette in das von uns gewünschte Format zu bringen. Wenn Sie die aktuelle Stunde erhalten möchten, können Sie dies durch die Funktion ``time.strftime('%H',time.localtime(time.time()))`` tun.
+       SDI = 24
+       RCLK = 23
+       SRCLK = 25
+       placePin = (10, 22, 27, 17)
 
-Die Ausgabe der durch Änderung des ersten Parameters spezifizierten formatierten Zeichenkette sind unten aufgelistet.
+#. Speichert die Segmentkodierungen zur Darstellung der Ziffern 0–9 auf der Sieben-Segment-Anzeige.
 
-+----+-------------------------------------------------------------+
-| %y | Zweistellige Jahresdarstellung(00-99)                       |
-+----+-------------------------------------------------------------+
-| %Y | Vierstellige Jahresdarstellung(0000-9999)                   |
-+----+-------------------------------------------------------------+
-| %m | Monat(01-12)                                                |
-+----+-------------------------------------------------------------+
-| %H | Tag des Monats(0-31)                                        |
-+----+-------------------------------------------------------------+
-| %I | Stunden in einer 24-Stunden-Uhr(0-23)                       |
-+----+-------------------------------------------------------------+
-| %M | Stunden in einer 12-Stunden-Uhr(01-12)                      |
-+----+-------------------------------------------------------------+
-| %y | Minuten(00-59)                                              |
-+----+-------------------------------------------------------------+
-| %S | Sekunde(00-59)                                              |
-+----+-------------------------------------------------------------+
-| %a | Lokaler vereinfachter Wochentagsname                        |
-+----+-------------------------------------------------------------+
-| %A | Vollständiger lokaler Wochentagsname                        |
-+----+-------------------------------------------------------------+
-| %b | Lokaler vereinfachter Monatsname                            |
-+----+-------------------------------------------------------------+
-| %B | Vollständiger lokaler Monatsname                            |
-+----+-------------------------------------------------------------+
-| %c | Lokale entsprechende Datums- und Zeitdarstellung            |
-+----+-------------------------------------------------------------+
-| %j | Tag des Jahres(001-366)                                     |
-+----+-------------------------------------------------------------+
-| %p | Das Äquivalent von lokalem Vormittag oder Nachmittag        |
-+----+-------------------------------------------------------------+
-| %U | Anzahl der Wochen eines Jahres(00-53), beginnend mit Sonntag|
-+----+-------------------------------------------------------------+
-| %w | Woche (0-6), beginnend mit Sonntag                          |
-+----+-------------------------------------------------------------+
-| %W | Anzahl der Wochen eines Jahres(00-53), beginnend mit Montag |
-+----+-------------------------------------------------------------+
-| %x | Lokale entsprechende Datumsdarstellung                      |
-+----+-------------------------------------------------------------+
-| %X | Lokale entsprechende Zeitdarstellung                        |
-+----+-------------------------------------------------------------+
-| %Z | Der Name der aktuellen Zeitzone                             |
-+----+-------------------------------------------------------------+
+   .. code-block:: python
 
-.. note::
-    Die Ausgabe der Methode ``time.strftime()`` sind alles String-Variablen. Bevor Sie diese verwenden, denken Sie daran, eine erzwungene Typumwandlung durchzuführen.
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
 
-.. code-block:: python
+#. Löscht die Anzeige, indem acht „1“-Bits in das Schieberegister übertragen werden.
 
-    clearDisplay() 
-    pickDigit(0)  
-    hc595_shift(number[minute % 10])
-    
-    clearDisplay()
-    pickDigit(1)
-    hc595_shift(number[minute % 100//10])
+   .. code-block:: python
 
-    clearDisplay()
-    pickDigit(2)
-    hc595_shift(number[hour % 10])
+       def clearDisplay():
+           for _ in range(8):
+               GPIO.output(SDI, 1)
+               GPIO.output(SRCLK, GPIO.HIGH)
+               GPIO.output(SRCLK, GPIO.LOW)
+           GPIO.output(RCLK, GPIO.HIGH)
+           GPIO.output(RCLK, GPIO.LOW)
 
-    clearDisplay()
-    pickDigit(3)
-    hc595_shift(number[hour % 100//10])
+#. Sendet ein Byte Segmentdaten an den 74HC595, um die dargestellte Ziffer zu aktualisieren.
 
-Die Zehnerstelle der Stunde wird auf der ersten 7-Segment-Digitalanzeige angezeigt, die Einerstelle auf der zweiten. 
-Anschließend wird die Zehnerstelle der Minuten auf der dritten Digitalanzeige und die Einerstelle auf der letzten angezeigt.
+   .. code-block:: python
 
-.. code-block:: python
+       def hc595_shift(data):
+           for i in range(8):
+               GPIO.output(SDI, (0x80 & (data << i)))
+               GPIO.output(SRCLK, GPIO.HIGH)
+               GPIO.output(SRCLK, GPIO.LOW)
+           GPIO.output(RCLK, GPIO.HIGH)
+           GPIO.output(RCLK, GPIO.LOW)
 
-    if minute == 0 and status == 0:
-        tts.say('The time is now ' + str(hour) + ' hours and ' + str(minute) + ' minutes')
-        status = 1
-    elif minute != 0:
-        status = 0
+#. Wählt eine der vier Stellen (Tausender, Hunderter, Zehner, Einer) für das Multiplex-Verfahren aus.
 
-Wenn die Minutenzahl 0 beträgt (also stündlich), wird der Raspberry Pi TTS verwenden, um uns die Uhrzeit anzusagen.
+   .. code-block:: python
+
+       def pickDigit(digit):
+           for pin in placePin:
+               GPIO.output(pin, GPIO.LOW)
+           GPIO.output(placePin[digit], GPIO.HIGH)
+
+#. Liest die aktuelle Uhrzeit aus der Systemzeit.
+
+   .. code-block:: python
+
+       now = time.localtime()
+       hour = now.tm_hour
+       minute = now.tm_min
+
+#. Aktualisiert jede Stelle der Sieben-Segment-Anzeige, um die Uhrzeit im Format HH:MM darzustellen.
+
+   .. code-block:: python
+
+       hc595_shift(number[minute % 10])
+       hc595_shift(number[(minute // 10) % 10])
+       hc595_shift(number[hour % 10])
+       hc595_shift(number[(hour // 10) % 10])
+
+#. Spricht die aktuelle Uhrzeit zu Beginn jeder vollen Stunde per Text-to-Speech aus.
+
+   .. code-block:: python
+
+       if minute == 0 and status == 0:
+           tts.say(f'The time is now {hour} hours and {minute} minutes')
+           status = 1
+       elif minute != 0:
+           status = 0
+
+#. Gibt beim Start des Programms eine Willkommensmeldung aus.
+
+   .. code-block:: python
+
+       tts.say("Clock system started. Welcome!")
+
+#. Räumt alle GPIO-Pins auf, wenn der Benutzer das Programm mit ``Ctrl+C`` beendet.
+
+   .. code-block:: python
+
+       GPIO.cleanup()
 
 Phänomen-Bild
 ------------------------

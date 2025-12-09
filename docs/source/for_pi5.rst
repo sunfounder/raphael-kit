@@ -23,22 +23,4 @@ Die Veröffentlichung des Raspberry Pi 5 hat uns ein leistungsstärkeres Modell 
     
     python_pi5/play_with_python_pi5
     c_pi5/play_with_c
-    scratch_pi5/play_with_scratch
 
-Bei Kompatibilitätsproblemen mit anderen Programmiersprachen finden Sie unten detaillierte Informationen:
-
-
-**Processing**
-
-Bei der Verwendung von Processing 4 auf dem Raspberry Pi 5 treten bei der GPIO-Programmierung Herausforderungen auf. Fehler wie "Invalid argument" und "GPIO pin 17 scheint auf Ihrer Plattform nicht verfügbar zu sein" treten während der Ausführung von GPIO-bezogenem Code auf (wie im beigefügten Bild dargestellt). Weitere Details finden Sie unter: https://github.com/benfry/processing4/issues/807
-
-.. image:: img/pi5_processing.png
-
-**Node.js**
-
-Node.js verwendet die pigpio-Bibliothek, die derzeit den Raspberry Pi 5 nicht unterstützt. Weitere Einblicke finden Sie unter: https://github.com/joan2937/pigpio/issues/589
-
-.. image:: img/pi5_nodejs.png
-    :width: 700
-
-Auf einem 64-Bit-System treten bei der Einfuhr der Raspberry Pi GPIO-Bibliothek Probleme auf, die zu einer Unempfindlichkeit führen. Weitere Informationen finden Sie unter: https://github.com/raspberrypi/bookworm-feedback/issues/91.

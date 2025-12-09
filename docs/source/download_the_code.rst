@@ -43,7 +43,7 @@ Klonen Sie das Repository von GitHub.
 
 .. code-block:: 
 
-   git clone https://github.com/sunfounder/raphael-kit.git
+   git clone https://github.com/sunfounder/raphael-kit.git --depth 1
 
 **Methode 2: Code herunterladen**
 

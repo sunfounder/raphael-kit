@@ -62,7 +62,7 @@ Sie können diese auch einzeln über die untenstehenden Links erwerben.
 Schaltung aufbauen
 ---------------------
 
-.. image:: ../img/1.6.png
+.. image:: img/1.6_fritzing.png
 
 Laden Sie den Code und sehen Sie, was passiert
 ---------------------------------------------------

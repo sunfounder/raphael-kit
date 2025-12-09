@@ -136,58 +136,151 @@ Am PIR-Modul befinden sich zwei Potentiometer: eines zur Einstellung der Empfind
 
 .. code-block:: python
 
-   #!/usr/bin/env python3
+    #!/usr/bin/env python3
+    import time
+    import os
+    import RPi.GPIO as GPIO
+    from picamera2 import Picamera2
 
-   from picamera import PiCamera
-   import RPi.GPIO as GPIO
-   import time
-   import os
-   user = os.getlogin()
-   user_home = os.path.expanduser(f'~{user}')
+    # ----------------------------
+    # USER DIRECTORY
+    # ----------------------------
+    user = os.getlogin()
+    user_home = os.path.expanduser(f'~{user}')
 
+    # ----------------------------
+    # GPIO SETUP
+    # ----------------------------
+    PIR_PIN = 17  # PIR motion sensor connected to GPIO17
 
-   camera = PiCamera()
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(PIR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-   pirPin = 17    # the pir connect to pin17
+    # ----------------------------
+    # CAMERA SETUP
+    # ----------------------------
+    camera = Picamera2()
+    camera.start()
 
-   def setup():
-      GPIO.setmode(GPIO.BCM)
-      GPIO.setup(pirPin, GPIO.IN)
-      camera.start_preview(alpha=200)
+    print("Motion detection started. Press Ctrl+C to exit.")
 
-   def main():
-      i = 1
-      while True:
-         pirVal = GPIO.input(pirPin)
-         if pirVal==GPIO.HIGH:
-               camera.capture(f'{user_home}/capture%s.jpg' % i)
-               print('The number is %s' % i)
-               time.sleep(3)
-               i = i + 1
+    # ----------------------------
+    # MAIN LOOP
+    # ----------------------------
+    try:
+        i = 1
+        while True:
+            if GPIO.input(PIR_PIN) == GPIO.HIGH:
+                filename = f"{user_home}/capture{i}.jpg"
+                camera.capture_file(filename)
+                print(f"Motion detected. Saved image #{i}: {filename}")
+                time.sleep(3)
+                i += 1
+            else:
+                print("waiting")
+                time.sleep(0.5)
 
-   def destroy():
-      GPIO.cleanup()
-      camera.stop_preview()
+    # ----------------------------
+    # KEYBOARD INTERRUPT
+    # ----------------------------
+    except KeyboardInterrupt:
+        print("\nKeyboard interrupt received. Exiting program...")
 
-   if __name__ == '__main__':
-      setup()
-      try:
-         main()
-      except KeyboardInterrupt:
-         destroy()
+    # ----------------------------
+    # CLEANUP
+    # ----------------------------
+    finally:
+        try:
+            camera.close()
+        except:
+            pass
+
+        GPIO.cleanup()
+        print("Program exited cleanly.")
 
 **Code-Erklärung**
 
-.. code-block:: python
+#. Liest das Home-Verzeichnis des aktuellen Benutzers aus, um dort aufgenommene Bilder zu speichern.
 
-   pirVal = GPIO.input(pirPin)
-   if pirVal==GPIO.HIGH:
-         camera.capture(f'{user_home}/capture%s.jpg' % i)
-         print('The number is %s' % i)
-         time.sleep(3)
-         i = i + 1
+   .. code-block:: python
 
-Jedes Mal, wenn ein kleines Eichhörnchen vom PIR-Modul erkannt wird, wird der Raspberry Pi ein Foto aufnehmen und Ihnen über das Ausgabefenster mitteilen, wie viele Fotos bereits gemacht wurden. Das Intervall zwischen den Fotos beträgt 3 Sekunden.
+       user = os.getlogin()
+       user_home = os.path.expanduser(f'~{user}')
+
+   Dadurch wird der aktive Benutzername ermittelt und ein vollständiger Pfad zum Home-Verzeichnis erstellt.
+
+#. Richtet GPIO ein und konfiguriert den PIR-Bewegungssensor an ``GPIO17`` als Eingang.
+
+   .. code-block:: python
+
+       PIR_PIN = 17
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(PIR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+   Durch den Pull-down-Widerstand wird sichergestellt, dass der Pin ``LOW`` liest, wenn keine Bewegung erkannt wird.
+
+#. Initialisiert die Picamera2-Instanz und startet die Kamera.
+
+   .. code-block:: python
+
+       camera = Picamera2()
+       camera.start()
+
+   Die Kamera wird aktiviert, sodass sie sofort Bilder aufnehmen kann, sobald Bewegung erkannt wird.
+
+#. Erkennt Bewegung, indem der Eingabestatus des PIR-Sensors abgefragt wird.
+
+   .. code-block:: python
+
+       if GPIO.input(PIR_PIN) == GPIO.HIGH:
+
+   Wenn der PIR-Sensor Bewegung erkennt, gibt er ein ``HIGH``-Signal aus und löst damit den Aufnahmevorgang aus.
+
+#. Nimmt ein Bild auf und speichert es mit einer fortlaufenden Dateinummer.
+
+   .. code-block:: python
+
+       filename = f"{user_home}/capture{i}.jpg"
+       camera.capture_file(filename)
+
+   Jede erkannte Bewegung speichert ein neues Bild als ``capture1.jpg``, ``capture2.jpg`` usw.
+
+#. Wartet drei Sekunden nach einer bewegungsbasierten Aufnahme.
+
+   .. code-block:: python
+
+       time.sleep(3)
+
+   Dies verhindert, dass zu viele Bilder zu schnell hintereinander aufgenommen werden.
+
+#. Gibt „waiting“ aus, wenn keine Bewegung erkannt wird, und prüft nach einer kurzen Verzögerung erneut.
+
+   .. code-block:: python
+
+       else:
+           print("waiting")
+           time.sleep(0.5)
+
+   Dadurch wird eine kontinuierliche Überwachung gewährleistet und gleichzeitig unnötige CPU-Auslastung reduziert.
+
+#. Behandelt KeyboardInterrupt (Ctrl+C), um das Programm sicher zu beenden.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           print("\nKeyboard interrupt received. Exiting program...")
+
+   Eine saubere Exit-Meldung wird ausgegeben, wenn der Benutzer das Programm manuell stoppt.
+
+#. Gibt Kamera- und GPIO-Ressourcen vor dem Beenden frei.
+
+   .. code-block:: python
+
+       finally:
+           camera.close()
+           GPIO.cleanup()
+
+   Dies stellt sicher, dass die Kamera ordnungsgemäß herunterfährt und alle GPIO-Pins in einen sicheren Zustand zurückkehren.
 
 Phänomen-Bild
 ------------------------

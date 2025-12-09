@@ -163,6 +163,8 @@ Wenn Sie eine bestimmte virtuelle Umgebung nicht mehr benötigen, können Sie ei
 
     rm -rf myenv
 
+.. _install_luma_led_matrix:
+
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -258,6 +260,8 @@ Dies ist eine Python 3-Bibliothek zur Ansteuerung von LED-Matrix-Displays unter 
        deactivate
 
 * Referenz: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
+
+.. _install_mfrc522:
 
 MFRC522
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
