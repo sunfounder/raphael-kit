@@ -86,60 +86,116 @@ Si deseas descargar la foto a tu PC, consulta :ref:`filezilla`.
 
 .. code-block:: python
 
-    from picamera import PiCamera
+
+    #!/usr/bin/env python3
+    from picamera2 import Picamera2, Preview
     import os
+
+    # Get the current user's login name
     user = os.getlogin()
+    # Get the path to the user's home directory
     user_home = os.path.expanduser(f'~{user}')
 
-    camera = PiCamera()
-    
-    def setup():
-        camera.start_preview(alpha=200)
-    
-    def main():
-        camera.capture(f'{user_home}/my_photo.jpg')
-        while True:
-            pass    
-    
-    def destroy():
+    # Create a Picamera2 instance
+    camera = Picamera2()
+    # Retrieve the default preview configuration
+    preview_config = camera.preview_configuration
+
+    try:
+        # Set preview size and format
+        preview_config.size = (800, 600)
+        preview_config.format = 'XRGB8888'
+        # Start the camera preview in QTGL mode
+        camera.start_preview(Preview.QTGL)
+        # Start the camera
+        camera.start()
+        # Capture and save a photo to the user's home directory
+        camera.capture_file(f'{user_home}/my_photo.jpg')
+
+    except KeyboardInterrupt:
+        # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
         camera.stop_preview()
-    
-    if __name__ == '__main__':
-        setup()
-        try:
-            main()
-        except KeyboardInterrupt:
-            destroy()
+        pass
 
-**Explicación del Código**
+**Explicación del código**
 
-.. code-block:: python
+#. Importa las clases ``Picamera2`` y ``Preview`` de la biblioteca picamera2, y el módulo ``os`` para interacciones con el sistema operativo.
 
-    from picamera import PiCamera
+   .. code-block:: python
 
-    camera = PiCamera()
+       #!/usr/bin/env python3    
+       from picamera2 import Picamera2, Preview
+       import os
 
-Importa la biblioteca ``picamera`` e instancia la clase ``PiCamera`` para utilizar el módulo de cámara.
+#. Obtiene el nombre de inicio de sesión del usuario actual y la ruta a su directorio personal.
 
-.. code-block:: python
+   .. code-block:: python
 
-    start_preview(**options)
+       # Obtener el nombre de usuario actual
+       user = os.getlogin()
+       # Obtener la ruta al directorio personal del usuario
+       user_home = os.path.expanduser(f'~{user}')
 
+#. Crea una instancia de ``Picamera2`` y recupera la configuración predeterminada de vista previa.
 
-Muestra la superposición de vista previa y cambia el nivel de transparencia con ``alpha`` - de 0 a 255. Este método inicia una vista previa de la cámara como una superposición en la pantalla principal del Pi (HDMI o compuesto). Por defecto, el renderizador será opaco y a pantalla completa.
+   .. code-block:: python
 
-Esto significa que la vista previa por defecto sobrescribe lo que esté visible en la pantalla. Más específicamente, la vista previa no depende de un entorno gráfico como X-Windows (puede funcionar perfectamente desde una consola TTY); es simplemente una superposición en la salida de video del Pi. Para detener la vista previa y revelar la pantalla nuevamente, llama a ``stop_preview()``. La vista previa puede iniciarse y detenerse varias veces durante la vida del objeto ``PiCamera``.
+       # Crear una instancia de Picamera2
+       camera = Picamera2()
+       # Recuperar la configuración predeterminada de la vista previa
+       preview_config = camera.preview_configuration
 
-.. code-block:: python
+#. Establece el tamaño y el formato de la vista previa de la cámara.  
+   El tamaño se establece en 800x600 píxeles y el formato en ``XRGB8888``.
 
-    camera.capture(f'{user_home}/my_photo.jpg')
+   .. code-block:: python
 
-Captura una imagen con la cámara, almacenándola en ``~/``.
+       try:
+           # Establecer tamaño y formato de la vista previa
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
 
-.. note::
-    Puedes usar la función ``camera.capture()`` y el bucle ``for`` juntos para lograr disparos continuos. Y usa la función ``delay`` para ajustar el intervalo de tiempo entre tomas.
+           ...
 
-    .. code-block:: python
+#. Inicia la vista previa de la cámara en modo QTGL, un método para mostrar la vista previa, y luego inicia la cámara.
 
-        for i in 5:
-            camera.capture(f'{user_home}/my_photo%s.jpg' % i)
+   .. code-block:: python
+
+       try:
+           ...
+           
+           # Iniciar la vista previa en modo QTGL
+           camera.start_preview(Preview.QTGL)
+           # Iniciar la cámara
+           camera.start()
+
+           ...
+
+#. Captura una imagen desde la cámara y la guarda en ``~/``.
+
+   .. code-block:: python
+
+       try:
+           ...           
+           
+           # Capturar y guardar una foto en el directorio personal del usuario
+           camera.capture_file(f'{user_home}/my_photo.jpg')
+
+   .. note::
+       Puedes usar la función ``camera.capture()`` junto con un bucle ``for`` para lograr disparos continuos.  
+       Usa la función ``delay`` para ajustar el intervalo de tiempo entre fotos.
+
+       .. code-block:: python
+
+           for i in 5:
+               camera.capture(f'{user_home}/my_photo%s.jpg' % i)
+
+#. Este bloque de código maneja una interrupción de teclado (como Ctrl+C) deteniendo la vista previa de la cámara.  
+   La instrucción ``pass`` se utiliza para manejar la excepción sin realizar ninguna acción adicional.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Detener la vista previa si ocurre un KeyboardInterrupt (ej., Ctrl+C)
+           camera.stop_preview()
+           pass

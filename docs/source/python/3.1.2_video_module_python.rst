@@ -80,48 +80,160 @@ Ejecuta el código para comenzar la grabación. Presiona ``Ctrl+C`` para termina
 
 Si deseas enviar fotos a tu PC, consulta :ref:`filezilla`.
 
-**Código**
-
 .. code-block:: python
 
-    from picamera import PiCamera
-    import os
-    user = os.getlogin()
-    user_home = os.path.expanduser(f'~{user}')
+   #!/usr/bin/env python3
 
+   import time
+   from picamera2 import Picamera2, Preview
+   from picamera2.encoders import H264Encoder
+   from picamera2.outputs import FfmpegOutput
+   import os
 
-    camera = PiCamera()
-    
-    def setup():
-        camera.start_preview(alpha=200)
-    
-    def main():
-        camera.start_recording(f'{user_home}/my_video.h264')
-        while True:
-            pass    
-    
-    def destroy():
-        camera.stop_recording()
-        camera.stop_preview()
-    
-    if __name__ == '__main__':
-        setup()
-        try:
-            main()
-        except KeyboardInterrupt:
-            destroy()
+   # Get the current user's login name
+   user = os.getlogin()
+   # Get the path to the user's home directory
+   user_home = os.path.expanduser(f'~{user}')
 
-**Explicación del Código**
+   # Create a Picamera2 instance
+   camera = Picamera2()
+   # Retrieve the default preview configuration
+   preview_config = camera.preview_configuration
 
-.. code-block:: python
+   try:
+       # Configure preview size and format
+       preview_config.size = (800, 600)
+       preview_config.format = 'XRGB8888'
+       # Start the camera preview in QTGL mode
+       camera.start_preview(Preview.QTGL)
 
-    start_recording(output, format=None, resize=None, splitter_port=1, **options)
+       # Define video configuration with size, frame rate, and buffer count
+       conf = {'size': (800, 600)}
+       controls = {'FrameRate': 40}
+       config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+       # Create a video encoder with a specified bitrate
+       encoder = H264Encoder(bitrate=10000000)
+       # Define output file for the video
+       output = FfmpegOutput(f'{user_home}/my_video.mp4')
+       # Configure and start recording
+       camera.configure(config)
+       camera.start_recording(encoder, output)
+       # Record for 10 seconds
+       time.sleep(10)
+       # Stop the recording
+       camera.stop_recording()
 
-Comienza a grabar video con la cámara, almacenándolo en ``output``.
+   except KeyboardInterrupt:
+       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+       camera.stop_preview()
+       pass
 
-.. code-block:: python
+**Explicación del código**
 
-    camera.stop_recording()
+#. Importa las bibliotecas y clases necesarias.  
+   La biblioteca ``picamera2`` se utiliza para controlar la cámara, ``H264Encoder`` para la codificación de video y ``FfmpegOutput`` para definir el archivo de salida del video.
 
-Finaliza la grabación.
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       import time
+       from picamera2 import Picamera2, Preview
+       from picamera2.encoders import H264Encoder
+       from picamera2.outputs import FfmpegOutput
+       import os
+
+#. Obtiene el nombre de inicio de sesión del usuario actual y la ruta a su directorio personal.
+
+   .. code-block:: python
+
+       # Obtener el nombre de usuario actual
+       user = os.getlogin()
+       # Obtener la ruta al directorio personal del usuario
+       user_home = os.path.expanduser(f'~{user}')
+
+#. Crea una instancia de la clase ``Picamera2`` y recupera la configuración predeterminada de vista previa.
+
+   .. code-block:: python
+
+       # Crear una instancia de Picamera2
+       camera = Picamera2()
+       # Recuperar la configuración predeterminada de la vista previa
+       preview_config = camera.preview_configuration
+
+#. Establece el tamaño y el formato de la vista previa de la cámara.  
+   El tamaño se establece en 800x600 píxeles y el formato en ``XRGB8888``.
+
+   .. code-block:: python
+
+       try:
+           # Configurar tamaño y formato de la vista previa
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
+
+#. Inicia la vista previa de la cámara en modo QTGL, un modo gráfico de visualización.
+
+   .. code-block:: python
+
+       try:
+           ...
+           
+           # Iniciar la vista previa en modo QTGL
+           camera.start_preview(Preview.QTGL)
+
+           ...
+
+#. Define la configuración de video con un tamaño de cuadro de 800x600 píxeles y una tasa de 40 fotogramas por segundo.
+
+   .. code-block:: python
+
+       try:
+           ...
+           
+           # Definir configuración de video con tamaño, tasa de fotogramas y número de búferes
+           conf = {'size': (800, 600)}
+           controls = {'FrameRate': 40}
+           config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+
+           ...
+
+#. Crea un codificador de video con una tasa de bits de 10 Mbps usando el formato H.264.  
+   Define la ruta del archivo de salida, guardándolo como ``my_video.mp4`` en el directorio personal del usuario.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Crear un codificador de video con una tasa de bits específica
+           encoder = H264Encoder(bitrate=10000000)
+           # Definir archivo de salida del video
+           output = FfmpegOutput(f'{user_home}/my_video.mp4')
+
+           ...
+
+#. Configura la cámara con los ajustes de video definidos, inicia la grabación usando el codificador y el archivo de salida, graba durante 10 segundos y luego detiene la grabación.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Configurar e iniciar la grabación
+           camera.configure(config)
+           camera.start_recording(encoder, output)
+           # Grabar durante 10 segundos
+           time.sleep(10)
+           # Detener la grabación
+           camera.stop_recording()
+
+#. Este bloque de código maneja una interrupción de teclado (como Ctrl+C) deteniendo la vista previa de la cámara.  
+   La instrucción ``pass`` se utiliza para manejar la excepción sin realizar acciones adicionales.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Detener la vista previa si ocurre un KeyboardInterrupt (ej., Ctrl+C)
+           camera.stop_preview()
+           pass
 

@@ -162,6 +162,7 @@ Si ya no necesitas un entorno virtual en particular, puedes simplemente eliminar
 
     rm -rf myenv
 
+.. _install_luma_led_matrix:
 
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~

@@ -62,7 +62,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
 Construir el circuito
 -------------------------
 
-.. image:: ../img/1.6.png
+.. image:: img/1.6_fritzing.png
 
 Cargar el código y ver qué pasa
 ---------------------------------------

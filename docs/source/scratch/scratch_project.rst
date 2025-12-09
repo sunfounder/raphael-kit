@@ -43,7 +43,6 @@ Si eres un usuario que acaba de comenzar con Scratch 3, te recomendamos que prue
     scratch_1.7_piggy_bank
     scratch_1.8_service_bell
     scratch_1.9_drumming
-    scratch_1.10_drumming_in_the_air
     scratch_1.11_repelling_locusts
     scratch_1.12_water_lamp
     scratch_1.13_doorbell
@@ -51,6 +50,5 @@ Si eres un usuario que acaba de comenzar con Scratch 3, te recomendamos que prue
     scratch_1.15_inflating_the_balloon
     scratch_1.16_fishing_game
     scratch_1.17_rotating_fan
-    scratch_1.18_eating_banana_game
 
 

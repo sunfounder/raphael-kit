@@ -77,8 +77,7 @@ GPIO17         Pin 11          0        17
 GPIO18         Pin 12          1        18
 ============== =============== ======== ===
 
-.. image:: ../img/camera_schematic.png
-   :width: 500
+.. image:: ../img/4.1.1_camera_schematic.png
    :align: center
 
 Procedimientos Experimentales
@@ -86,7 +85,7 @@ Procedimientos Experimentales
 
 **Paso 1:** Construye el circuito.
 
-.. image:: ../img/3.1.15camera_fritzing.png
+.. image:: ../img/4.1.1_camera_circuit.png
   :width: 800
   :align: center
 
@@ -96,25 +95,28 @@ Procedimientos Experimentales
 
 **Paso 4:** Abre una terminal y accede a la carpeta del código.
 
-.. raw:: html
-
-   <run></run>
-
 .. code-block::
 
     cd ~/raphael-kit/python/
 
 **Paso 5:** Ejecuta.
 
-.. raw:: html
-
-   <run></run>
-
 .. code-block::
 
     sudo python3 4.1.1_Camera.py
 
-Después de que el código se ejecute, presiona el botón, la Raspberry Pi hará parpadear el LED y tomará una foto. La foto se llamará ``my_photo.jpg`` y se almacenará en el directorio ``~``.
+Después de ejecutar el código:
+
+- Se abre una ventana con la vista previa en vivo de la cámara.
+- El programa espera a que se presione el botón.
+- Cuando el botón es presionado:
+
+  - El LED parpadea tres veces.
+  - La cámara captura una foto.
+  - El LED permanece encendido durante 0.5 segundos como confirmación.
+  - La imagen se guarda con un nombre basado en una marca temporal en ``/home/<username>/``.
+
+- Presiona ``Ctrl+C`` en cualquier momento para detener la vista previa, liberar los recursos de GPIO y salir del programa de forma segura.
 
 .. note::
 
@@ -124,103 +126,184 @@ Si quieres descargar la foto a tu PC, por favor consulta :ref:`filezilla`.
 
 **Código**
 
-.. note::
-    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
-
-.. raw:: html
-
-    <run></run>
-
 .. code-block:: python
 
-	#!/usr/bin/env python3
-
-	from picamera import PiCamera
-	import RPi.GPIO as GPIO
-	import time
+    #!/usr/bin/env python3
+    import time
     import os
+    import RPi.GPIO as GPIO
+    from picamera2 import Picamera2, Preview
+
+    # ----------------------------
+    # GPIO SETUP
+    # ----------------------------
+
+    BUTTON_PIN = 18  # The push button is connected to GPIO18
+    LED_PIN = 17     # The LED is connected to GPIO17
+
+    GPIO.setmode(GPIO.BCM)  # Use BCM GPIO numbering
+
+    # The button uses a 10K pull-up resistor externally.
+    # When released → HIGH, when pressed → LOW.
+    GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+    # LED is an output (HIGH → ON, LOW → OFF)
+    GPIO.setup(LED_PIN, GPIO.OUT)
+    GPIO.output(LED_PIN, GPIO.LOW)  # Ensure LED is OFF at startup
+
+    # ----------------------------
+    # USER DIRECTORY SETUP
+    # ----------------------------
+
+    # Get the current logged-in username
     user = os.getlogin()
-    user_home = os.path.expanduser(f'~{user}')
+
+    # Build the path to the user's home directory (ex: /home/pi)
+    user_home = os.path.expanduser(f"~{user}")
+
+    # ----------------------------
+    # CAMERA SETUP
+    # ----------------------------
+
+    # Create a Picamera2 object
+    camera = Picamera2()
+
+    # Create a preview configuration:
+    # main → the main camera stream
+    # size → resolution 800x600
+    # format → display format used by the preview window
+    preview_config = camera.create_preview_configuration(
+        main={"size": (800, 600), "format": "XRGB8888"}
+    )
+
+    # Apply the configuration to the camera
+    camera.configure(preview_config)
+
+    # Start the preview window using QTGL (GPU-accelerated)
+    camera.start_preview(Preview.QTGL)
+
+    # Start the camera hardware
+    camera.start()
+
+    print("Ready! Press the button to take a photo...")
+
+    # ----------------------------
+    # MAIN LOOP
+    # ----------------------------
+    try:
+        while True:
+            # Check if button is pressed (LOW means pressed)
+            if GPIO.input(BUTTON_PIN) == GPIO.LOW:
+                print("Button pressed! Taking photo...")
+
+                # Flash LED 3 times to warn before taking the photo
+                for _ in range(3):
+                    GPIO.output(LED_PIN, GPIO.HIGH)
+                    time.sleep(0.1)
+                    GPIO.output(LED_PIN, GPIO.LOW)
+                    time.sleep(0.1)
+
+                # Build a unique filename using current date and time
+                # Example: /home/pi/my_photo_20251201_143522.jpg
+                timestamp = time.strftime("%Y%m%d_%H%M%S")
+                filename = os.path.join(user_home, f"my_photo_{timestamp}.jpg")
+
+                # Capture the image
+                camera.capture_file(filename)
+
+                print(f"Photo saved to: {filename}")
+
+                # Turn LED ON briefly to confirm capture
+                GPIO.output(LED_PIN, GPIO.HIGH)
+                time.sleep(0.5)
+                GPIO.output(LED_PIN, GPIO.LOW)
+
+                # Debounce delay to prevent repeated triggers
+                time.sleep(0.3)
+
+            # Small delay to reduce CPU usage
+            time.sleep(0.01)
+
+    # ----------------------------
+    # CLEAN EXIT WHEN CTRL+C IS PRESSED
+    # ----------------------------
+    except KeyboardInterrupt:
+        print("\nCtrl+C received, exiting...")
+
+    # ----------------------------
+    # CLEANUP SECTION
+    # ----------------------------
+    finally:
+        # Safely try to stop the camera preview
+        try:
+            camera.stop_preview()
+        except:
+            pass  # Ignore errors if preview wasn't running
+
+        # Safely close the camera device
+        try:
+            camera.close()
+        except:
+            pass
+
+        # Reset GPIO pins to a safe state
+        GPIO.cleanup()
+
+        print("Program exited cleanly.")
 
 
-	camera = PiCamera()
+**Explicación del código**
 
-	LedPin = 17 # Set GPIO17 as LED pin
-	BtnPin = 18 # Set GPIO18 as button pin
+#. Verifica si el botón conectado a ``BUTTON_PIN`` está presionado.
 
-	status = False
+   .. code-block:: python
 
-	def setup():
-		GPIO.setmode(GPIO.BCM)
-		GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
-		GPIO.setup(BtnPin, GPIO.IN)
-		camera.start_preview(alpha=200)
+       if GPIO.input(BUTTON_PIN) == GPIO.LOW:
 
-	def takePhotos(pin):
-		global status
-		status = True
+   Como el botón usa una resistencia pull-up, su estado predeterminado es ``HIGH``.  
+   Cuando el botón se presiona, la señal cambia a ``LOW`` y se activa el proceso de captura de la foto.
 
-	def main():
-		global status
-		GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
-		while True:
-			if status:
-				for i in range(5):
-					GPIO.output(LedPin, GPIO.LOW)
-					time.sleep(0.1)
-					GPIO.output(LedPin, GPIO.HIGH)
-					time.sleep(0.1)
-				camera.capture(f'{user_home}/my_photo.jpg')
-				print ('Take a photo!')          
-				status = False
-			else:
-				GPIO.output(LedPin, GPIO.HIGH)
-			time.sleep(1)
+#. Hace parpadear el LED tres veces como retroalimentación visual antes de tomar una foto.
 
-	def destroy():
-		camera.stop_preview()
-		GPIO.output(LedPin, GPIO.HIGH)
-		GPIO.cleanup()
+   .. code-block:: python
 
-	if __name__ == '__main__':
-		setup()
-		try:
-			main()
-		except KeyboardInterrupt:
-			destroy()
+       for _ in range(3):
+           GPIO.output(LED_PIN, GPIO.HIGH)
+           time.sleep(0.1)
+           GPIO.output(LED_PIN, GPIO.LOW)
+           time.sleep(0.1)
 
-**Explicación del Código**
+   Esto indica que la Raspberry Pi se está preparando para capturar una imagen.
 
-.. code-block:: python
+#. Genera un nombre de archivo único usando una marca temporal (timestamp) y captura una foto.
 
-    GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
+   .. code-block:: python
 
-Configura el evento de ``BtnPin``, cuando se presiona el botón (la señal de nivel cambia de alto a bajo), llama a la función ``takePhotos()``.
+       timestamp = time.strftime("%Y%m%d_%H%M%S")
+       filename = os.path.join(user_home, f"my_photo_{timestamp}.jpg")
+       camera.capture_file(filename)
 
-.. code-block:: python
+   La marca temporal garantiza que cada foto tenga un nombre diferente.  
+   La imagen se guarda en el directorio personal del usuario.
 
-    def takePhotos(pin):
-        global status
-        status = True
+#. Enciende el LED durante 0.5 segundos para confirmar que se tomó la foto.
 
-Cuando se llama a ``takePhotos()``, modifica el ``status`` a ``True``.
+   .. code-block:: python
 
-.. code-block:: python
+       GPIO.output(LED_PIN, GPIO.HIGH)
+       time.sleep(0.5)
+       GPIO.output(LED_PIN, GPIO.LOW)
 
-    if status:
-        for i in range(5):
-            GPIO.output(LedPin, GPIO.LOW)
-            time.sleep(0.1)
-            GPIO.output(LedPin, GPIO.HIGH)
-            time.sleep(0.1)
-        camera.capture(f'{user_home}/my_photo.jpg')
-        print ('Take a photo!')          
-        status = False
-    else:
-        GPIO.output(LedPin, GPIO.HIGH)
-    time.sleep(1)
+   Esta breve iluminación indica que la captura fue exitosa.
 
-Cuando ``status`` es ``True``, la Raspberry Pi hará parpadear el LED y tomará una foto. La foto se llamará ``my_photo.jpg`` y se almacenará en el directorio ``~``.
+#. Agrega una pequeña demora para evitar múltiples activaciones por una sola pulsación del botón.
+
+   .. code-block:: python
+
+       time.sleep(0.3)
+
+   Este retardo de "debounce" asegura un funcionamiento confiable del botón.
+
 
 Imagen del Fenómeno
 ------------------------
