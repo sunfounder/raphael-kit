@@ -28,21 +28,22 @@ specifically focused on this library.
     python_pi5/play_with_python_pi5
     c_pi5/play_with_c
 
-For compatibility issues with other programming languages, please see the detailed information below:
+
+.. For compatibility issues with other programming languages, please see the detailed information below:
 
 
-**Processing**
+.. **Processing**
 
-When using Processing 4 on Raspberry Pi 5, GPIO programming encounters challenges. Errors such as "Invalid argument" and "GPIO pin 17 seems to be unavailable on your platform" arise during the execution of GPIO-related code (as depicted in the accompanying image). For further details, visit: https://github.com/benfry/processing4/issues/807
+.. When using Processing 4 on Raspberry Pi 5, GPIO programming encounters challenges. Errors such as "Invalid argument" and "GPIO pin 17 seems to be unavailable on your platform" arise during the execution of GPIO-related code (as depicted in the accompanying image). For further details, visit: https://github.com/benfry/processing4/issues/807
 
-.. image:: img/pi5_processing.png
+.. .. image:: img/pi5_processing.png
 
-**Node.js**
+.. **Node.js**
 
-Node.js utilizes the pigpio library, which, as of now, does not support Raspberry Pi 5. For more insights, visit: https://github.com/joan2937/pigpio/issues/589
+.. Node.js utilizes the pigpio library, which, as of now, does not support Raspberry Pi 5. For more insights, visit: https://github.com/joan2937/pigpio/issues/589
 
-.. image:: img/pi5_nodejs.png
-    :width: 700
+.. .. image:: img/pi5_nodejs.png
+..     :width: 700
 
 
-On a 64-bit system, the importation of the Raspberry Pi GPIO library faces issues, leading to unresponsiveness. For more information, visit: https://github.com/raspberrypi/bookworm-feedback/issues/91.
+.. On a 64-bit system, the importation of the Raspberry Pi GPIO library faces issues, leading to unresponsiveness. For more information, visit: https://github.com/raspberrypi/bookworm-feedback/issues/91.
