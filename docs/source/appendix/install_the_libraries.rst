@@ -164,6 +164,7 @@ Se non hai più bisogno di un particolare ambiente virtuale, puoi semplicemente 
 
     rm -rf myenv
 
+.. _install_luma_led_matrix:
 
 Luma.LED_Matrix
 ~~~~~~~~~~~~~~~~~~~~~~~

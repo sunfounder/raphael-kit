@@ -87,44 +87,156 @@ Se desideri inviare le foto al tuo PC, fai riferimento a :ref:`filezilla`.
 
 .. code-block:: python
 
-    from picamera import PiCamera
-    import os
-    user = os.getlogin()
-    user_home = os.path.expanduser(f'~{user}')
+   #!/usr/bin/env python3
 
+   import time
+   from picamera2 import Picamera2, Preview
+   from picamera2.encoders import H264Encoder
+   from picamera2.outputs import FfmpegOutput
+   import os
 
-    camera = PiCamera()
-    
-    def setup():
-        camera.start_preview(alpha=200)
-    
-    def main():
-        camera.start_recording(f'{user_home}/my_video.h264')
-        while True:
-            pass    
-    
-    def destroy():
-        camera.stop_recording()
-        camera.stop_preview()
-    
-    if __name__ == '__main__':
-        setup()
-        try:
-            main()
-        except KeyboardInterrupt:
-            destroy()
+   # Get the current user's login name
+   user = os.getlogin()
+   # Get the path to the user's home directory
+   user_home = os.path.expanduser(f'~{user}')
+
+   # Create a Picamera2 instance
+   camera = Picamera2()
+   # Retrieve the default preview configuration
+   preview_config = camera.preview_configuration
+
+   try:
+       # Configure preview size and format
+       preview_config.size = (800, 600)
+       preview_config.format = 'XRGB8888'
+       # Start the camera preview in QTGL mode
+       camera.start_preview(Preview.QTGL)
+
+       # Define video configuration with size, frame rate, and buffer count
+       conf = {'size': (800, 600)}
+       controls = {'FrameRate': 40}
+       config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+       # Create a video encoder with a specified bitrate
+       encoder = H264Encoder(bitrate=10000000)
+       # Define output file for the video
+       output = FfmpegOutput(f'{user_home}/my_video.mp4')
+       # Configure and start recording
+       camera.configure(config)
+       camera.start_recording(encoder, output)
+       # Record for 10 seconds
+       time.sleep(10)
+       # Stop the recording
+       camera.stop_recording()
+
+   except KeyboardInterrupt:
+       # Stop the camera preview if a KeyboardInterrupt (e.g., Ctrl+C) occurs
+       camera.stop_preview()
+       pass
 
 **Spiegazione del Codice**
 
-.. code-block:: python
+#. Importa le librerie e le classi necessarie. La libreria ``picamera2`` viene utilizzata per il controllo della fotocamera, ``H264Encoder`` per la codifica video e ``FfmpegOutput`` per definire il file di output del video.
 
-    start_recording(output, format=None, resize=None, splitter_port=1, **options)
+   .. code-block:: python
 
-Avvia la registrazione video dalla fotocamera, memorizzandola in ``output``.
+       #!/usr/bin/env python3
 
-.. code-block:: python
+       import time
+       from picamera2 import Picamera2, Preview
+       from picamera2.encoders import H264Encoder
+       from picamera2.outputs import FfmpegOutput
+       import os
 
-    camera.stop_recording()
+#. Recupera il nome utente corrente e il percorso della sua directory home.
 
-Termina la registrazione.
+   .. code-block:: python
+
+       # Ottieni il nome utente corrente
+       user = os.getlogin()
+       # Ottieni il percorso della directory home dell'utente
+       user_home = os.path.expanduser(f'~{user}')
+
+#. Crea un'istanza della classe ``Picamera2`` e recupera la configurazione predefinita dell’anteprima.
+
+   .. code-block:: python
+
+       # Crea un'istanza di Picamera2
+       camera = Picamera2()
+       # Recupera la configurazione di anteprima predefinita
+       preview_config = camera.preview_configuration
+
+#. Imposta la dimensione e il formato dell’anteprima della fotocamera. La dimensione viene impostata a 800x600 pixel e il formato a ``XRGB8888``.
+
+   .. code-block:: python
+
+       try:
+           # Configura dimensioni e formato dell’anteprima
+           preview_config.size = (800, 600)
+           preview_config.format = 'XRGB8888'
+           
+#. Avvia l’anteprima della fotocamera in modalità QTGL, una modalità grafica di anteprima.
+
+   .. code-block:: python
+
+       try:
+           ...          
+
+           # Avvia l’anteprima della fotocamera in modalità QTGL
+           camera.start_preview(Preview.QTGL)
+
+           ...
+
+#. Definisce la configurazione video con una dimensione di 800x600 pixel e una frequenza di 40 fotogrammi al secondo.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Definisci la configurazione video con dimensioni, frame rate e numero di buffer
+           conf = {'size': (800, 600)}
+           controls = {'FrameRate': 40}
+           config = camera.create_video_configuration(main=conf, controls=controls, buffer_count=12)
+
+           ...
+
+#. Crea un codificatore video con un bitrate specificato di 10 Mbps usando il formato di codifica H.264. Imposta il percorso del file di output salvandolo come ``my_video.mp4`` nella directory home dell’utente.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Crea un codificatore video con un bitrate specifico
+           encoder = H264Encoder(bitrate=10000000)
+           # Definisci il file di output del video
+           output = FfmpegOutput(f'{user_home}/my_video.mp4')
+
+           ...
+
+#. Configura la fotocamera con le impostazioni video definite, avvia la registrazione usando il codificatore e il file di output specificati, registra per 10 secondi e poi interrompe la registrazione.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Configura e avvia la registrazione
+           camera.configure(config)
+           camera.start_recording(encoder, output)
+           # Registra per 10 secondi
+           time.sleep(10)
+           # Interrompi la registrazione
+           camera.stop_recording()
+
+#. Questo blocco di codice gestisce un'interruzione da tastiera (come Ctrl+C) interrompendo l’anteprima della fotocamera. L’istruzione ``pass`` viene utilizzata per gestire l’eccezione senza eseguire altre azioni.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Ferma l’anteprima della fotocamera in caso di interruzione (es. Ctrl+C)
+           camera.stop_preview()
+           pass
+
+
 

@@ -113,7 +113,13 @@ Prima di iniziare questo progetto, assicurati di aver completato :ref:`3.1.3_py`
 
     python3 4.1.5_DoorBell.py
 
-Dopo l'esecuzione del codice, quando viene premuto il pulsante, suonerà una campanella e la fotocamera registrerà un video di 5 secondi, che verrà salvato come file ``visitor.h264`` nella directory ``~``. Se hai uno schermo, puoi anche visualizzare i visitatori in tempo reale.
+Dopo l’esecuzione del programma:
+
+- Il sistema attende che venga premuto il pulsante del campanello.
+- Quando il pulsante viene premuto, viene riprodotto il suono del campanello e viene registrato un video di 5 secondi.
+- Il video viene salvato come ``visitor.mp4`` nella directory home dell’utente.
+- Il sistema ritorna quindi in modalità standby in attesa della successiva pressione del pulsante.
+- Premere ``Ctrl+C`` per uscire dal programma e liberare correttamente tutte le risorse.
 
 **Codice**
 
@@ -127,89 +133,176 @@ Dopo l'esecuzione del codice, quando viene premuto il pulsante, suonerà una cam
 .. code-block:: python
 
     #!/usr/bin/env python3
-    from picamera import PiCamera
-    from pygame import mixer
-    import RPi.GPIO as GPIO
     import time
     import os
+    import RPi.GPIO as GPIO
+    from pygame import mixer
+    from picamera2 import Picamera2, Preview
+    from picamera2.encoders import H264Encoder
+    from picamera2.outputs import FfmpegOutput
+
+    # --------------------------------------------------
+    # USER DIRECTORY
+    # --------------------------------------------------
     user = os.getlogin()
-    user_home = os.path.expanduser(f'~{user}')
+    user_home = os.path.expanduser(f"~{user}")
 
+    # --------------------------------------------------
+    # CAMERA SETUP (Picamera2)
+    # --------------------------------------------------
+    camera = Picamera2()
 
-    camera = PiCamera()
+    # Create a video configuration WITHOUT the deprecated "video=" argument
+    video_config = camera.create_video_configuration(
+        main={"size": (1280, 720), "format": "XBGR8888"}
+    )
+    camera.configure(video_config)
 
+    # Create H264 encoder (10 Mbps is good quality for doorbell)
+    encoder = H264Encoder(bitrate=10_000_000)
+
+    # --------------------------------------------------
+    # GPIO SETUP
+    # --------------------------------------------------
     BtnPin = 18
     status = False
 
     def setup():
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(BtnPin, GPIO.IN, GPIO.PUD_UP)
+        GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         mixer.init()
 
-    def takePhotos(pin):
+    def button_pressed(pin):
+        """Button callback"""
         global status
         status = True
 
+    # --------------------------------------------------
+    # MAIN LOOP
+    # --------------------------------------------------
     def main():
         global status
-        GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
+        GPIO.add_event_detect(BtnPin, GPIO.FALLING,
+                            callback=button_pressed, bouncetime=250)
+
+        print("Doorbell system running... Press the button to record.")
+
         while True:
             if status:
-                mixer.music.load(f'{user_home}/raphael-kit/music/doorbell.wav')
+                print("Visitor detected!")
+
+                # Play doorbell sound
+                mixer.music.load(f"{user_home}/raphael-kit/music/doorbell.wav")
                 mixer.music.set_volume(0.7)
                 mixer.music.play()
-                camera.start_preview(alpha=200)
-                camera.start_recording(f'{user_home}/visitor.h264')
-                print ('Have a visitor')
-                time.sleep(5)
+
+                # Use QTGL preview
+                camera.start_preview(Preview.QTGL)
+
+                # Output file
+                output_path = f"{user_home}/visitor.mp4"
+                output = FfmpegOutput(output_path)
+
+                # Start recording
+                camera.start_recording(encoder, output)
+                print(f"Recording video to {output_path}")
+
+                time.sleep(5)  # Record for 5 seconds
+
+                # Stop everything
                 mixer.music.stop()
-                camera.stop_preview()
                 camera.stop_recording()
-                status = False 
+                camera.stop_preview()
 
+                print("Recording finished.\n")
+
+                status = False
+
+            time.sleep(0.05)
+
+    # --------------------------------------------------
+    # CLEAN EXIT
+    # --------------------------------------------------
     def destroy():
-        GPIO.cleanup()
-        mixer.music.stop()
-        camera.stop_preview()
-        camera.stop_recording()
+        print("\nExiting...")
 
-    if __name__ == '__main__':
+        mixer.quit()
+        GPIO.cleanup()
+        camera.close()
+
+        print("Program exited cleanly.")
+
+    if __name__ == "__main__":
         setup()
         try:
             main()
         except KeyboardInterrupt:
             destroy()
 
+
 **Spiegazione del Codice**
 
-.. code-block:: python
+#. Recupera la directory home dell’utente corrente per salvare il video registrato.
 
-    status = False
+   .. code-block:: python
 
-Questo è un flag utilizzato per registrare se il campanello è stato utilizzato.
+       user = os.getlogin()
+       user_home = os.path.expanduser(f"~{user}")
 
-.. code-block:: python
+#. Crea un’istanza di Picamera2 e la configura per la registrazione video.
 
-    GPIO.add_event_detect(BtnPin, GPIO.FALLING, callback=takePhotos)
+   .. code-block:: python
 
-Imposta l'evento di ``BtnPin``, quando viene premuto il pulsante (il segnale di livello cambia da alto a basso), viene chiamata la funzione ``takePhotos()``.
+       camera = Picamera2()
+       video_config = camera.create_video_configuration(
+           main={"size": (1280, 720), "format": "XBGR8888"}
+       )
+       camera.configure(video_config)
 
-.. code-block:: python
+#. Configura il pulsante su ``GPIO18`` come ingresso con resistenza di pull-up.
 
-    if status:
-        mixer.music.load(f'{user_home}/raphael-kit/music/doorbell.wav')
-        mixer.music.set_volume(0.7)
-        mixer.music.play()
-        camera.start_preview(alpha=200)
-        camera.start_recording(f'{user_home}/visitor.h264')
-        print ('Have a visitor')
-        time.sleep(5)
-        mixer.music.stop()
-        camera.stop_preview()
-        camera.stop_recording()
-        status = False 
+   .. code-block:: python
 
-Qui vengono utilizzati cinque secondi per riprodurre la musica e registrare i video, svolgendo la funzione di campanello.
+       GPIO.setmode(GPIO.BCM)
+       GPIO.setup(BtnPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+#. Carica e inizializza il mixer audio utilizzato per riprodurre il suono del campanello.
+
+   .. code-block:: python
+
+       mixer.init()
+
+#. Registra una callback che imposta ``status`` su ``True`` quando il pulsante viene premuto.
+
+   .. code-block:: python
+
+       GPIO.add_event_detect(BtnPin, GPIO.FALLING,
+                             callback=button_pressed, bouncetime=250)
+
+#. Riproduce il suono del campanello, avvia la finestra di anteprima e inizia la registrazione video.
+
+   .. code-block:: python
+
+       mixer.music.load(f"{user_home}/raphael-kit/music/doorbell.wav")
+       mixer.music.play()
+       camera.start_preview(Preview.QTGL)
+       camera.start_recording(encoder, output)
+
+#. Registra un video di 5 secondi e lo salva come ``visitor.mp4``.
+
+   .. code-block:: python
+
+       time.sleep(5)
+       camera.stop_recording()
+       camera.stop_preview()
+
+#. Ripristina tutte le risorse quando il programma viene interrotto con ``Ctrl+C``.
+
+   .. code-block:: python
+
+       mixer.quit()
+       GPIO.cleanup()
+       camera.close()
 
 
 Immagine del fenomeno
