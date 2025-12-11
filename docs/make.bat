@@ -26,9 +26,9 @@ if errorlevel 9009 (
 )
 
 REM ==== 在这里加入自动同步共享文档 ====
-echo ==> Updating submodule docs/source/_shared/pi_start ...
+echo ==> Updating submodule docs/source/_shared ...
 cd ..
-git submodule update --init --remote docs/source/_shared/pi_start
+git submodule update --init --remote docs/source/_shared
 cd docs
 REM ===================================
 
