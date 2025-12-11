@@ -76,7 +76,7 @@ You can also buy them separately from the links below.
         - |link_resistor_buy|
     *   - :ref:`cpn_bar_graph`
         - \-
-    *   - :ref:`mcp3008`
+    *   - :ref:`cpn_mcp3008`
         - \-
 
 Schematic Diagram
@@ -147,7 +147,7 @@ Bargraph is lit up to display the power level (measuring range: 0-5V).
 
 .. note::
 
-    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi`.
+    If it does not work after running, or there is an error prompt: \"wiringPi.h: No such file or directory\", please refer to :ref:`install_wiringpi_pi5`.
 
 Code
 --------

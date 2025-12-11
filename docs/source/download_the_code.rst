@@ -1,52 +1,93 @@
-.. note::
-
-    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
-
-    **Why Join?**
-
-    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
-    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
-    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
-    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
-    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
-
-    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
-
 Download the Code
 =================
 
-Before you download the code, please note that the example code is
-**ONLY** test on Raspberry Pi OS. We provide two methods for download:
+All example programs used in this kit are stored in our official GitHub repository.  
+Use the following command to download the complete project to your Raspberry Pi.
 
-**Method 1: Use git clone (Recommended)**
+Clone the Repository
+--------------------
 
-Log into Raspberry Pi and then change directory to ``~``.
+#. Log into your Raspberry Pi and run:
 
-.. raw:: html
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      cd ~/
+      git clone https://github.com/sunfounder/raphael-kit.git --depth 1
 
-   <run></run>
+#. Enter the project directory:
 
-.. code-block:: 
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      cd ~/raphael-kit/
 
-   cd ~/
+#. List the files:
+
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      ls
+
+#. You will see a structure similar to this:
+
+   .. code-block:: text
+   
+      raphael-kit/
+      ├── c/
+      ├── iot/
+      ├── music/
+      ├── nodejs/
+      ├── python-pi5/
+      ├── python/
+      ├── scratch/
+      └── README.md
 
 
-.. note::
+Project Structure Overview
+--------------------------
 
-   cd to change to the intended directory from the current path. Informally, here is to go to the path ``~/``.
+Here is a brief introduction to each folder:
 
-Clone the repository from GitHub.
+* **c/**  
 
-.. raw:: html
+  C language examples and libraries for users who prefer programming in C on Raspberry Pi.
 
-   <run></run>
+* **iot/**  
 
-.. code-block:: 
+  IoT-related examples, including connectivity with the Blynk platform, sensor demonstrations, and communication modules.
 
-   git clone https://github.com/sunfounder/raphael-kit.git --depth 1
+* **music/** 
 
-**Method 2: Download the code**
+  Contains audio resources such as ``doorbell.wav`` and ``my_music.mp3`` used in later projects.
 
-Download the source code from github: https://github.com/sunfounder/raphael-kit
+* **nodejs/**
 
-.. image:: img/image33.png
+  Node.js examples for users developing JavaScript-based projects on Raspberry Pi.
+
+* **python/**  
+
+  Python example programs written using the ``RPi.GPIO`` library, suitable for most Raspberry Pi boards.
+
+* **python-pi5/**  
+
+  Python examples written using the ``GPIO Zero`` library, specifically optimized for **Raspberry Pi 5**.
+
+* **scratch/** 
+
+  Scratch programming examples designed for beginners learning graphical programming.
+
+* **README.md**  
+
+  Basic information about the repository and general instructions.
+
+You can now enter the folder corresponding to your preferred programming language or project type and start running the examples.

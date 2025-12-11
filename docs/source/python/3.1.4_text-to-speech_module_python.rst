@@ -110,12 +110,6 @@ After building the circuit according to the above diagram, then plug the audio c
 
 Raspberry pi will greet you kindly after the code runs, and it will say goodbye to you when the code stops.
 
-.. note::
-
-    If your speaker have no sound, it may be because the Raspberry Pi has selected the wrong audio output (The default is HDMI), you need to :ref:`change_audio_output` to Headphones.
-
-    If you feel that the volume of the speakers is too low, you can :ref:`adjust_volume`.
-
 **Code**
 
 .. note::
