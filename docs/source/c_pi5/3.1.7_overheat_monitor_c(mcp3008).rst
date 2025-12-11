@@ -13,6 +13,7 @@
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
 .. _3.1.7_c_pi5_mcp3008:
+
 3.1.7 Überhitzungsmonitor (MCP3008)
 ====================================
 
@@ -145,7 +146,7 @@ Der **Joystick** dient hier zum Einstellen der Hochtemperaturgrenze. Durch Beweg
 
 .. note::
 
-    * Wenn der Fehler ``wiringPi.h: No such file or directory`` angezeigt wird, siehe :ref:`install_wiringpi`.
+    * Wenn der Fehler ``wiringPi.h: No such file or directory`` angezeigt wird, siehe :ref:`install_wiringpi_pi5`.
     * Wenn der Fehler ``Unable to open I2C device: No such file or directory`` angezeigt wird, siehe :ref:`i2c_config`, um I2C zu aktivieren und die Verdrahtung zu überprüfen.
     * Wenn Code und Verdrahtung korrekt sind, aber das LCD dennoch nichts anzeigt, kann das Potentiometer auf der Rückseite gedreht werden, um den Kontrast zu erhöhen.
 

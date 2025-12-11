@@ -78,7 +78,7 @@ Experimentelle Verfahren
 
 .. image:: ../img/image96.png
 
-**Schritt 2**: I2C einrichten (siehe :ref:`I2C Konfiguration`. Wenn Sie I2C bereits eingerichtet haben, überspringen Sie diesen Schritt.)
+**Schritt 2**: I2C einrichten (siehe :ref:`i2c_config`. Wenn Sie I2C bereits eingerichtet haben, überspringen Sie diesen Schritt.)
 
 **Schritt 3:** Verzeichnis wechseln.
 
@@ -114,7 +114,7 @@ Nachdem der Code ausgeführt wurde, sehen Sie ``Grüße!, Von SunFounder`` auf d
 
 .. note::
 
-    * Wenn ein Fehlerhinweis ``wiringPi.h: No such file or directory`` erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+    * Wenn ein Fehlerhinweis ``wiringPi.h: No such file or directory`` erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi_pi5`.
     * Wenn der Fehler ``Unable to open I2C device: No such file or directory`` auftritt, müssen Sie auf :ref:`i2c_config` verweisen, um I2C zu aktivieren und zu überprüfen, ob die Verdrahtung korrekt ist.
     * Wenn der Code und die Verdrahtung in Ordnung sind, das LCD aber trotzdem keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 

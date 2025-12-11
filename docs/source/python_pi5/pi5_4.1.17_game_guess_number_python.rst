@@ -137,7 +137,7 @@ Der Zahlenbereich von 'Punkt' wird in der zweiten Zeile angezeigt. Und du musst 
 .. note::
 
     * Wenn der Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` auftritt, beziehe dich auf :ref:`i2c_config`, um das I2C zu aktivieren.
-    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führe bitte ``sudo pip3 install smbus2`` aus.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führe bitte ``sudo apt install python3-smbus2`` aus.
     * Wenn der Fehler ``OSError: [Errno 121] Remote I/O error`` erscheint, bedeutet dies, dass das Modul falsch verdrahtet ist oder das Modul defekt ist.
     * Wenn der Code und die Verdrahtung in Ordnung sind, aber das LCD immer noch keinen Inhalt anzeigt, kannst du das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 

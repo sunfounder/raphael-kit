@@ -142,7 +142,7 @@ Der **Joystick** dient hier dazu, den Hochtemperaturschwellenwert einzustellen. 
 .. note::
 
     * Wenn du den Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` erhältst, musst du gemäß :ref:`i2c_config` I2C aktivieren.
-    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führe bitte ``sudo pip3 install smbus2`` aus.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führe bitte ``sudo apt install python3-smbus2`` aus.
     * Wenn der Fehler ``OSError: [Errno 121] Remote I/O error`` auftritt, bedeutet das, dass das Modul falsch verdrahtet ist oder defekt ist.
     * Wenn Code und Verdrahtung korrekt sind, das LCD aber immer noch nichts anzeigt, kannst du das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 

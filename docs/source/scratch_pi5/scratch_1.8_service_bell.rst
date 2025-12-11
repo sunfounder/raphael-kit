@@ -79,12 +79,6 @@ Laden Sie die Code-Datei (``1.8_service_bell.sb3``) in Scratch 3.
 
 Drücken Sie den Mikroschalter, und die Serviceklingel wird einmal klingeln.
 
-.. note::
-  
-  Wenn Ihr Raspberry Pi an einen Bildschirm mit Lautsprechern angeschlossen ist, kann dies dazu führen, dass dieser externe Lautsprecher keinen Ton ausgibt. Bitte beziehen Sie sich auf :ref:`change_audio_output` für eine Lösung.
-
-  Wenn Sie außerdem die Lautstärke anpassen möchten, konsultieren Sie bitte :ref:`adjust_volume`.
-
 Tipps zu Sprite
 ---------------------
 

@@ -103,7 +103,7 @@ Nachdem der Code ausgeführt wurde, werden der Ablenkungswinkel der x- und y-Ach
 .. note::
 
     * Wenn der Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` auftritt, müssen Sie sich auf :ref:`i2c_config` beziehen, um das I2C zu aktivieren.
-    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` erscheint, führen Sie bitte ``sudo pip3 install smbus2`` aus.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` erscheint, führen Sie bitte ``sudo apt install python3-smbus2`` aus.
     * Wenn der Fehler ``OSError: [Errno 121] Remote I/O error`` erscheint, bedeutet dies, dass das Modul falsch verkabelt ist oder das Modul defekt ist.
 
 **Code**

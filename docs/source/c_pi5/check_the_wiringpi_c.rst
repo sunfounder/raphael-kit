@@ -12,7 +12,8 @@
 
     👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
 
-.. _install_wiringpi:
+
+.. _install_wiringpi_pi5:
 
 Installieren und Überprüfen von WiringPi
 ===========================================

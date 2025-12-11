@@ -49,24 +49,22 @@ Bei Fragen wenden Sie sich bitte per E-Mail an service@sunfounder.com, und wir w
 **Inhalt**
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     About This Kit <self>
-    install_setup_os/install_setup_os
-
-    download_the_code
-
+    quick_start
+    
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
 
     for_pi5
     for_other_models
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
 
-    component/component_list
-    appendix/appendix
+    component
+    appendix
     faq
     thank-learning
 

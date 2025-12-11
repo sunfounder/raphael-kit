@@ -127,7 +127,7 @@ Wenn der Code läuft, erfasst das Ultraschallsensormodul die Entfernung zum Hind
 
 .. note::
 
-    * Wenn der Fehlerhinweis ``wiringPi.h: No such file or directory`` erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi`.
+    * Wenn der Fehlerhinweis ``wiringPi.h: No such file or directory`` erscheint, beziehen Sie sich bitte auf :ref:`install_wiringpi_pi5`.
     * Wenn der Fehler ``Unable to open I2C device: No such file or directory`` auftritt, sollten Sie sich auf :ref:`i2c_config` beziehen, um I2C zu aktivieren und zu überprüfen, ob die Verkabelung korrekt ist.
     * Wenn der Code und die Verkabelung in Ordnung sind, das LCD aber immer noch keinen Inhalt anzeigt, können Sie das Potentiometer auf der Rückseite drehen, um den Kontrast zu erhöhen.
 

@@ -143,7 +143,7 @@ Durch Drücken des Joysticks wird die Schwelle auf den Anfangswert zurückgesetz
 .. note::
 
     * Wenn der Fehler ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` auftritt, aktiviere das I2C gemäß :ref:`i2c_config`.
-    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führe ``sudo pip3 install smbus2`` aus.
+    * Wenn der Fehler ``ModuleNotFoundError: No module named 'smbus2'`` auftritt, führe ``sudo apt install python3-smbus2`` aus.
     * Wenn der Fehler ``OSError: [Errno 121] Remote I/O error`` auftritt, ist das Modul falsch verdrahtet oder defekt.
     * Wenn Code und Verdrahtung korrekt sind, das LCD aber nichts anzeigt, drehe das Potentiometer auf der Rückseite, um den Kontrast zu erhöhen.
 
