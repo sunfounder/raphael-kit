@@ -47,7 +47,7 @@ También puedes comprarlos por separado desde los enlaces a continuación.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|

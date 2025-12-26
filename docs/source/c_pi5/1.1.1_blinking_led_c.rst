@@ -55,7 +55,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -83,10 +83,18 @@ En el contenido relacionado con el lenguaje C, hacemos que GPIO0 sea equivalente
 Entre el contenido relacionado con el lenguaje Python, BCM 17 es 17 en la columna BCM de la 
 siguiente tabla. Al mismo tiempo, son iguales al pin 11 en la Raspberry Pi, Pin 11.
 
-============ ======== ======== ===
-Nombre T-Board físico wiringPi BCM
-GPIO17       Pin 11   0        17
-============ ======== ======== ===
+.. list-table::
+   :header-rows: 1
+
+   * - Nombre
+     - T-Board
+     - wiringPi
+     - BCM
+   * - GPIO17
+     - Pin 11
+     - 0
+     - 17
+
 
 .. image:: ../img/image48.png
     :width: 800
@@ -170,7 +178,7 @@ la abreviatura de library).
 .. note::
 
    Si no funciona después de ejecutarlo, o aparece un mensaje de 
-   error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+   error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi_pi5`.
 
 Para controlar el GPIO, necesitas ejecutar el programa con el comando 
 ``sudo`` (superuser do). El comando ``./`` indica el directorio actual. 
@@ -196,6 +204,7 @@ de modificar.
 .. image:: ../img/image53.png
     :width: 800
     :align: center
+
 
 **Código**
 

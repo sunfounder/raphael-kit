@@ -15,7 +15,7 @@
 .. _3.1.7_c_mcp3008:
 
 3.1.7 Monitor de Sobrecalentamiento (MCP3008)
-============================================
+==================================================
 
 .. note::
 
@@ -62,7 +62,7 @@ También puedes comprarlos por separado en los siguientes enlaces.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -88,24 +88,56 @@ También puedes comprarlos por separado en los siguientes enlaces.
 Diagrama esquemático
 --------------------
 
-============ ======== ======== ===
-Nombre T-Board physical wiringPi BCM
-SPICE0       Pin 24   10       8
-SPIMOSI      Pin 19   12       10
-SPIMISO      Pin 21   13       9
-SPISCLK      Pin 23   14       11
-GPIO22       Pin 15   3        22
-GPIO23       Pin 16   4        23
-GPIO24       Pin 18   5        24
-SDA1         Pin 3             
-SCL1         Pin 5             
-============ ======== ======== ===
+.. list-table::
+   :header-rows: 1
+
+   * - Nombre
+     - T-Board
+     - wiringPi
+     - BCM
+   * - SPICE0
+     - Pin 24
+     - 10
+     - 8
+   * - SPIMOSI
+     - Pin 19
+     - 12
+     - 10
+   * - SPIMISO
+     - Pin 21
+     - 13
+     - 9
+   * - SPISCLK
+     - Pin 23
+     - 14
+     - 11
+   * - GPIO22
+     - Pin 15
+     - 3
+     - 22
+   * - GPIO23
+     - Pin 16
+     - 4
+     - 23
+   * - GPIO24
+     - Pin 18
+     - 5
+     - 24
+   * - SDA1
+     - Pin 3
+     - 
+     - 
+   * - SCL1
+     - Pin 5
+     - 
+     - 
+
 
 .. image:: ../img/Schematic_three_one8.png
    :align: center
 
 Procedimientos experimentales
------------------------------
+--------------------------------
 
 **Paso 1:** Construye el circuito.
 

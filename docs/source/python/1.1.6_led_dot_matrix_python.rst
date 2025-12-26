@@ -52,7 +52,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -72,8 +72,10 @@ SPISCLK        Pin 23   14       SCLK
 ============== ======== ======== ====
 
 .. image:: ../img/schematic_dot.png
+
+
 Procedimientos Experimentales
-----------------------------
+---------------------------------
 
 **Paso 1:** Monta el circuito.
 
@@ -104,6 +106,7 @@ Procedimientos Experimentales
     sudo ~/my_env/bin/python3 1.1.6_LedMatrix.py
 
 Después de ejecutar el código, la Matriz de LEDs mostrará un rectángulo durante dos segundos, luego la letra 'A' durante dos segundos, y finalmente desplazará el texto "Hello, Nice to meet you!
+
 
 **Código**
 
@@ -162,6 +165,8 @@ Después de ejecutar el código, la Matriz de LEDs mostrará un rectángulo dura
          main()
       except KeyboardInterrupt:
          destroy()
+
+        
 **Explicación del Código**
 
 .. code-block:: python

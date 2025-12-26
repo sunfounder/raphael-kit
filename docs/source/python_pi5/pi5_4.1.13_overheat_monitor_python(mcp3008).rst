@@ -63,7 +63,7 @@ También puedes comprarlos por separado en los enlaces de abajo.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -143,7 +143,7 @@ Si la temperatura actual es mayor que el umbral, el zumbador y el LED se activan
 .. note::
 
     * Si obtienes el error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, debes consultar :ref:`i2c_config` para habilitar el I2C.
-    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, ejecuta ``sudo pip3 install smbus2``.
+    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, ejecuta ``sudo apt install python3-smbus2``.
     * Si aparece el error ``OSError: [Errno 121] Remote I/O error``, significa que el módulo está mal cableado o dañado.
     * Si el código y el cableado están correctos, pero la LCD no muestra contenido, puedes ajustar el potenciómetro en la parte posterior para aumentar el contraste.
 

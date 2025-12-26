@@ -63,7 +63,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -134,6 +134,8 @@ del LED cambiará en consecuencia.
 .. note::
 
     Si no funciona después de ejecutar el código, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor refiérase a :ref:`install_wiringpi`.
+
+
 **Código**
 
 .. code-block:: c
@@ -225,6 +227,7 @@ del LED cambiará en consecuencia.
         }
         return 0;
     }
+
 **Explicación del Código**
 
 .. code-block:: c

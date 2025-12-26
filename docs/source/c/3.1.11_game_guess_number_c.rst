@@ -60,7 +60,7 @@ También puedes comprarlos por separado en los siguientes enlaces.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -252,9 +252,7 @@ de lo contrario, si el resultado indica que son iguales, devolverá ‘\ **1**\ 
         write(12,1,str);
     }
 
-Esta función se encarga de mostrar la página del juego. Presta atención a la 
-función **Int2Str(str,count)**, que convierte estas variables **count**, **lower** y
- **upper** de **entero** a **cadena de caracteres** para la correcta visualización en **lcd**.
+Esta función se encarga de mostrar la página del juego. Presta atención a la función **Int2Str(str,count)**, que convierte estas variables **count**, **lower** y **upper** de **entero** a **cadena de caracteres** para la correcta visualización en **lcd**.
 
 .. code-block:: c
 
@@ -311,8 +309,7 @@ Main() contiene todo el proceso del programa, como se muestra a continuación:
 del resultado y mostrará el resultado en la LCD. Este paso ayuda a que también puedas evaluar el 
 resultado cuando solo presionas un número y luego el botón ‘\ **D**\ ’.
 
-6) Si se presiona el botón **0-9**, el valor de **count** cambiará; si **count** es mayor que
- **10**, entonces comenzará la evaluación.
+6) Si se presiona el botón **0-9**, el valor de **count** cambiará; si **count** es mayor que **10**, entonces comenzará la evaluación.
 
 7) Los cambios del juego y sus valores se muestran en **LCD1602**.
 

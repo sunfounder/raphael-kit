@@ -54,7 +54,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -128,9 +128,10 @@ cambia con la distancia.
 .. note::
 
     * Si obtienes el error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, necesitas referirte a :ref:`i2c_config` para habilitar el I2C.
-    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, por favor ejecuta ``sudo pip3 install smbus2``.
+    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, por favor ejecuta ``sudo apt install python3-smbus2``.
     * Si aparece el error ``OSError: [Errno 121] Remote I/O error``, significa que el módulo está mal cableado o el módulo está roto.
     * Si el código y el cableado están bien, pero el LCD aún no muestra contenido, puedes girar el potenciómetro en la parte trasera para aumentar el contraste.
+
 
 
 **Código**

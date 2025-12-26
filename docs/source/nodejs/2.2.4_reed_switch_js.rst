@@ -57,7 +57,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -119,6 +119,7 @@ Procedimientos Experimentales
     sudo node reed_switch_module.js
 
 El LED verde se encenderá cuando el código se ejecute. Si se coloca un imán cerca del módulo del interruptor reed, el LED rojo se encenderá; al retirar el imán, el LED verde se encenderá nuevamente.
+
 
 **Código**
 

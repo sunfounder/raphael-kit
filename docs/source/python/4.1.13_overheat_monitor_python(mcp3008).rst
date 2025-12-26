@@ -63,7 +63,7 @@ También puedes comprarlos por separado en los siguientes enlaces.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -89,18 +89,50 @@ También puedes comprarlos por separado en los siguientes enlaces.
 Diagrama esquemático
 --------------------
 
-============ ======== ======== ===
-Nombre T-Board Físico WiringPi BCM
-SPICE0       Pin 24   10       8
-SPIMOSI      Pin 19   12      10
-SPIMISO      Pin 21   13       9
-SPISCLK      Pin 23   14      11
-GPIO22       Pin15     3      22
-GPIO23       Pin16     4      23
-GPIO24       Pin18     5      24
-SDA1         Pin 3             
-SCL1         Pin 5             
-============ ======== ======== ===
+.. list-table::
+   :header-rows: 1
+
+   * - Nombre
+     - T-Board
+     - WiringPi
+     - BCM
+   * - SPICE0
+     - Pin 24
+     - 10
+     - 8
+   * - SPIMOSI
+     - Pin 19
+     - 12
+     - 10
+   * - SPIMISO
+     - Pin 21
+     - 13
+     - 9
+   * - SPISCLK
+     - Pin 23
+     - 14
+     - 11
+   * - GPIO22
+     - Pin 15
+     - 3
+     - 22
+   * - GPIO23
+     - Pin 16
+     - 4
+     - 23
+   * - GPIO24
+     - Pin 18
+     - 5
+     - 24
+   * - SDA1
+     - Pin 3
+     - 
+     - 
+   * - SCL1
+     - Pin 5
+     - 
+     - 
+
 
 .. image:: ../img/schematic_over_monitor_mcp3008.png
    :align: center
@@ -143,7 +175,7 @@ El **Joystick** se utiliza para ajustar el umbral de alta temperatura. Moviendo 
 .. note::
 
     * Si obtienes el error ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, debes consultar :ref:`i2c_config` para habilitar el I2C.
-    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, ejecuta ``sudo pip3 install smbus2``.
+    * Si obtienes el error ``ModuleNotFoundError: No module named 'smbus2'``, ejecuta ``sudo apt install python3-smbus2``.
     * Si aparece el error ``OSError: [Errno 121] Remote I/O error``, significa que el módulo está mal cableado o defectuoso.
     * Si el código y el cableado son correctos, pero la LCD aún no muestra contenido, ajusta el potenciómetro en la parte trasera para aumentar el contraste.
 

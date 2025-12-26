@@ -51,7 +51,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -87,7 +87,7 @@ Procedimientos Experimentales
 
     Activa el SPI antes de comenzar el experimento, consulta :ref:spi configuration` para más detalles.
     
-    También se necesitan las bibliotecas :ref:`install_luma_led_matrix` y :ref:`mfrc522_lib`.
+    También se necesitan las bibliotecas :ref:`install_luma_led_matrix` y :ref:`install_mfrc522`.
 
 Paso 1: Construye el circuito.
 
@@ -133,6 +133,7 @@ También podemos encontrar un archivo ``.csv`` que registra el tiempo y la lista
 
 .. image:: ../img/atten3.png
   :width: 400
+
 
 **Código**
 
@@ -209,7 +210,7 @@ También podemos encontrar un archivo ``.csv`` que registra el tiempo y la lista
 Explicación del Código
 -------------------------
 
-Para entender mejor el programa, puede que necesites completar :ref:`1.1.6 Matriz de LEDs`, :ref:`2.2.10 Módulo RFID MFRC522` y :ref:`3.1.4 Conversión de texto a voz` primero.
+Para entender mejor el programa, puede que necesites completar :ref:`1.1.6_py`, :ref:`2.2.10_py` y ::ref:`3.1.4_py` primero.
 
 .. code-block:: python
 

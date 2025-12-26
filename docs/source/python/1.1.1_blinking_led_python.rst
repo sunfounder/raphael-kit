@@ -55,7 +55,7 @@ También puedes comprarlos por separado en los siguientes enlaces.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -71,9 +71,7 @@ Diagrama Esquemático
 ---------------------------
 
 En este experimento, conecta una resistencia de 220Ω al ánodo (el pin largo del LED), 
-luego la resistencia a 3.3 V, y conecta el cátodo (el pin corto) del LED al GPIO17 del
- Raspberry Pi. Por lo tanto, para encender un LED, necesitamos hacer que el GPIO17 esté 
- en nivel bajo (0V). Podemos obtener este fenómeno mediante programación.
+luego la resistencia a 3.3 V, y conecta el cátodo (el pin corto) del LED al GPIO17 del Raspberry Pi. Por lo tanto, para encender un LED, necesitamos hacer que el GPIO17 esté en nivel bajo (0V). Podemos obtener este fenómeno mediante programación.
 
 .. note::
 
@@ -165,6 +163,7 @@ o ``N`` (no guardar).
 
 Luego presiona ``Enter`` para salir. Escribe nano 1.1.1_BlinkingLed.py nuevamente para
 ver el efecto después del cambio.
+
 
 **Código**
 

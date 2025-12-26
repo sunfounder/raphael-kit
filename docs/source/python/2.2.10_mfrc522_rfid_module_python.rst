@@ -60,7 +60,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -82,7 +82,7 @@ Procedimientos experimentales
 
 .. image:: ../img/image232.png
 
-**Paso 2:** Instala las bibliotecas :ref:`mfrc522_lib`.
+**Paso 2:** Instala las bibliotecas :ref:`install_mfrc522`.
 
 **Paso 3:** Configura SPI (consulta :ref:`spi_configuration` para más detalles. Si ya has configurado SPI, omite este paso).
 

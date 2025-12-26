@@ -57,7 +57,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DE COMPONENTES
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -74,7 +74,7 @@ Diagrama esquemático
    :align: center
 
 Procedimientos experimentales
----------------------------
+----------------------------------------
 
 **Paso 1:** Monta el circuito.
 
@@ -105,6 +105,7 @@ Procedimientos experimentales
 Después de ejecutar el código, cuando pongas tu mano frente a la sonda del módulo, 
 el indicador de salida en el módulo se iluminará y "¡Barrera detectada!" se imprimirá 
 repetidamente en la pantalla hasta que retires la mano.
+
 
 **Código**
 

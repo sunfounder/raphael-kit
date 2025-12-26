@@ -52,7 +52,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -80,11 +80,6 @@ Carga el archivo de código (``1.8_service_bell.sb3``) en Scratch 3.
 
 Presiona el micro interruptor y el timbre de servicio sonará una vez.
 
-.. note::
-
-  Si tu Raspberry Pi está conectada a una pantalla con altavoces, es posible que no se escuche el sonido desde este altavoz externo. Consulta :ref:`change_audio_output` para la solución.
-
-  Además, si deseas ajustar el nivel de volumen, consulta :ref:`adjust_volume`.
 
 Consejos sobre el sprite
 -------------------------------

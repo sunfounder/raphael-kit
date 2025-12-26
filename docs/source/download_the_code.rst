@@ -1,52 +1,108 @@
 .. note::
 
-    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete más en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
 
     **¿Por qué unirse?**
 
     - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
-    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
-    - **Vistas previas exclusivas**: Obtén acceso temprano a anuncios de nuevos productos y adelantos.
-    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
-    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales.
 
-    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo!
-
-Descargar el código
-======================
-
-Antes de descargar el código, ten en cuenta que el código de ejemplo se prueba
-**ÚNICAMENTE** en Raspberry Pi OS. Proveemos dos métodos para la descarga:
-
-**Método 1: Usar git clone (Recomendado)**
-
-Inicia sesión en Raspberry Pi y luego cambia el directorio a ``~``.
-
-.. raw:: html
-
-   <run></run>
-
-.. code-block:: 
-
-   cd ~/
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 
-.. note::
+Descargar el Código
+==============================
 
-   cd para cambiar al directorio deseado desde la ruta actual. Informalmente, aquí es para ir a la ruta ``~/``.
+Todos los programas de ejemplo utilizados en este kit están almacenados en nuestro repositorio oficial de GitHub.  
+Usa el siguiente comando para descargar el proyecto completo en tu Raspberry Pi.
 
-Clona el repositorio desde GitHub.
+Clonar el Repositorio
+--------------------------------
 
-.. raw:: html
+#. Inicia sesión en tu Raspberry Pi y ejecuta:
 
-   <run></run>
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      cd ~/
+      git clone https://github.com/sunfounder/raphael-kit.git --depth 1
 
-.. code-block:: 
+#. Entra en el directorio del proyecto:
 
-   git clone https://github.com/sunfounder/raphael-kit.git --depth 1
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      cd ~/raphael-kit/
 
-**Método 2: Descargar el código**
+#. Lista los archivos:
 
-Descarga el código fuente desde GitHub: https://github.com/sunfounder/raphael-kit
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      ls
 
-.. image:: img/image33.png
+#. Verás una estructura similar a esta:
+
+   .. code-block:: text
+   
+      raphael-kit/
+      ├── c/
+      ├── iot/
+      ├── music/
+      ├── nodejs/
+      ├── python-pi5/
+      ├── python/
+      ├── scratch/
+      └── README.md
+
+
+Resumen de la Estructura del Proyecto
+--------------------------------------
+
+Aquí tienes una breve introducción de cada carpeta:
+
+* **c/**  
+
+  Ejemplos y librerías en lenguaje C para usuarios que prefieren programar en C en Raspberry Pi.
+
+* **iot/**  
+
+  Ejemplos relacionados con IoT, incluyendo conectividad con la plataforma Blynk, demostraciones de sensores y módulos de comunicación.
+
+* **music/** 
+
+  Contiene recursos de audio como ``doorbell.wav`` y ``my_music.mp3`` utilizados en proyectos posteriores.
+
+* **nodejs/**
+
+  Ejemplos de Node.js para usuarios que desarrollan proyectos basados en JavaScript en Raspberry Pi.
+
+* **python/**  
+
+  Programas de ejemplo en Python escritos usando la librería ``RPi.GPIO``, adecuados para la mayoría de modelos de Raspberry Pi.
+
+* **python-pi5/**  
+
+  Ejemplos de Python escritos usando la librería ``GPIO Zero``, específicamente optimizados para **Raspberry Pi 5**.
+
+* **scratch/** 
+
+  Ejemplos de programación con Scratch diseñados para principiantes en programación gráfica.
+
+* **README.md**  
+
+  Información básica sobre el repositorio e instrucciones generales.
+
+Ahora puedes ingresar a la carpeta correspondiente al lenguaje de programación o tipo de proyecto que prefieras y comenzar a ejecutar los ejemplos.

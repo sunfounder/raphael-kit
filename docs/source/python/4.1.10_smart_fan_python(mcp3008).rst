@@ -63,7 +63,7 @@ También puedes comprarlos por separado en los siguientes enlaces.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -87,17 +87,46 @@ También puedes comprarlos por separado en los siguientes enlaces.
 Diagrama esquemático
 --------------------
 
-============ ======== ======== ===
-Nombre T-Board  Físico   WiringPi   BCM
-SPICE0         Pin 24   10          8
-SPIMOSI        Pin 19   12         10
-SPIMISO        Pin 21   13          9
-SPISCLK        Pin 23   14         11
-GPIO22         Pin 15    3         22
-GPIO5          Pin 29   21          5
-GPIO6          Pin 31   22          6
-GPIO13         Pin 33   23         13
-============ ======== ======== ===
+.. list-table::
+   :header-rows: 1
+
+   * - Nombre
+     - T-Board
+     - WiringPi
+     - BCM
+   * - SPICE0
+     - Pin 24
+     - 10
+     - 8
+   * - SPIMOSI
+     - Pin 19
+     - 12
+     - 10
+   * - SPIMISO
+     - Pin 21
+     - 13
+     - 9
+   * - SPISCLK
+     - Pin 23
+     - 14
+     - 11
+   * - GPIO22
+     - Pin 15
+     - 3
+     - 22
+   * - GPIO5
+     - Pin 29
+     - 21
+     - 5
+   * - GPIO6
+     - Pin 31
+     - 22
+     - 6
+   * - GPIO13
+     - Pin 33
+     - 23
+     - 13
+
 
 .. image:: ../img/schematic_3.1.4_smart_fan_mcp3008.png
    :align: center

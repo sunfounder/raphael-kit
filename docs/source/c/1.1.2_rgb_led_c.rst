@@ -52,7 +52,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -71,12 +71,27 @@ conéctalos a los GPIO17, GPIO18 y GPIO27 respectivamente. El pin más largo (GN
 LED se conecta al GND de la Raspberry Pi. Cuando los tres pines reciben diferentes 
 valores PWM, el LED RGB mostrará diferentes colores.
 
-============ ======== ======== ===
-Nombre T-Board físico wiringPi BCM
-GPIO17       Pin 11   0        17
-GPIO18       Pin 12   1        18
-GPIO27       Pin 13   2        27
-============ ======== ======== ===
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 20
+
+   * - Nombre
+     - T-Board físico
+     - wiringPi
+     - BCM
+   * - GPIO17
+     - Pin 11
+     - 0
+     - 17
+   * - GPIO18
+     - Pin 12
+     - 1
+     - 18
+   * - GPIO27
+     - Pin 13
+     - 2
+     - 27
+
 
 .. image:: ../img/rgb_led_schematic.png
 
@@ -126,6 +141,7 @@ Después de ejecutar el código, verás que el LED RGB muestra rojo, verde, azul
 .. note::
 
    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", por favor consulta :ref:`install_wiringpi`.
+
 
 **Código**
 

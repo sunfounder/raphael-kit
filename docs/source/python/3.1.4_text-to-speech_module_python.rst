@@ -56,7 +56,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -110,11 +110,7 @@ Después de construir el circuito según el diagrama anterior, conecta el cable 
 
 La Raspberry Pi te saludará amablemente después de ejecutar el código, y se despedirá cuando el código se detenga.
 
-.. note::
 
-    Si tus altavoces no tienen sonido, puede ser porque la Raspberry Pi ha seleccionado la salida de audio incorrecta (el predeterminado es HDMI), necesitas :ref:`change_audio_output` a auriculares.
-
-    Si sientes que el volumen de los altavoces es demasiado bajo, puedes :ref:`adjust_volume`.
 **Código**
 
 .. note::

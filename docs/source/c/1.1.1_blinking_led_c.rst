@@ -55,7 +55,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -83,10 +83,19 @@ En el contenido relacionado con el lenguaje C, hacemos que GPIO0 sea equivalente
 Entre el contenido relacionado con el lenguaje Python, BCM 17 es 17 en la columna BCM de la 
 siguiente tabla. Al mismo tiempo, son iguales al pin 11 en la Raspberry Pi, Pin 11.
 
-============ ======== ======== ===
-Nombre T-Board físico wiringPi BCM
-GPIO17       Pin 11   0        17
-============ ======== ======== ===
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 20
+
+   * - Nombre
+     - T-Board físico
+     - wiringPi
+     - BCM
+   * - GPIO17
+     - Pin 11
+     - 0
+     - 17
+
 
 .. image:: ../img/image48.png
     :width: 800
@@ -196,6 +205,7 @@ de modificar.
 .. image:: ../img/image53.png
     :width: 800
     :align: center
+
 
 **Código**
 

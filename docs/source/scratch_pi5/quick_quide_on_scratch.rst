@@ -55,6 +55,7 @@ La parte superior de Scratch 3 tiene algunas opciones básicas. La primera de iz
 
 .. image:: img/quick_scratch13.png
 
+
 **Código**
 
 Tiene tres secciones principales: un área de escenario, una paleta de bloques y un área de codificación. Programa haciendo clic y arrastrando los bloques de la paleta de bloques al área de codificación, y finalmente tus resultados de programación se mostrarán en el área de escenario.

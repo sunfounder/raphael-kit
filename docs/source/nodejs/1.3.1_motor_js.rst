@@ -53,7 +53,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -65,8 +65,10 @@ También puedes comprarlos por separado en los enlaces a continuación.
         - \-
     *   - :ref:`cpn_motor`
         - |link_motor_buy|
+
+
 Diagrama Esquemático
-------------------
+-------------------------------
 
 Conecta el módulo de alimentación en la placa de pruebas y coloca el puente en el pin de 5V, 
 de esta manera se obtendrá una salida de 5V. Conecta el pin 1 del L293D al GPIO22 y configúralo 
@@ -113,6 +115,7 @@ y el otro en bajo. Así, puedes cambiar la dirección de rotación del motor.
 Al ejecutar el código, el motor primero gira en sentido horario durante 1s, luego se detiene 
 durante 1s, después gira en sentido antihorario durante 1s; posteriormente, el motor se detiene 
 durante 1s. Esta serie de acciones se repetirá continuamente.
+
 
 
 **Código**

@@ -53,7 +53,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -152,6 +152,7 @@ Después de ejecutar el código:
 - La pantalla de cuatro dígitos muestra la hora actual en formato HH:MM.
 - Al inicio de cada hora (cuando el minuto = 0), el sistema anuncia la hora actual una vez.
 - La pantalla se actualiza continuamente hasta que se presione ``Ctrl+C``, momento en el cual se liberan los recursos de GPIO.
+
 
 **Código**
 

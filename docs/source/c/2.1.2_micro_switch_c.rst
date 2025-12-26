@@ -53,7 +53,7 @@ También puedes comprarlos por separado en los enlaces a continuación.
     *   - INTRODUCCIÓN DEL COMPONENTE
         - ENLACE DE COMPRA
 
-    *   - :ref:`cpn_gpio_extension_board`
+    *   - :ref:`cpn_gpio_board`
         - |link_gpio_board_buy|
     *   - :ref:`cpn_breadboard`
         - |link_breadboard_buy|
@@ -122,6 +122,8 @@ Mientras el código se está ejecutando, presiona el Micro Switch, luego el LED 
 .. note::
 
     Si no funciona después de ejecutar, o aparece un mensaje de error: "wiringPi.h: No such file or directory", por favor, consulta :ref:`install_wiringpi`.
+
+
 **Código**
 
 .. code-block:: c
@@ -187,6 +189,6 @@ Cuando el brazo móvil del micro switch está suelto, el pin izquierdo se conect
 Cuando se presiona el brazo móvil, el pin izquierdo y el pin central están conectados. En este punto se leerá un nivel bajo en GPIO17, luego se encenderá el LED2 y se apagará el LED1.
 
 Imagen del Fenómeno
-------------------
+-------------------------
 
 .. image:: ../img/2.1.2micro_switch.JPG
