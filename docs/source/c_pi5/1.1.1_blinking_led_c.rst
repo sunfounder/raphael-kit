@@ -159,7 +159,7 @@ GPIO17       Pin 11   0        17
 
 .. note::
 
-   実行後に動作しない、またはエラープロンプトが表示される場合: ``wiringPi.h\: No such file or directory``、 :ref:`install_wiringpi` を参照してください。
+   実行後に動作しない、またはエラープロンプトが表示される場合: ``wiringPi.h\: No such file or directory``、 :ref:`install_wiringpi_pi5` を参照してください。
 
 GPIOを制御するには、 ``sudo`` コマンド（スーパーユーザー実行）でプログラムを実行する必要があります。 ``./`` コマンドは現在のディレクトリを示しています。全体のコマンドは、現在のディレクトリの ``BlinkingLed`` を実行するものです。
 

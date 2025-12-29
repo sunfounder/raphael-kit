@@ -121,7 +121,7 @@ SCL1         Pin 5
 .. note::
 
     * ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` エラーが発生した場合は、I2Cを有効にするために :ref:`i2c_config` を参照してください。
-    * ``ModuleNotFoundError: No module named 'smbus2'`` エラーが表示された場合は、 ``sudo pip3 install smbus2`` を実行してください。
+    * ``ModuleNotFoundError: No module named 'smbus2'`` エラーが表示された場合は、 ``sudo apt install python3-smbus2`` を実行してください。
     * エラー ``OSError: [Errno 121] Remote I/O error`` が表示された場合、モジュールの接続が誤っているか、モジュールが壊れていることを意味します。
     * コードと配線は正常ですが、LCDにコンテンツが表示されない場合は、バックのポテンショメーターを回してコントラストを増加させることができます。
 

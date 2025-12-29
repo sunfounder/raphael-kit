@@ -19,13 +19,10 @@
     :maxdepth: 1
 
     install_the_libraries
-    i2c_configuration
-    spi_configuration
-    audio_configuration
-    remote_desktop
-    filezilla
-    blynk_app
-    get_ip
-    install_openssh_powershell
-    login_windows
-
+    _shared/appendix/i2c_configuration
+    _shared/appendix/spi_configuration
+    _shared/appendix/remote_desktop
+    _shared/appendix/filezilla
+    _shared/appendix/blynk_app
+    _shared/appendix/install_openssh_powershell
+    _shared/appendix/login_windows

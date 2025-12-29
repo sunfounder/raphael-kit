@@ -112,7 +112,7 @@ MPU6050は、I2Cバスインターフェースを介してマイクロコント�
 
 .. note::
 
-    * エラープロンプト ``wiringPi.h: No such file or directory`` がある場合は、 :ref:`install_wiringpi` を参照してください。
+    * エラープロンプト ``wiringPi.h: No such file or directory`` がある場合は、 :ref:`install_wiringpi_pi5` を参照してください。
     * ``Unable to open I2C device: No such file or directory`` エラーが発生した場合は、 :ref:`i2c_config` を参照してI2Cを有効にし、配線が正しいか確認する必要があります。
 
 **コード**

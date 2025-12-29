@@ -128,7 +128,7 @@ SCL1         Pin 5    SCL1(9)  SDA1(3)
 
 .. note::
 
-    * エラーメッセージ ``wiringPi.h: No such file or directory`` が表示された場合は、 :ref:`install_wiringpi` を参照してください。
+    * エラーメッセージ ``wiringPi.h: No such file or directory`` が表示された場合は、 :ref:`install_wiringpi_pi5` を参照してください。
     * ``Unable to open I2C device: No such file or directory`` エラーが表示される場合は、I2C を有効にするために :ref:`i2c_config` を参照し、配線が正しいか確認してください。
     * コードと配線が正常であるにもかかわらず、LCDにコンテンツが表示されない場合は、バックにあるポテンショメーターを回してコントラストを上げることができます。
 

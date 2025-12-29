@@ -50,33 +50,25 @@ SunFounder Raphael Ulimate Kit for Raspberry Pi
 
 **目次**
 
-.. image:: img/translate3.png
-    :align: center
+.. toctree::
+    :maxdepth: 1
 
-.. raw:: html
-
-   <br/>
-
+    About This Kit <self>
+    quick_start
+    
 .. toctree::
     :maxdepth: 2
-
-    このキットについて <self>
-    install_setup_os/install_setup_os 
-    download_the_code
-
-.. toctree::
-    :maxdepth: 3
 
     for_pi5
     for_other_models
 
 .. toctree::
-    :maxdepth: 3
-    
-    component/component_list
-    appendix/appendix
+    :maxdepth: 2
+
+    component
+    appendix
     faq
-    thank-learning
+
 
 
 **著作権に関するお知らせ**

@@ -12,20 +12,21 @@
 
     👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
 
-Raspberry Pi OSのインストールとセットアップ
-=============================================================
+.. _get_start:
 
-この章では、まず最初にRaspberry Piの起動方法について学びます。内容には、OSのインストール、Raspberry Piのネットワーク設定、およびターミナルの開き方が含まれます。
+クイックスタート
+===============================
 
-.. note::
+このセクションでは、Raspberry Pi OS のインストール方法、Raspberry Pi への Wi-Fi 設定、Raspberry Pi へのリモートアクセス方法、そして対応するコードの実行方法について説明します。
 
-    Raspberry Piの公式ウェブサイトで完全なチュートリアルを確認できます: `raspberry-pi-setting-up <https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up>`_。
+すでに Raspberry Pi に慣れていて、問題なくコマンドラインを開ける場合は、最初の 3 つのパートをスキップし、最後のパートのみを実行してください。
 
-    すでにRaspberry Piがセットアップされている場合は、この部分をスキップして次の章に進んでください。
+
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
-    what_do_we_need
-    installing_the_os
-    set_up_your_raspberry_pi
+    _shared/pi_start/need_components
+    _shared/pi_start/install_os_trixie
+    _shared/pi_start/set_up_pi
+    download_the_code
