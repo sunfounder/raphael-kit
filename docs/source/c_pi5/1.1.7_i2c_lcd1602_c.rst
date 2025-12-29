@@ -116,7 +116,7 @@ Dopo l'esecuzione del codice, vedrai visualizzato su LCD il messaggio ``Greeting
 
 .. note::
 
-    * Se appare un errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Se appare un errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi_pi5`.
     * Se ricevi l'errore ``Unable to open I2C device: No such file or directory``, devi fare riferimento a :ref:`i2c_config` per abilitare I2C e controllare che i collegamenti siano corretti.
     * Se il codice e i collegamenti sono corretti, ma l'LCD non visualizza ancora nulla, puoi regolare il potenziometro sul retro per aumentare il contrasto.
 

@@ -136,7 +136,7 @@ Dopo l'esecuzione del programma, apparirà la pagina iniziale sull'LCD:
 
 .. note::
 
-    * Se appare il messaggio di errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Se appare il messaggio di errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi_pi5`.
     * Se ottieni l'errore ``Unable to open I2C device: No such file or directory``, devi consultare :ref:`i2c_config` per abilitare I2C e controllare che il cablaggio sia corretto.
     * Se il codice e il cablaggio sono corretti ma l'LCD non visualizza ancora il contenuto, puoi regolare il contrasto con il potenziometro sul retro.
 

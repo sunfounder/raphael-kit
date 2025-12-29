@@ -80,12 +80,6 @@ Carica il file di codice (``1.8_service_bell.sb3``) su Scratch 3.
 
 Premi il micro interruttore e il campanello suonerà una volta.
 
-.. note::
-
-  Se il tuo Raspberry Pi è collegato a uno schermo con altoparlanti, potrebbe non riprodurre suoni tramite l'altoparlante esterno. Consulta :ref:`change_audio_output` per trovare la soluzione.
-
-  Inoltre, se vuoi regolare il livello del volume, consulta :ref:`adjust_volume`.
-
 Suggerimenti sugli Sprite
 -----------------------------------
 

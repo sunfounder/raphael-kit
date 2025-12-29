@@ -80,13 +80,6 @@ Carica il file di codice (``1.8_service_bell.sb3``) su Scratch 3.
 
 Premi il micro switch e il campanello di servizio suonerà una volta.
 
-
-.. note::
-  
-  Se il tuo Raspberry Pi è collegato a uno schermo con altoparlanti, potrebbe non emettere suoni da questo altoparlante esterno. Per la soluzione, fai riferimento a :ref:`change_audio_output`.
-
-  Inoltre, se desideri regolare il livello del volume, consulta :ref:`adjust_volume`.
-
 Suggerimenti sugli Sprite
 ------------------------------
 

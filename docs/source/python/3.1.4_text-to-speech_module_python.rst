@@ -109,11 +109,6 @@ Dopo aver costruito il circuito secondo lo schema sopra, collega il cavo audio a
 
 Dopo l'esecuzione del codice, il Raspberry Pi ti saluterà cordialmente e ti dirà addio quando il codice si fermerà.
 
-.. note::
-
-    Se il tuo altoparlante non emette suono, potrebbe essere perché il Raspberry Pi ha selezionato l'uscita audio sbagliata (il valore predefinito è HDMI), dovrai :ref:`change_audio_output` su Cuffie.
-
-    Se ritieni che il volume degli altoparlanti sia troppo basso, puoi :ref:`adjust_volume`.
 
 **Codice**
 

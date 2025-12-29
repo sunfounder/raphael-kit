@@ -129,7 +129,7 @@ in base alla distanza.
 .. note::
 
     * Se ricevi l'errore ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, devi fare riferimento a :ref:`i2c_config` per abilitare l'I2C.
-    * Se ottieni l'errore ``ModuleNotFoundError: No module named 'smbus2'``, esegui ``sudo pip3 install smbus2``.
+    * Se ottieni l'errore ``ModuleNotFoundError: No module named 'smbus2'``, esegui ``sudo apt install python3-smbus2``.
     * Se compare l'errore ``OSError: [Errno 121] Remote I/O error``, significa che il modulo è cablato male o il modulo è guasto.
     * Se il codice e il cablaggio sono corretti, ma l'LCD continua a non visualizzare contenuti, puoi regolare il potenziometro sul retro per aumentare il contrasto.
 

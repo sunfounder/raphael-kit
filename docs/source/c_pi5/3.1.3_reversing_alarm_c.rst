@@ -134,7 +134,7 @@ il buzzer emetterà un tono di avviso la cui frequenza varierà in base alla dis
 
 .. note::
 
-    * Se viene visualizzato un messaggio di errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Se viene visualizzato un messaggio di errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi_pi5`.
     * Se viene visualizzato l'errore ``Unable to open I2C device: No such file or directory``, consulta :ref:`i2c_config` per abilitare l'I2C e verifica che il cablaggio sia corretto.
     * Se il codice e il cablaggio sono corretti, ma l'LCD non visualizza ancora contenuti, prova a ruotare il potenziometro sul retro per aumentare il contrasto.
 

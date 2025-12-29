@@ -75,7 +75,7 @@ Puoi anche acquistarli separatamente dai link sottostanti.
         - |link_resistor_buy|
     *   - :ref:`cpn_bar_graph`
         - \-
-    *   - :ref:`mcp3008`
+    *   - :ref:`cpn_mcp3008`
         - \-
 
 Schema elettrico
@@ -144,7 +144,7 @@ Potrai vedere accendersi i LED corrispondenti sul Bargraph, indicando il livello
 
 .. note::
 
-    Se non funziona dopo l’esecuzione o appare un errore tipo: "wiringPi.h: No such file or directory", fai riferimento a :ref:`install_wiringpi`.
+    Se non funziona dopo l’esecuzione o appare un errore tipo: "wiringPi.h: No such file or directory", fai riferimento a :ref:`install_wiringpi_pi5`.
 
 Codice
 --------
