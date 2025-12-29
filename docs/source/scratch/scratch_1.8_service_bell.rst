@@ -79,13 +79,6 @@ Chargez le fichier de code (``1.8_service_bell.sb3``) dans Scratch 3.
 
 Appuyez sur le micro-interrupteur et la sonnette de service sonnera une fois.
 
-.. note::
-
-  Si votre Raspberry Pi est connecté à un écran avec des haut-parleurs, cela peut empêcher le son de sortir de ce haut-parleur externe, veuillez vous référer à :ref:`changer_sortie_audio` pour la solution.
-
-  De plus, si vous souhaitez ajuster le niveau du volume, veuillez vous référer à :ref:`ajuster_volume`.
-
-
 Astuces sur le Sprite
 ------------------------
 

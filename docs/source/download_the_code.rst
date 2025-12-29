@@ -12,41 +12,97 @@
 
     👉 Prêt à explorer et à créer avec nous ? Cliquez [|link_sf_facebook|] et rejoignez-nous aujourd'hui !
 
-Télécharger le Code
-===========================
 
-Avant de télécharger le code, veuillez noter que le code d'exemple est 
-**UNIQUEMENT** testé sur Raspberry Pi OS. Nous fournissons deux méthodes pour le téléchargement :
+Télécharger le code
+==================
 
-**Méthode 1 : Utiliser git clone (Recommandé)**
+Tous les programmes d’exemple utilisés dans ce kit sont stockés dans notre dépôt GitHub officiel.  
+Utilisez la commande suivante pour télécharger l’intégralité du projet sur votre Raspberry Pi.
 
-Connectez-vous à Raspberry Pi, puis changez de répertoire vers ``~``.
+Cloner le dépôt
+---------------
 
-.. raw:: html
+#. Connectez-vous à votre Raspberry Pi et exécutez :
 
-   <run></run>
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      cd ~/
+      git clone https://github.com/sunfounder/raphael-kit.git --depth 1
 
-.. code-block:: 
+#. Entrez dans le répertoire du projet :
 
-   cd ~/
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      cd ~/raphael-kit/
+
+#. Listez les fichiers :
+
+   .. raw:: html
+   
+       <run></run>
+   
+   .. code-block:: bash
+   
+      ls
+
+#. Vous verrez une structure similaire à celle-ci :
+
+   .. code-block:: text
+   
+      raphael-kit/
+      ├── c/
+      ├── iot/
+      ├── music/
+      ├── nodejs/
+      ├── python-pi5/
+      ├── python/
+      ├── scratch/
+      └── README.md
 
 
-.. note::
+Présentation de la structure du projet
+--------------------------------------
 
-   Utilisez `cd` pour changer de répertoire depuis le chemin actuel. Ici, cela signifie aller vers le chemin ``~/``.
+Voici une brève introduction de chaque dossier :
 
-Clonez le dépôt depuis GitHub.
+* **c/**  
 
-.. raw:: html
+  Exemples et bibliothèques en langage C pour les utilisateurs qui préfèrent programmer en C sur Raspberry Pi.
 
-   <run></run>
+* **iot/**  
 
-.. code-block:: 
+  Exemples liés à l’IoT, incluant la connectivité avec la plateforme Blynk, des démonstrations de capteurs et des modules de communication.
 
-   git clone https://github.com/sunfounder/raphael-kit.git --depth 1
+* **music/** 
 
-**Méthode 2 : Télécharger le code**
+  Contient des ressources audio telles que ``doorbell.wav`` et ``my_music.mp3`` utilisées dans les projets ultérieurs.
 
-Téléchargez le code source depuis GitHub : https://github.com/sunfounder/raphael-kit
+* **nodejs/**
 
-.. image:: img/image33.png
+  Exemples Node.js pour les utilisateurs développant des projets basés sur JavaScript sur Raspberry Pi.
+
+* **python/**  
+
+  Programmes d’exemple en Python écrits avec la bibliothèque ``RPi.GPIO``, adaptés à la plupart des cartes Raspberry Pi.
+
+* **python-pi5/**  
+
+  Exemples Python écrits avec la bibliothèque ``GPIO Zero``, spécifiquement optimisés pour le **Raspberry Pi 5**.
+
+* **scratch/** 
+
+  Exemples de programmation Scratch conçus pour les débutants apprenant la programmation graphique.
+
+* **README.md**  
+
+  Informations de base sur le dépôt et instructions générales.
+
+Vous pouvez maintenant entrer dans le dossier correspondant à votre langage de programmation ou type de projet préféré et commencer à exécuter les exemples.

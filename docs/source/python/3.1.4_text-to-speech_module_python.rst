@@ -111,12 +111,6 @@ Après avoir construit le circuit selon le schéma ci-dessus, branchez le câble
 
 Le Raspberry Pi vous saluera gentiment après l'exécution du code et vous dira au revoir lorsque le code s'arrêtera.
 
-.. note::
-
-    Si votre haut-parleur n'émet aucun son, cela peut être dû au fait que le Raspberry Pi a sélectionné une mauvaise sortie audio (la sortie par défaut est HDMI). Vous devez alors :ref:`changer_sortie_audio` vers les écouteurs.
-
-    Si vous trouvez que le volume des haut-parleurs est trop faible, vous pouvez :ref:`ajuster_volume`.
-
 **Code**
 
 .. note::

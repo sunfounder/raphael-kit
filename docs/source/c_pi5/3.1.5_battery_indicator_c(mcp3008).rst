@@ -75,7 +75,7 @@ Vous pouvez également les acheter séparément via les liens ci‑dessous.
         - |link_resistor_buy|
     *   - :ref:`cpn_bar_graph`
         - \-
-    *   - :ref:`mcp3008`
+    *   - :ref:`cpn_mcp3008`
         - \-
 
 Schéma de câblage
@@ -144,7 +144,7 @@ Vous pouvez voir que la LED correspondante de la barre à LED s’allume pour af
 
 .. note::
 
-    Si cela ne fonctionne pas après l’exécution ou si un message d’erreur apparaît : « wiringPi.h: No such file or directory », veuillez vous référer à :ref:`install_wiringpi`.
+    Si cela ne fonctionne pas après l’exécution ou si un message d’erreur apparaît : « wiringPi.h: No such file or directory », veuillez vous référer à :ref:`install_wiringpi_pi5`.
 
 Code
 ----

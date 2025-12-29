@@ -150,7 +150,7 @@ Appuyez de nouveau sur le **Joystick** pour réinitialiser le seuil à sa valeur
 
 .. note::
 
-    * Si une erreur « wiringPi.h: No such file or directory » apparaît, veuillez vous référer à :ref:`install_wiringpi`.
+    * Si une erreur « wiringPi.h: No such file or directory » apparaît, veuillez vous référer à :ref:`install_wiringpi_pi5`.
     * Si une erreur « Unable to open I2C device: No such file or directory » apparaît, vous devez consulter :ref:`i2c_config` pour activer I2C et vérifier si le câblage est correct.
     * Si le code et le câblage sont corrects, mais que l’écran LCD n’affiche rien, vous pouvez tourner le potentiomètre à l’arrière pour augmenter le contraste.
 
