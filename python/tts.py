@@ -15,14 +15,21 @@ class TTS(object):
         'it-IT', # 意大利语(意大利)Italia-lingua italiana
     ]
 
+
     def __init__(self, engine='espeak'):
         super().__init__()
-        self._lang = "en-US"            # 默认输入的语言为英语
+        self._lang = "en-US"
         self.engine = engine
-        if (engine == "espeak"):
-            if not is_installed("espeak"):
-                raise Exception("TTS engine: espeak is not installed.")
-            self._amp   = 100 
+        if engine == "espeak":
+            # Detect which executable is available: espeak or espeak-ng
+            if find_executable("espeak"):
+                self._exe = "espeak"
+            elif find_executable("espeak-ng"):
+                self._exe = "espeak-ng"
+            else:
+                raise Exception("TTS engine: espeak/espeak-ng is not installed.")
+
+            self._amp   = 100
             self._speed = 175
             self._gap   = 5
             self._pitch = 50
@@ -52,14 +59,17 @@ class TTS(object):
         eval(f"self.{self.engine}(words)")
 
     def espeak(self, words):
-        # self._debug('espeak:\n [%s]' % (words))
-        if not self._check_executable('espeak'):
-            pass
-            # self._debug('espeak is busy. Pass')
-
-        cmd = 'espeak -a%d -s%d -g%d -p%d \"%s\" --stdout | aplay 2>/dev/null & ' % (self._amp, self._speed, self._gap, self._pitch, words)
+        # Use the detected executable (espeak or espeak-ng)
+        cmd = '%s -a%d -s%d -g%d -p%d "%s" &' % (
+            self._exe,
+            self._amp,
+            self._speed,
+            self._gap,
+            self._pitch,
+            words
+        )
         self.run_command(cmd)
-        # self._debug('command: %s' %cmd)
+
 
     def gtts(self, words):
         sound_file = "/opt/ezblock/output.mp3"

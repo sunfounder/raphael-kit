@@ -1,39 +1,61 @@
 #!/usr/bin/env python3
-
-from picamera import PiCamera
-import RPi.GPIO as GPIO
 import time
 import os
+import RPi.GPIO as GPIO
+from picamera2 import Picamera2
+
+# ----------------------------
+# USER DIRECTORY
+# ----------------------------
 user = os.getlogin()
 user_home = os.path.expanduser(f'~{user}')
 
+# ----------------------------
+# GPIO SETUP
+# ----------------------------
+PIR_PIN = 17  # PIR motion sensor connected to GPIO17
 
-camera = PiCamera()
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-pirPin = 17    # the pir connect to pin17
+# ----------------------------
+# CAMERA SETUP
+# ----------------------------
+camera = Picamera2()
+camera.start()
 
-def setup():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pirPin, GPIO.IN)
-    camera.start_preview(alpha=200)
+print("Motion detection started. Press Ctrl+C to exit.")
 
-def main():
+# ----------------------------
+# MAIN LOOP
+# ----------------------------
+try:
     i = 1
     while True:
-        pirVal = GPIO.input(pirPin)
-        if pirVal==GPIO.HIGH:
-            camera.capture(f'{user_home}/capture%s.jpg' % i)
-            print('The number is %s' % i)
+        if GPIO.input(PIR_PIN) == GPIO.HIGH:
+            filename = f"{user_home}/capture{i}.jpg"
+            camera.capture_file(filename)
+            print(f"Motion detected. Saved image #{i}: {filename}")
             time.sleep(3)
-            i = i + 1
+            i += 1
+        else:
+            print("waiting")
+            time.sleep(0.5)
 
-def destroy():
-    GPIO.cleanup()
-    camera.stop_preview()
+# ----------------------------
+# KEYBOARD INTERRUPT
+# ----------------------------
+except KeyboardInterrupt:
+    print("\nKeyboard interrupt received. Exiting program...")
 
-if __name__ == '__main__':
-    setup()
+# ----------------------------
+# CLEANUP
+# ----------------------------
+finally:
     try:
-        main()
-    except KeyboardInterrupt:
-        destroy()
+        camera.close()
+    except:
+        pass
+
+    GPIO.cleanup()
+    print("Program exited cleanly.")
