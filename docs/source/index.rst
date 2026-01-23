@@ -70,7 +70,6 @@ If you have any questions, please send an email to service@sunfounder.com and we
     component
     appendix
     faq
-    thank-learning
 
 
 
