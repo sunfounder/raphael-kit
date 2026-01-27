@@ -29,5 +29,12 @@ Impara a potenziare il tuo sistema di allarme portatile Raspberry Pi aggiungendo
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/qDv8fBn0Mqk?si=SmFPuYx6Q9NZVmwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/qDv8fBn0Mqk?si=SmFPuYx6Q9NZVmwW" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 

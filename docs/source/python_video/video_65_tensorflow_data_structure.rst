@@ -30,5 +30,12 @@ Impara come analizzare e personalizzare i risultati del rilevamento oggetti in T
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/oYoUz1DM0SM?si=hqdSpuJgY-6eU9vu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/oYoUz1DM0SM?si=hqdSpuJgY-6eU9vu" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 

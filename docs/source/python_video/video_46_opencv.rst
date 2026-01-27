@@ -36,5 +36,12 @@ Impara a configurare la fotocamera per vari scopi, visualizzare video in diretta
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/kuJpdAf07WQ?si=Txv85bAdLCvTRtlQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/kuJpdAf07WQ?si=Txv85bAdLCvTRtlQ" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 
