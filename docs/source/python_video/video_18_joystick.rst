@@ -28,5 +28,12 @@ Lernen Sie, wie Sie einen Joystick in Ihre Raspberry Pi-Projekte mit dem SunFoun
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/T6HsRRXBVS8?si=79j5wweBJj7gtfQW" title="YouTube-Video-Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/T6HsRRXBVS8?si=79j5wweBJj7gtfQW" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 

@@ -28,10 +28,24 @@ In diesem Tutorial erklärt Paul McWhorter die Rolle von Pull-Up- und Pull-Down-
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/0OYtR8UdZQk?si=NZkyjKNIs7zjXvi-" title="YouTube-Video-Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/0OYtR8UdZQk?si=NZkyjKNIs7zjXvi-" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 
 **Hausaufgabenlösung**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/MvqC2k-Xgjc?si=Y4t6ceIxordbdFx6" title="YouTube-Video-Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/MvqC2k-Xgjc?si=Y4t6ceIxordbdFx6" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

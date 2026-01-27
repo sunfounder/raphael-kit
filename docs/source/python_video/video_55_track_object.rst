@@ -28,5 +28,12 @@ Erfahren Sie in diesem umfassenden Tutorial, wie Sie Objekte mit OpenCV auf dem 
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/r62o500I0MA?si=1FzEQg8-2VUxrclB" title="YouTube-Videoplayer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/r62o500I0MA?si=1FzEQg8-2VUxrclB" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 

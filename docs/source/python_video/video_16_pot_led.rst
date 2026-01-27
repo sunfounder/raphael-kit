@@ -30,4 +30,11 @@ In diesem Video lernen Sie, wie Sie mithilfe eines Raspberry Pi, eines ADC-0834 
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/WLWYM2MIZqk?si=3jdRJCDntFNUBCaZ" title="YouTube-Video-Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/WLWYM2MIZqk?si=3jdRJCDntFNUBCaZ" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
