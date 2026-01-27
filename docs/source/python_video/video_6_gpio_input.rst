@@ -31,10 +31,24 @@ Rejoignez Paul McWhorter dans ce tutoriel complet alors qu'il explique l'importa
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/0OYtR8UdZQk?si=NZkyjKNIs7zjXvi-" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/0OYtR8UdZQk?si=NZkyjKNIs7zjXvi-" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 
 **Solution du Devoir**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/MvqC2k-Xgjc?si=Y4t6ceIxordbdFx6" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/MvqC2k-Xgjc?si=Y4t6ceIxordbdFx6" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

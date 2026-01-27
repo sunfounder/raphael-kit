@@ -30,4 +30,11 @@ Cette vidéo vous guide à travers les bases de la modulation de largeur d'impul
 
 .. raw:: html
     
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/yJdN6LmGqvc?si=ta6vDlpAcGePqCdD" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/yJdN6LmGqvc?si=ta6vDlpAcGePqCdD" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

@@ -45,5 +45,12 @@ Les applications potentielles au-delà de la saisie via le clavier, comme l'int�
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/XyhHtk8PCao?si=pT83TNbdE60aBVac" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/XyhHtk8PCao?si=pT83TNbdE60aBVac" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 

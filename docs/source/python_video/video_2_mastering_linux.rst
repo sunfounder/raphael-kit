@@ -36,4 +36,11 @@ et supprimer des fichiers, à installer des paquets logiciels, à exécuter des 
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/8kg3xIifMN4?si=Fb5-XK2DSZRzHIeB" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/8kg3xIifMN4?si=Fb5-XK2DSZRzHIeB" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
