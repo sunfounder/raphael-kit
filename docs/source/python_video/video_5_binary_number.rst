@@ -27,10 +27,24 @@
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/Rbi6sVvazFU?si=AAVIRPmAaXLxOMfO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/Rbi6sVvazFU?si=AAVIRPmAaXLxOMfO" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 
 **宿題の解答**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/NYWl_gd2jJo?si=b5_sgKKRD9SohoOn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/NYWl_gd2jJo?si=b5_sgKKRD9SohoOn" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
