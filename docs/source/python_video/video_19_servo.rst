@@ -30,5 +30,12 @@ Learn how to control a servo motor with a Raspberry Pi as Paul McQuarter guides 
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/i7hMx6YLR0Q?si=6xUhPw0Wvelt4UjQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/i7hMx6YLR0Q?si=6xUhPw0Wvelt4UjQ" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 

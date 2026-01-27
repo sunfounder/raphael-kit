@@ -35,11 +35,25 @@ This comprehensive tutorial covers the basics of Raspberry Pi GPIO pins and thei
 .. raw:: html
 
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/az90qK3jmDo?si=_U47tOoNF9-51xtr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/az90qK3jmDo?si=_U47tOoNF9-51xtr" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 
 
 **Homework Solution**
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/n9v3G0JqTaI?si=P42m5hVv7PhvLrCS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/n9v3G0JqTaI?si=P42m5hVv7PhvLrCS" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
