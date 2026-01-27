@@ -28,4 +28,11 @@ Aprende a realizar seguimiento de colores utilizando Raspberry Pi y OpenCV, expl
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/SQ34pmUHMRA?si=7tT-Ef5wZVOzUEe5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/SQ34pmUHMRA?si=7tT-Ef5wZVOzUEe5" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

@@ -28,4 +28,11 @@ Explora los fundamentos para entender las imágenes, desde la representación de
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/yyQxIqkZ_mI?si=j-dHMwbwHloCX5Kk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/yyQxIqkZ_mI?si=j-dHMwbwHloCX5Kk" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

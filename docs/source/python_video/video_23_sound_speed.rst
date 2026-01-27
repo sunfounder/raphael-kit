@@ -28,4 +28,11 @@ Aprende a medir la velocidad del sonido utilizando una Raspberry Pi y un sensor 
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/v87vxJRLp-Q?si=APlxSPTCjpHCBQEz" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/v87vxJRLp-Q?si=APlxSPTCjpHCBQEz" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

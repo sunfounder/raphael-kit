@@ -31,4 +31,11 @@ Este video demuestra cómo crear un sistema de alarma usando una Raspberry Pi, i
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/lzv9cwdU_ok?si=VyGkOZt_vOGniMap" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/lzv9cwdU_ok?si=VyGkOZt_vOGniMap" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

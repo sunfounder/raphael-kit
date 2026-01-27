@@ -36,4 +36,11 @@ Cubre el manejo de errores, la transmisión de datos y los planes de lecciones f
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/79dlpK03t30?si=FvnBbJ1aaX45hzpV" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/79dlpK03t30?si=FvnBbJ1aaX45hzpV" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

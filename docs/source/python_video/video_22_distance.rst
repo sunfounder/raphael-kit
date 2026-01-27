@@ -33,4 +33,11 @@ Aprende cómo medir distancias usando el sensor ultrasónico HC-SR04 con una Ras
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/O7x5r0P980U?si=XLK2-XEoRJJ0cpuo" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/O7x5r0P980U?si=XLK2-XEoRJJ0cpuo" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>

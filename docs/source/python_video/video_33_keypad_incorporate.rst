@@ -26,4 +26,11 @@ Este video demuestra cómo leer la entrada de un teclado utilizando una Raspberr
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/0sD9J8iu8RQ?si=Tbc7xeVy3ASJdV3Y" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/0sD9J8iu8RQ?si=Tbc7xeVy3ASJdV3Y" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
