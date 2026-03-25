@@ -27,4 +27,11 @@ Apprenez à créer un circuit à LED basculable en utilisant un Raspberry Pi et 
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/yL5BNA_Ex6s?si=zJmjwc_W0u9oFh1_" title="Lecteur vidéo YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/yL5BNA_Ex6s?si=zJmjwc_W0u9oFh1_" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
