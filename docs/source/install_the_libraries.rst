@@ -259,25 +259,25 @@ Luma.LED_Matrix
 
 * 参考: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-.. _mfrc522_lib:
+.. .. _mfrc522_lib:
 
-MFRC522
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. MFRC522
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``spidev`` ライブラリはSPIとのインタラクションを助け、このチュートリアルではRaspberry PiがRFID RC522と対話するために必要です。
+.. ``spidev`` ライブラリはSPIとのインタラクションを助け、このチュートリアルではRaspberry PiがRFID RC522と対話するために必要です。
 
-以下のコマンドでRaspberry PiにMFRC522ライブラリをインストールします。
+.. 以下のコマンドでRaspberry PiにMFRC522ライブラリをインストールします。
 
-.. raw:: html
+.. .. raw:: html
 
-   <run></run>
+..    <run></run>
 
-.. code-block:: 
+.. .. code-block:: 
 
-    sudo pip3 install mfrc522
+..     sudo pip3 install mfrc522
 
-MFRC522ライブラリには ``MFRC522.py`` と ``SimpleMFRC522.py`` という2つのファイルが含まれています。
+.. MFRC522ライブラリには ``MFRC522.py`` と ``SimpleMFRC522.py`` という2つのファイルが含まれています。
 
-そのうち ``MFRC522.py`` はRFID RC522インターフェースの実装で、このライブラリはPiのSPIインターフェースを通じてRFIDと通信するすべての重い作業を処理します。
+.. そのうち ``MFRC522.py`` はRFID RC522インターフェースの実装で、このライブラリはPiのSPIインターフェースを通じてRFIDと通信するすべての重い作業を処理します。
 
-``SimpleMFRC522.py`` は ``MFRC522.py`` ファイルを大幅に簡略化し、いくつかの関数しか扱わなくてもよいようにしています。
+.. ``SimpleMFRC522.py`` は ``MFRC522.py`` ファイルを大幅に簡略化し、いくつかの関数しか扱わなくてもよいようにしています。
