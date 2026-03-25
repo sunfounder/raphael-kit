@@ -267,23 +267,23 @@ Il s’agit d’une bibliothèque Python 3 permettant d’interfacer des matrice
 
 * Référence : `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-.. _install_mfrc522:
+.. .. _install_mfrc522:
 
-MFRC522
-~~~~~~~~~~~~~~~~~
+.. MFRC522
+.. ~~~~~~~~~~~~~~~~~
 
-Exécutez la commande suivante pour installer la bibliothèque MFRC522.
+.. Exécutez la commande suivante pour installer la bibliothèque MFRC522.
 
-.. raw:: html
+.. .. raw:: html
 
-   <run></run>
+..    <run></run>
 
-.. code-block::
+.. .. code-block::
 
-    sudo pip3 install mfrc522
+..     sudo pip3 install mfrc522
 
-La bibliothèque MFRC522 contient deux fichiers : ``MFRC522.py`` et ``SimpleMFRC522.py``. 
+.. La bibliothèque MFRC522 contient deux fichiers : ``MFRC522.py`` et ``SimpleMFRC522.py``. 
 
-Parmi eux, ``MFRC522.py`` implémente l’interface RFID RC522 ; cette bibliothèque gère tout le travail complexe de communication avec le RFID via l’interface SPI du Raspberry Pi.
+.. Parmi eux, ``MFRC522.py`` implémente l’interface RFID RC522 ; cette bibliothèque gère tout le travail complexe de communication avec le RFID via l’interface SPI du Raspberry Pi.
 
-``SimpleMFRC522.py`` s’appuie sur le fichier ``MFRC522.py`` et le simplifie considérablement en vous permettant de n’utiliser que quelques fonctions au lieu d’un ensemble plus complexe de fonctions.
+.. ``SimpleMFRC522.py`` s’appuie sur le fichier ``MFRC522.py`` et le simplifie considérablement en vous permettant de n’utiliser que quelques fonctions au lieu d’un ensemble plus complexe de fonctions.
