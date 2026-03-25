@@ -267,23 +267,23 @@ This is a Python 3 library for interfacing LED matrix displays using the MAX7219
 
 * Reference: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-.. _install_mfrc522:
+.. .. _install_mfrc522:
 
-MFRC522
-~~~~~~~~~~~~~~~~~
+.. MFRC522
+.. ~~~~~~~~~~~~~~~~~
 
-Run the following command to install the MFRC522 library.
+.. Run the following command to install the MFRC522 library.
 
-.. raw:: html
+.. .. raw:: html
 
-   <run></run>
+..    <run></run>
 
-.. code-block:: 
+.. .. code-block:: 
 
-    sudo pip3 install mfrc522
+..     sudo pip3 install mfrc522
 
-The MFRC522 library contains two files: ``MFRC522.py`` and ``SimpleMFRC522.py``. 
+.. The MFRC522 library contains two files: ``MFRC522.py`` and ``SimpleMFRC522.py``. 
 
-Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this library handles all the heavy work of communicating with RFID through Pi's SPI interface.
+.. Among them ``MFRC522.py`` is the realization of RFID RC522 interface, this library handles all the heavy work of communicating with RFID through Pi's SPI interface.
 
-``SimpleMFRC522.py`` takes the ``MFRC522.py`` file and greatly simplifies it by allowing you to deal with only a few functions instead of a few functions.
+.. ``SimpleMFRC522.py`` takes the ``MFRC522.py`` file and greatly simplifies it by allowing you to deal with only a few functions instead of a few functions.
