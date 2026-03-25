@@ -253,23 +253,23 @@ Dies ist eine Python-3-Bibliothek zur Ansteuerung von LED-Matrix-Displays über 
 * Referenz: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
 
-.. _install_mfrc522:
+.. .. _install_mfrc522:
 
-MFRC522
-~~~~~~~~~~~~~~~~~
+.. MFRC522
+.. ~~~~~~~~~~~~~~~~~
 
-Führen Sie folgenden Befehl aus, um die MFRC522-Bibliothek zu installieren:
+.. Führen Sie folgenden Befehl aus, um die MFRC522-Bibliothek zu installieren:
 
-.. raw:: html
+.. .. raw:: html
 
-   <run></run>
+..    <run></run>
 
-.. code-block:: 
+.. .. code-block:: 
 
-    sudo pip3 install mfrc522
+..     sudo pip3 install mfrc522
 
-Die MFRC522-Bibliothek besteht aus zwei Dateien: ``MFRC522.py`` und ``SimpleMFRC522.py``.  
+.. Die MFRC522-Bibliothek besteht aus zwei Dateien: ``MFRC522.py`` und ``SimpleMFRC522.py``.  
 
-* ``MFRC522.py`` implementiert die Kommunikation mit dem RFID-Modul RC522 über SPI.  
-* ``SimpleMFRC522.py`` vereinfacht die Nutzung erheblich, da nur wenige Funktionen verwendet werden müssen.
+.. * ``MFRC522.py`` implementiert die Kommunikation mit dem RFID-Modul RC522 über SPI.  
+.. * ``SimpleMFRC522.py`` vereinfacht die Nutzung erheblich, da nur wenige Funktionen verwendet werden müssen.
 
