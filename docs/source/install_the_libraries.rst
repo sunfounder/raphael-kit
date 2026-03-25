@@ -265,23 +265,23 @@ Esta es una biblioteca para Python 3 que permite controlar pantallas de matriz L
 
 * Referencia: `Luma.LED_Matrix <https://luma-led-matrix.readthedocs.io/en/latest/install.html>`_
 
-.. _install_mfrc522:
+.. .. _install_mfrc522:
 
-MFRC522
-~~~~~~~~~~~~~~~~~
+.. MFRC522
+.. ~~~~~~~~~~~~~~~~~
 
-Ejecuta el siguiente comando para instalar la biblioteca MFRC522.
+.. Ejecuta el siguiente comando para instalar la biblioteca MFRC522.
 
-.. raw:: html
+.. .. raw:: html
 
-   <run></run>
+..    <run></run>
 
-.. code-block:: 
+.. .. code-block:: 
 
-    sudo pip3 install mfrc522
+..     sudo pip3 install mfrc522
 
-La biblioteca MFRC522 contiene dos archivos: ``MFRC522.py`` y ``SimpleMFRC522.py``.
+.. La biblioteca MFRC522 contiene dos archivos: ``MFRC522.py`` y ``SimpleMFRC522.py``.
 
-Entre ellos, ``MFRC522.py`` implementa la interfaz del lector RFID RC522, manejando toda la comunicación a través de la interfaz SPI.
+.. Entre ellos, ``MFRC522.py`` implementa la interfaz del lector RFID RC522, manejando toda la comunicación a través de la interfaz SPI.
 
-``SimpleMFRC522.py`` usa ``MFRC522.py`` y simplifica enormemente su uso, permitiéndote trabajar solo con unas pocas funciones en lugar de muchas.
+.. ``SimpleMFRC522.py`` usa ``MFRC522.py`` y simplifica enormemente su uso, permitiéndote trabajar solo con unas pocas funciones en lugar de muchas.
