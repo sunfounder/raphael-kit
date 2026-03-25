@@ -58,7 +58,7 @@
         - |link_wires_buy|
     *   - :ref:`cpn_resistor`
         - |link_resistor_buy|
-    *   - :ref:`RGB LED`
+    *   - :ref:`cpn_led`
         - |link_rgb_led_buy|
 
 回路を組む

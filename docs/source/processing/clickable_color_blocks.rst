@@ -53,7 +53,7 @@
         - |link_breadboard_buy|
     *   - :ref:`cpn_wires`
         - |link_wires_buy|
-    *   - :ref:`RGB LED`
+    *   - :ref:`cpn_led`
         - |link_rgb_led_buy|
 
 **配線図**
