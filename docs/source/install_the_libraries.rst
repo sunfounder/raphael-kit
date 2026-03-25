@@ -15,7 +15,7 @@
 .. _install_the_libraries:
 
 Installer les bibliothèques
-==========================
+==========================================
 
 Pour les utilisateurs C
 ------------------------

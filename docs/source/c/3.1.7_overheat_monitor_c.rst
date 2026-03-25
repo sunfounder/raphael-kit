@@ -107,6 +107,7 @@ SCL1         Pin 5
 
 .. image:: ../img/Schematic_three_one8.png
    :align: center
+
 Procédures expérimentales
 -----------------------------
 
@@ -158,6 +159,7 @@ et la LED se déclenchent pour vous alerter.
     * Si un message d'erreur ``wiringPi.h: Aucun fichier ou dossier de ce type`` apparaît, veuillez vous référer à :ref:`install_wiringpi`.
     * Si vous recevez l'erreur ``Impossible d'ouvrir le périphérique I2C : Aucun fichier ou dossier de ce type``, vous devez vous référer à :ref:`i2c_config` pour activer I2C et vérifier si le câblage est correct.
     * Si le code et le câblage sont corrects mais que l'écran LCD n'affiche toujours rien, vous pouvez ajuster le potentiomètre à l'arrière pour augmenter le contraste.
+
 **Explication du code**
 
 .. code-block:: c

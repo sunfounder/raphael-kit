@@ -14,7 +14,7 @@
 
 
 Télécharger le code
-==================
+====================================
 
 Tous les programmes d’exemple utilisés dans ce kit sont stockés dans notre dépôt GitHub officiel.  
 Utilisez la commande suivante pour télécharger l’intégralité du projet sur votre Raspberry Pi.
