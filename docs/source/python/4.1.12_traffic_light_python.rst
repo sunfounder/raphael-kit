@@ -335,6 +335,7 @@ Estos códigos se utilizan para encender y apagar los LEDs.
 Los códigos se utilizan para encender y apagar el temporizador. 
 Consulta el capítulo 1.1.5 para más detalles. Aquí, cuando el temporizador llega a cero, 
 colorState cambiará para así cambiar el LED, y al temporizador se le asignará un nuevo valor.
+
 .. code-block:: python
 
     def setup():

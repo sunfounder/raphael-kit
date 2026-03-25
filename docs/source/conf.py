@@ -305,29 +305,29 @@ rst_epilog += """
 
 # shared pages
 
-rst_epilog += """
+# rst_epilog += """
 
-.. |shared_link_putty| raw:: html
+# .. |shared_link_putty| raw:: html
 
-    <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>" target="_blank">PuTTY</a> 
+#     <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>" target="_blank">PuTTY</a> 
 
-.. |shared_link_filezilla| raw:: html
+# .. |shared_link_filezilla| raw:: html
 
-    <a href="https://filezilla-project.org/" target="_blank">FileZilla</a> 
+#     <a href="https://filezilla-project.org/" target="_blank">FileZilla</a> 
 
-.. |shared_link_realvnc| raw:: html
+# .. |shared_link_realvnc| raw:: html
 
-    <a href="https://www.realvnc.com/en/connect/download/viewer/" target="_blank">RealVNC® Viewer</a>   
+#     <a href="https://www.realvnc.com/en/connect/download/viewer/" target="_blank">RealVNC® Viewer</a>   
 
-.. |shared_link_rpi_imager| raw:: html
+# .. |shared_link_rpi_imager| raw:: html
 
-    <a href="https://www.raspberrypi.com/software/" target="_blank">Raspberry Pi Imager</a>   
+#     <a href="https://www.raspberrypi.com/software/" target="_blank">Raspberry Pi Imager</a>   
 
-.. |shared_link_rpi_connect| raw:: html
+# .. |shared_link_rpi_connect| raw:: html
 
-    <a href="https://www.raspberrypi.com/documentation/services/connect.html" target="_blank">Raspberry Pi Connect</a> 
+#     <a href="https://www.raspberrypi.com/documentation/services/connect.html" target="_blank">Raspberry Pi Connect</a> 
 
-.. |shared_link_fusion_hat| raw:: html
+# .. |shared_link_fusion_hat| raw:: html
 
-    <a href="https://docs.sunfounder.com/projects/fusion-hat/en/latest/" target="_blank">Fusion HAT+</a>
-"""
+#     <a href="https://docs.sunfounder.com/projects/fusion-hat/en/latest/" target="_blank">Fusion HAT+</a>
+# """
