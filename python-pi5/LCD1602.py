@@ -94,6 +94,8 @@ def init(addr=None, bl=1):
 
 def clear():
 	send_command(0x01) # Clear Screen
+	time.sleep(0.002)
+	BUS.write_byte(LCD_ADDR, 0x08)
 
 def openlight():  # Enable the backlight
 	BUS.write_byte(0x27,0x08)

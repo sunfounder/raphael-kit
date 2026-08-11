@@ -18,4 +18,6 @@ if __name__ == "__main__":
 	try:
 		setup()
 	except KeyboardInterrupt:
+		pass
+	finally:
 		destroy()

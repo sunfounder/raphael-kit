@@ -77,6 +77,8 @@ void init(){
 
 void clear(){
 	send_command(0x01);	//clear Screen
+	delay(2);
+	wiringPiI2CWrite(fd, 0x08);
 }
 
 void write(int x, int y, char data[]){
@@ -103,4 +105,6 @@ void main(){
 	init();
 	write(0, 0, "Greetings!");
 	write(1, 1, "From SunFounder");
+	delay(2000);
+	clear();
 }

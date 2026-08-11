@@ -11,9 +11,14 @@ def setup():
     LCD1602.write(1, 1, 'From SunFounder') 
     time.sleep(2)  # Display messages for 2 seconds
 
+def destroy():
+    LCD1602.clear()  # Clear the LCD screen
+
 try:
     setup()  # Run the setup function to initialize the LCD and display messages
-    
+
 except KeyboardInterrupt:
     # Handle any keyboard interruption (like Ctrl+C) gracefully
     pass
+finally:
+    destroy()  # Ensure the LCD screen is cleared on exit
