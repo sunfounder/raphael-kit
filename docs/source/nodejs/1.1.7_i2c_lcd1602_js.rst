@@ -123,6 +123,10 @@ Après l'exécution du code, vous verrez ``Greetings!!, From SunFounder`` s'affi
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
+    setTimeout(() => {
+        lcd.clear();
+    }, 2000);
+
 **Explication du code**
 
 .. code-block:: js

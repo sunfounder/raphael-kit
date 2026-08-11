@@ -139,6 +139,8 @@ Après l'exécution du code, vous pouvez voir ``Greetings!, From SunFounder`` af
         try:
             setup()
         except KeyboardInterrupt:
+            pass
+        finally:
             destroy()
 
 
