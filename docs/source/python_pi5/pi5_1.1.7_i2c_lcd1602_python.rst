@@ -142,13 +142,17 @@ Después de ejecutar el código, podrás ver ``Greetings!, From SunFounder`` en 
        LCD1602.write(1, 1, 'From SunFounder') 
        time.sleep(2)  # Display messages for 2 seconds
 
+   def destroy():
+       LCD1602.clear()  # Clear the LCD display
+
    try:
        setup()  # Run the setup function to initialize the LCD and display messages
-       
+
    except KeyboardInterrupt:
-       # Clear the LCD display if a keyboard interruption (e.g., Ctrl+C) occurs
-       LCD1602.clear()
-       pass  # Proceed with no further action
+       pass  # Handle Ctrl+C gracefully
+
+   finally:
+       destroy()  # Ensure the LCD screen is cleared on exit
 
 
 **Explicación del Código**
