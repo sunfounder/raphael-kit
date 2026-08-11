@@ -139,6 +139,8 @@ Nachdem der Code ausgeführt wurde, können Sie ``Greetings!, From SunFounder`` 
         try:
             setup()
         except KeyboardInterrupt:
+            pass
+        finally:
             destroy()
 
 
