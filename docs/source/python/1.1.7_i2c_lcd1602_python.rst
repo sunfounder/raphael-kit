@@ -138,6 +138,8 @@ SCL1         Pin 5
         try:
             setup()
         except KeyboardInterrupt:
+            pass
+        finally:
             destroy()
 
 **コード説明**

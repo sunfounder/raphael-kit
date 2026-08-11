@@ -144,13 +144,17 @@ SCL1         Pin 5
        LCD1602.write(1, 1, 'From SunFounder') 
        time.sleep(2)  # メッセージを2秒間表示
 
+   def destroy():
+       LCD1602.clear()  # LCDディスプレイをクリアします
+
    try:
        setup()  # LCDの初期化およびメッセージの表示のためのセットアップ関数を実行します
-       
+
    except KeyboardInterrupt:
-       # キーボードの割り込み（例：Ctrl+C）が発生した場合、LCDディスプレイをクリアします
-       LCD1602.clear()
-       pass  # それ以上のアクションは不要です
+       pass  # Ctrl+Cを適切に処理
+
+   finally:
+       destroy()  # 終了時にLCD画面が確実にクリアされるようにします
 
 **コードの説明**
 

@@ -123,6 +123,10 @@ SCL1         Pin 5
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
+    setTimeout(() => {
+        lcd.clear();
+    }, 2000);
+
 **コード説明**
 
 .. code-block:: js
