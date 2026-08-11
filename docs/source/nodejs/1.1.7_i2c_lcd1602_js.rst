@@ -122,6 +122,10 @@ Dopo l'esecuzione del codice, sul display LCD vedrai il messaggio ``Greetings!!,
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
+    setTimeout(() => {
+        lcd.clear();
+    }, 2000);
+
 **Spiegazione del codice**
 
 .. code-block:: js

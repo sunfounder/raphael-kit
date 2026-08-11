@@ -141,6 +141,8 @@ Dopo l'esecuzione del codice, vedrai visualizzato su LCD il messaggio ``Greeting
         try:
             setup()
         except KeyboardInterrupt:
+            pass
+        finally:
             destroy()
 
 

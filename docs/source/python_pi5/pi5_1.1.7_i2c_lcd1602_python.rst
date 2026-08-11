@@ -144,13 +144,17 @@ Dopo l'esecuzione del codice, sul display LCD vedrai apparire il messaggio ``Gre
        LCD1602.write(1, 1, 'From SunFounder') 
        time.sleep(2)  # Visualizza i messaggi per 2 secondi
 
+   def destroy():
+       LCD1602.clear()  # Cancella il display LCD
+
    try:
        setup()  # Esegui la funzione setup per inizializzare l'LCD e visualizzare i messaggi
-       
+
    except KeyboardInterrupt:
-       # Cancella il display LCD se si verifica un'interruzione da tastiera (es. Ctrl+C)
-       LCD1602.clear()
-       pass  # Procedi senza ulteriori azioni
+       pass  # Gestisci Ctrl+C con grazia
+
+   finally:
+       destroy()  # Assicura che lo schermo LCD venga cancellato all'uscita
 
 
 **Spiegazione del Codice**
