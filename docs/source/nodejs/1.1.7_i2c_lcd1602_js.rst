@@ -124,6 +124,10 @@ After the code runs, you can see ``Greetings!!, From SunFounder`` displaying on 
     lcd.text(0, 0, 'Greetings!!');
     lcd.text(1, 1, 'from SunFounder');
 
+    setTimeout(() => {
+        lcd.clear();
+    }, 2000);
+
 **Code Explanation**
 
 .. code-block:: js

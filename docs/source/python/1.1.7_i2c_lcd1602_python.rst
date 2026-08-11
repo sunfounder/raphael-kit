@@ -143,6 +143,8 @@ After the code runs, you can see ``Greetings!, From SunFounder`` displaying on t
         try:
             setup()
         except KeyboardInterrupt:
+            pass
+        finally:
             destroy()
 
 
