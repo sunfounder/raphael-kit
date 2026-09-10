@@ -177,7 +177,7 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
        # Initialize LED2 connected to GPIO pin 27
        led2 = LED(27)
 
-#. In the main loop, it checks the state of the micro switch. If pressed, LED1 turns on and LED2 off. If not pressed, LED1 turns off and LED2 on. The loop repeats every 0.5 seconds. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination.
+#. In the main loop, it checks the state of the micro switch. If pressed, LED2 turns on and LED1 off. If not pressed, LED2 turns off and LED1 on. The loop repeats every 0.5 seconds. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination.
 
    .. code-block:: python
 
