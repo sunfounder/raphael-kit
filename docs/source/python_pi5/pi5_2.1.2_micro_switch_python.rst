@@ -144,13 +144,13 @@ GPIO22とGPIO27にそれぞれLEDを二つ接続します。
        # Continuously check the state of the micro switch and control LEDs accordingly
        while True:
            if micro_switch.is_pressed:  # If the micro switch is pressed
-               print('LED1 ON')  # Print a message to the console
-               led1.on()       # Turn on LED1
-               led2.off()      # Turn off LED2
+               print('LED2 ON')  # Print a message to the console
+               led1.off()       # Turn off LED1
+               led2.on()      # Turn on LED2
            else:  # If the micro switch is not pressed
-               print('    LED2 ON')  # Print a message to the console
-               led1.off()      # Turn off LED1
-               led2.on()       # Turn on LED2
+               print('    LED1 ON')  # Print a message to the console
+               led1.on()      # Turn on LED1
+               led2.off()       # Turn off LED2
 
            sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
 
@@ -180,7 +180,7 @@ GPIO22とGPIO27にそれぞれLEDを二つ接続します。
        # Initialize LED2 connected to GPIO pin 27
        led2 = LED(27)
 
-#. メインループでは、マイクロスイッチの状態をチェックします。押されていれば、LED1が点灯し、LED2が消灯します。押されていなければ、LED1が消灯し、LED2が点灯します。このループは0.5秒ごとに繰り返されます。Ctrl+C（KeyboardInterrupt）を捕捉して、スクリプトを優雅に終了させることができます。
+#. メインループでは、マイクロスイッチの状態をチェックします。押されていれば、LED2が点灯し、LED1が消灯します。押されていなければ、LED2が消灯し、LED1が点灯します。このループは0.5秒ごとに繰り返されます。Ctrl+C（KeyboardInterrupt）を捕捉して、スクリプトを優雅に終了させることができます。
 
    .. code-block:: python
 
@@ -188,13 +188,13 @@ GPIO22とGPIO27にそれぞれLEDを二つ接続します。
            # Continuously check the state of the micro switch and control LEDs accordingly
            while True:
                if micro_switch.is_pressed:  # If the micro switch is pressed
-                   print('LED1 ON')  # Print a message to the console
-                   led1.on()       # Turn on LED1
-                   led2.off()      # Turn off LED2
+                   print('LED2 ON')  # Print a message to the console
+                   led1.off()       # Turn off LED1
+                   led2.on()      # Turn on LED2
                else:  # If the micro switch is not pressed
-                   print('    LED2 ON')  # Print a message to the console
-                   led1.off()      # Turn off LED1
-                   led2.on()       # Turn on LED2
+                   print('    LED1 ON')  # Print a message to the console
+                   led1.on()      # Turn on LED1
+                   led2.off()       # Turn off LED2
 
                sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
 
