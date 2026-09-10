@@ -76,9 +76,8 @@ pin GPIO22 and GPIO27 respectively. Then when you press and release the
 move arm of the Micro Switch, you can see the two LEDs light up alternately.
 
 .. image:: ../python_pi5/img/2.1.2_micro_switch_schematic_1.png
-
-
 .. image:: ../python_pi5/img/2.1.2_micro_switch_schematic_2.png
+
 
 
 Experimental Procedures
@@ -142,13 +141,13 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
        # Continuously check the state of the micro switch and control LEDs accordingly
        while True:
            if micro_switch.is_pressed:  # If the micro switch is pressed
-               print('LED1 ON')  # Print a message to the console
-               led1.on()       # Turn on LED1
-               led2.off()      # Turn off LED2
+               print('LED2 ON')  # Print a message to the console
+               led1.off()       # Turn off LED1
+               led2.on()      # Turn on LED2
            else:  # If the micro switch is not pressed
-               print('    LED2 ON')  # Print a message to the console
-               led1.off()      # Turn off LED1
-               led2.on()       # Turn on LED2
+               print('    LED1 ON')  # Print a message to the console
+               led1.on()      # Turn on LED1
+               led2.off()       # Turn off LED2
 
            sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
 
@@ -184,15 +183,15 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
 
        try:
            # Continuously check the state of the micro switch and control LEDs accordingly
-           while True:
-               if micro_switch.is_pressed:  # If the micro switch is pressed
-                   print('LED1 ON')  # Print a message to the console
-                   led1.on()       # Turn on LED1
-                   led2.off()      # Turn off LED2
-               else:  # If the micro switch is not pressed
-                   print('    LED2 ON')  # Print a message to the console
-                   led1.off()      # Turn off LED1
-                   led2.on()       # Turn on LED2
+            while True:
+                if micro_switch.is_pressed:  # If the micro switch is pressed
+                    print('LED2 ON')  # Print a message to the console
+                    led1.off()       # Turn off LED1
+                    led2.on()      # Turn on LED2
+                else:  # If the micro switch is not pressed
+                    print('    LED1 ON')  # Print a message to the console
+                    led1.on()      # Turn on LED1
+                    led2.off()       # Turn off LED2
 
                sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
 
