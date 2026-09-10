@@ -141,13 +141,13 @@ Mientras el código se está ejecutando, presiona el brazo móvil, entonces el L
        # Comprobar continuamente el estado del microinterruptor y controlar los LEDs en consecuencia
        while True:
            if micro_switch.is_pressed:  # If the micro switch is pressed
-               print('LED1 ON')  # Print a message to the console
-               led1.on()       # Turn on LED1
-               led2.off()      # Turn off LED2
+               print('LED2 ON')  # Print a message to the console
+               led1.off()       # Turn off LED1
+               led2.on()      # Turn on LED2
            else:  # If the micro switch is not pressed
-               print('    LED2 ON')  # Print a message to the console
-               led1.off()      # Turn off LED1
-               led2.on()       # Turn on LED2
+               print('    LED1 ON')  # Print a message to the console
+               led1.on()      # Turn on LED1
+               led2.off()       # Turn off LED2
 
            sleep(0.5)  # Pausar 0.5 segundos antes de comprobar el interruptor nuevamente
 
@@ -177,7 +177,7 @@ Mientras el código se está ejecutando, presiona el brazo móvil, entonces el L
        # Inicializar LED2 conectado al pin GPIO 27
        led2 = LED(27)
 
-#. En el bucle principal, se verifica el estado del microinterruptor. Si está presionado, el LED1 se enciende y el LED2 se apaga. Si no está presionado, el LED1 se apaga y el LED2 se enciende. El bucle se repite cada 0.5 segundos. Captura un KeyboardInterrupt (como Ctrl+C) para permitir la terminación segura del script.
+#. En el bucle principal, se verifica el estado del microinterruptor. Si está presionado, el LED2 se enciende y el LED1 se apaga. Si no está presionado, el LED2 se apaga y el LED1 se enciende. El bucle se repite cada 0.5 segundos. Captura un KeyboardInterrupt (como Ctrl+C) para permitir la terminación segura del script.
 
    .. code-block:: python
 
@@ -185,13 +185,13 @@ Mientras el código se está ejecutando, presiona el brazo móvil, entonces el L
            # Comprobar continuamente el estado del microinterruptor y controlar los LEDs en consecuencia
            while True:
                if micro_switch.is_pressed:  # If the micro switch is pressed
-                   print('LED1 ON')  # Print a message to the console
-                   led1.on()       # Turn on LED1
-                   led2.off()      # Turn off LED2
+                   print('LED2 ON')  # Print a message to the console
+                   led1.off()       # Turn off LED1
+                   led2.on()      # Turn on LED2
                else:  # If the micro switch is not pressed
-                   print('    LED2 ON')  # Print a message to the console
-                   led1.off()      # Turn off LED1
-                   led2.on()       # Turn on LED2
+                   print('    LED1 ON')  # Print a message to the console
+                   led1.on()      # Turn on LED1
+                   led2.off()       # Turn off LED2
 
                sleep(0.5)  # Pausar por 0.5 segundos antes de verificar el interruptor nuevamente
 
