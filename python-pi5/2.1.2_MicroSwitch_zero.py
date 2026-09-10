@@ -13,13 +13,13 @@ try:
     # Continuously check the state of the micro switch and control LEDs accordingly
     while True:
         if micro_switch.is_pressed:  # If the micro switch is pressed
-            print('LED1 ON')  # Print a message to the console
-            led1.on()       # Turn on LED1
-            led2.off()      # Turn off LED2
+            print('LED2 ON')  # Print a message to the console
+            led1.off()       # Turn off LED1
+            led2.on()      # Turn on LED2
         else:  # If the micro switch is not pressed
-            print('    LED2 ON')  # Print a message to the console
-            led1.off()      # Turn off LED1
-            led2.on()       # Turn on LED2
+            print('    LED1 ON')  # Print a message to the console
+            led1.on()      # Turn on LED1
+            led2.off()       # Turn off LED2
 
         sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
 
