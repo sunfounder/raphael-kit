@@ -143,13 +143,13 @@ Mentre il codice è in esecuzione, premi il braccio mobile, il LED giallo si acc
        # Controlla continuamente lo stato del micro interruttore e gestisce i LED di conseguenza
        while True:
            if micro_switch.is_pressed:  # Se il micro interruttore è premuto
-               print('LED1 ON')  # Stampa un messaggio sulla console
-               led1.on()       # Accendi il LED1
-               led2.off()      # Spegni il LED2
+               print('LED2 ON')  # Stampa un messaggio sulla console
+               led1.off()       # Spegni il LED1
+               led2.on()      # Accendi il LED2
            else:  # Se il micro interruttore non è premuto
-               print('    LED2 ON')  # Stampa un messaggio sulla console
-               led1.off()      # Spegni il LED1
-               led2.on()       # Accendi il LED2
+               print('    LED1 ON')  # Stampa un messaggio sulla console
+               led1.on()      # Accendi il LED1
+               led2.off()       # Spegni il LED2
 
            sleep(0.5)  # Pausa di 0.5 secondi prima di controllare nuovamente l'interruttore
 
@@ -179,7 +179,7 @@ Mentre il codice è in esecuzione, premi il braccio mobile, il LED giallo si acc
        # Inizializza il LED2 collegato al pin GPIO 27
        led2 = LED(27)
 
-#. Nel ciclo principale, controlla lo stato del micro interruttore. Se premuto, il LED1 si accende e il LED2 si spegne. Se non premuto, il LED1 si spegne e il LED2 si accende. Il ciclo si ripete ogni 0.5 secondi. Gestisce un KeyboardInterrupt (come Ctrl+C) per permettere una chiusura corretta dello script.
+#. Nel ciclo principale, controlla lo stato del micro interruttore. Se premuto, il LED2 si accende e il LED1 si spegne. Se non premuto, il LED2 si spegne e il LED1 si accende. Il ciclo si ripete ogni 0.5 secondi. Gestisce un KeyboardInterrupt (come Ctrl+C) per permettere una chiusura corretta dello script.
 
    .. code-block:: python
 
@@ -187,13 +187,13 @@ Mentre il codice è in esecuzione, premi il braccio mobile, il LED giallo si acc
            # Controlla continuamente lo stato del micro interruttore e gestisce i LED di conseguenza
            while True:
                if micro_switch.is_pressed:  # Se il micro interruttore è premuto
-                   print('LED1 ON')  # Stampa un messaggio sulla console
-                   led1.on()       # Accendi il LED1
-                   led2.off()      # Spegni il LED2
+                   print('LED2 ON')  # Stampa un messaggio sulla console
+                   led1.off()       # Spegni il LED1
+                   led2.on()      # Accendi il LED2
                else:  # Se il micro interruttore non è premuto
-                   print('    LED2 ON')  # Stampa un messaggio sulla console
-                   led1.off()      # Spegni il LED1
-                   led2.on()       # Accendi il LED2
+                   print('    LED1 ON')  # Stampa un messaggio sulla console
+                   led1.on()      # Accendi il LED1
+                   led2.off()       # Spegni il LED2
 
                sleep(0.5)  # Pausa di 0.5 secondi prima di controllare nuovamente l'interruttore
 
