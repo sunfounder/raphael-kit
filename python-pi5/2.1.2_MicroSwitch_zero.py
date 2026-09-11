@@ -1,28 +1,29 @@
 #!/usr/bin/env python3
-from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
-from time import sleep  # Import sleep function for delays
 
-# Initialize micro switch on GPIO pin 17 with the pull-up resistor disabled
-micro_switch = Button(17, pull_up=False)
-# Initialize LED1 connected to GPIO pin 22
-led1 = LED(22)
-# Initialize LED2 connected to GPIO pin 27
-led2 = LED(27)
+from gpiozero import LED, Button
+from time import sleep
+
+# Initialize the micro switch (LOW when pressed)
+micro_switch = Button(17, pull_up=None, active_state=False, bounce_time=0.05)
+
+# Initialize the LEDs
+red_led = LED(22)
+yellow_led = LED(27)
 
 try:
-    # Continuously check the state of the micro switch and control LEDs accordingly
     while True:
-        if micro_switch.is_pressed:  # If the micro switch is pressed
-            print('LED2 ON')  # Print a message to the console
-            led1.off()       # Turn off LED1
-            led2.on()      # Turn on LED2
-        else:  # If the micro switch is not pressed
-            print('    LED1 ON')  # Print a message to the console
-            led1.on()      # Turn on LED1
-            led2.off()       # Turn off LED2
+        if micro_switch.is_pressed:
+            print("YELLOW LED ON")
+            red_led.off()
+            yellow_led.on()
+        else:
+            print("RED LED ON")
+            red_led.on()
+            yellow_led.off()
 
-        sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
+        sleep(0.1)
 
 except KeyboardInterrupt:
-    # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
-    pass
+    # Turn off both LEDs
+    red_led.off()
+    yellow_led.off()
