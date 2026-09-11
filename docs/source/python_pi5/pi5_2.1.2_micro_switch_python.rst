@@ -126,75 +126,78 @@ While the code is running, press the moving arm, then the yellow LED lights up; 
 
 .. code-block:: python
 
-   #!/usr/bin/env python3
-   from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
-   from time import sleep  # Import sleep function for delays
+    #!/usr/bin/env python3
 
-   # Initialize micro switch on GPIO pin 17 with the pull-up resistor disabled
-   micro_switch = Button(17, pull_up=False)
-   # Initialize LED1 connected to GPIO pin 22
-   led1 = LED(22)
-   # Initialize LED2 connected to GPIO pin 27
-   led2 = LED(27)
+    from gpiozero import LED, Button
+    from time import sleep
 
-   try:
-       # Continuously check the state of the micro switch and control LEDs accordingly
-       while True:
-           if micro_switch.is_pressed:  # If the micro switch is pressed
-               print('LED2 ON')  # Print a message to the console
-               led1.off()       # Turn off LED1
-               led2.on()      # Turn on LED2
-           else:  # If the micro switch is not pressed
-               print('    LED1 ON')  # Print a message to the console
-               led1.on()      # Turn on LED1
-               led2.off()       # Turn off LED2
+    # Initialize the micro switch (LOW when pressed)
+    micro_switch = Button(17, pull_up=None, active_state=False, bounce_time=0.05)
 
-           sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
+    # Initialize the LEDs
+    red_led = LED(22)
+    yellow_led = LED(27)
 
-   except KeyboardInterrupt:
-       # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
-       pass
+    try:
+        while True:
+            if micro_switch.is_pressed:
+                print("YELLOW LED ON")
+                red_led.off()
+                yellow_led.on()
+            else:
+                print("RED LED ON")
+                red_led.on()
+                yellow_led.off()
+
+            sleep(0.1)
+
+    except KeyboardInterrupt:
+        # Turn off both LEDs
+        red_led.off()
+        yellow_led.off()
 	
 
 **Code Explanation**
 
-#. This line sets the script to run with Python 3. It imports ``LED`` and ``Button`` from ``gpiozero`` for controlling GPIO devices, and ``sleep`` from ``time`` for delays.
+#. Imports the ``LED`` and ``Button`` classes from ``gpiozero`` to control the GPIO devices, and ``sleep`` from ``time`` for delays.
 
    .. code-block:: python
 
-       #!/usr/bin/env python3
-       from gpiozero import LED, Button  # Import LED and Button classes from gpiozero
-       from time import sleep  # Import sleep function for delays
+       from gpiozero import LED, Button
+       from time import sleep
 
-#. Initializes a micro switch connected to GPIO pin 17 with the pull-up resistor disabled, and two LEDs connected to GPIO pins 22 and 27.
+#. Creates a ``Button`` object for the micro switch on GPIO17. 
+
+   * ``pull_up=None`` disables the internal pull-up/pull-down resistor so the pin level is set by the circuit alone.
+   * ``active_state=False`` makes ``is_pressed`` report ``True`` when the pin reads LOW — which is what happens when the arm is pressed in this circuit. 
+   * ``bounce_time=0.05`` adds a 50 ms debounce to filter out mechanical contact bounce. 
+   * Then two LEDs are created: the red LED on GPIO22 and the yellow LED on GPIO27.
 
    .. code-block:: python
 
-       # Initialize micro switch on GPIO pin 17 with the pull-up resistor disabled
-       micro_switch = Button(17, pull_up=False)
-       # Initialize LED1 connected to GPIO pin 22
-       led1 = LED(22)
-       # Initialize LED2 connected to GPIO pin 27
-       led2 = LED(27)
+       # Initialize the micro switch (LOW when pressed)
+       micro_switch = Button(17, pull_up=None, active_state=False, bounce_time=0.05)
+       # Initialize the LEDs
+       red_led = LED(22)
+       yellow_led = LED(27)
 
-#. In the main loop, it checks the state of the micro switch. If pressed, LED2 turns on and LED1 off. If not pressed, LED2 turns off and LED1 on. The loop repeats every 0.5 seconds. Catches a KeyboardInterrupt (like Ctrl+C) to allow for graceful script termination.
+#. In the main loop, the state of the micro switch is polled every 0.1 seconds. While pressed, the yellow LED turns on and the red LED turns off; when released, the red LED turns on and the yellow LED turns off. When Ctrl+C is pressed, ``KeyboardInterrupt`` is caught and both LEDs are turned off before the script exits.
 
    .. code-block:: python
 
        try:
-           # Continuously check the state of the micro switch and control LEDs accordingly
            while True:
-               if micro_switch.is_pressed:  # If the micro switch is pressed
-                   print('LED2 ON')  # Print a message to the console
-                   led1.off()       # Turn off LED1
-                   led2.on()      # Turn on LED2
-               else:  # If the micro switch is not pressed
-                   print('    LED1 ON')  # Print a message to the console
-                   led1.on()      # Turn on LED1
-                   led2.off()       # Turn off LED2
-
-               sleep(0.5)  # Pause for 0.5 seconds before checking the switch again
+               if micro_switch.is_pressed:
+                   print("YELLOW LED ON")
+                   red_led.off()
+                   yellow_led.on()
+               else:
+                   print("RED LED ON")
+                   red_led.on()
+                   yellow_led.off()
+               sleep(0.1)
 
        except KeyboardInterrupt:
-           # Handle KeyboardInterrupt (Ctrl+C) to exit the loop gracefully
-           pass
+           # Turn off both LEDs
+           red_led.off()
+           yellow_led.off()
