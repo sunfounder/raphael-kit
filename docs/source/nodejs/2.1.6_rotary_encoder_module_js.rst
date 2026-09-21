@@ -79,7 +79,7 @@ Experimentelle Verfahren
 
 In diesem Beispiel können wir den Drehgeber-Pin direkt an den 
 Raspberry Pi anschließen. Verwenden Sie dazu ein Breadboard und ein 40-Pin-Kabel. Verbinden Sie 
-das GND des Drehgebers mit GND, 「+」mit 5V, SW mit digitalem GPIO27, DT mit digitalem GPIO18 und CLK mit digitalem GPIO
+das GND des Drehgebers mit GND, 「+」mit 3.3V, SW mit digitalem GPIO27, DT mit digitalem GPIO18 und CLK mit digitalem GPIO
 17.
 
 **Schritt 2:** Wechseln Sie in den Ordner des Codes.

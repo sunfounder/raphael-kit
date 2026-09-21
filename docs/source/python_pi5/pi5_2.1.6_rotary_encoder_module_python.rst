@@ -73,7 +73,7 @@ Experimentelle Verfahren
 
 .. image:: ../python_pi5/img/2.1.6_rotary_encoder_circuit.png
 
-In diesem Beispiel können wir den Drehencoder direkt mit dem Raspberry Pi über ein Steckbrett und ein 40-Pin-Kabel verbinden, den GND des Drehencoders mit GND, 「+」mit 5V, SW mit digitalem GPIO27, DT mit digitalem GPIO18 und CLK mit digitalem GPIO 17 verbinden.
+In diesem Beispiel können wir den Drehencoder direkt mit dem Raspberry Pi über ein Steckbrett und ein 40-Pin-Kabel verbinden, den GND des Drehencoders mit GND, 「+」mit 3.3V, SW mit digitalem GPIO27, DT mit digitalem GPIO18 und CLK mit digitalem GPIO 17 verbinden.
 
 **Schritt 2:** Öffnen Sie die Code-Datei.
 
