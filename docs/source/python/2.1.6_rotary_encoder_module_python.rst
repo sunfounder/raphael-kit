@@ -80,7 +80,7 @@ Procedure Sperimentali
 
 In questo esempio, colleghiamo i pin dell'Encoder Rotativo direttamente al Raspberry Pi 
 usando una breadboard e un cavo a 40 pin. Collega il GND dell'Encoder Rotativo a GND, 
-「+」a 5V, SW al GPIO27, DT al GPIO18 e CLK al GPIO17.
+「+」a 3.3V, SW al GPIO27, DT al GPIO18 e CLK al GPIO17.
 
 **Passo 2:** Apri il file del codice.
 
