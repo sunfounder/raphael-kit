@@ -79,7 +79,7 @@ Procédures Expérimentales
 
 Dans cet exemple, nous pouvons connecter directement les broches du codeur rotatif au Raspberry Pi 
 en utilisant une breadboard et un câble à 40 broches. Connectez le GND du codeur rotatif à GND, 
-「+」à 5V, SW à GPIO27 digital, DT à GPIO18 digital et CLK à GPIO17 digital.
+「+」à 3.3V, SW à GPIO27 digital, DT à GPIO18 digital et CLK à GPIO17 digital.
 
 **Étape 2 :** Ouvrir le fichier de code.
 

@@ -82,7 +82,7 @@ Procédures Expérimentales
 
 Dans cet exemple, nous pouvons connecter la broche de l'encodeur rotatif 
 directement au Raspberry Pi en utilisant une plaque de montage et un câble 
-40 broches. Connectez le GND de l'encodeur rotatif au GND, le 「+」au 5V, 
+40 broches. Connectez le GND de l'encodeur rotatif au GND, le 「+」au 3.3V, 
 SW au GPIO numérique 27, DT au GPIO numérique 18 et CLK au GPIO numérique 17.
 
 **Étape 2 :** Ouvrir le fichier de code.
