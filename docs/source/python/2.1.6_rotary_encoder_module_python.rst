@@ -80,7 +80,7 @@ Experimental Procedures
 
 In this example, we can connect the Rotary Encoder pin directly to the
 Raspberry Pi using a breadboard and 40-pin Cable, connect the GND of the Rotary 
-Encoder to GND, 「+」to 5V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
+Encoder to GND, 「+」to 3.3V, SW to digital GPIO27, DT to digital GPIO18, and CLK to digital GPIO
 17.
 
 **Step 2:** Open the code file.
