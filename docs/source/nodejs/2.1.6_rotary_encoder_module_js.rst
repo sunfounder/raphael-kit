@@ -80,7 +80,7 @@ Procedimientos experimentales
 
 En este ejemplo, podemos conectar el pin del Codificador Rotativo directamente al 
 Raspberry Pi usando una placa de pruebas y un cable de 40 pines. Conecta el GND del 
-Codificador Rotativo a GND, 「+」a 5V, SW al GPIO digital 27, DT al GPIO digital 18 
+Codificador Rotativo a GND, 「+」a 3.3V, SW al GPIO digital 27, DT al GPIO digital 18 
 y CLK al GPIO digital 17.
 
 **Paso 2:** Ve a la carpeta del código.
