@@ -49,8 +49,9 @@
     via each project's dashboard if desired). Do **not** hide it with CSS — an earlier attempt was
     reverted because the flyout is the only language-switching UI.
   - Dashboard states as of 2026-09-21: `raphael-kit-ja` has flyout **disabled**; en/de/es/fr/it enabled.
-- **AI customer-service widget (DocsBot)**: mounted via the two `<script>` blocks in
-  `_templates/layout.html` (all 6 branches), chat bubble at bottom-right.
+- **AI customer-service widget**: a DocsBot widget was briefly mounted in `_templates/layout.html`
+  and removed on 2026-09-22 — the team handles the AI after-sales widget by other means. Do not
+  re-add widget scripts to `layout.html` without checking with the team first.
 - `_static/lang.js`: browser-language redirect banner (top-right notification, auto-redirects on the
   default page) — not a corner switcher.
 - `conf.py` `html_theme_options` must stay empty: `flyout_display` is obsolete since sphinx_rtd_theme
